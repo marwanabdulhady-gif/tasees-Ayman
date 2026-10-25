@@ -5,12 +5,12 @@
 ## BcICQHs9lbI
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] BcICQHs9lbI: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
 - invidious[inv.nadeko.net]: caption body parsed empty; head=''
-- invidious[invidious.nerdvpn.de]: HTTPSConnectionPool(host='invidious.nerdvpn.de', port=443): Max retries exceeded with url: /api/v1/captions/BcICQHs9lbI (Caused by NewConnectionError("HTTPSConnection(host='invidious.nerdvpn.de', port=443): Failed to establish a new connection: [Errno 101] Network is
+- invidious[invidious.nerdvpn.de]: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 - invidious[yewtu.be]: Expecting value: line 1 column 1 (char 0)
 - invidious[invidious.f5.si]: 530 Server Error: <none> for url: https://invidious.f5.si/api/v1/captions/BcICQHs9lbI
-- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/BcICQHs9lbI (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f4fd932d3d0>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
+- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/BcICQHs9lbI (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f263d50f770>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
 - invidious[invidious.materialio.us]: 500 Server Error: Internal Server Error for url: https://invidious.materialio.us/api/v1/captions/BcICQHs9lbI
-- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/BcICQHs9lbI (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f4fd932fe90>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
+- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/BcICQHs9lbI (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f2634774950>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
 - piped[pipedapi.kavin.rocks]: 403 Client Error: Forbidden for url: https://pipedapi.kavin.rocks/streams/BcICQHs9lbI
 - piped[api.piped.private.coffee]: 500 Server Error: Internal Server Error for url: https://api.piped.private.coffee/streams/BcICQHs9lbI
 - piped[pipedapi.adminforge.de]: 403 Client Error: Forbidden for url: https://adminforge.de/streams/BcICQHs9lbI
@@ -19,29 +19,29 @@
 ## qMSSZ0hfRkw
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] qMSSZ0hfRkw: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
 - invidious[inv.nadeko.net]: caption body parsed empty; head=''
-- invidious[invidious.nerdvpn.de]: HTTPSConnectionPool(host='invidious.nerdvpn.de', port=443): Max retries exceeded with url: /api/v1/captions/qMSSZ0hfRkw (Caused by NewConnectionError("HTTPSConnection(host='invidious.nerdvpn.de', port=443): Failed to establish a new connection: [Errno 101] Network is
+- invidious[invidious.nerdvpn.de]: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 - invidious[yewtu.be]: Expecting value: line 1 column 1 (char 0)
 - invidious[invidious.f5.si]: 530 Server Error: <none> for url: https://invidious.f5.si/api/v1/captions/qMSSZ0hfRkw
-- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/qMSSZ0hfRkw (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f4fd91bbdd0>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
+- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/qMSSZ0hfRkw (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f2634746060>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
 - invidious[invidious.materialio.us]: 500 Server Error: Internal Server Error for url: https://invidious.materialio.us/api/v1/captions/qMSSZ0hfRkw
-- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/qMSSZ0hfRkw (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f4fd932e840>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
+- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/qMSSZ0hfRkw (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f263c085fa0>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
 - piped[pipedapi.kavin.rocks]: 403 Client Error: Forbidden for url: https://pipedapi.kavin.rocks/streams/qMSSZ0hfRkw
 - piped[api.piped.private.coffee]: 500 Server Error: Internal Server Error for url: https://api.piped.private.coffee/streams/qMSSZ0hfRkw
-- piped[pipedapi.adminforge.de]: 403 Client Error: Forbidden for url: https://adminforge.de/streams/qMSSZ0hfRkw
+- piped[pipedapi.adminforge.de]: HTTPSConnectionPool(host='pipedapi.adminforge.de', port=443): Max retries exceeded with url: /streams/qMSSZ0hfRkw (Caused by NewConnectionError("HTTPSConnection(host='pipedapi.adminforge.de', port=443): Failed to establish a new connection: [Errno 101] Network is unrea
 - piped[api.piped.yt]: HTTPSConnectionPool(host='api.piped.yt', port=443): Max retries exceeded with url: /streams/qMSSZ0hfRkw (Caused by NameResolutionError("HTTPSConnection(host='api.piped.yt', port=443): Failed to resolve 'api.piped.yt' ([Errno -2] Name or service not known)"))
 
 ## ngdOx-zw_I4
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] ngdOx-zw_I4: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
 - invidious[inv.nadeko.net]: caption body parsed empty; head=''
-- invidious[invidious.nerdvpn.de]: HTTPSConnectionPool(host='invidious.nerdvpn.de', port=443): Max retries exceeded with url: /api/v1/captions/ngdOx-zw_I4 (Caused by NewConnectionError("HTTPSConnection(host='invidious.nerdvpn.de', port=443): Failed to establish a new connection: [Errno 101] Network is
+- invidious[invidious.nerdvpn.de]: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 - invidious[yewtu.be]: Expecting value: line 1 column 1 (char 0)
 - invidious[invidious.f5.si]: 530 Server Error: <none> for url: https://invidious.f5.si/api/v1/captions/ngdOx-zw_I4
-- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/ngdOx-zw_I4 (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f4fd919dc10>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
+- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/ngdOx-zw_I4 (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f263d6d7e00>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
 - invidious[invidious.materialio.us]: 500 Server Error: Internal Server Error for url: https://invidious.materialio.us/api/v1/captions/ngdOx-zw_I4
-- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/ngdOx-zw_I4 (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f4fd92a99a0>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
+- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/ngdOx-zw_I4 (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f2634774e30>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
 - piped[pipedapi.kavin.rocks]: 403 Client Error: Forbidden for url: https://pipedapi.kavin.rocks/streams/ngdOx-zw_I4
 - piped[api.piped.private.coffee]: 500 Server Error: Internal Server Error for url: https://api.piped.private.coffee/streams/ngdOx-zw_I4
-- piped[pipedapi.adminforge.de]: 403 Client Error: Forbidden for url: https://adminforge.de/streams/ngdOx-zw_I4
+- piped[pipedapi.adminforge.de]: HTTPSConnectionPool(host='pipedapi.adminforge.de', port=443): Max retries exceeded with url: /streams/ngdOx-zw_I4 (Caused by NewConnectionError("HTTPSConnection(host='pipedapi.adminforge.de', port=443): Failed to establish a new connection: [Errno 101] Network is unrea
 - piped[api.piped.yt]: HTTPSConnectionPool(host='api.piped.yt', port=443): Max retries exceeded with url: /streams/ngdOx-zw_I4 (Caused by NameResolutionError("HTTPSConnection(host='api.piped.yt', port=443): Failed to resolve 'api.piped.yt' ([Errno -2] Name or service not known)"))
 
 ## 9Jzrs7iIhJo
@@ -90,7 +90,7 @@
 
 ## 25MoQxUWqtk
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] 25MoQxUWqtk: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
-- invidious[inv.nadeko.net]: caption body parsed empty; head=''
+- invidious[inv.nadeko.net]: 500 Server Error: Internal Server Error for url: https://inv.nadeko.net/api/v1/captions/25MoQxUWqtk
 
 ## 8S8WKuyD0Wg
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] 8S8WKuyD0Wg: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
@@ -114,7 +114,7 @@
 
 ## hNSKyFtWFNY
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] hNSKyFtWFNY: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
-- invidious[inv.nadeko.net]: 500 Server Error: Internal Server Error for url: https://inv.nadeko.net/api/v1/captions/hNSKyFtWFNY
+- invidious[inv.nadeko.net]: caption body parsed empty; head=''
 
 ## T3Px9aY2Hkk
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] T3Px9aY2Hkk: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
@@ -142,7 +142,7 @@
 
 ## WSQt0XC9Mn0
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] WSQt0XC9Mn0: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
-- invidious[inv.nadeko.net]: caption body parsed empty; head=''
+- invidious[inv.nadeko.net]: 500 Server Error: Internal Server Error for url: https://inv.nadeko.net/api/v1/captions/WSQt0XC9Mn0?label=Arabic+%28auto-generated%29
 
 ## ktdYZbDwT9w
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] ktdYZbDwT9w: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
