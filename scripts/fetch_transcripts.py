@@ -3,17 +3,18 @@ transcripts/playlists.json, one folder per playlist.
 
 Order of attempts per video:
   1. ytfetcher (youtube-transcript-api) in the configured languages.
-  2. Fallback: YouTube captions (manual, then auto-generated) via yt-dlp,
-     trying several player clients (android/ios/tv/default). Datacenter IPs
-     (GitHub Actions runners) are frequently bot-blocked on some clients but
-     not others, so the first client that yields captions wins and is then
-     preferred for the remaining videos.
+  2. yt-dlp captions (manual, then auto-generated). All clients are probed
+     only when cookies are available; without cookies a single quick probe
+     is made because GitHub runner IPs are currently bot-blocked ("Sign in
+     to confirm you're not a bot") on every player client.
+  3. Invidious instances (public YouTube frontends) — captions API.
+  4. Piped instances — streams API subtitles.
 
 Episodes that already have a file are skipped, so the script can be re-run
 to resume. Per-video failure reasons are written to transcripts/_failures.md
 (committed by the workflow) so they can be inspected without Actions logs.
-Set YT_COOKIES_FILE to a Netscape cookies.txt path if YouTube asks to
-"confirm you're not a bot".
+Set YT_COOKIES_FILE to a Netscape cookies.txt path (or the YT_COOKIES repo
+secret via the workflow) if YouTube asks to "confirm you're not a bot".
 """
 
 import argparse
@@ -25,7 +26,9 @@ import tempfile
 import time
 from collections import Counter
 from pathlib import Path
+from urllib.parse import urlparse
 
+import requests
 import yt_dlp
 from ytfetcher import YTFetcher
 from ytfetcher.config import FetchOptions
@@ -38,9 +41,30 @@ COOKIES_FILE = os.environ.get("YT_COOKIES_FILE")
 if COOKIES_FILE and not Path(COOKIES_FILE).is_file():
     COOKIES_FILE = None
 
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
+
+INVIDIOUS_INSTANCES = [
+    "https://inv.nadeko.net",
+    "https://invidious.nerdvpn.de",
+    "https://yewtu.be",
+    "https://invidious.f5.si",
+    "https://iv.ggtyler.dev",
+    "https://invidious.materialio.us",
+    "https://inv.tux.pizza",
+]
+PIPED_INSTANCES = [
+    "https://pipedapi.kavin.rocks",
+    "https://api.piped.private.coffee",
+    "https://pipedapi.adminforge.de",
+    "https://api.piped.yt",
+    "https://pipedapi.drgns.space",
+]
+INSTANCE_FAIL_LIMIT = 3  # skip an instance for the rest of the run after N failures
+instance_fails: Counter = Counter()
+
 CLIENTS = ["android", "ios", "tv", "default"]
 client_success: Counter = Counter()
-videos_attempted = 0
 FAILURES: dict[str, list[str]] = {}
 
 
@@ -50,6 +74,15 @@ def note_failure(key: str, msg: str) -> None:
 
 def ordered_clients() -> list[str]:
     return sorted(CLIENTS, key=lambda c: -client_success[c])
+
+
+def _host(url: str) -> str:
+    return urlparse(url).netloc
+
+
+def _is_arabic(*texts: str) -> bool:
+    joined = " ".join(t.lower() for t in texts if t)
+    return any(h in joined for h in ("ar", "arabic", "عرب"))
 
 
 class CollectingLogger:
@@ -172,8 +205,7 @@ def fetch_with_ytfetcher(video_ids: list[str], languages: list[str]) -> dict[str
 
 
 def fetch_captions(video_id: str, languages: list[str], client: str = "default") -> list[tuple[float, str]] | None:
-    """Fallback: download caption files (manual first, then auto) with yt-dlp."""
-    global videos_attempted
+    """Download caption files (manual first, then auto) with yt-dlp."""
     logger = CollectingLogger()
     url = f"https://www.youtube.com/watch?v={video_id}"
     with tempfile.TemporaryDirectory() as tmp:
@@ -205,6 +237,64 @@ def fetch_captions(video_id: str, languages: list[str], client: str = "default")
     return None
 
 
+def fetch_via_invidious(video_id: str) -> tuple[list[tuple[float, str]] | None, str | None]:
+    """Captions through public Invidious instances."""
+    for inst in INVIDIOUS_INSTANCES:
+        if instance_fails[inst] >= INSTANCE_FAIL_LIMIT:
+            continue
+        host = _host(inst)
+        try:
+            r = requests.get(f"{inst}/api/v1/captions/{video_id}",
+                             timeout=20, headers={"User-Agent": UA})
+            r.raise_for_status()
+            caps = r.json()
+            if not isinstance(caps, list) or not caps:
+                raise RuntimeError(f"unexpected captions payload: {str(caps)[:120]}")
+            pick = next((c for c in caps
+                         if _is_arabic(c.get("languageCode", ""), c.get("label", ""))), caps[0])
+            url = pick.get("url") or ""
+            if url.startswith("/"):
+                url = inst + url
+            rv = requests.get(url, timeout=30, headers={"User-Agent": UA})
+            rv.raise_for_status()
+            segments = parse_vtt(rv.text)
+            if segments:
+                print(f"  [invidious] {video_id} via {host} ({pick.get('label')})")
+                return segments, host
+            raise RuntimeError("VTT parsed to zero segments")
+        except Exception as exc:  # noqa: BLE001
+            instance_fails[inst] += 1
+            note_failure(video_id, f"invidious[{host}]: {exc}")
+    return None, None
+
+
+def fetch_via_piped(video_id: str) -> tuple[list[tuple[float, str]] | None, str | None]:
+    """Captions through public Piped instances."""
+    for inst in PIPED_INSTANCES:
+        if instance_fails[inst] >= INSTANCE_FAIL_LIMIT:
+            continue
+        host = _host(inst)
+        try:
+            r = requests.get(f"{inst}/streams/{video_id}",
+                             timeout=20, headers={"User-Agent": UA})
+            r.raise_for_status()
+            subs = (r.json() or {}).get("subtitles") or []
+            if not subs:
+                raise RuntimeError("no subtitles in streams payload")
+            pick = next((s for s in subs if _is_arabic(s.get("name", ""), s.get("code", ""))), subs[0])
+            rv = requests.get(pick["url"], timeout=30, headers={"User-Agent": UA})
+            rv.raise_for_status()
+            segments = parse_vtt(rv.text)
+            if segments:
+                print(f"  [piped] {video_id} via {host} ({pick.get('name')})")
+                return segments, host
+            raise RuntimeError("VTT parsed to zero segments")
+        except Exception as exc:  # noqa: BLE001
+            instance_fails[inst] += 1
+            note_failure(video_id, f"piped[{host}]: {exc}")
+    return None, None
+
+
 def write_episode(path: Path, number: int, title: str, video_id: str, source: str,
                   segments: list[tuple[float, str]]) -> None:
     url = f"https://www.youtube.com/watch?v={video_id}"
@@ -225,7 +315,6 @@ def write_episode(path: Path, number: int, title: str, video_id: str, source: st
 
 
 def process_playlist(pl: dict, languages: list[str], limit: int = 0) -> list[str]:
-    global videos_attempted
     folder = TRANSCRIPTS_DIR / pl["folder"]
     folder.mkdir(parents=True, exist_ok=True)
     yt_title, entries = list_playlist(pl["playlist_id"])
@@ -246,20 +335,25 @@ def process_playlist(pl: dict, languages: list[str], limit: int = 0) -> list[str
 
     missing = []
     for ep in pending:
-        videos_attempted += 1
         segments, source = transcripts.get(ep["id"]), "ytfetcher (youtube-transcript-api)"
         if not segments:
-            clients = ordered_clients()
-            # Circuit breaker: if nothing ever worked, don't burn the full
-            # client matrix on every remaining video — probe two clients only.
-            if sum(client_success.values()) == 0 and videos_attempted > 10:
-                clients = ["android", "default"]
+            # With cookies, probe every client (best success rate). Without,
+            # a single canary probe is enough — runner IPs are bot-blocked.
+            clients = ordered_clients() if COOKIES_FILE else ["default"]
             for client in clients:
                 segments = fetch_captions(ep["id"], languages, client)
                 if segments:
                     source = f"YouTube captions (yt-dlp, client={client})"
                     break
-                time.sleep(0.3)
+                time.sleep(0.2)
+        if not segments:
+            segments, inst = fetch_via_invidious(ep["id"])
+            if segments:
+                source = f"Invidious captions ({inst})"
+        if not segments:
+            segments, inst = fetch_via_piped(ep["id"])
+            if segments:
+                source = f"Piped captions ({inst})"
         if not segments:
             print(f"  [missing] {ep['n']:02d} {ep['title']}")
             missing.append(ep["id"])
