@@ -1,0 +1,23 @@
+# Local toolchains / caches (not part of the deliverable)
+.venv/
+node_modules/
+.cache/
+__pycache__/
+*.pyc
+
+# Large source PDFs are fetched from the user's Drive links, not committed.
+# Their SHA-256 hashes and Drive file ids live in data/source_documents.json.
+google_drive/*.pdf
+
+# Generated raster assets are build products; regenerate with tools/extract_assets.py.
+assets/pages/
+assets/thumbnails/
+assets/ocr/
+
+# Scratch OCR language models (downloaded from the Tesseract tessdata_fast repo).
+tools/ocr/lang-data/*.traineddata
+tools/ocr/lang-data/*.gz
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
