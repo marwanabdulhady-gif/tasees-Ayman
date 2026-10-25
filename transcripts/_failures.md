@@ -4,13 +4,13 @@
 
 ## BcICQHs9lbI
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] BcICQHs9lbI: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
-- invidious[inv.nadeko.net]: unexpected captions payload: {'captions': [{'label': 'Arabic (auto-generated)', 'languageCode': 'ar', 'url': '/api/v1/captions/BcICQHs9lbI?label=Arab
-- invidious[invidious.nerdvpn.de]: HTTPSConnectionPool(host='invidious.nerdvpn.de', port=443): Max retries exceeded with url: /api/v1/captions/BcICQHs9lbI (Caused by NewConnectionError("HTTPSConnection(host='invidious.nerdvpn.de', port=443): Failed to establish a new connection: [Errno 101] Network is
+- invidious[inv.nadeko.net]: VTT parsed to zero segments
+- invidious[invidious.nerdvpn.de]: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 - invidious[yewtu.be]: Expecting value: line 1 column 1 (char 0)
 - invidious[invidious.f5.si]: 530 Server Error: <none> for url: https://invidious.f5.si/api/v1/captions/BcICQHs9lbI
-- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/BcICQHs9lbI (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f570a46b3e0>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
+- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/BcICQHs9lbI (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f22cdb3e150>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
 - invidious[invidious.materialio.us]: 500 Server Error: Internal Server Error for url: https://invidious.materialio.us/api/v1/captions/BcICQHs9lbI
-- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/BcICQHs9lbI (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f570a4686b0>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
+- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/BcICQHs9lbI (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f22cdc54890>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
 - piped[pipedapi.kavin.rocks]: 403 Client Error: Forbidden for url: https://pipedapi.kavin.rocks/streams/BcICQHs9lbI
 - piped[api.piped.private.coffee]: 500 Server Error: Internal Server Error for url: https://api.piped.private.coffee/streams/BcICQHs9lbI
 - piped[pipedapi.adminforge.de]: 403 Client Error: Forbidden for url: https://adminforge.de/streams/BcICQHs9lbI
@@ -18,13 +18,13 @@
 
 ## qMSSZ0hfRkw
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] qMSSZ0hfRkw: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
-- invidious[inv.nadeko.net]: unexpected captions payload: {'captions': [{'label': 'Arabic (auto-generated)', 'languageCode': 'ar', 'url': '/api/v1/captions/qMSSZ0hfRkw?label=Arab
-- invidious[invidious.nerdvpn.de]: HTTPSConnectionPool(host='invidious.nerdvpn.de', port=443): Max retries exceeded with url: /api/v1/captions/qMSSZ0hfRkw (Caused by NewConnectionError("HTTPSConnection(host='invidious.nerdvpn.de', port=443): Failed to establish a new connection: [Errno 101] Network is
+- invidious[inv.nadeko.net]: VTT parsed to zero segments
+- invidious[invidious.nerdvpn.de]: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 - invidious[yewtu.be]: Expecting value: line 1 column 1 (char 0)
 - invidious[invidious.f5.si]: 530 Server Error: <none> for url: https://invidious.f5.si/api/v1/captions/qMSSZ0hfRkw
-- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/qMSSZ0hfRkw (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f570a60b8c0>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
+- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/qMSSZ0hfRkw (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f22cdd05d30>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
 - invidious[invidious.materialio.us]: 500 Server Error: Internal Server Error for url: https://invidious.materialio.us/api/v1/captions/qMSSZ0hfRkw
-- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/qMSSZ0hfRkw (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f570a60bb00>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
+- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/qMSSZ0hfRkw (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f22cdc42ba0>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
 - piped[pipedapi.kavin.rocks]: 403 Client Error: Forbidden for url: https://pipedapi.kavin.rocks/streams/qMSSZ0hfRkw
 - piped[api.piped.private.coffee]: 500 Server Error: Internal Server Error for url: https://api.piped.private.coffee/streams/qMSSZ0hfRkw
 - piped[pipedapi.adminforge.de]: 403 Client Error: Forbidden for url: https://adminforge.de/streams/qMSSZ0hfRkw
@@ -32,13 +32,13 @@
 
 ## ngdOx-zw_I4
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] ngdOx-zw_I4: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
-- invidious[inv.nadeko.net]: unexpected captions payload: {'captions': [{'label': 'Arabic (auto-generated)', 'languageCode': 'ar', 'url': '/api/v1/captions/ngdOx-zw_I4?label=Arab
-- invidious[invidious.nerdvpn.de]: HTTPSConnectionPool(host='invidious.nerdvpn.de', port=443): Max retries exceeded with url: /api/v1/captions/ngdOx-zw_I4 (Caused by NewConnectionError("HTTPSConnection(host='invidious.nerdvpn.de', port=443): Failed to establish a new connection: [Errno 101] Network is
+- invidious[inv.nadeko.net]: VTT parsed to zero segments
+- invidious[invidious.nerdvpn.de]: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 - invidious[yewtu.be]: Expecting value: line 1 column 1 (char 0)
 - invidious[invidious.f5.si]: 530 Server Error: <none> for url: https://invidious.f5.si/api/v1/captions/ngdOx-zw_I4
-- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/ngdOx-zw_I4 (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f5700ab3560>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
+- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/ngdOx-zw_I4 (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f22cdc54770>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
 - invidious[invidious.materialio.us]: 500 Server Error: Internal Server Error for url: https://invidious.materialio.us/api/v1/captions/ngdOx-zw_I4
-- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/ngdOx-zw_I4 (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f570a5a5640>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
+- invidious[inv.tux.pizza]: HTTPSConnectionPool(host='inv.tux.pizza', port=443): Max retries exceeded with url: /api/v1/captions/ngdOx-zw_I4 (Caused by ConnectTimeoutError(<HTTPSConnection(host='inv.tux.pizza', port=443) at 0x7f22cdbae690>, 'Connection to inv.tux.pizza timed out. (connect timeout=20)'
 - piped[pipedapi.kavin.rocks]: 403 Client Error: Forbidden for url: https://pipedapi.kavin.rocks/streams/ngdOx-zw_I4
 - piped[api.piped.private.coffee]: 500 Server Error: Internal Server Error for url: https://api.piped.private.coffee/streams/ngdOx-zw_I4
 - piped[pipedapi.adminforge.de]: 403 Client Error: Forbidden for url: https://adminforge.de/streams/ngdOx-zw_I4
@@ -53,6 +53,10 @@
 ## UVdaLROiWH4
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] UVdaLROiWH4: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
 
+## qWarAk2SxrU
+- ytfetcher: RequestBlocked
+- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] qWarAk2SxrU: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
+
 ## eFpn9FlEDV8
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] eFpn9FlEDV8: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
 
@@ -61,9 +65,6 @@
 
 ## csCPTwq2jzo
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] csCPTwq2jzo: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
-
-## qWarAk2SxrU
-- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] qWarAk2SxrU: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
 
 ## LkVFuSrlP_w
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] LkVFuSrlP_w: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
@@ -219,16 +220,16 @@
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] kqLBTyjNr70: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
 
 ## I8i6vaPm6bA
-- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] I8i6vaPm6bA: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
+- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] I8i6vaPm6bA: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
 
 ## QK8LJr5tL0Y
-- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] QK8LJr5tL0Y: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
+- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] QK8LJr5tL0Y: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
 
 ## R0xZso4gGqs
-- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] R0xZso4gGqs: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
+- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] R0xZso4gGqs: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
 
 ## WUgZBWzPku4
-- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] WUgZBWzPku4: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
+- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] WUgZBWzPku4: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
 
 ## 9HVfLsoM7RE
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] 9HVfLsoM7RE: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
@@ -243,22 +244,22 @@
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] TN6fkPWvkrg: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
 
 ## H5GYK9fI0z0
-- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] H5GYK9fI0z0: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
+- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] H5GYK9fI0z0: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
 
 ## 4jX-WrJLGUM
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] 4jX-WrJLGUM: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
 
 ## slkJWWz2Lqg
-- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] slkJWWz2Lqg: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
+- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] slkJWWz2Lqg: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
 
 ## 62WzMzTOfYo
-- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] 62WzMzTOfYo: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
+- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] 62WzMzTOfYo: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
 
 ## aV042JvwI6I
-- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] aV042JvwI6I: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
+- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] aV042JvwI6I: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
 
 ## ZAL1b2ZxGZA
-- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] ZAL1b2ZxGZA: Sign in to confirm you’re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies
+- yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] ZAL1b2ZxGZA: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
 
 ## kL2hlrL841U
 - yt-dlp[default] no usable captions — [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing; ERROR: [youtube] kL2hlrL841U: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See https
