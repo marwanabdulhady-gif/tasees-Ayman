@@ -1,0 +1,1615 @@
+{
+ "page": 2,
+ "notes": "أكثف صفحات الأطلس: تسميات أوروبا مدوّرة ٩٠ درجة وصغيرة جدًا (≈٣٫٥ نقطة). نُسخت جميع أسماء الدول بالخط العريض والمسطحات المائية والأنهار والمدن المقروءة بثقة؛ أما التسميات الصغيرة المتداخلة غير المقروءة بثقة فتُركت دون نسخ وأُدرجت في تقرير التدقيق للمراجعة اليدوية.",
+ "features": [
+  {
+   "ids": [
+    4
+   ],
+   "text": "البرتغال",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    11
+   ],
+   "text": "لشبونة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    19,
+    28,
+    36,
+    37,
+    48
+   ],
+   "text": "إسبانيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة عموديًا"
+  },
+  {
+   "ids": [
+    27,
+    34,
+    35,
+    42,
+    43
+   ],
+   "text": "مدريد",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة عموديًا"
+  },
+  {
+   "ids": [
+    44,
+    49,
+    50,
+    51,
+    58,
+    71,
+    72
+   ],
+   "text": "جبل طارق",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة عموديًا"
+  },
+  {
+   "ids": [
+    45,
+    52,
+    53,
+    59,
+    60,
+    73
+   ],
+   "text": "الرباط",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة عموديًا"
+  },
+  {
+   "ids": [
+    46,
+    54,
+    62,
+    63
+   ],
+   "text": "مراكش",
+   "kind": "place",
+   "conf": "medium",
+   "note": "مكتوبة عموديًا"
+  },
+  {
+   "ids": [
+    61
+   ],
+   "text": "المغرب",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    134,
+    140
+   ],
+   "text": "الجزائر",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     184,
+     158,
+     201,
+     188
+    ]
+   ],
+   "text": "الجزائر",
+   "kind": "place",
+   "conf": "high",
+   "note": "اسم المدينة مكتوب عموديًا على الساحل"
+  },
+  {
+   "ids": [
+    139,
+    160
+   ],
+   "text": "تونس",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    146,
+    152
+   ],
+   "text": "تونس",
+   "kind": "place",
+   "conf": "medium",
+   "note": "اسم المدينة بخط صغير"
+  },
+  {
+   "approx": [
+    [
+     188,
+     238,
+     206,
+     266
+    ]
+   ],
+   "text": "طرابلس",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة عموديًا"
+  },
+  {
+   "approx": [
+    [
+     205,
+     278,
+     241,
+     302
+    ]
+   ],
+   "text": "بنغازي",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     160,
+     298,
+     192,
+     334
+    ]
+   ],
+   "text": "ليبيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     86,
+     322,
+     131,
+     363
+    ]
+   ],
+   "text": "النيجر",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     128,
+     372,
+     160,
+     402
+    ]
+   ],
+   "text": "تشاد",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     228,
+     358,
+     262,
+     396
+    ]
+   ],
+   "text": "مصر",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     238,
+     318,
+     264,
+     347
+    ]
+   ],
+   "text": "الإسكندرية",
+   "kind": "place",
+   "conf": "medium",
+   "note": "مكتوبة مائلة بخط صغير"
+  },
+  {
+   "approx": [
+    [
+     268,
+     344,
+     296,
+     366
+    ]
+   ],
+   "text": "القاهرة",
+   "kind": "place",
+   "conf": "medium",
+   "note": "مكتوبة مائلة بخط صغير"
+  },
+  {
+   "approx": [
+    [
+     286,
+     320,
+     302,
+     338
+    ]
+   ],
+   "text": "بيروت",
+   "kind": "place",
+   "conf": "medium",
+   "note": "مكتوبة مائلة؛ متداخلة مع «لبنان»"
+  },
+  {
+   "approx": [
+    [
+     279,
+     327,
+     298,
+     343
+    ]
+   ],
+   "text": "لبنان",
+   "kind": "country",
+   "conf": "medium",
+   "note": "متداخلة مع «إسرائيل» و«بيروت»"
+  },
+  {
+   "approx": [
+    [
+     263,
+     333,
+     286,
+     353
+    ]
+   ],
+   "text": "إسرائيل",
+   "kind": "country",
+   "conf": "medium",
+   "note": "متداخلة مع «لبنان»"
+  },
+  {
+   "approx": [
+    [
+     289,
+     352,
+     311,
+     376
+    ]
+   ],
+   "text": "الأردن",
+   "kind": "country",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     311,
+     341,
+     328,
+     354
+    ]
+   ],
+   "text": "دمشق",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     318,
+     320,
+     345,
+     342
+    ]
+   ],
+   "text": "سوريا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     324,
+     354,
+     342,
+     372
+    ]
+   ],
+   "text": "الفرات",
+   "kind": "river",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     334,
+     355,
+     352,
+     377
+    ]
+   ],
+   "text": "بغداد",
+   "kind": "place",
+   "conf": "medium",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     344,
+     339,
+     366,
+     352
+    ]
+   ],
+   "text": "الموصل",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     364,
+     339,
+     386,
+     356
+    ]
+   ],
+   "text": "تبريز",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     338,
+     365,
+     364,
+     402
+    ]
+   ],
+   "text": "العراق",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     303,
+     254,
+     331,
+     286
+    ]
+   ],
+   "text": "إسطنبول",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     278,
+     268,
+     302,
+     283
+    ]
+   ],
+   "text": "إزمير",
+   "kind": "place",
+   "conf": "medium"
+  },
+  {
+   "approx": [
+    [
+     312,
+     283,
+     342,
+     322
+    ]
+   ],
+   "text": "تركيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     322,
+     243,
+     372,
+     292
+    ]
+   ],
+   "text": "البحر الأسود",
+   "kind": "water",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     353,
+     287,
+     378,
+     321
+    ]
+   ],
+   "text": "جورجيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     369,
+     309,
+     382,
+     336
+    ]
+   ],
+   "text": "أرمينيا",
+   "kind": "country",
+   "conf": "medium",
+   "note": "مكتوبة عموديًا بخط صغير"
+  },
+  {
+   "approx": [
+    [
+     380,
+     314,
+     422,
+     346
+    ]
+   ],
+   "text": "أذربيجان",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     400,
+     292,
+     432,
+     330
+    ]
+   ],
+   "text": "بحر قزوين",
+   "kind": "water",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     404,
+     248,
+     428,
+     292
+    ]
+   ],
+   "text": "نهر فولغا",
+   "kind": "river",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     458,
+     313,
+     482,
+     337
+    ]
+   ],
+   "text": "بحر آرال",
+   "kind": "water",
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "approx": [
+    [
+     484,
+     318,
+     512,
+     337
+    ]
+   ],
+   "text": "سيرداريا",
+   "kind": "river",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     453,
+     334,
+     472,
+     347
+    ]
+   ],
+   "text": "أوركنج",
+   "kind": "place",
+   "conf": "medium"
+  },
+  {
+   "approx": [
+    [
+     468,
+     327,
+     508,
+     367
+    ]
+   ],
+   "text": "أوزبكستان",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     418,
+     348,
+     470,
+     377
+    ]
+   ],
+   "text": "تركمانستان",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     462,
+     372,
+     482,
+     383
+    ]
+   ],
+   "text": "بخارى",
+   "kind": "place",
+   "conf": "medium"
+  },
+  {
+   "approx": [
+    [
+     466,
+     379,
+     488,
+     391
+    ]
+   ],
+   "text": "سمرقند",
+   "kind": "place",
+   "conf": "medium"
+  },
+  {
+   "approx": [
+    [
+     378,
+     393,
+     412,
+     421
+    ]
+   ],
+   "text": "إيران",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     462,
+     398,
+     488,
+     416
+    ]
+   ],
+   "text": "هراة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     448,
+     410,
+     507,
+     446
+    ]
+   ],
+   "text": "أفغانستان",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     452,
+     438,
+     507,
+     482
+    ]
+   ],
+   "text": "باكستان",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     478,
+     458,
+     507,
+     483
+    ]
+   ],
+   "text": "السند",
+   "kind": "region",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     343,
+     393,
+     366,
+     416
+    ]
+   ],
+   "text": "الكويت",
+   "kind": "country",
+   "conf": "medium",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     338,
+     414,
+     362,
+     441
+    ]
+   ],
+   "text": "البحرين",
+   "kind": "country",
+   "conf": "medium",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     352,
+     439,
+     371,
+     461
+    ]
+   ],
+   "text": "قطر",
+   "kind": "country",
+   "conf": "medium"
+  },
+  {
+   "approx": [
+    [
+     303,
+     428,
+     346,
+     472
+    ]
+   ],
+   "text": "المملكة العربية السعودية",
+   "kind": "country",
+   "conf": "high",
+   "note": "على ثلاثة أسطر"
+  },
+  {
+   "approx": [
+    [
+     334,
+     453,
+     352,
+     467
+    ]
+   ],
+   "text": "الرياض",
+   "kind": "place",
+   "conf": "medium"
+  },
+  {
+   "approx": [
+    [
+     344,
+     463,
+     396,
+     497
+    ]
+   ],
+   "text": "الإمارات العربية المتحدة",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "approx": [
+    [
+     399,
+     467,
+     439,
+     497
+    ]
+   ],
+   "text": "مسقط",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة على امتداد الساحل"
+  },
+  {
+   "approx": [
+    [
+     378,
+     488,
+     402,
+     522
+    ]
+   ],
+   "text": "عمان",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     428,
+     498,
+     452,
+     521
+    ]
+   ],
+   "text": "بحر العرب",
+   "kind": "water",
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "approx": [
+    [
+     298,
+     508,
+     332,
+     532
+    ]
+   ],
+   "text": "اليمن",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     282,
+     519,
+     302,
+     543
+    ]
+   ],
+   "text": "عدن",
+   "kind": "place",
+   "conf": "medium"
+  },
+  {
+   "approx": [
+    [
+     466,
+     686,
+     514,
+     706
+    ]
+   ],
+   "text": "الهندي",
+   "kind": "water",
+   "bold": true,
+   "conf": "high",
+   "crossPage": "يكمل كلمة «المحيط» على الصفحة ١: «المحيط الهندي»"
+  },
+  {
+   "approx": [
+    [
+     156,
+     436,
+     204,
+     483
+    ]
+   ],
+   "text": "السودان",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     212,
+     456,
+     247,
+     487
+    ]
+   ],
+   "text": "الخرطوم",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     79,
+     438,
+     156,
+     513
+    ]
+   ],
+   "text": "جمهورية أفريقيا الوسطى",
+   "kind": "country",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     79,
+     537,
+     102,
+     567
+    ]
+   ],
+   "text": "زائير",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     158,
+     553,
+     186,
+     586
+    ]
+   ],
+   "text": "أوغندا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     177,
+     573,
+     201,
+     592
+    ]
+   ],
+   "text": "كامبالا",
+   "kind": "place",
+   "conf": "medium",
+   "note": "مكتوبة مائلة بخط صغير"
+  },
+  {
+   "approx": [
+    [
+     213,
+     538,
+     247,
+     577
+    ]
+   ],
+   "text": "إثيوبيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     244,
+     544,
+     282,
+     596
+    ]
+   ],
+   "text": "أديس أبابا",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     248,
+     518,
+     278,
+     546
+    ]
+   ],
+   "text": "جيبوتي",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     268,
+     578,
+     301,
+     612
+    ]
+   ],
+   "text": "الصومال",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     213,
+     584,
+     237,
+     617
+    ]
+   ],
+   "text": "كينيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     223,
+     613,
+     247,
+     637
+    ]
+   ],
+   "text": "نيروبي",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     173,
+     628,
+     201,
+     662
+    ]
+   ],
+   "text": "تنزانيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     223,
+     633,
+     267,
+     672
+    ]
+   ],
+   "text": "مومباسا",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     282,
+     614,
+     312,
+     658
+    ]
+   ],
+   "text": "مقديشيو",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     78,
+     653,
+     117,
+     692
+    ]
+   ],
+   "text": "زامبيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     113,
+     678,
+     142,
+     697
+    ]
+   ],
+   "text": "لوساكا",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     178,
+     683,
+     202,
+     700
+    ]
+   ],
+   "text": "موزمبيق",
+   "kind": "place",
+   "conf": "medium"
+  },
+  {
+   "approx": [
+    [
+     167,
+     690,
+     186,
+     705
+    ]
+   ],
+   "text": "مالاوي",
+   "kind": "place",
+   "conf": "medium"
+  },
+  {
+   "approx": [
+    [
+     236,
+     138,
+     253,
+     177
+    ]
+   ],
+   "text": "مارسيليا",
+   "kind": "place",
+   "conf": "medium",
+   "note": "مكتوبة عموديًا"
+  },
+  {
+   "approx": [
+    [
+     262,
+     150,
+     300,
+     182
+    ]
+   ],
+   "text": "إيطاليا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     249,
+     186,
+     263,
+     207
+    ]
+   ],
+   "text": "روما",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     266,
+     100,
+     286,
+     134
+    ]
+   ],
+   "text": "فرنسا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة عموديًا"
+  },
+  {
+   "approx": [
+    [
+     287,
+     103,
+     298,
+     126
+    ]
+   ],
+   "text": "باريس",
+   "kind": "place",
+   "conf": "medium",
+   "note": "مكتوبة عموديًا"
+  },
+  {
+   "approx": [
+    [
+     294,
+     104,
+     322,
+     115
+    ]
+   ],
+   "text": "بلجيكا",
+   "kind": "country",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     280,
+     125,
+     295,
+     134
+    ]
+   ],
+   "text": "برن",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     263,
+     135,
+     307,
+     149
+    ]
+   ],
+   "text": "سويسرا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     300,
+     118,
+     323,
+     146
+    ]
+   ],
+   "text": "ألمانيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     321,
+     118,
+     335,
+     136
+    ]
+   ],
+   "text": "برلين",
+   "kind": "place",
+   "conf": "medium",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     336,
+     70,
+     353,
+     90
+    ]
+   ],
+   "text": "إدنبره",
+   "kind": "place",
+   "conf": "medium",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     368,
+     77,
+     410,
+     93
+    ]
+   ],
+   "text": "النرويج",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     384,
+     92,
+     407,
+     102
+    ]
+   ],
+   "text": "أوسلو",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     410,
+     82,
+     454,
+     101
+    ]
+   ],
+   "text": "السويد",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     441,
+     98,
+     473,
+     128
+    ]
+   ],
+   "text": "فنلندا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     418,
+     138,
+     458,
+     182
+    ]
+   ],
+   "text": "سانت بطرسبرغ",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     334,
+     143,
+     356,
+     160
+    ]
+   ],
+   "text": "وارسو",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     330,
+     155,
+     362,
+     188
+    ]
+   ],
+   "text": "بولندا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     354,
+     172,
+     387,
+     207
+    ]
+   ],
+   "text": "بيلاروس",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     379,
+     179,
+     397,
+     201
+    ]
+   ],
+   "text": "منسك",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     404,
+     195,
+     428,
+     217
+    ]
+   ],
+   "text": "موسكو",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     369,
+     208,
+     386,
+     227
+    ]
+   ],
+   "text": "كييف",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     343,
+     208,
+     382,
+     247
+    ]
+   ],
+   "text": "أوكرانيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     328,
+     203,
+     352,
+     228
+    ]
+   ],
+   "text": "مولدوفا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     306,
+     194,
+     346,
+     236
+    ]
+   ],
+   "text": "رومانيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     297,
+     236,
+     333,
+     262
+    ]
+   ],
+   "text": "بلغاريا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     338,
+     236,
+     362,
+     256
+    ]
+   ],
+   "text": "أوديسا",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     284,
+     183,
+     302,
+     206
+    ]
+   ],
+   "text": "كرواتيا",
+   "kind": "country",
+   "conf": "medium",
+   "note": "مكتوبة مائلة بخط صغير"
+  },
+  {
+   "approx": [
+    [
+     276,
+     188,
+     296,
+     212
+    ]
+   ],
+   "text": "البوسنة والهرسك",
+   "kind": "country",
+   "conf": "low",
+   "note": "مكتوبة مائلة بخط صغير ومتداخلة — تحتاج إلى مراجعة"
+  },
+  {
+   "approx": [
+    [
+     281,
+     205,
+     300,
+     226
+    ]
+   ],
+   "text": "يوغسلافيا",
+   "kind": "country",
+   "conf": "low",
+   "note": "قراءة غير مؤكدة لتسمية صغيرة مائلة — تحتاج إلى مراجعة"
+  },
+  {
+   "approx": [
+    [
+     298,
+     177,
+     325,
+     207
+    ]
+   ],
+   "text": "المجر",
+   "kind": "country",
+   "bold": true,
+   "conf": "medium"
+  },
+  {
+   "approx": [
+    [
+     315,
+     140,
+     338,
+     160
+    ]
+   ],
+   "text": "براغ",
+   "kind": "place",
+   "conf": "medium",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "approx": [
+    [
+     382,
+     143,
+     394,
+     161
+    ]
+   ],
+   "text": "ريغا",
+   "kind": "place",
+   "conf": "low",
+   "note": "قراءة غير مؤكدة — تحتاج إلى مراجعة"
+  },
+  {
+   "approx": [
+    [
+     284,
+     449.5,
+     294,
+     459
+    ]
+   ],
+   "text": "مكة",
+   "kind": "place",
+   "conf": "high",
+   "note": "بخط صغير على ساحل البحر الأحمر"
+  }
+ ],
+ "clusterSignature": "bc520fd985ef",
+ "growApprox": true,
+ "growApproxNote": "صناديق هذه الصفحة رُسمت من تكبير متوسط؛ يُسمح بضم الحروف الملاصقة (≤٠٫٩ نقطة) غير المنسوبة لتسمية أخرى",
+ "completeness": "partial",
+ "completenessNote": "تسميات مدن دقيقة مدوّرة (إسكندنافيا، البلطيق، بحر إيجة، وغيرها) لم تُنسخ لعدم إمكان قراءتها بثقة"
+}

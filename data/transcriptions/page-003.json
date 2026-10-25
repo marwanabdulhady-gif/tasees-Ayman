@@ -1,0 +1,265 @@
+{
+ "page": 3,
+ "transcriber": "visual reading of 3x-6x vector renders; cluster ids from data/vectors.json",
+ "features": [
+  {
+   "ids": [
+    37,
+    41,
+    42,
+    43,
+    44,
+    38,
+    39,
+    40
+   ],
+   "text": "شكل ١-١: الفتوحات الإسلامية الأولى.",
+   "kind": "caption",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    0,
+    1
+   ],
+   "text": "الأتراك الغربيون",
+   "kind": "people",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    2,
+    3
+   ],
+   "text": "الخاقانية التركية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    4
+   ],
+   "text": "أجيا",
+   "kind": "place",
+   "conf": "medium",
+   "note": "لا توجد علامة نقطية بجوار الاسم؛ القراءة واضحة بصريًا"
+  },
+  {
+   "ids": [
+    5
+   ],
+   "text": "خجند",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    6
+   ],
+   "text": "سمرقند",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    12
+   ],
+   "text": "مرو",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    14,
+    13,
+    17
+   ],
+   "text": "٦٥٠",
+   "kind": "date",
+   "conf": "high",
+   "note": "رقم مكتوب أسفل «مرو»؛ لم يذكر المصدر نوع التقويم"
+  },
+  {
+   "ids": [
+    11
+   ],
+   "text": "بلخ",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    21,
+    20,
+    19
+   ],
+   "text": "٦٥٢",
+   "kind": "date",
+   "conf": "high",
+   "note": "رقم بجوار سهم قرب «بلخ»؛ لم يذكر المصدر نوع التقويم"
+  },
+  {
+   "ids": [
+    10
+   ],
+   "text": "كاشغار",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    15
+   ],
+   "text": "خوتان",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    16
+   ],
+   "text": "هراة",
+   "kind": "place",
+   "conf": "high",
+   "note": "المربع يشمل جزءًا من سهم متقطع ملاصق للاسم"
+  },
+  {
+   "ids": [
+    23,
+    22,
+    25
+   ],
+   "text": "٦٥٠",
+   "kind": "date",
+   "conf": "high",
+   "note": "رقم أسفل «هراة»؛ لم يذكر المصدر نوع التقويم"
+  },
+  {
+   "ids": [
+    24
+   ],
+   "text": "ملتان",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    26
+   ],
+   "text": "ألور",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    27
+   ],
+   "text": "كوشامبي",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    29
+   ],
+   "text": "ديبل",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    31
+   ],
+   "text": "مالوا",
+   "kind": "region",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    32
+   ],
+   "text": "سيبور",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    34
+   ],
+   "text": "كاليكوت",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    35
+   ],
+   "text": "كوماري",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    9
+   ],
+   "text": "سوجو",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    18
+   ],
+   "text": "خنان",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    28
+   ],
+   "text": "قوان",
+   "kind": "place",
+   "conf": "high",
+   "note": "الاسم مكرر على الخريطة: هذا الموضع الساحلي بجوار علامة نقطية"
+  },
+  {
+   "ids": [
+    30
+   ],
+   "text": "قوان",
+   "kind": "region",
+   "conf": "high",
+   "note": "الاسم مكرر على الخريطة: هذا الموضع داخلي بلا علامة نقطية"
+  },
+  {
+   "ids": [
+    7,
+    8
+   ],
+   "text": "سيلا",
+   "kind": "polity",
+   "conf": "medium",
+   "note": "مكتوب عموديًا في شبه الجزيرة الكورية"
+  },
+  {
+   "ids": [
+    33
+   ],
+   "text": "تشامبا",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    36
+   ],
+   "text": "ملايو",
+   "kind": "place",
+   "conf": "high"
+  }
+ ],
+ "clusterSignature": "2dd7eea78f21"
+}
