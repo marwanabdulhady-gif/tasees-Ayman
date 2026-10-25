@@ -161,16 +161,18 @@ def with_retries(func, *, what: str, tries: int = 3, base_delay: float = 5.0):
 def list_playlist(playlist_id: str) -> tuple[str, list[dict]]:
     def run():
         url = f"https://www.youtube.com/playlist?list={playlist_id}"
-        with yt_dlp.YoutubeDL(ydl_opts(extract_flat="in_playlist")) as ydl:
-            return ydl.extract_info(url, download=False)
+        logger = _YdlLogger()
+        with yt_dlp.YoutubeDL(ydl_opts(logger=logger, extract_flat="in_playlist")) as ydl:
+            info = ydl.extract_info(url, download=False)
+        # yt-dlp hides errors when ignoreerrors is set: raise them so the retry loop sees them.
+        if not info:
+            raise RuntimeError(logger.last_error() or f"could not list playlist {playlist_id}")
+        entries = [e for e in info.get("entries") or [] if e and e.get("id")]
+        if not entries:
+            raise RuntimeError(f"playlist {playlist_id} came back empty")
+        return info.get("title") or playlist_id, entries
 
-    info = with_retries(run, what=f"listing playlist {playlist_id}")
-    if not info:
-        raise RuntimeError(f"could not list playlist {playlist_id}")
-    entries = [e for e in info.get("entries") or [] if e and e.get("id")]
-    if not entries:
-        raise RuntimeError(f"playlist {playlist_id} came back empty")
-    return info.get("title") or playlist_id, entries
+    return with_retries(run, what=f"listing playlist {playlist_id}")
 
 
 # --------------------------------------------------------------------------- #
@@ -457,7 +459,8 @@ def write_overview(results: list[tuple[dict, list[dict]]]) -> None:
     OVERVIEW_PATH.write_text("\n".join(lines), encoding="utf-8")
 
 
-def write_status(results: list[tuple[dict, list[dict]]], languages: list[str]) -> int:
+def write_status(results: list[tuple[dict, list[dict]]], languages: list[str],
+                 failed: list[str] | None = None) -> int:
     total = sum(len(rows) for _, rows in results)
     done = sum(1 for _, rows in results for row in rows if row["status"] == "ok")
     missing = [(pl, row) for pl, rows in results for row in rows if row["status"] == "missing"]
@@ -471,6 +474,11 @@ def write_status(results: list[tuple[dict, list[dict]]], languages: list[str]) -
         f"- اللغات المطلوبة: {', '.join(languages)}",
         "",
     ]
+    if failed:
+        lines += ["## مجموعات تعذّر جلبها", ""]
+        lines += [f"- `{folder}`: تعذّر جلب قائمة التشغيل — تحقّق من الاتصال بالإنترنت ثم أعد التشغيل."
+                  for folder in failed]
+        lines.append("")
     if missing:
         lines += [
             "## حلقات بدون تفريغ",
@@ -488,7 +496,7 @@ def write_status(results: list[tuple[dict, list[dict]]], languages: list[str]) -
              "`--cookies-from-browser chrome` (أو firefox / edge / safari)."),
             "",
         ]
-    else:
+    elif not failed:
         lines += ["كل الحلقات المطلوبة جاهزة ✅", ""]
 
     STATUS_PATH.write_text("\n".join(lines), encoding="utf-8")
@@ -630,6 +638,7 @@ def main(argv: list[str] | None = None) -> int:
 
     results: list[tuple[dict, list[dict]]] = []
     failed_playlists = 0
+    failed_folders: list[str] = []
     try:
         for pl in playlists:
             try:
@@ -638,13 +647,14 @@ def main(argv: list[str] | None = None) -> int:
                 raise
             except Exception as exc:  # noqa: BLE001 - keep going with the other playlists
                 failed_playlists += 1
+                failed_folders.append(pl["folder"])
                 log(f"  ERROR in {pl['folder']}: {short(exc, 300)}")
                 results.append((pl, []))
     except KeyboardInterrupt:
         log("\nStopped. Everything fetched so far is saved; run the script again to resume.")
 
     if not args.dry_run:
-        missing = write_status(results, languages)
+        missing = write_status(results, languages, failed_folders)
         if not args.only:  # a partial run must not overwrite the full overview
             write_overview(results)
         total = sum(len(rows) for _, rows in results)
