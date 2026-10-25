@@ -5,20 +5,20 @@
 | # | الحلقة | النص |
 |---|---|---|
 | 1 | [num م  أيمن عبد الرحيم   إعادة تأسيس وعي المسلم المعاصر 2   من ميدان رابعة العدوية 1](https://www.youtube.com/watch?v=6X31TsKrh04) | غير متوفر |
-| 2 | [Ayman Abdel Rahim: The Chaos of Borders in Islamic Countries](https://www.youtube.com/watch?v=myKeipI1cCQ) | غير متوفر |
+| 2 | [أيمن عبدالرحيم  فوضى الحدود في البلاد الإسلاميه](https://www.youtube.com/watch?v=myKeipI1cCQ) | غير متوفر |
 | 3 | [الأسئلة الوجودية الكبرى    م  أيمن عبدالرحيم](https://www.youtube.com/watch?v=HtjWW0xjEYw) | غير متوفر |
 | 4 | [الفرق بين الاحتلال البريطاني والفرنسي  أيمن عبد الرحيم](https://www.youtube.com/watch?v=5Lyf6eXdgRM) | غير متوفر |
 | 5 | [الأنسان بحسب فكر المسيري  أيمن عبدالرحيم](https://www.youtube.com/watch?v=thYYl2a5PEo) | غير متوفر |
 | 6 | [أروع دقائق مع المهندس أيمن عبدالرحيم والدكتور حسام أبو البخاري فك الله أسرهما](https://www.youtube.com/watch?v=RRPlD5dEaEA) | غير متوفر |
 | 7 | [الكسل الحضاري بعد الثورات](https://www.youtube.com/watch?v=-fbayGBPBNQ) | غير متوفر |
 | 8 | [أفكار سلبية تودي بك لاتخاذ قرارات كارثية في حياتك 2  معضلة السجين ايمن عبد الرحيم](https://www.youtube.com/watch?v=Fr7QDC8eMoM) | غير متوفر |
-| 9 | [How can I win in this life and the hereafter? Engineer Ayman Abdel Rahim](https://www.youtube.com/watch?v=KgtEhk_DO5s) | غير متوفر |
-| 10 | [Working to the Best of One's Ability - Engineer Ayman Abdel Rahim](https://www.youtube.com/watch?v=38JL-yALndY) | غير متوفر |
+| 9 | [ازاي اكسب الدنيا والآخرة ؟ المهندس ايمن عبد الرحيم](https://www.youtube.com/watch?v=KgtEhk_DO5s) | غير متوفر |
+| 10 | [العمل بقدر الاستطاعة المهندس أيمن عبدالرحيم](https://www.youtube.com/watch?v=38JL-yALndY) | غير متوفر |
 | 11 | [الاربعون الرياضي  مهندس ايمن عبد الرحيم 💓](https://www.youtube.com/watch?v=2ylce8J2j7M) | غير متوفر |
 | 12 | [الذل يقتل النفوس  توارد خواطر عبقريا مصر أيمن عبد الرحيم وحازم صلاح أبو اسماعيل](https://www.youtube.com/watch?v=Me19kIE4tMY) | غير متوفر |
 | 13 | [الاستلحاد  طلب الإلحاد   أيمن عبدالرحيم](https://www.youtube.com/watch?v=FEOsVEKathQ) | غير متوفر |
-| 14 | [True Love in the Muslim Home by Engineer Ayman Abdel Rahim](https://www.youtube.com/watch?v=I3T75IPqYrE) | غير متوفر |
-| 15 | [Captivated by the West: Muslims Without Islam | Out of the Box - Ayman Abdel Rahim](https://www.youtube.com/watch?v=g9Q9dpZled4) | غير متوفر |
+| 14 | [الحب الصحيح داخل البيت المسلم المهندس ايمن عبد الرحيم](https://www.youtube.com/watch?v=I3T75IPqYrE) | غير متوفر |
+| 15 | [الافتتان بالغرب   مسلمون بلا إسلام   برة الصندوق أ أيمن عبد الرحيم](https://www.youtube.com/watch?v=g9Q9dpZled4) | غير متوفر |
 | 16 | [الإنسان مخلوق للخلود ؟!  مأيمن عبد الرحيم](https://www.youtube.com/watch?v=f_YLE-pOIM0) | غير متوفر |
 | 17 | [معلومات يجب أن يعرفها كل مسلم معاصر l م  أيمن عبدالرحيم  صوت أنقى](https://www.youtube.com/watch?v=7lcgKG2z0JA) | غير متوفر |
 | 18 | [مدخل لعلوم العربية الدورة التعريفية بالعلوم الإسلامية المهندس أيمن عبد الرحيم](https://www.youtube.com/watch?v=rHMPlMlzOVc) | غير متوفر |
@@ -40,7 +40,7 @@
 | 34 | [اللغة تصور العالم من حولك برة الصندوق  أيمن عبد الرحيم](https://www.youtube.com/watch?v=WUgZBWzPku4) | غير متوفر |
 | 35 | [المهندس أيمن عبد الرحيم يصف تماماً كيف تم أفساد عقول الشباب](https://www.youtube.com/watch?v=9HVfLsoM7RE) | غير متوفر |
 | 36 | [محاضرة في التأسيس المعرفي والجماعات الوسيطة للمهندس أيمن عبد الرحيم](https://www.youtube.com/watch?v=U1VqiIdh9gw) | غير متوفر |
-| 37 | [Why Has the Secularization of the Egyptian People Failed So Far? Ayman Abdel Rahim](https://www.youtube.com/watch?v=7izgFHCJJkw) | غير متوفر |
+| 37 | [لماذا لم تفلح علمنة الشعب المصري إلى الآن ؟  أيمن عبدالرحيم](https://www.youtube.com/watch?v=7izgFHCJJkw) | غير متوفر |
 | 38 | [لماذا اللغة العربية تمثل هوية لأهلها للدكتور ايمن عبد الرحيم](https://www.youtube.com/watch?v=TN6fkPWvkrg) | غير متوفر |
 | 39 | [كيف وصلت الأمة إلى ما هي عليه و ما الحل ؟ عن الحلول المتوهمة و الخلل في التفكير   م أيمن عبد الرحيم](https://www.youtube.com/watch?v=H5GYK9fI0z0) | غير متوفر |
 | 40 | [طبيعة الرجل والمرأة   المهندس أيمن عبد الرحيم ⁦♥️⁩ أسلوبة جميل جدا](https://www.youtube.com/watch?v=4jX-WrJLGUM) | غير متوفر |
