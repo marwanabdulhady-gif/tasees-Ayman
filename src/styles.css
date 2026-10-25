@@ -463,19 +463,19 @@ bdi, .num, .ltr {
 .volume-pills {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .vol-pill {
   border: 1px solid var(--border-subtle);
   background: var(--bg-surface);
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: 999px;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 5px;
   white-space: nowrap;
 }
 .vol-pill:hover {

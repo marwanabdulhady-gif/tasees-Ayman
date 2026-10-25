@@ -69,8 +69,8 @@ def main():
     for cmp_item in manifest.get("comparisons", []):
         bundled_page_ids.add(cmp_item["leftId"])
         bundled_page_ids.add(cmp_item["rightId"])
-    # Bundle all 5 covers
-    for cov in ("seerah-001", "abubakr-001", "umar-001", "uthman-001"):
+    # Bundle all 5 scanned volume covers
+    for cov in ("seerah-001", "abubakr-001", "umar-001", "uthman-001", "ali-001"):
         bundled_page_ids.add(cov)
 
     portable_assets = {}
@@ -80,7 +80,7 @@ def main():
             if p["volumeId"] == "maps8":
                 portable_assets[p["pageAsset"]] = b64_data_uri(p["pageAsset"], "image/webp")
             else:
-                portable_assets[p["pageAsset"]] = compact_webp_data_uri(p["pageAsset"], max_h=960, quality=52)
+                portable_assets[p["pageAsset"]] = compact_webp_data_uri(p["pageAsset"], max_h=900, quality=46)
             portable_assets[p["thumbAsset"]] = b64_data_uri(p["thumbAsset"], "image/webp")
             if p["id"] in all_ocr_words:
                 portable_ocr_words[p["id"]] = all_ocr_words[p["id"]]

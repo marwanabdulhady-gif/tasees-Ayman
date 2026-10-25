@@ -1,23 +1,23 @@
 {
-  "timestamp": "2026-10-25T20:56:42.621Z",
-  "total": 31,
-  "passed": 31,
+  "timestamp": "2026-10-25T21:27:38.986Z",
+  "total": 33,
+  "passed": 33,
   "results": [
     {
       "section": "12.1",
-      "name": "Total PDF pages equals 1069 (8 + 264 + 121 + 351 + 325) with zero omissions",
+      "name": "Total PDF pages equals 1341 (8 + 264 + 121 + 351 + 325 + 272) with zero omissions",
       "ok": true,
-      "detail": "1069 pages"
+      "detail": "1341 pages"
     },
     {
       "section": "12.1",
-      "name": "Volume page counts match all 5 source PDFs",
+      "name": "Volume page counts match all 6 source PDFs",
       "ok": true,
       "detail": ""
     },
     {
       "section": "12.1",
-      "name": "Every single page (1069/1069) has both full-res WebP and thumbnail asset on disk",
+      "name": "Every single page (1341/1341) has both full-res WebP and thumbnail asset on disk",
       "ok": true,
       "detail": "missing=0"
     },
@@ -31,7 +31,7 @@
       "section": "12.1",
       "name": "Low-confidence OCR pages are explicitly flagged for manual review",
       "ok": true,
-      "detail": "69 flagged"
+      "detail": "80 flagged"
     },
     {
       "section": "12.4",
@@ -79,7 +79,7 @@
       "section": "12.3",
       "name": "Arabic search normalizes Alef Maqsura and Ya (ى ↔ ي)",
       "ok": true,
-      "detail": "hits=23"
+      "detail": "hits=30"
     },
     {
       "section": "12.3",
@@ -137,9 +137,21 @@
     },
     {
       "section": "12.2",
-      "name": "TOC gallery renders all 1069 pages across 5 volumes",
+      "name": "Switching to Volume 6 (أطلس علي بن أبي طالب) loads verified map",
       "ok": true,
-      "detail": "cards=1069"
+      "detail": "الدولة الإسلامية في مستهل خلافة علي بن أبي طالب (رضي الله عنه)"
+    },
+    {
+      "section": "12.3",
+      "name": "Search supports Volume 6 direct jump («علي ١٨١» -> معركة صفين)",
+      "ok": true,
+      "detail": "معركة صفين سنة ٣٧ هـ انتقال مباشر — أطلس علي بن أبي طالب ص ١٨١ ضمن «الباب الرابع: خلافة علي بن أبي طالب رضي الله عنه (البيعة، الجمل، صفين، التحكيم، النهروان، واستشهاده)». مرئية فضائية ومخطط ميداني ل… أطلس علي بن أبي طالب · ص ١٨١"
+    },
+    {
+      "section": "12.2",
+      "name": "TOC gallery renders all 1341 pages across 6 volumes",
+      "ok": true,
+      "detail": "cards=1341"
     },
     {
       "section": "12.2",
@@ -173,9 +185,9 @@
     },
     {
       "section": "12.4",
-      "name": "Single-File Portable HTML Edition loads offline via file:// with all 1069 pages indexed",
+      "name": "Single-File Portable HTML Edition loads offline via file:// with all 1341 pages indexed",
       "ok": true,
-      "detail": "pages=1069, vecHotspots=165"
+      "detail": "pages=1341, vecHotspots=165"
     },
     {
       "section": "12.4",

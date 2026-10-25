@@ -47,6 +47,7 @@
           abubakr: "abubakr-011",
           umar: "umar-038",
           uthman: "uthman-042",
+          ali: "ali-131",
         },
         persisted.lastPageByVol || {}
       ),
@@ -552,7 +553,7 @@
               ${
                 related.length
                   ? `<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border-subtle)">
-                       <div style="font-size:11.5px;font-weight:700;margin-bottom:5px">مواضع أخرى في الأطالس الخمسة (${toArabicDigits(related.length)}):</div>
+                       <div style="font-size:11.5px;font-weight:700;margin-bottom:5px">مواضع أخرى في الأطالس الستة (${toArabicDigits(related.length)}):</div>
                        <div style="display:flex;flex-wrap:wrap;gap:5px">
                          ${related
                            .map((r) => {
@@ -936,7 +937,7 @@
         <div class="content-container">
           <div class="section-header-bar">
             <div>
-              <h2 style="margin:0;font-size:18px">الفهرس العام للأطالس الخمسة (${toArabicDigits(pages.length)} صفحة معروضة من أصل ${toArabicDigits(manifest.pages.length)})</h2>
+              <h2 style="margin:0;font-size:18px">الفهرس العام للأطالس الستة (${toArabicDigits(pages.length)} صفحة معروضة من أصل ${toArabicDigits(manifest.pages.length)})</h2>
               <p style="margin:4px 0 0 0;font-size:12.5px;color:var(--ink-secondary)">
                 مُستخرج مباشرة من الفهارس المطبوعة والإشارات المرجعية الأصلية دون اختلاق أقسام إضافية.
               </p>
@@ -952,7 +953,7 @@
 
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
             <select id="toc-vol-sel" style="padding:7px 10px;border-radius:8px;border:1px solid var(--border-subtle);background:var(--bg-surface)">
-              <option value="all" ${state.tocVol === "all" ? "selected" : ""}>جميع الأطالس الخمسة</option>
+              <option value="all" ${state.tocVol === "all" ? "selected" : ""}>جميع الأطالس الستة</option>
               ${manifest.volumes
                 .map(
                   (v) =>
@@ -1275,7 +1276,7 @@
 
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
             <select id="gaz-vol-sel" style="padding:7px 10px;border-radius:8px;border:1px solid var(--border-subtle);background:var(--bg-surface)">
-              <option value="all" ${state.gazVol === "all" ? "selected" : ""}>جميع الأطالس الخمسة</option>
+              <option value="all" ${state.gazVol === "all" ? "selected" : ""}>جميع الأطالس الستة</option>
               ${manifest.volumes
                 .map(
                   (v) =>
@@ -1383,7 +1384,7 @@
             <div>
               <h2 style="margin:0;font-size:18px">تقرير التدقيق المصدري والمنهجية والإعدادات</h2>
               <p style="margin:4px 0 0 0;font-size:12.5px;color:var(--ink-secondary)">
-                جميع الأرقام أدناه مقيسة فعليًا من الملفات المصدرية الخمسة بعد فحص جنائي شامل لـ ${toArabicDigits(st.totalPdfPages)} صفحة.
+                جميع الأرقام أدناه مقيسة فعليًا من الملفات المصدرية الستة بعد فحص جنائي شامل لـ ${toArabicDigits(st.totalPdfPages)} صفحة.
               </p>
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1402,7 +1403,7 @@
             </div>
             <div class="stat-card">
               <div class="stat-num">${toArabicDigits(st.mapsIdentified.totalDistinctMaps)}</div>
-              <div class="stat-label">خريطة تاريخية وجغرافية موثقة في الأطالس الخمسة</div>
+              <div class="stat-label">خريطة تاريخية وجغرافية موثقة في الأطالس الستة</div>
             </div>
             <div class="stat-card">
               <div class="stat-num">${toArabicDigits(st.interactiveFeatures.totalVerifiedHotspots)}</div>
@@ -1423,7 +1424,7 @@
           </div>
 
           <div class="quiz-card" style="margin-bottom:16px">
-            <h3 style="margin-top:0">١. المصادر الخمسة وبصماتها التشفيرية</h3>
+            <h3 style="margin-top:0">١. المصادر الستة وبصماتها التشفيرية</h3>
             <table class="toc-compact-table">
               <thead>
                 <tr>
@@ -1462,6 +1463,7 @@
               <li><strong>الأطلس التاريخي لسيرة الرسول ﷺ — فهرس الجداول (ص ٢٦٠):</strong> طُبع رقم صفحة «الخريطة التنظيمية للعهد النبوي» سهوًا <code>٢٢٩</code> بين ص ١٢٣ وص ١٣١، وموضعها الفعلي الموثق بصريًا هو <strong>ص ١٢٩</strong>.</li>
               <li><strong>الأطلس التاريخي لسيرة الرسول ﷺ — فهرس الخرائط (ص ٢٥٩):</strong> ورد سطر «غزوات السنة التاسعة من الهجرة» دون رقم صفحة مستقل، وتحققنا بصريًا من وجود الخريطة في <strong>ص ١٩٦</strong>.</li>
               <li><strong>أطلس الخليفة عثمان بن عفان رضي الله عنه — فهرس العناوين والأبواب (ص ٣٠٩):</strong> طُبع رقم بداية «الفصل الثاني: الفتح الإسلامي على الجبهة الشمالية» سهوًا <code>١٣١</code>، بينما تقع لوحة الفصل الثاني فعليًا في <strong>ص ١٢١</strong> (مطابقة للإشارات المرجعية في الملف الأصلي). كما تضمّن الفهرس والفهارس الفرعية هفوات مطبعية يسيرة وُثِّقت مع الحفاظ على الأصل: «الخيفة» بدل «الخليفة» (ص ٣٠٩)، و«جرير بت» بدل «جرير بن» (ص ٣١٠)، و«اليمينة» بدل «اليمنية» (ص ٣٢٢)، وتقدير مسبق في بطاقة الفهرسة (ص ٣) بعدد «٣٧٢ ص» ورقم السلسلة «٢» بينما الكتاب يقع فعليًا في <strong>٣٢٥ صفحة</strong> وهو الحلقة الثالثة من السلسلة.</li>
+              <li><strong>أطلس الخليفة علي بن أبي طالب رضي الله عنه — فهرس التراجم والخرائط (ص ٢٦٢، ٢٦٩):</strong> طُبع في فهرس التراجم (ص ٢٦٩) أن ترجمة «فاطمة الزهراء رضي الله عنها» تقع في <code>ص ١٥</code>، بينما تتناول ص ١٥ نسب علي بن أبي طالب وأمّه فاطمة بنت أسد، وتقع ترجمة السيدة فاطمة الزهراء فعليًا في <strong>ص ٣٨</strong> (فوُجِّه الرابط الفعلي إلى ص ٣٨ مع توثيق الرقم المطبوع). كما رُصدت ووُثِّقت الهفوات المطبعية الأصلية دون طمسها: «معوية» بدل «معاوية» و«جرير بت» بدل «جرير بن» (ص ٢٦٩)، و«سن ٣٩ هـ» بدل «سنة ٣٩ هـ» (ص ٢٦٢)، وإغفال إدراج جدول ولاة علي بن أبي طالب الـ ٤١ المطبوع في <strong>ص ١٣٣</strong> ضمن فهرس الأشكال، وورود خطأ مطبعي في البيانات الوصفية الداخلية لملف PDF («الملغوث» بدل «المغلوث»).</li>
               <li><strong>خرائط التاريخ الإسلامي المجمّعة:</strong> يضم الملف الأشكال (٢، ١-١، ١-٣، ١-٤)؛ ولا يتضمن الملف المصدر الأصلي «شكل ١-٢».</li>
             </ul>
           </div>
@@ -1469,9 +1471,9 @@
           <div class="quiz-card">
             <h3 style="margin-top:0">٣. الحدود التقنية المعروفة والإفصاح العلمي الصريح</h3>
             <ul style="line-height:1.8;font-size:13.5px">
-              <li><strong>لا حدود GIS مختلقة:</strong> لا تحتوي ملفات PDF المصدرية على إحداثيات مكانية جغرافية (GeoJSON / خطوط طول وعرض رقمية). التفاعل في <em>خرائط التاريخ الإسلامي</em> مبني على <strong>أشكال الحروف المتجهية الأصلية وعلامات المدن</strong>، وفي الأطالس الأربعة الممسوحة ضوئيًا (<em>السيرة</em>، <em>الصديق</em>، <em>الفاروق</em>، <em>ذي النورين</em>) مبني على <strong>إحداثيات الصورة الموثقة بصريًا</strong> للخرائط المحورية ومربعات كلمات OCR، دون ادعاء وجود مضلعات حدودية مستقلة حيث لا يدعمها المصدر.</li>
-              <li><strong>دقة الاستخراج الضوئي الآلي (OCR) للخرائط الكثيفة:</strong> نظرًا لأن دقة المسح الأصلية تبلغ نحو ٨٠٠×١١٤٥ بكسل، فإن النصوص الصغيرة والمائلة داخل الخرائط قد تنتج عنها أخطاء في محرك OCR الآلي (متوسط الثقة ${toArabicDigits(st.meanOcrConfidence)}%). لذلك فُصلت العناوين والفهارس والمعالم المحققة بصريًا فصلًا تامًا عن نصوص OCR الآلية، ووُسمت صفحات OCR منخفضة الثقة (${toArabicDigits(st.lowConfidenceOcrPageIds.length)} صفحة) بوسم «يحتاج مراجعة» مع توفير <strong>عارض الصفحة الأصلية</strong> دائمًا للمطابقة.</li>
-              <li><strong>الفرق بين الحزمة الكاملة والنسخة المحمولة (ملف HTML واحد):</strong> تتضمن الحزمة الكاملة (<code>index.html</code> + <code>assets/</code>) جميع صور الصفحات الـ ${toArabicDigits(st.totalPdfPages)} بدقتها الأصلية الكاملة وتعمل دون إنترنت ودون خادم؛ أما ملف <code>release/portable-atlas.html</code> المستقل فيضم جميع الخرائط المتجهية المزدوجة + ٤٤ خريطة وغلافًا محوريًا عالي الدقة + كامل الفهارس والبحث لـ ${toArabicDigits(st.totalPdfPages)} صفحة في ملف واحد لتسهيل المشاركة السريعة.</li>
+              <li><strong>لا حدود GIS مختلقة:</strong> لا تحتوي ملفات PDF المصدرية على إحداثيات مكانية جغرافية (GeoJSON / خطوط طول وعرض رقمية). التفاعل في <em>خرائط التاريخ الإسلامي</em> مبني على <strong>أشكال الحروف المتجهية الأصلية وعلامات المدن</strong>، وفي الأطالس الخمسة الممسوحة ضوئيًا (<em>السيرة</em>، <em>الصديق</em>، <em>الفاروق</em>، <em>ذي النورين</em>، <em>أبي الحسنين</em>) مبني على <strong>إحداثيات الصورة الموثقة بصريًا</strong> للخرائط المحورية ومربعات كلمات OCR، دون ادعاء وجود مضلعات حدودية مستقلة حيث لا يدعمها المصدر.</li>
+              <li><strong>دقة الاستخراج الضوئي الآلي (OCR) للخرائط الكثيفة:</strong> نظرًا لأن دقة المسح الأصلية تبلغ نحو ٨٠٠×١٢٠٠ بكسل، فإن النصوص الصغيرة والمائلة داخل الخرائط قد تنتج عنها أخطاء في محرك OCR الآلي (متوسط الثقة ${toArabicDigits(st.meanOcrConfidence)}%). لذلك فُصلت العناوين والفهارس والمعالم المحققة بصريًا فصلًا تامًا عن نصوص OCR الآلية، ووُسمت صفحات OCR منخفضة الثقة (${toArabicDigits(st.lowConfidenceOcrPageIds.length)} صفحة) بوسم «يحتاج مراجعة» مع توفير <strong>عارض الصفحة الأصلية</strong> دائمًا للمطابقة.</li>
+              <li><strong>الفرق بين الحزمة الكاملة والنسخة المحمولة (ملف HTML واحد):</strong> تتضمن الحزمة الكاملة (<code>index.html</code> + <code>assets/</code>) جميع صور الصفحات الـ ${toArabicDigits(st.totalPdfPages)} بدقتها الأصلية الكاملة وتعمل دون إنترنت ودون خادم؛ أما ملف <code>release/portable-atlas.html</code> المستقل فيضم جميع الخرائط المتجهية المزدوجة + ٥٦ خريطة وغلافًا محوريًا عالي الدقة + كامل الفهارس والبحث لـ ${toArabicDigits(st.totalPdfPages)} صفحة في ملف واحد لتسهيل المشاركة السريعة.</li>
             </ul>
           </div>
         </div>

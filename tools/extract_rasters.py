@@ -40,11 +40,11 @@ def extract_scanned(pdf_path: str, slug: str, page_quality: int = 82):
             w, h = round(w * scale), 1200
             pil_img = pil_img.resize((w, h), Image.Resampling.LANCZOS)
         out_p = os.path.join(pdir, f"page-{pnum:03d}.webp")
-        pil_img.save(out_p, "WEBP", quality=page_quality, method=5)
-        tw = 180
+        pil_img.save(out_p, "WEBP", quality=page_quality, method=6)
+        tw = 150
         th = max(1, round(h * (tw / w)))
         pil_img.resize((tw, th), Image.Resampling.LANCZOS).save(
-            os.path.join(tdir, f"page-{pnum:03d}.webp"), "WEBP", quality=70, method=4
+            os.path.join(tdir, f"page-{pnum:03d}.webp"), "WEBP", quality=56, method=6
         )
         meta.append({
             "page": pnum,
@@ -102,17 +102,20 @@ if __name__ == "__main__":
     abubakr_pdf = os.path.join(ROOT, ".cache/source_pdfs/abubakr.pdf")
     umar_pdf = os.path.join(ROOT, ".cache/source_pdfs/umar.pdf")
     uthman_pdf = os.path.join(ROOT, ".cache/source_pdfs/uthman.pdf")
+    ali_pdf = os.path.join(ROOT, ".cache/source_pdfs/ali.pdf")
 
     if (not only or "maps8" in only) and os.path.exists(maps8_pdf):
         out["maps8"] = render_vector(maps8_pdf, "maps8", 200)
     if (not only or "seerah" in only) and os.path.exists(seerah_pdf):
-        out["seerah"] = extract_scanned(seerah_pdf, "seerah", 60)
+        out["seerah"] = extract_scanned(seerah_pdf, "seerah", 48)
     if (not only or "abubakr" in only) and os.path.exists(abubakr_pdf):
-        out["abubakr"] = extract_scanned(abubakr_pdf, "abubakr", 60)
+        out["abubakr"] = extract_scanned(abubakr_pdf, "abubakr", 48)
     if (not only or "umar" in only) and os.path.exists(umar_pdf):
-        out["umar"] = extract_scanned(umar_pdf, "umar", 58)
+        out["umar"] = extract_scanned(umar_pdf, "umar", 46)
     if (not only or "uthman" in only) and os.path.exists(uthman_pdf):
-        out["uthman"] = extract_scanned(uthman_pdf, "uthman", 56)
+        out["uthman"] = extract_scanned(uthman_pdf, "uthman", 46)
+    if (not only or "ali" in only) and os.path.exists(ali_pdf):
+        out["ali"] = extract_scanned(ali_pdf, "ali", 46)
 
     os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
     with open(raw_meta_path, "w", encoding="utf-8") as f:

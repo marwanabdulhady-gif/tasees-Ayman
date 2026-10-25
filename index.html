@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>منصة الأطالس الجغرافية والتاريخية العربية التفاعلية</title>
-  <meta name="description" content="منصة استكشاف جغرافي وتاريخي تفاعلية مبنية مباشرة من خمسة أطالس عربية مصورة ومتجهية (١٠٦٩ صفحة، ٤٣٥ خريطة) وتعمل بالكامل دون إنترنت." />
+  <meta name="description" content="منصة استكشاف جغرافي وتاريخي تفاعلية مبنية مباشرة من ستة أطالس عربية مصورة ومتجهية (١٣٤١ صفحة، ٥١٤ خريطة) وتعمل بالكامل دون إنترنت." />
   <link rel="stylesheet" href="src/styles.css" />
   <style>
     /* Ensure font paths resolve accurately from root index.html as well */
@@ -57,7 +57,7 @@
         <div class="brand-mark" aria-hidden="true">أ</div>
         <div class="brand-text">
           <h1 class="brand-title">منصة الأطالس التاريخية والجغرافية التفاعلية</h1>
-          <p class="brand-sub">خرائط التاريخ الإسلامي · أطلس سيرة الرسول ﷺ · أطلس أبي بكر · أطلس عمر · أطلس عثمان (١٠٦٩ صفحة)</p>
+          <p class="brand-sub">خرائط التاريخ الإسلامي · أطلس السيرة ﷺ · أطلس أبي بكر · أطلس عمر · أطلس عثمان · أطلس علي (١٣٤١ صفحة)</p>
         </div>
       </div>
 
@@ -69,8 +69,8 @@
             type="search"
             id="global-search-input"
             autocomplete="off"
-            placeholder="ابحث عن مدينة، معركة، غزوة، خريطة، أو اكتب «عثمان ١٥٧»…"
-            aria-label="البحث الشامل في الأطالس الخمسة"
+            placeholder="ابحث عن مدينة، معركة، غزوة، خريطة، أو اكتب «علي ١٨١»…"
+            aria-label="البحث الشامل في الأطالس الستة"
           />
           <button type="button" class="icon-btn-sm" id="global-search-clear" aria-label="مسح البحث" hidden>✕</button>
           <kbd class="search-kbd" title="اختصار لوحة المفاتيح">/</kbd>
@@ -79,12 +79,13 @@
         <div class="search-dropdown" id="search-dropdown" hidden>
           <div class="search-filters">
             <select id="search-vol-filter" aria-label="تصفية حسب الأطلس">
-              <option value="all">كل الأطالس (١٠٦٩ ص)</option>
+              <option value="all">كل الأطالس (١٣٤١ ص)</option>
               <option value="maps8">خرائط التاريخ الإسلامي</option>
               <option value="seerah">أطلس سيرة الرسول ﷺ</option>
               <option value="abubakr">أطلس أبي بكر الصديق</option>
               <option value="umar">أطلس عمر بن الخطاب</option>
               <option value="uthman">أطلس عثمان بن عفان</option>
+              <option value="ali">أطلس علي بن أبي طالب</option>
             </select>
             <select id="search-tier-filter" aria-label="تصفية حسب نوع المحتوى">
               <option value="all">كل النتائج (محقق + OCR)</option>

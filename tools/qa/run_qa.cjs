@@ -51,19 +51,20 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 (async () => {
   // ---------------- 12.1 Content Integrity Checks on Manifest & Assets ----------------
   const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "data/manifest.json"), "utf8"));
-  check("12.1", "Total PDF pages equals 1069 (8 + 264 + 121 + 351 + 325) with zero omissions", manifest.pages.length === 1069, `${manifest.pages.length} pages`);
-  check("12.1", "Volume page counts match all 5 source PDFs",
+  check("12.1", "Total PDF pages equals 1341 (8 + 264 + 121 + 351 + 325 + 272) with zero omissions", manifest.pages.length === 1341, `${manifest.pages.length} pages`);
+  check("12.1", "Volume page counts match all 6 source PDFs",
     manifest.stats.pagesByVolume.maps8 === 8 &&
     manifest.stats.pagesByVolume.seerah === 264 &&
     manifest.stats.pagesByVolume.abubakr === 121 &&
     manifest.stats.pagesByVolume.umar === 351 &&
-    manifest.stats.pagesByVolume.uthman === 325
+    manifest.stats.pagesByVolume.uthman === 325 &&
+    manifest.stats.pagesByVolume.ali === 272
   );
 
   const missingAssets = manifest.pages.filter(
     (p) => !fs.existsSync(path.join(ROOT, p.pageAsset)) || !fs.existsSync(path.join(ROOT, p.thumbAsset))
   );
-  check("12.1", "Every single page (1069/1069) has both full-res WebP and thumbnail asset on disk", missingAssets.length === 0, `missing=${missingAssets.length}`);
+  check("12.1", "Every single page (1341/1341) has both full-res WebP and thumbnail asset on disk", missingAssets.length === 0, `missing=${missingAssets.length}`);
 
   const corruptArabic = manifest.pages.filter((p) => /\uFFFD/.test(p.title) || /\uFFFD/.test(p.extractedText || ""));
   check("12.1", "Zero Unicode replacement characters (U+FFFD) in titles or extracted Arabic text", corruptArabic.length === 0);
@@ -216,11 +217,22 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   await sleep(300);
   await page.screenshot({ path: path.join(SHOTS_DIR, "05c-desktop-uthman-sawari.png") });
 
+  // Switch to Volume 6 (Ali ibn Abi Talib Atlas) & test direct jump + Siffin map
+  await page.click('[data-vol="ali"]');
+  await sleep(350);
+  const aliLoaded = await page.evaluate(() => document.querySelector(".page-main-title")?.textContent || "");
+  check("12.2", "Switching to Volume 6 (أطلس علي بن أبي طالب) loads verified map", aliLoaded.includes("علي"), aliLoaded);
+  const siffinJump = await testSearchQuery("علي ١٨١");
+  check("12.3", "Search supports Volume 6 direct jump («علي ١٨١» -> معركة صفين)", siffinJump.some((t) => t.includes("صفين")), siffinJump[0] || "");
+  await page.click("#search-results-list .search-result-item");
+  await sleep(300);
+  await page.screenshot({ path: path.join(SHOTS_DIR, "05d-desktop-ali-siffin.png") });
+
   // Test TOC, Original Page Split Verification, Compare, Gazetteer, Learn, Audit
   await page.click('[data-tab="toc"]');
   await sleep(300);
   const tocCards = await page.evaluate(() => document.querySelectorAll(".toc-card").length);
-  check("12.2", "TOC gallery renders all 1069 pages across 5 volumes", tocCards === 1069, `cards=${tocCards}`);
+  check("12.2", "TOC gallery renders all 1341 pages across 6 volumes", tocCards === 1341, `cards=${tocCards}`);
   await page.screenshot({ path: path.join(SHOTS_DIR, "06-desktop-toc.png") });
 
   await page.click('[data-tab="original"]');
@@ -277,8 +289,8 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     pagesCount: window.__ATLAS_MANIFEST__?.pages?.length || 0,
     vecHotspots: document.querySelectorAll("svg.vector-spread-svg .vec-hotspot").length,
   }));
-  check("12.4", "Single-File Portable HTML Edition loads offline via file:// with all 1069 pages indexed",
-    pOk.portableFlag && pOk.pagesCount === 1069 && pOk.vecHotspots > 150,
+  check("12.4", "Single-File Portable HTML Edition loads offline via file:// with all 1341 pages indexed",
+    pOk.portableFlag && pOk.pagesCount === 1341 && pOk.vecHotspots > 150,
     `pages=${pOk.pagesCount}, vecHotspots=${pOk.vecHotspots}`
   );
   await pPage.close();

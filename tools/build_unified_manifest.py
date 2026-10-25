@@ -82,6 +82,7 @@ def main():
     ocr_abubakr = load_ocr("abubakr")
     ocr_umar = load_ocr("umar")
     ocr_uthman = load_ocr("uthman")
+    ocr_ali = load_ocr("ali")
 
     # 1. Source PDF cryptographic provenance
     pdf_sources = [
@@ -90,6 +91,7 @@ def main():
         ("abubakr", "أطلس الخليفة أبي بكر الصديق.pdf", "13LwaHK3q_ZrrPjmujtiimqL1I0JA85Gj", ".cache/source_pdfs/abubakr.pdf"),
         ("umar", "أطلس الخليفة عمر بن الخطاب.pdf", "1hRtdJvJKv3sFCR0IqJdAJO3ggQUA0_9J", ".cache/source_pdfs/umar.pdf"),
         ("uthman", "أطلس الخليفة عثمان بن عفان.pdf", "13QmMhTCmLoHVDHVNShSTf2Zoutz2XHkZ", ".cache/source_pdfs/uthman.pdf"),
+        ("ali", "أطلس الخليفة علي بن أبي طالب.pdf", "1vb74QK75Q_97WSxrgazrwqXoeryAGqOi", ".cache/source_pdfs/ali.pdf"),
     ]
     source_manifest = []
     for slug, orig_name, drive_id, rel_p in pdf_sources:
@@ -165,6 +167,15 @@ def main():
             207: "الفصل الخامس: الفتنة الكبرى ومقتل الخليفة عثمان بن عفان رضي الله عنه",
             269: "الباب الرابع: النظم الحضارية في عهد الخليفة عثمان بن عفان رضي الله عنه",
             303: "الباب الخامس: بعض الأحاديث الصحيحة في فضائل الخليفة عثمان بن عفان من صحيح مسلم",
+        },
+        "ali": {
+            1: "غلاف أطلس الخليفة علي بن أبي طالب رضي الله عنه",
+            11: "الباب الأول: علي بن أبي طالب رضي الله عنه في العهد المكي",
+            27: "الباب الثاني: علي بن أبي طالب رضي الله عنه في العهد المدني",
+            95: "الباب الثالث: علي بن أبي طالب رضي الله عنه في عهد الخلفاء الراشدين رضي الله عنهم",
+            125: "الباب الرابع: خلافة علي بن أبي طالب رضي الله عنه",
+            229: "الباب الخامس: وقفات مع علي بن أبي طالب وأهل بيته رضي الله عنهم",
+            255: "ملاحق الكتاب: الفهارس",
         },
     }
 
@@ -443,6 +454,12 @@ def main():
                 title, category = SPECIAL_PAGES[(slug, pnum)]
                 title_source = "verified-visual"
                 vstatus = "verified"
+            elif str(pnum) in vinfo.get("specialPages", {}) and not map_entries:
+                sp = vinfo["specialPages"][str(pnum)]
+                title = sp["title"]
+                category = sp["category"]
+                title_source = "verified-visual"
+                vstatus = "verified"
             elif map_entries:
                 title = " — ".join(dict.fromkeys(m["title"] for m in map_entries))
                 category = "map"
@@ -465,7 +482,7 @@ def main():
                 vstatus = "verified-title-ocr-body"
             else:
                 # Prose / narrative / unindexed page — never invent a title!
-                category = "cover-frontmatter" if pnum <= 10 and slug == "seerah" else (
+                category = "cover-frontmatter" if pnum <= 10 and slug in ("seerah", "ali") else (
                     "cover-frontmatter" if pnum <= 8 and slug in ("abubakr", "umar", "uthman") else "narrative-text"
                 )
                 title = f"صفحة {pnum} — {sec['title']}"
@@ -534,6 +551,7 @@ def main():
     build_scanned_volume("abubakr", "أطلس أبي بكر الصديق", "مكتبة العبيكان — الرياض (سلسلة أطلس تاريخ الخلفاء الراشدين ١)", ocr_abubakr)
     build_scanned_volume("umar", "أطلس عمر بن الخطاب", "مكتبة العبيكان — الرياض (سلسلة أطلس تاريخ الخلفاء الراشدين ٢)", ocr_umar)
     build_scanned_volume("uthman", "أطلس عثمان بن عفان", "مكتبة العبيكان — الرياض (سلسلة أطلس تاريخ الخلفاء الراشدين ٣)", ocr_uthman)
+    build_scanned_volume("ali", "أطلس علي بن أبي طالب", "مكتبة العبيكان — الرياض (سلسلة أطلس تاريخ الخلفاء الراشدين ٤)", ocr_ali)
 
     # --- Build Cross-Atlas Unified Gazetteer (Verified Entries Only!) ---
     gaz_by_norm = {}
@@ -589,7 +607,7 @@ def main():
 
     # 2. Add curated map hotspots & verified printed index entries from scanned atlases
     for p in all_pages:
-        if p["volumeId"] in ("seerah", "abubakr", "umar", "uthman"):
+        if p["volumeId"] in ("seerah", "abubakr", "umar", "uthman", "ali"):
             for hs in p["hotspots"]:
                 add_gaz_occurrence(hs["name"], hs["kind"], {
                     "volumeId": p["volumeId"],
@@ -748,6 +766,33 @@ def main():
             "note": "مرسومتان على الخريطة القارية نفسها في الباب الرابع من أطلس الخليفة عثمان بن عفان (إزاحة < ٢ بكسل) — تدعم المزامنة وشريط السحب.",
         },
         {
+            "id": "cmp-ali-siffin-vs-nahrawan",
+            "title": "الطريق إلى صفين (٣٧ هـ) مقابل مسرح معركة النهروان (٣٨ هـ) على خريطة العراق والشام",
+            "leftId": "ali-175",
+            "rightId": "ali-199",
+            "mode": "pages",
+            "syncAllowed": True,
+            "note": "مرسومتان على خريطة الأساس نفسها للعراق والجزيرة الفراتية وبلاد الشام في أطلس الخليفة علي بن أبي طالب — تدعم شريط السحب المتطابق والتكبير المتزامن.",
+        },
+        {
+            "id": "cmp-ali-40h-vs-jamaah-41h",
+            "title": "مناوشات سنة ٤٠ هـ مقابل خريطة عام الجماعة وصلح الحسن بن علي سنة ٤١ هـ",
+            "leftId": "ali-210",
+            "rightId": "ali-251",
+            "mode": "pages",
+            "syncAllowed": True,
+            "note": "مرسومتان على خريطة الأساس نفسها لشبه الجزيرة العربية والعراق والشام في أطلس الخليفة علي بن أبي طالب — تبرز التحول من النزاع المسلح إلى اجتماع الكلمة.",
+        },
+        {
+            "id": "cmp-ali-start-vs-rashidun-end",
+            "title": "الدولة الإسلامية في مستهل خلافة علي (٣٥ هـ) مقابل مراحل توسع الخلافة الراشدة حتى ختامها (٤٠ هـ)",
+            "leftId": "ali-131",
+            "rightId": "ali-203",
+            "mode": "pages",
+            "syncAllowed": False,
+            "note": "مقارنة شاملة جنبًا إلى جنب بين رقعة الخلافة غداة بيعة علي بن أبي طالب والخريطة التركيبية لمراحل التوسع النبوي والراشدي وعاصمته بالكوفة.",
+        },
+        {
             "id": "cmp-badr-vs-uhud",
             "title": "مخطط غزوة بدر الكبرى (٢ هـ) مقابل مخطط غزوة أحد (٣ هـ)",
             "leftId": "seerah-159",
@@ -787,24 +832,31 @@ def main():
             "abubakrIndexedMaps": len(verified_idx["abubakr"]["maps"]),
             "umarIndexedMaps": len(verified_idx["umar"]["maps"]),
             "uthmanIndexedMaps": len(verified_idx["uthman"]["maps"]),
+            "aliIndexedMaps": len(verified_idx["ali"]["maps"]),
             "totalDistinctMaps": (
                 4
                 + len(verified_idx["seerah"]["maps"])
                 + len(verified_idx["abubakr"]["maps"])
                 + len(verified_idx["umar"]["maps"])
                 + len(verified_idx["uthman"]["maps"])
+                + len(verified_idx["ali"]["maps"])
             ),
         },
         "indexedTablesAndDiagrams": (
             len(verified_idx["seerah"]["tables"])
             + len(verified_idx["uthman"]["tables"])
+            + len(verified_idx["ali"]["tables"])
         ),
-        "indexedBiographies": len(verified_idx["uthman"]["biographies"]),
+        "indexedBiographies": (
+            len(verified_idx["uthman"]["biographies"])
+            + len(verified_idx["ali"]["biographies"])
+        ),
         "indexedPhotographs": (
             len(verified_idx["seerah"]["photos"])
             + len(verified_idx["abubakr"]["photos"])
             + len(verified_idx["umar"]["photos"])
             + len(verified_idx["uthman"]["photos"])
+            + len(verified_idx["ali"]["photos"])
         ),
         "categories": dict(cat_counts),
         "verificationBreakdown": dict(vstatus_counts),
@@ -822,10 +874,10 @@ def main():
     }
 
     manifest = {
-        "schemaVersion": "2.2",
+        "schemaVersion": "2.3",
         "title": "منصة الأطالس الجغرافية والتاريخية العربية التفاعلية",
-        "subtitle": "خرائط التاريخ الإسلامي · أطلس سيرة الرسول ﷺ · أطلس أبي بكر الصديق · أطلس عمر بن الخطاب · أطلس عثمان بن عفان",
-        "generatedAt": "2026-10-25",
+        "subtitle": "خرائط التاريخ الإسلامي · أطلس سيرة الرسول ﷺ · أطلس أبي بكر الصديق · أطلس عمر بن الخطاب · أطلس عثمان بن عفان · أطلس علي بن أبي طالب",
+        "generatedAt": "2026-10-26",
         "sources": source_manifest,
         "stats": stats,
         "volumes": volumes,

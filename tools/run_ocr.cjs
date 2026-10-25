@@ -88,6 +88,10 @@ async function processVolume(slug, concurrency) {
         // Skip top decorative running header bar (~6.0% height)
         const topH = Math.round(pm.height * 0.06);
         recOpts = { rectangle: { left: 0, top: topH, width: pm.width, height: pm.height - topH } };
+      } else if (slug === "ali" && pnum >= 13 && pnum <= 254) {
+        // Skip top decorative running header bar (~6.0% height)
+        const topH = Math.round(pm.height * 0.06);
+        recOpts = { rectangle: { left: 0, top: topH, width: pm.width, height: pm.height - topH } };
       }
 
       try {
