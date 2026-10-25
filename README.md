@@ -8,6 +8,9 @@ Transcripts of the lecture playlists by م. أيمن عبدالرحيم ([@Ayman
 
 ## Fetching
 
+**Easiest: run it on your own computer.** YouTube blocks cloud servers (GitHub Actions, AI agent sandboxes) with "Sign in to confirm you're not a bot", but home internet works. Install Python from python.org, download this repo (Code → Download ZIP), then double-click `get_transcripts_windows.bat` (or run `./get_transcripts_mac_linux.sh`). Commit or upload the `transcripts/` folder afterwards.
+
+
 `scripts/fetch_transcripts.py` lists each playlist with yt-dlp, fetches transcripts with [ytfetcher](https://github.com/kaya70875/ytfetcher) (youtube-transcript-api), and falls back to YouTube captions (manual, then auto-generated) via yt-dlp. Re-running skips episodes already saved.
 
 ```bash
