@@ -93,18 +93,19 @@
     }
 
     /**
-     * Parses direct page jump queries like "ص 159", "صفحة ١١٨", "سيرة 90", "صديق 54"
+     * Parses direct page jump queries like "ص 159", "صفحة ١١٨", "سيرة 90", "صديق 54", "عمر 81"
      */
     _parsePageJump(rawQuery, volumeFilter) {
       const w = toWesternDigits(rawQuery).trim();
-      const m = w.match(/^(?:ص|صفحة|صفحه|p|page|سيرة|سيره|صديق|ابو بكر|خرائط)?\s*(\d{1,3})$/i);
+      const m = w.match(/^(?:ص|صفحة|صفحه|p|page|سيرة|سيره|صديق|ابو بكر|عمر|الفاروق|خرائط)?\s*(\d{1,3})$/i);
       if (!m) return [];
       const pnum = Number(m[1]);
       if (!pnum) return [];
 
-      let targetVols = ["maps8", "seerah", "abubakr"];
+      let targetVols = ["maps8", "seerah", "abubakr", "umar"];
       if (/سير/.test(w)) targetVols = ["seerah"];
       else if (/صديق|بكر/.test(w)) targetVols = ["abubakr"];
+      else if (/عمر|فاروق/.test(w)) targetVols = ["umar"];
       else if (/خرائط/.test(w)) targetVols = ["maps8"];
       else if (volumeFilter && volumeFilter !== "all") targetVols = [volumeFilter];
 

@@ -63,12 +63,14 @@ def main():
     maps8_atlas = json.load(open(os.path.join(ROOT, "data/maps8_atlas.json"), encoding="utf-8"))
     ocr_seerah = json.load(open(os.path.join(ROOT, "data/ocr/seerah.json"), encoding="utf-8"))
     ocr_abubakr = json.load(open(os.path.join(ROOT, "data/ocr/abubakr.json"), encoding="utf-8"))
+    ocr_umar = json.load(open(os.path.join(ROOT, "data/ocr/umar.json"), encoding="utf-8"))
 
     # 1. Source PDF cryptographic provenance
     pdf_sources = [
         ("maps8", "خرائط التاريخ الإسلامي مجمع.pdf", "1AQS8YInYN9AdjpRxv-rY9v_zWCSMDRt_", ".cache/source_pdfs/maps8.pdf"),
         ("seerah", "الأطلس التاريخي لسيرة الرسول.pdf", "1rAwQC3MDkzLwZWAJww2_wAWcN5sqiy9W", ".cache/source_pdfs/seerah.pdf"),
         ("abubakr", "أطلس الخليفة أبي بكر الصديق.pdf", "13LwaHK3q_ZrrPjmujtiimqL1I0JA85Gj", ".cache/source_pdfs/abubakr.pdf"),
+        ("umar", "أطلس الخليفة عمر بن الخطاب.pdf", "1hRtdJvJKv3sFCR0IqJdAJO3ggQUA0_9J", ".cache/source_pdfs/umar.pdf"),
     ]
     source_manifest = []
     for slug, orig_name, drive_id, rel_p in pdf_sources:
@@ -120,6 +122,18 @@ def main():
             65: "الفصل الثالث: الفتوحات الإسلامية في عهده (فارس - الروم)",
             103: "الباب الرابع: ملامح عامة من عهد الصديق",
         },
+        "umar": {
+            1: "غلاف أطلس الخليفة عمر بن الخطاب رضي الله عنه",
+            9: "الباب الأول: عمر بن الخطاب في العهد المكي",
+            23: "الباب الثاني: عمر بن الخطاب في العهد المدني",
+            35: "الباب الثالث: خلافة عمر بن الخطاب رضي الله عنه",
+            41: "الفصل الأول: فتح العراق",
+            103: "الفصل الثاني: فتح إيران",
+            173: "الفصل الثالث: فتح الشام وفلسطين",
+            251: "الفصل الرابع: فتح مصر وليبيا",
+            295: "الفصل الخامس: النظم الحضارية في عهد عمر رضي الله عنه",
+            331: "الباب الرابع: وقفات مع عمر رضي الله عنه",
+        },
     }
 
     SPECIAL_PAGES = {
@@ -151,6 +165,36 @@ def main():
         ("abubakr", 119): ("فهارس الصور (١/٢)", "index-reference"),
         ("abubakr", 120): ("فهارس الصور (٢/٢)", "index-reference"),
         ("abubakr", 121): ("الغلاف الخلفي", "cover-frontmatter"),
+        ("umar", 2): ("صفحة العنوان الداخلي", "cover-frontmatter"),
+        ("umar", 3): ("بيانات الفهرسة والنشر (مكتبة العبيكان ١٤٢٦هـ)", "cover-frontmatter"),
+        ("umar", 4): ("مقدمة الكتاب (١/٣)", "cover-frontmatter"),
+        ("umar", 5): ("مقدمة الكتاب (٢/٣)", "cover-frontmatter"),
+        ("umar", 6): ("مقدمة الكتاب (٣/٣)", "cover-frontmatter"),
+        ("umar", 7): ("فسح وزارة الثقافة والإعلام", "cover-frontmatter"),
+        ("umar", 8): ("إهداء الكتاب", "cover-frontmatter"),
+        ("umar", 10): ("ظهر لوحة الباب الأول", "chapter-divider"),
+        ("umar", 22): ("أهم المراجع المستخدمة في الباب الأول", "index-reference"),
+        ("umar", 24): ("ظهر لوحة الباب الثاني", "chapter-divider"),
+        ("umar", 34): ("أهم المراجع المستخدمة في الباب الثاني", "index-reference"),
+        ("umar", 36): ("ظهر لوحة الباب الثالث", "chapter-divider"),
+        ("umar", 42): ("ظهر لوحة الفصل الأول (فتح العراق)", "chapter-divider"),
+        ("umar", 102): ("أهم مصادر ومراجع الفصل الأول", "index-reference"),
+        ("umar", 104): ("ظهر لوحة الفصل الثاني (فتح إيران)", "chapter-divider"),
+        ("umar", 172): ("أهم مصادر ومراجع الفصل الثاني", "index-reference"),
+        ("umar", 174): ("ظهر لوحة الفصل الثالث (فتح الشام وفلسطين)", "chapter-divider"),
+        ("umar", 243): ("نص العهدة العمرية (كتاب أمان عمر بن الخطاب لأهل إيلياء)", "table-diagram"),
+        ("umar", 250): ("أهم مصادر ومراجع الفصل الثالث", "index-reference"),
+        ("umar", 252): ("ظهر لوحة الفصل الرابع (فتح مصر وليبيا)", "chapter-divider"),
+        ("umar", 294): ("أهم مصادر ومراجع الفصل الرابع", "index-reference"),
+        ("umar", 296): ("ظهر لوحة الفصل الخامس (النظم الحضارية)", "chapter-divider"),
+        ("umar", 330): ("أهم مصادر ومراجع الفصل الخامس", "index-reference"),
+        ("umar", 332): ("ظهر لوحة الباب الرابع", "chapter-divider"),
+        ("umar", 346): ("أهم مصادر ومراجع الباب الرابع", "index-reference"),
+        ("umar", 347): ("فهرس العناوين والأبواب", "index-reference"),
+        ("umar", 348): ("فهرس الخرائط (١/٢)", "index-reference"),
+        ("umar", 349): ("فهرس الخرائط (٢/٢)", "index-reference"),
+        ("umar", 350): ("فهرس الصور والأشكال", "index-reference"),
+        ("umar", 351): ("المؤلف في سطور وخاتمة الكتاب", "cover-frontmatter"),
     }
 
     volumes = []
@@ -334,7 +378,7 @@ def main():
             else:
                 # Prose / narrative / unindexed page — never invent a title!
                 category = "cover-frontmatter" if pnum <= 10 and slug == "seerah" else (
-                    "cover-frontmatter" if pnum <= 8 and slug == "abubakr" else "narrative-text"
+                    "cover-frontmatter" if pnum <= 8 and slug in ("abubakr", "umar") else "narrative-text"
                 )
                 title = f"صفحة {pnum} — {sec['title']}"
                 title_source = "section-page-ref"
@@ -400,6 +444,7 @@ def main():
 
     build_scanned_volume("seerah", "أطلس سيرة الرسول ﷺ", "مكتبة العبيكان — الرياض", ocr_seerah)
     build_scanned_volume("abubakr", "أطلس أبي بكر الصديق", "مكتبة العبيكان — الرياض (سلسلة أطلس تاريخ الخلفاء الراشدين ١)", ocr_abubakr)
+    build_scanned_volume("umar", "أطلس عمر بن الخطاب", "مكتبة العبيكان — الرياض (سلسلة أطلس تاريخ الخلفاء الراشدين ٢)", ocr_umar)
 
     # --- Build Cross-Atlas Unified Gazetteer (Verified Entries Only!) ---
     # 1. Start with all verified gazetteer entries from maps8
@@ -455,9 +500,9 @@ def main():
             "source": "maps8-composite-label",
         })
 
-    # 2. Add curated map hotspots from seerah & abubakr
+    # 2. Add curated map hotspots from scanned atlases (seerah, abubakr, umar)
     for p in all_pages:
-        if p["volumeId"] in ("seerah", "abubakr"):
+        if p["volumeId"] in ("seerah", "abubakr", "umar"):
             for hs in p["hotspots"]:
                 add_gaz_occurrence(hs["name"], hs["kind"], {
                     "volumeId": p["volumeId"],
@@ -559,6 +604,33 @@ def main():
             "note": "مقارنة جبهتي فارس (العراق) والروم (بلاد الشام) في السنة الثانية عشرة والثالثة عشرة للهجرة.",
         },
         {
+            "id": "cmp-umar-start-vs-end",
+            "title": "الوضع السياسي مطلع خلافة عمر (١٣ هـ) مقابل انتشار الإسلام ختام عهده (٢٣ هـ)",
+            "leftId": "umar-038",
+            "rightId": "umar-345",
+            "mode": "pages",
+            "syncAllowed": True,
+            "note": "مرسومتان على الخريطة الإقليمية نفسها في أطلس الخليفة عمر بن الخطاب — تُظهران اتساع الدولة الإسلامية خلال عشر سنوات من طرابلس ومصر غربًا إلى خراسان ومكران شرقًا.",
+        },
+        {
+            "id": "cmp-qadisiyyah-vs-nahavand",
+            "title": "مخطط معركة القادسية الحاسمة (١٥ هـ) مقابل معركة نهاوند فتح الفتوح (١٩ هـ)",
+            "leftId": "umar-081",
+            "rightId": "umar-122",
+            "mode": "pages",
+            "syncAllowed": False,
+            "note": "مقارنة تكتيكية بين المعركتين الحاسمتين على الجبهة الفارسية في العراق وإيران خلال خلافة الفاروق.",
+        },
+        {
+            "id": "cmp-sham-armies-vs-yarmouk",
+            "title": "توجيه الجيوش لفتح الشام (عهد الصديق) مقابل كراديس اليرموك (عهد الفاروق)",
+            "leftId": "abubakr-093",
+            "rightId": "umar-222",
+            "mode": "pages",
+            "syncAllowed": False,
+            "note": "مقارنة عابرة للمجلدات بين انطلاق الجيوش الأربعة إلى الشام وتنظيمها بنظام الكراديس في معركة اليرموك.",
+        },
+        {
             "id": "cmp-badr-vs-uhud",
             "title": "مخطط غزوة بدر الكبرى (٢ هـ) مقابل مخطط غزوة أحد (٣ هـ)",
             "leftId": "seerah-159",
@@ -581,7 +653,7 @@ def main():
     total_ocr_words = sum(len(w) for w in ocr_words_map.values())
 
     stats = {
-        "totalVolumes": 3,
+        "totalVolumes": len(volumes),
         "totalPdfPages": len(all_pages),
         "pagesProcessed": len(all_pages),
         "pagesByVolume": {v["id"]: v["pageCount"] for v in volumes},
@@ -596,10 +668,11 @@ def main():
             "maps8PageHalves": 8,
             "seerahIndexedMaps": len(verified_idx["seerah"]["maps"]),
             "abubakrIndexedMaps": len(verified_idx["abubakr"]["maps"]),
-            "totalDistinctMaps": 4 + len(verified_idx["seerah"]["maps"]) + len(verified_idx["abubakr"]["maps"]),
+            "umarIndexedMaps": len(verified_idx["umar"]["maps"]),
+            "totalDistinctMaps": 4 + len(verified_idx["seerah"]["maps"]) + len(verified_idx["abubakr"]["maps"]) + len(verified_idx["umar"]["maps"]),
         },
         "indexedTablesAndDiagrams": len(verified_idx["seerah"]["tables"]),
-        "indexedPhotographs": len(verified_idx["seerah"]["photos"]) + len(verified_idx["abubakr"]["photos"]),
+        "indexedPhotographs": len(verified_idx["seerah"]["photos"]) + len(verified_idx["abubakr"]["photos"]) + len(verified_idx["umar"]["photos"]),
         "categories": dict(cat_counts),
         "verificationBreakdown": dict(vstatus_counts),
         "searchableGazetteerEntries": len(gazetteer),
@@ -616,9 +689,9 @@ def main():
     }
 
     manifest = {
-        "schemaVersion": "2.0",
+        "schemaVersion": "2.1",
         "title": "منصة الأطالس الجغرافية والتاريخية العربية التفاعلية",
-        "subtitle": "خرائط التاريخ الإسلامي · الأطلس التاريخي لسيرة الرسول ﷺ · أطلس الخليفة أبي بكر الصديق رضي الله عنه",
+        "subtitle": "خرائط التاريخ الإسلامي · أطلس سيرة الرسول ﷺ · أطلس أبي بكر الصديق · أطلس عمر بن الخطاب",
         "generatedAt": "2026-10-25",
         "sources": source_manifest,
         "stats": stats,

@@ -1,23 +1,23 @@
 {
-  "timestamp": "2026-10-25T19:58:44.608Z",
-  "total": 27,
-  "passed": 27,
+  "timestamp": "2026-10-25T20:24:19.005Z",
+  "total": 29,
+  "passed": 29,
   "results": [
     {
       "section": "12.1",
-      "name": "Total PDF pages equals 393 (8 + 264 + 121) with zero omissions",
+      "name": "Total PDF pages equals 744 (8 + 264 + 121 + 351) with zero omissions",
       "ok": true,
-      "detail": "393 pages"
+      "detail": "744 pages"
     },
     {
       "section": "12.1",
-      "name": "Volume page counts match source PDFs",
+      "name": "Volume page counts match all 4 source PDFs",
       "ok": true,
       "detail": ""
     },
     {
       "section": "12.1",
-      "name": "Every single page (393/393) has both full-res WebP and thumbnail asset on disk",
+      "name": "Every single page (744/744) has both full-res WebP and thumbnail asset on disk",
       "ok": true,
       "detail": "missing=0"
     },
@@ -31,7 +31,7 @@
       "section": "12.1",
       "name": "Low-confidence OCR pages are explicitly flagged for manual review",
       "ok": true,
-      "detail": "40 flagged"
+      "detail": "62 flagged"
     },
     {
       "section": "12.4",
@@ -73,19 +73,19 @@
       "section": "12.3",
       "name": "Arabic search normalizes Alef variants (أ/إ/ا) and Ta-Marbuta (ة/ه)",
       "ok": true,
-      "detail": "hits=4"
+      "detail": "hits=24"
     },
     {
       "section": "12.3",
       "name": "Arabic search normalizes Alef Maqsura and Ya (ى ↔ ي)",
       "ok": true,
-      "detail": "hits=11"
+      "detail": "hits=15"
     },
     {
       "section": "12.3",
       "name": "Arabic search strips diacritics (tashkeel) and finds multi-volume matches",
       "ok": true,
-      "detail": "hits=33"
+      "detail": "hits=40"
     },
     {
       "section": "12.3",
@@ -113,9 +113,21 @@
     },
     {
       "section": "12.2",
-      "name": "TOC gallery renders all 393 pages",
+      "name": "Switching to Volume 4 (أطلس عمر بن الخطاب) loads verified map",
       "ok": true,
-      "detail": "cards=393"
+      "detail": "الوضع السياسي في مستهل خلافة عمر بن الخطاب رضي الله عنه"
+    },
+    {
+      "section": "12.3",
+      "name": "Search supports Volume 4 direct jump («عمر ٨١» -> معركة القادسية الحاسمة)",
+      "ok": true,
+      "detail": "معركة القادسية الحاسمة انتقال مباشر — أطلس عمر بن الخطاب ص ٨١ ضمن «الباب الثالث — الفصل الأول: فتح العراق». ميدان معركة القادسية الحاسمة في منتصف شعبان سنة ١٥ هـ بقيادة سعد بن أبي وقاص. أطلس عمر بن الخطاب · ص ٨١"
+    },
+    {
+      "section": "12.2",
+      "name": "TOC gallery renders all 744 pages across 4 volumes",
+      "ok": true,
+      "detail": "cards=744"
     },
     {
       "section": "12.2",
@@ -149,9 +161,9 @@
     },
     {
       "section": "12.4",
-      "name": "Single-File Portable HTML Edition loads offline via file:// with all 393 pages indexed",
+      "name": "Single-File Portable HTML Edition loads offline via file:// with all 744 pages indexed",
       "ok": true,
-      "detail": "pages=393, vecHotspots=165"
+      "detail": "pages=744, vecHotspots=165"
     },
     {
       "section": "12.4",

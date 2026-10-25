@@ -39,11 +39,15 @@
     const state = {
       activeTab: "explore", // explore | toc | original | compare | gazetteer | learn | audit
       activeVolumeId: persisted.activeVolumeId || "maps8",
-      lastPageByVol: persisted.lastPageByVol || {
-        maps8: "maps8-001",
-        seerah: "seerah-018",
-        abubakr: "abubakr-011",
-      },
+      lastPageByVol: Object.assign(
+        {
+          maps8: "maps8-001",
+          seerah: "seerah-018",
+          abubakr: "abubakr-011",
+          umar: "umar-038",
+        },
+        persisted.lastPageByVol || {}
+      ),
       currentPageId: persisted.currentPageId || "maps8-001",
       bookmarks: persisted.bookmarks || [],
       recentPages: persisted.recentPages || [],
@@ -546,7 +550,7 @@
               ${
                 related.length
                   ? `<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border-subtle)">
-                       <div style="font-size:11.5px;font-weight:700;margin-bottom:5px">مواضع أخرى في الأطالس الثلاثة (${toArabicDigits(related.length)}):</div>
+                       <div style="font-size:11.5px;font-weight:700;margin-bottom:5px">مواضع أخرى في الأطالس الأربعة (${toArabicDigits(related.length)}):</div>
                        <div style="display:flex;flex-wrap:wrap;gap:5px">
                          ${related
                            .map((r) => {
@@ -930,13 +934,13 @@
         <div class="content-container">
           <div class="section-header-bar">
             <div>
-              <h2 style="margin:0;font-size:18px">الفهرس العام للأطالس الثلاثة (${toArabicDigits(pages.length)} صفحة معروضة من أصل ٣٩٣)</h2>
+              <h2 style="margin:0;font-size:18px">الفهرس العام للأطالس الأربعة (${toArabicDigits(pages.length)} صفحة معروضة من أصل ${toArabicDigits(manifest.pages.length)})</h2>
               <p style="margin:4px 0 0 0;font-size:12.5px;color:var(--ink-secondary)">
                 مُستخرج مباشرة من الفهارس المطبوعة والإشارات المرجعية الأصلية دون اختلاق أقسام إضافية.
               </p>
             </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <button type="button" class="btn ${state.tocSubset === "all" ? "is-on" : ""}" data-sub="all">كل الصفحات (٣٩٣)</button>
+              <button type="button" class="btn ${state.tocSubset === "all" ? "is-on" : ""}" data-sub="all">كل الصفحات (${toArabicDigits(manifest.pages.length)})</button>
               <button type="button" class="btn ${state.tocSubset === "bookmarks" ? "is-on" : ""}" data-sub="bookmarks">المحفوظات ★ (${toArabicDigits(state.bookmarks.length)})</button>
               <button type="button" class="btn ${state.tocSubset === "recent" ? "is-on" : ""}" data-sub="recent">شوهد مؤخرًا (${toArabicDigits(state.recentPages.length)})</button>
               <button type="button" class="btn ${state.tocListMode === "gallery" ? "btn-primary" : ""}" data-mode="gallery">معرض مصور</button>
@@ -946,7 +950,7 @@
 
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
             <select id="toc-vol-sel" style="padding:7px 10px;border-radius:8px;border:1px solid var(--border-subtle);background:var(--bg-surface)">
-              <option value="all" ${state.tocVol === "all" ? "selected" : ""}>جميع الأطالس الثلاثة</option>
+              <option value="all" ${state.tocVol === "all" ? "selected" : ""}>جميع الأطالس الأربعة</option>
               ${manifest.volumes
                 .map(
                   (v) =>
@@ -1269,7 +1273,7 @@
 
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
             <select id="gaz-vol-sel" style="padding:7px 10px;border-radius:8px;border:1px solid var(--border-subtle);background:var(--bg-surface)">
-              <option value="all" ${state.gazVol === "all" ? "selected" : ""}>جميع الأطالس الثلاثة</option>
+              <option value="all" ${state.gazVol === "all" ? "selected" : ""}>جميع الأطالس الأربعة</option>
               ${manifest.volumes
                 .map(
                   (v) =>
@@ -1377,7 +1381,7 @@
             <div>
               <h2 style="margin:0;font-size:18px">تقرير التدقيق المصدري والمنهجية والإعدادات</h2>
               <p style="margin:4px 0 0 0;font-size:12.5px;color:var(--ink-secondary)">
-                جميع الأرقام أدناه مقيسة فعليًا من الملفات المصدرية الثلاثة بعد فحص جنائي شامل لـ ٣٩٣ صفحة.
+                جميع الأرقام أدناه مقيسة فعليًا من الملفات المصدرية الأربعة بعد فحص جنائي شامل لـ ${toArabicDigits(st.totalPdfPages)} صفحة.
               </p>
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1396,7 +1400,7 @@
             </div>
             <div class="stat-card">
               <div class="stat-num">${toArabicDigits(st.mapsIdentified.totalDistinctMaps)}</div>
-              <div class="stat-label">خريطة تاريخية وجغرافية موثقة في الأطالس الثلاثة</div>
+              <div class="stat-label">خريطة تاريخية وجغرافية موثقة في الأطالس الأربعة</div>
             </div>
             <div class="stat-card">
               <div class="stat-num">${toArabicDigits(st.interactiveFeatures.totalVerifiedHotspots)}</div>
@@ -1417,7 +1421,7 @@
           </div>
 
           <div class="quiz-card" style="margin-bottom:16px">
-            <h3 style="margin-top:0">١. المصادر الثلاثة وبصماتها التشفيرية</h3>
+            <h3 style="margin-top:0">١. المصادر الأربعة وبصماتها التشفيرية</h3>
             <table class="toc-compact-table">
               <thead>
                 <tr>
@@ -1464,7 +1468,7 @@
             <ul style="line-height:1.8;font-size:13.5px">
               <li><strong>لا حدود GIS مختلقة:</strong> لا تحتوي ملفات PDF المصدرية على إحداثيات مكانية جغرافية (GeoJSON / خطوط طول وعرض رقمية). التفاعل في <em>خرائط التاريخ الإسلامي</em> مبني على <strong>أشكال الحروف المتجهية الأصلية وعلامات المدن</strong>، وفي <em>أطلس السيرة</em> و<em>أطلس الصديق</em> مبني على <strong>إحداثيات الصورة الموثقة بصريًا</strong> للخرائط المحورية ومربعات كلمات OCR، دون ادعاء وجود مضلعات حدودية مستقلة حيث لا يدعمها المصدر.</li>
               <li><strong>دقة الاستخراج الضوئي الآلي (OCR) للخرائط الكثيفة:</strong> نظرًا لأن دقة المسح الأصلية في ملفي السيرة والصديق تبلغ نحو ٨٠٠×١١٤٥ بكسل، فإن النصوص الصغيرة والمائلة داخل الخرائط قد تنتج عنها أخطاء في محرك OCR الآلي (متوسط الثقة ${toArabicDigits(st.meanOcrConfidence)}%). لذلك فُصلت العناوين والفهارس والمعالم المحققة بصريًا فصلًا تامًا عن نصوص OCR الآلية، ووُسمت صفحات OCR منخفضة الثقة (${toArabicDigits(st.lowConfidenceOcrPageIds.length)} صفحة) بوسم «يحتاج مراجعة» مع توفير <strong>عارض الصفحة الأصلية</strong> دائمًا للمطابقة.</li>
-              <li><strong>الفرق بين الحزمة الكاملة والنسخة المحمولة (ملف HTML واحد):</strong> تتضمن الحزمة الكاملة (<code>index.html</code> + <code>assets/</code>) جميع صور الصفحات الـ ٣٩٣ بدقتها الأصلية الكاملة وتعمل دون إنترنت ودون خادم؛ أما ملف <code>release/portable-atlas.html</code> المستقل فيضم جميع الخرائط المتجهية المزدوجة + ٢٠ خريطة محورية عالية الدقة + كامل الفهارس والبحث لـ ٣٩٣ صفحة في ملف واحد لتسهيل المشاركة السريعة.</li>
+              <li><strong>الفرق بين الحزمة الكاملة والنسخة المحمولة (ملف HTML واحد):</strong> تتضمن الحزمة الكاملة (<code>index.html</code> + <code>assets/</code>) جميع صور الصفحات الـ ${toArabicDigits(st.totalPdfPages)} بدقتها الأصلية الكاملة وتعمل دون إنترنت ودون خادم؛ أما ملف <code>release/portable-atlas.html</code> المستقل فيضم جميع الخرائط المتجهية المزدوجة + ٣١ خريطة محورية عالية الدقة + كامل الفهارس والبحث لـ ${toArabicDigits(st.totalPdfPages)} صفحة في ملف واحد لتسهيل المشاركة السريعة.</li>
             </ul>
           </div>
         </div>

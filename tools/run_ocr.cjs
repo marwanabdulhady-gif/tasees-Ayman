@@ -80,6 +80,10 @@ async function processVolume(slug, concurrency) {
         // Skip top decorative running header bar (~5.5% height)
         const topH = Math.round(pm.height * 0.055);
         recOpts = { rectangle: { left: 0, top: topH, width: pm.width, height: pm.height - topH } };
+      } else if (slug === "umar" && pnum >= 4 && pnum <= 346) {
+        // Skip top decorative running header bar (~6.2% height)
+        const topH = Math.round(pm.height * 0.062);
+        recOpts = { rectangle: { left: 0, top: topH, width: pm.width, height: pm.height - topH } };
       }
 
       try {
@@ -152,7 +156,12 @@ async function processVolume(slug, concurrency) {
 
 (async () => {
   const nWorkers = Math.max(2, Math.min(4, os.cpus().length));
-  console.log(`Starting OCR with ${nWorkers} parallel workers...`);
-  await processVolume("abubakr", nWorkers);
-  await processVolume("seerah", nWorkers);
+  const cliTargets = process.argv.slice(2);
+  const targets = cliTargets.length ? cliTargets : ["abubakr", "seerah", "umar"];
+  console.log(`Starting OCR with ${nWorkers} parallel workers for: ${targets.join(", ")}...`);
+  for (const slug of targets) {
+    if (metrics[slug]) {
+      await processVolume(slug, nWorkers);
+    }
+  }
 })();

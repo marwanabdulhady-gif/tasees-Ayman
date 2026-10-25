@@ -49,6 +49,7 @@ def main():
     # Also bundle covers
     bundled_page_ids.add("seerah-001")
     bundled_page_ids.add("abubakr-001")
+    bundled_page_ids.add("umar-001")
 
     portable_assets = {}
     portable_ocr_words = {}
@@ -119,7 +120,7 @@ def main():
         f.write(html)
 
     sz_mb = os.path.getsize(out_path) / 1024 / 1024
-    print(f"Built {out_path} ({sz_mb:.2f} MB) with {len(bundled_page_ids)} full-res pages + all 393 pages indexed!")
+    print(f"Built {out_path} ({sz_mb:.2f} MB) with {len(bundled_page_ids)} full-res pages + all {len(manifest['pages'])} pages indexed!")
 
 
 if __name__ == "__main__":
