@@ -1,0 +1,31 @@
+{
+  "sources": [
+    {
+      "volumeId": "maps8",
+      "fileName": "خرائط التاريخ الإسلامي مجمع.pdf",
+      "driveFileId": "1AQS8YInYN9AdjpRxv-rY9v_zWCSMDRt_",
+      "bytes": 2228192,
+      "md5": "99e19b2458426a141026809555f49b16",
+      "sha256": "4d8317af021495beed684673a5fef76f666d9a038b86e2dc45e8e1fa646d4065",
+      "pageCount": 8
+    },
+    {
+      "volumeId": "seerah",
+      "fileName": "الأطلس التاريخي لسيرة الرسول.pdf",
+      "driveFileId": "1rAwQC3MDkzLwZWAJww2_wAWcN5sqiy9W",
+      "bytes": 36303062,
+      "md5": "06459acddb5911bcc18f9cd7838c014e",
+      "sha256": "2c8b8b9197a8915d4db190a1f9d18b78da10fdfe901b0515ce6ccf72c5c185bc",
+      "pageCount": 264
+    },
+    {
+      "volumeId": "abubakr",
+      "fileName": "أطلس الخليفة أبي بكر الصديق.pdf",
+      "driveFileId": "13LwaHK3q_ZrrPjmujtiimqL1I0JA85Gj",
+      "bytes": 17196097,
+      "md5": "5b88882958bbfb7bf318833ea1318946",
+      "sha256": "5f30b91635976ba0bf544804075cf325a01df76d678d19c0f22052ef0d2c47fb",
+      "pageCount": 121
+    }
+  ]
+}

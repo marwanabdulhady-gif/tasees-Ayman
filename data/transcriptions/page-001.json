@@ -1,0 +1,537 @@
+{
+ "page": 1,
+ "features": [
+  {
+   "ids": [
+    83,
+    84,
+    85,
+    86,
+    87,
+    88
+   ],
+   "text": "شكل ٢: خريطة العالم الإسلامي.",
+   "kind": "caption",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    81,
+    82
+   ],
+   "text": "منطقة فاصلة",
+   "kind": "legend",
+   "conf": "high",
+   "note": "مفتاح الخريطة: مربع منقط = منطقة فاصلة"
+  },
+  {
+   "ids": [
+    7
+   ],
+   "text": "روسيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    13,
+    18
+   ],
+   "text": "كازاخستان",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    26
+   ],
+   "text": "قرغيزيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    27,
+    29,
+    30,
+    33,
+    35,
+    38,
+    39
+   ],
+   "text": "طاجيكستان",
+   "kind": "country",
+   "bold": true,
+   "conf": "medium",
+   "note": "مكتوبة عموديًا عند الحافة الداخلية للصفحة (حافة الالتقاء مع الصفحة ٢)"
+  },
+  {
+   "ids": [
+    23
+   ],
+   "text": "منغوليا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    47
+   ],
+   "text": "الصين",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    12,
+    15,
+    14,
+    19,
+    20,
+    22,
+    24
+   ],
+   "text": "اليابان",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة عموديًا عند الحافة اليمنى"
+  },
+  {
+   "poly": [
+    [
+     [
+      452,
+      332
+     ],
+     [
+      382,
+      375
+     ],
+     [
+      388,
+      390
+     ],
+     [
+      458,
+      346
+     ]
+    ]
+   ],
+   "text": "كوريا الشمالية",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "تسمية مائلة متداخلة مع «كوريا الجنوبية»؛ منطقة التفاعل مرسومة يدويًا ومطابقة بصريًا"
+  },
+  {
+   "poly": [
+    [
+     [
+      468,
+      345
+     ],
+     [
+      396,
+      384
+     ],
+     [
+      400,
+      400
+     ],
+     [
+      468,
+      365
+     ]
+    ]
+   ],
+   "text": "كوريا الجنوبية",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "تسمية مائلة متداخلة؛ منطقة التفاعل مرسومة يدويًا ومطابقة بصريًا"
+  },
+  {
+   "poly": [
+    [
+     [
+      402,
+      361
+     ],
+     [
+      421,
+      361
+     ],
+     [
+      421,
+      375
+     ],
+     [
+      402,
+      375
+     ]
+    ]
+   ],
+   "text": "…ونغ",
+   "kind": "unreadable",
+   "conf": "low",
+   "note": "تسمية صغيرة متداخلة مع تسميتي الكوريتين لا يُقرأ منها بوضوح إلا «…ونغ»؛ لم تُخمَّن بقية الاسم — تحتاج إلى مراجعة"
+  },
+  {
+   "ids": [
+    58
+   ],
+   "text": "تايوان",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    59
+   ],
+   "text": "بوتان",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    57
+   ],
+   "text": "نيبال",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    63
+   ],
+   "text": "بنجلاديش",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    65
+   ],
+   "text": "بورما",
+   "kind": "country",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    67
+   ],
+   "text": "(ميانمار)",
+   "kind": "country",
+   "conf": "high",
+   "note": "اسم بديل مكتوب بين قوسين أسفل «بورما»"
+  },
+  {
+   "ids": [
+    66
+   ],
+   "text": "الهند",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    75
+   ],
+   "text": "تايلاند",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     294,
+     545,
+     321.5,
+     566
+    ]
+   ],
+   "text": "لاوس",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "متداخلة مع «فيتنام»"
+  },
+  {
+   "approx": [
+    [
+     321.5,
+     550,
+     360,
+     588
+    ]
+   ],
+   "text": "فيتنام",
+   "kind": "country",
+   "bold": true,
+   "conf": "high",
+   "note": "تسمية مائلة"
+  },
+  {
+   "ids": [
+    76
+   ],
+   "text": "كمبوديا",
+   "kind": "country",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    77
+   ],
+   "text": "سريلانكا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    78
+   ],
+   "text": "ماليزيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    80
+   ],
+   "text": "إندونيسيا",
+   "kind": "country",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    71,
+    73
+   ],
+   "text": "الفلبين",
+   "kind": "country",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "ids": [
+    79
+   ],
+   "text": "المحيط",
+   "kind": "water",
+   "bold": true,
+   "conf": "high",
+   "crossPage": "يكتمل بكلمة «الهندي» على الصفحة ٢: «المحيط الهندي»"
+  },
+  {
+   "ids": [
+    0,
+    1,
+    2
+   ],
+   "text": "بحر أوخوتسك",
+   "kind": "water",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "ids": [
+    11,
+    16
+   ],
+   "text": "بحر اليابان",
+   "kind": "water",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    31,
+    36,
+    41
+   ],
+   "text": "البحر الأصفر",
+   "kind": "water",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    40,
+    44,
+    48,
+    49
+   ],
+   "text": "بحر الصين الشرقي",
+   "kind": "water",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    69,
+    70
+   ],
+   "text": "خليج البنغال",
+   "kind": "water",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    52,
+    53
+   ],
+   "text": "مدار السرطان",
+   "kind": "line",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    3
+   ],
+   "text": "لينا",
+   "kind": "river",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "ids": [
+    4,
+    5,
+    6
+   ],
+   "text": "ينيسي",
+   "kind": "river",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "ids": [
+    8,
+    9,
+    10
+   ],
+   "text": "إيرتيش",
+   "kind": "river",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "ids": [
+    34,
+    37,
+    43,
+    45
+   ],
+   "text": "هوانج هي",
+   "kind": "river",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "ids": [
+    50,
+    51,
+    56
+   ],
+   "text": "تشانج جيانغ",
+   "kind": "river",
+   "conf": "medium",
+   "note": "مكتوبة مائلة؛ قد تُقرأ الكلمة الأولى «تشانغ»"
+  },
+  {
+   "ids": [
+    61,
+    62
+   ],
+   "text": "نهر الغانج",
+   "kind": "river",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    17
+   ],
+   "text": "قراقورم",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    32
+   ],
+   "text": "كاشغر",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    28
+   ],
+   "text": "بكين",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    42
+   ],
+   "text": "كايفنغ",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    46
+   ],
+   "text": "لويانغ",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    54
+   ],
+   "text": "لاسا",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    55
+   ],
+   "text": "دلهي",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    60
+   ],
+   "text": "كانتون",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    64
+   ],
+   "text": "هانوي",
+   "kind": "place",
+   "conf": "high"
+  }
+ ],
+ "clusterSignature": "95bcd5dad293"
+}

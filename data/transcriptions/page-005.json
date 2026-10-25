@@ -1,0 +1,315 @@
+{
+ "page": 5,
+ "features": [
+  {
+   "ids": [
+    40,
+    41,
+    42,
+    48,
+    43,
+    44,
+    49,
+    45,
+    47,
+    46,
+    51,
+    50,
+    52
+   ],
+   "text": "شكل ١-٣: العالم الإسلامي نحو عام ١١٠٠.",
+   "kind": "caption",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    10,
+    7
+   ],
+   "text": "الإمبراطورية السلجوقية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    19,
+    12,
+    13
+   ],
+   "text": "الإمبراطورية الغزنوية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high",
+   "note": "تسمية مقوسة"
+  },
+  {
+   "ids": [
+    0
+   ],
+   "text": "سمرقند",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    1
+   ],
+   "text": "تبريز",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    2
+   ],
+   "text": "مرو",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    3
+   ],
+   "text": "بلخ",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    4
+   ],
+   "text": "نيشابور",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    5
+   ],
+   "text": "الري",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    6
+   ],
+   "text": "الموصل",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    8
+   ],
+   "text": "دمشق",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    9
+   ],
+   "text": "غزنة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    11
+   ],
+   "text": "بغداد",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    14
+   ],
+   "text": "القدس",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    15
+   ],
+   "text": "قندهار",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    16
+   ],
+   "text": "البصرة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    17
+   ],
+   "text": "شيراز",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    18
+   ],
+   "text": "ملتان",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    20
+   ],
+   "text": "تبوك",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    21
+   ],
+   "text": "سيراف",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    22
+   ],
+   "text": "ديبل",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    23
+   ],
+   "text": "مسقط",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    24
+   ],
+   "text": "اليمامة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    25
+   ],
+   "text": "المدينة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    26
+   ],
+   "text": "مكة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    27
+   ],
+   "text": "عدن",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    28
+   ],
+   "text": "زيلع",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    29
+   ],
+   "text": "بربرة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    30
+   ],
+   "text": "مقديشيو",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    31
+   ],
+   "text": "ماليندي",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    32
+   ],
+   "text": "مومباسا",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    33
+   ],
+   "text": "زنجبار",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    34
+   ],
+   "text": "كيلوا",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    35
+   ],
+   "text": "موزمبيق",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    36,
+    37
+   ],
+   "text": "كيليماني",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    39,
+    38
+   ],
+   "text": "سُفالة",
+   "kind": "place",
+   "conf": "high",
+   "note": "مكتوبة بضمة على السين في المصدر"
+  }
+ ],
+ "clusterSignature": "dd355314b34e"
+}

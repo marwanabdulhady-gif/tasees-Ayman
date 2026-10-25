@@ -1,0 +1,171 @@
+{
+  "timestamp": "2026-10-25T19:58:44.608Z",
+  "total": 27,
+  "passed": 27,
+  "results": [
+    {
+      "section": "12.1",
+      "name": "Total PDF pages equals 393 (8 + 264 + 121) with zero omissions",
+      "ok": true,
+      "detail": "393 pages"
+    },
+    {
+      "section": "12.1",
+      "name": "Volume page counts match source PDFs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "12.1",
+      "name": "Every single page (393/393) has both full-res WebP and thumbnail asset on disk",
+      "ok": true,
+      "detail": "missing=0"
+    },
+    {
+      "section": "12.1",
+      "name": "Zero Unicode replacement characters (U+FFFD) in titles or extracted Arabic text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "12.1",
+      "name": "Low-confidence OCR pages are explicitly flagged for manual review",
+      "ok": true,
+      "detail": "40 flagged"
+    },
+    {
+      "section": "12.4",
+      "name": "Complete Offline Package loads via file:// with Arabic RTL",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "12.2",
+      "name": "Joined 2-page vector spread renders real separated layers & hotspots",
+      "ok": true,
+      "detail": "paths=1243, hotspots=165"
+    },
+    {
+      "section": "12.2",
+      "name": "Zoom-in updates map scale and Arabic zoom readout",
+      "ok": true,
+      "detail": "٤٨% -> ٧٥%"
+    },
+    {
+      "section": "12.2",
+      "name": "Fit-to-screen restores full spread scale",
+      "ok": true,
+      "detail": "٤٨%"
+    },
+    {
+      "section": "12.2",
+      "name": "Vector layer toggle hides/shows label layer independently",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "12.2",
+      "name": "Clicking geographic feature opens verification card with live source crop",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "12.3",
+      "name": "Arabic search normalizes Alef variants (أ/إ/ا) and Ta-Marbuta (ة/ه)",
+      "ok": true,
+      "detail": "hits=4"
+    },
+    {
+      "section": "12.3",
+      "name": "Arabic search normalizes Alef Maqsura and Ya (ى ↔ ي)",
+      "ok": true,
+      "detail": "hits=11"
+    },
+    {
+      "section": "12.3",
+      "name": "Arabic search strips diacritics (tashkeel) and finds multi-volume matches",
+      "ok": true,
+      "detail": "hits=33"
+    },
+    {
+      "section": "12.3",
+      "name": "Search supports Eastern Arabic numeral page jump («ص ١٦٥»)",
+      "ok": true,
+      "detail": "غزوة أحد انتقال مباشر — أطلس سيرة الرسول ﷺ ص ١٦٥ ضمن «الباب السادس: من تأسيس الدولة الإسلامية إلى وفاة الرسول ﷺ (العهد المدني)». مخطط غزوة أحد (١٥ شوال سنة ٣ هـ). أطلس سيرة الرسول ﷺ · ص ١٦٥"
+    },
+    {
+      "section": "12.3",
+      "name": "Search locates verified battle map «غزوة أحد»",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "12.2",
+      "name": "Sideways-printed map displays upright rotation helper banner",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "12.2",
+      "name": "Switching to Volume 3 (أطلس أبي بكر الصديق) loads verified map",
+      "ok": true,
+      "detail": "مكة المكرمة (أم القرى)"
+    },
+    {
+      "section": "12.2",
+      "name": "TOC gallery renders all 393 pages",
+      "ok": true,
+      "detail": "cards=393"
+    },
+    {
+      "section": "12.2",
+      "name": "Original Page Viewer supports side-by-side source verification",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "12.2",
+      "name": "Geographic Comparison renders registered vector swipe curtain",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "12.2",
+      "name": "Unified Gazetteer renders alphabetical entries",
+      "ok": true,
+      "detail": "shown=240"
+    },
+    {
+      "section": "12.2",
+      "name": "Learning module generates verified source MCQ options",
+      "ok": true,
+      "detail": "opts=4"
+    },
+    {
+      "section": "12.5",
+      "name": "Mobile viewport (390×844) has zero horizontal page overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "12.4",
+      "name": "Single-File Portable HTML Edition loads offline via file:// with all 393 pages indexed",
+      "ok": true,
+      "detail": "pages=393, vecHotspots=165"
+    },
+    {
+      "section": "12.4",
+      "name": "Zero external network requests attempted during offline sessions",
+      "ok": true,
+      "detail": "blocked=0"
+    },
+    {
+      "section": "12.4",
+      "name": "Zero runtime JavaScript or console errors",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "jsErrors": [],
+  "blockedExternalRequests": []
+}

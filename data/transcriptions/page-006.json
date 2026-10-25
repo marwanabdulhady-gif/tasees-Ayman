@@ -1,0 +1,214 @@
+{
+ "page": 6,
+ "features": [
+  {
+   "ids": [
+    0,
+    1
+   ],
+   "text": "الإمبراطورية البيزنطية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    11,
+    15
+   ],
+   "text": "الخلافة الفاطمية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    23,
+    27
+   ],
+   "text": "كانم بورنو",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة على سطرين: «كانم» فوق «بورنو»"
+  },
+  {
+   "ids": [
+    2
+   ],
+   "text": "الجزائر",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    3
+   ],
+   "text": "تونس",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    4
+   ],
+   "text": "وهران",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    5
+   ],
+   "text": "فاس",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    7
+   ],
+   "text": "مراكش",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    6
+   ],
+   "text": "طرابلس",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    8
+   ],
+   "text": "برقة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    9
+   ],
+   "text": "سجلماسة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    10
+   ],
+   "text": "غدامس",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    12
+   ],
+   "text": "سيوة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    13
+   ],
+   "text": "تغازا",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    14
+   ],
+   "text": "السخنة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    16
+   ],
+   "text": "مرزق",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    17
+   ],
+   "text": "تاوريرت",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    18
+   ],
+   "text": "غات",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    19
+   ],
+   "text": "بيلما",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    20
+   ],
+   "text": "تادمكة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    22
+   ],
+   "text": "تيمبوكتو",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    21
+   ],
+   "text": "أغاديس",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    24,
+    25
+   ],
+   "text": "كومبي صالح",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    26
+   ],
+   "text": "غاو",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    28
+   ],
+   "text": "بامبوك",
+   "kind": "region",
+   "conf": "high"
+  }
+ ],
+ "clusterSignature": "ca58354e9f26"
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منصة الأطالس الجغرافية والتاريخية العربية التفاعلية</title>
+  <meta name="description" content="منصة استكشاف جغرافي وتاريخي تفاعلية مبنية مباشرة من ثلاثة أطالس عربية مصورة ومتجهية (٣٩٣ صفحة، ١٤٧ خريطة) وتعمل بالكامل دون إنترنت." />
+  <link rel="stylesheet" href="src/styles.css" />
+  <style>
+    /* Ensure font paths resolve accurately from root index.html as well */
+    @font-face {
+      font-family: "IBM Plex Sans Arabic";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("assets/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Arabic";
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url("assets/fonts/ibm-plex-sans-arabic-arabic-500-normal.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Arabic";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("assets/fonts/ibm-plex-sans-arabic-arabic-700-normal.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Arabic";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("assets/fonts/ibm-plex-sans-arabic-latin-400-normal.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F;
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Arabic";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("assets/fonts/ibm-plex-sans-arabic-latin-700-normal.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-stage">انتقل إلى المحتوى الرئيسي</a>
+
+  <div class="app-shell">
+    <!-- Top Header: Brand, Instant Arabic Search, Primary Module Tabs, Theme -->
+    <header class="topbar" role="banner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">أ</div>
+        <div class="brand-text">
+          <h1 class="brand-title">منصة الأطالس التاريخية والجغرافية التفاعلية</h1>
+          <p class="brand-sub">خرائط التاريخ الإسلامي · أطلس سيرة الرسول ﷺ · أطلس أبي بكر الصديق (٣٩٣ صفحة)</p>
+        </div>
+      </div>
+
+      <!-- Module C: Prominent Arabic-Aware Search -->
+      <div class="global-search-wrap" role="search">
+        <div class="search-box">
+          <span aria-hidden="true" style="color:var(--ink-muted)">⌕</span>
+          <input
+            type="search"
+            id="global-search-input"
+            autocomplete="off"
+            placeholder="ابحث عن مدينة، غزوة، قبيلة، خريطة، أو اكتب «ص ١٥٩»…"
+            aria-label="البحث الشامل في الأطالس الثلاثة"
+          />
+          <button type="button" class="icon-btn-sm" id="global-search-clear" aria-label="مسح البحث" hidden>✕</button>
+          <kbd class="search-kbd" title="اختصار لوحة المفاتيح">/</kbd>
+        </div>
+
+        <div class="search-dropdown" id="search-dropdown" hidden>
+          <div class="search-filters">
+            <select id="search-vol-filter" aria-label="تصفية حسب الأطلس">
+              <option value="all">كل الأطالس (٣٩٣ ص)</option>
+              <option value="maps8">خرائط التاريخ الإسلامي</option>
+              <option value="seerah">أطلس سيرة الرسول ﷺ</option>
+              <option value="abubakr">أطلس أبي بكر الصديق</option>
+            </select>
+            <select id="search-tier-filter" aria-label="تصفية حسب نوع المحتوى">
+              <option value="all">كل النتائج (محقق + OCR)</option>
+              <option value="verified">المعالم والعناوين المحققة فقط</option>
+              <option value="maps-only">الخرائط فقط</option>
+            </select>
+            <span id="search-count-label" style="margin-inline-start:auto;color:var(--ink-muted);align-self:center"></span>
+          </div>
+          <ul class="search-results-list" id="search-results-list" role="listbox"></ul>
+        </div>
+      </div>
+
+      <!-- Primary Modules Navigation -->
+      <nav class="main-nav" role="tablist" aria-label="أقسام المنصة">
+        <button type="button" class="nav-tab is-active" role="tab" data-tab="explore">المستكشف</button>
+        <button type="button" class="nav-tab" role="tab" data-tab="toc">الفهرس العام</button>
+        <button type="button" class="nav-tab" role="tab" data-tab="original">الصفحات الأصلية</button>
+        <button type="button" class="nav-tab" role="tab" data-tab="compare">المقارنة</button>
+        <button type="button" class="nav-tab" role="tab" data-tab="gazetteer">الموسوعة الجغرافية</button>
+        <button type="button" class="nav-tab" role="tab" data-tab="learn">التعلّم</button>
+        <button type="button" class="nav-tab" role="tab" data-tab="audit">التدقيق وعن المنصة</button>
+      </nav>
+
+      <div class="top-actions">
+        <button type="button" class="btn" id="btn-theme-toggle" aria-label="تبديل السمة اللونية">الوضع الليلي ☾</button>
+      </div>
+    </header>
+
+    <!-- Volume Switcher Bar & Current Page Context -->
+    <div class="volume-bar" role="navigation" aria-label="اختيار المجلد">
+      <div class="volume-pills" id="volume-pills"></div>
+      <div class="context-crumb" id="context-crumb"></div>
+    </div>
+
+    <!-- Main Application Workspace -->
+    <main class="main-stage" id="main-stage">
+      <!-- MODULE A, B, F: Interactive Atlas Explorer -->
+      <section class="view-panel" id="view-explore" data-view="explore">
+        <div class="explorer-layout">
+          <!-- Right Sidebar (in RTL): Map & Page Navigator -->
+          <aside class="side-drawer" id="explorer-side-drawer" aria-label="مستعرض خرائط وصفحات المجلد">
+            <div class="drawer-header">
+              <h2>خرائط وصفحات المجلد</h2>
+              <button type="button" class="icon-btn-sm mobile-close-drawer" id="btn-close-side-drawer" aria-label="إغلاق القائمة">✕</button>
+            </div>
+            <div class="drawer-controls">
+              <select id="nav-cat-select" aria-label="تصفية القائمة">
+                <option value="all">كل الصفحات</option>
+                <option value="maps">الخرائط فقط</option>
+                <option value="tables">الجداول والأشكال</option>
+                <option value="photos">الصور والمعالم</option>
+              </select>
+              <input type="search" id="nav-filter-input" placeholder="تصفية سريعة…" aria-label="تصفية القائمة بالنص" />
+            </div>
+            <ul class="navigator-list" id="navigator-list"></ul>
+          </aside>
+
+          <!-- Center Interactive Map Viewport -->
+          <div class="canvas-column" id="explorer-center-col">
+            <div class="canvas-toolbar" role="toolbar" aria-label="أدوات التحكم بالخريطة">
+              <div class="toolbar-group">
+                <span class="mobile-drawer-toggles">
+                  <button type="button" class="btn" id="btn-mob-pages">☰ الخرائط</button>
+                  <button type="button" class="btn" id="btn-mob-info">ℹ البطاقة</button>
+                </span>
+                <button type="button" class="btn" id="btn-prev-page" title="الصفحة أو الخريطة السابقة">→ السابقة</button>
+                <button type="button" class="btn" id="btn-next-page" title="الصفحة أو الخريطة التالية">التالية ←</button>
+              </div>
+
+              <div class="toolbar-group">
+                <button type="button" class="btn" id="btn-zoom-in" title="تكبير (+)" aria-label="تكبير">+</button>
+                <span class="zoom-readout" id="zoom-readout">١٠٠%</span>
+                <button type="button" class="btn" id="btn-zoom-out" title="تصغير (-)" aria-label="تصغير">−</button>
+                <button type="button" class="btn" id="btn-fit" title="ملاءمة للشاشة (0)">ملاءمة</button>
+                <button type="button" class="btn" id="btn-reset" title="إعادة الضبط">إعادة ضبط</button>
+                <button type="button" class="btn" id="btn-rot-cw" title="تدوير 90 درجة لليمين (R)">↻ 90°</button>
+                <button type="button" class="btn" id="btn-rot-ccw" title="تدوير 90 درجة لليسار">↺</button>
+              </div>
+
+              <div class="toolbar-group">
+                <button type="button" class="btn is-on" id="btn-toggle-hotspots" title="إظهار أو إخفاء مناطق التفاعل (H)">المعالم التفاعلية</button>
+                <button type="button" class="btn" id="btn-toggle-ocr" title="إظهار مربعات الكلمات المستخرجة ضوئيًا">طبقة OCR</button>
+                <button type="button" class="btn is-on" id="btn-toggle-filmstrip" title="شريط المصغرات السفلي">المصغرات</button>
+                <button type="button" class="btn" id="btn-fullscreen" title="ملء الشاشة">ملء الشاشة</button>
+              </div>
+            </div>
+
+            <div class="rotate-banner" id="rotate-banner" hidden></div>
+
+            <div class="map-viewport" id="explorer-viewport" tabindex="0" aria-label="منطقة استكشاف الخريطة القابلة للتكبير والتحريك">
+              <div class="panzoom-world" id="explorer-world"></div>
+            </div>
+
+            <div class="filmstrip" id="explorer-filmstrip" aria-label="شريط مصغرات الصفحات"></div>
+          </div>
+
+          <!-- Left Sidebar (in RTL): Contextual Information, Legend, Layers & Feature Inspector -->
+          <aside class="info-drawer" id="explorer-info-drawer" aria-label="معلومات الخريطة والمعالم المختارة">
+            <div class="drawer-header">
+              <h2>بطاقة الصفحة والمعالم والملحقات</h2>
+              <button type="button" class="icon-btn-sm mobile-close-drawer" id="btn-close-info-drawer" aria-label="إغلاق البطاقة">✕</button>
+            </div>
+            <div id="explorer-info-content"></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- MODULE D: Atlas Table of Contents -->
+      <section class="view-panel" id="view-toc" data-view="toc" hidden></section>
+
+      <!-- MODULE E: Original Page Viewer -->
+      <section class="view-panel" id="view-original" data-view="original" hidden></section>
+
+      <!-- MODULE G: Geographic Comparison -->
+      <section class="view-panel" id="view-compare" data-view="compare" hidden></section>
+
+      <!-- MODULE C: Gazetteer -->
+      <section class="view-panel" id="view-gazetteer" data-view="gazetteer" hidden></section>
+
+      <!-- MODULE H: Learning & Quizzes -->
+      <section class="view-panel" id="view-learn" data-view="learn" hidden></section>
+
+      <!-- Audit, Limitations & Settings -->
+      <section class="view-panel" id="view-audit" data-view="audit" hidden></section>
+    </main>
+  </div>
+
+  <div class="map-tooltip" id="map-tooltip" role="tooltip" hidden></div>
+
+  <!-- Local Offline Bundles (compatible with both file:// and http:// with zero network calls) -->
+  <script src="data/atlas-bundle.js"></script>
+  <script src="data/ocr-words-bundle.js"></script>
+  <script src="data/maps8-vectors.js"></script>
+  <script src="src/js/utils.js"></script>
+  <script src="src/js/panzoom.js"></script>
+  <script src="src/js/viewer.js"></script>
+  <script src="src/js/search.js"></script>
+  <script src="src/js/compare.js"></script>
+  <script src="src/js/learn.js"></script>
+  <script src="src/js/app.js"></script>
+</body>
+</html>
