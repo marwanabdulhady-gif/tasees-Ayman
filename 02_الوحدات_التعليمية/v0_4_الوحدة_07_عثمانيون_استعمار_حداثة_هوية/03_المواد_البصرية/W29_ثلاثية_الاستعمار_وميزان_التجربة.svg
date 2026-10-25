@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="'IBM Plex Sans Arabic','Noto Sans Arabic',Tahoma,sans-serif" direction="rtl">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#D7DDE8" stroke-width="0.5"/></pattern>
+<marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2E7D57"/></marker>
+<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C23B30"/></marker>
+</defs>
+<rect width="1200" height="675" fill="#F7F8F3"/>
+<rect width="1200" height="675" fill="url(#grid)"/>
+<text x="600" y="52" text-anchor="middle" font-family="'Aref Ruqaa','Amiri',serif" font-size="34" fill="#19213A">ثلاثية السيطرة وميزان التجربة الأولى</text>
+<text x="600" y="82" text-anchor="middle" font-size="17" fill="#4A5470">احتلال · استعمار · هيمنة — ومحمد علي بميزان الدولة — مهارة ٢٨: ترسانة المصطلحات</text>
+<rect x="40" y="105" width="352" height="118" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="216" y="133" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">الاحتلال</text>
+<text x="216" y="157" text-anchor="middle" font-size="14" fill="#19213A">سيطرة عسكرية على أرض وقرار</text>
+<text x="216" y="181" text-anchor="middle" font-size="14" fill="#4A5470">ظاهرة قديمة قدم الحرب نفسها</text>
+<text x="216" y="205" text-anchor="middle" font-size="14" fill="#4A5470">١٧٩٨ فرنسا · ١٨٨٢ بريطانيا</text>
+<rect x="424" y="105" width="352" height="118" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="600" y="133" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">الاستعمار</text>
+<text x="600" y="157" text-anchor="middle" font-size="14" fill="#19213A">إعادة هيكلة مجتمع: اقتصاد وتعليم وقانون</text>
+<text x="600" y="181" text-anchor="middle" font-size="14" fill="#4A5470">من colonialisme (مستوطنة) — لا من «عَمَر»</text>
+<text x="600" y="205" text-anchor="middle" font-size="14" fill="#4A5470">الكلمة العربية لبست ثوب المعنى الأوروبي</text>
+<rect x="808" y="105" width="352" height="118" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="984" y="133" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">الهيمنة</text>
+<text x="984" y="157" text-anchor="middle" font-size="14" fill="#19213A">سيطرة بلا جندي في الشارع</text>
+<text x="984" y="181" text-anchor="middle" font-size="14" fill="#4A5470">قرار وعملة وسلاح وتعليم ونخبة</text>
+<text x="984" y="205" text-anchor="middle" font-size="14" fill="#4A5470">تصل قبل الاحتلال — وتبقى بعده</text>
+<line x1="394" y1="164" x2="422" y2="164" stroke="#2E7D57" stroke-width="2.5" marker-end="url(#arr)"/>
+<text x="408" y="156" text-anchor="middle" font-size="13" fill="#4A5470">يتدرج</text>
+<line x1="778" y1="164" x2="806" y2="164" stroke="#2E7D57" stroke-width="2.5" marker-end="url(#arr)"/>
+<rect x="40" y="248" width="212" height="64" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="146" y="276" text-anchor="middle" font-size="13" fill="#19213A">١٧٩٨</text>
+<text x="146" y="299" text-anchor="middle" font-size="13" fill="#4A5470">الصدمة: مدافع ومطبعة</text>
+<rect x="268" y="248" width="212" height="64" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="374" y="276" text-anchor="middle" font-size="13" fill="#19213A">١٨٠٥</text>
+<text x="374" y="299" text-anchor="middle" font-size="13" fill="#4A5470">محمد علي — التجربة الأولى</text>
+<rect x="496" y="248" width="212" height="64" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="602" y="276" text-anchor="middle" font-size="13" fill="#19213A">١٨٦٩</text>
+<text x="602" y="299" text-anchor="middle" font-size="13" fill="#4A5470">قناة السويس — مشروع بالديون</text>
+<rect x="724" y="248" width="212" height="64" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="830" y="276" text-anchor="middle" font-size="13" fill="#C23B30">١٨٧٦</text>
+<text x="830" y="299" text-anchor="middle" font-size="13" fill="#4A5470">صندوق الدين — الوصاية</text>
+<rect x="952" y="248" width="208" height="64" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="1056" y="276" text-anchor="middle" font-size="13" fill="#C23B30">١٨٨٢</text>
+<text x="1056" y="299" text-anchor="middle" font-size="13" fill="#4A5470">الاحتلال يحمي الهيمنة</text>
+<rect x="40" y="340" width="545" height="190" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="312" y="370" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">ميزان محمد علي — كفة الإنجاز</text>
+<text x="312" y="394" text-anchor="middle" font-size="14" fill="#4A5470">جيش وطني نظامي حديث — أول جيش من قرون</text>
+<text x="312" y="418" text-anchor="middle" font-size="14" fill="#4A5470">مصانع وترسانة — وبوابة الصناعة</text>
+<text x="312" y="442" text-anchor="middle" font-size="14" fill="#4A5470">مدارس وبعثات — الطهطاوي وترجمة «تخليص الإبريز»</text>
+<text x="312" y="466" text-anchor="middle" font-size="14" fill="#4A5470">زراعة وقنوات — القطن طويل التيلة</text>
+<rect x="615" y="340" width="545" height="190" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="2"/>
+<text x="887" y="370" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">ميزان محمد علي — كفة الصفحات</text>
+<text x="887" y="394" text-anchor="middle" font-size="14" fill="#C23B30">الاحتكار: الفلاح يزرع ما يُؤمر ويبيع ما يُقدَّر</text>
+<text x="887" y="418" text-anchor="middle" font-size="14" fill="#C23B30">مذبحة القلعة ١٨١١ — معادلة شركاء التأسيس (و٢٣)</text>
+<text x="887" y="442" text-anchor="middle" font-size="14" fill="#4A5470">حروب استنزفت مصر — وتدخل أوروبا ١٨٤٠</text>
+<text x="887" y="466" text-anchor="middle" font-size="14" fill="#C23B30">التوريث: نفس سابقة و٢٢ — الدولة ملكية عائلية</text>
+<rect x="40" y="548" width="1120" height="60" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="600" y="576" text-anchor="middle" font-size="15" fill="#2E7D57">جملة الحكم — وصف بلا وسم: دولة قوية ومجتمع ضعيف — القوة كلها احتكرها القصر، فلما وهن القصر وُهبت للأجانب: ديون ← صندوق الدين ← هيمنة ← احتلال</text>
+<text x="600" y="646" text-anchor="middle" font-size="13" fill="#20242C">المصادر: Q50 الفرق بين الاحتلال والاستعمار · Q52 الهيمنة · Q53 صدمة ١٧٩٨ · Q54–Q55 محمد علي والتبعية · Q56–Q57 عبد الحميد وعرابي · Q59 الوثائق</text>
+<text x="600" y="666" text-anchor="middle" font-size="12" fill="#4A5470">مشروع تأسيس · الوحدة السابعة v0.4 · هوية v1 · ٢٥ أكتوبر ٢٠٢٦ — أسلوب مستوحى، ليس قولًا منسوبًا</text>
+</svg>
