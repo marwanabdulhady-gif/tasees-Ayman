@@ -11,12 +11,6 @@ on:
         description: "Max episodes per playlist (blank = all)"
         required: false
         type: string
-  push:
-    paths:
-      - transcripts/playlists.json
-      - scripts/fetch_transcripts.py
-      - scripts/requirements.txt
-      - .github/workflows/fetch-transcripts.yml
 
 permissions:
   contents: write
@@ -24,6 +18,9 @@ permissions:
 concurrency:
   group: fetch-transcripts-${{ github.ref }}
   cancel-in-progress: false
+
+# Manual only: cloud runners are normally refused by YouTube's bot check, so an
+# automatic run on every push just burns minutes and commits failure reports.
 
 jobs:
   fetch:
@@ -69,6 +66,10 @@ jobs:
             git commit -m "Add YouTube transcripts"
             git push
           fi
+
+      - name: Show status
+        if: always()
+        run: cat transcripts/_status.md || echo "no status file"
 
       - name: Keep the run log
         if: always()
