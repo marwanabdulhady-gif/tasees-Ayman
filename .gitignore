@@ -4,13 +4,22 @@ node_modules/
 .cache/
 __pycache__/
 *.pyc
+work/
+.qa-browser/
+libs/
 
 # Large source PDFs are fetched from the user's Drive links, not committed.
 # Their SHA-256 hashes and Drive file ids live in data/source_documents.json.
+# NOTE: source/islamic-history-maps.pdf IS tracked (small, and the shipped
+# single-file atlas is built from it).
 google_drive/*.pdf
 
-# Generated raster assets are build products; regenerate with tools/extract_assets.py.
-assets/pages/
+# Generated raster assets for the 393-page corpus are build products;
+# regenerate with tools/extract_assets.py. The 8-page atlas assets under
+# assets/pages/page-00N.webp and assets/thumbs/ are tracked deliberately.
+assets/pages/sira/
+assets/pages/abubakr/
+assets/pages/islamic-maps/
 assets/thumbnails/
 assets/ocr/
 

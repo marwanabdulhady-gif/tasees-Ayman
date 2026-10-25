@@ -55,4 +55,4 @@ completeness.
 
 - Number of maps, legends, tables, interactive features and searchable
   geographic entries. These require the OCR run + index transcription to finish.
-  See `docs/CONTENT_AUDIT.md` for the numbers that *have* been measured.
+  See `docs/CORPUS-AUDIT.md` for the numbers that *have* been measured.

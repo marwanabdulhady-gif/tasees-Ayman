@@ -7,7 +7,7 @@ from the PDF objects themselves, and every field that cannot be measured is
 explicitly flagged for review.
 
 Usage:  .venv/bin/python tools/audit_pdf.py
-Output: data/source_documents.json, data/page_inventory.json, docs/CONTENT_AUDIT.md
+Output: data/source_documents.json, data/page_inventory.json, docs/CORPUS-AUDIT.md
 """
 from __future__ import annotations
 

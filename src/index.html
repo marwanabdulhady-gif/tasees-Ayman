@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="نسخة تفاعلية من أطلس «خرائط التاريخ الإسلامي»: استكشاف الخرائط، البحث في التسميات، والتحقق من الصفحات الأصلية.">
+<title>أطلس خرائط التاريخ الإسلامي — نسخة تفاعلية</title>
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<a class="skip-link" href="#viewer-host">تخطَّ إلى الخريطة</a>
+
+<header class="topbar" role="banner">
+  <button class="icon-btn only-narrow" id="btn-toc" aria-label="فتح قائمة الخرائط" aria-controls="panel-toc" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="#/" aria-label="الصفحة الرئيسية للأطلس">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="13"/><path d="M3 16h26M16 3c-4.5 4-6.5 8.5-6.5 13s2 9 6.5 13M16 3c4.5 4 6.5 8.5 6.5 13s-2 9-6.5 13"/></svg>
+    </span>
+    <span class="brand-text">
+      <strong>خرائط التاريخ الإسلامي</strong>
+      <small>أطلس تفاعلي مبني على الملف الأصلي</small>
+    </span>
+  </a>
+
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">ابحث في أسماء الأماكن والكيانات وتعليقات الخرائط</label>
+    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    <input id="search-input" type="search" autocomplete="off" spellcheck="false"
+           placeholder="ابحث: مكة، الإمبراطورية، بحر، ٦٤٠، صفحة ٣ …"
+           role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list">
+    <button class="search-clear" id="search-clear" type="button" aria-label="مسح البحث" hidden>×</button>
+    <div class="search-panel" id="search-panel" hidden>
+      <div class="search-filters" id="search-filters" role="group" aria-label="تصفية حسب النوع"></div>
+      <ul id="search-results" role="listbox" aria-label="نتائج البحث"></ul>
+      <p class="search-foot" id="search-foot"></p>
+    </div>
+  </div>
+
+  <nav class="mainnav" aria-label="الأقسام">
+    <a href="#/" data-nav="explore">المستكشف</a>
+    <a href="#/page/1" data-nav="page">الصفحات الأصلية</a>
+    <a href="#/compare" data-nav="compare">المقارنة</a>
+    <a href="#/index" data-nav="index">فهرس الأسماء</a>
+    <a href="#/learn" data-nav="learn" id="nav-learn">التعلّم</a>
+    <a href="#/about" data-nav="about">عن الأطلس</a>
+  </nav>
+  <button class="icon-btn" id="btn-theme" aria-label="تبديل الوضع الليلي" title="تبديل الوضع الليلي">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+  </button>
+  <button class="icon-btn only-narrow" id="btn-info" aria-label="فتح لوحة المعلومات" aria-controls="panel-info" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>
+  </button>
+</header>
+
+<div class="layout" id="layout">
+  <!-- Contents (start side = right in RTL) -->
+  <aside class="panel panel-toc" id="panel-toc" aria-label="محتويات الأطلس">
+    <div class="panel-head">
+      <h2>محتويات الأطلس</h2>
+      <div class="seg" role="group" aria-label="طريقة العرض">
+        <button type="button" data-tocmode="list" aria-pressed="true" title="قائمة">قائمة</button>
+        <button type="button" data-tocmode="gallery" aria-pressed="false" title="معرض">معرض</button>
+      </div>
+      <button class="icon-btn only-narrow panel-close" data-close="panel-toc" aria-label="إغلاق">×</button>
+    </div>
+    <label class="visually-hidden" for="toc-filter">تصفية الخرائط</label>
+    <input id="toc-filter" class="input" type="search" placeholder="تصفية حسب التعليق أو رقم الصفحة">
+    <div id="toc-list" class="toc-list"></div>
+    <section class="mini-section" id="sec-bookmarks">
+      <h3>المحفوظات</h3>
+      <ul id="bookmark-list" class="chip-list"></ul>
+    </section>
+    <section class="mini-section" id="sec-recent">
+      <h3>شوهد مؤخرًا</h3>
+      <ul id="recent-list" class="chip-list"></ul>
+    </section>
+  </aside>
+
+  <!-- Main -->
+  <main class="main" id="main" tabindex="-1">
+    <div id="view-explore" class="view" data-view="explore">
+      <div class="viewer-head">
+        <div class="viewer-title">
+          <span class="fig-badge" id="fig-badge"></span>
+          <h1 id="fig-title">…</h1>
+        </div>
+        <div class="viewer-sub" id="fig-sub"></div>
+      </div>
+      <div class="viewer-wrap">
+        <div class="viewer" id="viewer-host" tabindex="0" role="application"
+             aria-label="الخريطة التفاعلية. استخدم السحب للتحريك، العجلة أو + و − للتكبير، والسهام للتنقل."
+             aria-describedby="viewer-help"></div>
+        <p id="viewer-help" class="visually-hidden">لوحة المعلومات تتضمن قائمة نصية بكل المعالم القابلة للنقر في هذه الخريطة.</p>
+        <div class="toolbar" role="toolbar" aria-label="أدوات الخريطة">
+          <button class="tool" data-act="zoom-in" aria-label="تكبير" title="تكبير (+)"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          <button class="tool" data-act="zoom-out" aria-label="تصغير" title="تصغير (−)"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+          <button class="tool" data-act="fit" aria-label="ملاءمة الشاشة" title="ملاءمة الشاشة (0)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+          <button class="tool" data-act="reset" aria-label="إعادة الضبط" title="إعادة الضبط"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/></svg></button>
+          <button class="tool" data-act="fullscreen" aria-label="ملء الشاشة" title="ملء الشاشة (F)"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <button class="tool" data-act="layers" aria-label="الطبقات" title="الطبقات" aria-expanded="false" aria-controls="layers-pop"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></button>
+          <button class="tool" data-act="hotspots" aria-label="إظهار مناطق التفاعل" title="إظهار مناطق التفاعل (H)" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="9" height="6" rx="1"/><rect x="11" y="13" width="9" height="6" rx="1"/></svg></button>
+          <button class="tool" data-act="original" aria-label="الصفحة الأصلية" title="فتح الصفحة الأصلية للتحقق"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/></svg></button>
+        </div>
+        <div class="layers-pop" id="layers-pop" hidden role="dialog" aria-label="طبقات الخريطة"></div>
+        <div class="zoom-readout" id="zoom-readout" aria-live="off"></div>
+        <div class="map-loading" id="map-loading" hidden><span class="spinner" aria-hidden="true"></span><span>جارٍ تجهيز الخريطة المتجهية…</span></div>
+        <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+        <div class="quiz-bar" id="quiz-bar" hidden></div>
+      </div>
+      <div class="fig-strip" id="fig-strip" role="tablist" aria-label="الأشكال"></div>
+    </div>
+
+    <div id="view-page" class="view" data-view="page" hidden>
+      <div class="viewer-head">
+        <div class="viewer-title">
+          <span class="fig-badge" id="page-badge"></span>
+          <h1 id="page-title">…</h1>
+        </div>
+        <div class="page-controls">
+          <div class="seg" role="group" aria-label="مصدر العرض">
+            <button type="button" data-pagemode="raster" aria-pressed="true" title="صورة مستخرجة مباشرة من ملف PDF">الصورة الأصلية</button>
+            <button type="button" data-pagemode="vector" aria-pressed="false" title="رسومات متجهية مستخرجة من الملف">متجهي</button>
+            <button type="button" data-pagemode="side" aria-pressed="false" title="مقارنة جنبًا إلى جنب بتكبير متزامن">جنبًا إلى جنب</button>
+          </div>
+          <label class="check"><input type="checkbox" id="page-hotspots"> إظهار التسميات المنسوخة</label>
+        </div>
+      </div>
+      <div class="viewer-wrap">
+        <div class="page-panes" id="page-panes"></div>
+        <div class="toolbar" role="toolbar" aria-label="أدوات الصفحة">
+          <button class="tool" data-pact="prev" aria-label="الصفحة السابقة" title="الصفحة السابقة"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></button>
+          <button class="tool" data-pact="next" aria-label="الصفحة التالية" title="الصفحة التالية"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <button class="tool" data-pact="zoom-in" aria-label="تكبير"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          <button class="tool" data-pact="zoom-out" aria-label="تصغير"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+          <button class="tool" data-pact="fit" aria-label="ملاءمة الشاشة"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+          <button class="tool" data-pact="fullscreen" aria-label="ملء الشاشة"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>
+          <button class="tool" data-pact="explore" aria-label="فتح في المستكشف" title="فتح الخريطة الكاملة في المستكشف"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></button>
+        </div>
+      </div>
+      <div class="page-strip" id="page-strip" role="tablist" aria-label="صفحات الملف"></div>
+    </div>
+
+    <div id="view-compare" class="view" data-view="compare" hidden>
+      <div class="viewer-head compare-head">
+        <h1>مقارنة الخرائط</h1>
+        <div class="compare-controls" id="compare-controls"></div>
+      </div>
+      <p class="compare-note" id="compare-note" role="note"></p>
+      <div class="viewer-wrap">
+        <div class="compare-panes" id="compare-panes"></div>
+      </div>
+    </div>
+
+    <div id="view-index" class="view view-scroll" data-view="index" hidden>
+      <div class="doc">
+        <h1>فهرس الأسماء</h1>
+        <p class="lead">جميع التسميات المنسوخة من خرائط الملف، مرتبة أبجديًا، مع موضع كل تسمية في الأشكال والصفحات. هذه القائمة بديل نصي كامل للتفاعل البصري مع الخريطة.</p>
+        <div class="index-tools">
+          <label class="visually-hidden" for="index-filter">تصفية الفهرس</label>
+          <input id="index-filter" class="input" type="search" placeholder="تصفية الفهرس…">
+          <select id="index-kind" class="input" aria-label="النوع"></select>
+          <select id="index-fig" class="input" aria-label="الشكل"></select>
+        </div>
+        <nav class="letters" id="index-letters" aria-label="الحروف"></nav>
+        <div id="index-body"></div>
+      </div>
+    </div>
+
+    <div id="view-learn" class="view view-scroll" data-view="learn" hidden>
+      <div class="doc" id="learn-body"></div>
+    </div>
+
+    <div id="view-about" class="view view-scroll" data-view="about" hidden>
+      <div class="doc" id="about-body"></div>
+    </div>
+  </main>
+
+  <!-- Info (end side = left in RTL) -->
+  <aside class="panel panel-info" id="panel-info" aria-label="معلومات الخريطة والمعلم المحدد">
+    <div class="panel-head">
+      <h2 id="info-heading">معلومات الخريطة</h2>
+      <button class="icon-btn only-narrow panel-close" data-close="panel-info" aria-label="إغلاق">×</button>
+    </div>
+    <div id="feature-card" class="feature-card" hidden aria-live="polite"></div>
+    <div id="info-body"></div>
+  </aside>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<noscript><div class="noscript">يتطلب هذا الأطلس تفعيل JavaScript في المتصفح.</div></noscript>
+
+<!--__DATA__-->
+<script>/*__JS__*/</script>
+</body>
+</html>

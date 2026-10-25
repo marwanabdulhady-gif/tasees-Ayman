@@ -10,7 +10,7 @@ python3 -m venv .venv && .venv/bin/pip install pymupdf pillow
 bash tools/ocr/fetch_langdata.sh          # Arabic + English LSTM models (GitHub API)
 
 # 2. forensics -> data/source_documents.json, data/page_inventory.json,
-#                docs/CONTENT_AUDIT.md
+#                docs/CORPUS-AUDIT.md
 .venv/bin/python tools/audit_pdf.py
 
 # 3. page images + thumbnails -> assets/pages, assets/thumbnails,

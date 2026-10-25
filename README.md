@@ -1,50 +1,178 @@
-# الأطلس التفاعلي — Interactive Arabic Historical Atlas
+# أطلس خرائط التاريخ الإسلامي — نسخة تفاعلية
 
-Transforming three Arabic PDF atlases (393 scanned pages) into an offline,
-Arabic/RTL geographic learning platform.
+نسخة تفاعلية عربية (RTL) مبنية **مباشرة** على ملف PDF «خرائط التاريخ الإسلامي مجمع.pdf». ليست تحويلًا من PDF إلى HTML. استُخرجت الرسومات المتجهية الأصلية، وفُصلت إلى طبقات حقيقية، ووُصلت كل خريطة مزدوجة من صفحتيها. ثم نُسخت كل تسمية بصريًا وربطت بحدود حروفها الدقيقة في الملف، فصارت قابلة للبحث والنقر والتحقق مقابل الصفحة الأصلية.
 
-> **Current status: Phase 1–2 (forensics + extraction pipeline).**
-> The interactive application is still being built on this branch. See
-> `docs/CONTENT_AUDIT.md` for measured results and `docs/KNOWN_LIMITATIONS.md`
-> for an explicit list of what is not yet implemented.
+> **الملف الجاهز للاستخدام:** [`release/islamic-history-atlas.html`](release/islamic-history-atlas.html): ملف HTML **واحد** مستقل (≈ ٤٫٥ ميغابايت) يعمل دون إنترنت ودون خادم.
 
-## Source documents
+> **توسيع قيد العمل (٣ ملفات PDF / ٣٩٣ صفحة):** أُضيف إلى هذا الفرع تدقيقٌ كامل
+> لثلاثة مصادر، وخط أنابيب استخراج ونسخ ضوئي عربي يعمل دون إنترنت. التطبيق
+> الجاهز في `release/` مبني حاليًا على ملف الخرائط الثماني فقط؛ الأطلسان الكبيران
+> لم يُضمّنا بعد في الواجهة. التفاصيل: [`docs/CORPUS-AUDIT.md`](docs/CORPUS-AUDIT.md)
+> و [`docs/KNOWN_LIMITATIONS.md`](docs/KNOWN_LIMITATIONS.md).
 
-| id | PDF | pages | selectable text |
-| --- | --- | ---: | --- |
-| `sira` | الأطلس التاريخي لسيرة الرسول.pdf | 264 | none |
-| `abubakr` | أطلس الخليفة أبي بكر الصديق.pdf | 121 | none |
-| `islamic-maps` | خرائط التاريخ الإسلامي مجمع.pdf | 8 | none (vector art) |
+---
 
-All 393 pages are image-only: **no text layer, no embedded fonts**. Arabic OCR is
-therefore required for every page, and OCR output is always treated as
-unverified until checked against the original page image.
+## ١. كيف أفتح الأطلس؟
 
-## Repository layout
+1. نزّل الملف `release/islamic-history-atlas.html`.
+2. افتحه بنقرة مزدوجة في أي متصفح حديث: Chrome أو Edge (الإصدار 80+)، أو Firefox (113+)، أو Safari (16.4+).
+3. **لا حاجة إلى إنترنت ولا إلى خادم.** كل الخرائط والخطوط والبيانات والصور مضمّنة في الملف، ولا يرسل الأطلس أي طلب شبكي (تحقّقنا من ذلك آليًا).
+
+لإعادة التوزيع يكفي نسخ هذا الملف الواحد (بريد إلكتروني، أو ذاكرة USB، أو موقع ثابت). يعمل من `file://` ومن أي استضافة ثابتة.
+
+## ٢. ما الذي يتيحه؟
+
+| القسم | الوظيفة |
+|---|---|
+| **المستكشف** | الخرائط الأربع، وكل خريطة موصولة من صفحتيها المتقابلتين. تكبير وتصغير ناعمان بالعجلة أو القرص أو الأزرار، وسحب، وملاءمة للشاشة، وإعادة ضبط، وملء الشاشة. التسميات المطبوعة قابلة للنقر، وتفتح بطاقة فيها: النوع، ودرجة ثقة النسخ، والصفحة المصدر، و**مقتطف من الصورة الأصلية**، والمواضع الأخرى للاسم نفسه. |
+| **الطبقات** | طبقات مفصولة فعليًا من رسومات PDF: التسميات، وعلامات المدن، والحدود، والمنطقة الفاصلة (التنقيط)، وخط الامتداد، والأساس (يابسة/بحر/سواحل). تظهر لكل خريطة طبقاتها الموجودة فقط. |
+| **البحث** | بحث فوري يراعي العربية: يتجاهل الهمزات (أ/إ/آ/ا) والتشكيل والتطويل، ويوحّد ى/ي وة/ه والأرقام العربية والهندية. يعرض كل مواضع الاسم إذا تكرر، ويدعم التصفية بالنوع، والتنقل بلوحة المفاتيح، والانتقال إلى صفحة بكتابة «ص ٣». |
+| **الصفحات الأصلية** | صورة كل صفحة مستخرجة مباشرة من PDF (مسار التحقق الذي لا يُحذف)، مع عرض متجهي ومقارنة جنبًا إلى جنب بتكبير متزامن، وإبراز التسميات المنسوخة فوق الأصل. |
+| **المقارنة** | خريطتان جنبًا إلى جنب. وللشكلين ١-١ و١-٤ (المرسومين على الخريطة الأساسية نفسها، وهو أمر متحقَّق منه) **مقارنة بالتمرير** بعد تسجيل مقيس. تُعطَّل المزامنة للخرائط ذات المقاييس المختلفة. |
+| **فهرس الأسماء** | جميع الأسماء مرتبة أبجديًا (مع تجاهل «ال») بمواضعها، وهو بديل نصي كامل للتفاعل البصري. |
+| **التعلّم** (اختياري) | «أين تقع؟» (مع إمكان إخفاء طبقة التسميات)، و«ما اسم هذا الموضع؟»، و«في أي خريطة؟»، وبطاقات مراجعة، مع قائمة مراجعة وتتبّع للتقدّم. الأسئلة مولّدة **فقط** من التسميات المنسوخة. يمكن تعطيل القسم من «عن الأطلس»: وضع المرجع فقط. |
+| **عن الأطلس** | تقرير التدقيق، وجرد الصفحات، والعناصر التي تحتاج إلى مراجعة، والمنهجية، والحدود المعروفة، والإعدادات، و«مسح البيانات المحلية». |
+
+**اختصارات:** `/` للبحث، و`+`/`−` للتكبير والتصغير، و`0` للملاءمة، والأسهم للتحريك، و`F` لملء الشاشة، و`H` لإظهار مناطق التفاعل، و`L` للطبقات، و`Esc` للإغلاق.
+يحفظ الأطلس المحفوظات وآخر ما شوهد والوضع الليلي والتقدّم في `localStorage` فقط.
+
+## ٣. ما الذي اكتُشف في الملف؟ (ملخص التدقيق)
+
+- **٨ صفحات A4 عمودية**، بلا طبقة نصية وبلا خطوط مضمّنة. كل الكتابة العربية مرسومة كأشكال متجهية مملوءة (٥٤٤١ عنصرًا متجهيًا)، ولا يوجد إلا ٨ صور نقطية صغيرة هي رقع التنقيط.
+- **الصفحات الثماني هي ٤ خرائط مزدوجة.** النصف الشرقي في الصفحة الفردية (وعليه التعليق) والنصف الغربي في التالية. إزاحة الوصل **٤٤٥٫٩ نقطة** محسوبة من الهندسة المتكررة في الصفحتين.
+  - شكل ٢: خريطة العالم الإسلامي (ص ١–٢)
+  - شكل ١-١: الفتوحات الإسلامية الأولى (ص ٣–٤)
+  - شكل ١-٣: العالم الإسلامي نحو عام ١١٠٠ (ص ٥–٦)
+  - شكل ١-٤: العالم الإسلامي نحو عام ١٧٠٠ (ص ٧–٨)
+  - لا يتضمن الملف «شكل ١-٢».
+- **٣٦١ تسمية منسوخة**، منها **٣٥٧ منطقة تفاعل** و**٢٩٢ اسمًا فريدًا** (٤١ منها في أكثر من خريطة). رُبطت **١٣٤** علامة مدينة بتسمياتها من أصل ١٥١، و**٢٥٧٧ من ٢٧٠٦** أشكال كتابية مرتبطة بنسخ.
+- ثقة النسخ: ٣٦ تسمية متوسطة، و٥ منخفضة أو غير مقروءة (مُعلَّمة للمراجعة).
+
+التفاصيل الكاملة في: [`docs/CONTENT-AUDIT.md`](docs/CONTENT-AUDIT.md) · [`docs/PAGE-INVENTORY.md`](docs/PAGE-INVENTORY.md)
+
+## ٤. الحدود المعروفة (بصراحة)
+
+- **ليست بيانات GIS:** لا توجد إحداثيات جغرافية في الملف. مناطق التفاعل مرتبطة **بمواضع التسميات المطبوعة** وبعلامات المدن، لا بحدود الدول أو الأقاليم. لم تُرسم حدود تفاعلية مزيّفة.
+- **الصفحة ٢** (أكثف صفحة، وأوروبا فيها مدوّرة ٩٠°) فيها **٧٣ شكلًا كتابيًا دقيقًا** لم تُنسخ، لأن قراءتها بثقة لم تكن ممكنة (تسميات مدن في إسكندنافيا والبلطيق وبحر إيجة وغيرها). تبقى ظاهرة في الخريطة والصورة الأصلية، وحالة الصفحة «منسوخة جزئيًا».
+- في الصفحة ١ تسمية صغيرة متداخلة قرب الكوريتين لا يُقرأ منها إلا «…ونغ» (لم تُخمَّن). وفي الصفحة ٤ حرف «أ» منفرد. وثلاث قراءات منخفضة الثقة في البلقان والبلطيق: «البوسنة والهرسك» و«يوغسلافيا» و«ريغا».
+- **أنواع التسميات** (مدينة، كيان سياسي…) تصنيف تحريري مبني على صياغة التسمية ورمزها، وليست واردة في الملف.
+- الأسهم المتقطعة (شكل ١-١) والخطوط السوداء العريضة (١-٣، ١-٤) **غير مشروحة في الملف**، فعُرضت دون تفسير. الأرقام على الأسهم منسوخة كما هي، ولا يذكر الملف التقويم المستخدم.
+- لم يتوفر محرك OCR عربي في بيئة البناء (لا صلاحيات تثبيت). فاعتمد النسخ على **القراءة البصرية الموثّقة بالإحداثيات** على تكبير ٣–١٤ ضعفًا بدلًا من OCR. لهذا كانت كل تسمية مربوطة بحدود حروفها الفعلية.
+- يحتاج فك ضغط الخرائط المتجهية إلى `DecompressionStream` (المتصفحات الحديثة). في متصفح أقدم يعرض الأطلس الصور النقطية الأصلية بدلًا منها (دون طبقات).
+
+## ٥. بنية المشروع
 
 ```
-tools/                 build-time forensics, asset extraction and OCR
-  audit_pdf.py         page-by-page inventory + content audit report
-  extract_assets.py    source-fidelity WebP pages + thumbnails
-  prepare_ocr_images.py  OCR-optimised grayscale inputs
-  ocr/                 Tesseract.js LSTM runner (local WASM + local models)
-data/                  generated inventories, asset and OCR manifests
-docs/                  CONTENT_AUDIT.md, KNOWN_LIMITATIONS.md, PIPELINE.md
-assets/                generated page images / thumbnails / OCR JSON (gitignored)
-index.html             (planned) standalone offline application entry point
+source/islamic-history-maps.pdf   الملف المصدر (MD5 99e19b24…)
+data/
+  transcriptions/page-00N.json    النسخ البصري (المصدر التحريري — عدّل هنا)
+  vectors.json                    نتائج التحليل المتجهي: الإطارات، الحروف، العلامات، الكتل
+  atlas.json                      بيان المحتوى المرجعي (Source-of-truth manifest)
+assets/
+  svg/page-00N.svg                الصفحات متجهيةً، وكل عنصر موسوم بطبقته
+  pages/page-00N.webp             صور مستقلة للصفحات (MuPDF) لمسار التحقق
+  thumbs/                         مصغّرات
+  fonts/                          IBM Plex Sans Arabic (OFL)
+src/
+  index.html, styles.css          الواجهة ونظام التصميم
+  js/util.js                      أدوات، تطبيع البحث العربي، التخزين
+  js/assets.js                    تحميل البيانات المضمّنة وفك ضغط SVG
+  js/panzoom.js                   محرك التكبير والتحريك
+  js/mapview.js                   تركيب الخرائط المزدوجة ومناطق التفاعل والتحديد
+  js/app.js                       التوجيه، المستكشف، الصفحات، المقارنة، الفهرس، البحث
+  js/learn.js                     التعلّم
+tools/
+  extract_vectors.py              فصل الطبقات + SVG موسوم + كتل الحروف + الإطارات
+  make_review_sheets.py, grid_zoom.py   أوراق المراجعة للنسخ البصري
+  build_content.py                بناء atlas.json (التقاط المواضع، ربط العلامات، التطبيع)
+  build_rasters.py                الصور والمصغّرات
+  build_html.py                   الحزم في ملف HTML واحد → release/
+  qa_overlay.py                   تراكب مناطق التفاعل على الصفحات للتحقق
+  write_docs.py                   تقرير التدقيق وجرد الصفحات
+  qa/run-qa.mjs                   اختبارات المتصفح دون إنترنت (37 اختبارًا)
+release/islamic-history-atlas.html   المُخرَج النهائي
+docs/                             التقارير
 ```
 
-## Rebuilding
+## ٦. إعادة البناء
 
-See `docs/PIPELINE.md`. Build tools need Python + Node; the shipped `index.html`
-needs **neither**, and makes no network requests.
+```bash
+python3 -m venv .venv && .venv/bin/pip install pymupdf pillow numpy
+.venv/bin/python tools/extract_vectors.py     # تحليل PDF → assets/svg + data/vectors.json
+.venv/bin/python tools/build_content.py       # النسخ → data/atlas.json
+.venv/bin/python tools/build_rasters.py       # الصور والمصغّرات
+.venv/bin/python tools/build_html.py          # → release/islamic-history-atlas.html
+.venv/bin/python tools/write_docs.py          # → docs/
 
-## Accuracy policy
+# اختبارات المتصفح (Chromium من npm؛ في Linux قد تلزم مكتبات NSS)
+cd tools/qa && npm install && cd ../..
+node tools/qa/run-qa.mjs
+```
 
-- Original PDFs are the sole source of truth.
-- No invented place names, coordinates, boundaries or numeric values.
-- OCR text is stored verbatim with confidence flags; search normalisation never
-  changes displayed source text.
-- Every extracted fact keeps `documentId` + `sourcePage` so it can be checked in
-  the Original Page Viewer.
-- A map is never described as "fully interactive" when it only supports zoom/pan.
+## ٧. تعديل المحتوى أو توسيعه
+
+كل تسمية سجلّ في `data/transcriptions/page-00N.json`:
+
+```json
+{"ids":[10,7], "text":"الإمبراطورية السلجوقية", "kind":"polity", "bold":true, "conf":"high", "note":"…"}
+```
+
+- `ids`: أرقام كتل الحروف في `vectors.json`. لرؤيتها شغّل `tools/make_review_sheets.py N`.
+- أو `approx`: مربعات تقريبية بنقاط PDF تُلتقط آليًا إلى حدود الحروف الفعلية. أو `poly`: مضلّع يدوي للتسميات المتداخلة.
+- `kind`: واحد من `place | polity | country | people | region | water | river | line | date | caption | legend | unreadable | other`.
+- `conf`: `high | medium | low`.
+- يحمل كل ملف `clusterSignature`. **يتوقف البناء** إذا تغيّرت الكتل تحته، حتى لا تنزاح الأرقام بصمت.
+- بعد التعديل: `build_content.py` ثم `build_html.py`. وللتحقق بصريًا: `tools/qa_overlay.py N` (أزرق = مناطق تفاعل، أحمر = حروف غير منسوخة).
+
+لإضافة **معلومات خارج الأطلس** (ليست مضمّنة حاليًا عمدًا) يُقترح حقل جديد `supplemental` مع ذكر المصدر، يُعرض مفصولًا ومعلَّمًا بأنه إضافي.
+
+## ٨. التراخيص
+
+- الخط: IBM Plex Sans Arabic، رخصة SIL Open Font License 1.1 (`assets/fonts/OFL-IBM-Plex-Sans-Arabic.txt`).
+- الشيفرة لا تعتمد على أي مكتبة خارجية وقت التشغيل.
+- محتوى الخرائط ملك أصحابه الأصليين. هذا المشروع يعرضه كما هو مع أدوات للاستكشاف والتحقق.
+
+
+---
+
+## ٩. توسيع المشروع إلى الأطالس الثلاثة (Phase 1–2 — قيد التنفيذ)
+
+إضافةً إلى أطلس الخرائط الثماني المكتمل أعلاه، جرى تدقيق ثلاثة ملفات PDF
+قدّمها المستخدم، مجموع صفحاتها **٣٩٣ صفحة**:
+
+| المعرّف | الملف | الصفحات | طبقة نصية | خطوط مضمّنة |
+|---|---|---:|---:|---:|
+| `sira` | الأطلس التاريخي لسيرة الرسول.pdf | 264 | 0 | 0 |
+| `abubakr` | أطلس الخليفة أبي بكر الصديق.pdf | 121 | 0 | 0 |
+| `islamic-maps` | خرائط التاريخ الإسلامي مجمع.pdf | 8 | 0 | 0 |
+
+الملفات الثلاثة **ممسوحة ضوئيًا بالكامل**: لا توجد طبقة نصية ولا خطوط مضمّنة،
+لذا فإن النسخ الضوئي العربي إلزامي لكل صفحة. نتائج التدقيق مُقاسة فعليًا في
+[`docs/CORPUS-AUDIT.md`](docs/CORPUS-AUDIT.md)، وجرد الصفحات الآلي في
+`data/page_inventory.json`، وبيانات المصادر (بما فيها بصمات SHA-256 ومعرّفات
+Drive) في `data/source_documents.json`.
+
+### ما أُنجز في هذا الفرع
+
+- `tools/audit_pdf.py` — جرد صفحة بصفحة لكل الملفات + تقرير تدقيق.
+- `tools/extract_assets.py` — صور صفحات بأمانة المصدر (WebP) ومصغّرات.
+- `tools/prepare_ocr_images.py` — صور مُحسّنة للنسخ الضوئي.
+- `tools/ocr/` — محرك Tesseract.js LSTM عربي **محلي بالكامل** (نواة WASM
+  ونماذج `tessdata_fast` محمّلة من GitHub API وقت البناء فقط)، مع إحداثيات
+  الكلمات ودرجات الثقة، وقابلية الاستئناف.
+- [`docs/PIPELINE.md`](docs/PIPELINE.md) — خطوات إعادة البناء،
+  و [`docs/KNOWN_LIMITATIONS.md`](docs/KNOWN_LIMITATIONS.md) — حدود صريحة.
+
+### سياسة الدقة (تسري على كل المراحل)
+
+- ملفات PDF هي المرجع الوحيد؛ لا أسماء أماكن ولا إحداثيات ولا حدود مُخترعة.
+- نص النسخ الضوئي يُخزَّن كما هو مع علامات ثقة؛ تطبيع البحث يغيّر **الفهرس فقط**
+  ولا يغيّر النص المعروض.
+- كل حقيقة مستخرجة تحتفظ بـ `documentId` و `sourcePage` للتحقق في عارض الصفحة الأصلية.
+- لا يوصف أي رسم بأنه «تفاعلي بالكامل» إذا كان يدعم التكبير والتحريك فقط،
+  ولا تُرسم حدود جغرافية تفاعلية مزيّفة.
+
+> **تنبيه للمراجع:** الصور المولّدة (`assets/pages/<docId>/`) وبيانات النسخ
+> الضوئي (`assets/ocr/`) وملفات PDF الكبيرة غير مُدرجة في git (انظر `.gitignore`)؛
+> تُعاد توليدها بالأوامر في `docs/PIPELINE.md`. المخرج الجاهز الوحيد المُدرج
+> حاليًا هو `release/islamic-history-atlas.html`.

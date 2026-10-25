@@ -1,0 +1,7 @@
+{
+  "name": "atlas-qa",
+  "private": true,
+  "type": "module",
+  "description": "Headless-browser QA for the single-file atlas (offline, file://).",
+  "dependencies": { "puppeteer-core": "^23.0.0", "@sparticuz/chromium": "^131.0.0" }
+}
