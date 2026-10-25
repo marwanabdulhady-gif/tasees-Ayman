@@ -3,7 +3,7 @@
  * Offline Arabic OCR for all atlas pages (Tesseract.js LSTM, local WASM core).
  *
  * Input : data/ocr_jobs.json        (from tools/prepare_ocr_images.py)
- * Output: assets/ocr/<doc>/pNNN.json
+ * Output: assets/ocr/<doc>/NNN.json
  *
  * Each output keeps the ORIGINAL OCR string untouched, plus per-word bounding
  * boxes and confidence. Words below CONF_FLOOR are flagged `uncertain` and are

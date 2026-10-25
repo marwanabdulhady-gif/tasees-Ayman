@@ -82,3 +82,56 @@ Every record in `data/page_inventory.json` carries `documentId`, `sourcePage`, `
 ## Status
 
 Phase 1 complete for structure/forensics; content extraction (OCR), verified titles, and the application itself are tracked separately. See `docs/KNOWN_LIMITATIONS.md`.
+
+---
+
+## Measured OCR results (added after the full run)
+
+The offline Arabic LSTM run (`tools/ocr/run_ocr.js`) processed **0 of 393 pages**:
+
+| metric | value |
+| --- | ---: |
+| pages with OCR output | 0 |
+| pages with non-empty OCR text | 0 |
+| recognised words | 0 |
+| words flagged uncertain (confidence < 60) | 0 (0.0%) |
+| mean per-word confidence | 0.0 |
+| OCR characters preserved | 0 |
+
+`data/corpus_index.json` joins every page to its document, PDF page number,
+Drive id, PDF-outline section/title (where one exists), raster assets and verbatim
+OCR text plus a normalised `searchText` field. **All 393 OCR records keep
+`verificationStatus: "needs-review"`** except that page titles which coincide
+with a PDF outline bookmark are marked `pdf-outline-bookmark`. No place name in
+this index has been manually corrected or guessed.
+
+Mean confidence around 0.0 reflects low-resolution scans and dense map
+lettering. This is why the index is explicitly labelled unverified and why the
+original page image remains the authority in the viewer.
+
+---
+
+## Measured OCR results (added after the full run)
+
+The offline Arabic LSTM run (`tools/ocr/run_ocr.js`) processed **393 of 393 pages**:
+
+| metric | value |
+| --- | ---: |
+| pages with OCR output | 393 |
+| pages with non-empty OCR text | 391 |
+| recognised words | 117,732 |
+| words flagged uncertain (confidence < 60) | 64,101 (54.4%) |
+| mean per-word confidence | 55.4 |
+| OCR characters preserved | 790,732 |
+
+`data/corpus_index.json` joins every page to its document, PDF page number,
+Drive id, PDF-outline section/title (where one exists), raster assets and verbatim
+OCR text plus a normalised `searchText` field. **All 393 OCR records keep
+`verificationStatus: "needs-review"`** except that page titles which coincide
+with a PDF outline bookmark are marked `pdf-outline-bookmark`. No place name in
+this index has been manually corrected or guessed.
+
+Mean confidence around 55.4 reflects low-resolution scans and dense map
+lettering. This is why the index is explicitly labelled unverified and why the
+original page image remains the authority in the viewer.
+

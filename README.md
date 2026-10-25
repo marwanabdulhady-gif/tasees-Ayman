@@ -159,7 +159,10 @@ Drive) في `data/source_documents.json`.
 - `tools/prepare_ocr_images.py` — صور مُحسّنة للنسخ الضوئي.
 - `tools/ocr/` — محرك Tesseract.js LSTM عربي **محلي بالكامل** (نواة WASM
   ونماذج `tessdata_fast` محمّلة من GitHub API وقت البناء فقط)، مع إحداثيات
-  الكلمات ودرجات الثقة، وقابلية الاستئناف.
+  الكلمات ودرجات الثقة، وقابلية الاستئناف. **اكتمل النسخ الضوئي للصفحات الـ393**
+  (117٬732 كلمة بمتوسط ثقة 55.4 — كلها موسومة `ocr-unverified`).
+- `tools/build_corpus_index.py` → `data/corpus_index.json`: فهرس مضغوط لكل صفحة
+  (القسم من الإشارات المرجعية، الأصول، النص المنسوخ، ونص بحث مُطبَّع).
 - [`docs/PIPELINE.md`](docs/PIPELINE.md) — خطوات إعادة البناء،
   و [`docs/KNOWN_LIMITATIONS.md`](docs/KNOWN_LIMITATIONS.md) — حدود صريحة.
 

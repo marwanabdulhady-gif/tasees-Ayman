@@ -23,7 +23,7 @@ bash tools/ocr/fetch_langdata.sh          # Arabic + English LSTM models (GitHub
 # 5. Arabic OCR -> assets/ocr/<docId>/pNNN.json  (resumable, 4 workers)
 node tools/ocr/run_ocr.js 4
 
-# 6. content manifest + search index  (added with the application build)
+.venv/bin/python tools/build_corpus_index.py  # -> data/corpus_index.json + audit update
 ```
 
 Source PDFs are **not** committed. Place the three files in `google_drive/`
