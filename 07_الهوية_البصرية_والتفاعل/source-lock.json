@@ -1,0 +1,175 @@
+{
+ "note": "Fingerprints the visual plan was reviewed against. Check with tools/check_drift.py; accept edits with build_visual_plan.py --relock N.",
+ "weeks": {
+  "1": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_01_التفكير_والتشخيص_والحوار/01_الأصول_النصية/10_session_scripts_module_01_v0_3.md",
+   "script_sha": "bfa555d205434276",
+   "svg_sha": "bf5583b586d96c84"
+  },
+  "2": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_01_التفكير_والتشخيص_والحوار/01_الأصول_النصية/10_session_scripts_module_01_v0_3.md",
+   "script_sha": "44ef47ce99c84926",
+   "svg_sha": "f5bf91587f94ecd7"
+  },
+  "3": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_01_التفكير_والتشخيص_والحوار/01_الأصول_النصية/10_session_scripts_module_01_v0_3.md",
+   "script_sha": "318ddcfb8a6f2822",
+   "svg_sha": "840c7b4d1a63c494"
+  },
+  "4": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_01_التفكير_والتشخيص_والحوار/01_الأصول_النصية/10_session_scripts_module_01_v0_3.md",
+   "script_sha": "14eecfdb9affc6a9",
+   "svg_sha": "d78d95027b7c76f6"
+  },
+  "5": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_02_منهج_التعلم_وخريطة_العلوم/01_الأصول_النصية/10_session_scripts_module_02_v0_4.md",
+   "script_sha": "f04350a9d6138db0",
+   "svg_sha": "11fbac78daaf4653"
+  },
+  "6": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_02_منهج_التعلم_وخريطة_العلوم/01_الأصول_النصية/10_session_scripts_module_02_v0_4.md",
+   "script_sha": "5720bab9bde0680b",
+   "svg_sha": "0c14eeacf547b2e3"
+  },
+  "7": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_02_منهج_التعلم_وخريطة_العلوم/01_الأصول_النصية/10_session_scripts_module_02_v0_4.md",
+   "script_sha": "c4b824e97179ba95",
+   "svg_sha": "636c84f5d018ce13"
+  },
+  "8": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_02_منهج_التعلم_وخريطة_العلوم/01_الأصول_النصية/10_session_scripts_module_02_v0_4.md",
+   "script_sha": "5698743e2019dbdf",
+   "svg_sha": "d0262eaab9a7e88c"
+  },
+  "9": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_03_اللغة_أداة_تلقي_ومشروع/01_الأصول_النصية/10_session_scripts_module_03_v0_4.md",
+   "script_sha": "4fe8a6cf6e2c37c6",
+   "svg_sha": "0fad972d7852771d"
+  },
+  "10": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_03_اللغة_أداة_تلقي_ومشروع/01_الأصول_النصية/10_session_scripts_module_03_v0_4.md",
+   "script_sha": "faa1a3789d4cef68",
+   "svg_sha": "b2a7a82cf3d76d86"
+  },
+  "11": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_03_اللغة_أداة_تلقي_ومشروع/01_الأصول_النصية/10_session_scripts_module_03_v0_4.md",
+   "script_sha": "5c9ac6f747996c5d",
+   "svg_sha": "969e62a3253cca52"
+  },
+  "12": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_03_اللغة_أداة_تلقي_ومشروع/01_الأصول_النصية/10_session_scripts_module_03_v0_4.md",
+   "script_sha": "9550409b5a134c19",
+   "svg_sha": "100b433df8568d9f"
+  },
+  "13": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_04_السيرة_مصدر_ومنهج_وقدوة_ومعنى/01_الأصول_النصية/10_session_scripts_module_04_v0_4.md",
+   "script_sha": "20cd3e5379210982",
+   "svg_sha": "cc3f19cd0d8ac447"
+  },
+  "14": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_04_السيرة_مصدر_ومنهج_وقدوة_ومعنى/01_الأصول_النصية/10_session_scripts_module_04_v0_4.md",
+   "script_sha": "27136ba90e29e856",
+   "svg_sha": "dd7e2c44112802de"
+  },
+  "15": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_04_السيرة_مصدر_ومنهج_وقدوة_ومعنى/01_الأصول_النصية/10_session_scripts_module_04_v0_4.md",
+   "script_sha": "8cdc37d6d2540004",
+   "svg_sha": "f06d0dce517c2309"
+  },
+  "16": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_04_السيرة_مصدر_ومنهج_وقدوة_ومعنى/01_الأصول_النصية/10_session_scripts_module_04_v0_4.md",
+   "script_sha": "dce29dde95e25b50",
+   "svg_sha": "8ec97d8dde8d884c"
+  },
+  "17": {
+   "script": "02_الوحدات_التعليمية/v0_4_تغليف_المرحلة_١_وأسبوع_التنفس_17/01_الأصول_النصية/10_session_scripts_breathing_week_17_v0_4.md",
+   "script_sha": "502851283adbf5b3",
+   "svg_sha": "a5d640351795105d"
+  },
+  "18": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_05_مدخل_التاريخ_منهج_وراشدون_وفتنة/01_الأصول_النصية/10_session_scripts_module_05_v0_4.md",
+   "script_sha": "dc70ca38e9d6bfe6",
+   "svg_sha": "4f9d9c05872996b5"
+  },
+  "19": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_05_مدخل_التاريخ_منهج_وراشدون_وفتنة/01_الأصول_النصية/10_session_scripts_module_05_v0_4.md",
+   "script_sha": "880b68d376f7ee4c",
+   "svg_sha": "36ee6ed59af5fdb1"
+  },
+  "20": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_05_مدخل_التاريخ_منهج_وراشدون_وفتنة/01_الأصول_النصية/10_session_scripts_module_05_v0_4.md",
+   "script_sha": "bde02186ab0ee757",
+   "svg_sha": "b08e654ef2351b9b"
+  },
+  "21": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_05_مدخل_التاريخ_منهج_وراشدون_وفتنة/01_الأصول_النصية/10_session_scripts_module_05_v0_4.md",
+   "script_sha": "bc2d27b2c0099195",
+   "svg_sha": "d4f86ad814659789"
+  },
+  "22": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_06_الدول_والحضارة_من_الأمويين_للمماليك/01_الأصول_النصية/10_session_scripts_module_06_v0_4.md",
+   "script_sha": "b3b24aac73f74f30",
+   "svg_sha": "ae41309eca1c4049"
+  },
+  "23": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_06_الدول_والحضارة_من_الأمويين_للمماليك/01_الأصول_النصية/10_session_scripts_module_06_v0_4.md",
+   "script_sha": "6f5867e9b81889fb",
+   "svg_sha": "57c8c6183f769b7f"
+  },
+  "24": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_06_الدول_والحضارة_من_الأمويين_للمماليك/01_الأصول_النصية/10_session_scripts_module_06_v0_4.md",
+   "script_sha": "9b22ac8f3dddeac8",
+   "svg_sha": "3e8adecc3af07283"
+  },
+  "25": {
+   "script": "02_الوحدات_التعليمية/v0_4_الوحدة_06_الدول_والحضارة_من_الأمويين_للمماليك/01_الأصول_النصية/10_session_scripts_module_06_v0_4.md",
+   "script_sha": "e582737d57c2abc9",
+   "svg_sha": "7f63827ffe76218f"
+  },
+  "26": {
+   "script": null,
+   "script_sha": null,
+   "svg_sha": null
+  },
+  "27": {
+   "script": null,
+   "script_sha": null,
+   "svg_sha": null
+  },
+  "28": {
+   "script": null,
+   "script_sha": null,
+   "svg_sha": null
+  },
+  "29": {
+   "script": null,
+   "script_sha": null,
+   "svg_sha": null
+  },
+  "30": {
+   "script": null,
+   "script_sha": null,
+   "svg_sha": null
+  },
+  "31": {
+   "script": null,
+   "script_sha": null,
+   "svg_sha": null
+  },
+  "32": {
+   "script": null,
+   "script_sha": null,
+   "svg_sha": null
+  },
+  "33": {
+   "script": null,
+   "script_sha": null,
+   "svg_sha": null
+  },
+  "34": {
+   "script": null,
+   "script_sha": null,
+   "svg_sha": null
+  }
+ }
+}

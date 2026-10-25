@@ -3,6 +3,11 @@
     python3 07_الهوية_البصرية_والتفاعل/tools/build_visual_plan.py
 
 Exits non-zero if a referenced library photo or existing SVG is missing.
+
+Source lock: source-lock.json records the script/SVG fingerprint each week's plan was
+reviewed against. Existing entries are kept; new weeks are added. After you re-read an
+edited week and update visual_plan_data.py, accept the new text with:
+    python3 07_الهوية_البصرية_والتفاعل/tools/build_visual_plan.py --relock 3,7     (or --relock all)
 """
 import csv, json, sys
 from pathlib import Path
@@ -10,6 +15,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from visual_plan_data import PATTERNS, WEEKS, UNIT_DIR, UNIT_COVERS  # noqa: E402
+from sources import fingerprint  # noqa: E402
 
 PKG = HERE.parent                    # 07_الهوية_البصرية_والتفاعل
 ROOT = PKG.parent                    # repo root
@@ -44,6 +50,12 @@ def lib_license():
 
 
 def main():
+    relock = set()
+    if "--relock" in sys.argv:
+        arg = sys.argv[sys.argv.index("--relock") + 1]
+        relock = {w["w"] for w in WEEKS} if arg == "all" else {int(x) for x in arg.split(",")}
+    lock_path = PKG / "source-lock.json"
+    lock = json.loads(lock_path.read_text(encoding="utf-8"))["weeks"] if lock_path.exists() else {}
     lic = lib_license()
     errors, rows, prompts = [], [], []
     add = lambda **k: rows.append(k)
@@ -110,6 +122,14 @@ def main():
 
     if errors:
         print("\n".join(errors)); sys.exit(1)
+
+    for w in WEEKS:
+        k = str(w["w"])
+        if k not in lock or w["w"] in relock:
+            lock[k] = fingerprint(UNIT_DIR.get(w["u"]), w["w"], w["svg"])
+    json.dump(dict(note="Fingerprints the visual plan was reviewed against. Check with tools/check_drift.py; "
+                        "accept edits with build_visual_plan.py --relock N.", weeks=lock),
+              open(lock_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
     fields = ["asset_id", "week", "unit", "kind", "route", "description", "prompt_ref", "target_path", "license", "status", "gate"]
     with open(PKG / "03_سجل_الأصول_البصرية.csv", "w", encoding="utf-8", newline="") as f:

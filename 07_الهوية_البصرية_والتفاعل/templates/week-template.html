@@ -7,6 +7,8 @@
 <!--
   قالب الأسبوع — انسخ هذا الملف إلى <الوحدة>/04_التفاعلي/week-NN.html
   ثم عدّل فقط: (1) data-phase و data-week في وسم <html>، (2) <title>، (3) كتلة JSON بالمعرّف "week".
+  "source_sha" = بصمة نص الأسبوع الذي بنيت منه الصفحة (من source-lock.json). الدورة قيد التحرير:
+  tools/check_drift.py يقارنها بالنص الحالي ويخبرك إن صارت الصفحة قديمة.
   لا تعدّل CSS ولا JS هنا؛ التعديل في tasees-tokens.css و tasees-runtime.js فقط (بقرار).
   المحتوى أدناه مثال حقيقي من نص الأسبوع 1 (v0.4).
 -->
@@ -69,6 +71,7 @@ body { margin: 0; min-height: 100%; }
 <script type="application/json" id="week">
 {
   "week": 1, "unit": 1, "phase": 1,
+  "source_sha": "bfa555d205434276",
   "eyebrow": "المرحلة ١ · بناء المتلقي — الوحدة ١ · الأسبوع ١",
   "title": "ما تسحبش الكروت من غير ترتيب",
   "subtitle": "من التشتت لخريطة تعلم",
@@ -76,7 +79,7 @@ body { margin: 0; min-height: 100%; }
   "audio": "الحلقة المسموعة ١٥–٢٠ د · قيد التسجيل بقارئ بشري (بوابة G13)",
   "next": "الأسبوع الجاي: حقيقة الأشياء — تصف ولا توسم",
   "screens": [
-    { "id": "w01-01", "layout": "L1", "sanad": [["و١ · أ١", "المرحلة ١"]] },
+    { "id": "w01-01", "layout": "L1", "sanad": [["الوحدة ١", "الأسبوع ١"]] },
     { "id": "w01-02", "layout": "L4", "pattern": "P14", "heading": "قبل ما نبدأ", "sanad": [["الكتلة ١", "سؤال للدفتر"]],
       "data": { "q": "آخر حاجة «عرفتها» السنة دي: اتحولت لمهارة؟", "options": ["اتحولت لمهارة فعلًا", "لسه على الرف", "مش فاكر أصلًا عرفت إيه"] } },
     { "id": "w01-03", "layout": "L2", "art": "tas-w01-hook-cards", "art_src": "", "sanad": [["05/41", "≈ 00:00–02:00"]],
@@ -165,7 +168,7 @@ body { margin: 0; min-height: 100%; }
     stage.innerHTML = '<section class="t-screen" data-id="' + esc(s.id) + '" data-layout="' + s.layout + '"><aside class="t-margin">' + sanad(s.sanad) + (s.layout === "L1" || last ? bricks(last && s._new) : "") + '</aside><div class="t-main">' + LAYOUT[s.layout](s) + "</div></section>";
     var mount = stage.querySelector("[data-mount]"); if (mount && s.pattern) T.render(mount, s.pattern, s.data);
     stage.querySelectorAll(".js-track").forEach(function (b) { b.onclick = function () { track = b.textContent; store.set("track", track); show(); }; });
-    document.getElementById("wk-name").textContent = "تأسيس · الأسبوع " + AR(W.week);
+    document.getElementById("wk-name").innerHTML = 'تأسيس <span style="font-family:var(--f-body);font-size:1rem;font-weight:500">· الأسبوع ' + AR(W.week) + "</span>";
     document.getElementById("wk-pos").textContent = "الشاشة " + AR(i + 1) + " من " + AR(list.length);
     document.getElementById("pencil").innerHTML = list.map(function (_, k) { return '<i class="' + (k <= i ? "on" : "") + '"></i>'; }).join("");
     document.getElementById("prev").disabled = i === 0;
