@@ -1,5 +1,8 @@
 # محاضرات متفرقة — م. أيمن عبد الرحيم
 
+> ✅ **اكتملت تفريغات كل الحلقات** (ترجمات يوتيوب التلقائية بطوابع زمنية، عبر Supadata API) في مجلد [`transcripts/05-reestablishing-muslim-awareness/`](../../../transcripts/05-reestablishing-muslim-awareness/) — وهو النسخة الرسمية المعتمدة. الجدول أدناه فهرس للقائمة نفسها.
+
+
 - **قائمة التشغيل:** https://www.youtube.com/playlist?list=PL9saDKf7tQ7uVWqOR1OrDCYR4-o2KYEQW
 - **القناة الرئيسية:** [أيمن عبدالرحيم، الأعمال الكاملة](https://www.youtube.com/@AymanComplete)
 - **عدد الفيديوهات:** ٤٥ • آخر تحديث للقائمة: ٣ فبراير ٢٠٢٦

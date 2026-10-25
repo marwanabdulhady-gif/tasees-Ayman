@@ -1,5 +1,8 @@
 # سلسلة السيرة النبوية — العهد المكي — م. أيمن عبد الرحيم (شيخ العمود)
 
+> ✅ **اكتملت تفريغات كل الحلقات** (ترجمات يوتيوب التلقائية بطوابع زمنية، عبر Supadata API) في مجلد [`transcripts/04-seerah-makkah-period/`](../../../transcripts/04-seerah-makkah-period/) — وهو النسخة الرسمية المعتمدة. الجدول أدناه فهرس للقائمة نفسها.
+
+
 - **قائمة التشغيل:** https://www.youtube.com/playlist?list=PL9saDKf7tQ7syHLZjUqS4JcZhUuRgGxFu
 - **القناة الرئيسية:** [أيمن عبدالرحيم، الأعمال الكاملة](https://www.youtube.com/@AymanComplete)
 - **عدد الفيديوهات:** ٦ • آخر تحديث للقائمة: ٣ فبراير ٢٠٢٦

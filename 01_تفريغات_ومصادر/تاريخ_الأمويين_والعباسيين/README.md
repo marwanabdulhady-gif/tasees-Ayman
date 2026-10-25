@@ -1,5 +1,8 @@
 # تاريخ الأمويين والعباسيين — م. أيمن عبد الرحيم
 
+> ✅ **اكتملت تفريغات كل الحلقات** (ترجمات يوتيوب التلقائية بطوابع زمنية، عبر Supadata API) في مجلد [`transcripts/01-umayyad-abbasid-history/`](../../../transcripts/01-umayyad-abbasid-history/) — وهو النسخة الرسمية المعتمدة. الجدول أدناه فهرس للقائمة نفسها.
+
+
 - **قائمة التشغيل:** https://www.youtube.com/playlist?list=PL9saDKf7tQ7tZIBOBtDxFgVBetGRl9KhO
 - **القناة الرئيسية:** [أيمن عبدالرحيم، الأعمال الكاملة](https://www.youtube.com/@AymanComplete)
 - **عدد الفيديوهات:** ٦ • آخر تحديث للقائمة: ٣ فبراير ٢٠٢٦

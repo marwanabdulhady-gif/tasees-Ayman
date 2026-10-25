@@ -1,5 +1,8 @@
 # دورة الوعي اللغوي (الدورة الكاملة) — م. أيمن عبد الرحيم
 
+> ✅ **اكتملت تفريغات كل الحلقات** (ترجمات يوتيوب التلقائية بطوابع زمنية، عبر Supadata API) في مجلد [`transcripts/02-linguistic-awareness/`](../../../transcripts/02-linguistic-awareness/) — وهو النسخة الرسمية المعتمدة. الجدول أدناه فهرس للقائمة نفسها.
+
+
 - **قائمة التشغيل:** https://www.youtube.com/playlist?list=PL9saDKf7tQ7usEdh1iKGgx69tgI5Vnfbp
 - **القناة الرئيسية:** [أيمن عبدالرحيم، الأعمال الكاملة](https://www.youtube.com/@AymanComplete)
 - **عدد الفيديوهات:** ٩ • آخر تحديث للقائمة: ١ فبراير ٢٠٢٦
