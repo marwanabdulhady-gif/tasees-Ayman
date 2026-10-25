@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generates docs/PAGE-INVENTORY.md from data/manifest.json for all 393 pages across the 3 atlases."""
+"""Generates docs/PAGE-INVENTORY.md from data/manifest.json for all 1,069 pages across the 5 atlases."""
 import json
 import os
 
@@ -26,13 +26,14 @@ VER_AR = {
 }
 
 lines = [
-    "# الجرد الكامل لصفحات الأطالس الأربعة (744 صفحة)",
+    "# الجرد الكامل لصفحات الأطالس الخمسة (1,069 صفحة)",
     "",
-    "يوثّق هذا الملف الجرد البنيوي الكامل لجميع صفحات ملفات PDF الأربعة (دون أي حذف أو إسقاط لأي صفحة):",
+    "يوثّق هذا الملف الجرد البنيوي الكامل لجميع صفحات ملفات PDF الخمسة (دون أي حذف أو إسقاط لأي صفحة):",
     "- **المجلد الأول (`maps8`):** خرائط التاريخ الإسلامي مجمع — **8 صفحات** (4 خرائط مزدوجة متجهية).",
     "- **المجلد الثاني (`seerah`):** الأطلس التاريخي لسيرة الرسول ﷺ — **264 صفحة**.",
     "- **المجلد الثالث (`abubakr`):** أطلس الخليفة أبي بكر الصديق رضي الله عنه — **121 صفحة**.",
     "- **المجلد الرابع (`umar`):** أطلس الخليفة عمر بن الخطاب رضي الله عنه — **351 صفحة**.",
+    "- **المجلد الخامس (`uthman`):** أطلس الخليفة عثمان بن عفان رضي الله عنه — **325 صفحة**.",
     "",
 ]
 
@@ -47,7 +48,6 @@ for vol in manifest["volumes"]:
         conf = f"{p['ocrConfidence']}%" if p["ocrConfidence"] is not None else "متجهي"
         hs_count = len(p.get("hotspots") or [])
         if vid == "maps8":
-            # Feature count from description or vector hotspots
             hs_str = "متجهي مفصول"
         else:
             hs_str = str(hs_count) if hs_count else "—"

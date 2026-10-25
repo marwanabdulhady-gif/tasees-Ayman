@@ -42,7 +42,7 @@ function isUsefulWord(text, conf) {
 
 async function processVolume(slug, concurrency) {
   const pagesMeta = metrics[slug];
-  const outDir = path.join(ROOT, "data/ocr");
+  const outDir = path.join(ROOT, ".cache/ocr_out");
   fs.mkdirSync(outDir, { recursive: true });
   const outFile = path.join(outDir, `${slug}.json`);
 
@@ -83,6 +83,10 @@ async function processVolume(slug, concurrency) {
       } else if (slug === "umar" && pnum >= 4 && pnum <= 346) {
         // Skip top decorative running header bar (~6.2% height)
         const topH = Math.round(pm.height * 0.062);
+        recOpts = { rectangle: { left: 0, top: topH, width: pm.width, height: pm.height - topH } };
+      } else if (slug === "uthman" && pnum >= 4 && pnum <= 308) {
+        // Skip top decorative running header bar (~6.0% height)
+        const topH = Math.round(pm.height * 0.06);
         recOpts = { rectangle: { left: 0, top: topH, width: pm.width, height: pm.height - topH } };
       }
 

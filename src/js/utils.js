@@ -151,6 +151,17 @@
     return true;
   }
 
+  async function gunzipBase64Json(b64) {
+    if (!b64 || typeof DecompressionStream !== "function") return null;
+    const bin = atob(b64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    const ds = new DecompressionStream("gzip");
+    const stream = new Blob([bytes]).stream().pipeThrough(ds);
+    const text = await new Response(stream).text();
+    return JSON.parse(text);
+  }
+
   // Decompress gzipped base64 SVG for maps8 vector pages
   const svgCache = new Map();
 
@@ -218,6 +229,7 @@
     clearStoredState,
     resolveAsset,
     isAssetAvailable,
+    gunzipBase64Json,
     getMaps8SvgText,
     CATEGORY_LABELS,
     VERIFICATION_LABELS,

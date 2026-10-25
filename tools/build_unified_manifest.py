@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
-Builds the unified source-of-truth content manifest across all 3 Arabic PDF Atlases:
+Builds the unified source-of-truth content manifest across all 5 Arabic PDF Atlases:
   1. maps8   — خرائط التاريخ الإسلامي مجمع.pdf (8 vector pages / 4 two-page spreads)
   2. seerah  — الأطلس التاريخي لسيرة الرسول صلى الله عليه وسلم (264 scanned pages)
   3. abubakr — أطلس الخليفة أبي بكر الصديق رضي الله عنه (121 scanned pages)
+  4. umar    — أطلس الخليفة عمر بن الخطاب رضي الله عنه (351 scanned pages)
+  5. uthman  — أطلس الخليفة عثمان بن عفان رضي الله عنه (325 scanned pages)
 
-Total: 393 pages, zero omissions, strict provenance & verification status on every item.
+Total: 1,069 pages, zero omissions, strict provenance & verification status on every item.
 Generates:
   - source/SOURCE_MANIFEST.json
   - data/manifest.json
-  - data/atlas-bundle.js       (offline file:// & http:// compatible data bundle)
-  - data/ocr-words-bundle.js   (compact OCR word bounding boxes for scanned pages)
+  - data/atlas-bundle.js       (offline file:// & http:// gzipped data bundle)
+  - data/ocr-words-bundle.js   (compact gzipped OCR word bounding boxes for scanned pages)
   - data/maps8-vectors.js      (compressed SVG vector layers for maps8 spreads/pages)
 """
 import base64
@@ -56,14 +58,30 @@ def file_hashes(path: str):
     return sz, h_md5.hexdigest(), h_sha.hexdigest()
 
 
+def load_ocr(slug: str):
+    for cand in (
+        os.path.join(ROOT, f".cache/ocr_out/{slug}.json"),
+        os.path.join(ROOT, f"data/ocr/{slug}.json"),
+    ):
+        if os.path.exists(cand):
+            return json.load(open(cand, encoding="utf-8"))
+    raise FileNotFoundError(f"Missing OCR JSON for {slug}")
+
+
+def gz_b64_json(obj) -> str:
+    raw = json.dumps(obj, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    return base64.b64encode(gzip.compress(raw, compresslevel=9)).decode("ascii")
+
+
 def main():
     raw_metrics = json.load(open(os.path.join(ROOT, "data/raw_page_metrics.json"), encoding="utf-8"))
     verified_idx = json.load(open(os.path.join(ROOT, "data/verified_indexes.json"), encoding="utf-8"))
     curated_maps = json.load(open(os.path.join(ROOT, "data/verified_curated_maps.json"), encoding="utf-8"))["pages"]
     maps8_atlas = json.load(open(os.path.join(ROOT, "data/maps8_atlas.json"), encoding="utf-8"))
-    ocr_seerah = json.load(open(os.path.join(ROOT, "data/ocr/seerah.json"), encoding="utf-8"))
-    ocr_abubakr = json.load(open(os.path.join(ROOT, "data/ocr/abubakr.json"), encoding="utf-8"))
-    ocr_umar = json.load(open(os.path.join(ROOT, "data/ocr/umar.json"), encoding="utf-8"))
+    ocr_seerah = load_ocr("seerah")
+    ocr_abubakr = load_ocr("abubakr")
+    ocr_umar = load_ocr("umar")
+    ocr_uthman = load_ocr("uthman")
 
     # 1. Source PDF cryptographic provenance
     pdf_sources = [
@@ -71,6 +89,7 @@ def main():
         ("seerah", "الأطلس التاريخي لسيرة الرسول.pdf", "1rAwQC3MDkzLwZWAJww2_wAWcN5sqiy9W", ".cache/source_pdfs/seerah.pdf"),
         ("abubakr", "أطلس الخليفة أبي بكر الصديق.pdf", "13LwaHK3q_ZrrPjmujtiimqL1I0JA85Gj", ".cache/source_pdfs/abubakr.pdf"),
         ("umar", "أطلس الخليفة عمر بن الخطاب.pdf", "1hRtdJvJKv3sFCR0IqJdAJO3ggQUA0_9J", ".cache/source_pdfs/umar.pdf"),
+        ("uthman", "أطلس الخليفة عثمان بن عفان.pdf", "13QmMhTCmLoHVDHVNShSTf2Zoutz2XHkZ", ".cache/source_pdfs/uthman.pdf"),
     ]
     source_manifest = []
     for slug, orig_name, drive_id, rel_p in pdf_sources:
@@ -134,6 +153,19 @@ def main():
             295: "الفصل الخامس: النظم الحضارية في عهد عمر رضي الله عنه",
             331: "الباب الرابع: وقفات مع عمر رضي الله عنه",
         },
+        "uthman": {
+            1: "غلاف أطلس الخليفة عثمان بن عفان رضي الله عنه",
+            9: "الباب الأول: عثمان بن عفان رضي الله عنه في العهد المكي",
+            23: "الباب الثاني: عثمان بن عفان رضي الله عنه في العهد المدني",
+            39: "الباب الثالث: خلافة عثمان بن عفان رضي الله عنه",
+            45: "الفصل الأول: الفتح الإسلامي على الجبهة الشرقية",
+            121: "الفصل الثاني: الفتح الإسلامي على الجبهة الشمالية",
+            147: "الفصل الثالث: الصراع الإسلامي البيزنطي في البحر الأبيض المتوسط (بحر الروم)",
+            171: "الفصل الرابع: استكمال الفتح الإسلامي على الجبهة الغربية مع الروم",
+            207: "الفصل الخامس: الفتنة الكبرى ومقتل الخليفة عثمان بن عفان رضي الله عنه",
+            269: "الباب الرابع: النظم الحضارية في عهد الخليفة عثمان بن عفان رضي الله عنه",
+            303: "الباب الخامس: بعض الأحاديث الصحيحة في فضائل الخليفة عثمان بن عفان من صحيح مسلم",
+        },
     }
 
     SPECIAL_PAGES = {
@@ -195,6 +227,53 @@ def main():
         ("umar", 349): ("فهرس الخرائط (٢/٢)", "index-reference"),
         ("umar", 350): ("فهرس الصور والأشكال", "index-reference"),
         ("umar", 351): ("المؤلف في سطور وخاتمة الكتاب", "cover-frontmatter"),
+        ("uthman", 2): ("صفحة العنوان الداخلي", "cover-frontmatter"),
+        ("uthman", 3): ("بيانات الفهرسة والنشر (مكتبة العبيكان ١٤٢٧هـ — ٢٠٠٦م)", "cover-frontmatter"),
+        ("uthman", 4): ("مقدمة الكتاب (١/٣)", "cover-frontmatter"),
+        ("uthman", 5): ("مقدمة الكتاب (٢/٣)", "cover-frontmatter"),
+        ("uthman", 6): ("مقدمة الكتاب (٣/٣)", "cover-frontmatter"),
+        ("uthman", 7): ("إهداء الكتاب", "cover-frontmatter"),
+        ("uthman", 8): ("صفحة فاصلة تمهيدية", "cover-frontmatter"),
+        ("uthman", 10): ("ظهر لوحة الباب الأول", "chapter-divider"),
+        ("uthman", 22): ("أهم مصادر ومراجع الباب الأول", "index-reference"),
+        ("uthman", 24): ("ظهر لوحة الباب الثاني", "chapter-divider"),
+        ("uthman", 38): ("أهم مصادر ومراجع الباب الثاني", "index-reference"),
+        ("uthman", 40): ("ظهر لوحة الباب الثالث", "chapter-divider"),
+        ("uthman", 43): ("كتب عثمان بن عفان رضي الله عنه بعد توليه الخلافة إلى عماله وأمراء الأجناد", "table-diagram"),
+        ("uthman", 44): ("صفحة فاصلة قبل الفصل الأول", "chapter-divider"),
+        ("uthman", 46): ("ظهر لوحة الفصل الأول (الفتح الإسلامي على الجبهة الشرقية)", "chapter-divider"),
+        ("uthman", 120): ("أهم مراجع الفصل الأول", "index-reference"),
+        ("uthman", 122): ("ظهر لوحة الفصل الثاني (الفتح الإسلامي على الجبهة الشمالية)", "chapter-divider"),
+        ("uthman", 146): ("أهم مصادر ومراجع الفصل الثاني", "index-reference"),
+        ("uthman", 148): ("ظهر لوحة الفصل الثالث (الصراع الإسلامي البيزنطي في البحر المتوسط)", "chapter-divider"),
+        ("uthman", 170): ("أهم مصادر ومراجع الفصل الثالث", "index-reference"),
+        ("uthman", 172): ("ظهر لوحة الفصل الرابع (الفتح الإسلامي على الجبهة الغربية)", "chapter-divider"),
+        ("uthman", 206): ("أهم مصادر ومراجع الفصل الرابع", "index-reference"),
+        ("uthman", 208): ("ظهر لوحة الفصل الخامس (الفتنة الكبرى ومقتل الخليفة عثمان)", "chapter-divider"),
+        ("uthman", 268): ("أهم مصادر ومراجع الباب الثالث", "index-reference"),
+        ("uthman", 270): ("ظهر لوحة الباب الرابع (النظم الحضارية)", "chapter-divider"),
+        ("uthman", 302): ("أهم مصادر ومراجع الباب الرابع", "index-reference"),
+        ("uthman", 304): ("ظهر لوحة الباب الخامس", "chapter-divider"),
+        ("uthman", 305): ("بعض الأحاديث الصحيحة في فضائل الخليفة عثمان بن عفان رضي الله عنه من صحيح مسلم", "narrative-text"),
+        ("uthman", 307): ("أهم مصادر ومراجع الباب الخامس", "index-reference"),
+        ("uthman", 308): ("لوحة ملاحق الكتاب وفهارسه", "chapter-divider"),
+        ("uthman", 309): ("فهرس العناوين والأبواب", "index-reference"),
+        ("uthman", 310): ("فهرس التراجم (١/٢)", "index-reference"),
+        ("uthman", 311): ("فهرس التراجم (٢/٢)", "index-reference"),
+        ("uthman", 312): ("فهرس الخرائط التاريخية والجغرافية (١/٧)", "index-reference"),
+        ("uthman", 313): ("فهرس الخرائط التاريخية والجغرافية (٢/٧)", "index-reference"),
+        ("uthman", 314): ("فهرس الخرائط التاريخية والجغرافية (٣/٧)", "index-reference"),
+        ("uthman", 315): ("فهرس الخرائط التاريخية والجغرافية (٤/٧)", "index-reference"),
+        ("uthman", 316): ("فهرس الخرائط التاريخية والجغرافية (٥/٧)", "index-reference"),
+        ("uthman", 317): ("فهرس الخرائط التاريخية والجغرافية (٦/٧)", "index-reference"),
+        ("uthman", 318): ("فهرس الخرائط التاريخية والجغرافية (٧/٧)", "index-reference"),
+        ("uthman", 319): ("فهرس الصور والأشكال (١/٦)", "index-reference"),
+        ("uthman", 320): ("فهرس الصور والأشكال (٢/٦)", "index-reference"),
+        ("uthman", 321): ("فهرس الصور والأشكال (٣/٦)", "index-reference"),
+        ("uthman", 322): ("فهرس الصور والأشكال (٤/٦)", "index-reference"),
+        ("uthman", 323): ("فهرس الصور والأشكال (٥/٦)", "index-reference"),
+        ("uthman", 324): ("فهرس الصور والأشكال (٦/٦) وخاتمة المطبوع", "index-reference"),
+        ("uthman", 325): ("المؤلف في سطور ومؤلفاته", "cover-frontmatter"),
     }
 
     volumes = []
@@ -280,7 +359,7 @@ def main():
             "featureCount": len(p_feats),
         })
 
-    # --- Helper for scanned volumes (seerah & abubakr) ---
+    # --- Helper for scanned volumes (seerah, abubakr, umar, uthman) ---
     def build_scanned_volume(slug, short_title, publisher, ocr_data):
         nonlocal global_idx
         vinfo = verified_idx[slug]
@@ -302,7 +381,9 @@ def main():
             end_p = ph.get("endPage", start_p)
             for p in range(start_p, end_p + 1):
                 suffix = f" ({p - start_p + 1}/{end_p - start_p + 1})" if end_p > start_p else ""
-                idx_by_page[p].append({"type": "photo", "title": ph["title"] + suffix, "indexPage": ph["indexPage"]})
+                idx_by_page[p].append({"type": "photo", "title": ph["title"] + suffix, "indexPage": ph["indexPage"], "note": ph.get("note")})
+        for bio in vinfo.get("biographies", []):
+            idx_by_page[bio["page"]].append({"type": "biography", "title": bio["title"], "indexPage": bio["indexPage"], "note": bio.get("note")})
 
         volumes.append({
             "id": slug,
@@ -319,6 +400,7 @@ def main():
                 "mapsCount": len(vinfo.get("maps", [])),
                 "tablesCount": len(vinfo.get("tables", [])),
                 "photosCount": len(vinfo.get("photos", [])),
+                "biographiesCount": len(vinfo.get("biographies", [])),
             },
         })
 
@@ -345,6 +427,7 @@ def main():
             map_entries = [e for e in entries if e["type"] == "map"]
             tbl_entries = [e for e in entries if e["type"] == "table"]
             pho_entries = [e for e in entries if e["type"] == "photo"]
+            bio_entries = [e for e in entries if e["type"] == "biography"]
 
             notes = []
             for e in entries:
@@ -375,10 +458,15 @@ def main():
                 category = "photo-landmark"
                 title_source = "verified-index"
                 vstatus = "verified-title-ocr-body"
+            elif bio_entries:
+                title = "تراجم: " + " — ".join(dict.fromkeys(b["title"] for b in bio_entries))
+                category = "narrative-text"
+                title_source = "verified-index"
+                vstatus = "verified-title-ocr-body"
             else:
                 # Prose / narrative / unindexed page — never invent a title!
                 category = "cover-frontmatter" if pnum <= 10 and slug == "seerah" else (
-                    "cover-frontmatter" if pnum <= 8 and slug in ("abubakr", "umar") else "narrative-text"
+                    "cover-frontmatter" if pnum <= 8 and slug in ("abubakr", "umar", "uthman") else "narrative-text"
                 )
                 title = f"صفحة {pnum} — {sec['title']}"
                 title_source = "section-page-ref"
@@ -396,11 +484,11 @@ def main():
                 desc_parts.append("تتضمن أيضًا جدولًا/شكلًا: " + "، ".join(t["title"] for t in tbl_entries) + ".")
             if pho_entries and (map_entries or tbl_entries):
                 desc_parts.append("تتضمن صورًا موثقة في الفهرس: " + "، ".join(ph["title"] for ph in pho_entries) + ".")
+            if bio_entries and (map_entries or tbl_entries or pho_entries):
+                desc_parts.append("تتضمن ترجمة موثقة لـ: " + "، ".join(b["title"] for b in bio_entries) + ".")
 
             hotspots = cur.get("hotspots", [])
-            legends = []
-            for lg in cur.get("legends", []):
-                legends.append(lg)
+            legends = list(cur.get("legends", []))
 
             # Save compact OCR word boxes for search-highlighting & optional OCR layer
             if ocr_p.get("words"):
@@ -445,9 +533,9 @@ def main():
     build_scanned_volume("seerah", "أطلس سيرة الرسول ﷺ", "مكتبة العبيكان — الرياض", ocr_seerah)
     build_scanned_volume("abubakr", "أطلس أبي بكر الصديق", "مكتبة العبيكان — الرياض (سلسلة أطلس تاريخ الخلفاء الراشدين ١)", ocr_abubakr)
     build_scanned_volume("umar", "أطلس عمر بن الخطاب", "مكتبة العبيكان — الرياض (سلسلة أطلس تاريخ الخلفاء الراشدين ٢)", ocr_umar)
+    build_scanned_volume("uthman", "أطلس عثمان بن عفان", "مكتبة العبيكان — الرياض (سلسلة أطلس تاريخ الخلفاء الراشدين ٣)", ocr_uthman)
 
     # --- Build Cross-Atlas Unified Gazetteer (Verified Entries Only!) ---
-    # 1. Start with all verified gazetteer entries from maps8
     gaz_by_norm = {}
 
     def add_gaz_occurrence(name, kind, occ):
@@ -467,7 +555,6 @@ def main():
             g["variants"].append(name)
         if kind and kind not in g["kinds"]:
             g["kinds"].append(kind)
-        # avoid duplicate page+feature
         key = (occ["pageId"], occ.get("featureId"), occ.get("source"))
         if not any((x["pageId"], x.get("featureId"), x.get("source")) == key for x in g["occurrences"]):
             g["occurrences"].append(occ)
@@ -500,9 +587,9 @@ def main():
             "source": "maps8-composite-label",
         })
 
-    # 2. Add curated map hotspots from scanned atlases (seerah, abubakr, umar)
+    # 2. Add curated map hotspots & verified printed index entries from scanned atlases
     for p in all_pages:
-        if p["volumeId"] in ("seerah", "abubakr", "umar"):
+        if p["volumeId"] in ("seerah", "abubakr", "umar", "uthman"):
             for hs in p["hotspots"]:
                 add_gaz_occurrence(hs["name"], hs["kind"], {
                     "volumeId": p["volumeId"],
@@ -514,9 +601,13 @@ def main():
                     "confidence": hs.get("conf", "high"),
                     "source": "verified-hotspot",
                 })
-            # 3. Also add verified map/photo/table index entries as searchable thematic/place encyclopedia items
             for ie in p["indexEntries"]:
-                kind_map = {"map": "map-topic", "table": "table-topic", "photo": "landmark"}
+                kind_map = {
+                    "map": "map-topic",
+                    "table": "table-topic",
+                    "photo": "landmark",
+                    "biography": "person",
+                }
                 add_gaz_occurrence(ie["title"], kind_map.get(ie["type"], "other"), {
                     "volumeId": p["volumeId"],
                     "pageId": p["id"],
@@ -527,11 +618,10 @@ def main():
                     "source": f"printed-{ie['type']}-index",
                 })
 
-    # 4. Cross-link known canonical geographic names from maps8 against verified titles in seerah & abubakr
-    # (Strict exact normalized token/phrase match against verified index titles ONLY — never unverified OCR!)
+    # 3. Cross-link known canonical geographic names against verified index titles ONLY
     verified_pages = [p for p in all_pages if p["titleSource"] in ("verified-index", "verified-visual")]
     for nk, g in list(gaz_by_norm.items()):
-        if len(nk) < 3 or " " in nk and len(nk) > 25:
+        if len(nk) < 3 or (" " in nk and len(nk) > 25):
             continue
         pattern = re.compile(r"(?:^|\s)" + re.escape(nk) + r"(?:\s|$)")
         for vp in verified_pages:
@@ -631,6 +721,33 @@ def main():
             "note": "مقارنة عابرة للمجلدات بين انطلاق الجيوش الأربعة إلى الشام وتنظيمها بنظام الكراديس في معركة اليرموك.",
         },
         {
+            "id": "cmp-dhat-al-sawari-hypotheses",
+            "title": "موقع معركة ذات الصواري البحرية (٣١ هـ): الرأي الأول (ساحل أنطاليا) مقابل الرأي الثاني (مرسى مطروح)",
+            "leftId": "uthman-157",
+            "rightId": "uthman-158",
+            "mode": "pages",
+            "syncAllowed": True,
+            "note": "مرسومتان على خريطة الأساس نفسها لشرق البحر المتوسط في أطلس الخليفة عثمان بن عفان — يتيح شريط السحب مقارنة مسارات الأساطيل بين الرأيين الجغرافيين بدقة عالية.",
+        },
+        {
+            "id": "cmp-uthman-start-vs-peak",
+            "title": "حدود الخلافة الراشدة في مستهل عهد عثمان (٢٤ هـ) مقابل أقصى اتساعها في خلافته (٣٥ هـ)",
+            "leftId": "uthman-042",
+            "rightId": "uthman-295",
+            "mode": "pages",
+            "syncAllowed": False,
+            "note": "مقارنة موضوعية تُظهر التوسع غربًا في إفريقية (تونس) وبحرًا في قبرص وشمالًا في أرمينية وشرقًا حتى جيحون وتخوم السند (مقياسان مختلفان).",
+        },
+        {
+            "id": "cmp-uthman-kharaj-vs-borders",
+            "title": "توزيع الجزية والخراج في الأمصار مقابل أقصى حدود الخلافة في عهد عثمان",
+            "leftId": "uthman-293",
+            "rightId": "uthman-295",
+            "mode": "pages",
+            "syncAllowed": True,
+            "note": "مرسومتان على الخريطة القارية نفسها في الباب الرابع من أطلس الخليفة عثمان بن عفان (إزاحة < ٢ بكسل) — تدعم المزامنة وشريط السحب.",
+        },
+        {
             "id": "cmp-badr-vs-uhud",
             "title": "مخطط غزوة بدر الكبرى (٢ هـ) مقابل مخطط غزوة أحد (٣ هـ)",
             "leftId": "seerah-159",
@@ -669,10 +786,26 @@ def main():
             "seerahIndexedMaps": len(verified_idx["seerah"]["maps"]),
             "abubakrIndexedMaps": len(verified_idx["abubakr"]["maps"]),
             "umarIndexedMaps": len(verified_idx["umar"]["maps"]),
-            "totalDistinctMaps": 4 + len(verified_idx["seerah"]["maps"]) + len(verified_idx["abubakr"]["maps"]) + len(verified_idx["umar"]["maps"]),
+            "uthmanIndexedMaps": len(verified_idx["uthman"]["maps"]),
+            "totalDistinctMaps": (
+                4
+                + len(verified_idx["seerah"]["maps"])
+                + len(verified_idx["abubakr"]["maps"])
+                + len(verified_idx["umar"]["maps"])
+                + len(verified_idx["uthman"]["maps"])
+            ),
         },
-        "indexedTablesAndDiagrams": len(verified_idx["seerah"]["tables"]),
-        "indexedPhotographs": len(verified_idx["seerah"]["photos"]) + len(verified_idx["abubakr"]["photos"]) + len(verified_idx["umar"]["photos"]),
+        "indexedTablesAndDiagrams": (
+            len(verified_idx["seerah"]["tables"])
+            + len(verified_idx["uthman"]["tables"])
+        ),
+        "indexedBiographies": len(verified_idx["uthman"]["biographies"]),
+        "indexedPhotographs": (
+            len(verified_idx["seerah"]["photos"])
+            + len(verified_idx["abubakr"]["photos"])
+            + len(verified_idx["umar"]["photos"])
+            + len(verified_idx["uthman"]["photos"])
+        ),
         "categories": dict(cat_counts),
         "verificationBreakdown": dict(vstatus_counts),
         "searchableGazetteerEntries": len(gazetteer),
@@ -684,14 +817,14 @@ def main():
             "totalVerifiedHotspots": maps8_hotspot_count + curated_hotspot_count,
             "ocrSearchableWordBoxes": total_ocr_words,
         },
-        "pagesRequiringManualReviewCount": len(low_ocr_pages) + 3,  # +3 maps8 pages with medium/low glyph notes
+        "pagesRequiringManualReviewCount": len(low_ocr_pages) + 3,
         "lowConfidenceOcrPageIds": low_ocr_pages,
     }
 
     manifest = {
-        "schemaVersion": "2.1",
+        "schemaVersion": "2.2",
         "title": "منصة الأطالس الجغرافية والتاريخية العربية التفاعلية",
-        "subtitle": "خرائط التاريخ الإسلامي · أطلس سيرة الرسول ﷺ · أطلس أبي بكر الصديق · أطلس عمر بن الخطاب",
+        "subtitle": "خرائط التاريخ الإسلامي · أطلس سيرة الرسول ﷺ · أطلس أبي بكر الصديق · أطلس عمر بن الخطاب · أطلس عثمان بن عفان",
         "generatedAt": "2026-10-25",
         "sources": source_manifest,
         "stats": stats,
@@ -703,21 +836,20 @@ def main():
 
     out_manifest = os.path.join(ROOT, "data/manifest.json")
     with open(out_manifest, "w", encoding="utf-8") as f:
-        json.dump(manifest, f, ensure_ascii=False, indent=1)
+        json.dump(manifest, f, ensure_ascii=False, separators=(",", ":"))
 
-    # Write offline script bundle (works on file:// without fetch CORS!)
+    # Write compact gzipped offline script bundles (works on file:// & http:// via DecompressionStream)
     out_bundle = os.path.join(ROOT, "data/atlas-bundle.js")
     with open(out_bundle, "w", encoding="utf-8") as f:
-        f.write("window.__ATLAS_MANIFEST__ = ")
-        json.dump(manifest, f, ensure_ascii=False, separators=(",", ":"))
-        f.write(";\n")
+        f.write('window.__ATLAS_MANIFEST_GZ__ = "')
+        f.write(gz_b64_json(manifest))
+        f.write('";\n')
 
-    # Write OCR word bounding boxes bundle (works on file:// without fetch CORS!)
     out_words = os.path.join(ROOT, "data/ocr-words-bundle.js")
     with open(out_words, "w", encoding="utf-8") as f:
-        f.write("window.__ATLAS_OCR_WORDS__ = ")
-        json.dump(ocr_words_map, f, ensure_ascii=False, separators=(",", ":"))
-        f.write(";\n")
+        f.write('window.__ATLAS_OCR_WORDS_GZ__ = "')
+        f.write(gz_b64_json(ocr_words_map))
+        f.write('";\n')
 
     # Write maps8 compressed SVG vector bundle (works on file:// & http://)
     svg_gz_map = {}
@@ -733,7 +865,7 @@ def main():
         json.dump(svg_gz_map, f, separators=(",", ":"))
         f.write(";\n")
 
-    print("Unified manifest built successfully!")
+    print("Unified 5-volume manifest built successfully!")
     print(json.dumps(stats, ensure_ascii=False, indent=2))
     for fn in [out_manifest, out_bundle, out_words, out_vecs]:
         print(f"  {os.path.relpath(fn, ROOT)}: {os.path.getsize(fn)/1024/1024:.2f} MB")

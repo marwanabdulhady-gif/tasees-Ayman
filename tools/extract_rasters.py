@@ -101,15 +101,18 @@ if __name__ == "__main__":
     seerah_pdf = os.path.join(ROOT, ".cache/source_pdfs/seerah.pdf")
     abubakr_pdf = os.path.join(ROOT, ".cache/source_pdfs/abubakr.pdf")
     umar_pdf = os.path.join(ROOT, ".cache/source_pdfs/umar.pdf")
+    uthman_pdf = os.path.join(ROOT, ".cache/source_pdfs/uthman.pdf")
 
     if (not only or "maps8" in only) and os.path.exists(maps8_pdf):
         out["maps8"] = render_vector(maps8_pdf, "maps8", 200)
     if (not only or "seerah" in only) and os.path.exists(seerah_pdf):
-        out["seerah"] = extract_scanned(seerah_pdf, "seerah", 82)
+        out["seerah"] = extract_scanned(seerah_pdf, "seerah", 60)
     if (not only or "abubakr" in only) and os.path.exists(abubakr_pdf):
-        out["abubakr"] = extract_scanned(abubakr_pdf, "abubakr", 82)
+        out["abubakr"] = extract_scanned(abubakr_pdf, "abubakr", 60)
     if (not only or "umar" in only) and os.path.exists(umar_pdf):
-        out["umar"] = extract_scanned(umar_pdf, "umar", 68)
+        out["umar"] = extract_scanned(umar_pdf, "umar", 58)
+    if (not only or "uthman" in only) and os.path.exists(uthman_pdf):
+        out["uthman"] = extract_scanned(uthman_pdf, "uthman", 56)
 
     os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
     with open(raw_meta_path, "w", encoding="utf-8") as f:

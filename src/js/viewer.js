@@ -228,12 +228,13 @@
     const imgSrc = resolveAsset(page.pageAsset);
 
     if (!assetAvailable) {
+      const totalPagesCount = (window.__ATLAS_MANIFEST__ && window.__ATLAS_MANIFEST__.pages && window.__ATLAS_MANIFEST__.pages.length) || 1069;
       worldEl.innerHTML = `
         <div class="page-frame" style="width:${w}px;height:${h}px;padding:48px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:#faf6ec;direction:rtl">
           <span class="badge badge-warn" style="margin-bottom:12px">النسخة المحمولة المختصرة (ملف HTML واحد)</span>
           <h3 style="margin:0 0 8px 0">${escapeHtml(page.title)}</h3>
           <p style="max-width:520px;color:#43515c;font-size:14px">
-            للحفاظ على خفة النسخة المحمولة ذات الملف الواحد، ضُمِّنت الخرائط المتجهية المزدوجة كاملةً مع ٣١ خريطة محورية عالية الدقة وجميع البيانات والفهارس والنصوص القابلة للبحث لـ ٧٤٤ صفحة.
+            للحفاظ على خفة النسخة المحمولة ذات الملف الواحد، ضُمِّنت الخرائط المتجهية المزدوجة كاملةً مع ٤٤ خريطة محورية عالية الدقة وجميع البيانات والفهارس والنصوص القابلة للبحث لـ ${toArabicDigits(totalPagesCount)} صفحة.
             لعرض الصورة النقطية الكاملة لهذه الصفحة (ص ${toArabicDigits(page.sourcePage)})، افتح الحزمة الكاملة غير المتصلة بالإنترنت (<code>index.html</code> مع مجلد <code>assets/</code>).
           </p>
         </div>`;
@@ -278,6 +279,7 @@
       if (tokens.length) {
         for (const wItem of ocrWords) {
           const [wt, x0, y0, x1, y1] = wItem;
+          if (page.volumeId !== "maps8" && page.sourcePage >= 9 && y1 < h * 0.09) continue;
           const wn = window.AtlasUtils.normAr(wt);
           if (wn && tokens.some((tk) => wn.includes(tk) || (wn.length >= 3 && tk.includes(wn)))) {
             const pad = 4;

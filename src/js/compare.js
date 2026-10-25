@@ -55,7 +55,7 @@
         ...presets.map(
           (c) => `<option value="${c.id}" ${c.id === this.activePresetId ? "selected" : ""}>${escapeHtml(c.title)}</option>`
         ),
-        `<option value="custom" ${this.activePresetId === "custom" ? "selected" : ""}>اختيار حرّ بين أي خريطتين في الأطالس الأربعة…</option>`,
+        `<option value="custom" ${this.activePresetId === "custom" ? "selected" : ""}>اختيار حرّ بين أي خريطتين في الأطالس الخمسة…</option>`,
       ].join("");
 
       const syncWarn =
@@ -88,7 +88,7 @@
           </div>
 
           <div style="padding:6px 16px;background:var(--bg-muted);border-block-end:1px solid var(--border-subtle);font-size:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-            <span>${curPreset ? escapeHtml(curPreset.note) : "قارن بين أي خريطتين من الأطالس الأربعة جنبًا إلى جنب."}</span>
+            <span>${curPreset ? escapeHtml(curPreset.note) : "قارن بين أي خريطتين من الأطالس الخمسة جنبًا إلى جنب."}</span>
             ${
               canSwipe && this.swipeMode
                 ? `<div style="display:flex;align-items:center;gap:8px">

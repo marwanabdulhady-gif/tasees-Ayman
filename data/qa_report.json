@@ -1,23 +1,23 @@
 {
-  "timestamp": "2026-10-25T20:24:19.005Z",
-  "total": 29,
-  "passed": 29,
+  "timestamp": "2026-10-25T20:56:42.621Z",
+  "total": 31,
+  "passed": 31,
   "results": [
     {
       "section": "12.1",
-      "name": "Total PDF pages equals 744 (8 + 264 + 121 + 351) with zero omissions",
+      "name": "Total PDF pages equals 1069 (8 + 264 + 121 + 351 + 325) with zero omissions",
       "ok": true,
-      "detail": "744 pages"
+      "detail": "1069 pages"
     },
     {
       "section": "12.1",
-      "name": "Volume page counts match all 4 source PDFs",
+      "name": "Volume page counts match all 5 source PDFs",
       "ok": true,
       "detail": ""
     },
     {
       "section": "12.1",
-      "name": "Every single page (744/744) has both full-res WebP and thumbnail asset on disk",
+      "name": "Every single page (1069/1069) has both full-res WebP and thumbnail asset on disk",
       "ok": true,
       "detail": "missing=0"
     },
@@ -31,7 +31,7 @@
       "section": "12.1",
       "name": "Low-confidence OCR pages are explicitly flagged for manual review",
       "ok": true,
-      "detail": "62 flagged"
+      "detail": "69 flagged"
     },
     {
       "section": "12.4",
@@ -73,13 +73,13 @@
       "section": "12.3",
       "name": "Arabic search normalizes Alef variants (أ/إ/ا) and Ta-Marbuta (ة/ه)",
       "ok": true,
-      "detail": "hits=24"
+      "detail": "hits=40"
     },
     {
       "section": "12.3",
       "name": "Arabic search normalizes Alef Maqsura and Ya (ى ↔ ي)",
       "ok": true,
-      "detail": "hits=15"
+      "detail": "hits=23"
     },
     {
       "section": "12.3",
@@ -125,9 +125,21 @@
     },
     {
       "section": "12.2",
-      "name": "TOC gallery renders all 744 pages across 4 volumes",
+      "name": "Switching to Volume 5 (أطلس عثمان بن عفان) loads verified map",
       "ok": true,
-      "detail": "cards=744"
+      "detail": "حدود الدولة الإسلامية في مستهل خلافة عثمان بن عفان رضي الله عنه"
+    },
+    {
+      "section": "12.3",
+      "name": "Search supports Volume 5 direct jump («عثمان ١٥٧» -> معركة ذات الصواري)",
+      "ok": true,
+      "detail": "موقع معركة ذات الصواري سنة ٣١ هـ (الرأي الأول) انتقال مباشر — أطلس عثمان بن عفان ص ١٥٧ ضمن «الفصل الثالث: الصراع الإسلامي البيزنطي في البحر الأبيض المتوسط (بحر الروم)». موقع معركة ذات الصواري البحرية سنة ٣١ هـ — الرأي الجغ… أطلس عثمان بن عفان · ص ١٥٧"
+    },
+    {
+      "section": "12.2",
+      "name": "TOC gallery renders all 1069 pages across 5 volumes",
+      "ok": true,
+      "detail": "cards=1069"
     },
     {
       "section": "12.2",
@@ -161,9 +173,9 @@
     },
     {
       "section": "12.4",
-      "name": "Single-File Portable HTML Edition loads offline via file:// with all 744 pages indexed",
+      "name": "Single-File Portable HTML Edition loads offline via file:// with all 1069 pages indexed",
       "ok": true,
-      "detail": "pages=744, vecHotspots=165"
+      "detail": "pages=1069, vecHotspots=165"
     },
     {
       "section": "12.4",
