@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="Cairo, sans-serif">
+<rect width="1200" height="675" fill="#0e1b2e"/>
+<text x="600" y="58" fill="#e8f1f8" font-size="32" text-anchor="middle" font-weight="bold">إزاي بيتشقق المجتمع؟ تشريح أربع مراحل (نموذج: نهاية عهد عثمان)</text>
+<g font-size="21" text-anchor="middle" fill="#e8f1f8">
+<rect x="60" y="100" width="250" height="140" rx="12" fill="#123a5c" stroke="#f2b134" stroke-width="3"/>
+<text x="185" y="130" fill="#bcd6e6" font-size="18" text-anchor="middle" >المرحلة ١</text>
+<text x="185" y="162" fill="#e8f1f8" font-size="21" text-anchor="middle" >مظالم جزئية حقيقية</text>
+<text x="185" y="192" fill="#bcd6e6" font-size="15" text-anchor="middle" >شكاوى فيها صدق وفيها مبالغة</text>
+<text x="185" y="214" fill="#bcd6e6" font-size="14" text-anchor="middle" >لا مؤامرة من العدم ولا ظلم محض</text>
+<text x="326" y="176" fill="#7fa3bb" font-size="30">←</text>
+<rect x="347" y="100" width="250" height="140" rx="12" fill="#123a5c" stroke="#39c0ba" stroke-width="3"/>
+<text x="472" y="130" fill="#bcd6e6" font-size="18" text-anchor="middle" >المرحلة ٢</text>
+<text x="472" y="162" fill="#e8f1f8" font-size="21" text-anchor="middle" >القنوات تشتغل</text>
+<text x="472" y="192" fill="#bcd6e6" font-size="15" text-anchor="middle" >وفود · تحقيق · عزل ولاة</text>
+<text x="472" y="214" fill="#bcd6e6" font-size="14" text-anchor="middle" >نظام صحي شغال سنين</text>
+<text x="613" y="176" fill="#7fa3bb" font-size="30">←</text>
+<rect x="634" y="100" width="250" height="140" rx="12" fill="#123a5c" stroke="#f2b134" stroke-width="3"/>
+<text x="759" y="130" fill="#bcd6e6" font-size="18" text-anchor="middle" >المرحلة ٣</text>
+<text x="759" y="162" fill="#e8f1f8" font-size="21" text-anchor="middle" >الإشاعة المنظمة</text>
+<text x="759" y="192" fill="#bcd6e6" font-size="15" text-anchor="middle" >غموض+أهمية · رسائل مزورة</text>
+<text x="759" y="214" fill="#bcd6e6" font-size="14" text-anchor="middle" >تحشيد الأمصار على الخليفة</text>
+<text x="900" y="176" fill="#7fa3bb" font-size="30">←</text>
+<rect x="921" y="100" width="250" height="140" rx="12" fill="#123a5c" stroke="#e05252" stroke-width="3"/>
+<text x="1046" y="130" fill="#bcd6e6" font-size="18" text-anchor="middle" >المرحلة ٤</text>
+<text x="1046" y="162" fill="#e8f1f8" font-size="21" text-anchor="middle" >حصار ودم</text>
+<text x="1046" y="192" fill="#bcd6e6" font-size="15" text-anchor="middle" >نقطة اللاعودة</text>
+<text x="1046" y="214" fill="#bcd6e6" font-size="14" text-anchor="middle" >دم الخليفة الحرام — التشقق بقى حربًا</text>
+</g>
+<g font-size="21" fill="#bcd6e6" text-anchor="middle">
+<rect x="80" y="280" width="1040" height="60" rx="12" fill="#0f2740" stroke="#0f2740" stroke-width="0"/>
+<text x="600" y="318" fill="#e8f1f8" font-size="20" text-anchor="middle" >إنجازات أولًا — الترتيب منهجي مش مجاملة: أقصى اتساع · أول أسطول (ذات الصواري) · المصحف الإمام</text>
+<rect x="80" y="354" width="1040" height="60" rx="12" fill="#0f2740" stroke="#0f2740" stroke-width="0"/>
+<text x="600" y="392" fill="#e8f1f8" font-size="20" text-anchor="middle" >المصحف الإمام: «كل حرف في مصحفك وراه قرار إداري» — توحيد على لغة قريش حفظ النص مع اتساع الأمصار</text>
+<rect x="80" y="428" width="1040" height="60" rx="12" fill="#0f2740" stroke="#0f2740" stroke-width="0"/>
+<text x="600" y="466" fill="#e8f1f8" font-size="20" text-anchor="middle" >قواعد الأدب الأربع: نقد مؤسسي لا اتهام عام · «منعرفش كل حاجة» · الدم حرام بالإجماع · الصحابة مجتهدون</text>
+<rect x="80" y="502" width="1040" height="60" rx="12" fill="#0f2740" stroke="#0f2740" stroke-width="0"/>
+<text x="600" y="540" fill="#e8f1f8" font-size="20" text-anchor="middle" >القاعدة العامة: الشكوى المشروعة لما ما تلاقيش علاجًا كافيًا بتتحول لوقود — والوقود بيدور على شرارة</text>
+</g>
+<text x="600" y="640" fill="#7fa3bb" font-size="20" text-anchor="middle">مشروع تأسيس — الوحدة 5 v0.4 — الأسبوع 20 — بلا تجسيد</text>
+</svg>
