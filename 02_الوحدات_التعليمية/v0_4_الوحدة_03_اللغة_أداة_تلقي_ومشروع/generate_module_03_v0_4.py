@@ -150,21 +150,21 @@ def md_to_docx(md_path, doc, heading_offset=0):
 def build_docx():
     made = []
     # 01 facilitator guide
-    d = init_doc('دليل الميسر', 'الوحدة 1 v0.3 | الاستعداد والتشخيص والتفكير | دمج قوائم يوتيوب + الحلقة المسموعة + البصريات')
+    d = init_doc('دليل الميسر', 'الوحدة 3 v0.4 | اللغة: أداة تلقي ومشروع (أسابيع 9–12)')
     para(d, DISCLAIMER, 9, False, RED, 10)
     md_to_docx(SRC/'01_facilitator_guide_module_03_v0_4.md', d)
     d.save(OUT/'01_facilitator_guide_module_03_v0_4.docx'); made.append(OUT/'01_facilitator_guide_module_03_v0_4.docx')
     # 02 workbook
-    d = init_doc('دفتر المتعلم', 'الوحدة 1 v0.3 | مهام أسبوعية + دفتر الحلقة المسموعة')
+    d = init_doc('دفتر المتعلم', 'الوحدة 3 v0.4 | مهام أسبوعية W9–W12 + دفتر الحلقة المسموعة')
     para(d, DISCLAIMER, 9, False, RED, 10)
     md_to_docx(SRC/'02_learner_workbook_module_03_v0_4.md', d)
     d.save(OUT/'02_learner_workbook_module_03_v0_4.docx'); made.append(OUT/'02_learner_workbook_module_03_v0_4.docx')
     # 03 cards
-    d = init_doc('بطاقات الأنشطة', 'الوحدة 1 v0.3 | A1–A8 + الإضافات: A0 الحلقة المسموعة، A9 قراءة المشجر، A10 أعد الحكاية')
+    d = init_doc('بطاقات الأنشطة', 'الوحدة 3 v0.4 | U3-A1–A8 + A0 الحلقة المسموعة + A9 قراءة المشجر')
     md_to_docx(SRC/'03_activity_cards_module_03_v0_4.md', d)
     d.save(OUT/'03_activity_cards_module_03_v0_4.docx'); made.append(OUT/'03_activity_cards_module_03_v0_4.docx')
     # 04 registry + glossary (from CSVs)
-    d = init_doc('سجل المصادر والمصطلحات', 'الوحدة 1 v0.3 | سجل الموارد (35 صفًا) + المصطلحات (26) — من ملفات CSV المرجعية')
+    d = init_doc('سجل المصادر والمصطلحات', 'الوحدة 3 v0.4 | سجل الموارد (18 صفًا) + المعجم (11) — من ملفات CSV المرجعية')
     rows = list(csv.reader(open(SRC/'04_resource_registry_module_03_v0_4.csv', encoding='utf-8')))
     para(d, 'سجل الموارد', 15, True, NAVY, 6)
     heads = ['المعرّف','الفئة','العنوان','الأسبوع','الدور','الموضع','حالة التحقق']
@@ -176,15 +176,19 @@ def build_docx():
           [[r[0],r[1],r[2],r[3]] for r in grows[1:]], 8)
     d.save(OUT/'04_resource_registry_and_glossary_module_03_v0_4.docx'); made.append(OUT/'04_resource_registry_and_glossary_module_03_v0_4.docx')
     # 05 assessment and pilot (gate + protocol)
-    d = init_doc('بوابة النشر وبروتوكول التجريب', 'الوحدة 1 v0.3 | G1–G13 + تجربة الحلقة المسموعة والبصريات')
+    d = init_doc('بوابة النشر وبروتوكول التجريب', 'الوحدة 3 v0.4 | G1–G13 + بروتوكول التجريب')
     md_to_docx(SRC/'06_release_gate_and_revision_note_module_03_v0_4.md', d)
     md_to_docx(SRC/'07_pilot_protocol_module_03_v0_4.md', d)
     d.save(OUT/'05_assessment_and_pilot_module_03_v0_4.docx'); made.append(OUT/'05_assessment_and_pilot_module_03_v0_4.docx')
     # 14 session scripts (the star asset)
-    d = init_doc('نصوص الحلقات — بصوت أيمن (أسلوب مستوحى)', 'الوحدة 1 v0.3 | 4 حلقات × 15–20 دقيقة | ' + DATE_AR)
+    d = init_doc('نصوص الحلقات — بصوت أيمن (أسلوب مستوحى)', 'الوحدة 3 v0.4 | 4 حلقات × 15–20 دقيقة | ' + DATE_AR)
     para(d, DISCLAIMER, 9.5, True, RED, 10)
     md_to_docx(SRC/'10_session_scripts_module_03_v0_4.md', d)
     d.save(OUT/'14_session_scripts_module_03_v0_4.docx'); made.append(OUT/'14_session_scripts_module_03_v0_4.docx')
+    # 09 roots ladder (30/90/270)
+    d = init_doc('الثلاثون جذرًا ومدارجها: 30 ← 90 ← 270', 'الوحدة 3 v0.4 | إعادة بناء من مصادر الدورة المذكورة (Quran Corpus/معجم الخضر) — الدورة الصوتية هدف جلب')
+    md_to_docx(SRC/'09_الثلاثون_جذراً_ومدارجها_30_90_270_v0_1.md', d)
+    d.save(OUT/'09_roots_ladder_30_90_270_module_03_v0_4.docx'); made.append(OUT/'09_roots_ladder_30_90_270_module_03_v0_4.docx')
     return made
 
 # ---------------- XLSX ----------------
