@@ -2,6 +2,10 @@ name: Fetch YouTube transcripts
 
 on:
   workflow_dispatch:
+    inputs:
+      supadata_key:
+        description: Supadata API key (only if the SUPADATA_API_KEY secret is not set)
+        required: false
   push:
     paths:
       - transcripts/playlists.json
@@ -25,6 +29,14 @@ jobs:
       YT_COOKIES_FILE: ${{ github.workspace }}/../cookies.txt
     steps:
       - uses: actions/checkout@v4
+
+      - name: Use Supadata key from run input (masked)
+        run: |
+          key=$(jq -r '.inputs.supadata_key // empty' "$GITHUB_EVENT_PATH")
+          if [ -n "$key" ] && [ -z "$SUPADATA_API_KEY" ]; then
+            echo "::add-mask::$key"
+            echo "SUPADATA_API_KEY=$key" >> "$GITHUB_ENV"
+          fi
 
       - uses: actions/setup-python@v5
         with:
