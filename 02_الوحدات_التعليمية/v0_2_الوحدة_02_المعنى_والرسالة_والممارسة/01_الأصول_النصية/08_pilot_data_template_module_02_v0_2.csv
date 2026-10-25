@@ -1,0 +1,32 @@
+record_type,participant_code,track,week_or_timepoint,item_or_metric,value,optional_comment_or_evidence,owner,privacy_note
+consent,P001,explorer,pre,consent_confirmed,yes,,facilitator,Separate key; restricted access
+baseline,P001,explorer,pre,task_A_source_value_boundary_0_4,,,researcher,No ranking
+baseline,P001,explorer,pre,task_B_optional_practice_boundary_0_4,,,researcher,No ranking
+survey,P001,explorer,week5,clarity_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week5,safety_to_ask_or_pass_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week5,workload_fit_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week5,boundaries_understood_1_5,,,facilitator,Aggregate only
+observation,GROUP,all,week5,source_value_practice_separations_count,,,observer,No names
+observation,GROUP,all,week5,pressure_or_measurement_of_practice_count,,,observer,Immediate review; no names
+survey,P001,explorer,week6,clarity_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week6,safety_to_ask_or_pass_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week6,workload_fit_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week6,boundaries_understood_1_5,,,facilitator,Aggregate only
+observation,GROUP,all,week6,source_value_practice_separations_count,,,observer,No names
+observation,GROUP,all,week6,pressure_or_measurement_of_practice_count,,,observer,Immediate review; no names
+survey,P001,explorer,week7,clarity_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week7,safety_to_ask_or_pass_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week7,workload_fit_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week7,boundaries_understood_1_5,,,facilitator,Aggregate only
+observation,GROUP,all,week7,source_value_practice_separations_count,,,observer,No names
+observation,GROUP,all,week7,pressure_or_measurement_of_practice_count,,,observer,Immediate review; no names
+survey,P001,explorer,week8,clarity_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week8,safety_to_ask_or_pass_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week8,workload_fit_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week8,boundaries_understood_1_5,,,facilitator,Aggregate only
+observation,GROUP,all,week8,source_value_practice_separations_count,,,observer,No names
+observation,GROUP,all,week8,pressure_or_measurement_of_practice_count,,,observer,Immediate review; no names
+post,P001,explorer,post,task_A_source_value_boundary_0_4,,,researcher,No ranking
+post,P001,explorer,post,task_B_optional_practice_boundary_0_4,,,researcher,No ranking
+follow_up,P001,explorer,day7_10,skill_used_yes_partial_no,,,facilitator,Do not request worship details
+revision,GROUP,all,post,design_change_requested,,,design_lead,Aggregate only

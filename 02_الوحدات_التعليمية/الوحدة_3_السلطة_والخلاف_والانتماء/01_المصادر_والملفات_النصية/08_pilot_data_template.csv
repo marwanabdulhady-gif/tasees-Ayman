@@ -1,0 +1,17 @@
+record_type,participant_code,track,timepoint,metric,value,optional_evidence_or_comment,action,privacy
+consent,P001,young_adult,pre,consent_confirmed,yes,,,key_separate
+baseline,P001,young_adult,pre,task_A_0_4,,,,aggregate_only
+baseline,P001,young_adult,pre,task_B_0_4,,,,aggregate_only
+survey,P001,young_adult,week9,clarity_1_5,,,,aggregate_only
+survey,P001,young_adult,week9,safety_to_ask_or_pass_1_5,,,,escalate_concerns
+survey,P001,young_adult,week9,workload_fit_1_5,,,,aggregate_only
+survey,P001,young_adult,week9,anti_personalization_1_5,,,,aggregate_only
+observation,GROUP,all,week9,source_questions_count,,,,no_names
+observation,GROUP,all,week9,fair_restating_count,,,,no_names
+observation,GROUP,all,week9,limits_named_count,,,,no_names
+observation,GROUP,all,week9,derision_or_personalization_count,,,,no_names
+safety,P001,all,any,safety_concern,,,immediate_review,restricted
+post,P001,young_adult,post,task_A_0_4,,,,aggregate_only
+post,P001,young_adult,post,task_B_0_4,,,,aggregate_only
+follow_up,P001,young_adult,day7_10,used_history_check_step_yes_partial_no,,,,optional
+revision,GROUP,all,post,design_change_needed,,,change_log,aggregate_only

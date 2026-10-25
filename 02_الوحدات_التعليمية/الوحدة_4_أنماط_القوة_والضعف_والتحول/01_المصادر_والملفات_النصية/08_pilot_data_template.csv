@@ -1,0 +1,17 @@
+record_type,participant_code,track,timepoint,metric,value,optional_evidence_or_comment,action,privacy
+consent,P001,young_adult,pre,consent_confirmed,yes,,,key_separate
+baseline,P001,young_adult,pre,task_A_0_4,,,,aggregate_only
+baseline,P001,young_adult,pre,task_B_0_4,,,,aggregate_only
+survey,P001,young_adult,week13,clarity_1_5,,,,aggregate_only
+survey,P001,young_adult,week13,safety_to_ask_or_pass_1_5,,,,escalate_concerns
+survey,P001,young_adult,week13,workload_fit_1_5,,,,aggregate_only
+survey,P001,young_adult,week13,resisted_single_cause_or_blame_1_5,,,,aggregate_only
+observation,GROUP,all,week13,terms_defined_count,,,,no_names
+observation,GROUP,all,week13,source_questions_count,,,,no_names
+observation,GROUP,all,week13,missing_factors_or_limits_named_count,,,,no_names
+observation,GROUP,all,week13,collective_blame_or_glorification_count,,,,no_names
+safety,P001,all,any,safety_concern,,,immediate_review,restricted
+post,P001,young_adult,post,task_A_0_4,,,,aggregate_only
+post,P001,young_adult,post,task_B_0_4,,,,aggregate_only
+follow_up,P001,young_adult,day7_10,challenged_single_cause_yes_partial_no,,,,optional
+revision,GROUP,all,post,design_change_needed,,,change_log,aggregate_only
