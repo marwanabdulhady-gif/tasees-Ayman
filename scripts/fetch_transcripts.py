@@ -285,6 +285,8 @@ def parse_caption_body(text: str) -> list[tuple[float, str]]:
 PTF_CLIENTS = ["WEB", "ANDROID_TESTSUITE", "TV", "ANDROID", "IOS", "MWEB"]
 ptf_success: Counter = Counter()
 ptf_attempted = 0
+ptf_429_count = 0
+PTF_DISABLED = False
 
 
 def parse_timedtext_xml(xml_text: str) -> list[tuple[float, str]]:
@@ -327,7 +329,9 @@ def fetch_via_pytubefix(video_id: str) -> tuple[list[tuple[float, str]] | None, 
     """Captions through pytubefix — an independent YouTube client stack
     (innertube API, botGuard PO tokens, many spoofed clients) that often
     works where yt-dlp is bot-blocked."""
-    global ptf_attempted
+    global ptf_attempted, ptf_429_count, PTF_DISABLED
+    if PTF_DISABLED:
+        return None, None
     try:
         from pytubefix import YouTube
     except ImportError:
@@ -341,7 +345,10 @@ def fetch_via_pytubefix(video_id: str) -> tuple[list[tuple[float, str]] | None, 
     url = f"https://www.youtube.com/watch?v={video_id}"
     for client in clients:
         try:
-            yt = YouTube(url, client=client)
+            kwargs = {"client": client}
+            if COOKIES_FILE:  # authenticated requests dodge the bot-check
+                kwargs["token_file"] = COOKIES_FILE
+            yt = YouTube(url, **kwargs)
             tracks = yt.caption_tracks
             if not tracks:
                 note_failure(video_id, f"pytubefix[{client}]: no caption tracks (bot-check?)")
@@ -356,6 +363,13 @@ def fetch_via_pytubefix(video_id: str) -> tuple[list[tuple[float, str]] | None, 
             note_failure(video_id, f"pytubefix[{client}]: captions fetched but parsed empty")
         except Exception as exc:  # noqa: BLE001
             note_failure(video_id, f"pytubefix[{client}]: {exc}")
+            if "429" in str(exc) or "Too Many Requests" in str(exc):
+                ptf_429_count += 1
+                if ptf_429_count >= 3:
+                    PTF_DISABLED = True
+                    print("  pytubefix: rate-limited (429) 3x — disabling strategy for this run", flush=True)
+                    return None, None
+                time.sleep(5)
     return None, None
 
 
