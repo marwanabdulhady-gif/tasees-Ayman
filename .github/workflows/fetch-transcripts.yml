@@ -1,0 +1,68 @@
+name: Fetch YouTube transcripts
+
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "مجلدات محددة (اختياري — أسماء مفصولة بمسافة)"
+        required: false
+        default: ""
+      limit:
+        description: "حد أقصى للحلقات لكل قائمة (0 = الكل)"
+        required: false
+        default: "0"
+  push:
+    paths:
+      - transcripts/playlists.json
+      - scripts/fetch_transcripts.py
+      - .github/workflows/fetch-transcripts.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-transcripts-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      YT_COOKIES: ${{ secrets.YT_COOKIES }}
+      YT_COOKIES_FILE: ${{ github.workspace }}/../cookies.txt
+      ONLY_INPUT: ${{ inputs.only }}
+      LIMIT_INPUT: ${{ inputs.limit }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Write cookies (optional)
+        if: ${{ env.YT_COOKIES != '' }}
+        run: printf '%s' "$YT_COOKIES" > "$YT_COOKIES_FILE"
+
+      - name: Fetch transcripts
+        run: |
+          ARGS=""
+          if [ -n "$ONLY_INPUT" ]; then ARGS="--only $ONLY_INPUT"; fi
+          if [ -n "$LIMIT_INPUT" ] && [ "$LIMIT_INPUT" != "0" ]; then ARGS="$ARGS --limit $LIMIT_INPUT"; fi
+          python scripts/fetch_transcripts.py $ARGS
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add transcripts
+          if git diff --cached --quiet; then
+            echo "No new transcripts."
+          else
+            git commit -m "Add YouTube transcripts"
+            git pull --rebase origin "$GITHUB_REF_NAME" || true
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
