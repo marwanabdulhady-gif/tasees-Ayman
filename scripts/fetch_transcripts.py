@@ -16,8 +16,10 @@ import os
 import re
 import sys
 import tempfile
+import time
 from pathlib import Path
 
+import requests
 import yt_dlp
 from ytfetcher import YTFetcher
 from ytfetcher.config import FetchOptions
@@ -25,6 +27,7 @@ from ytfetcher.config import FetchOptions
 ROOT = Path(__file__).resolve().parent.parent
 TRANSCRIPTS_DIR = ROOT / "transcripts"
 CONFIG_PATH = TRANSCRIPTS_DIR / "playlists.json"
+SUPADATA_API_KEY = os.environ.get("SUPADATA_API_KEY")
 COOKIES_FILE = os.environ.get("YT_COOKIES_FILE")
 if COOKIES_FILE and not Path(COOKIES_FILE).is_file():
     COOKIES_FILE = None
@@ -137,6 +140,41 @@ def parse_vtt(vtt: str) -> list[tuple[float, str]]:
     return segments
 
 
+def fetch_with_supadata(video_id: str, languages: list[str]) -> list[tuple[float, str]] | None:
+    """Supadata transcript API. mode=native only reads YouTube's existing captions
+    (1 credit each; failed requests are free) and never pays for AI transcription."""
+    headers = {"x-api-key": SUPADATA_API_KEY}
+    params = {"url": f"https://www.youtube.com/watch?v={video_id}", "lang": languages[0], "mode": "native"}
+    for attempt in range(5):
+        time.sleep(1.5)  # free plan allows about 1 request per second
+        r = requests.get("https://api.supadata.ai/v1/transcript", headers=headers, params=params, timeout=120)
+        if r.status_code == 429:
+            time.sleep(10 * (attempt + 1))
+            continue
+        if r.status_code != 200:
+            print(f"  supadata {video_id}: HTTP {r.status_code} {r.text[:200]}", file=sys.stderr)
+            return None
+        data = r.json()
+        job_id = data.get("jobId")
+        while job_id:
+            time.sleep(5)
+            data = requests.get(f"https://api.supadata.ai/v1/transcript/{job_id}", headers=headers, timeout=60).json()
+            if data.get("status") == "failed":
+                print(f"  supadata {video_id}: job failed {data.get('error')}", file=sys.stderr)
+                return None
+            if data.get("status") != "completed":
+                continue
+            data = data.get("result") or data
+            job_id = None
+        content = data.get("content")
+        if isinstance(content, list) and content:
+            return [(c.get("offset", 0) / 1000, c.get("text", "").replace("\n", " ")) for c in content]
+        print(f"  supadata {video_id}: empty transcript", file=sys.stderr)
+        return None
+    print(f"  supadata {video_id}: still rate-limited, giving up", file=sys.stderr)
+    return None
+
+
 def fetch_with_ytfetcher(video_ids: list[str], languages: list[str]) -> dict[str, list[tuple[float, str]]]:
     if not video_ids:
         return {}
@@ -214,12 +252,16 @@ def process_playlist(pl: dict, languages: list[str]) -> list[str]:
                          "file": existing.name if existing else filename, "done": existing is not None})
 
     pending = [ep for ep in episodes if not ep["done"]]
-    transcripts = fetch_with_ytfetcher([ep["id"] for ep in pending], languages)
+    # With a Supadata key (CI), skip the direct-YouTube paths that cloud IPs can't use.
+    transcripts = {} if SUPADATA_API_KEY else fetch_with_ytfetcher([ep["id"] for ep in pending], languages)
 
     missing = []
     for ep in pending:
-        segments, source = transcripts.get(ep["id"]), "ytfetcher (youtube-transcript-api)"
-        if not segments:
+        if SUPADATA_API_KEY:
+            segments, source = fetch_with_supadata(ep["id"], languages), "Supadata API (YouTube captions)"
+        else:
+            segments, source = transcripts.get(ep["id"]), "ytfetcher (youtube-transcript-api)"
+        if not segments and not SUPADATA_API_KEY:
             segments, source = fetch_captions(ep["id"], languages), "YouTube captions (yt-dlp)"
         if not segments:
             print(f"  [missing] {ep['n']:02d} {ep['title']}")

@@ -1,3 +1,4 @@
 ytfetcher>=2.4
 youtube-transcript-api>=1.2
 yt-dlp
+requests

@@ -19,4 +19,6 @@ python scripts/fetch_transcripts.py            # all playlists
 python scripts/fetch_transcripts.py --only 03-psychology
 ```
 
+**Cloud run with Supadata (no computer needed):** create a free account at supadata.ai (100 credits/month; one transcript of an episode that already has YouTube captions costs 1 credit), copy the API key, and add it as the repository secret `SUPADATA_API_KEY`. The workflow then fetches through Supadata in `native` mode (existing YouTube captions only, never paid AI transcription). Episodes already saved are skipped, so re-runs don't spend credits twice.
+
 The `Fetch YouTube transcripts` GitHub Actions workflow runs the same script and commits the results. If YouTube blocks the runner ("confirm you're not a bot"), add a Netscape-format `cookies.txt` export as the `YT_COOKIES` repository secret and re-run the workflow.
