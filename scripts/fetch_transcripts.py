@@ -282,6 +282,83 @@ def parse_caption_body(text: str) -> list[tuple[float, str]]:
     return parse_vtt(text)
 
 
+PTF_CLIENTS = ["WEB", "ANDROID_TESTSUITE", "TV", "ANDROID", "IOS", "MWEB"]
+ptf_success: Counter = Counter()
+ptf_attempted = 0
+
+
+def parse_timedtext_xml(xml_text: str) -> list[tuple[float, str]]:
+    """Parse YouTube timedtext XML (<p t=.. d=..> or <text start=.. dur=..>)
+    into (start_seconds, text) segments."""
+    import xml.etree.ElementTree as ET
+    from html import unescape
+    try:
+        root = ET.fromstring(xml_text)
+    except ET.ParseError:
+        return []
+    segments: list[tuple[float, str]] = []
+    for child in root:
+        if child.tag not in ("p", "text"):
+            continue
+        parts = []
+        if child.text:
+            parts.append(child.text)
+        for s in child:
+            if s.text:
+                parts.append(s.text)
+            if s.tail:
+                parts.append(s.tail)
+        txt = unescape(" ".join(parts))
+        txt = re.sub(r"\s+", " ", txt).strip()
+        if not txt:
+            continue
+        try:
+            if "t" in child.attrib:  # srv1/srv3: milliseconds
+                start = float(child.attrib["t"]) / 1000.0
+            else:  # legacy: seconds
+                start = float(child.attrib.get("start", 0))
+        except ValueError:
+            continue
+        segments.append((start, txt))
+    return segments
+
+
+def fetch_via_pytubefix(video_id: str) -> tuple[list[tuple[float, str]] | None, str | None]:
+    """Captions through pytubefix — an independent YouTube client stack
+    (innertube API, botGuard PO tokens, many spoofed clients) that often
+    works where yt-dlp is bot-blocked."""
+    global ptf_attempted
+    try:
+        from pytubefix import YouTube
+    except ImportError:
+        note_failure(video_id, "pytubefix not installed")
+        return None, None
+    ptf_attempted += 1
+    clients = sorted(PTF_CLIENTS, key=lambda c: -ptf_success[c])
+    # If nothing ever works, stop burning all clients on every video.
+    if sum(ptf_success.values()) == 0 and ptf_attempted > 5:
+        clients = clients[:2]
+    url = f"https://www.youtube.com/watch?v={video_id}"
+    for client in clients:
+        try:
+            yt = YouTube(url, client=client)
+            tracks = yt.caption_tracks
+            if not tracks:
+                note_failure(video_id, f"pytubefix[{client}]: no caption tracks (bot-check?)")
+                continue
+            pick = next((t for t in tracks if _is_arabic(getattr(t, "code", ""), getattr(t, "name", ""))),
+                        tracks[0])
+            segments = parse_timedtext_xml(pick.xml_captions)
+            if segments:
+                ptf_success[client] += 1
+                print(f"  [pytubefix] {video_id} via client={client} ({pick.name})", flush=True)
+                return segments, client
+            note_failure(video_id, f"pytubefix[{client}]: captions fetched but parsed empty")
+        except Exception as exc:  # noqa: BLE001
+            note_failure(video_id, f"pytubefix[{client}]: {exc}")
+    return None, None
+
+
 def fetch_via_invidious(video_id: str) -> tuple[list[tuple[float, str]] | None, str | None]:
     """Captions through public Invidious instances."""
     for inst in INVIDIOUS_INSTANCES:
@@ -406,6 +483,10 @@ def process_playlist(pl: dict, languages: list[str], limit: int = 0) -> list[str
                     source = f"YouTube captions (yt-dlp, client={client})"
                     break
                 time.sleep(0.2)
+        if not segments:
+            segments, client = fetch_via_pytubefix(ep["id"])
+            if segments:
+                source = f"pytubefix captions (client={client})"
         if not segments:
             segments, inst = fetch_via_invidious(ep["id"])
             if segments:
