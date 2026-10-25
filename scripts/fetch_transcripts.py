@@ -395,9 +395,11 @@ def process_playlist(pl: dict, languages: list[str], limit: int = 0) -> list[str
             time.sleep(0.3)  # be gentle with the public instances
         segments, source = transcripts.get(ep["id"]), "ytfetcher (youtube-transcript-api)"
         if not segments:
-            # With cookies, probe every client (best success rate). Without,
-            # a single canary probe is enough — runner IPs are bot-blocked.
-            clients = ordered_clients() if COOKIES_FILE else ["default"]
+            # In CI without cookies a single canary probe is enough — runner
+            # IPs are bot-blocked on every client. Locally, probe them all:
+            # residential IPs often work on android/ios when default fails.
+            canary_only = bool(os.environ.get("GITHUB_ACTIONS")) and not COOKIES_FILE
+            clients = ["default"] if canary_only else ordered_clients()
             for client in clients:
                 segments = fetch_captions(ep["id"], languages, client)
                 if segments:
