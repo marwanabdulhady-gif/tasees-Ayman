@@ -2,10 +2,20 @@ name: Fetch YouTube transcripts
 
 on:
   workflow_dispatch:
+    inputs:
+      only:
+        description: "Playlist folder to fetch (blank = all five)"
+        required: false
+        type: string
+      limit:
+        description: "Max episodes per playlist (blank = all)"
+        required: false
+        type: string
   push:
     paths:
       - transcripts/playlists.json
       - scripts/fetch_transcripts.py
+      - scripts/requirements.txt
       - .github/workflows/fetch-transcripts.yml
 
 permissions:
@@ -28,6 +38,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
 
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
@@ -37,7 +49,14 @@ jobs:
         run: printf '%s' "$YT_COOKIES" > "$YT_COOKIES_FILE"
 
       - name: Fetch transcripts
-        run: python scripts/fetch_transcripts.py
+        env:
+          ONLY: ${{ inputs.only }}
+          LIMIT: ${{ inputs.limit }}
+        run: |
+          args=()
+          if [ -n "$ONLY" ]; then args+=(--only $ONLY); fi
+          if [ -n "$LIMIT" ]; then args+=(--limit "$LIMIT"); fi
+          python scripts/fetch_transcripts.py "${args[@]}"
 
       - name: Commit results
         run: |
@@ -50,3 +69,11 @@ jobs:
             git commit -m "Add YouTube transcripts"
             git push
           fi
+
+      - name: Keep the run log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: transcript-run-log
+          path: transcripts/_last_run.log
+          if-no-files-found: ignore
