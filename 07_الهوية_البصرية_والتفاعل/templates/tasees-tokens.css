@@ -1,0 +1,201 @@
+/* =====================================================================
+   تأسيس — «الكراسة والعمود» · design tokens + base components · v1.0
+   Source of truth: ../01_الهوية_البصرية.md  ·  machine copy: tokens.json
+   Layout concept: an RTL notebook page — red margin on the right holds the
+   sanad (source) stamps; the main column holds matn (big idea) + sharh.
+   Day = الكراسة (squared paper).  Night = السبورة (green chalkboard).
+   ===================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap");
+
+:root {
+  /* the four-colour pen */
+  --pen-blue:  #2440A0;   /* matn, ideas, phase 1, primary action */
+  --pen-red:   #C23B30;   /* correction, traps, margin line        */
+  --pen-green: #2E7D57;   /* practice, habit, correct, phase 3     */
+  --pen-black: #20242C;   /* sanad, sources, verbatim quotes       */
+  --sepia:     #8A5A2B;   /* phase 2: history and maps             */
+
+  /* surfaces */
+  --paper:    #F7F8F3;
+  --grid:     rgba(60, 100, 170, .12);
+  --card:     #FFFFFF;
+  --ink:      #19213A;
+  --ink-soft: #4A5470;
+  --rule:     #D7DDE8;
+  --wash-blue:  rgba(36, 64, 160, .07);
+  --wash-red:   rgba(194, 59, 48, .08);
+  --wash-green: rgba(46, 125, 87, .09);
+
+  /* phase colour — override per unit with data-phase on <body> */
+  --phase: var(--pen-blue);
+  /* photos keep day ink in both themes: a printed card pinned to the board */
+  --photo-ink: #2440A0;
+  --photo-paper: #F7F8F3;
+
+  /* type */
+  --f-display: "Aref Ruqaa", "Amiri", serif;
+  --f-body:    "IBM Plex Sans Arabic", "Noto Sans Arabic", Tahoma, sans-serif;
+  --f-classic: "Amiri", "Noto Naskh Arabic", serif;
+  --t-hero: clamp(2.2rem, 5vw, 3.5rem);
+  --t-h2:   clamp(1.5rem, 3vw, 2rem);
+  --t-body: 1.125rem;
+  --t-small: .9375rem;
+  --t-tag:  .8125rem;
+
+  /* geometry */
+  --grid-step: 24px;
+  --margin-w: 112px;     /* the red-margin column */
+  --radius: 6px;         /* paper, not plastic: small radii only */
+  --cut: 14px;           /* the clipped corner of a kart */
+  --stage-max: 1040px;
+
+  /* motion */
+  --pen-speed: 400ms;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --pen-blue:  #93B4F2; --pen-red: #F08A7E; --pen-green: #8FD3A4; --pen-black: #F1D98B; --sepia: #D9A86C;
+    --paper: #16221D; --grid: rgba(230, 240, 225, .06); --card: #1D2B25;
+    --ink: #ECEFE4; --ink-soft: #A9B5A8; --rule: #33463D;
+    --wash-blue: rgba(147, 180, 242, .10); --wash-red: rgba(240, 138, 126, .10); --wash-green: rgba(143, 211, 164, .10);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --pen-blue:  #93B4F2; --pen-red: #F08A7E; --pen-green: #8FD3A4; --pen-black: #F1D98B; --sepia: #D9A86C;
+  --paper: #16221D; --grid: rgba(230, 240, 225, .06); --card: #1D2B25;
+  --ink: #ECEFE4; --ink-soft: #A9B5A8; --rule: #33463D;
+  --wash-blue: rgba(147, 180, 242, .10); --wash-red: rgba(240, 138, 126, .10); --wash-green: rgba(143, 211, 164, .10);
+  color-scheme: dark;
+}
+
+[data-phase="1"] { --phase: var(--pen-blue);  --photo-ink: #2440A0; }
+[data-phase="2"] { --phase: var(--sepia);     --photo-ink: #6E4520; }
+[data-phase="3"] { --phase: var(--pen-green); --photo-ink: #24603F; }
+
+/* ---------- page & paper ---------- */
+.t-page {
+  direction: rtl;
+  font-family: var(--f-body);
+  font-size: var(--t-body);
+  line-height: 1.8;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: var(--grid-step) var(--grid-step);
+}
+
+/* ---------- the screen: margin + main ---------- */
+.t-screen {
+  display: grid;
+  grid-template-columns: var(--margin-w) minmax(0, 1fr);  /* RTL: first track sits on the right */
+  max-width: var(--stage-max);
+  margin-inline: auto;
+  min-height: 540px;
+  background: transparent;
+  position: relative;
+}
+.t-margin {
+  border-inline-start: 0;
+  border-inline-end: 2px solid var(--pen-red);
+  padding: 20px 10px;
+  display: flex; flex-direction: column; gap: 12px; align-items: center;
+}
+.t-main { padding: 28px clamp(16px, 4vw, 44px) 32px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+@media (max-width: 640px) {
+  .t-screen { grid-template-columns: minmax(0, 1fr); }
+  .t-margin { border-inline-end: 0; border-block-end: 2px solid var(--pen-red); flex-direction: row; flex-wrap: wrap; justify-content: flex-start; padding: 10px 16px; }
+}
+
+/* ---------- type roles ---------- */
+.t-eyebrow { font-size: var(--t-tag); letter-spacing: .02em; color: var(--ink-soft); font-weight: 500; }
+.t-title   { font-family: var(--f-display); font-size: var(--t-hero); line-height: 1.35; color: var(--ink); margin: 0; text-wrap: balance; font-weight: 700; }
+.t-h2      { font-family: var(--f-body); font-weight: 700; font-size: var(--t-h2); line-height: 1.4; margin: 0; color: var(--phase); text-wrap: balance; }
+.t-matn    { font-weight: 700; font-size: 1.375rem; line-height: 1.7; max-width: 34em; margin: 0; }
+.t-sharh   { max-width: 38em; margin: 0; color: var(--ink); }
+.t-voice   { font-family: var(--f-display); font-size: 1.5rem; line-height: 1.6; color: var(--pen-blue); margin: 0; }
+.t-classic { font-family: var(--f-classic); font-size: 1.5rem; line-height: 1.9; color: var(--pen-black); }
+.t-small   { font-size: var(--t-small); color: var(--ink-soft); }
+
+/* hand-drawn underline under a title (pen motion) */
+.t-underline { display: block; width: min(320px, 70%); height: 12px; color: var(--phase); }
+.t-underline path { stroke: currentColor; stroke-width: 3; fill: none; stroke-linecap: round; }
+@media (prefers-reduced-motion: no-preference) {
+  .t-underline path { stroke-dasharray: 400; stroke-dashoffset: 400; animation: t-draw var(--pen-speed) ease-out .15s forwards; }
+}
+@keyframes t-draw { to { stroke-dashoffset: 0; } }
+
+/* ---------- sanad stamp (ختم السند) ---------- */
+.t-sanad {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 2px;
+  font-size: var(--t-tag); line-height: 1.35; font-variant-numeric: tabular-nums;
+  color: var(--pen-black); border: 1.5px dashed var(--pen-black); border-radius: 3px;
+  padding: 4px 6px; background: var(--card); text-align: center; max-width: 100%;
+  text-decoration: none;
+}
+.t-sanad b { font-weight: 700; }
+.t-sanad .tc { direction: ltr; unicode-bidi: isolate; }  /* timecodes read left-to-right */
+.t-sanad--note { border-style: solid; border-color: var(--pen-red); color: var(--pen-red); }
+
+/* ---------- kart (the ordered card) ---------- */
+.t-kart {
+  position: relative; background: var(--card); color: var(--ink);
+  border: 1.5px solid var(--ink); padding: 16px 18px 14px;
+  clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%);
+  min-width: 0;
+}
+.t-kart__n { position: absolute; top: 6px; inset-inline-end: 22px; font-size: var(--t-tag); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.t-kart--blue  { border-color: var(--pen-blue); }
+.t-kart--red   { border-color: var(--pen-red); }
+.t-kart--green { border-color: var(--pen-green); }
+.t-kart--black { border-color: var(--pen-black); border-style: dashed; }
+
+/* ---------- controls ---------- */
+.t-btn {
+  font: 700 1rem/1 var(--f-body); padding: 12px 22px; cursor: pointer;
+  border: 2px solid var(--pen-blue); background: var(--pen-blue); color: var(--paper); border-radius: var(--radius);
+}
+.t-btn--ghost { background: transparent; color: var(--pen-blue); }
+.t-btn:focus-visible, .t-choice:focus-visible, .t-chip:focus-visible { outline: 3px solid var(--pen-red); outline-offset: 3px; }
+.t-choice {
+  display: flex; gap: 12px; align-items: flex-start; width: 100%; text-align: start;
+  font: 500 1.0625rem/1.6 var(--f-body); color: var(--ink); background: var(--card);
+  border: 1.5px solid var(--rule); border-radius: var(--radius); padding: 12px 14px; cursor: pointer;
+}
+.t-choice[aria-pressed="true"] { border-color: var(--pen-blue); background: var(--wash-blue); }
+.t-choice.is-right { border-color: var(--pen-green); background: var(--wash-green); }
+.t-choice.is-wrong { border-color: var(--pen-red); background: var(--wash-red); }
+.t-chip {
+  font: 500 var(--t-small)/1.2 var(--f-body); padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  border: 1.5px solid var(--ink-soft); background: transparent; color: var(--ink);
+}
+.t-chip[aria-pressed="true"] { border-color: var(--phase); background: var(--phase); color: var(--paper); }
+
+/* ---------- feedback (pen marks + words, never colour alone) ---------- */
+.t-feedback { border-inline-start: 4px solid var(--rule); padding: 8px 14px; margin: 0; }
+.t-feedback--ok  { border-color: var(--pen-green); background: var(--wash-green); }
+.t-feedback--bad { border-color: var(--pen-red);   background: var(--wash-red); }
+.t-feedback strong { display: block; }
+
+/* ---------- brick (one finished week) ---------- */
+.t-brick { display: inline-block; width: 44px; height: 20px; border: 1.5px solid var(--phase); border-radius: 2px; background: transparent; }
+.t-brick.is-laid { background: var(--phase); }
+@media (prefers-reduced-motion: no-preference) {
+  .t-brick.is-new { animation: t-lay 600ms cubic-bezier(.2,.8,.3,1) both; }
+}
+@keyframes t-lay { from { transform: translateY(-36px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- library photos: ink-on-paper duotone ---------- */
+.t-photo { margin: 0; background: var(--photo-paper); border: 1.5px solid var(--rule); padding: 8px; max-width: 100%; }
+.t-photo__ink { position: relative; background: var(--photo-ink); overflow: hidden; }
+.t-photo__ink img { display: block; width: 100%; filter: grayscale(1) contrast(1.1); mix-blend-mode: screen; opacity: .95; }
+.t-photo figcaption { font-size: var(--t-tag); color: #4A5470; padding-top: 6px; }
+
+/* ---------- hand arrow (inline SVG uses currentColor) ---------- */
+.t-arrow { width: 48px; height: 20px; color: var(--ink-soft); flex: none; }
+.t-arrow path { stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }

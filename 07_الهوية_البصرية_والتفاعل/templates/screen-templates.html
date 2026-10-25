@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-phase="1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>قوالب شاشات تأسيس</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="tasees-tokens.css">
+<style>
+/* page-only layout: a pattern book. Tokens come from tasees-tokens.css */
+body { margin: 0; }
+.book { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 64px; }
+.book > * { max-width: 1120px; margin-inline: auto; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+
+.mast { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 2px solid var(--pen-red); display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding-block: 10px; }
+.mast__brand { display: flex; align-items: center; gap: 10px; }
+.mast__brand svg { width: 26px; height: 40px; }
+.mast__name { font-family: var(--f-display); font-size: 1.75rem; line-height: 1; }
+.mast__sub { font-size: var(--t-tag); color: var(--ink-soft); }
+.mast nav { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: var(--t-small); }
+.mast nav a { color: var(--ink); text-decoration: none; border-bottom: 1.5px dashed var(--rule); }
+.mast nav a:hover { border-color: var(--pen-blue); color: var(--pen-blue); }
+.mast__ctl { margin-inline-start: auto; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.mast__ctl span { font-size: var(--t-tag); color: var(--ink-soft); }
+@media (max-width: 640px) { .mast { position: static; } }
+
+.lead { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 32px; align-items: center; padding-block: 40px 24px; }
+.lead h1 { font-family: var(--f-display); font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1.2; margin: 0; font-weight: 700; }
+.lead h1 em { font-style: normal; color: var(--pen-blue); }
+.lead p { max-width: 36em; margin: 12px 0 0; }
+.roots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 8px; }
+.roots .t-kart h3 { margin: 0 0 4px; font-size: 1.05rem; }
+.roots .t-kart p { margin: 0; font-size: var(--t-small); }
+@media (max-width: 820px) { .lead { grid-template-columns: minmax(0, 1fr); } .roots { grid-template-columns: minmax(0, 1fr); } }
+
+section.part { padding-top: 48px; scroll-margin-top: 80px; }
+.part__head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--rule); padding-bottom: 8px; margin-bottom: 20px; }
+.part__head h2 { font-family: var(--f-display); font-size: 2.1rem; margin: 0; font-weight: 700; }
+.part__head p { margin: 0; color: var(--ink-soft); font-size: var(--t-small); }
+
+/* pens */
+.pens { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.pen { display: flex; flex-direction: column; gap: 6px; }
+.pen__ink { height: 54px; border-radius: 3px; background: var(--c); position: relative; }
+.pen__ink::after { content: ""; position: absolute; inset-inline: 10px; bottom: 12px; height: 3px; border-radius: 3px; background: var(--paper); opacity: .6; }
+.pen b { font-size: 1rem; }
+.pen span { font-size: var(--t-tag); color: var(--ink-soft); line-height: 1.5; }
+@media (max-width: 720px) { .pens { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.type-row { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 16px; align-items: baseline; padding-block: 12px; border-bottom: 1px dashed var(--rule); }
+.type-row small { color: var(--ink-soft); font-size: var(--t-tag); }
+@media (max-width: 600px) { .type-row { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+.idgrid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px; }
+@media (max-width: 820px) { .idgrid { grid-template-columns: minmax(0, 1fr); } }
+.colwrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.colwrap svg { width: 100%; max-width: 280px; height: auto; }
+.colwrap .brick { cursor: pointer; }
+.colwrap p { font-size: var(--t-tag); color: var(--ink-soft); margin: 0; text-align: center; }
+
+/* framed layouts */
+.frame { margin-bottom: 36px; }
+.frame__tag { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+.frame__tag b { font-variant-numeric: tabular-nums; color: var(--pen-red); }
+.frame__tag span { color: var(--ink-soft); font-size: var(--t-small); }
+.frame .t-screen { border: 1.5px solid var(--ink); background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: var(--grid-step) var(--grid-step); }
+.screen-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: auto; padding-top: 12px; border-top: 1px dashed var(--rule); font-size: var(--t-tag); color: var(--ink-soft); }
+.pencil { display: flex; gap: 3px; } .pencil i { width: 18px; height: 4px; background: var(--rule); border-radius: 2px; } .pencil i.on { background: var(--phase); }
+.q-box { border: 1.5px solid var(--phase); padding: 12px 16px; background: var(--card); max-width: 36em; }
+.q-box small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.audio { display: flex; align-items: center; gap: 12px; border: 1.5px dashed var(--ink-soft); padding: 10px 14px; max-width: 36em; font-size: var(--t-small); }
+.audio svg { width: 28px; height: 28px; flex: none; color: var(--ink-soft); }
+.disclaimer { font-size: var(--t-tag); color: var(--ink-soft); max-width: 46em; margin: 0; }
+.hook-art { border: 1.5px solid var(--rule); background: var(--card); aspect-ratio: 16 / 7; max-width: 100%; display: grid; place-items: center; position: relative; overflow: hidden; }
+.hook-art svg { width: 92%; height: 92%; }
+.hook-art .pending { position: absolute; bottom: 8px; inset-inline-start: 10px; font-size: var(--t-tag); color: var(--ink-soft); background: var(--card); padding: 2px 6px; border: 1px dashed var(--ink-soft); }
+.lines { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; counter-reset: l; }
+.lines li { counter-increment: l; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 8px; }
+.lines li::before { content: counter(l, arabic-indic); font-family: var(--f-display); color: var(--phase); font-size: 1.4rem; line-height: 1.3; }
+.wall { display: flex; gap: 4px; }
+
+/* pattern book */
+.pgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+@media (max-width: 900px) { .pgrid { grid-template-columns: minmax(0, 1fr); } }
+.pcard { background: var(--card); border: 1.5px solid var(--rule); padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.pcard__h { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.pcard__h b { color: var(--pen-red); font-variant-numeric: tabular-nums; }
+.pcard__h h3 { margin: 0; font-size: 1.15rem; }
+.pcard__meta { font-size: var(--t-tag); color: var(--ink-soft); margin: 0; }
+.pcard__weeks { font-size: var(--t-tag); color: var(--ink-soft); margin: 0; border-top: 1px dashed var(--rule); padding-top: 8px; }
+.demo { display: flex; flex-direction: column; gap: 10px; }
+.demo .t-choice { padding: 8px 12px; font-size: 1rem; }
+.order { display: flex; flex-direction: column; gap: 6px; }
+.order .t-choice b { color: var(--ink-soft); font-variant-numeric: tabular-nums; min-width: 1.4em; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin > strong { font-size: var(--t-small); }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); } .bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pool .t-chip { font-size: var(--t-tag); }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.house { width: 100%; max-width: 360px; height: auto; align-self: center; }
+.house .glow { fill: var(--pen-black); opacity: 0; transition: opacity .3s; }
+.house.is-lit .glow { opacity: .28; }
+.house .ink { stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.house .bulb { fill: var(--card); stroke: var(--ink); stroke-width: 2; }
+.house.is-lit .bulb { fill: var(--pen-black); }
+@media (prefers-reduced-motion: no-preference) { .house.is-flicker .bulb { animation: flick .9s steps(2) 2; } }
+@keyframes flick { 50% { fill: var(--pen-black); } }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain .t-kart { padding: 8px 12px; font-size: var(--t-small); cursor: pointer; }
+.chain .t-kart[aria-expanded="false"] span { visibility: hidden; }
+.chain .t-kart small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+@media (max-width: 560px) { .builder { grid-template-columns: minmax(0, 1fr); } }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.portico { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 6px solid var(--phase); border-bottom: 4px solid var(--phase); padding: 8px 0; }
+.portico div { border-inline: 2px solid var(--phase); padding: 4px 6px; min-height: 92px; font-family: var(--f-display); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portico div small { display: block; font-family: var(--f-body); font-size: 11px; color: var(--ink-soft); }
+.grade { display: flex; gap: 6px; flex-wrap: wrap; }
+.flag { border: 1.5px solid var(--pen-red); color: var(--pen-red); padding: 6px 10px; font-size: var(--t-small); }
+.fields { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.fields button { font: 500 var(--t-tag)/1.4 var(--f-body); border: 1.5px solid var(--pen-black); border-style: dashed; background: transparent; color: var(--ink); padding: 6px 4px; cursor: pointer; min-height: 58px; }
+.fields button[aria-pressed="true"] { border-style: solid; background: var(--wash-blue); }
+@media (max-width: 560px) { .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.scale { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.scale svg { width: 100%; max-width: 320px; height: auto; }
+.scale .beam { transition: transform .5s ease; transform-origin: 160px 40px; }
+.scale .ink { stroke: var(--ink); stroke-width: 2; fill: none; }
+.tl { position: relative; display: flex; justify-content: space-between; gap: 4px; padding-top: 18px; border-top: 2px solid var(--phase); }
+.tl button { font: 500 var(--t-tag)/1.3 var(--f-body); background: var(--card); border: 1.5px solid var(--phase); color: var(--ink); padding: 4px 6px; cursor: pointer; font-variant-numeric: tabular-nums; position: relative; }
+.tl button::before { content: ""; position: absolute; top: -13px; inset-inline-start: 50%; width: 2px; height: 10px; background: var(--phase); }
+.tl button[aria-pressed="true"] { background: var(--phase); color: var(--paper); }
+.flipgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.flip { border: 1.5px solid var(--ink); background: var(--card); min-height: 108px; padding: 10px; cursor: pointer; font: inherit; color: var(--ink); text-align: start; display: flex; flex-direction: column; gap: 4px; }
+.flip b { font-family: var(--f-display); font-size: 1.3rem; color: var(--phase); }
+.flip span { font-size: var(--t-tag); }
+.flip[aria-pressed="true"] { border-color: var(--pen-green); background: var(--wash-green); }
+@media (max-width: 560px) { .flipgrid { grid-template-columns: minmax(0, 1fr); } }
+input[type="range"] { width: 100%; accent-color: var(--phase); }
+.ticks { display: flex; justify-content: space-between; font-size: var(--t-tag); color: var(--ink-soft); }
+.chat { display: flex; flex-direction: column; gap: 8px; }
+.bubble { max-width: 85%; padding: 8px 12px; border: 1.5px solid var(--rule); background: var(--paper); font-size: var(--t-small); }
+.bubble.them { align-self: flex-end; } .bubble.me { align-self: flex-start; border-color: var(--pen-blue); }
+.post { width: 100%; max-width: 380px; height: auto; align-self: center; direction: ltr; }
+.post .hs { fill: transparent; stroke: transparent; stroke-width: 2.5; cursor: pointer; }
+.post .hs.found { stroke: var(--pen-red); fill: var(--wash-red); }
+.post .ink { stroke: var(--ink); fill: none; stroke-width: 1.6; }
+.post text { fill: var(--ink); font-family: var(--f-body); }
+.root { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; }
+.root__core { font-family: var(--f-display); font-size: 2rem; color: var(--pen-red); border: 2px solid var(--pen-red); border-radius: 50%; width: 92px; height: 92px; display: grid; place-items: center; }
+.root .t-kart { padding: 8px 12px; min-width: 7em; text-align: center; }
+.root .t-kart b { font-family: var(--f-classic); font-size: 1.4rem; display: block; }
+.root .t-kart small { color: var(--ink-soft); font-size: var(--t-tag); }
+.explore { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.explore button { font: 700 var(--t-small)/1.4 var(--f-body); border: 2px solid var(--c); color: var(--ink); background: transparent; padding: 10px 6px; cursor: pointer; }
+.explore button[aria-pressed="true"] { background: var(--c); color: var(--paper); }
+.sim { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+
+/* image rules */
+.imgrules { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 820px) { .imgrules { grid-template-columns: minmax(0, 1fr); } }
+.dont { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.dont li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; font-size: var(--t-small); }
+.dont li::before { content: "✗"; color: var(--pen-red); font-weight: 700; }
+.foot { margin-top: 56px; padding-top: 16px; border-top: 2px solid var(--pen-red); font-size: var(--t-small); color: var(--ink-soft); }
+.foot code { font-size: var(--t-tag); }
+</style>
+</head>
+<body class="t-page">
+<div class="book">
+
+<header class="mast">
+  <div class="mast__brand">
+    <svg viewBox="0 0 64 96" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--pen-blue)"><path d="M8 14 Q32 4 56 14"/><path d="M6 18 H58"/><path d="M14 24 H50 V42 H14 Z"/><path d="M15 46 H49 V64 H15 Z"/><path d="M14 68 H50 V86 H14 Z"/><path d="M6 91 H58"/></g></svg>
+    <div><div class="mast__name">تأسيس</div><div class="mast__sub">قوالب الشاشات · v1.0</div></div>
+  </div>
+  <nav aria-label="أقسام الصفحة">
+    <a href="#identity">الهوية</a><a href="#layouts">الشاشات السبع</a><a href="#patterns">الأنماط ١٨</a><a href="#images">الصور</a><a href="week-template.html">جرّب قالب الأسبوع ١ ←</a>
+  </nav>
+  <div class="mast__ctl" role="group" aria-label="المعاينة">
+    <span>الوضع</span>
+    <button class="t-chip" id="th-day" type="button" aria-pressed="false">كراسة</button>
+    <button class="t-chip" id="th-night" type="button" aria-pressed="false">سبورة</button>
+    <span>المرحلة</span>
+    <button class="t-chip" data-ph="1" type="button" aria-pressed="true">١</button>
+    <button class="t-chip" data-ph="2" type="button" aria-pressed="false">٢</button>
+    <button class="t-chip" data-ph="3" type="button" aria-pressed="false">٣</button>
+  </div>
+</header>
+
+<div class="lead">
+  <div>
+    <p class="t-eyebrow">الهوية البصرية لمشروع تأسيس وعي المسلم المعاصر</p>
+    <h1>الكراسة <em>والعمود</em></h1>
+    <svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>
+    <p>كراسة طالب في حلقة العمود. يكتب بالقلم أبو أربع ألوان، ويرصّ طوبة كل أسبوع، ولا يكتب فكرة من غير سندها في الهامش.</p>
+    <div class="roots">
+      <div class="t-kart t-kart--blue"><span class="t-kart__n">١</span><h3>الكراسة</h3><p>م. أيمن مهندس يشرح بالرسم على السبورة. ورق مربعات، هامش أحمر، قلم جاف.</p></div>
+      <div class="t-kart t-kart--black"><span class="t-kart__n">٢</span><h3>العمود</h3><p>«مدرسة شيخ العمود… مش شخص، ده كونسبت». حلقة العلم حول العمود هي الشعار.</p></div>
+      <div class="t-kart t-kart--green"><span class="t-kart__n">٣</span><h3>الطوب والسند</h3><p>«جمع طوب وما بنى بيت». كل أسبوع طوبة، وكل فكرة لها ختم سند.</p></div>
+    </div>
+  </div>
+  <div class="colwrap">
+    <svg viewBox="0 0 284 300" id="column" role="img" aria-label="عمود التقدم: ٨ وحدات × ٤ أسابيع"></svg>
+    <p>عمود التقدم: ٨ صفوف × ٤ طوبات + رباطا التنفس (١٧ و٢٦). انقر طوبة لترصّها.</p>
+  </div>
+</div>
+
+<!-- ============================================================ identity -->
+<section class="part" id="identity">
+  <div class="part__head"><h2>القلم أبو أربع ألوان</h2><p>اللون وظيفة لا زينة. كل لون له دور واحد في الدورة كلها.</p></div>
+  <div class="pens">
+    <div class="pen"><div class="pen__ink" style="--c:var(--pen-blue)"></div><b>الأزرق</b><span>المتن والأفكار · المرحلة ١ · الزر الأساسي</span></div>
+    <div class="pen"><div class="pen__ink" style="--c:var(--pen-red)"></div><b>الأحمر</b><span>التصحيح والمصائد والهامش · لا يكون خلفية</span></div>
+    <div class="pen"><div class="pen__ink" style="--c:var(--pen-green)"></div><b>الأخضر</b><span>الممارسة والعادة والصح · المرحلة ٣</span></div>
+    <div class="pen"><div class="pen__ink" style="--c:var(--pen-black)"></div><b>الأسود</b><span>السند والمصدر · في السبورة طباشير أصفر</span></div>
+    <div class="pen"><div class="pen__ink" style="--c:var(--sepia)"></div><b>الحبر البني</b><span>المرحلة ٢ · التاريخ والخرائط</span></div>
+  </div>
+  <div class="idgrid" style="margin-top:28px">
+    <div>
+      <div class="type-row"><small>العرض · Aref Ruqaa<br>سطران كحد أقصى</small><div class="t-title" style="font-size:2.4rem">ما تسحبش الكروت من غير ترتيب</div></div>
+      <div class="type-row"><small>المتن · IBM Plex Sans Arabic 700</small><p class="t-matn">كل علم بيجاوب سؤال، واللي يجاوب بكل علم عن كل سؤال بيبوظ الاتنين.</p></div>
+      <div class="type-row"><small>الشرح · Plex 400</small><p class="t-sharh">زي واحد ماسك مفتاح إنجليزي، وكل ما يشوف مشكلة يقولك: دي مسمار!</p></div>
+      <div class="type-row"><small>النص الأصيل · Amiri</small><p class="t-classic" style="margin:0">﴿الَّذِي عَلَّمَ بِالْقَلَمِ ۝ عَلَّمَ الْإِنسَانَ مَا لَمْ يَعْلَمْ﴾</p></div>
+      <div class="type-row"><small>السند · Plex أرقام جدولية</small><div><span class="t-sanad"><b>05/41</b><span class="tc">≈ 00:00–02:00</span></span></div></div>
+    </div>
+    <div class="t-kart t-kart--red" style="align-self:start">
+      <span class="t-kart__n">قواعد</span>
+      <h3 style="margin:0 0 6px">ممنوعات الهوية</h3>
+      <ul class="dont">
+        <li>تدرجات لونية، نيون، توهج، بنفسجي</li>
+        <li>زخارف «إسلامية» عامة: أرابيسك، فوانيس، أهلّة ذهبية</li>
+        <li>أيقونات شركات ملونة وصور مخزون مبتسمة</li>
+        <li>نقاط، أوسمة، لوحة صدارة، مؤقتات</li>
+        <li>اللون وحده علامةً للصح والخطأ</li>
+        <li>emoji داخل الشاشات المنتَجة</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ layouts -->
+<section class="part" id="layouts">
+  <div class="part__head"><h2>الشاشات السبع</h2><p>كل أسبوع يُبنى من هذه القوالب فقط، بمحتوى الأسبوع ١ مثالًا. الهامش الأحمر على اليمين، والسند فيه.</p></div>
+
+  <div class="frame"><div class="frame__tag"><b>L1</b><strong>الغلاف</strong><span>عنوان الأسبوع، سؤاله، اختيار المسار، الحلقة المسموعة، الإخلاء</span></div>
+    <div class="t-screen">
+      <aside class="t-margin"><span class="t-sanad"><b>و١ · أ١</b>المرحلة ١</span><div class="wall" aria-label="طوب الوحدة ١"><span class="t-brick" style="width:18px;height:10px"></span><span class="t-brick" style="width:18px;height:10px"></span><span class="t-brick" style="width:18px;height:10px"></span><span class="t-brick" style="width:18px;height:10px"></span></div></aside>
+      <div class="t-main">
+        <p class="t-eyebrow">المرحلة ١ · بناء المتلقي — الوحدة ١ · الأسبوع ١</p>
+        <h3 class="t-title">ما تسحبش الكروت من غير ترتيب</h3>
+        <svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>
+        <div class="q-box"><small>سؤال الأسبوع</small>إزاي أتعلم بخريطة، بدل ما ألمّ مقاطع ومعلومات مش بتتحول لفهم ولا ممارسة؟</div>
+        <div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>
+          <button class="t-chip js-track" type="button" aria-pressed="true">مستكشف</button>
+          <button class="t-chip js-track" type="button" aria-pressed="false">ممارس</button>
+          <button class="t-chip js-track" type="button" aria-pressed="false">متقدم</button></div>
+        <div class="audio"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 17v-4a9 9 0 0 1 18 0v4M5 16h3v6H5zM20 16h3v6h-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>الحلقة المسموعة ١٥–٢٠ د · قيد التسجيل بقارئ بشري (بوابة G13)</span></div>
+        <p class="disclaimer">نصوص مستوحاة من أسلوب المهندس أيمن عبد الرحيم في الشرح، كُتبت لأغراض تدريبية داخل مشروع تأسيس، وليست قولًا منسوبًا إليه.</p>
+        <div class="screen-foot"><div class="pencil" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><button class="t-btn" type="button">يلا بينا</button></div>
+      </div>
+    </div></div>
+
+  <div class="frame"><div class="frame__tag"><b>L2</b><strong>الخطاف</strong><span>رسم الخطاف (مولد AI بلا نص) + جملة بصوت أيمن بخط الرقعة</span></div>
+    <div class="t-screen">
+      <aside class="t-margin"><span class="t-sanad"><b>05/41</b><span class="tc">≈ 00:00–02:00</span></span><span class="t-sanad t-sanad--note">الخطاف</span></aside>
+      <div class="t-main">
+        <div class="hook-art"><svg viewBox="0 0 640 260" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="color:var(--pen-blue)"><rect x="420" y="70" width="110" height="150" rx="6"/><rect x="426" y="64" width="110" height="150" rx="6"/><rect x="432" y="58" width="110" height="150" rx="6"/><g transform="rotate(-18 120 150)"><rect x="70" y="80" width="90" height="124" rx="6"/></g><g transform="rotate(24 220 140)"><rect x="180" y="70" width="90" height="124" rx="6"/></g><g transform="rotate(-4 300 170)"><rect x="270" y="110" width="90" height="124" rx="6"/></g><g transform="rotate(48 110 90)" style="color:var(--pen-red)"><rect x="80" y="20" width="90" height="124" rx="6" stroke="var(--pen-red)"/></g></g></svg><span class="pending">tas-w01-hook-cards · رسم مؤقت حتى التوليد</span></div>
+        <p class="t-voice">تصور معايا راجل ماسك حزمة كروت… والكروت دي مترتّبة.</p>
+        <p class="t-sharh">وواحد تاني متحمس مسك الحزمة وخضّها وبدأ يسحب عشوائي. أهو ده بالظبط اللي بيحصل لنا كل يوم على السوشيال ميديا.</p>
+      </div>
+    </div></div>
+
+  <div class="frame"><div class="frame__tag"><b>L3</b><strong>متن وشرح وحاشية</strong><span>فكرة واحدة كبيرة، شرحها بالعامية، والسند في الهامش. لا أكثر من ٨٠ كلمة شرح.</span></div>
+    <div class="t-screen">
+      <aside class="t-margin"><span class="t-sanad"><b>05/41</b>خارطة العلوم</span><span class="t-sanad"><b>05/39</b>الحلول المتوهمة</span></aside>
+      <div class="t-main">
+        <h3 class="t-h2">الكتلة ٢ · خريطة العلوم</h3>
+        <p class="t-matn">كل علم بيجاوب جزء من السؤال. اللي يجاوب بعلم واحد عن كل الأسئلة بيبوظ الاتنين.</p>
+        <p class="t-sharh">الفيزياء بتقولك العالم المادي شغال إزاي، والتاريخ بيقولك الناس عملت إيه لما جربت، والفقه بيقولك الشرع أمر بإيه، والطب النفسي بيقولك المخ بيتصرف إزاي.</p>
+        <p class="t-feedback t-feedback--bad"><strong>مصيدة المفتاح الإنجليزي</strong>واحد ماسك مفتاح إنجليزي، وكل ما يشوف مشكلة يقولك: دي مسمار!</p>
+      </div>
+    </div></div>
+
+  <div class="frame"><div class="frame__tag"><b>L4</b><strong>تمرين</strong><span>غلاف لأي نمط من الأنماط الثمانية عشر: تعليمة سطر واحد + النمط + «تحقق»</span></div>
+    <div class="t-screen">
+      <aside class="t-margin"><span class="t-sanad"><b>05/03</b><span class="tc">≈ 00:00–01:30</span></span><span class="t-sanad t-sanad--note">P01</span></aside>
+      <div class="t-main">
+        <h3 class="t-h2">الطفل عنده نظام تشغيل كامل. رتّبه.</h3>
+        <p class="t-small">اختر كارتين لتبديل مكانهما، ثم «تحقق».</p>
+        <div class="demo" data-p="P01" data-src="order-child"></div>
+      </div>
+    </div></div>
+
+  <div class="frame"><div class="frame__tag"><b>L5</b><strong>السند والنص الأصيل</strong><span>الآية أو الحديث أو الاقتباس الحرفي بخط Amiri، والسند ظاهر، والسلسلة تُكشف</span></div>
+    <div class="t-screen">
+      <aside class="t-margin"><span class="t-sanad"><b>العلق</b>٤–٥</span><span class="t-sanad"><b>١٠٠ سؤال</b>الحلقة ١</span></aside>
+      <div class="t-main">
+        <p class="t-classic" style="margin:0">﴿الَّذِي عَلَّمَ بِالْقَلَمِ ۝ عَلَّمَ الْإِنسَانَ مَا لَمْ يَعْلَمْ﴾</p>
+        <p class="t-matn">السند أقدم خريطة: مصدر ← ناقل ← محتوى ← درجة.</p>
+        <div class="demo" data-p="P16" data-src="sanad"></div>
+      </div>
+    </div></div>
+
+  <div class="frame"><div class="frame__tag"><b>L6</b><strong>الدفتر</strong><span>سؤال تأمل واحد. يُحفظ على جهاز المتعلم فقط، ويظهر في ملف الوحدة.</span></div>
+    <div class="t-screen">
+      <aside class="t-margin"><span class="t-sanad t-sanad--note">سؤال للدفتر</span></aside>
+      <div class="t-main">
+        <div class="demo" data-p="P15" data-src="journal"></div>
+      </div>
+    </div></div>
+
+  <div class="frame"><div class="frame__tag"><b>L7</b><strong>القفلة</strong><span>ثلاثة أسطر، توقّعك من البداية، المهمة، والطوبة تنزل في العمود</span></div>
+    <div class="t-screen">
+      <aside class="t-margin"><div class="wall" aria-label="طوب الوحدة ١"><span class="t-brick is-laid is-new" style="width:18px;height:10px"></span><span class="t-brick" style="width:18px;height:10px"></span><span class="t-brick" style="width:18px;height:10px"></span><span class="t-brick" style="width:18px;height:10px"></span></div><span class="t-sanad">طوبة ١ من ٣٢</span></aside>
+      <div class="t-main">
+        <h3 class="t-title" style="font-size:2.2rem">نلمّ الليلة في تلات سطور</h3>
+        <ol class="lines">
+          <li>الطفل بيسأل وبيتعامل وبيتوجع ويتعلم، وإحنا بنجمع من غير أسئلة.</li>
+          <li>اعمل خريطة: سؤال ← علم ← فجوة ← عادة.</li>
+          <li>قبل «إيه الحل؟» فيه «إيه المشكلة بالظبط؟».</li>
+        </ol>
+        <p class="t-feedback">في الأول قلت إن آخر حاجة عرفتها <strong style="display:inline" data-replay>«لسه على الرف»</strong>. خريطة الأعمدة الأربعة هي أول خطوة تنزّلها من الرف.</p>
+        <p class="t-feedback t-feedback--ok"><strong>مهمة الأسبوع</strong>سؤال واحد، خريطة أعمدة أربعة، وعادة ١٠ دقائق لمدة ١٤ يوم. وما تقولش لحد.</p>
+        <div class="screen-foot"><span>الأسبوع الجاي: حقيقة الأشياء — تصف ولا توسم</span><button class="t-btn t-btn--ghost" type="button">ارجع للعمود</button></div>
+      </div>
+    </div></div>
+</section>
+
+<!-- ============================================================ patterns -->
+<section class="part" id="patterns">
+  <div class="part__head"><h2>الأنماط التفاعلية الثمانية عشر</h2><p>كل نمط مأخوذ من أداة يستعملها أيمن في الشرح. كلها تكوينية بلا درجات. المحتوى هنا من نصوص v0.4 نفسها.</p></div>
+  <div class="pgrid" id="pgrid"></div>
+</section>
+
+<!-- ============================================================ images -->
+<section class="part" id="images">
+  <div class="part__head"><h2>الصور</h2><p>ثلاثة أنواع فقط: رسم مفاهيمي SVG، رسم خطاف مولد بلا نص ولا وجوه، وصورة مكتبة بمعالجة «حبر على ورق».</p></div>
+  <div class="imgrules">
+    <figure class="t-photo">
+      <div class="t-photo__ink"><img id="mosaic" src="../../06_المكتبة_البصرية/مقتنيات_تاريخية/قبة_الصخرة_فسيفساء_داخلية_CC-BY-SA_01.jpg" alt="فسيفساء أموية داخل قبة الصخرة بزخارف نباتية"></div>
+      <figcaption>فسيفساء قبة الصخرة الداخلية — عمارة أموية ٦٩١م · صورة Virtutepetens عبر Smarthistory · CC BY-SA 4.0 · معالجة «حبر على ورق» بلون المرحلة (بدّل المرحلة من الأعلى)</figcaption>
+    </figure>
+    <div>
+      <h3 style="margin:0 0 10px">الخطوط الحمراء للصور</h3>
+      <ul class="dont">
+        <li>لا وجوه للأنبياء ولا للصحابة ولا لآل البيت، بأي شكل: لا رسم، ولا ظل، ولا توليد</li>
+        <li>لا صور مولدة لأيمن عبد الرحيم ولا لأي شخص حقيقي</li>
+        <li>الشخصيات التاريخية بلا صور معاصرة تُمثَّل بعملات عصرها وعمائره</li>
+        <li>لا نص عربي داخل صورة مولدة؛ كل نص HTML أو SVG فوقها</li>
+        <li>لا معارك ولا دم ولا نار ولا رموز طائفية، حتى في كربلاء والحرة والفتنة</li>
+        <li>صورة «حقوق تحريرية» للاستعمال الداخلي فقط، وكل صورة تحمل مصدرها</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  المرجع: <code>07_الهوية_البصرية_والتفاعل/01_الهوية_البصرية.md</code> · الخطة: <code>02_الخطة_البصرية_والتفاعلية.md</code> · الوكلاء: <code>04_تعليمات_وكلاء_الذكاء_الاصطناعي.md</code> · الرموز: <code>templates/tasees-tokens.css</code>
+</footer>
+</div>
+
+<script src="tasees-runtime.js"></script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var AR = Tasees.AR, el = Tasees.el, store = Tasees.store;
+
+  /* ---------- controls: theme + phase ---------- */
+  var root = document.documentElement;
+  function setTheme(t) { root.setAttribute("data-theme", t); $("#th-day").setAttribute("aria-pressed", t === "light"); $("#th-night").setAttribute("aria-pressed", t === "dark"); }
+  $("#th-day").onclick = function () { setTheme("light"); };
+  $("#th-night").onclick = function () { setTheme("dark"); };
+  $$("[data-ph]").forEach(function (b) { b.onclick = function () { root.setAttribute("data-phase", b.dataset.ph); $$("[data-ph]").forEach(function (x) { x.setAttribute("aria-pressed", x === b); }); }; });
+  $$(".js-track").forEach(function (b) { b.onclick = function () { $$(".js-track").forEach(function (x) { x.setAttribute("aria-pressed", x === b); }); }; });
+
+  /* ---------- the column ---------- */
+  var titles = {1:"ما تسحبش الكروت من غير ترتيب",2:"حقيقة الأشياء",3:"تحرير العقل",4:"الحوار المنصف",5:"خزانتك مش عقلك",6:"خريطة العلوم",7:"الأرقام بتكدب؟",8:"المعرفة بتسافر",9:"لغتك مش هدومك",10:"الجذر أداة",11:"النحو مش كرابيج",12:"اللغة مشروع",13:"إزاي وصلتنا السيرة؟",14:"الرجل في الغار",15:"القدوة مش استنساخ",16:"السيرة مش غزوات وبس",18:"تاريخنا مزور؟",19:"الصاحبان",20:"عثمان وبذور الفتنة",21:"الفتنة",22:"بنو أمية",23:"إزاي بتقع دولة؟",24:"العصر الذهبي والانحدار",25:"الصليبيون والمغول"};
+  (function column() {
+    var svg = $("#column"), NS = "http://www.w3.org/2000/svg", BW = 46, BH = 20, G = 5, X0 = 52, y = 262, out = "";
+    var units = [[1,[1,2,3,4],1],[2,[5,6,7,8],1],[3,[9,10,11,12],1],[4,[13,14,15,16],1],[5,[18,19,20,21],2],[6,[22,23,24,25],2],[7,[27,28,29,30],3],[8,[31,32,33,34],3]];
+    var cvar = {1:"var(--pen-blue)",2:"var(--sepia)",3:"var(--pen-green)"}, W = 4 * BW + 3 * G + 8;
+    out += '<path d="M' + (X0 - 16) + ' ' + (y + 30) + ' h' + (W + 32) + ' M' + (X0 - 8) + ' ' + (y + 30) + ' v-8 h' + (W + 16) + ' v8" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>';
+    y += 8;
+    units.forEach(function (u, i) {
+      if (u[0] === 5 || u[0] === 7) { y -= 13; out += '<rect x="' + (X0 - 6) + '" y="' + y + '" width="' + (W + 12) + '" height="9" rx="2" fill="none" stroke="var(--ink-soft)" stroke-dasharray="2 3"><title>أسبوع التنفس ' + AR(u[0] === 5 ? 17 : 26) + '</title></rect>'; }
+      y -= BH + G;
+      out += '<text x="' + (X0 - 22) + '" y="' + (y + 15) + '" text-anchor="middle" font-size="12" fill="var(--ink-soft)" font-family="IBM Plex Sans Arabic, Tahoma, sans-serif">و' + AR(u[0]) + '</text>';
+      u[1].forEach(function (w, j) {
+        var x = X0 + (i % 2 ? 4 : 0) + j * (BW + G);
+        out += '<g class="brick" data-w="' + w + '" tabindex="0" role="button" aria-pressed="false" style="--c:' + cvar[u[2]] + '"><title>الأسبوع ' + AR(w) + ' — ' + (titles[w] || "قيد الإنتاج") + '</title><rect x="' + x + '" y="' + y + '" width="' + BW + '" height="' + BH + '" rx="2" fill="transparent" stroke="' + cvar[u[2]] + '" stroke-width="1.8"/></g>';
+      });
+    });
+    out += '<path d="M' + (X0 - 12) + ' ' + (y - 6) + ' h' + (W + 24) + ' M' + (X0 - 4) + ' ' + (y - 6) + ' q' + ((W + 8) / 2) + ' -24 ' + (W + 8) + ' 0" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>';
+    svg.innerHTML = out;
+    var laid = (store.get("bricks") || "1,2,3,4,5").split(",");
+    $$(".brick", svg).forEach(function (g) {
+      var r = g.querySelector("rect");
+      var paint = function (on) { r.setAttribute("fill", on ? r.getAttribute("stroke") : "transparent"); g.setAttribute("aria-pressed", on); };
+      paint(laid.indexOf(g.dataset.w) > -1);
+      var toggle = function () { var on = g.getAttribute("aria-pressed") !== "true"; paint(on); store.set("bricks", $$(".brick[aria-pressed=true]", svg).map(function (x) { return x.dataset.w; }).join(",")); };
+      g.addEventListener("click", toggle);
+      g.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+    });
+  })();
+
+  var R = {}; Tasees.patterns.forEach(function (k) { R[k] = function (box, d) { Tasees.render(box, k, d); }; });
+
+  /* ---------- content: verbatim or close paraphrase from the v0.4 scripts and SVGs ---------- */
+  var DATA = {
+    "order-child": { items: ["سؤال", "تجربة", "وجعة صغيرة", "تعديل", "فهم"], done: "وإحنا كبرنا عكسنا النظام: بقينا نجمع معلومات من غير أسئلة ولا تجارب ولا وجع." },
+    sanad: { links: [["المصدر", "مين صوّر المقطع؟"], ["الناقل", "مين بعته؟"], ["المحتوى", "مين قصّه؟"], ["الدرجة", "مين علّق عليه؟"]], done: "اللي يقولك «ثق بس ومتسألش» بيبيع لك حزمة من غير خريطة، واللي يقولك «كله مزور» بيبيع لك إحباط من غير فحص." },
+    journal: { q: "أنا مين، وأنا جيت ليه، وأنا رايح فين: أنهي سؤال فيهم إجابته محتاجة منك علم ما قربتش منه خالص؟ اكتبه." }
+  };
+  var BOOK = [
+    ["P01", "رتّب الكروت", "«الكروت ليها ترتيب» · و1", "order-child", "كل أسبوع فيه سلسلة: نظام تشغيل الطفل (و1)، سلسلة الفكرة (و2)، مراحل التشقق (و20)."],
+    ["P02", "فرز السلال", "معرفة / مهارة / توجه · و1", { bins: ["معرفة", "مهارة", "توجه"], items: [["عارف إن المية فيها طفو", 0], ["بينزل المية ويفضل عايم فعلًا", 1], ["بيحب البحر وبيدور على فرصة ينزل", 2], ["حافظ كتابين عن السباحة", 0], ["بيعوم زي السمكة", 1]], done: "المعرفة لوحدها ما بتعومش." }],
+    ["P03", "وصّل", "كل علم بيجاوب سؤال · و1", { pairs: [["الفيزياء", "العالم المادي شغال إزاي؟"], ["التاريخ", "الناس عملت إيه لما جربت؟"], ["الفقه", "الشرع أمر بإيه؟"], ["الطب النفسي", "المخ بيتصرف إزاي؟"]], hint: "كل علم بيجاوب جزء واحد من السؤال.", done: "ودي أول خطوة في الخريطة." }],
+    ["P04", "اصطاد المصيدة", "«الجريمة زادت ١٠٠٪» · و7", { label: "رسم بياني متخيَّل لمنشور", art: "<rect class=\"ink\" x=\"6\" y=\"6\" width=\"368\" height=\"238\" rx=\"8\"/><text x=\"350\" y=\"38\" text-anchor=\"end\" font-size=\"20\" font-weight=\"700\">الجريمة زادت ١٠٠٪!</text><line class=\"ink\" x1=\"300\" y1=\"70\" x2=\"300\" y2=\"215\"/><line class=\"ink\" x1=\"70\" y1=\"215\" x2=\"300\" y2=\"215\"/><text x=\"312\" y=\"80\" font-size=\"11\">٤</text><text x=\"312\" y=\"212\" font-size=\"11\">٢</text><rect x=\"210\" y=\"160\" width=\"60\" height=\"55\" fill=\"var(--pen-blue)\"/><rect x=\"110\" y=\"75\" width=\"60\" height=\"140\" fill=\"var(--pen-red)\"/><text x=\"240\" y=\"235\" text-anchor=\"middle\" font-size=\"12\">السنة اللي فاتت</text><text x=\"140\" y=\"235\" text-anchor=\"middle\" font-size=\"12\">السنة دي</text>", spots: [{ label: "النسبة من غير العدد", why: "من حالتين لأربعة. النسبة صح والمعرفة غلط.", x: 150, y: 16, w: 216, h: 32 }, { label: "المحور يبدأ من ٢ مش من صفر", why: "العمود الأحمر شكله أضعاف الأزرق، والفرق حالتين.", x: 296, y: 66, w: 34, h: 156 }] }],
+    ["P05", "حوار متفرع", "من المناظرة للحوار المنصف · و4", { open: "رأيي إن الموضوع ده محسوم ومفيهوش كلام.", replies: [{ say: "لأ، غلط. وهقولك ليه.", then: "يبقى إنت ما سمعتنيش أصلًا.", good: false, note: "المناظرة بتكسب مواقف وتخسر معرفة." }, { say: "خليني أقولك فهمت رأيك إزاي، وقولي لو أنا غلط.", then: "ماشي… قول.", good: true, note: "دي أول خطوة في بروتوكول الحوار المنصف." }] }],
+    ["P06", "بنّاء البطاقة", "خريطة الأعمدة الأربعة · و1", { key: "pillars", note: "مثال من نص الأسبوع ١؛ ما يكتبه المتعلم يبقى على جهازه.", fields: [{ key: "q", label: "السؤال", ph: "سؤال واحد محدد", example: "ليه فيه خلاف فقهي؟" }, { key: "s", label: "العلم / المصدر", ph: "أنهي علم بيجاوبه؟", example: "أصول الفقه" }, { key: "g", label: "الفجوة", options: ["عارف", "فاكر إني عارف", "مش عارف خالص"] }, { key: "h", label: "العادة", ph: "١٠ دقائق، وقت محدد، ١٤ يوم", example: "ربع ساعة بعد الفجر" }] }],
+    ["P07", "خريطة تُستكشف", "مراحل الدورة الثلاث · مخطط v0.4", { prompt: "افتح المراحل الثلاث.", parts: [{ name: "بناء المتلقي", c: "var(--pen-blue)", text: "و1–4 · أسابيع 1–16: التفكير، منهج التعلم، اللغة، السيرة." }, { name: "بناء الخريطة", c: "var(--sepia)", text: "و5–6 · أسابيع 18–25: مدخل التاريخ والراشدون، ثم الدول والحضارة." }, { name: "الحاضر والممارسة", c: "var(--pen-green)", text: "و7–8 · أسابيع 27–34: العثمانيون والحداثة، ثم البيت والجماعات." }] }],
+    ["P08", "محاكاة", "معضلة السجين · و3", { intro: "اتقبض عليك وعلى شريكك وكل واحد في أوضة. تعترف ولا تسكت؟", choices: ["أسكت", "أعترف"], first: 1, otherSays: ["صاحبك سكت", "صاحبك اعترف"], repeatNote: "في الجولات المتكررة صاحبك بيرد عليك بنفس اللي عملته المرة اللي فاتت.", out: { "00": "الاتنين سكتوا: حكم خفيف على الاتنين.", "01": "إنت سكت وهو اعترف: هو خرج وإنت أخدت الحكم التقيل.", "10": "إنت اعترفت وهو سكت: خرجت، وهو أخد الحكم التقيل.", "11": "الاتنين اعترفوا: حكم متوسط على الاتنين." } }],
+    ["P09", "عائلة الجذر", "ك-ت-ب · و10", { root: "ك ت ب", family: [["كَتَبَ", "فعل"], ["كِتَاب", "النتاج"], ["كَاتِب", "الفاعل"], ["مَكْتَب", "المكان"], ["مَكْتُوب", "المفعول"]] }],
+    ["P10", "بطاقة الخبر", "بطاقة الرواية الخماسية · و18", { flag: "علامة حمراء تلقائية: التعميم المجهول — «قالوا» «رُوي أن» «الناس بتقول». أنهي مؤرخين؟ فين أسماؤهم؟", fields: [["١ الراوي", "مين أول من حكى؟"], ["٢ السلسلة", "كام واسطة؟"], ["٣ المتن", "معقول؟ مبالغة؟"], ["٤ السياق", "لصالح مين؟"], ["٥ الأثر", "على قده الصرامة"]], grades: ["قوي", "ضعيف", "لا أعلم بعد"], note: "«لا أعلم بعد» أمانة مش ضعف." }],
+    ["P11", "الزمن والأطلس", "ميزان الدولة الأموية ٤١–١٣٢هـ · و22", { prompt: "انقر محطة. في الدرس، كل محطة تفتح مكانها على الأطلس.", events: [["٤١هـ", "قيام الدولة الأموية."], ["٦٦–٧٢هـ", "بناء قبة الصخرة: أول تحفة معمارية باقية."], ["٧٧هـ", "الدينار الإسلامي: استقلال اقتصادي."], ["١٣٢هـ", "سقوط الدولة الأموية."]] }],
+    ["P12", "الميزان", "ميزان الدولة الأموية · و22", { pans: ["كفة الإنجاز", "كفة الصفحات السوداء"], items: [["تعريب الدواوين", 0], ["الدينار الإسلامي", 0], ["قبة الصخرة", 0], ["وقعة الحرة ٦٣هـ", 1], ["سابقة التوريث", 1]], done: "إنجاز وجريمة في سجل واحد، من غير ما يذيب واحد في التاني." }],
+    ["P13", "القاطع", "البيت ضلمة · و1", { tries: [{ label: "غيّر اللمبة", say: "غيرها، تلاقيها بتولع وتطفي." }, { label: "غيّر السلك", say: "برضه بتولع وتطفي." }, { label: "اعمل حملة على الشركة", say: "الناس اتحمست وعملت حملة… والبيت لسه ضلمة." }, { label: "بص على القاطع", fix: true, say: "القاطع كان واقع يا جدعان! المشكلة كلها كانت زرار." }] }],
+    ["P14", "توقّع ثم اكشف", "اسأل قبل ما تجمع · كل أسبوع", { q: "آخر حاجة «عرفتها» السنة دي: اتحولت لمهارة؟", options: ["اتحولت لمهارة فعلًا", "لسه على الرف", "مش فاكر أصلًا عرفت إيه"] }],
+    ["P15", "الدفتر", "«سؤال للدفتر» · كل أسبوع", "journal"],
+    ["P16", "السند", "«السند أقدم خريطة» · و1", "sanad"],
+    ["P17", "قلّب البطاقة", "المعرفة والمهارة والتوجه · و1", { cards: [["المعرفة", "إنك تعرف إن السباحة حركات معينة، والمية فيها طفو."], ["المهارة", "إنك تنزل المية وتفضل عايم فعلًا."], ["التوجه", "إنك تبقى إنسان بيحب البحر، وبيدور على فرصة ينزل المية."]] }],
+    ["P18", "السلم", "الفجوة · و1", { q: "الموضوع اللي اخترته: إنت فين منه؟", steps: [["عارف", "عندك معرفة وتقدر تشرحها لحد."], ["فاكر إني عارف", "أخطر درجة: دي اللي بتعمل الحل المتوهم."], ["مش عارف خالص", "كويس. دي نقطة بداية الخريطة."]] }]
+  ];
+  var WEEKS = {"P01":[1,2,4,8,12,13,20,23],"P02":[1,2,5,9,11,15,17,18,22,24,27,28,29,30],"P03":[1,6,10,14],"P04":[3,7,11,20],"P05":[4,31,32,33,34],"P06":[1,2,4,7,8,12,16,25,31,32,33,34],"P07":[6,17,20,24,25,26,31,32,33,34],"P08":[3,7,23],"P09":[10],"P10":[13,18,21],"P11":[8,14,19,21,23,25,27,28,29,30],"P12":[22,25,27,28,29,30],"P13":[1],"P14":"كل أسبوع","P15":"كل أسبوع (شاشة L6)","P16":[1],"P17":[15,19,21],"P18":[3,5,7,9,16,24]};
+
+  var grid = $("#pgrid");
+  BOOK.forEach(function (p) {
+    var card = el("article", { class: "pcard", id: p[0] });
+    card.appendChild(el("div", { class: "pcard__h" }, "<b>" + p[0] + "</b><h3>" + p[1] + "</h3>"));
+    card.appendChild(el("p", { class: "pcard__meta" }, p[2]));
+    var demo = el("div", { class: "demo" }); card.appendChild(demo);
+    var w = WEEKS[p[0]];
+    card.appendChild(el("p", { class: "pcard__weeks" }, "الأسابيع: " + (Array.isArray(w) ? w.map(AR).join("، ") : w)));
+    grid.appendChild(card);
+    R[p[0]](demo, typeof p[3] === "string" ? DATA[p[3]] : p[3]);
+  });
+  $$("[data-p]").forEach(function (box) { R[box.dataset.p](box, DATA[box.dataset.src]); });
+})();
+</script>
+</body>
+</html>
