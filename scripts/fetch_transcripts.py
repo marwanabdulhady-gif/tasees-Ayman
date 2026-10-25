@@ -31,7 +31,9 @@ if COOKIES_FILE and not Path(COOKIES_FILE).is_file():
 
 
 def ydl_opts(**extra) -> dict:
-    opts = {"quiet": True, "no_warnings": True, "ignoreerrors": True}
+    # lang=ar keeps the original Arabic titles instead of YouTube's auto-translations.
+    opts = {"quiet": True, "no_warnings": True, "ignoreerrors": True,
+            "extractor_args": {"youtube": {"lang": ["ar"]}}}
     if COOKIES_FILE:
         opts["cookiefile"] = COOKIES_FILE
     opts.update(extra)
@@ -46,6 +48,37 @@ def list_playlist(playlist_id: str) -> tuple[str, list[dict]]:
         raise RuntimeError(f"could not list playlist {playlist_id}")
     entries = [e for e in info.get("entries") or [] if e and e.get("id")]
     return info.get("title") or playlist_id, entries
+
+
+ORDINALS = {
+    "الأولى": 1, "الأولي": 1, "الاولى": 1, "الاولي": 1, "الثانية": 2, "الثالثة": 3, "الرابعة": 4,
+    "الخامسة": 5, "السادسة": 6, "السابعة": 7, "الثامنة": 8, "التاسعة": 9, "العاشرة": 10,
+    "one": 1, "first": 1, "two": 2, "second": 2, "three": 3, "third": 3, "four": 4, "fourth": 4,
+    "five": 5, "fifth": 5, "six": 6, "sixth": 6, "seven": 7, "seventh": 7, "eight": 8,
+    "eighth": 8, "nine": 9, "ninth": 9, "ten": 10, "tenth": 10,
+}
+
+
+def lecture_number(title: str) -> int | None:
+    """Lecture number from a title like "... المحاضرة السادسة" or "Lecture Five"."""
+    m = re.search(r"(?:المحاضرة|lecture)\s+(\S+)", title, re.IGNORECASE)
+    if m:
+        word = m.group(1).lower()
+        if word.isdigit():
+            return int(word)
+        if word in ORDINALS:
+            return ORDINALS[word]
+    m = re.match(r"\s*(\d{1,3})\s", title)
+    return int(m.group(1)) if m else None
+
+
+def order_by_lecture(entries: list[dict]) -> list[dict]:
+    """Sort entries by lecture number; keep playlist order if any title can't be parsed."""
+    numbers = [lecture_number(e.get("title") or "") for e in entries]
+    if None in numbers or len(set(numbers)) != len(numbers):
+        print("  could not read every lecture number; keeping playlist order", file=sys.stderr)
+        return entries
+    return [e for _, e in sorted(zip(numbers, entries), key=lambda pair: pair[0])]
 
 
 def safe_filename(name: str, limit: int = 90) -> str:
@@ -168,6 +201,8 @@ def process_playlist(pl: dict, languages: list[str]) -> list[str]:
     folder = TRANSCRIPTS_DIR / pl["folder"]
     folder.mkdir(parents=True, exist_ok=True)
     yt_title, entries = list_playlist(pl["playlist_id"])
+    if pl.get("sort_by_lecture"):
+        entries = order_by_lecture(entries)
     print(f"\n== {pl['folder']}: {yt_title} ({len(entries)} videos)")
 
     episodes = []

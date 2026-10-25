@@ -4,7 +4,7 @@ Transcripts of the lecture playlists by م. أيمن عبدالرحيم ([@Ayman
 
 ## Layout
 
-`transcripts/<playlist-folder>/` holds one Markdown file per episode (`NN - title.md`, with timestamped paragraphs linking back to the video) and a `README.md` index for the playlist. Playlists are listed in `transcripts/playlists.json`.
+`transcripts/<playlist-folder>/` holds one Markdown file per episode (`NN - title.md`, with timestamped paragraphs linking back to the video) and a `README.md` index for the playlist. Playlists are listed in `transcripts/playlists.json`; `"sort_by_lecture": true` numbers episodes by the lecture number in their title (المحاضرة الأولى، الثانية …) instead of playlist order.
 
 ## Fetching
 
