@@ -1,0 +1,52 @@
+name: Fetch YouTube transcripts
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - transcripts/playlists.json
+      - scripts/fetch_transcripts.py
+      - .github/workflows/fetch-transcripts.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-transcripts-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      YT_COOKIES: ${{ secrets.YT_COOKIES }}
+      YT_COOKIES_FILE: ${{ github.workspace }}/../cookies.txt
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Write cookies (optional)
+        if: ${{ env.YT_COOKIES != '' }}
+        run: printf '%s' "$YT_COOKIES" > "$YT_COOKIES_FILE"
+
+      - name: Fetch transcripts
+        run: python scripts/fetch_transcripts.py
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add transcripts
+          if git diff --cached --quiet; then
+            echo "No new transcripts."
+          else
+            git commit -m "Add YouTube transcripts"
+            git push
+          fi
