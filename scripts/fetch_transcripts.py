@@ -247,9 +247,12 @@ def fetch_via_invidious(video_id: str) -> tuple[list[tuple[float, str]] | None, 
             r = requests.get(f"{inst}/api/v1/captions/{video_id}",
                              timeout=20, headers={"User-Agent": UA})
             r.raise_for_status()
-            caps = r.json()
+            data = r.json()
+            # Older Invidious builds return a bare list; newer ones (e.g.
+            # inv.nadeko.net) wrap it as {"captions": [...]}.
+            caps = data.get("captions") if isinstance(data, dict) else data
             if not isinstance(caps, list) or not caps:
-                raise RuntimeError(f"unexpected captions payload: {str(caps)[:120]}")
+                raise RuntimeError(f"unexpected captions payload: {str(data)[:120]}")
             pick = next((c for c in caps
                          if _is_arabic(c.get("languageCode", ""), c.get("label", ""))), caps[0])
             url = pick.get("url") or ""
@@ -334,7 +337,9 @@ def process_playlist(pl: dict, languages: list[str], limit: int = 0) -> list[str
     transcripts = fetch_with_ytfetcher([ep["id"] for ep in pending], languages)
 
     missing = []
-    for ep in pending:
+    for i, ep in enumerate(pending):
+        if i:
+            time.sleep(0.3)  # be gentle with the public instances
         segments, source = transcripts.get(ep["id"]), "ytfetcher (youtube-transcript-api)"
         if not segments:
             # With cookies, probe every client (best success rate). Without,
