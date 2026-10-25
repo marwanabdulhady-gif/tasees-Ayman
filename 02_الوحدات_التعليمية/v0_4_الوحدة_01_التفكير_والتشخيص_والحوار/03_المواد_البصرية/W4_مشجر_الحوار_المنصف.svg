@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="Cairo, sans-serif">
+<rect width="1200" height="675" fill="#0e1b2e"/>
+<text x="600" y="66" fill="#e8f1f8" font-size="38" text-anchor="middle" font-weight="bold">بروتوكول الحوار المنصف: ست خطوات</text>
+<g font-size="24" text-anchor="middle">
+<rect x="60" y="110" width="340" height="80" rx="14" fill="#123a5c" stroke="#f2b134" stroke-width="3"/><text x="230" y="158" fill="#e8f1f8">١ الدعوى كما فهمتها</text>
+<rect x="430" y="110" width="340" height="80" rx="14" fill="#123a5c" stroke="#f2b134" stroke-width="3"/><text x="600" y="158" fill="#e8f1f8">٢ نوع الكلام والمصدر</text>
+<rect x="800" y="110" width="340" height="80" rx="14" fill="#123a5c" stroke="#f2b134" stroke-width="3"/><text x="970" y="158" fill="#e8f1f8">٣ رجل الفولاذ</text>
+<rect x="60" y="230" width="340" height="80" rx="14" fill="#123a5c" stroke="#39c0ba" stroke-width="3"/><text x="230" y="278" fill="#e8f1f8">٤ ثابت/مفسَّر/قيمي/مجهول</text>
+<rect x="430" y="230" width="340" height="80" rx="14" fill="#123a5c" stroke="#39c0ba" stroke-width="3"/><text x="600" y="278" fill="#e8f1f8">٥ حدّي وقراءة بديلة</text>
+<rect x="800" y="230" width="340" height="80" rx="14" fill="#123a5c" stroke="#39c0ba" stroke-width="3"/><text x="970" y="278" fill="#e8f1f8">٦ خطوة تعلم لا انتصار</text>
+</g>
+<g font-size="22" fill="#bcd6e6" text-anchor="middle">
+<rect x="120" y="360" width="960" height="66" rx="14" fill="#0f2740"/><text x="600" y="402">أمراض المناظرة: رجل القش · وسم الخصم · تسجيل النقاط · الجمهور الافتراضي</text>
+<rect x="120" y="450" width="960" height="66" rx="14" fill="#0f2740"/><text x="600" y="492">ملف الوحدة: سؤال + مصدر بوظيفته + حد + قراءة بديلة + فعل منخفض المخاطر</text>
+<rect x="120" y="540" width="960" height="66" rx="14" fill="#0f2740"/><text x="600" y="582">مراجعة القرين: مرايا متبادلة — وسم متخفٍ؟ قراءة بديلة ديكور؟</text>
+</g>
+<text x="600" y="645" fill="#7fa3bb" font-size="20" text-anchor="middle">مشروع تأسيس — الوحدة 1 v0.4 — الأسبوع 4</text>
+</svg>
