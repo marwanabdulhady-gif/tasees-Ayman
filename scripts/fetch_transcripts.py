@@ -237,6 +237,51 @@ def fetch_captions(video_id: str, languages: list[str], client: str = "default")
     return None
 
 
+def parse_caption_body(text: str) -> list[tuple[float, str]]:
+    """Parse a caption body in any of the shapes public frontends return:
+    plain WebVTT, YouTube JSON3 ({"events": [...]}), or {"captions": [...]}
+    with timed entries."""
+    text = text.lstrip("\ufeff").strip()
+    if not text:
+        return []
+    if text[0] in "{[":
+        try:
+            data = json.loads(text)
+        except ValueError:
+            data = None
+        if isinstance(data, dict) and isinstance(data.get("events"), list):
+            segs = []
+            for ev in data["events"]:
+                if not isinstance(ev, dict) or not ev.get("segs"):
+                    continue
+                t = float(ev.get("tStartMs") or 0) / 1000.0
+                txt = "".join(s.get("utf8", "") for s in ev["segs"]
+                              if isinstance(s, dict)).replace("\n", " ").strip()
+                if txt:
+                    segs.append((t, txt))
+            if segs:
+                return segs
+        items = None
+        if isinstance(data, dict) and isinstance(data.get("captions"), list):
+            items = data["captions"]
+        elif isinstance(data, list):
+            items = data
+        if items:
+            segs = []
+            for c in items:
+                if not isinstance(c, dict):
+                    continue
+                t = c.get("start", c.get("tStartMs"))
+                txt = str(c.get("text", "")).replace("\n", " ").strip()
+                if isinstance(t, (int, float)) and txt:
+                    if t > 1000:  # milliseconds
+                        t = t / 1000.0
+                    segs.append((float(t), txt))
+            if segs:
+                return segs
+    return parse_vtt(text)
+
+
 def fetch_via_invidious(video_id: str) -> tuple[list[tuple[float, str]] | None, str | None]:
     """Captions through public Invidious instances."""
     for inst in INVIDIOUS_INSTANCES:
@@ -260,11 +305,19 @@ def fetch_via_invidious(video_id: str) -> tuple[list[tuple[float, str]] | None, 
                 url = inst + url
             rv = requests.get(url, timeout=30, headers={"User-Agent": UA})
             rv.raise_for_status()
-            segments = parse_vtt(rv.text)
+            segments = parse_caption_body(rv.text)
+            if not segments and "fmt=" not in url:
+                # Some builds need the format hint to emit usable VTT.
+                sep = "&" if "?" in url else "?"
+                rv2 = requests.get(url + sep + "fmt=vtt", timeout=30, headers={"User-Agent": UA})
+                if rv2.ok:
+                    segments = parse_caption_body(rv2.text)
             if segments:
                 print(f"  [invidious] {video_id} via {host} ({pick.get('label')})")
                 return segments, host
-            raise RuntimeError("VTT parsed to zero segments")
+            # Parse problem — keep the instance alive (network is fine) but
+            # record the body head so the next run's report is diagnostic.
+            note_failure(video_id, f"invidious[{host}]: caption body parsed empty; head={rv.text[:150]!r}")
         except Exception as exc:  # noqa: BLE001
             instance_fails[inst] += 1
             note_failure(video_id, f"invidious[{host}]: {exc}")
@@ -287,11 +340,11 @@ def fetch_via_piped(video_id: str) -> tuple[list[tuple[float, str]] | None, str 
             pick = next((s for s in subs if _is_arabic(s.get("name", ""), s.get("code", ""))), subs[0])
             rv = requests.get(pick["url"], timeout=30, headers={"User-Agent": UA})
             rv.raise_for_status()
-            segments = parse_vtt(rv.text)
+            segments = parse_caption_body(rv.text)
             if segments:
                 print(f"  [piped] {video_id} via {host} ({pick.get('name')})")
                 return segments, host
-            raise RuntimeError("VTT parsed to zero segments")
+            note_failure(video_id, f"piped[{host}]: caption body parsed empty; head={rv.text[:150]!r}")
         except Exception as exc:  # noqa: BLE001
             instance_fails[inst] += 1
             note_failure(video_id, f"piped[{host}]: {exc}")
