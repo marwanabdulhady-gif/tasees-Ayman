@@ -1,0 +1,20 @@
+{
+  "updated": "2026-10-26",
+  "sources": [
+    {
+      "id": "PL9saDKf7tQ7uPlqhlafX3tRbnr4oKrvQG",
+      "kind": "youtube-playlist",
+      "url": "https://www.youtube.com/playlist?list=PL9saDKf7tQ7uPlqhlafX3tRbnr4oKrvQG",
+      "speaker": "ayman",
+      "title": "كيف أتعلم",
+      "series": "كيف أتعلم",
+      "edition": null,
+      "episodes": null,
+      "captions": "unknown",
+      "checked": "2026-10-26",
+      "evidence": "YouTube search result title is «كيف أتعلم, أيمن عبدالرحيم» and its description links to https://www.youtube.com/@AymanComplete; the official channel identity matches the plan's @AymanComplete seed.",
+      "plan": "T2",
+      "why_skip": ""
+    }
+  ]
+}
