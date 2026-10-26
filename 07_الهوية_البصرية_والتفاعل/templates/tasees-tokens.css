@@ -200,6 +200,30 @@
 .t-arrow { width: 48px; height: 20px; color: var(--ink-soft); flex: none; }
 .t-arrow path { stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
+/* ---------- atlas pages (P19 / P20) — scans of the six atlases, shown as printed sheets ---------- */
+.tl { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 14px; border-top: 2px solid var(--phase); }
+.tl button { font: 500 var(--t-tag)/1.3 var(--f-body); background: var(--card); border: 1.5px solid var(--phase); color: var(--ink); padding: 5px 8px; cursor: pointer; font-variant-numeric: tabular-nums; border-radius: 3px; }
+.tl button[aria-pressed="true"] { background: var(--phase); color: var(--paper); }
+.atlas { margin: 0; position: relative; background: var(--photo-paper); border: 1.5px solid var(--rule); padding: 8px; max-width: 100%; }
+.atlas__scroll { overflow: auto; max-height: 70vh; }
+.atlas__sheet { position: relative; width: 100%; max-width: none; }
+.atlas__sheet img { display: block; width: 100%; height: 100%; }
+.atlas__hs { position: absolute; border: 2px dashed var(--pen-red); background: transparent; padding: 0; cursor: pointer; border-radius: 3px; }
+.atlas__hs span { position: absolute; top: -11px; inset-inline-start: -11px; width: 22px; height: 22px; border-radius: 50%; background: var(--pen-red); color: #FFFFFF; font: 700 12px/22px var(--f-body); text-align: center; }
+.atlas__hs.is-hidden { border-color: transparent; }
+.atlas__hs.is-found { border: 2.5px solid var(--pen-green); background: var(--wash-green); }
+.atlas__hs.is-open { border-style: solid; background: var(--wash-red); }
+.atlas__hs:focus-visible { outline: 3px solid var(--pen-blue); outline-offset: 2px; }
+.atlas__zoom { position: absolute; top: 14px; inset-inline-end: 14px; z-index: 2; background: var(--card); }
+.atlas figcaption, .atlas-cmp figcaption { font-size: var(--t-tag); color: #4A5470; padding-top: 6px; }
+.atlas figcaption a, .atlas-cmp ~ p a { color: var(--pen-blue); }
+.atlas-cmp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.atlas-cmp__pane { margin: 0; background: var(--photo-paper); border: 1.5px solid var(--rule); padding: 6px; min-width: 0; }
+.atlas-cmp.is-swipe { display: block; position: relative; }
+.atlas-cmp.is-swipe .atlas-cmp__a { position: absolute; inset: 0; z-index: 1; }
+.atlas-cmp.is-swipe figcaption { display: none; }  /* one legend under the slider instead */  /* above the base map, whose sheet is positioned too */
+@media (max-width: 640px) { .atlas-cmp:not(.is-swipe) { grid-template-columns: minmax(0, 1fr); } }
+
 /* ---------- P11 timeline + atlas station bridge ---------- */
 .t-atlas-bar {
   display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
@@ -216,3 +240,64 @@
 .t-atlas-link--sub:hover { background: var(--pen-blue); color: var(--paper); }
 .t-atlas-link:focus-visible { outline: 3px solid var(--pen-red); outline-offset: 3px; }
 
+/* ============================================================================
+   أجزاء الأنماط التفاعلية P01–P18 — تُحمَّل مع كل صفحة أسبوع.
+   سبب وجودها هنا: `tasees-runtime.js` يرسم هذه الأصناف، وكانت معرَّفة فقط داخل
+   `<style>` في `screen-templates.html` (صفحة العرض) — فكانت صفحات الأسابيع تعرض
+   عناصر «النقاط الساخنة» (P04) كمستطيلات سوداء، وP05/P08/P09/P10/P11/P12/P17/P18
+   بلا تنسيق. المصدر الواحد للتنسيقات صار هذا الملف (بقرار المالك — انظر تقرير v0.4).
+   ============================================================================ */
+.order { display: flex; flex-direction: column; gap: 6px; }
+.order .t-choice b { color: var(--ink-soft); min-width: 1.4em; font-variant-numeric: tabular-nums; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); }
+.bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.chat { display: flex; flex-direction: column; gap: 8px; }
+.bubble { max-width: 85%; padding: 8px 12px; border: 1.5px solid var(--rule); background: var(--paper); font-size: var(--t-small); }
+.bubble.them { align-self: flex-end; }
+.bubble.me { align-self: flex-start; border-color: var(--pen-blue); }
+.sim { display: flex; flex-wrap: wrap; gap: 8px; }
+.explore { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.explore button { font: 500 var(--t-small)/1.4 var(--f-body); border: 1.5px solid var(--phase); background: var(--card); color: var(--ink); padding: 8px 10px; text-align: start; cursor: pointer; }
+.explore button[aria-pressed="true"] { background: var(--wash-green); border-color: var(--pen-green); }
+.explore button small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.journal textarea { min-height: 120px; resize: vertical; }
+.root { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.root__core { font-family: var(--f-display); font-size: 1.6rem; color: var(--phase); border-bottom: 3px solid var(--phase); padding: 2px 8px; }
+.grade { display: flex; gap: 6px; flex-wrap: wrap; }
+.grade button { font: 600 var(--t-tag)/1.4 var(--f-body); border: 1.5px solid var(--pen-black); background: transparent; color: var(--ink); padding: 4px 8px; cursor: pointer; }
+.grade button[aria-pressed="true"] { background: var(--wash-blue); }
+.flag { border: 1.5px solid var(--pen-red); color: var(--pen-red); padding: 6px 10px; font-size: var(--t-small); }
+.fields { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.fields button { font: 500 var(--t-tag)/1.4 var(--f-body); border: 1.5px solid var(--pen-black); border-style: dashed; background: transparent; color: var(--ink); padding: 6px 4px; cursor: pointer; min-height: 58px; }
+.fields button[aria-pressed="true"] { border-style: solid; background: var(--wash-blue); }
+.scale { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.scale svg { width: 100%; max-width: 320px; height: auto; }
+.scale .beam { transition: transform .5s ease; transform-origin: 160px 40px; }
+.scale .ink { stroke: var(--ink); stroke-width: 2; fill: none; }
+.tl { position: relative; display: flex; justify-content: space-between; gap: 4px; padding-top: 18px; border-top: 2px solid var(--phase); flex-wrap: wrap; }
+.tl button { font: 500 var(--t-tag)/1.3 var(--f-body); background: var(--card); border: 1.5px solid var(--phase); color: var(--ink); padding: 4px 6px; cursor: pointer; font-variant-numeric: tabular-nums; position: relative; }
+.tl button::before { content: ""; position: absolute; top: -13px; inset-inline-start: 50%; width: 2px; height: 10px; background: var(--phase); }
+.tl button[aria-pressed="true"] { background: var(--phase); color: var(--paper); }
+.flipgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.flip { border: 1.5px solid var(--ink); background: var(--card); min-height: 108px; padding: 10px; cursor: pointer; font: inherit; color: var(--ink); text-align: start; display: flex; flex-direction: column; gap: 4px; }
+.flip b { font-family: var(--f-display); font-size: 1.3rem; color: var(--phase); }
+.flip span { font-size: var(--t-tag); }
+.flip[aria-pressed="true"] { border-color: var(--pen-green); background: var(--wash-green); }
+.ticks { display: flex; justify-content: space-between; font-size: var(--t-tag); color: var(--ink-soft); gap: 6px; flex-wrap: wrap; }
+.post { width: 100%; max-width: 420px; height: auto; align-self: center; direction: ltr; }
+.post .hs { fill: transparent; stroke: transparent; stroke-width: 2.5; cursor: pointer; }
+.post .hs.found { stroke: var(--pen-red); fill: var(--wash-red); }
+.post .ink { stroke: var(--ink); fill: none; stroke-width: 1.6; }
+.post text { fill: var(--ink); font-family: var(--f-body); }
+.post input[type="range"], .ticks + input { accent-color: var(--phase); width: 100%; }
+@media (max-width: 560px) { .explore, .flipgrid, .fields { grid-template-columns: minmax(0, 1fr); } .builder, .bins, .pair { grid-template-columns: minmax(0, 1fr); } }

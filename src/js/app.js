@@ -1866,8 +1866,18 @@
     );
 
     function applyHashRoute() {
-      const raw = (window.location.hash || "").replace(/^#/, "").trim();
+      let raw = (window.location.hash || "").replace(/^#/, "").trim();
       if (!raw) return false;
+      // Short forms used by the Tasees course screens (07_الهوية_البصرية_والتفاعل):
+      //   #ali-181  ·  #ali-181~<hotspot>  ·  #cmp-<id>
+      if (!raw.includes("=")) {
+        try { raw = decodeURIComponent(raw); } catch (err) { return false; }
+        if ((manifest.comparisons || []).some((c) => c.id === raw)) raw = "cmp=" + encodeURIComponent(raw);
+        else {
+          const [pid, hid] = raw.split("~");
+          raw = "page=" + encodeURIComponent(pid) + (hid ? "&hs=" + encodeURIComponent(hid) : "");
+        }
+      }
       const params = new URLSearchParams(raw);
       const tabParam = params.get("tab");
       const pageParam = params.get("page");

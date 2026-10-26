@@ -1,0 +1,5 @@
+# Optional speech-to-text fallback for videos with no captions (scripts/fetch_transcripts.py, step 5).
+# Also needs ffmpeg on the PATH.
+#   wit.ai:   pip install -r scripts/requirements-asr.txt            then set WIT_AI_TOKENS
+#   Whisper:  pip install "tafrigh[wit,whisper]==1.7.8"               then set TAFRIGH_WHISPER_MODEL=large-v3
+tafrigh[wit]==1.7.8

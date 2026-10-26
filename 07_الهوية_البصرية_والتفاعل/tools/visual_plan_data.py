@@ -25,10 +25,14 @@ PATTERNS = {
     "P16": ("السند", "سلسلة تُكشف حلقة حلقة: مصدر ← ناقل ← محتوى ← درجة", "«السند أقدم خريطة»"),
     "P17": ("قلّب البطاقة", "وجه: مفهوم أو سؤال · ظهر: الشرح بصوت أيمن", "بطاقات المفاهيم"),
     "P18": ("السلم", "منزلق أو درج: المتعلم يضع نفسه أو الخبر على مقياس", "السلم اللغوي، طبقات الأدلة"),
+    "P19": ("الأطلس", "صفحة من الأطالس الستة بمعالمها المحققة: استكشف كل معلم، أو ابحث عن أماكن بعينها؛ ومحطات زمنية تبدّل الصفحة", "التاريخ بسند ومكان — منصة الأطالس"),
+    "P20": ("قارن الخريطتين", "مقارنة جاهزة من الأطلس: شريط سحب للخرائط المتطابقة، أو جنبًا إلى جنب", "قبل/بعد على نفس الأرض"),
 }
 
 # ---------------------------------------------------------------- weeks
-# status: "نص جاهز" = script exists in v0.4; "بانتظار النص" = unit not written yet
+# status: "نص جاهز" = script exists and the row was reviewed against it (all 36 weeks, v0.4)
+#         "نص جاهز — الصف ينتظر المراجعة (A0)" = script exists, patterns/hooks are placeholders
+# unit: 1–8 = units · 0 = breathing week 26 · 17/35 = breathing weeks · 36 = capstone week
 # svg: existing concept SVG in the unit's 03_المواد_البصرية (to be restyled, task A2)
 # ix: list of (pattern, what exactly, content source)
 # hooks: list of (asset_id, arabic concept, english prompt body) — AI stills, no text, no faces
@@ -43,6 +47,11 @@ UNIT_DIR = {
     17: "v0_4_تغليف_المرحلة_١_وأسبوع_التنفس_17",
     5: "v0_4_الوحدة_05_مدخل_التاريخ_منهج_وراشدون_وفتنة",
     6: "v0_4_الوحدة_06_الدول_والحضارة_من_الأمويين_للمماليك",
+    0: "v0_4_تغليف_المرحلة_٢_وأسبوع_التنفس_26",
+    7: "v0_4_الوحدة_07_عثمانيون_استعمار_حداثة_هوية",
+    8: "v0_4_الوحدة_08_البيت_والجماعات_والفعل_المسؤول",
+    35: "v0_4_تغليف_المرحلة_٣_وأسبوع_التنفس_35",
+    36: "v0_4_المشروع_الختامي_36_المحكمة_والمشروع_الشخصي",
 }
 
 WEEKS = [
@@ -277,26 +286,113 @@ WEEKS = [
                  "A small caravan walking calmly past the ruins of a fallen city wall, continuing toward a distant new city skyline on the horizon. Figures are tiny faceless silhouettes. No battle, no fire.")],
          photos=["أماكن/حطين_قرنا_حطين_01_blog.jpg", "أماكن/قلعة_الكرك_الأردن_01_kaleela.png", "أماكن/عكا_خان_العمدان_01_nbc.jpg", "شخصيات/ابن_خلدون_تمثال_تونس_02.jpg"],
          authored=[]),
-    dict(w=26, u=0, title="أسبوع التنفس ٢٦: مراجعة المرحلة ٢", status="بانتظار النص",
-         svg="", ix=[("P07", "مشجر مهارات المرحلة ٢", "يُكتب"), ("P15", "رسالة لنفسك قبل المرحلة ٣", "يُكتب")],
+    dict(w=26, u=0, title="أسبوع التنفس ٢٦: مراجعة المرحلة ٢", status="نص جاهز",
+         svg="مشجر_مهارات_المرحلة_٢.svg",
+         ix=[("P07", "مشجر مهارات المرحلة ٢: فحص ذاتي للمهارات 16–25", "مشجر المرحلة"),
+             ("P02", "اختر مختبرك: L1–L8 على ملاعب المرحلة ٢", "دفتر المراجعة"),
+             ("P15", "رسالة لنفسك قبل المرحلة ٣", "الحلقة")],
          hooks=[], photos=[], authored=[("tas-w26-ix-column", "اكتمال صف المرحلة ٢ ووضع الرباط الثاني")]),
 ]
 
-# phase 3 — units 7 and 8 have no scripts yet; patterns are reserved, assets wait for the text
-for w in range(27, 31):
-    WEEKS.append(dict(w=w, u=7, title="الوحدة ٧: عثمانيون، استعمار، حداثة، هوية", status="بانتظار النص", svg="",
-                      ix=[("P11", "خط زمني عثماني ↔ استعماري على الأطلس", "Q38–64"),
-                          ("P02", "انزع الملصق: حكم جاهز أم وصف؟", "T"),
-                          ("P12", "ميزان تجارب التحديث", "T")],
-                      hooks=[], authored=[],
-                      photos=["أماكن/افتتاح_قناة_السويس_1869_نقش_01_kent.jpg", "مقتنيات_تاريخية/وصف_مصر_لوح_14_نيويورك_01_nyu.jpg",
-                              "مقتنيات_تاريخية/غلاف_مجلة_المنار_1899_ويكيميديا.jpg", "خرائط/خريطة_سايكس_بيكو_تقسيم_المشرق_01_youm7.jpg"] if w == 27 else []))
-for w in range(31, 35):
-    WEEKS.append(dict(w=w, u=8, title="الوحدة ٨: البيت والجماعات والفعل المسؤول", status="بانتظار النص", svg="",
-                      ix=[("P06", "خطة البيت: فعل صغير متكرر", "B"),
-                          ("P07", "خريطة الجماعات الوسيطة حولك", "B"),
-                          ("P05", "حوار في البيت: من الأمر للحوار", "B")],
-                      hooks=[], photos=[], authored=[]))
+# ------------------------------------------------ phase 3 · unit 7 (weeks 27–30) — نصوص v0.4 جاهزة
+WEEKS += [
+    dict(w=27, u=7, title="الغروبان: الأندلس والهند والعالم قبيل العثمانيين", status="نص جاهز",
+         svg="W27_خريطة_الغروبين.svg",
+         ix=[("P11", "خط ١٤٩٢ على الأطلس: غرناطة ودلهي ولشبونة — وإيه اللي كان بيكبر في نفس السنة", "و27 · الكتلة ١"),
+             ("P01", "مراحل الأندلس الثماني بترتيبها — وكل مرحلة ببذرة اللي بعدها", "و27 · U7-A1"),
+             ("P02", "سقط بالهوية ولا بالقرار؟ — أندلس والهند في سلتين", "و27 · U7-A2")],
+         hooks=[("tas-w27-hook-bridge", "جسر حجري بثلاث قناطر عند الغروب: قنطرة منهارة وقنطرة تُبنى وقنطرة قائمة",
+                 "An old stone bridge with three arches over calm water at sunset: the right arch has collapsed into the water, the middle arch stands complete and sound, the left arch is still under construction with a plain wooden scaffold. On the near bank lie a brass compass and a ship's rudder. No people, no text, no flags.")],
+         photos=["أماكن/افتتاح_قناة_السويس_1869_نقش_01_kent.jpg", "مقتنيات_تاريخية/وصف_مصر_لوح_14_نيويورك_01_nyu.jpg"],
+         authored=[]),
+    dict(w=28, u=7, title="الملف العثماني: لا تقديس ولا شيطنة", status="نص جاهز",
+         svg="W28_الملف_العثماني_بين_خندقين.svg",
+         ix=[("P12", "الميزان على الملف العثماني: أربع مية سنة — إنجاز وجريمة في سجل واحد", "و28 · U7-A3"),
+             ("P10", "بطاقة انتقال الخلافة ١٥١٧ بالخماسية — والدرجة النهائية بلا مزايدة", "و28 · U7-A4"),
+             ("P02", "كلمة الشحنة: «الرجل المريض» — تسمية أم وصف؟ ومين كسب منها", "و28 · الكتلة ٤")],
+         hooks=[("tas-w28-hook-scale", "ميزان نحاسي كبير على سور قلعة عند الفجر وكفتاه متعادلتان",
+                 "A large brass balance with two level pans standing on a low stone wall at dawn, its long beam perfectly horizontal and completely plain — no marks, no numbers, no ornament. The wall continues into the distance behind it. No people, no text, no weapons.")],
+         photos=[],
+         authored=[]),
+    dict(w=29, u=7, title="الصدمة والتجربة: استعمار ودولة حديثة", status="نص جاهز",
+         svg="W29_ثلاثية_الاستعمار_وميزان_التجربة.svg",
+         ix=[("P02", "احتلال / استعمار / هيمنة — ثلاث سلال وتعريف إجرائي لكل واحدة", "و29 · مهارة 28"),
+             ("P18", "السلم: الخبر على درجته — صنّف ثلاثة أخبار على الدرجات الثلاث", "و29 · مهارة 28"),
+             ("P12", "ميزان محمد علي: «دولة قوية ومجتمع ضعيف» — كفتان على وقائع", "و29 · الكتلة ٣")],
+         hooks=[("tas-w29-hook-press", "مطبعة خشبية قديمة في مواجهة سفينة شراعية وبينهما ورقة بيضاء فارغة",
+                 "An old wooden hand printing press standing on a bare table, facing a small sailing ship drawn as a distant faceless silhouette on a calm sea; between them an entirely blank sheet of paper lies flat on the table. Warm side light. No people, no text, no flags.")],
+         photos=["خرائط/خريطة_سايكس_بيكو_تقسيم_المشرق_01_youm7.jpg"],
+         authored=[]),
+    dict(w=30, u=7, title="القرن اللي أعاد رسمنا: حدود وفلسطين وعلمانية — وإحنا + ملف الوحدة ٧", status="نص جاهز",
+         svg="W30_القرن_الطويل_وبطاقة_الهوية.svg",
+         ix=[("P01", "الوثائق الثلاث بترتيبها الزمني — ومين اتنازل عن إيه", "و30 · W30-A"),
+             ("P07", "خريطة القرن الطويل ١٩٠٨–١٩٢٤: محطات تتفتح بالنقر", "و30 · الكتلة ٢"),
+             ("P06", "بطاقة الهوية الحية: ضاع / فاضل / بيتجدد + ملف الوحدة ٧", "و30 · مهارة 30")],
+         hooks=[("tas-w30-hook-roots", "خطوط حبر على خريطة ورقية قديمة تتحول أطرافها لجذور شجرة نامية",
+                 "Simple hand-drawn ink lines running across an old paper map; the edges of the paper fray and turn into fine tree roots growing outward. The map carries no place names and no drawn borders, only blank space between the lines. No people, no text, no flags.")],
+         photos=["مقتنيات_تاريخية/غلاف_مجلة_المنار_1899_ويكيميديا.jpg"],
+         authored=[]),
+]
+
+# ------------------------------------------------ phase 3 · unit 8 (weeks 31–34) — نصوص v0.4 جاهزة
+WEEKS += [
+    dict(w=31, u=8, title="أين الأمة؟ سؤال كل جيل — والبيت اللي شايل الإجابة", status="نص جاهز",
+         svg="W31_أين_الأمة_سؤال_كل_جيل_وبيت_يحمل_الإجابة.svg",
+         ix=[("P07", "تفكيك «أين الأمة» لثلاثة أسئلة دقيقة: مؤسسة سقطت / رابط انقطع / باقٍ يشتغل", "و31 · ورشة التفكيك"),
+             ("P06", "بطاقة البيت: أربع ممارسات + علامة لكل واحدة", "و31 · مهارة 31"),
+             ("P15", "سؤال الدفتر: إيه أصغر حاجة أعملها في بيتي الشهر ده؟", "و31 · القفلة")],
+         hooks=[("tas-w31-hook-house", "بيت طيني بباب خشبي مفتوح وشباك واحد مضاء عند المغرب وأمامه شجرة صغيرة وسور منخفض",
+                 "A small mud-brick house with an open wooden door, one lit window at dusk, a young tree and a low courtyard wall in front. Warm evening light on blank walls. No people, no text.")],
+         photos=[],
+         authored=[]),
+    dict(w=32, u=8, title="الجماعات الوسيطة: إزاي الأمة حافظت على حضورها؟", status="نص جاهز",
+         svg="W32_سلم_الجماعات_الوسيطة.svg",
+         ix=[("P18", "درج السلم: مشارك / مساهم / باني — درجتك الحقيقية مش اللي نفسك تكون", "و32 · مهارة 32"),
+             ("P07", "شبكة الجماعات الوسيطة حولك: مسجد وحلقة ووقف وسوق — انقر العقدة لترى وظيفتها", "و32 · الكتلة ٢"),
+             ("P02", "آلية بقاء أم مكسب حزبي؟ — فرز آليات البقاء بلا تمجيد ولا تكفير", "و32 · الكتلة ٣")],
+         hooks=[("tas-w32-hook-stairs", "سلم حجري صاعد من حجر مفرد على الأرض لقوس صغير مكتمل في الأعلى وبين الدرجات عقد صغيرة مربوطة بحبال",
+                 "A stone staircase rising from a single block on bare ground to a small completed arch at the top; between the steps, small knots of rope tie neighbouring stones to each other. Nothing else, no people, no flags.")],
+         photos=["أماكن/مكة_المسجد_الحرام_01_getty.jpg"],
+         authored=[]),
+    dict(w=33, u=8, title="من عالم الأفكار للسلوك: إزاي المعرفة بتبقى ممارسة؟", status="نص جاهز",
+         svg="W33_من_الفكرة_للسلوك_سلسلة_الحلقات.svg",
+         ix=[("P01", "سلسلة الحلقات الست بترتيبها — ثم مثال «رجل الفولاذ» كامل السلسلة", "و33 · مهارة 33"),
+             ("P04", "اصطاد الحلقة الواقفة في مشروع صغير متخيَّل", "و33 · عيادة السلسلة"),
+             ("P06", "بطاقة الفكرة: سلسلة كاملة + الحلقة الواقفة + أصغر تعديل", "و33 · مهارة 33")],
+         hooks=[("tas-w33-hook-drop", "قطرة ماء نحاسية تسقط على حجر تحته أخدود محفور وبجواره بذرة مفتوحة بجذرين",
+                 "A single brass water drop falling onto a stone that carries a shallow groove worn into it, and beside the stone an opened seed with two fine roots. Stillness, no people, no text.")],
+         photos=[],
+         authored=[]),
+    dict(w=34, u=8, title="الفعل المسؤول الآمن + ملف الوحدة ٨", status="نص جاهز",
+         svg="W34_شروط_الفعل_المدني_الآمن.svg",
+         ix=[("P06", "بطاقة الفعل المدني الآمن: ميدان + ست شروط + علامة + خروج", "و34 · مهارة 34"),
+             ("P12", "الميزان: الحماس والتر في كفة، والشروط الستة في كفة", "و34 · الكتلة ١"),
+             ("P02", "الشروط الستة: مستوفي ولا محتاج تعديل؟ — لجنة على مشاريع المتعلمين", "و34 · لجنة الشروط")],
+         hooks=[("tas-w34-hook-arch", "قوس طوب نصف مبني على سقالة خشبية وبجواره طوب مرتب وأدوات بناء بسيطة على الأرض",
+                 "A half-built brick arch standing on a simple wooden scaffold, with neat stacks of bricks and a few basic mason's tools laid on the ground beside it. No people, no weapons, no flags.")],
+         photos=[],
+         authored=[]),
+]
+
+# ------------------------------------------------ closing weeks (35 breathing · 36 capstone)
+WEEKS += [
+    dict(w=35, u=35, title="أسبوع التنفس ٣٥: أربع وثلاثين درجة وإيدك ثابتة", status="نص جاهز",
+         svg="مشجر_مهارات_المرحلة_٣.svg",
+         ix=[("P07", "مشجر مهارات المرحلة ٣: جرد 26–34 درجة درجة قبل المحاكمة", "مشجر المرحلة"),
+             ("P02", "اختر مختبرك: L1–L8 على ملاعب الحاضر", "دفتر المراجعة"),
+             ("P15", "سطر الأمانة: إيه اللي أنا شايله من المرحلة دي وإنا مش واخد بالك", "الحلقة")],
+         hooks=[], photos=[],
+         authored=[("tas-w35-ix-column", "اكتمال صف المرحلة ٣ في العمود وإضاءة الرباط الثالث")]),
+    dict(w=36, u=36, title="المحكمة والمشروع: دعوى واحدة، وفعل واحد", status="نص جاهز",
+         svg="خريطة_المشروع_الختامي.svg",
+         ix=[("P10", "بطاقة الدعوى: وقائع / تفسير / ضعيف / لا نعلم بعد — خمس جولات", "بروتوكول المحكمة"),
+             ("P12", "الميزان: جملة من كل خندق على كفتين — والميزان اللي بيقف في صف واحد مش ميزان", "و36 · الكتلة ٢"),
+             ("P06", "بطاقة المشروع: فعل في سطر + الشروط الستة + علامة + خروج", "و36 · ورقة المشروع")],
+         hooks=[], photos=[],
+         authored=[("tas-w36-ix-court", "بطاقة الدعوى التفاعلية: سبع خانات تتفتح جولة جولة — و«لا نعلم بعد» لا تُقبل فاضية"),
+                   ("tas-w36-ix-column", "اكتمال العمود كله ٣٢ طوبة وإغلاق الرباطين وجملة الختام كنص حي")]),
+]
+
 
 UNIT_COVERS = [
     (1, "التفكير والتشخيص والحوار", "A single blue ballpoint pen lying across a squared notebook page on which a small, carefully drawn map with one dotted route has been sketched. Nothing else on the page."),
@@ -308,3 +404,32 @@ UNIT_COVERS = [
     (7, "عثمانيون، استعمار، حداثة، هوية", "An old steamship and a sailing dhow on the same calm sea, seen from a harbour wall with a closed suitcase on it."),
     (8, "البيت والجماعات والفعل المسؤول", "A small house with an open door, a lit window and a low courtyard wall that connects it to a few neighbouring houses, all drawn on squared paper."),
 ]
+# ---------------------------------------------------------------- atlas (six-atlas platform at repo root)
+# Week -> atlas screens. Pattern P19 shows one page or a strip of "stations" with the atlas's own verified
+# hotspots; P20 shows one of the atlas's comparison presets. Facts on screen come from the atlas data
+# (data/manifest.json), never typed here. Candidates per week: atlas/00_مرشحو_الأطلس_لكل_أسبوع.md
+#   page / stations [(label, page_id)] / compare (preset id) · mode: explore | find · find: hotspot ids · prompt
+ATLAS = {
+    8: [dict(stations=[("الشرق نحو ١١٠٠م", "maps8-005"), ("الغرب نحو ١١٠٠م", "maps8-006")], mode="explore",
+             prompt="الورقة اتكتبت في سمرقند، واتترجمت في بغداد، واتشرحت في قرطبة: تتبّع رحلتها على خريطة العالم الإسلامي.")],
+    14: [dict(page="seerah-090", mode="explore", prompt="مكة وسط قبائل الجزيرة عند البعثة: افتح القبائل الخمس."),
+         dict(page="seerah-118", mode="find", find=["s118-makkah", "s118-quba", "s118-madinah"],
+              prompt="طريق الهجرة: حدّد نقطة الانطلاق، ثم مدخل المدينة، ثم دار الهجرة.")],
+    16: [dict(page="seerah-150", mode="explore",
+              prompt="خريطة الغزوات العامة: افتح المواقع الخمسة، ثم ارجع لأرقام النص — ٢٣ سنة دعوة، والقتال الفعلي في عدد قليل منها.")],
+    19: [dict(page="abubakr-043", mode="explore", prompt="حركة الردة: افتح البؤر، ثم الحواضر التي ثبتت ومنها انطلقت الألوية."),
+         dict(compare="cmp-umar-start-vs-end", prompt="مطلع خلافة عمر (١٣هـ) مقابل ختامها (٢٣هـ): ماذا تغيّر في عشر سنين؟")],
+    20: [dict(compare="cmp-uthman-start-vs-peak", prompt="«أول ثماني سنين منهم من أزهى سنين الدولة»: حدود ٢٤هـ مقابل أقصى الاتساع ٣٥هـ."),
+         dict(page="uthman-282", mode="find", find=["ut282-medina-imam"],
+              prompt="المصحف الإمام: أين حُبس؟ بعدها افتح الأمصار التي أُرسلت إليها النسخ.")],
+    21: [dict(stations=[("٣٥هـ البيعة", "ali-131"), ("٣٦هـ الجمل", "ali-147"), ("٣٧هـ صفين", "ali-181"), ("٣٧هـ التحكيم", "ali-191"),
+                        ("٣٨هـ النهروان", "ali-199"), ("٤٠هـ", "ali-210"), ("٤١هـ عام الجماعة", "ali-251")], mode="explore",
+              prompt="المحطات من ٣٥ إلى ٤١هـ على الأطلس. المكان من الأطلس، ودرجة كل رواية من بطاقة الرواية في النص.")],
+    22: [dict(stations=[("الشرق", "maps8-003"), ("الغرب", "maps8-004")], mode="explore",
+              prompt="«أقصى توسع: عقبة بالمغرب وخراسان والأندلس والسند» — تتبّعها على خريطة الفتوحات الأولى.")],
+    24: [dict(stations=[("الشرق نحو ١١٠٠م", "maps8-005"), ("الغرب نحو ١١٠٠م", "maps8-006")], mode="explore",
+              prompt="من «قرن الهيمنة» إلى «قرن تعدد المراكز»: كم مركزًا تعدّ على الخريطة؟")],
+    25: [dict(stations=[("الشرق نحو ١١٠٠م", "maps8-005"), ("الغرب نحو ١١٠٠م", "maps8-006")], mode="explore",
+              prompt="العالم الإسلامي نحو ١١٠٠م، قرابة ٤٩٢هـ: الخريطة التي دخلها الصليبيون.")],
+    28: [dict(compare="cmp-spreads-1-1-vs-1-4", prompt="الفتوحات الأولى مقابل العالم الإسلامي نحو ١٧٠٠م: اسحب الشريط بين الخريطتين.")],
+}

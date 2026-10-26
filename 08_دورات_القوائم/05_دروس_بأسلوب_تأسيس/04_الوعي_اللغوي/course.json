@@ -1,0 +1,56 @@
+{
+ "title": "دروس بأسلوب تأسيس — «الوعي اللغوي»",
+ "owner": "م. أيمن عبد الرحيم",
+ "owner_note": "الدورة لصاحبها؛ والدروس هنا صياغة بأسلوب «تأسيس» نفسه، فالاقتباسات من المحاضرات حرفيًا، والإحالات إلى مواضعها.",
+ "voice": "تأسيس — م. أيمن عبد الرحيم",
+ "source_series": "دورة الوعي اللغوي",
+ "playlist": "transcripts/02-linguistic-awareness",
+ "episodes": 9,
+ "lessons": [
+  {
+   "no": "01",
+   "file": "01_الدرس_الأول_اللغة_مش_مادة.md",
+   "title": "اللغة مش مادة — دي بوابة",
+   "episode": 1,
+   "episode_url": "https://www.youtube.com/watch?v=25MoQxUWqtk",
+   "episode_title": "المحاضرة الأولى",
+   "tool": "خريطة التقاطع اللغوي",
+   "words": 1161,
+   "status": "مسودة — تحتاج مراجعة المالك"
+  },
+  {
+   "no": "02",
+   "file": "02_الدرس_الثاني_مين_يملك_لسانك.md",
+   "title": "مين يملك لسانك؟ — القرار اللغوي قرار سياسي",
+   "episode": 2,
+   "episode_url": "https://www.youtube.com/watch?v=GJRrnvFQ-34",
+   "episode_title": "المحاضرة الثانية",
+   "tool": "سجل القرار اللغوي",
+   "words": 1017,
+   "status": "مسودة — تحتاج مراجعة المالك"
+  },
+  {
+   "no": "03",
+   "file": "03_الدرس_الثالث_اللغة_والتعليم.md",
+   "title": "اللغة والتعليم — مين بيكتب هوية ابنك؟",
+   "episode": 3,
+   "episode_url": "https://www.youtube.com/watch?v=B8CATDmsIY4",
+   "episode_title": "المحاضرة الثالثة",
+   "tool": "خط الزمن اللغوي",
+   "words": 1234,
+   "status": "مسودة — تحتاج مراجعة المالك"
+  },
+  {
+   "no": "04",
+   "file": "04_الدرس_الرابع_تعليم_اللغات.md",
+   "title": "تعليم اللغات مش التعليم باللغات",
+   "episode": 4,
+   "episode_url": "https://www.youtube.com/watch?v=9-VN-67O-5g",
+   "episode_title": "المحاضرة الرابعة",
+   "tool": "ورقة اللغتين",
+   "words": 1021,
+   "status": "مسودة — تحتاج مراجعة المالك"
+  }
+ ],
+ "status": "مسودة"
+}
