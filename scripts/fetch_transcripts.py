@@ -9,6 +9,12 @@ Order of attempts per video:
      to confirm you're not a bot") on every player client.
   3. Invidious instances (public YouTube frontends) — captions API.
   4. Piped instances — streams API subtitles.
+  5. tafrigh (speech-to-text on the audio) — only for videos with no captions
+     anywhere, and only when enabled:
+       WIT_AI_TOKENS="tok1 tok2 …"    wit.ai (free, good Arabic; more tokens = faster)
+       TAFRIGH_WHISPER_MODEL=large-v3 local Whisper via faster-whisper (needs a GPU to be quick)
+     Install with:  pip install -r scripts/requirements-asr.txt   (plus ffmpeg)
+     TAFRIGH_TIMEOUT caps one video in seconds (default 2400). Tokens are never logged.
 
 Episodes that already have a file are skipped, so the script can be re-run
 to resume. Per-video failure reasons are written to transcripts/_failures.md
@@ -21,6 +27,8 @@ import argparse
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 import tempfile
 import time
@@ -38,6 +46,9 @@ TRANSCRIPTS_DIR = ROOT / "transcripts"
 CONFIG_PATH = TRANSCRIPTS_DIR / "playlists.json"
 FAILURES_PATH = TRANSCRIPTS_DIR / "_failures.md"
 COOKIES_FILE = os.environ.get("YT_COOKIES_FILE")
+WIT_TOKENS = os.environ.get("WIT_AI_TOKENS", "").replace(",", " ").split()
+WHISPER_MODEL = os.environ.get("TAFRIGH_WHISPER_MODEL", "").strip()
+TAFRIGH_TIMEOUT = int(os.environ.get("TAFRIGH_TIMEOUT") or 2400)
 if COOKIES_FILE and not Path(COOKIES_FILE).is_file():
     COOKIES_FILE = None
 
@@ -442,6 +453,45 @@ def fetch_via_piped(video_id: str) -> tuple[list[tuple[float, str]] | None, str 
     return None, None
 
 
+def fetch_via_tafrigh(video_id: str, languages: list[str]) -> tuple[list[tuple[float, str]] | None, str | None]:
+    """Last resort: transcribe the audio with tafrigh (wit.ai or Whisper). Off unless configured."""
+    if not (WIT_TOKENS or WHISPER_MODEL):
+        return None, None
+    if shutil.which("tafrigh") is None:
+        note_failure(video_id, "tafrigh: not installed (pip install -r scripts/requirements-asr.txt)")
+        return None, None
+    url = f"https://www.youtube.com/watch?v={video_id}"
+    with tempfile.TemporaryDirectory() as tmp:
+        cmd = ["tafrigh", url, "--output_dir", tmp, "--output_formats", "json", "--download_retries", "2"]
+        if COOKIES_FILE and os.path.exists(COOKIES_FILE):
+            cmd += ["--yt_dlp_options", json.dumps({"cookiefile": COOKIES_FILE})]
+        if WIT_TOKENS:
+            cmd += ["--wit_client_access_tokens", *WIT_TOKENS]
+            label = f"tafrigh speech-to-text (wit.ai, {len(WIT_TOKENS)} token(s))"
+        else:
+            lang = "ar" if any(l.startswith("ar") for l in languages) else languages[0].split("-")[0]
+            cmd += ["--model_name_or_path", WHISPER_MODEL, "--use_faster_whisper", "--language", lang]
+            label = f"tafrigh speech-to-text (Whisper {WHISPER_MODEL})"
+        try:
+            run = subprocess.run(cmd, capture_output=True, text=True, timeout=TAFRIGH_TIMEOUT)
+        except subprocess.TimeoutExpired:
+            note_failure(video_id, f"tafrigh: timed out after {TAFRIGH_TIMEOUT}s")
+            return None, None
+        out = Path(tmp) / f"{video_id}.json"
+        if run.returncode != 0 or not out.exists():
+            tail = (run.stderr or run.stdout or "").strip().splitlines()[-1:] or ["no output"]
+            for tok in WIT_TOKENS:  # never leak a token into _failures.md
+                tail = [t.replace(tok, "***") for t in tail]
+            note_failure(video_id, f"tafrigh: exit {run.returncode}: {tail[0][:200]}")
+            return None, None
+        segments = [(float(seg["start"]), seg["text"].strip())
+                    for seg in json.loads(out.read_text(encoding="utf-8")) if seg.get("text", "").strip()]
+    if not segments:
+        note_failure(video_id, "tafrigh: produced no text")
+        return None, None
+    return segments, label
+
+
 def write_episode(path: Path, number: int, title: str, video_id: str, source: str,
                   segments: list[tuple[float, str]]) -> None:
     url = f"https://www.youtube.com/watch?v={video_id}"
@@ -509,6 +559,10 @@ def process_playlist(pl: dict, languages: list[str], limit: int = 0) -> list[str
             segments, inst = fetch_via_piped(ep["id"])
             if segments:
                 source = f"Piped captions ({inst})"
+        if not segments:
+            segments, label = fetch_via_tafrigh(ep["id"], languages)
+            if segments:
+                source = label
         if not segments:
             print(f"  [missing] {ep['n']:02d} {ep['title']}")
             missing.append(ep["id"])

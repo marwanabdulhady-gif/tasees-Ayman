@@ -30,6 +30,9 @@ jobs:
     timeout-minutes: 120
     env:
       YT_COOKIES: ${{ secrets.YT_COOKIES }}
+      # Optional: space-separated wit.ai client access tokens. When set, videos with no captions
+      # anywhere are transcribed from their audio with tafrigh (step 5 in fetch_transcripts.py).
+      WIT_AI_TOKENS: ${{ secrets.WIT_AI_TOKENS }}
       YT_COOKIES_FILE: ${{ github.workspace }}/../cookies.txt
       ONLY_INPUT: ${{ inputs.only }}
       LIMIT_INPUT: ${{ inputs.limit }}
@@ -42,6 +45,12 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
+
+      - name: Install speech-to-text fallback (only when WIT_AI_TOKENS is set)
+        if: ${{ env.WIT_AI_TOKENS != '' }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install -r scripts/requirements-asr.txt
 
       - name: Write cookies (optional)
         if: ${{ env.YT_COOKIES != '' }}
