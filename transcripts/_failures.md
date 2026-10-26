@@ -14,4 +14,4 @@
 - invidious[invidious.nerdvpn.de]: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 - invidious[yewtu.be]: Expecting value: line 1 column 1 (char 0)
 - invidious[invidious.f5.si]: 530 Server Error: <none> for url: https://invidious.f5.si/api/v1/captions/v1KaEyg4_vw
-- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/v1KaEyg4_vw (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f1f63b90e00>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
+- invidious[iv.ggtyler.dev]: HTTPSConnectionPool(host='iv.ggtyler.dev', port=443): Max retries exceeded with url: /api/v1/captions/v1KaEyg4_vw (Caused by ConnectTimeoutError(<HTTPSConnection(host='iv.ggtyler.dev', port=443) at 0x7f8ec46ccf50>, 'Connection to iv.ggtyler.dev timed out. (connect timeout=
