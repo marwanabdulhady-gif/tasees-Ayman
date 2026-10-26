@@ -97,18 +97,19 @@
      */
     _parsePageJump(rawQuery, volumeFilter) {
       const w = toWesternDigits(rawQuery).trim();
-      const m = w.match(/^(?:ص|صفحة|صفحه|p|page|سيرة|سيره|صديق|ابو بكر|أبو بكر|عمر|الفاروق|عثمان|ذو النورين|ذي النورين|علي|على|أبو الحسن|ابو الحسن|خرائط)?\s*(\d{1,3})$/i);
+      const m = w.match(/^(?:ص|صفحة|صفحه|p|page|سيرة|سيره|صديق|ابو بكر|أبو بكر|عمر|الفاروق|عثمان|ذو النورين|ذي النورين|علي|على|أبو الحسن|ابو الحسن|خرائط|دول|أبو خليل|ابو خليل)?\s*(\d{1,3})$/i);
       if (!m) return [];
       const pnum = Number(m[1]);
       if (!pnum) return [];
 
-      let targetVols = ["maps8", "seerah", "abubakr", "umar", "uthman", "ali"];
+      let targetVols = ["maps8", "seerah", "abubakr", "umar", "uthman", "ali", "dawal"];
       if (/سير/.test(w)) targetVols = ["seerah"];
       else if (/صديق|بكر/.test(w)) targetVols = ["abubakr"];
       else if (/عمر|فاروق/.test(w)) targetVols = ["umar"];
       else if (/عثمان|نورين/.test(w)) targetVols = ["uthman"];
       else if (/علي|على|حسن/.test(w)) targetVols = ["ali"];
       else if (/خرائط/.test(w)) targetVols = ["maps8"];
+      else if (/دول|ابو خليل|أبو خليل/.test(w)) targetVols = ["dawal"];
       else if (volumeFilter && volumeFilter !== "all") targetVols = [volumeFilter];
 
       const out = [];

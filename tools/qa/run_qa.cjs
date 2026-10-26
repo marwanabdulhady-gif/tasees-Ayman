@@ -51,20 +51,31 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 (async () => {
   // ---------------- 12.1 Content Integrity Checks on Manifest & Assets ----------------
   const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "data/manifest.json"), "utf8"));
-  check("12.1", "Total PDF pages equals 1341 (8 + 264 + 121 + 351 + 325 + 272) with zero omissions", manifest.pages.length === 1341, `${manifest.pages.length} pages`);
-  check("12.1", "Volume page counts match all 6 source PDFs",
+  check("12.1", "Total PDF pages equals 1597 (8 + 264 + 121 + 351 + 325 + 272 + 256) with zero omissions", manifest.pages.length === 1597, `${manifest.pages.length} pages`);
+  check("12.1", "Volume page counts match all 7 source PDFs",
     manifest.stats.pagesByVolume.maps8 === 8 &&
     manifest.stats.pagesByVolume.seerah === 264 &&
     manifest.stats.pagesByVolume.abubakr === 121 &&
     manifest.stats.pagesByVolume.umar === 351 &&
     manifest.stats.pagesByVolume.uthman === 325 &&
-    manifest.stats.pagesByVolume.ali === 272
+    manifest.stats.pagesByVolume.ali === 272 &&
+    manifest.stats.pagesByVolume.dawal === 256
   );
+  const dawalVol = manifest.volumes.find((v) => v.id === "dawal");
+  check("12.1", "Volume 7 (أطلس دول العالم الإسلامي) registered: 256 pages, 7 sections, 89 printed maps",
+    Boolean(dawalVol && dawalVol.pageCount === 256 && dawalVol.sections.length === 7 && dawalVol.printedIndexes.mapsCount === 89),
+    dawalVol ? `sections=${dawalVol.sections.length}` : "missing");
 
   const missingAssets = manifest.pages.filter(
     (p) => !fs.existsSync(path.join(ROOT, p.pageAsset)) || !fs.existsSync(path.join(ROOT, p.thumbAsset))
   );
-  check("12.1", "Every single page (1341/1341) has both full-res WebP and thumbnail asset on disk", missingAssets.length === 0, `missing=${missingAssets.length}`);
+  check("12.1", "Every single page (1597/1597) has both full-res WebP and thumbnail asset on disk", missingAssets.length === 0, `missing=${missingAssets.length}`);
+  const ocrBundleRaw = fs.readFileSync(path.join(ROOT, "data/ocr-words-bundle.js"), "utf8").trim();
+  const ocrBundle = JSON.parse(zlib.gunzipSync(Buffer.from(ocrBundleRaw.split('"')[1], "base64")).toString("utf8"));
+  const dawalOcrPages = Object.keys(ocrBundle).filter((k) => k.startsWith("dawal-")).length;
+  const dawalOcrWords = Object.entries(ocrBundle).filter(([k]) => k.startsWith("dawal-")).reduce((s, [, w]) => s + w.length, 0);
+  check("12.1", "OCR words bundle covers dawal volume (251 pages with words, 16,557 word boxes)",
+    dawalOcrPages === 251 && dawalOcrWords === 16557, `pages=${dawalOcrPages}, words=${dawalOcrWords}`);
 
   const corruptArabic = manifest.pages.filter((p) => /\uFFFD/.test(p.title) || /\uFFFD/.test(p.extractedText || ""));
   check("12.1", "Zero Unicode replacement characters (U+FFFD) in titles or extracted Arabic text", corruptArabic.length === 0);
@@ -228,11 +239,24 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   await sleep(300);
   await page.screenshot({ path: path.join(SHOTS_DIR, "05d-desktop-ali-siffin.png") });
 
+  // Switch to Volume 7 (Atlas of Islamic States — Dawal) & test direct jump
+  await page.click('[data-vol="dawal"]');
+  await sleep(350);
+  const dawalLoaded = await page.evaluate(() => document.querySelector(".page-main-title")?.textContent || "");
+  check("12.2", "Switching to Volume 7 (أطلس دول العالم الإسلامي) loads the cover/front matter", dawalLoaded.length > 0, dawalLoaded);
+  const ughandaJump = await testSearchQuery("دول ٢٢");
+  check("12.3", "Search supports Volume 7 direct jump («دول ٢٢» -> أوغندا)", ughandaJump.some((t) => t.includes("أوغندا")), ughandaJump[0] || "");
+  await page.click("#search-results-list .search-result-item");
+  await sleep(300);
+  const dawalMapImg = await page.evaluate(() => document.querySelector("img[src*='assets/pages/dawal/page-022.webp']") !== null);
+  check("12.2", "Volume 7 page-jump renders the dawal-022 map asset", dawalMapImg);
+  await page.screenshot({ path: path.join(SHOTS_DIR, "05e-desktop-dawal-uganda.png") });
+
   // Test TOC, Original Page Split Verification, Compare, Gazetteer, Learn, Audit
   await page.click('[data-tab="toc"]');
   await sleep(300);
   const tocCards = await page.evaluate(() => document.querySelectorAll(".toc-card").length);
-  check("12.2", "TOC gallery renders all 1341 pages across 6 volumes", tocCards === 1341, `cards=${tocCards}`);
+  check("12.2", "TOC gallery renders all 1597 pages across 7 volumes", tocCards === 1597, `cards=${tocCards}`);
   await page.screenshot({ path: path.join(SHOTS_DIR, "06-desktop-toc.png") });
 
   await page.click('[data-tab="original"]');
@@ -289,8 +313,8 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     pagesCount: window.__ATLAS_MANIFEST__?.pages?.length || 0,
     vecHotspots: document.querySelectorAll("svg.vector-spread-svg .vec-hotspot").length,
   }));
-  check("12.4", "Single-File Portable HTML Edition loads offline via file:// with all 1341 pages indexed",
-    pOk.portableFlag && pOk.pagesCount === 1341 && pOk.vecHotspots > 150,
+  check("12.4", "Single-File Portable HTML Edition loads offline via file:// with all 1597 pages indexed",
+    pOk.portableFlag && pOk.pagesCount === 1597 && pOk.vecHotspots > 150,
     `pages=${pOk.pagesCount}, vecHotspots=${pOk.vecHotspots}`
   );
   await pPage.close();
