@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تأسيس — مشغّل الدورة</title>
+<!--
+  L1 — مشغّل الدورة. يعمل عبر file:// بلا خادم وبلا مكتبات.
+  البيانات كلها من ملفين مولَّدين (لا يُكتب شيء بيد هنا):
+    · course-index.js  ← tools/build_course_index.py  (العنوان/الوحدة/المرحلة/الصفحة/الأطلس/دورة القائمة)
+    · course-column.js ← نفس الأداة، نص templates/column-progress.svg (العمود يُرسم مرة واحدة)
+  التقدم يُقرأ من localStorage ببادئة الصفحات نفسها: tasees-w<NN>-…  (انظر tasees-runtime.js)
+  لا CSS ولا JS مشترك يُعدَّل من هنا: تنسيقات هذه الصفحة وحدها في <style> أدناه.
+-->
+<link rel="stylesheet" href="07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 18px max(16px, env(safe-area-inset-left, 0px)) 40px; }
+.top { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px 20px; border-bottom: 1.5px solid var(--ink); padding-bottom: 12px; }
+.top h1 { font-family: var(--f-display); font-size: var(--t-hero); line-height: 1.15; margin: 0; }
+.top p { margin: 6px 0 0; color: var(--ink-soft); font-size: var(--t-small); max-width: 46em; }
+.top .acts { margin-inline-start: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.course { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 26px; align-items: start; margin-top: 18px; }
+@media (max-width: 900px) { .course { grid-template-columns: minmax(0, 1fr); } .side { order: -1; } }
+
+/* ---------- the column ---------- */
+.side { position: sticky; top: 12px; border: 1.5px solid var(--rule); background: var(--card); padding: 10px 12px 14px; border-radius: var(--radius); }
+@media (max-width: 900px) { .side { position: static; } }
+.side h2 { font-family: var(--f-display); font-size: 1.15rem; margin: 0 0 6px; }
+.side .hint { color: var(--ink-soft); font-size: var(--t-tag); margin: 0 0 8px; }
+.col { position: relative; }
+.col svg { width: 100%; height: auto; display: block; }
+.col svg .brick[data-week], .col svg .breath[data-week] { cursor: pointer; }
+.col svg .brick[data-week]:focus-visible rect, .col svg .breath[data-week]:focus-visible rect { outline: 2px solid var(--phase); outline-offset: 2px; }
+.col svg .brick.is-visited rect { stroke-dasharray: 5 3; }
+.col svg .brick.is-laid rect, .col svg .breath.is-laid rect { fill: var(--c, var(--ink-soft)); }
+.col svg .breath.is-visited rect { stroke: var(--ink); stroke-dasharray: 5 3; }
+.cap-row { display: flex; gap: 8px; justify-content: center; margin-top: 6px; }
+.cap-chip { font: inherit; font-size: var(--t-tag); border: 1.5px solid var(--ink-soft); background: var(--paper); color: var(--ink); padding: 5px 10px; border-radius: 999px; cursor: pointer; }
+.cap-chip[aria-pressed="true"] { border-color: var(--pen-green); background: var(--wash-green); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 10px; font-size: var(--t-tag); color: var(--ink-soft); }
+.legend i { display: inline-block; width: 14px; height: 9px; border: 1.5px solid var(--ink-soft); border-radius: 2px; vertical-align: -1px; margin-inline-end: 4px; }
+.legend .l-laid i { background: var(--ink-soft); }
+.legend .l-vis i { border-style: dashed; }
+.legend .l-none i { border-style: dotted; opacity: .6; }
+
+/* ---------- week cards ---------- */
+.phase { margin-top: 22px; }
+.phase > h2 { font-family: var(--f-display); font-size: var(--t-h2); margin: 0; display: flex; align-items: baseline; gap: 10px; }
+.phase > h2 small { font-family: var(--f-body); font-size: var(--t-tag); color: var(--ink-soft); font-weight: 400; }
+.unit { margin-top: 12px; border-inline-start: 3px solid var(--rule); padding-inline-start: 12px; }
+.unit > h3 { font: 500 var(--t-small)/1.5 var(--f-body); color: var(--ink-soft); margin: 0 0 6px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.card { border: 1.5px solid var(--rule); background: var(--card); border-radius: var(--radius); padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; position: relative; }
+.card.is-breath { border-style: dashed; }
+.card.is-missing { opacity: .65; }
+.card .n { font: 700 var(--t-tag)/1 var(--f-body); color: var(--phase); }
+.card h4 { margin: 0; font-family: var(--f-display); font-size: 1.05rem; line-height: 1.35; }
+.card .sub { margin: 0; color: var(--ink-soft); font-size: var(--t-tag); }
+.card .go { margin-top: 2px; }
+.card .go a { display: inline-block; font-size: var(--t-tag); text-decoration: none; border-bottom: 1.5px solid currentColor; color: var(--pen-blue); }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.chip { font-size: 11px; border: 1px solid var(--rule); border-radius: 999px; padding: 1px 7px; color: var(--ink-soft); background: var(--paper); text-decoration: none; }
+a.chip { color: var(--pen-blue); border-color: var(--pen-blue); }
+.chip.ok { color: var(--pen-green); border-color: var(--pen-green); }
+.chip.warn { color: var(--pen-red); border-color: var(--pen-red); }
+.note { border: 1.5px dashed var(--ink-soft); padding: 10px 12px; font-size: var(--t-small); color: var(--ink-soft); background: var(--paper); border-radius: var(--radius); }
+.foot { margin-top: 26px; padding-top: 12px; border-top: 1.5px solid var(--rule); font-size: var(--t-tag); color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body class="t-page">
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="t-eyebrow">الدورة الرئيسة · ٣ مراحل · ٨ وحدات · ٣٦ أسبوعًا</div>
+      <h1>مشغّل الدورة</h1>
+      <p>العمود هو الخريطة: كل طوبة أسبوع، تُضغط فتفتح صفحته. الرباطان بين المراحل هما أسبوعا التنفس ١٧ و٢٦، والتاج يوم ٣٥ و٣٦. التقدم على جهازك أنت — لا يُرسل لأي مكان.</p>
+    </div>
+    <div class="acts">
+      <a class="t-btn t-btn--ghost" href="index.html">الأطلس الكامل</a>
+      <a class="t-btn t-btn--ghost" href="05_عروض_تفاعلية/index.html">فهرس العروض</a>
+    </div>
+  </header>
+
+  <div class="course">
+    <main>
+      <p class="note" id="progress-note">…</p>
+      <div id="phases"></div>
+    </main>
+
+    <aside class="side" aria-label="عمود التقدم">
+      <h2>العمود</h2>
+      <p class="hint">طوبة = أسبوع. المخطط = فتحته، والمملوء = كتبت في دفتره أو حفظت بطاقته.</p>
+      <div class="col" id="col"></div>
+      <div class="cap-row" id="cap-row"></div>
+      <div class="legend"><span class="l-laid"><i></i>خطيت</span><span class="l-vis"><i></i>فتحت</span><span class="l-none"><i></i>لسه</span></div>
+    </aside>
+  </div>
+
+  <footer class="foot">
+    <span>البيانات: <code>templates/course-column.js</code> + <code>templates/course-index.js</code> — مولَّدة بـ<code>tools/build_course_index.py</code>.</span>
+    <span>التقدم: <code>localStorage</code> ببادئة <code>tasees-wNN-</code> — نفس ما تكتبه صفحات الأسابيع.</span>
+  </footer>
+</div>
+
+<script src="07_الهوية_البصرية_والتفاعل/templates/course-index.js"></script>
+<script src="07_الهوية_البصرية_والتفاعل/templates/course-column.js"></script>
+<script>
+(function () {
+  "use strict";
+  var DATA = (window.TaseesCourse && window.TaseesCourse.weeks) || [];
+  var AR = function (n) { return String(n).replace(/\d/g, function (d) { return "٠١٢٣٤٥٦٧٨٩"[d]; }); };
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var el = function (tag, attrs, html) {
+    var n = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    if (html != null) n.innerHTML = html;
+    return n;
+  };
+  var esc = function (t) {
+    return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  };
+
+  /* ---------- progress: same namespace as the week pages (tasees-w<NN>-) ---------- */
+  function readProgress(n) {
+    var pre = "tasees-w" + (n < 10 ? "0" + n : n) + "-", keys = [];
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k && k.indexOf(pre) === 0) keys.push(k.slice(pre.length));
+      }
+    } catch (e) { return { keys: [], noStorage: true }; }
+    return { keys: keys, noStorage: false };
+  }
+  function stateOf(p) {
+    if (p.noStorage) return "nodata";
+    if (p.keys.indexOf("journal") > -1 || p.keys.indexOf("card") > -1 || p.keys.indexOf("pillars") > -1) return "laid";
+    return p.keys.length ? "visited" : "none";
+  }
+
+  var progress = {}, anyData = false, noStorage = false;
+  DATA.forEach(function (w) {
+    progress[w.week] = readProgress(w.week);
+    if (progress[w.week].keys.length) anyData = true;
+    if (progress[w.week].noStorage) noStorage = true;
+  });
+
+  /* ---------- the column ---------- */
+  var colBox = $("#col");
+  var columnSVG = window.TaseesColumn && window.TaseesColumn.svg;
+  if (columnSVG) {
+    colBox.innerHTML = columnSVG;
+    var svg = colBox.querySelector("svg");
+    if (svg) {
+      svg.setAttribute("role", "navigation");
+      svg.setAttribute("aria-label", "العمود — أسبوع لكل طوبة");
+      DATA.forEach(function (w) {
+        var g = svg.querySelector('[data-week="' + w.week + '"]');
+        if (!g) return;
+        var t = g.querySelector("title");
+        if (t) t.textContent = "الأسبوع " + AR(w.week) + " — " + w.title + (w.page ? "" : " (قيد البناء)");
+        var st = stateOf(progress[w.week]);
+        g.classList.toggle("is-visited", st === "visited" || st === "laid");
+        g.classList.toggle("is-laid", st === "laid");
+        g.classList.toggle("is-missing", !w.page);
+        g.setAttribute("tabindex", w.page ? "0" : "-1");
+        g.setAttribute("role", w.page ? "link" : "img");
+        g.setAttribute("aria-label", "الأسبوع " + AR(w.week) + " — " + w.title);
+        if (!w.page) return;
+        var open = function () { location.href = w.page; };
+        g.addEventListener("click", open);
+        g.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+        });
+      });
+      // الأسبوع القادم: أول أسبوع لم يُخطَّ بعد
+      var next = DATA.filter(function (w) { return stateOf(progress[w.week]) !== "laid"; })[0];
+      if (next) {
+        var ng = svg.querySelector('[data-week="' + next.week + '"]');
+        if (ng && !ng.classList.contains("is-visited")) ng.classList.add("is-current");
+      }
+    }
+  } else {
+    colBox.appendChild(el("p", { class: "note" }, "ملف العمود غير محمَّل — شغّل <code>tools/build_course_index.py</code>."));
+  }
+
+  // التاج: ٣٥ و٣٦ ليسا طوبتين في العمود
+  var capRow = $("#cap-row");
+  [35, 36].forEach(function (n) {
+    var w = DATA.filter(function (x) { return x.week === n; })[0];
+    if (!w) return;
+    var st = stateOf(progress[n]);
+    var b = el("button", { type: "button", class: "cap-chip", "aria-pressed": String(st === "laid") },
+      (n === 35 ? "التاج · تنفس ٣٥" : "المحكمة · ٣٦") + (st === "visited" || st === "laid" ? " ✓" : ""));
+    b.title = w.title;
+    if (w.page) b.onclick = function () { location.href = w.page; };
+    capRow.appendChild(b);
+  });
+
+  /* ---------- progress note ---------- */
+  var laid = DATA.filter(function (w) { return stateOf(progress[w.week]) === "laid"; }).length;
+  var note = $("#progress-note");
+  if (noStorage) {
+    note.textContent = "الجهاز ده مانع تخزين المتصفح (أو الملف مفتوح عبر file:// في متصفح صارم) — الصفحة شغالة، بس التقدم مش هيتسجل.";
+  } else if (!anyData) {
+    note.textContent = "مفيش تقدم مسجّل على الجهاز ده بعد. الموضع بيتسجل أول ما تفتح أسبوع وتحل توقعه أو تكتب في دفتره.";
+  } else {
+    note.textContent = "خطيت " + AR(laid) + " من " + AR(DATA.length) + " — المملوء في العمود هو اللي خلّصت دفتره أو بطاقته.";
+  }
+
+  /* ---------- the weeks, by phase → unit ---------- */
+  var SIDE = 17;
+  var phases = {};
+  DATA.forEach(function (w) { (phases[w.phase] = phases[w.phase] || []).push(w); });
+  var box = $("#phases");
+
+  Object.keys(phases).sort().forEach(function (ph) {
+    var weeks = phases[ph];
+    var sec = el("section", { class: "phase" });
+    sec.appendChild(el("h2", {}, "المرحلة " + AR(ph) + " — " + esc(weeks[0].phase_name) +
+      " <small>" + AR(weeks.length) + " أسبوعًا</small>"));
+    var units = {};
+    weeks.forEach(function (w) { (units[w.unit] = units[w.unit] || []).push(w); });
+
+    Object.keys(units).sort(function (a, b) { return (+a === 0 ? 99 : +a) - (+b === 0 ? 99 : +b) || a - b; }).forEach(function (u) {
+      var uWeeks = units[u];
+      var uBox = el("div", { class: "unit" });
+      var label = +u === 17 ? "تنفس · إغلاق المرحلة ١"
+        : +u === 0 ? "تنفس · إغلاق المرحلة ٢"
+        : +u === 35 ? "تنفس · إغلاق المرحلة ٣"
+        : +u === 36 ? "الختام"
+        : "الوحدة " + AR(u);
+      uBox.appendChild(el("h3", {}, esc(label)));
+      var cards = el("div", { class: "cards" });
+
+      uWeeks.forEach(function (w) {
+        var st = stateOf(progress[w.week]);
+        var isBreath = w.week === SIDE || w.week === 26 || w.week === 35 || w.week === 36;
+        var card = el("article", { class: "card" + (isBreath ? " is-breath" : "") + (w.page ? "" : " is-missing") });
+        card.appendChild(el("div", { class: "n" }, "الأسبوع " + AR(w.week)));
+        card.appendChild(el("h4", {}, esc(w.title)));
+        if (w.subtitle) card.appendChild(el("p", { class: "sub" }, esc(w.subtitle)));
+
+        var chips = el("div", { class: "chips" });
+        if (w.screens) chips.appendChild(el("span", { class: "chip" }, AR(w.screens) + " شاشة"));
+        if (st === "laid") chips.appendChild(el("span", { class: "chip ok" }, "خطيت"));
+        else if (st === "visited") chips.appendChild(el("span", { class: "chip" }, "فتحته"));
+        else if (!noStorage) chips.appendChild(el("span", { class: "chip" }, "لسه"));
+        (w.drift || []).forEach(function (d) { chips.appendChild(el("span", { class: "chip warn" }, esc(d))); });
+        (w.atlas || []).forEach(function (id) {
+          var a = el("a", { class: "chip", href: "index.html#" + id, target: "_blank", rel: "noopener" }, "أطلس · " + esc(id));
+          a.title = "افتح صفحة الأطلس " + id;
+          chips.appendChild(a);
+        });
+        if (w.course) {
+          var c = el("a", { class: "chip", href: w.course.path, target: "_blank", rel: "noopener" }, "دورة القائمة · " + esc(w.course.title));
+          c.title = "تعمّق من دورة القائمة المرتبطة (قرار Q2)";
+          chips.appendChild(c);
+        }
+        card.appendChild(chips);
+
+        var go = el("div", { class: "go" });
+        go.appendChild(w.page
+          ? el("a", { href: w.page }, "افتح الأسبوع ←")
+          : el("span", { class: "chip" }, "قيد البناء"));
+        card.appendChild(go);
+        cards.appendChild(card);
+      });
+
+      uBox.appendChild(cards);
+      sec.appendChild(uBox);
+    });
+    box.appendChild(sec);
+  });
+
+  /* ---------- link self-check (يظهر في العنوان فقط عند التعطّل) ---------- */
+  // كل رابط أطلس/دورة قائمة وُلد من فهرس مولَّد؛ فحص وجوده الفعلي في build_course_index.py.
+})();
+</script>
+</body>
+</html>
