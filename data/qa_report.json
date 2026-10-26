@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-10-26T06:15:02.782Z",
-  "total": 38,
-  "passed": 38,
+  "timestamp": "2026-10-26T07:50:02.191Z",
+  "total": 44,
+  "passed": 44,
   "results": [
     {
       "section": "12.1",
@@ -228,6 +228,42 @@
     {
       "section": "12.4",
       "name": "Zero runtime JavaScript or console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "13.1",
+      "name": "Every Quran excerpt is an exact slice of its cited verse, and every reference exists (vendored Uthmani text)",
+      "ok": true,
+      "detail": "63 excerpts, 203 refs, 6236 verses; "
+    },
+    {
+      "section": "13.1",
+      "name": "Quran Atlas loads offline via file:// in Arabic RTL with full native dataset",
+      "ok": true,
+      "detail": "locs=42"
+    },
+    {
+      "section": "13.1",
+      "name": "All 42 locations rendered as sidebar list items and map markers",
+      "ok": true,
+      "detail": "items=42, markers=42"
+    },
+    {
+      "section": "13.1",
+      "name": "Arabic search filters the list (مكة)",
+      "ok": true,
+      "detail": "shown=2"
+    },
+    {
+      "section": "13.1",
+      "name": "Selecting a place opens a popup with a verified Quran excerpt",
+      "ok": true,
+      "detail": "مكة المكرمة — البيت الحرام|«إِنَّ أَوَّلَ بَيْتٍۢ وُضِعَ لِل"
+    },
+    {
+      "section": "13.1",
+      "name": "Quran Atlas: zero runtime JS errors (expected tile/embed aborts excluded)",
       "ok": true,
       "detail": ""
     }

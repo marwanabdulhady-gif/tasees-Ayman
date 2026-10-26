@@ -322,6 +322,55 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   check("12.4", "Zero external network requests attempted during offline sessions", blockedExternalRequests.length === 0, `blocked=${blockedExternalRequests.length}`);
   check("12.4", "Zero runtime JavaScript or console errors", jsErrors.length === 0, jsErrors.join("; "));
 
+  // ---------------- 13.1: Atlas Modules — Quran Atlas (offline native build) ----------------
+  const quranUrl = "file://" + path.join(ROOT, "atlas-modules/atlas-of-quran/index.html");
+  const qData = JSON.parse(fs.readFileSync(path.join(ROOT, "atlas-modules/atlas-of-quran/data/locations.json"), "utf8")).locations;
+  const qN = qData.length;
+  const qv = require("./check_quran_texts.cjs").verify();
+  check("13.1", "Every Quran excerpt is an exact slice of its cited verse, and every reference exists (vendored Uthmani text)",
+    qv.problems.length === 0, `${qv.texts} excerpts, ${qv.refs} refs, ${qv.verses} verses; ${qv.problems.slice(0, 2).join(" ; ")}`);
+  const qPage = await browser.newPage();
+  await qPage.setViewport({ width: 1400, height: 900, deviceScaleFactor: 1 });
+  await qPage.setRequestInterception(true);
+  qPage.on("request", (req) => {
+    const u = req.url();
+    if (u.startsWith("file:") || u.startsWith("data:") || u.startsWith("blob:")) req.continue();
+    else req.abort(); // expected & allowed: CARTO basemap tiles + Google My Maps iframe
+  });
+  const qErrors = [];
+  qPage.on("pageerror", (e) => qErrors.push("pageerror: " + e.message));
+  qPage.on("console", (m) => { if (m.type() === "error") qErrors.push(m.text()); });
+  await qPage.goto(quranUrl, { waitUntil: "load", timeout: 45000 });
+  await qPage.waitForSelector(".leaflet-marker-icon", { timeout: 20000 });
+  const qInfo = await qPage.evaluate(() => ({
+    dir: document.documentElement.dir,
+    lang: document.documentElement.lang,
+    locs: (window.QURAN_DATA || { locations: [] }).locations.length,
+    items: document.querySelectorAll("ul.list li").length,
+    markers: document.querySelectorAll(".leaflet-marker-icon").length,
+  }));
+  check("13.1", "Quran Atlas loads offline via file:// in Arabic RTL with full native dataset",
+    qInfo.dir === "rtl" && qInfo.lang === "ar" && qInfo.locs === qN, `locs=${qInfo.locs}`);
+  check("13.1", `All ${qN} locations rendered as sidebar list items and map markers`,
+    qInfo.items === qN && qInfo.markers === qN, `items=${qInfo.items}, markers=${qInfo.markers}`);
+  await qPage.type("#q", "مكة");
+  await sleep(300);
+  const qVis = await qPage.evaluate(() => [...document.querySelectorAll("ul.list li")].filter((e) => e.style.display !== "none").length);
+  check("13.1", "Arabic search filters the list (مكة)", qVis >= 1 && qVis < qN, `shown=${qVis}`);
+  await qPage.evaluate(() => { const i = document.getElementById("q"); i.value = ""; i.dispatchEvent(new Event("input")); });
+  await qPage.click('ul.list li[data-id="makkah"]');
+  await sleep(1500);
+  const qPop = await qPage.evaluate(() => {
+    const p = document.querySelector(".leaflet-popup-content");
+    return p ? p.querySelector(".pp-title").textContent + "|" + (p.querySelector(".pp-verse") ? p.querySelector(".pp-verse").textContent : "") : "";
+  });
+  check("13.1", "Selecting a place opens a popup with a verified Quran excerpt",
+    qPop.includes("مكة") && qPop.includes(qData.find((l) => l.id === "makkah").texts[0].text), qPop.slice(0, 60));
+  const qRealErrors = qErrors.filter((e) => !/ERR_|Failed to load resource|net::/.test(e));
+  check("13.1", "Quran Atlas: zero runtime JS errors (expected tile/embed aborts excluded)",
+    qRealErrors.length === 0, qRealErrors.slice(0, 3).join(" ; "));
+  await qPage.close();
+
   await browser.close();
 
   const passed = results.filter((r) => r.ok).length;
