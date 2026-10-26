@@ -14,8 +14,9 @@
    "episode": 1,
    "episode_title": "المحاضرة الأولى",
    "tool": "سلسلة الفكرة",
-   "words": 1181,
-   "status": "مسودة — تحتاج مراجعة المالك"
+   "words": 1186,
+   "status": "مسودة — تحتاج مراجعة المالك",
+   "episode_url": "https://www.youtube.com/watch?v=kOcyMYIvmec"
   },
   {
    "no": "02",
@@ -24,8 +25,9 @@
    "episode": 2,
    "episode_title": "المحاضرة الثانية",
    "tool": "خريطة الوسيط",
-   "words": 1023,
-   "status": "مسودة — تحتاج مراجعة المالك"
+   "words": 1028,
+   "status": "مسودة — تحتاج مراجعة المالك",
+   "episode_url": "https://www.youtube.com/watch?v=wQbQM2Hxqe8"
   },
   {
    "no": "03",
@@ -34,8 +36,9 @@
    "episode": 3,
    "episode_title": "المحاضرة 03",
    "tool": "الاسم سلطة",
-   "words": 912,
-   "status": "مسودة — تحتاج مراجعة المالك"
+   "words": 917,
+   "status": "مسودة — تحتاج مراجعة المالك",
+   "episode_url": "https://www.youtube.com/watch?v=9SOyLc6EHRc"
   },
   {
    "no": "04",
@@ -44,8 +47,9 @@
    "episode": 4,
    "episode_title": "المحاضرة 04",
    "tool": "ورقة الانفتاح",
-   "words": 800,
-   "status": "مسودة — تحتاج مراجعة المالك"
+   "words": 805,
+   "status": "مسودة — تحتاج مراجعة المالك",
+   "episode_url": "https://www.youtube.com/watch?v=lHM5aD5Ma50"
   },
   {
    "no": "05",
@@ -54,8 +58,31 @@
    "episode": 5,
    "episode_title": "المحاضرة 05",
    "tool": "أربع عدسات",
-   "words": 832,
-   "status": "مسودة — تحتاج مراجعة المالك"
+   "words": 837,
+   "status": "مسودة — تحتاج مراجعة المالك",
+   "episode_url": "https://www.youtube.com/watch?v=51CickB_8e0"
+  },
+  {
+   "no": "06",
+   "file": "06_الدرس_السادس_تشريح_السقوط.md",
+   "title": "السقوط مش ضربة — تشريح انهيار",
+   "episode": 6,
+   "episode_title": "المحاضرة السادسة",
+   "tool": "تشريح السقوط",
+   "words": 910,
+   "status": "مسودة — تحتاج مراجعة المالك",
+   "episode_url": "https://www.youtube.com/watch?v=Zi9hUk8XUaI"
+  },
+  {
+   "no": "07",
+   "file": "07_الدرس_السابع_لما_تموت_اللغة.md",
+   "title": "لما تموت اللغة — المتحدث آخر من يعلم",
+   "episode": 7,
+   "episode_title": "المحاضرة السابعة",
+   "tool": "ميزان اللغة الحيّة",
+   "words": 875,
+   "status": "مسودة — تحتاج مراجعة المالك",
+   "episode_url": "https://www.youtube.com/watch?v=_jTErIOMf78"
   }
  ],
  "status": "مسودة",
