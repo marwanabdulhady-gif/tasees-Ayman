@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مجموعة الأطلاس الإضافية — منصة الأطالس التفاعلية</title>
+  <meta name="description" content="مجموعة الأطالس الإضافية المدمجة في مشروع تأسيس: أطلس السلالات الإسلامية (أوفلاين)، أطلس القرآن، ومراجع uMap." />
+  <style>
+    :root { --bg:#0b1020; --card:#121a30; --gold:#c9a84c; --ink:#e8ecf7; --dim:#9aa5c0; --line:#232e4e; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--ink); font-family:"Noto Naskh Arabic","Amiri","Traditional Arabic",serif; line-height:1.8; }
+    .wrap { max-width:1080px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+    header.top { display:flex; justify-content:space-between; align-items:center; padding-bottom:1rem; border-bottom:1px solid var(--line); margin-bottom:2rem; }
+    header.top a { color:var(--gold); text-decoration:none; font-size:.95rem; }
+    h1 { font-size:2.1rem; color:var(--gold); margin-bottom:.4rem; }
+    .sub { color:var(--dim); margin-bottom:2rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.25rem; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1.4rem 1.5rem; display:flex; flex-direction:column; }
+    .card h2 { color:var(--gold); font-size:1.25rem; margin-bottom:.5rem; }
+    .card p { color:var(--dim); font-size:.95rem; flex:1; }
+    .badge { display:inline-block; font-size:.75rem; border:1px solid var(--gold); color:var(--gold); border-radius:999px; padding:.05rem .7rem; margin-bottom:.7rem; align-self:flex-start; }
+    .badge.off { border-color:#4caf7d; color:#4caf7d; }
+    .badge.net { border-color:#5b8def; color:#8fb0f5; }
+    .badge.ref { border-color:var(--dim); color:var(--dim); }
+    .go { margin-top:1rem; }
+    .go a { display:inline-block; background:var(--gold); color:#14100a; text-decoration:none; font-weight:700; padding:.45rem 1.1rem; border-radius:10px; font-size:.95rem; }
+    .go a.plain { background:transparent; color:var(--gold); border:1px solid var(--gold); font-weight:400; }
+    footer { margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--line); font-size:.85rem; color:var(--dim); }
+    @media (max-width:640px){ h1{font-size:1.6rem} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <span>☪ منصة الأطالس الجغرافية والتاريخية العربية</span>
+      <a href="../index.html">→ العودة إلى المنصة الرئيسية</a>
+    </header>
+
+    <h1>مجموعة الأطالس الإضافية</h1>
+    <p class="sub">مصادر أطلسية مفتوحة المصدر استُخدمت وورِثت إلى المنصة — مترجمةً إلى العربية حيث أمكن، وموثَّقةً بمصادرها ورخصها.</p>
+
+    <div class="grid">
+      <div class="card">
+        <span class="badge net">يحتاج بناء محلي · npm run build</span>
+        <h2>أطلس السلالات الإسلامية</h2>
+        <p>
+          186 سلالة، 830 حاكمًا، 100 معركة، 450 عالمًا، 15 طريقًا تجاريًا، 13,940 ترجمة من «الأعلام» للزركلي،
+          12,954 مدخلًا جغرافيًا من «معجم البلدان» لياقوت، و8,528 ترجمة من الموسوعة الإسلامية التركية (DİA) —
+          بمحركات خريطة وخط زمني وشبكات سببية وعلماء (632–1924م).
+          المصدر: <em>Islamic Dynasties Atlas</em> (v6.10) — رخصة CC BY-SA 4.0 — الإصدار المحلي عربي/RTL افتراضيًا.
+          <br/><strong>تشغيل:</strong> <code>cd atlas-modules/islamic-dynasties && PUPPETEER_SKIP_DOWNLOAD=1 npm install && npm run build</code>
+        </p>
+        <div class="go"><a href="./islamic-dynasties/dist/index.html">افتح الأطلس ←</a></div>
+      </div>
+
+      <div class="card">
+        <span class="badge off">أوفلاين · بيانات محلية</span>
+        <h2>أطلس القرآن</h2>
+        <p>
+          42 موقعًا وشخصية من القرآن الكريم (مكة، بيت المقدس، الطور، سبأ، الأحقاف، الحِجر، ذو القرنين، الأنبياء…) بمقتطفات من نص المصحف
+          على خريطة تفاعلية بأوفلاين، مع إحالات «سورة:آية» وعلامات الثقة الجغرافية (مرفوع / راجح / تقليدي)
+          وصفحات نتائج فورية. الخريطة الخارجية الأصلية <em>Atlas of the Quran</em> (Google My Maps — GPL v3)
+          متاحة كمُلحق اختياري عند توفر الاتصال.
+        </p>
+        <div class="go"><a href="./atlas-of-quran/index.html">افتح الأطلس ←</a></div>
+      </div>
+
+      <div class="card">
+        <span class="badge ref">مرجع خارجي</span>
+        <h2>uMap — استضافة خاصة</h2>
+        <p>
+          مستودع <em>atlasofquran/umap</em> هو استضافة خاصة لتطبيق uMap المفتوح (Django + Leaflet) الذي يبني عليه
+          فريق أطلس القرآن نسخته على OpenStreetMap؛ لا يحوي محتوى خاصًا قابلًا للترجمة داخل المستودع،
+          لذا أُدرج هنا كمراجع معرَّف.
+        </p>
+        <div class="go"><a class="plain" href="https://github.com/atlasofquran/umap" rel="noopener">المستودع على GitHub ←</a></div>
+      </div>
+
+      <div class="card">
+        <span class="badge ref">موقع تجاري — غير قابل للاستنساخ</span>
+        <h2>أطلس العالم الإسلامي (موقع)</h2>
+        <p>
+          <em>atlasislamicworld.com</em> منصة تعليمية تجارية مغلقة: 315 لوحة خرائط و12 منطقة و30+ برنامجًا تدريبيًا
+          (محتوى مُلكي — لا رخصة مفتوحة). لم يُستنسَخ احترامًا للحقوق؛ نوثق وجوده هنا للمرجعية فقط.
+        </p>
+        <div class="go"><a class="plain" href="https://atlasislamicworld.com/" rel="noopener">الموقع الأصلي ←</a></div>
+      </div>
+    </div>
+
+    <footer>
+      دُمجت المصادر في 26 أكتوبر 2026 ضمن مشروع «تأسيس» — راجع <code>source/SOURCE_MANIFEST.json</code> لتوثيق الاستحواذ والبصمات.
+    </footer>
+  </div>
+</body>
+</html>

@@ -51,20 +51,31 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 (async () => {
   // ---------------- 12.1 Content Integrity Checks on Manifest & Assets ----------------
   const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "data/manifest.json"), "utf8"));
-  check("12.1", "Total PDF pages equals 1341 (8 + 264 + 121 + 351 + 325 + 272) with zero omissions", manifest.pages.length === 1341, `${manifest.pages.length} pages`);
-  check("12.1", "Volume page counts match all 6 source PDFs",
+  check("12.1", "Total PDF pages equals 1597 (8 + 264 + 121 + 351 + 325 + 272 + 256) with zero omissions", manifest.pages.length === 1597, `${manifest.pages.length} pages`);
+  check("12.1", "Volume page counts match all 7 source PDFs",
     manifest.stats.pagesByVolume.maps8 === 8 &&
     manifest.stats.pagesByVolume.seerah === 264 &&
     manifest.stats.pagesByVolume.abubakr === 121 &&
     manifest.stats.pagesByVolume.umar === 351 &&
     manifest.stats.pagesByVolume.uthman === 325 &&
-    manifest.stats.pagesByVolume.ali === 272
+    manifest.stats.pagesByVolume.ali === 272 &&
+    manifest.stats.pagesByVolume.dawal === 256
   );
+  const dawalVol = manifest.volumes.find((v) => v.id === "dawal");
+  check("12.1", "Volume 7 (أطلس دول العالم الإسلامي) registered: 256 pages, 7 sections, 89 printed maps",
+    Boolean(dawalVol && dawalVol.pageCount === 256 && dawalVol.sections.length === 7 && dawalVol.printedIndexes.mapsCount === 89),
+    dawalVol ? `sections=${dawalVol.sections.length}` : "missing");
 
   const missingAssets = manifest.pages.filter(
     (p) => !fs.existsSync(path.join(ROOT, p.pageAsset)) || !fs.existsSync(path.join(ROOT, p.thumbAsset))
   );
-  check("12.1", "Every single page (1341/1341) has both full-res WebP and thumbnail asset on disk", missingAssets.length === 0, `missing=${missingAssets.length}`);
+  check("12.1", "Every single page (1597/1597) has both full-res WebP and thumbnail asset on disk", missingAssets.length === 0, `missing=${missingAssets.length}`);
+  const ocrBundleRaw = fs.readFileSync(path.join(ROOT, "data/ocr-words-bundle.js"), "utf8").trim();
+  const ocrBundle = JSON.parse(zlib.gunzipSync(Buffer.from(ocrBundleRaw.split('"')[1], "base64")).toString("utf8"));
+  const dawalOcrPages = Object.keys(ocrBundle).filter((k) => k.startsWith("dawal-")).length;
+  const dawalOcrWords = Object.entries(ocrBundle).filter(([k]) => k.startsWith("dawal-")).reduce((s, [, w]) => s + w.length, 0);
+  check("12.1", "OCR words bundle covers dawal volume (251 pages with words, 16,557 word boxes)",
+    dawalOcrPages === 251 && dawalOcrWords === 16557, `pages=${dawalOcrPages}, words=${dawalOcrWords}`);
 
   const corruptArabic = manifest.pages.filter((p) => /\uFFFD/.test(p.title) || /\uFFFD/.test(p.extractedText || ""));
   check("12.1", "Zero Unicode replacement characters (U+FFFD) in titles or extracted Arabic text", corruptArabic.length === 0);
@@ -228,11 +239,24 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   await sleep(300);
   await page.screenshot({ path: path.join(SHOTS_DIR, "05d-desktop-ali-siffin.png") });
 
+  // Switch to Volume 7 (Atlas of Islamic States — Dawal) & test direct jump
+  await page.click('[data-vol="dawal"]');
+  await sleep(350);
+  const dawalLoaded = await page.evaluate(() => document.querySelector(".page-main-title")?.textContent || "");
+  check("12.2", "Switching to Volume 7 (أطلس دول العالم الإسلامي) loads the cover/front matter", dawalLoaded.length > 0, dawalLoaded);
+  const ughandaJump = await testSearchQuery("دول ٢٢");
+  check("12.3", "Search supports Volume 7 direct jump («دول ٢٢» -> أوغندا)", ughandaJump.some((t) => t.includes("أوغندا")), ughandaJump[0] || "");
+  await page.click("#search-results-list .search-result-item");
+  await sleep(300);
+  const dawalMapImg = await page.evaluate(() => document.querySelector("img[src*='assets/pages/dawal/page-022.webp']") !== null);
+  check("12.2", "Volume 7 page-jump renders the dawal-022 map asset", dawalMapImg);
+  await page.screenshot({ path: path.join(SHOTS_DIR, "05e-desktop-dawal-uganda.png") });
+
   // Test TOC, Original Page Split Verification, Compare, Gazetteer, Learn, Audit
   await page.click('[data-tab="toc"]');
   await sleep(300);
   const tocCards = await page.evaluate(() => document.querySelectorAll(".toc-card").length);
-  check("12.2", "TOC gallery renders all 1341 pages across 6 volumes", tocCards === 1341, `cards=${tocCards}`);
+  check("12.2", "TOC gallery renders all 1597 pages across 7 volumes", tocCards === 1597, `cards=${tocCards}`);
   await page.screenshot({ path: path.join(SHOTS_DIR, "06-desktop-toc.png") });
 
   await page.click('[data-tab="original"]');
@@ -289,14 +313,128 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     pagesCount: window.__ATLAS_MANIFEST__?.pages?.length || 0,
     vecHotspots: document.querySelectorAll("svg.vector-spread-svg .vec-hotspot").length,
   }));
-  check("12.4", "Single-File Portable HTML Edition loads offline via file:// with all 1341 pages indexed",
-    pOk.portableFlag && pOk.pagesCount === 1341 && pOk.vecHotspots > 150,
+  check("12.4", "Single-File Portable HTML Edition loads offline via file:// with all 1597 pages indexed",
+    pOk.portableFlag && pOk.pagesCount === 1597 && pOk.vecHotspots > 150,
     `pages=${pOk.pagesCount}, vecHotspots=${pOk.vecHotspots}`
   );
   await pPage.close();
 
   check("12.4", "Zero external network requests attempted during offline sessions", blockedExternalRequests.length === 0, `blocked=${blockedExternalRequests.length}`);
   check("12.4", "Zero runtime JavaScript or console errors", jsErrors.length === 0, jsErrors.join("; "));
+
+  // ---------------- 13.1: Atlas Modules — Quran Atlas (offline native build) ----------------
+  const quranUrl = "file://" + path.join(ROOT, "atlas-modules/atlas-of-quran/index.html");
+  const qData = JSON.parse(fs.readFileSync(path.join(ROOT, "atlas-modules/atlas-of-quran/data/locations.json"), "utf8")).locations;
+  const qN = qData.length;
+  const qv = require("./check_quran_texts.cjs").verify();
+  check("13.1", "Every Quran excerpt is an exact slice of its cited verse, and every reference exists (vendored Uthmani text)",
+    qv.problems.length === 0, `${qv.texts} excerpts, ${qv.refs} refs, ${qv.verses} verses; ${qv.problems.slice(0, 2).join(" ; ")}`);
+  const qPage = await browser.newPage();
+  await qPage.setViewport({ width: 1400, height: 900, deviceScaleFactor: 1 });
+  await qPage.setRequestInterception(true);
+  qPage.on("request", (req) => {
+    const u = req.url();
+    if (u.startsWith("file:") || u.startsWith("data:") || u.startsWith("blob:")) req.continue();
+    else req.abort(); // expected & allowed: CARTO basemap tiles + Google My Maps iframe
+  });
+  const qErrors = [];
+  qPage.on("pageerror", (e) => qErrors.push("pageerror: " + e.message));
+  qPage.on("console", (m) => { if (m.type() === "error") qErrors.push(m.text()); });
+  await qPage.goto(quranUrl, { waitUntil: "load", timeout: 45000 });
+  await qPage.waitForSelector(".leaflet-marker-icon", { timeout: 20000 });
+  const qInfo = await qPage.evaluate(() => ({
+    dir: document.documentElement.dir,
+    lang: document.documentElement.lang,
+    locs: (window.QURAN_DATA || { locations: [] }).locations.length,
+    items: document.querySelectorAll("ul.list li").length,
+    markers: document.querySelectorAll(".leaflet-marker-icon").length,
+  }));
+  check("13.1", "Quran Atlas loads offline via file:// in Arabic RTL with full native dataset",
+    qInfo.dir === "rtl" && qInfo.lang === "ar" && qInfo.locs === qN, `locs=${qInfo.locs}`);
+  check("13.1", `All ${qN} locations rendered as sidebar list items and map markers`,
+    qInfo.items === qN && qInfo.markers === qN, `items=${qInfo.items}, markers=${qInfo.markers}`);
+  await qPage.type("#q", "مكة");
+  await sleep(300);
+  const qVis = await qPage.evaluate(() => [...document.querySelectorAll("ul.list li")].filter((e) => e.style.display !== "none").length);
+  check("13.1", "Arabic search filters the list (مكة)", qVis >= 1 && qVis < qN, `shown=${qVis}`);
+  await qPage.evaluate(() => { const i = document.getElementById("q"); i.value = ""; i.dispatchEvent(new Event("input")); });
+  await qPage.click('ul.list li[data-id="makkah"]');
+  await sleep(1500);
+  const qPop = await qPage.evaluate(() => {
+    const p = document.querySelector(".leaflet-popup-content");
+    return p ? p.querySelector(".pp-title").textContent + "|" + (p.querySelector(".pp-verse") ? p.querySelector(".pp-verse").textContent : "") : "";
+  });
+  check("13.1", "Selecting a place opens a popup with a verified Quran excerpt",
+    qPop.includes("مكة") && qPop.includes(qData.find((l) => l.id === "makkah").texts[0].text), qPop.slice(0, 60));
+  const qRealErrors = qErrors.filter((e) => !/ERR_|Failed to load resource|net::/.test(e));
+  check("13.1", "Quran Atlas: zero runtime JS errors (expected tile/embed aborts excluded)",
+    qRealErrors.length === 0, qRealErrors.slice(0, 3).join(" ; "));
+  await qPage.close();
+
+  // --- QA guard: hub links in atlas-modules/index.html must resolve ---
+  const hubHtml = fs.readFileSync(path.join(ROOT, "atlas-modules/index.html"), "utf8");
+  const hubLinks = [...hubHtml.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
+  const brokenHubLinks = [];
+  for (const href of hubLinks) {
+    if (href.startsWith("http")) continue; // external links are allowed
+    const target = path.resolve(path.join(ROOT, "atlas-modules", href));
+    if (!fs.existsSync(target)) brokenHubLinks.push(href);
+  }
+  check("12.1", "All internal hub links in atlas-modules/index.html resolve to existing files",
+    brokenHubLinks.length === 0, brokenHubLinks.length ? `broken=${brokenHubLinks.join(", ")}` : "all OK");
+
+  // --- QA guard: every volume with map pages must have hotspot coverage ---
+  const hubManifest = JSON.parse(fs.readFileSync(path.join(ROOT, "data/manifest.json"), "utf8"));
+  const vols = {};
+  for (const p of hubManifest.pages) {
+    if (p.category !== "map" && p.category !== "spread-map") continue;
+    const v = p.volumeId;
+    if (!vols[v]) vols[v] = { maps: 0, withHot: 0 };
+    vols[v].maps++;
+    if ((p.hotspots || []).length > 0) vols[v].withHot++;
+  }
+  // maps8 uses vector hotspots (maps8-vectors.js), not raster page hotspots — exclude
+  const volMissingHot = Object.entries(vols).filter(([v, s]) => v !== "maps8" && s.withHot === 0 && s.maps > 0);
+  check("12.2", "Every non-maps8 volume with map pages has at least one page with clickable hotspots",
+    volMissingHot.length === 0, volMissingHot.length ? `no-hotspot-volumes=${volMissingHot.map(([v])=>v).join(",")}` : "all covered");
+
+  const dawalReview = JSON.parse(fs.readFileSync(path.join(ROOT, "data/dawal_hotspot_review.json"), "utf8"));
+  const placementErrors = require("../refine_dawal_hotspots.cjs").validate(dawalReview, hubManifest);
+  check("12.2", "Dawal reviewed anchors match source-image hashes and pixel coordinates; pending anchors stay estimated",
+    placementErrors.length === 0, `${Object.keys(dawalReview.pages).length}/89 visually reviewed; ${placementErrors.join("; ")}`);
+  const bundleText = fs.readFileSync(path.join(ROOT, "data/atlas-bundle.js"), "utf8");
+  const bundleBase64 = bundleText.match(/=\s*"([A-Za-z0-9+/=]+)"/)[1];
+  const bundledManifest = JSON.parse(zlib.gunzipSync(Buffer.from(bundleBase64, "base64")));
+  check("12.1", "Browser manifest bundle exactly matches manifest.json", JSON.stringify(bundledManifest) === JSON.stringify(hubManifest));
+
+  // Exercise every reviewed city through the real TOC -> viewer -> info-card path.
+  const dPage = await openOfflinePage(mainUrl, 1440, 900);
+  await dPage.waitForSelector('.vol-pill[data-vol="dawal"]', { timeout: 20000 });
+  const dawalClickFailures = [];
+  for (const [id, review] of Object.entries(dawalReview.pages)) {
+    await dPage.click('.nav-tab[data-tab="toc"]');
+    await dPage.select("#toc-vol-sel", "dawal");
+    await dPage.evaluate((pid) => {
+      const card = document.querySelector(`[data-open-pid="${pid}"]`);
+      if (!card) throw new Error(`Missing TOC entry: ${pid}`);
+      card.click();
+    }, id);
+    const selector = `.raster-hotspot[data-hsid="${id}-reviewed-city"]`;
+    await dPage.waitForSelector(selector, { timeout: 10000 });
+    const passed = await dPage.evaluate((sel, r) => {
+      const hotspot = document.querySelector(sel);
+      hotspot.click();
+      const card = document.querySelector(".feature-card");
+      return card && card.querySelector("h4").textContent === r.name &&
+        card.textContent.includes("محقق بصريًا") &&
+        Math.abs(parseFloat(hotspot.style.left) + 2.5 - r.pixelX / r.width * 100) < .011 &&
+        Math.abs(parseFloat(hotspot.style.top) + 2.5 - r.pixelY / r.height * 100) < .011;
+    }, selector, review);
+    if (!passed) dawalClickFailures.push(id);
+  }
+  check("12.2", "Every visually reviewed Dawal anchor renders at its measured position and opens its own info card offline",
+    dawalClickFailures.length === 0, `${Object.keys(dawalReview.pages).length} anchors; failures=${dawalClickFailures.join(",")}`);
+  await dPage.close();
 
   await browser.close();
 

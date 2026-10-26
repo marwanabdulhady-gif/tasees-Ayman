@@ -589,7 +589,7 @@
                 <h4>${escapeHtml(hs.name)}</h4>
                 <button type="button" class="icon-btn-sm" id="close-feat-btn" aria-label="إغلاق البطاقة">✕</button>
               </div>
-              <span class="badge badge-verified" style="margin-bottom:6px">معلم خريطة محقق بصريًا</span>
+              <span class="badge ${hs.placementStatus === "estimated" ? "badge-low" : "badge-verified"}" style="margin-bottom:6px">${hs.placementStatus === "estimated" ? "موضع تقديري — لم يُراجع بصريًا" : "معلم خريطة محقق بصريًا"}</span>
               <p style="margin:6px 0;font-size:13px;line-height:1.5">${escapeHtml(hs.fact || "")}</p>
               ${cropHtml}
               <div style="font-size:12px;color:var(--ink-secondary);display:flex;justify-content:space-between;align-items:center;margin-top:6px">

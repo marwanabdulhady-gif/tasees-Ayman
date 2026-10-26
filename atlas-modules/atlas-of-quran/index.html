@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أطلس القرآن — مواقع القرآن الكريم (عربي · أوفلاين)</title>
+<meta name="description" content="أطلس تفاعلي أوفلاين بالأماكن والأشخاص المذكورين في القرآن الكريم، مع إحالات الآيات وعرض الثقة الجغرافي.">
+<link rel="stylesheet" href="leaflet/leaflet.css">
+<style>
+  :root{
+    --bg:#0d1117; --panel:#151b24; --panel2:#1b2330; --line:#2d3644;
+    --text:#e8edf4; --muted:#93a1b3; --dim:#5c6b80;
+    --city:#f0883e; --region:#58a6ff; --mountain:#7ee787; --sea:#4cc9f0;
+    --dam:#d2a8ff; --site:#ff7b72; --person:#ffd166;
+    --quran:#f5d76e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--text);font-family:"Segoe UI",Tahoma,"Noto Naskh Arabic","Traditional Arabic",Arial,sans-serif;display:flex;flex-direction:column;overflow:hidden}
+  header{display:flex;align-items:center;gap:14px;padding:10px 18px;background:linear-gradient(180deg,#131a25,#0d1117);border-bottom:1px solid var(--line);z-index:1200}
+  .logo{width:30px;height:30px;background:#1a1a1a;border:2px solid #3a3a3a;border-radius:4px;position:relative;flex:none;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+  .logo::after{content:"";position:absolute;top:6px;left:0;right:0;height:5px;background:linear-gradient(90deg,#c9a227,#e8c96a)}
+  header h1{font-size:19px;font-weight:700;letter-spacing:.2px}
+  header .sub{font-size:12px;color:var(--muted)}
+  .stats{margin-inline-start:auto;display:flex;gap:8px;flex-wrap:wrap}
+  .stat{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:11.5px;color:var(--muted)}
+  .stat b{color:var(--text);font-size:13px}
+  main{flex:1;display:flex;min-height:0}
+  /* ── sidebar (right in RTL) ── */
+  aside{width:340px;min-width:280px;background:var(--panel);border-inline-end:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+  .searchbox{padding:10px 12px 6px}
+  .searchbox input{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:9px 12px;font-size:13.5px;font-family:inherit;outline:none}
+  .searchbox input:focus{border-color:#3d5a80}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px;border-bottom:1px solid var(--line)}
+  .chip{font-size:11.5px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);color:var(--muted);cursor:pointer;user-select:none;transition:.15s}
+  .chip.on{color:#0d1117;background:var(--chipc,var(--text));border-color:transparent;font-weight:700}
+  ul.list{flex:1;overflow-y:auto;list-style:none;padding:6px}
+  ul.list li{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;cursor:pointer;border:1px solid transparent}
+  ul.list li:hover{background:var(--panel2)}
+  ul.list li.sel{background:#22304a;border-color:#35507a}
+  .dot{width:12px;height:12px;border-radius:50%;flex:none;border:2px solid rgba(255,255,255,.25)}
+  .li-name{font-size:13.5px;font-weight:600;flex:1;line-height:1.35}
+  .li-meta{display:flex;gap:5px;align-items:center;flex:none}
+  .badge{font-size:10px;padding:2px 7px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+  .badge.conf-high{color:#7ee787;border-color:#2c5545}
+  .badge.conf-medium{color:#f0b429;border-color:#5c4a1e}
+  .badge.conf-traditional{color:#ff9d6b;border-color:#5c3a26}
+  .list-foot{padding:8px 14px;border-top:1px solid var(--line);font-size:11px;color:var(--dim);line-height:1.6}
+  /* ── map ── */
+  #map-wrap{flex:1;position:relative;min-width:0}
+  #map{position:absolute;inset:0;background:#0a0e14}
+  .leaflet-container{font-family:inherit}
+  .leaflet-control-attribution{background:rgba(13,17,23,.8)!important;color:var(--dim)!important;font-size:10px}
+  .leaflet-control-attribution a{color:var(--muted)!important}
+  .leaflet-bar a{background:var(--panel2)!important;color:var(--text)!important;border-color:var(--line)!important}
+  .leaflet-bar a:hover{background:#243044!important}
+  .marker{background:transparent;border:none}
+  .mk{width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 3px rgba(0,0,0,.45),0 0 10px rgba(0,0,0,.6);transition:.15s}
+  .mk.big{transform:scale(1.35)}
+  .leaflet-tooltip.qt{background:var(--panel);border:1px solid var(--line);color:var(--text);font-size:12px;font-weight:600;border-radius:7px;padding:4px 10px;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+  .leaflet-tooltip.qt::before{display:none}
+  /* popup */
+  .leaflet-popup-content-wrapper{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.6);direction:rtl;text-align:right}
+  .leaflet-popup-tip{background:var(--panel)}
+  .leaflet-popup-content{margin:14px 16px;min-width:250px;max-width:300px}
+  .pp-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .pp-head .dot{width:13px;height:13px}
+  .pp-title{font-size:15px;font-weight:700;flex:1}
+  .pp-lead{font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.7}
+  .pp-verse{background:var(--panel2);border-inline-start:3px solid var(--quran);border-radius:7px;padding:8px 11px;margin-top:7px;font-family:"Noto Naskh Arabic","Traditional Arabic","Amiri",serif;font-size:14.5px;line-height:2;color:#f2ecd8}
+  .pp-verse .ref{display:inline-block;font-size:10.5px;color:var(--dim);font-family:inherit;margin-inline-start:8px}
+  .pp-refs{margin-top:9px;display:flex;flex-wrap:wrap;gap:5px}
+  .pp-refs span{font-size:10.5px;background:var(--panel2);border:1px solid var(--line);color:var(--muted);padding:2px 8px;border-radius:999px;direction:ltr}
+  .pp-conf{margin-top:9px;font-size:11px;color:var(--muted);display:flex;gap:6px;align-items:center}
+  /* offline toast */
+  #offline-toast{position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:1100;background:#2a2010;border:1px solid #5c4a1e;color:#f0d9a0;font-size:12px;padding:7px 16px;border-radius:999px;display:none;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+  footer{background:#11161f;border-top:1px solid var(--line);padding:8px 18px;display:flex;gap:16px;align-items:center;font-size:11.5px;color:var(--muted);z-index:1200}
+  footer a{color:#79a8d8;text-decoration:none}
+  footer .lic{margin-inline-start:auto;color:var(--dim)}
+  /* external embed */
+  .ext{border-top:1px solid var(--line);background:var(--panel)}
+  .ext summary{cursor:pointer;padding:10px 16px;font-size:13px;font-weight:600;color:var(--muted);list-style:none}
+  .ext summary::before{content:"◂ ";color:var(--dim)}
+  .ext[open] summary::before{content:"▾ "}
+  .ext .body{padding:0 16px 14px;font-size:12px;color:var(--muted);line-height:1.7}
+  .ext .frame{width:100%;height:380px;border:1px solid var(--line);border-radius:10px;margin-top:10px;background:#0a0e14}
+  @media (max-width:820px){ main{flex-direction:column-reverse} aside{width:100%;min-width:0;height:42%;border-inline-end:none;border-top:1px solid var(--line)} }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" aria-hidden="true"></div>
+  <div>
+    <h1>أطلس القرآن — مواقع القرآن الكريم</div>
+    <div class="sub">الأماكن والأشخاص المذكورون في القرآن · إحالات الآيات · علامة الثقة الجغرافية · يعمل دون اتصال</div>
+  </div>
+  <div class="stats" id="stats"></div>
+</header>
+
+<main>
+  <aside>
+    <div class="searchbox">
+      <input id="q" type="search" placeholder="ابحث عن موقع أو نبي… (مثال: مكة، لوط، الطور)">
+    </div>
+    <div class="chips" id="chips"></div>
+    <ul class="list" id="list"></ul>
+    <div class="list-foot">
+      علامة الثقة: <span class="badge conf-high">مرفوع</span> <span class="badge conf-medium">راجح</span> <span class="badge conf-traditional">تقليدي</span><br>
+      «تقليدي» = الموضع شائع في التراث المفسر ومختلف فيه عند العلماء.
+    </div>
+  </aside>
+  <div id="map-wrap">
+    <div id="map"></div>
+    <div id="offline-toast">الخلفية الأصلية (بلاطات الخرائط) تحتاج اتصالاً — كل البيانات والنقاط تعمل دون اتصال</div>
+  </div>
+</main>
+
+<details class="ext">
+  <summary>الخريطة الخارجية الأصلية (Google My Maps — تحتاج اتصالًا)</summary>
+  <div class="body">
+    خريطة المشروع الأصل «Atlas of the Quran» (مواقع القرآن + الشخصيات + الآيات والأحاديث) — تُحمَّل من Google عند توفر الاتصال فقط؛ التطبيق أعلاه يعمل بالكامل دونها.
+    <div class="frame"><iframe title="الخريطة الأصلية (Google My Maps)" src="https://www.google.com/maps/d/u/2/embed?mid=1h5v16ahHjdMNWt3deXH0zEXD6wErVpF2&z=2" style="width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+  </div>
+</details>
+
+<footer>
+  <span>أطلس القرآن — 42 موقعًا وشخصية · الإحالات بصيغة «سورة:آية» · المقتطفات من نص المصحف بالرسم العثماني</span>
+  <span class="lic">المشروع الأصلي: Atlas of the Quran — رخصة GPL v3 · الخلفية: CARTO/OSM عند الاتصال</span>
+</footer>
+
+<script src="leaflet/leaflet.js"></script>
+<script src="data/locations.js"></script>
+<script>
+(function(){
+  "use strict";
+  const D = window.QURAN_DATA || {locations:[]};
+  const LOCS = D.locations;
+  const TYPE_LABEL = D.meta.types || {};
+  const COLORS = {city:"#f0883e",region:"#58a6ff",mountain:"#7ee787",sea:"#4cc9f0",dam:"#d2a8ff",site:"#ff7b72",person:"#ffd166"};
+  const CONF_LABEL = {high:"مرفوع",medium:"راجح",traditional:"تقليدي"};
+
+  /* ── map ── */
+  const map = L.map("map",{zoomControl:true,minZoom:2,maxZoom:17,zoomSnap:.5}).setView([26,42],4);
+  map.zoomControl.setPosition("topleft");
+  let tilesFailed = false;
+  const tiles = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains:"abcd", maxZoom:19
+  });
+  tiles.on("tileerror",function(){
+    if(!tilesFailed){ tilesFailed=true;
+      const t=document.getElementById("offline-toast"); t.style.display="block";
+      setTimeout(function(){t.style.display="none";},9000);
+    }
+  });
+  tiles.addTo(map);
+
+  /* graticule — شبكة خطوط الطول والعرض (تعمل أوفلاين) */
+  function graticule(){
+    const g = L.layerGroup();
+    for(let lng=-180;lng<=180;lng+=15){
+      g.addLayer(L.polyline([[-75,lng],[75,lng]],{color:"#28303d",weight:1,opacity:.55,dashArray:"2 6",interactive:false}));
+    }
+    for(let lat=-75;lat<=75;lat+=15){
+      g.addLayer(L.polyline([[lat,-180],[lat,180]],{color:"#28303d",weight:1,opacity:.55,dashArray:"2 6",interactive:false}));
+    }
+    return g;
+  }
+  graticule().addTo(map);
+
+  /* ── markers ── */
+  const markers = {};
+  const typeVisible = {};
+  Object.keys(TYPE_LABEL).forEach(t=>typeVisible[t]=true);
+
+  function iconFor(l, big){
+    const c = COLORS[l.type]||"#fff";
+    return L.divIcon({
+      className:"marker",
+      html:'<div class="mk'+(big?" big":"")+'" style="background:'+c+'"></div>',
+      iconSize:[16,16], iconAnchor:[8,8], tooltipAnchor:[0,-10]
+    });
+  }
+
+  LOCS.forEach(l=>{
+    const m = L.marker([l.lat,l.lng],{icon:iconFor(l,false),title:l.name});
+    m.bindTooltip(l.name,{className:"qt",direction:"top"});
+    m.bindPopup(popupHtml(l),{maxWidth:320,autoPanPadding:[40,40]});
+    m.on("click",()=>select(l.id,false));
+    m.addTo(map);
+    markers[l.id]=m;
+  });
+
+  function popupHtml(l){
+    let h = '<div class="pp-head"><span class="dot" style="background:'+(COLORS[l.type]||"#fff")+'"></span>'+
+            '<span class="pp-title"></span>'+
+            '<span class="badge conf-'+l.conf+'">'+CONF_LABEL[l.conf]+'</span></div>';
+    h += '<div class="pp-lead"></div>';
+    (l.texts||[]).forEach(t=>{
+      h += '<div class="pp-verse">«'+t.text+'»<span class="ref">'+t.ref+'</span></div>';
+    });
+    h += '<div class="pp-refs">'+l.verses.map(v=>"<span>"+v+"</span>").join("")+"</div>";
+    h += '<div class="pp-conf">الوِصف: <span class="pp-note"></span></div>';
+    const el = document.createElement("template");
+    el.innerHTML = h;
+    el.content.querySelector(".pp-title").textContent = l.name;
+    el.content.querySelector(".pp-lead").textContent = TYPE_LABEL[l.type]||l.type;
+    el.content.querySelector(".pp-note").textContent = l.note||"—";
+    return el.innerHTML;
+  }
+
+  /* ── stats ── */
+  const byType = {};
+  LOCS.forEach(l=>byType[l.type]=(byType[l.type]||0)+1);
+  document.getElementById("stats").innerHTML =
+    '<span class="stat"><b>'+LOCS.length+'</b> موقع/شخصية</span>'+
+    Object.keys(TYPE_LABEL).filter(t=>byType[t]).map(t=>'<span class="stat"><b style="color:'+(COLORS[t]||"")+'">'+byType[t]+'</b> '+TYPE_LABEL[t]+'</span>').join("");
+
+  /* ── chips ─ */
+  const chipsEl = document.getElementById("chips");
+  chipsEl.insertAdjacentHTML("beforeend",
+    '<span class="chip on" data-t="__all" style="--chipc:#fff">الكل ('+LOCS.length+')</span>');
+  Object.keys(TYPE_LABEL).filter(t=>byType[t]).forEach(t=>{
+    chipsEl.insertAdjacentHTML("beforeend",
+      '<span class="chip on" data-t="'+t+'" style="--chipc:'+(COLORS[t]||"#fff")+'">'+TYPE_LABEL[t]+' ('+byType[t]+')</span>');
+  });
+  chipsEl.addEventListener("click",e=>{
+    const c = e.target.closest(".chip"); if(!c) return;
+    c.classList.toggle("on");
+    if(c.dataset.t==="__all"){
+      chipsEl.querySelectorAll(".chip").forEach(x=>x.classList.add("on"));
+      Object.keys(typeVisible).forEach(t=>typeVisible[t]=true);
+    } else {
+      typeVisible[c.dataset.t] = !typeVisible[c.dataset.t];
+      const allOn = Object.values(typeVisible).every(Boolean);
+      chipsEl.querySelector('[data-t="__all"]').classList.toggle("on",allOn);
+    }
+    applyFilter();
+  });
+
+  /* ── list ─ */
+  const listEl = document.getElementById("list");
+  const qEl = document.getElementById("q");
+  LOCS.forEach(l=>{
+    const li = document.createElement("li");
+    li.dataset.id = l.id;
+    li.innerHTML = '<span class="dot" style="background:'+(COLORS[l.type]||"#fff")+'"></span>'+
+      '<span class="li-name"></span>'+
+      '<span class="li-meta"><span class="badge">'+(TYPE_LABEL[l.type]||"")+'</span>'+
+      '<span class="badge conf-'+l.conf+'">'+CONF_LABEL[l.conf]+'</span></span>';
+    li.querySelector(".li-name").textContent = l.name;
+    li.addEventListener("click",()=>select(l.id,true));
+    listEl.appendChild(li);
+  });
+
+  function applyFilter(){
+    const q = qEl.value.trim();
+    LOCS.forEach(l=>{
+      const li = listEl.querySelector('li[data-id="'+l.id+'"]');
+      const okType = typeVisible[l.type]!==false;
+      const okQ = !q || l.name.includes(q) || (l.note||"").includes(q) || l.verses.join(" ").includes(q);
+      const show = okType && okQ;
+      li.style.display = show ? "" : "none";
+      if(markers[l.id]){
+        if(show && !map.hasLayer(markers[l.id])) markers[l.id].addTo(map);
+        if(!show && map.hasLayer(markers[l.id])) map.removeLayer(markers[l.id]);
+      }
+    });
+  }
+  qEl.addEventListener("input",applyFilter);
+
+  /* ── selection ── */
+  function select(id, fromList){
+    const l = LOCS.find(x=>x.id===id); if(!l) return;
+    listEl.querySelectorAll("li").forEach(x=>x.classList.toggle("sel",x.dataset.id===id));
+    Object.entries(markers).forEach(([mid,m])=>{
+      const big = mid===id;
+      m.setIcon(iconFor(LOCS.find(x=>x.id===mid),big));
+      if(big){
+        m.setZIndexOffset(1000);
+        if(fromList) map.flyTo([l.lat,l.lng], Math.max(map.getZoom(),6),{duration:.8});
+        m.openPopup();
+      } else { m.setZIndexOffset(0); m.closePopup(); }
+    });
+    const li = listEl.querySelector('li[data-id="'+id+'"]');
+    if(li) li.scrollIntoView({block:"nearest",behavior:"smooth"});
+  }
+})();
+</script>
+</body>
+</html>

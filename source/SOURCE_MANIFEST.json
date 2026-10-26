@@ -53,6 +53,75 @@
       "md5": "7e934aad5ef1034857655b5d8c6868c7",
       "sha256": "8e90f71f65badc801ddc0ef3c815df2759d009fcce84a25fe995f4a1b0866fed",
       "pageCount": 272
+    },
+    {
+      "volumeId": "dawal",
+      "fileName": "أطلس دول العالم الإسلامي.pdf",
+      "driveFileId": "1mBeH7PSf98BJrh5DOBk0ZzqYucBowYXz",
+      "localPath": "source/islamic-states-atlas-abu-khalil.pdf",
+      "bytes": 24540153,
+      "md5": "2a3af820ed210d6b176bd3698bcd26b8",
+      "sha256": "9c7a22dc9095fa8fcd6f3680f935d5158806a9abeb1e5c53bb748b3d7c419418",
+      "pageCount": 256,
+      "author": "د. شوقي أبو خليل",
+      "edition": "الطبعة الثانية (محدثة) 1424هـ/2003م — دار الفكر، دمشق — ISBN 1-57547-431-x",
+      "scanNote": "مسح 100 DPI (650×921 بكسل) — استخرجت 1:1 دون رفع الدقة",
+      "ocrNote": "tesseract.js 5.1.1 (ara) — متوسط الثقة 50.9 — 16,557 صندوق كلمة"
+    }
+  ],
+  "externalAtlasModules": [
+    {
+      "id": "islamic-dynasties-atlas",
+      "title": "أطلس السلالات الإسلامية (Islamic Dynasties Atlas v6.10.0.0)",
+      "repo": "https://github.com/alicetinkaya76/islamic-civilization-atlas",
+      "clonedCommit": "c6c7693af4421ee587c942694cf274be490bc938",
+      "license": "CC BY-SA 4.0",
+      "localPath": "atlas-modules/islamic-dynasties/",
+      "dataset": "186 dynasties, 830 rulers, 100 battles, 450 scholars, 15 trade routes, 13,940 al-A'lam biographies (Zirikli), 12,954 Ya'qut geographic entries, 8,528 DIA biographies, 7,568 EI-1 articles, 632-1924 CE",
+      "dataSizeMB": 158,
+      "integration": "vendored source + full data; default language tr->ar; RTL; local Leaflet CSS (no CDN); gtag/Google-Fonts removed; built with vite --base ./ for file:// (dist not committed)",
+      "attributionKept": [
+        "README.md",
+        "LICENSE",
+        "CITATION.cff",
+        "CHANGELOG.md"
+      ]
+    },
+    {
+      "id": "atlas-of-quran",
+      "title": "أطلس القرآن (Atlas of the Quran)",
+      "repo": "https://github.com/atlasofquran/atlasofquran.github.io",
+      "clonedCommit": "d578c9d4da1a9dad7b3faf89533f15966586badd",
+      "license": "GPL-3.0",
+      "localPath": "atlas-modules/atlas-of-quran/",
+      "dataSizeMB": 1,
+      "integration": "Offline-first Arabic RTL Leaflet app with native curated dataset (data/locations.json: 42 Quranic places+people built by tools/build_locations.py; every cited verse names the entity; every excerpt cut from data/quran-uthmani.json — semarketir/quranjson, MIT, 6236 verses — and checked by tools/qa/check_quran_texts.cjs; confidence flags high/medium/traditional); vendored Leaflet 1.9.4 (leaflet/); CARTO dark tiles + permanent graticule; original Google My Maps embed kept as optional online addon (mid=1h5v16ahHjdMNWt3deXH0zEXD6wErVpF2)",
+      "attributionKept": [
+        "LICENSE (GPL v3) referenced in page footer",
+        "original project name + GPL v3 in page footer"
+      ]
+    },
+    {
+      "id": "atlasofquran-umap",
+      "title": "uMap self-hosting fork (reference only)",
+      "repo": "https://github.com/atlasofquran/umap",
+      "clonedCommit": "88cd3e8cf0b24516ba62fbea4a7f58e6038e2e0f",
+      "license": "GPL-3.0 (upstream uMap project)",
+      "localPath": null,
+      "dataset": "no proprietary content in repo (Django/Leaflet infrastructure fork)",
+      "integration": "not vendored — documented as external reference in atlas-modules/index.html",
+      "attributionKept": []
+    },
+    {
+      "id": "atlasislamicworld-com",
+      "title": "Atlas of the Islamic World (commercial site)",
+      "repo": null,
+      "url": "https://atlasislamicworld.com/",
+      "license": "proprietary (no open license)",
+      "localPath": null,
+      "dataset": "315 atlas plates, 12 regions, 30+ educational programs (inspected homepage only)",
+      "integration": "NOT cloned — proprietary content; referenced for context only",
+      "attributionKept": []
     }
   ]
 }
