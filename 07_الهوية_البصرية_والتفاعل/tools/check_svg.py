@@ -1,11 +1,13 @@
 """Gate V1 + V4 + V6 for restyled concept SVGs (task A2) and authored SVGs (task A4).
 
-    python3 07_الهوية_البصرية_والتفاعل/tools/check_svg.py NEW.svg [ORIGINAL.svg]
+    python3 07_الهوية_البصرية_والتفاعل/tools/check_svg.py NEW.svg [ORIGINAL.svg] [--icon]
 
 Checks, and exits non-zero on any failure:
   V1  every hex colour in fill/stroke/style is in the palette (tokens.json, day + night + photo ink)
   V4  the SVG has live <text> (no text drawn as paths) and no embedded raster <image>
   V6  with ORIGINAL given: the multiset of text strings is identical (restyle may not change a word)
+  --icon  task A3 only: the twelve pen icons carry no text by design, so the live-text rule is waived.
+          Every other check still applies (palette, no raster, and a <title> naming the icon for a11y).
 """
 import json
 import re
@@ -40,7 +42,9 @@ def main(argv):
     if len(argv) < 2:
         print(__doc__)
         return 2
-    new = Path(argv[1])
+    icon = "--icon" in argv
+    args = [a for a in argv if a != "--icon"]
+    new = Path(args[1])
     raw = new.read_text(encoding="utf-8")
     fails = []
 
@@ -51,11 +55,14 @@ def main(argv):
 
     if "<image" in raw:
         fails.append("V4 embedded <image> found — concept SVGs carry no raster")
-    if not texts(new):
+    if icon:
+        if "<title>" not in raw:
+            fails.append("V4 icon without <title> — an icon needs an accessible name")
+    elif not texts(new):
         fails.append("V4 no live <text> found — Arabic must stay editable text")
 
-    if len(argv) > 2:
-        a, b = Counter(texts(argv[2])), Counter(texts(new))
+    if len(args) > 2:
+        a, b = Counter(texts(args[2])), Counter(texts(new))
         if a != b:
             missing = list((a - b).elements())[:5]
             added = list((b - a).elements())[:5]
@@ -64,7 +71,9 @@ def main(argv):
     for f in fails:
         print("FAIL", f)
     if not fails:
-        print(f"ok {new.name}: {len(texts(new))} text nodes, palette clean" + (", text identical to original" if len(argv) > 2 else ""))
+        print(f"ok {new.name}: {len(texts(new))} text nodes, palette clean"
+              + (" (icon: no text by design)" if icon else "")
+              + (", text identical to original" if len(args) > 2 else ""))
     return 1 if fails else 0
 
 

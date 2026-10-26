@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تأسيس — لوحة أيقونات القلم (١٢)</title>
+<style>
+  :root{--paper:#F7F8F3;--card:#FFFFFF;--ink:#19213A;--ink-soft:#4A5470;--rule:#D7DDE8;--pen:#2440A0}
+  [data-theme="night"]{--paper:#16221D;--card:#1D2B25;--ink:#ECEFE4;--ink-soft:#A9B5A8;--rule:#33463D;--pen:#93B4F2}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+       font-family:"IBM Plex Sans Arabic","Noto Sans Arabic",Tahoma,sans-serif;line-height:1.8}
+  header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+         padding:20px 24px;border-bottom:1px solid var(--rule)}
+  h1{font-family:"Aref Ruqaa","Amiri",serif;font-size:26px;margin:0}
+  .meta{color:var(--ink-soft);font-size:15px;margin:4px 0 0}
+  button{font:inherit;font-weight:700;color:var(--paper);background:var(--pen);border:0;
+         border-radius:6px;padding:10px 16px;cursor:pointer}
+  main{padding:24px;max-width:1040px;margin:0 auto}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .icon{margin:0;background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:16px;text-align:center}
+  .icon__box{color:var(--pen);min-height:56px;display:grid;place-items:center}
+  figcaption{display:grid;gap:2px;margin-top:10px}
+  figcaption b{font-size:16px}
+  code{font-size:12px;color:var(--ink-soft);direction:ltr;unicode-bidi:embed}
+  footer{color:var(--ink-soft);font-size:14px;padding:8px 24px 32px;border-top:1px solid var(--rule);margin-top:16px}
+  @media (prefers-color-scheme:dark){:root{color-scheme:dark}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>لوحة أيقونات القلم</h1>
+    <p class="meta">١٢ أيقونة · <code>viewBox="0 0 24 24"</code> · خط ٢px · <code>stroke="currentColor"</code> · بلا نص · مهمة A3</p>
+  </div>
+  <button type="button" id="theme">بدّل نهار/ليل</button>
+</header>
+<main>
+  <div class="grid">
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.7"/><path d="M12 6.2v4"/><circle cx="12" cy="12" r="1.7"/><path d="M12 13.7v4"/><circle cx="12" cy="19.5" r="1.7"/></svg></div>
+        <figcaption><b>سند</b><code>icon-sanad.svg</code></figcaption>
+      </figure>
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v18"/><path d="M12.5 8h4M12.5 12h4M12.5 16h2.5"/></svg></div>
+        <figcaption><b>دفتر</b><code>icon-notebook.svg</code></figcaption>
+      </figure>
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5L8 6.5h12l-4 4z"/><path d="M4 10.5v7l12 0v-7"/><path d="M16 10.5l4-4v7l-4 4"/></svg></div>
+        <figcaption><b>طوبة</b><code>icon-brick.svg</code></figcaption>
+      </figure>
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h8.5l5 5v12H5z"/><path d="M13.5 3.5v5h5"/><path d="M8 13h8M8 16.5h5"/></svg></div>
+        <figcaption><b>كارت</b><code>icon-card.svg</code></figcaption>
+      </figure>
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 19.5h17"/><path d="M6 19.5c0-4.2 2.7-7.2 6-7.2"/><circle cx="12.2" cy="10.4" r="1.9"/><path d="M16.6 4.2l3.4 3.4-6.2 6.2"/></svg></div>
+        <figcaption><b>مصيدة</b><code>icon-trap.svg</code></figcaption>
+      </figure>
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.8l4.7 4.7L19.5 7.2"/><path d="M4.5 19.5h15"/></svg></div>
+        <figcaption><b>صح</b><code>icon-check.svg</code></figcaption>
+      </figure>
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20.2 4.4v4.4h-4.4"/></svg></div>
+        <figcaption><b>راجع</b><code>icon-review.svg</code></figcaption>
+      </figure>
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.5v-2.3a8 8 0 0 1 16 0v2.3"/><rect x="2.8" y="13.8" width="4.2" height="6.4" rx="1.6"/><rect x="17" y="13.8" width="4.2" height="6.4" rx="1.6"/></svg></div>
+        <figcaption><b>سماعة</b><code>icon-listen.svg</code></figcaption>
+      </figure>
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7.6"/><circle cx="12" cy="12" r="3.4"/><path d="M12 12l6.6-6.6"/><path d="M18.6 5.4h-3.6M18.6 5.4V9"/></svg></div>
+        <figcaption><b>توقّع</b><code>icon-predict.svg</code></figcaption>
+      </figure>
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h5"/><path d="M16 17h5"/><path d="M8 17l9-7.5"/><circle cx="8" cy="17" r="1.5"/><circle cx="16" cy="17" r="1.5"/><path d="M3 17v3M21 17v3"/></svg></div>
+        <figcaption><b>قاطع</b><code>icon-breaker.svg</code></figcaption>
+      </figure>
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.2v14.6"/><path d="M4.5 19.5h15"/><path d="M5 8.8h14"/><path d="M5 8.8l-2.2 4.4a2.7 2.7 0 0 0 4.4 0z"/><path d="M19 8.8l2.2 4.4a2.7 2.7 0 0 1-4.4 0z"/><circle cx="12" cy="4.2" r="1.2"/></svg></div>
+        <figcaption><b>ميزان</b><code>icon-scale.svg</code></figcaption>
+      </figure>
+      <figure class="icon">
+        <div class="icon__box" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6.8l5.6-2.2 6 2.2 5.4-2.2v12.6l-5.4 2.2-6-2.2-5.6 2.2z"/><path d="M9.1 4.6v12.6M15.1 6.8v12.6"/></svg></div>
+        <figcaption><b>خريطة</b><code>icon-map.svg</code></figcaption>
+      </figure>
+  </div>
+</main>
+<footer>
+  للمراجعة البصرية فقط — الملفات هي المرجع: <code>templates/icons/icon-*.svg</code>. كل ملف يمر بـ
+  <code>python3 tools/check_svg.py &lt;file&gt; --icon</code> (لوحة الهوية + بلا صورة نقطية + <code>&lt;title&gt;</code> للوصول).
+</footer>
+<script>
+  var b = document.getElementById("theme");
+  b.addEventListener("click", function () {
+    var h = document.documentElement;
+    h.setAttribute("data-theme", h.getAttribute("data-theme") === "day" ? "night" : "day");
+  });
+</script>
+</body>
+</html>

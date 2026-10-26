@@ -79,10 +79,16 @@ def main():
     ]:
         add(asset_id=aid, week="", unit="", kind="برنامج", route="SVG/HTML يدوي", description=desc,
             prompt_ref="", target_path=path, license="أصلي", status="جاهز", gate="V1–V8")
+    icons_dir = ROOT / "07_الهوية_البصرية_والتفاعل" / "templates" / "icons"
+    icon_names = ("sanad", "notebook", "brick", "card", "trap", "check",
+                  "review", "listen", "predict", "breaker", "scale", "map")
+    icon_done = sum((icons_dir / f"icon-{n}.svg").exists() for n in icon_names)
+    icon_status = ("جاهز — ١٢ أيقونة ولوحة" if icon_done == len(icon_names)
+                   else f"جزئي — {icon_done}/{len(icon_names)}" if icon_done else "مطلوب")
     add(asset_id="tas-prog-pen-icons", week="", unit="", kind="برنامج", route="SVG يدوي",
         description="12 أيقونة بخط القلم: سند، دفتر، طوبة، كارت، مصيدة، صح، راجع، سماعة، توقّع، قاطع، ميزان، خريطة",
         prompt_ref="04 §مهمة A3", target_path="07_الهوية_البصرية_والتفاعل/templates/icons/", license="أصلي",
-        status="مطلوب", gate="V1, V4")
+        status=icon_status, gate="V1, V4")
 
     for u, name, body in UNIT_COVERS:
         aid = f"tas-u{u}-cover"

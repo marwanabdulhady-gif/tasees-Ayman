@@ -3,7 +3,7 @@ tas-prog-logo,,,برنامج,SVG/HTML يدوي,شعار العمود,,07_اله�
 tas-prog-column,,,برنامج,SVG/HTML يدوي,عمود التقدم 8×4 + رباطا التنفس,,07_الهوية_البصرية_والتفاعل/templates/column-progress.svg,أصلي,جاهز,V1–V8
 tas-prog-tokens,,,برنامج,SVG/HTML يدوي,رموز التصميم CSS + JSON,,07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css,أصلي,جاهز,V1–V8
 tas-prog-screens,,,برنامج,SVG/HTML يدوي,قوالب الشاشات السبع + مكونات الأنماط,,07_الهوية_البصرية_والتفاعل/templates/screen-templates.html,أصلي,جاهز,V1–V8
-tas-prog-pen-icons,,,برنامج,SVG يدوي,12 أيقونة بخط القلم: سند، دفتر، طوبة، كارت، مصيدة، صح، راجع، سماعة، توقّع، قاطع، ميزان، خريطة,04 §مهمة A3,07_الهوية_البصرية_والتفاعل/templates/icons/,أصلي,مطلوب,"V1, V4"
+tas-prog-pen-icons,,,برنامج,SVG يدوي,12 أيقونة بخط القلم: سند، دفتر، طوبة، كارت، مصيدة، صح، راجع، سماعة، توقّع، قاطع، ميزان، خريطة,04 §مهمة A3,07_الهوية_البصرية_والتفاعل/templates/icons/,أصلي,جاهز — ١٢ أيقونة ولوحة,"V1, V4"
 tas-u1-cover,,1,غلاف وحدة,AI still,التفكير والتشخيص والحوار,tas-u1-cover,07_الهوية_البصرية_والتفاعل/assets/covers/tas-u1-cover.png,مولد AI,معتمد,"V2, V3, V5"
 tas-u2-cover,,2,غلاف وحدة,AI still,منهج التعلم وخريطة العلوم,tas-u2-cover,07_الهوية_البصرية_والتفاعل/assets/covers/tas-u2-cover.png,مولد AI,معتمد,"V2, V3, V5"
 tas-u3-cover,,3,غلاف وحدة,AI still,اللغة أداة تلقي ومشروع,tas-u3-cover,07_الهوية_البصرية_والتفاعل/assets/covers/tas-u3-cover.png,مولد AI,معتمد,"V2, V3, V5"
