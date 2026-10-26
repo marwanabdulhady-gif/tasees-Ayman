@@ -1,5 +1,5 @@
 {
-  "description": "معالم ومفاتيح خرائط محققة بصريًا بإحداثيات نسبية دقيقة (x%, y%, w%, h%) مطابقة للخرائط الممسوحة ضوئيًا في أطالس السيرة وأبي بكر وعمر وعثمان وعلي.",
+  "description": "Curated historical map hotspots across Seerah, Abu Bakr, Umar, Uthman & Ali atlases (80 maps total: 47 baseline + 33 visually reviewed course-linked maps with SHA-256 verification).",
   "pages": {
     "seerah:18": {
       "coverage": "العالم القديم (آسيا، أفريقيا، أوروبا) وموقع شبه الجزيرة العربية في قلبه",
@@ -2887,6 +2887,2265 @@
           "h": 6,
           "fact": "اجتماع كلمة المسلمين في عام الجماعة سنة ٤١ هـ واتخاذ دمشق عاصمة للدولة.",
           "conf": "high"
+        }
+      ]
+    },
+    "seerah:80": {
+      "coverage": "قبيل البعثة — إيلاف قريش التجاري",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u4-w13",
+        "u4-w14",
+        "tr-seerah-makkah"
+      ],
+      "imageSha256": "a40324c83dba25bebb0225a4848f9f386ecc73a92fe492ed5b15480b01f1d498",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "sr80-makkah",
+          "name": "مكة المكرمة (مركز الإيلاف)",
+          "kind": "settlement",
+          "x": 41.5,
+          "y": 48.6,
+          "w": 7.8,
+          "h": 2.8,
+          "fact": "منطلق رحلتي قريش التجاريتين في الشتاء إلى اليمن وفي الصيف إلى الشام كما وثّقت الخريطة وسورة قريش.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "a40324c83dba25bebb0225a4848f9f386ecc73a92fe492ed5b15480b01f1d498"
+        },
+        {
+          "id": "sr80-busra-sham",
+          "name": "أرض الشام وبصرى (رحلة الصيف)",
+          "kind": "route",
+          "x": 23.5,
+          "y": 7,
+          "w": 15,
+          "h": 4.8,
+          "fact": "وجهة رحلة الصيف التجارية شمالاً عبر الحِجر وتبوك والبتراء إلى بصرى الشام.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "a40324c83dba25bebb0225a4848f9f386ecc73a92fe492ed5b15480b01f1d498"
+        },
+        {
+          "id": "sr80-petra",
+          "name": "البتراء",
+          "kind": "settlement",
+          "x": 24,
+          "y": 13.2,
+          "w": 6.2,
+          "h": 2.3,
+          "fact": "محطة رئيسة على الطريق البري الشمالي الواصل بين الحجاز وأرض الشام شمال أيلة وتبوك.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "a40324c83dba25bebb0225a4848f9f386ecc73a92fe492ed5b15480b01f1d498"
+        },
+        {
+          "id": "sr80-yemen",
+          "name": "أرض اليمن وعدن (رحلة الشتاء)",
+          "kind": "route",
+          "x": 63.5,
+          "y": 77.2,
+          "w": 15,
+          "h": 3.2,
+          "fact": "وجهة رحلة الشتاء جنوباً عبر الطائف ونجران وحضرموت ومأرب وعدن لجلب البخور والطعام والثياب.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "a40324c83dba25bebb0225a4848f9f386ecc73a92fe492ed5b15480b01f1d498"
+        },
+        {
+          "id": "sr80-aksum",
+          "name": "مملكة أكسوم بالحبشة ومصوع",
+          "kind": "region",
+          "x": 25.5,
+          "y": 82.8,
+          "w": 20.5,
+          "h": 3,
+          "fact": "الساحل المقابل عبر بحر القلزم المتصل بالطرق البحرية الرئيسية من الشعيبة وجدة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "a40324c83dba25bebb0225a4848f9f386ecc73a92fe492ed5b15480b01f1d498"
+        }
+      ]
+    },
+    "seerah:109": {
+      "coverage": "العهد المكي — السنة 5 هـ ق (الهجرة الأولى والثانية للحبشة)",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u4-w14",
+        "tr-seerah-makkah",
+        "tr-100q"
+      ],
+      "imageSha256": "8dd728cfc3b99f8c316a8c10b41638b75b788bc65b0b452af439605ae1d0fc62",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "sr109-makkah",
+          "name": "مكة المكرمة (بطون قريش)",
+          "kind": "settlement",
+          "x": 77.2,
+          "y": 37.2,
+          "w": 8.8,
+          "h": 3.5,
+          "fact": "منطلق المهاجرين من بطون قريش فراراً بدينهم إلى أرض الحبشة في الهجرتين الأولى والثانية.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "8dd728cfc3b99f8c316a8c10b41638b75b788bc65b0b452af439605ae1d0fc62"
+        },
+        {
+          "id": "sr109-redsea-route",
+          "name": "مسار الهجرة عبر بحر القلزم",
+          "kind": "route",
+          "x": 69.8,
+          "y": 43.5,
+          "w": 9,
+          "h": 13.5,
+          "fact": "خط الإبحار من ساحل الحجاز عبر بحر القلزم باتجاه ساحل مملكة الحبشة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "8dd728cfc3b99f8c316a8c10b41638b75b788bc65b0b452af439605ae1d0fc62"
+        },
+        {
+          "id": "sr109-abyssinia",
+          "name": "مملكة الحبشة (أكسوم)",
+          "kind": "region",
+          "x": 70.8,
+          "y": 59.8,
+          "w": 16,
+          "h": 9.8,
+          "fact": "دار الهجرة الآمنة؛ يوثّق جدول الخريطة ٨٣ مهاجراً من أربعة عشر بطناً من قريش.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "8dd728cfc3b99f8c316a8c10b41638b75b788bc65b0b452af439605ae1d0fc62"
+        },
+        {
+          "id": "sr109-stats-table",
+          "name": "جدول إحصاء المهاجرين في المرتين",
+          "kind": "region",
+          "x": 28.5,
+          "y": 55.2,
+          "w": 23.5,
+          "h": 3.2,
+          "fact": "جدول تفصيلي ببطون قريش (المجموع ٨٣ مهاجراً، هاجر منهم ٣٣ إلى المدينة ورجع ١٥ مع جعفر بن أبي طالب).",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "8dd728cfc3b99f8c316a8c10b41638b75b788bc65b0b452af439605ae1d0fc62"
+        }
+      ]
+    },
+    "seerah:110": {
+      "coverage": "العهد المكي — السنة 10 من البعثة (عام الحزن والخروج للطائف)",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 90,
+      "courseLinks": [
+        "u4-w14",
+        "tr-seerah-makkah"
+      ],
+      "imageSha256": "62094dc2fb477d1c48c8f5dfdf058313d0bcdd98fe64df70ba6433b238c17d02",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "sr110-makkah-kaaba",
+          "name": "مكة المكرمة والمسجد الحرام",
+          "kind": "settlement",
+          "x": 43,
+          "y": 42.5,
+          "w": 15.5,
+          "h": 21.5,
+          "fact": "منطلق النبي ﷺ إلى الطائف بعد وفاة أبي طالب وخديجة رضي الله عنها، وموضع عودته لطواف الكعبة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "62094dc2fb477d1c48c8f5dfdf058313d0bcdd98fe64df70ba6433b238c17d02"
+        },
+        {
+          "id": "sr110-taif-thaqif",
+          "name": "منازل الطائف وثقيف",
+          "kind": "settlement",
+          "x": 18.2,
+          "y": 83.2,
+          "w": 9,
+          "h": 9,
+          "fact": "موضع عرض الدعوة على ثقيف؛ تذكر بطاقة الخريطة أن النبي ﷺ مكث فيها عشرة أيام يدعو أهلها للإسلام.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "62094dc2fb477d1c48c8f5dfdf058313d0bcdd98fe64df70ba6433b238c17d02"
+        },
+        {
+          "id": "sr110-addas-mosque",
+          "name": "مسجد عدّاس قرب الطائف",
+          "kind": "settlement",
+          "x": 28.8,
+          "y": 78.8,
+          "w": 12.8,
+          "h": 11.2,
+          "fact": "المعلم المصوَّر في الخريطة قرب الطائف على طريق رجوع النبي ﷺ إلى مكة المكرمة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "62094dc2fb477d1c48c8f5dfdf058313d0bcdd98fe64df70ba6433b238c17d02"
+        },
+        {
+          "id": "sr110-mutim-jiwar",
+          "name": "دخول مكة في جوار المطعم بن عدي",
+          "kind": "route",
+          "x": 57.2,
+          "y": 19.8,
+          "w": 12,
+          "h": 19.5,
+          "fact": "توثيق الخريطة لعودة النبي ﷺ من الطائف ودخوله مكة بجوار المطعم بن عدي ثم عرضه دعوته على القبائل في الحج.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "62094dc2fb477d1c48c8f5dfdf058313d0bcdd98fe64df70ba6433b238c17d02"
+        }
+      ]
+    },
+    "seerah:180": {
+      "coverage": "بعد صلح الحديبية — أواخر 6 هـ ومطلع 7 هـ",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u4-w15",
+        "u4-w16",
+        "tr-100q"
+      ],
+      "imageSha256": "cd4ae60200f64b1c826634187bee9a78e05e8ad4fbfd663359e56e990785857f",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "sr180-madinah",
+          "name": "المدينة النبوية (منطلق الرسل التسعة)",
+          "kind": "settlement",
+          "x": 29.5,
+          "y": 27.3,
+          "w": 9.2,
+          "h": 3.2,
+          "fact": "مركز انطلاق رسل النبي ﷺ التسعة بكتبه إلى الملوك والأمراء للدعوة إلى الإسلام.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "cd4ae60200f64b1c826634187bee9a78e05e8ad4fbfd663359e56e990785857f"
+        },
+        {
+          "id": "sr180-iliya-heraclius",
+          "name": "إيلياء بفلسطين — قيصر الروم (هرقل)",
+          "kind": "settlement",
+          "x": 15.8,
+          "y": 16.5,
+          "w": 5.2,
+          "h": 3.2,
+          "fact": "حمل الكتاب إليه دحية بن خليفة الكلبي رضي الله عنه؛ يذكر الجدول أنه خاف على ملكه ولم يسلم.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "cd4ae60200f64b1c826634187bee9a78e05e8ad4fbfd663359e56e990785857f"
+        },
+        {
+          "id": "sr180-madain-khosrow",
+          "name": "المدائن بالعراق — كسرى ملك فارس",
+          "kind": "settlement",
+          "x": 36.5,
+          "y": 12.8,
+          "w": 5.5,
+          "h": 3.4,
+          "fact": "حمل الكتاب إليه عبد الله بن حذافة السهمي رضي الله عنه؛ مزّق كتاب الرسول ﷺ.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "cd4ae60200f64b1c826634187bee9a78e05e8ad4fbfd663359e56e990785857f"
+        },
+        {
+          "id": "sr180-abyssinia-najashi",
+          "name": "الحبشة — النجاشي ملك أكسوم",
+          "kind": "region",
+          "x": 30,
+          "y": 50,
+          "w": 5,
+          "h": 3.3,
+          "fact": "حمل الكتاب إليه عمرو بن أمية الضمري رضي الله عنه؛ أسلم ووضعه على عينه كما يوثق الجدول.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "cd4ae60200f64b1c826634187bee9a78e05e8ad4fbfd663359e56e990785857f"
+        },
+        {
+          "id": "sr180-alexandria-muqawqis",
+          "name": "الإسكندرية بمصر — المقوقس",
+          "kind": "settlement",
+          "x": 5.8,
+          "y": 17.8,
+          "w": 5.5,
+          "h": 3.4,
+          "fact": "حمل الكتاب إليه حاطب بن أبي بلتعة رضي الله عنه؛ لم يسلم ولكنه أكرم وفادته.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "cd4ae60200f64b1c826634187bee9a78e05e8ad4fbfd663359e56e990785857f"
+        },
+        {
+          "id": "sr180-bahrain-oman-yemen",
+          "name": "هجر البحرين واليمامة وعُمان واليمن",
+          "kind": "region",
+          "x": 48,
+          "y": 28,
+          "w": 5.2,
+          "h": 3.5,
+          "fact": "أسلم المنذر بن ساوى في البحرين وابنا الجلندي في عُمان والحارث الحميري في صنعاء كما يبيّن الجدول والرسم البياني.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "cd4ae60200f64b1c826634187bee9a78e05e8ad4fbfd663359e56e990785857f"
+        }
+      ]
+    },
+    "seerah:185": {
+      "coverage": "محرم سنة 7 هـ — فتح خيبر",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u4-w16"
+      ],
+      "imageSha256": "9dd300af34eff8d60304f10b1aaf53a5b116caea1c8fbc2d9bc6772b8b577606",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "sr185-madinah-route",
+          "name": "المدينة النبوية وطريق دخول خيبر",
+          "kind": "route",
+          "x": 70.2,
+          "y": 84.2,
+          "w": 11.5,
+          "h": 3.2,
+          "fact": "مسار خروج الجيش الإسلامي من المدينة عبر ثنية الوداع والغابة وجبل أشمد وحرة الرجيع إلى خيبر في محرم ٧ هـ.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "9dd300af34eff8d60304f10b1aaf53a5b116caea1c8fbc2d9bc6772b8b577606"
+        },
+        {
+          "id": "sr185-hisn-naim",
+          "name": "تل النطاة وحصن ناعم (أول الحصون فتحاً)",
+          "kind": "battle",
+          "x": 38.2,
+          "y": 22.8,
+          "w": 11.8,
+          "h": 4.8,
+          "fact": "حصن ناعم في قطاع النطاة؛ تذكر الخريطة صراحةً أنه أول حصون خيبر فتحاً.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "9dd300af34eff8d60304f10b1aaf53a5b116caea1c8fbc2d9bc6772b8b577606"
+        },
+        {
+          "id": "sr185-hisn-saab",
+          "name": "حصن الصعب بن معاذ وقلعة الزبير",
+          "kind": "battle",
+          "x": 40.2,
+          "y": 28.8,
+          "w": 17.8,
+          "h": 4.4,
+          "fact": "حصنا وسط خيبر بجوار الأراضي الزراعية وعين الحمّة والدومة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "9dd300af34eff8d60304f10b1aaf53a5b116caea1c8fbc2d9bc6772b8b577606"
+        },
+        {
+          "id": "sr185-tall-shiq",
+          "name": "تل الشقّ (حصن أُبيّ والبريء)",
+          "kind": "battle",
+          "x": 53.5,
+          "y": 6.8,
+          "w": 9.8,
+          "h": 4.4,
+          "fact": "القطاع الشمالي من حصون خيبر المحاذي لمسجد الصخرة والمنزلة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "9dd300af34eff8d60304f10b1aaf53a5b116caea1c8fbc2d9bc6772b8b577606"
+        },
+        {
+          "id": "sr185-hisn-qamus",
+          "name": "تل الكتيبة وحصن القموص والوطيح وسلالم",
+          "kind": "battle",
+          "x": 73.2,
+          "y": 15.8,
+          "w": 13.5,
+          "h": 5.5,
+          "fact": "حصن القموص (أعظم حصون خيبر) وبجواره حصنا الوطيح وسلالم اللذان فُتحا صلحاً.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "9dd300af34eff8d60304f10b1aaf53a5b116caea1c8fbc2d9bc6772b8b577606"
+        }
+      ]
+    },
+    "seerah:189": {
+      "coverage": "شوال سنة 8 هـ — غزوة حنين",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u4-w15",
+        "u4-w16"
+      ],
+      "imageSha256": "570ea2318ebf104e7f98af11e71f40520d26b7032e87cccbf92cfb7632c6bd83",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "sr189-makkah-advance",
+          "name": "مكة المكرمة وتقدم الجيش الإسلامي",
+          "kind": "route",
+          "x": 15,
+          "y": 49.5,
+          "w": 12.5,
+          "h": 4.2,
+          "fact": "خروج الجيش الإسلامي من مكة المكرمة في شوال سنة ٨ هـ باتجاه وادي حنين والشرائع.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "570ea2318ebf104e7f98af11e71f40520d26b7032e87cccbf92cfb7632c6bd83"
+        },
+        {
+          "id": "sr189-hunayn-ambush",
+          "name": "وادي حنين والشرائع (كمناء مضائق الوادي)",
+          "kind": "battle",
+          "x": 55.5,
+          "y": 40.5,
+          "w": 23.5,
+          "h": 7.5,
+          "fact": "موضع كمناء هوازن في مضائق وادي حنين (وادي الشرائع شرق مكة بنحو ٣٠ كيلاً) ثم ثبات النبي ﷺ وصحوة الجيش.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "570ea2318ebf104e7f98af11e71f40520d26b7032e87cccbf92cfb7632c6bd83"
+        },
+        {
+          "id": "sr189-hawazin-autas",
+          "name": "جيش هوازن وتراجعه نحو وادي أوطاس والطائف",
+          "kind": "battle",
+          "x": 75.5,
+          "y": 38.2,
+          "w": 13.5,
+          "h": 8.5,
+          "fact": "تجمّع جيش هوازن وتراجع قوات المشركين نحو وادي أوطاس والطائف بعد صحوة الجيش الإسلامي.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "570ea2318ebf104e7f98af11e71f40520d26b7032e87cccbf92cfb7632c6bd83"
+        },
+        {
+          "id": "sr189-jirana",
+          "name": "الجعرانة (مكان نقل الغنائم)",
+          "kind": "settlement",
+          "x": 33.8,
+          "y": 33.2,
+          "w": 10.5,
+          "h": 3.5,
+          "fact": "موضع جمع السبي والغنائم بعد معركة حنين كما توضحه الخريطة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "570ea2318ebf104e7f98af11e71f40520d26b7032e87cccbf92cfb7632c6bd83"
+        }
+      ]
+    },
+    "seerah:195": {
+      "coverage": "جمادى الأولى سنة 8 هـ — غزوة (سرية) مؤتة",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u4-w16",
+        "u5-w19"
+      ],
+      "imageSha256": "443b1d10f76bc237a13ad3d18b8ee6886f70b3b135c10ff359574adee773f909",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "sr195-madinah",
+          "name": "المدينة النبوية (منطلق جيش مؤتة)",
+          "kind": "settlement",
+          "x": 51.5,
+          "y": 73.2,
+          "w": 14,
+          "h": 3.8,
+          "fact": "منطلق البعث الإسلامي شمالاً في جمادى الأولى سنة ٨ هـ نحو مشارف بلاد الشام.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "443b1d10f76bc237a13ad3d18b8ee6886f70b3b135c10ff359574adee773f909"
+        },
+        {
+          "id": "sr195-mutah-field",
+          "name": "مؤتة (ميدان المعركة بالبلقاء)",
+          "kind": "battle",
+          "x": 28.5,
+          "y": 41.2,
+          "w": 7.5,
+          "h": 3.5,
+          "fact": "موقع معركة مؤتة جنوب فِلادلفيا (عمّان) وشرق إيلياء، أول مواجهة كبرى على تخوم الشام.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "443b1d10f76bc237a13ad3d18b8ee6886f70b3b135c10ff359574adee773f909"
+        },
+        {
+          "id": "sr195-three-commanders",
+          "name": "أمراء مؤتة الثلاثة رضي الله عنهم",
+          "kind": "battle",
+          "x": 31.2,
+          "y": 44.5,
+          "w": 23,
+          "h": 6.2,
+          "fact": "الأمراء الثلاثة الذين عيّنهم النبي ﷺ على الترتيب كما هو مطبوع على الخريطة: زيد بن حارثة، فجعفر بن أبي طالب، فعبد الله بن رواحة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "443b1d10f76bc237a13ad3d18b8ee6886f70b3b135c10ff359574adee773f909"
+        },
+        {
+          "id": "sr195-iliya-damascus",
+          "name": "إيلياء ودمشق (بلاد الشام)",
+          "kind": "settlement",
+          "x": 23.8,
+          "y": 37.2,
+          "w": 13,
+          "h": 3.2,
+          "fact": "حواضر بلاد الشام الخاضعة للنفوذ البيزنطي شمال موقع مؤتة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "443b1d10f76bc237a13ad3d18b8ee6886f70b3b135c10ff359574adee773f909"
+        }
+      ]
+    },
+    "seerah:197": {
+      "coverage": "رجب سنة 9 هـ — غزوة تبوك (ساعة العسرة)",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u4-w16",
+        "u5-w20"
+      ],
+      "imageSha256": "3e6b642f991c44263d823d71c60ab38795e497aec3b4bcfdea2fdbf652bb5c09",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "sr197-madinah-ali",
+          "name": "المدينة النبوية (استخلاف علي بن أبي طالب)",
+          "kind": "settlement",
+          "x": 68.2,
+          "y": 73.5,
+          "w": 9,
+          "h": 3.2,
+          "fact": "منطلق جيش العسرة في رجب ٩ هـ لمسافة تقدّرها الخريطة بـ ٦٧٩ كم؛ استخلف النبي ﷺ على المدينة علي بن أبي طالب.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "3e6b642f991c44263d823d71c60ab38795e497aec3b4bcfdea2fdbf652bb5c09"
+        },
+        {
+          "id": "sr197-hijr",
+          "name": "الحِجر وتيماء على مسار تبوك",
+          "kind": "route",
+          "x": 60.5,
+          "y": 50.8,
+          "w": 8,
+          "h": 8.5,
+          "fact": "محطة مرور الجيش بالحِجر وتوجيه النبي ﷺ أصحابه بألا يدخلوا مساكن الذين ظلموا أنفسهم إلا أن يكونوا باكين.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "3e6b642f991c44263d823d71c60ab38795e497aec3b4bcfdea2fdbf652bb5c09"
+        },
+        {
+          "id": "sr197-tabuk",
+          "name": "تبوك (معسكر المسلمين ومصالحة القبائل)",
+          "kind": "battle",
+          "x": 40.5,
+          "y": 45.2,
+          "w": 6.5,
+          "h": 3.4,
+          "fact": "موضع مرابطة النبي ﷺ وجيشه بعد انسحاب الروم شمالاً إلى داخل الشام ومصالحة قبائل الشمال على الجزية.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "3e6b642f991c44263d823d71c60ab38795e497aec3b4bcfdea2fdbf652bb5c09"
+        },
+        {
+          "id": "sr197-aylah-dumat",
+          "name": "أيلة وجرباء وأذرح ودومة الجندل",
+          "kind": "settlement",
+          "x": 15.2,
+          "y": 32,
+          "w": 17.5,
+          "h": 10.5,
+          "fact": "وفود صاحب أيلة وأهل جرباء وأذرح للصلح وإعطاء الجزية، وإرسال خالد بن الوليد إلى دومة الجندل.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "3e6b642f991c44263d823d71c60ab38795e497aec3b4bcfdea2fdbf652bb5c09"
+        },
+        {
+          "id": "sr197-byzantine-retreat",
+          "name": "تراجع الجيش الرومي والغساسنة نحو الشام",
+          "kind": "route",
+          "x": 44,
+          "y": 16.5,
+          "w": 12,
+          "h": 25,
+          "fact": "تقدّم الجيش الرومي نحو الجنوب ثم تراجعه إلى داخل الشام حين علم بمسير المسلمين إلى تبوك.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "3e6b642f991c44263d823d71c60ab38795e497aec3b4bcfdea2fdbf652bb5c09"
+        }
+      ]
+    },
+    "seerah:201": {
+      "coverage": "1–10 هـ — مراحل توحيد شبه الجزيرة العربية في عهد الرسول ﷺ",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": -90,
+      "courseLinks": [
+        "u4-w16",
+        "u5-w19"
+      ],
+      "imageSha256": "25c068a799784e5448de9a1a6c1e69f235759e61d14f4c6d1246657459c60358",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "sr201-phase1-madinah",
+          "name": "المرحلة الأولى (١–٦ هـ): المدينة وبدر وأُحد",
+          "kind": "region",
+          "x": 42.5,
+          "y": 67.8,
+          "w": 10,
+          "h": 9,
+          "fact": "نواة الدولة النبوية الأولى في المدينة النبوية وما حولها في الحجاز من السنة ١ إلى ٦ هـ.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "25c068a799784e5448de9a1a6c1e69f235759e61d14f4c6d1246657459c60358"
+        },
+        {
+          "id": "sr201-phase2-khaybar",
+          "name": "المرحلة الثانية والثالثة (٦–٨ هـ): خيبر وفدك وتيماء وتبوك",
+          "kind": "region",
+          "x": 26.5,
+          "y": 63,
+          "w": 16.5,
+          "h": 19.5,
+          "fact": "اتساع نفوذ الدولة شمال الحجاز ونجد من صلح الحديبية وفتح خيبر حتى مشارف الشام (٦–٨ هـ).",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "25c068a799784e5448de9a1a6c1e69f235759e61d14f4c6d1246657459c60358"
+        },
+        {
+          "id": "sr201-phase4-makkah-taif",
+          "name": "المرحلة الرابعة (٨–٩ هـ): مكة المكرمة والطائف وهوازن",
+          "kind": "region",
+          "x": 55.2,
+          "y": 61.5,
+          "w": 9.5,
+          "h": 13.5,
+          "fact": "دخول مكة المكرمة وقريش والطائف وثقيف وهوازن ونجد في الإسلام في السنتين ٨ و٩ هـ.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "25c068a799784e5448de9a1a6c1e69f235759e61d14f4c6d1246657459c60358"
+        },
+        {
+          "id": "sr201-phase5-yemen-oman-bahrain",
+          "name": "المرحلة الخامسة (٩–١٠ هـ): اليمن والبحرين وعُمان وحضرموت",
+          "kind": "region",
+          "x": 49,
+          "y": 29,
+          "w": 27,
+          "h": 25,
+          "fact": "مفتاح المراحل الخمس حتى عام الوفود (٩–١٠ هـ) واكتمال توحيد شبه الجزيرة من البحرين وعُمان شرقاً إلى اليمن جنوباً.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "25c068a799784e5448de9a1a6c1e69f235759e61d14f4c6d1246657459c60358"
+        }
+      ]
+    },
+    "seerah:205": {
+      "coverage": "ذو القعدة وذو الحجة سنة 10 هـ — حجة الوداع",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u4-w16"
+      ],
+      "imageSha256": "0adf258b790a3ab193b861a00687b2b5adf0a3bfd7c637db24cbd589c427eedb",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "sr205-madinah-dhulhulayfah",
+          "name": "المدينة النبوية وميقات ذي الحليفة",
+          "kind": "settlement",
+          "x": 41.5,
+          "y": 10,
+          "w": 18,
+          "h": 5.5,
+          "fact": "خروج النبي ﷺ من المدينة النبوية وإحرامه من ذي الحليفة ووادي العقيق في السنة العاشرة للهجرة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0adf258b790a3ab193b861a00687b2b5adf0a3bfd7c637db24cbd589c427eedb"
+        },
+        {
+          "id": "sr205-badr-juhfah",
+          "name": "وادي الصفراء وبدر والأبواء والجحفة ورابغ",
+          "kind": "route",
+          "x": 34.5,
+          "y": 31.8,
+          "w": 10.5,
+          "h": 18,
+          "fact": "منازل الطريق النبوي المبارك بين المدينة ومكة مروراً ببدر والأبواء ووَدّان والجحفة ورابغ وقديد.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0adf258b790a3ab193b861a00687b2b5adf0a3bfd7c637db24cbd589c427eedb"
+        },
+        {
+          "id": "sr205-usfan-dhituwa",
+          "name": "خليص وعسفان والجموم وذو طوى",
+          "kind": "route",
+          "x": 44,
+          "y": 63,
+          "w": 18,
+          "h": 17.5,
+          "fact": "المنازل الجنوبية قبل دخول مكة المكرمة من جهة ذي طوى وكداء.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0adf258b790a3ab193b861a00687b2b5adf0a3bfd7c637db24cbd589c427eedb"
+        },
+        {
+          "id": "sr205-makkah-farewell",
+          "name": "مكة المكرمة — مشهد حجة الوداع",
+          "kind": "settlement",
+          "x": 55.5,
+          "y": 81.5,
+          "w": 11.5,
+          "h": 5.5,
+          "fact": "أداء النبي ﷺ نسك الحج مع نحو تسعين ألفاً أو أكثر من صحابته ونزول قوله تعالى: ﴿اليوم أكملت لكم دينكم﴾.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0adf258b790a3ab193b861a00687b2b5adf0a3bfd7c637db24cbd589c427eedb"
+        }
+      ]
+    },
+    "abubakr:40": {
+      "coverage": "صفر – ربيع الأول 11 هـ — مستهل خلافة أبي بكر الصديق",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w19",
+        "tr-100q"
+      ],
+      "imageSha256": "532ff847f3a9871b697732d76820114127552832a8e6fa37affdf1dd31cfe9af",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ab40-balqa",
+          "name": "أرض البلقاء (وجهة بعث أسامة بن زيد)",
+          "kind": "region",
+          "x": 27.5,
+          "y": 37,
+          "w": 15,
+          "h": 4.5,
+          "fact": "إقليم البلقاء بالشام؛ أنفذ أبو بكر الصديق بعث أسامة بن زيد إليه إنفاذاً لأمر النبي ﷺ رغم ظروف الردة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "532ff847f3a9871b697732d76820114127552832a8e6fa37affdf1dd31cfe9af"
+        },
+        {
+          "id": "ab40-arab-shamal",
+          "name": "أعراب الشمال الموالون للروم",
+          "kind": "battle",
+          "x": 30,
+          "y": 44,
+          "w": 19.5,
+          "h": 10,
+          "fact": "مواضع القبائل المهادنة للروم التي شنّ عليها أسامة غارة سريعة فانتصر وعاد بالجيش سالماً إلى المدينة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "532ff847f3a9871b697732d76820114127552832a8e6fa37affdf1dd31cfe9af"
+        },
+        {
+          "id": "ab40-amman-ardu-urdun",
+          "name": "أرض الأردن وعَمّان وجرش",
+          "kind": "settlement",
+          "x": 50,
+          "y": 53,
+          "w": 37,
+          "h": 4.8,
+          "fact": "مدن شرق نهر الأردن الواقعة ضمن نطاق السيطرة الرومانية قبيل انطلاق فتوحات الشام الكبرى.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "532ff847f3a9871b697732d76820114127552832a8e6fa37affdf1dd31cfe9af"
+        },
+        {
+          "id": "ab40-dead-sea-palestine",
+          "name": "نهر الأردن والبحر الميت وفلسطين",
+          "kind": "region",
+          "x": 11.5,
+          "y": 69,
+          "w": 19,
+          "h": 11,
+          "fact": "الحدّ الغربي لمسرح حملة أسامة بن زيد بمحاذاة أريحا والبحر الميت (بحيرة لوط).",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "532ff847f3a9871b697732d76820114127552832a8e6fa37affdf1dd31cfe9af"
+        }
+      ]
+    },
+    "abubakr:45": {
+      "coverage": "11 هـ — عقد الألوية الأحد عشر لحروب الردة",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": -90,
+      "courseLinks": [
+        "u5-w19",
+        "tr-100q"
+      ],
+      "imageSha256": "4a8064c83ed30b34abfc455969d367a25777241862ce5d90421fe383807a1b6f",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ab45-madinah-hub",
+          "name": "المدينة النبوية (معقد الألوية الأحد عشر)",
+          "kind": "settlement",
+          "x": 38,
+          "y": 58,
+          "w": 15,
+          "h": 12,
+          "fact": "مركز عقد الخليفة أبي بكر الصديق أحد عشر لواءً (مرقّمة ١–١١ حول المدينة) لحسم حروب الردة في أنحاء الجزيرة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "4a8064c83ed30b34abfc455969d367a25777241862ce5d90421fe383807a1b6f"
+        },
+        {
+          "id": "ab45-yamamah-buzakhah",
+          "name": "محور بزاخة والبطاح واليمامة (بني حنيفة)",
+          "kind": "battle",
+          "x": 41.5,
+          "y": 42.5,
+          "w": 11,
+          "h": 13,
+          "fact": "وجهة ألوية خالد بن الوليد وعكرمة بن أبي جهل وشرحبيل بن حسنة لحسم ردة طليحة ومالك بن نويرة ومسيلمة باليمامة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "4a8064c83ed30b34abfc455969d367a25777241862ce5d90421fe383807a1b6f"
+        },
+        {
+          "id": "ab45-bahrain-jawatha",
+          "name": "محور هجر البحرين وجواثا ودارين",
+          "kind": "battle",
+          "x": 35,
+          "y": 37.5,
+          "w": 10,
+          "h": 8.5,
+          "fact": "وجهة لواء العلاء بن الحضرمي لإخماد الردة في البحرين وفك حصار جواثا.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "4a8064c83ed30b34abfc455969d367a25777241862ce5d90421fe383807a1b6f"
+        },
+        {
+          "id": "ab45-oman-daba-mahrah",
+          "name": "محور دبا بعُمان ومهرة",
+          "kind": "battle",
+          "x": 36.5,
+          "y": 24.5,
+          "w": 16,
+          "h": 8.5,
+          "fact": "وجهة لواءي حذيفة بن محصن وعرفجة بن هرثمة إلى دبا من أرض عُمان وإلى مهرة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "4a8064c83ed30b34abfc455969d367a25777241862ce5d90421fe383807a1b6f"
+        },
+        {
+          "id": "ab45-yemen-hadramawt",
+          "name": "محور اليمن وصنعاء وحضرموت وتهامة",
+          "kind": "battle",
+          "x": 78,
+          "y": 39.5,
+          "w": 12.5,
+          "h": 18.5,
+          "fact": "وجهة ألوية المهاجر بن أبي أمية وسويد بن مقرن إلى صنعاء وكندة وحضرموت وتهامة اليمن.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "4a8064c83ed30b34abfc455969d367a25777241862ce5d90421fe383807a1b6f"
+        }
+      ]
+    },
+    "abubakr:64": {
+      "coverage": "أواخر 11 هـ ومطلع 12 هـ — وحدة الجزيرة وجمع القرآن الكريم",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u4-w13",
+        "u5-w19",
+        "u5-w20"
+      ],
+      "imageSha256": "2da0f2345cf4e3e9925f9f896c5dbe87ae4e294c62df6a3d68269fd941d64ca1",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ab64-hijaz-madinah",
+          "name": "المدينة النبوية ومكة (مركز الدولة الموحَّدة)",
+          "kind": "settlement",
+          "x": 23,
+          "y": 20.5,
+          "w": 12,
+          "h": 12.5,
+          "fact": "عاصمة الخلافة الراشدة بعد إعادة توحيد جزيرة العرب كلها تحت راية الإسلام.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "2da0f2345cf4e3e9925f9f896c5dbe87ae4e294c62df6a3d68269fd941d64ca1"
+        },
+        {
+          "id": "ab64-yamamah-qurra",
+          "name": "نجد واليمامة (استشهاد القراء ودافع جمع القرآن)",
+          "kind": "region",
+          "x": 40,
+          "y": 24.5,
+          "w": 16.5,
+          "h": 4.5,
+          "fact": "موضع معركة اليمامة التي استحرّ فيها القتل بقراء القرآن فكانت الباعث المباشر لجمع المصحف الشريف.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "2da0f2345cf4e3e9925f9f896c5dbe87ae4e294c62df6a3d68269fd941d64ca1"
+        },
+        {
+          "id": "ab64-bahrain-oman-yemen",
+          "name": "البحرين وعُمان وحضرموت واليمن",
+          "kind": "region",
+          "x": 45,
+          "y": 44,
+          "w": 25,
+          "h": 8,
+          "fact": "الأقاليم الجنوبية والشرقية التي استقرت تحت سلطان الدولة الإسلامية عقب حسم حروب الردة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "2da0f2345cf4e3e9925f9f896c5dbe87ae4e294c62df6a3d68269fd941d64ca1"
+        },
+        {
+          "id": "ab64-quran-compilation",
+          "name": "توثيق جمع القرآن الكريم والأسس الأربعة",
+          "kind": "region",
+          "x": 26.5,
+          "y": 55,
+          "w": 46,
+          "h": 3.5,
+          "fact": "تكليف زيد بن ثابت رضي الله عنه بجمع القرآن من العسب واللخاف وصدور الرجال بشهادة شاهدين وحفظ الصحف عند أبي بكر ثم عمر ثم حفصة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "2da0f2345cf4e3e9925f9f896c5dbe87ae4e294c62df6a3d68269fd941d64ca1"
+        }
+      ]
+    },
+    "abubakr:69": {
+      "coverage": "12 هـ — مسار معارك خالد بن الوليد والمثنى في العراق",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": -90,
+      "courseLinks": [
+        "u5-w19"
+      ],
+      "imageSha256": "f8f24b0070b555425b3ab92e70c613674630af340b933e0b9687088a6536bf7c",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ab69-salasil-ubullah",
+          "name": "(١–٣) ذات السلاسل والأبلة والمذار",
+          "kind": "battle",
+          "x": 71,
+          "y": 7.5,
+          "w": 19.5,
+          "h": 24.5,
+          "fact": "أولى معارك الفتح الإسلامي في جنوب العراق عند خليج البحرين والأبلة والمذار بقيادة خالد بن الوليد والمثنى بن حارثة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "f8f24b0070b555425b3ab92e70c613674630af340b933e0b9687088a6536bf7c"
+        },
+        {
+          "id": "ab69-walajah-ullays",
+          "name": "(٤–٦) الولجة وأُلَيس وأمغيشيا",
+          "kind": "battle",
+          "x": 59.5,
+          "y": 24.5,
+          "w": 17.5,
+          "h": 24.5,
+          "fact": "سلسلة الوقائع الحاسمة على تخوم الفرات الجنوبي الممهّدة لفتح الحيرة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "f8f24b0070b555425b3ab92e70c613674630af340b933e0b9687088a6536bf7c"
+        },
+        {
+          "id": "ab69-hirah-babil",
+          "name": "(٧ و١٣) الحيرة وبابل",
+          "kind": "settlement",
+          "x": 51,
+          "y": 28.5,
+          "w": 9,
+          "h": 13.5,
+          "fact": "فتح الحيرة عاصمة المناذرة واتخاذها قاعدة قيادة متقدمة في العراق.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "f8f24b0070b555425b3ab92e70c613674630af340b933e0b9687088a6536bf7c"
+        },
+        {
+          "id": "ab69-anbar-ayntamr",
+          "name": "(٨–٩) الأنبار وعين التمر",
+          "kind": "battle",
+          "x": 34.5,
+          "y": 47,
+          "w": 15,
+          "h": 17.5,
+          "fact": "تأمين أعالي الفرات الأوسط بفتح الأنبار وعين التمر.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "f8f24b0070b555425b3ab92e70c613674630af340b933e0b9687088a6536bf7c"
+        },
+        {
+          "id": "ab69-firad",
+          "name": "(١١) الفِراض على تخوم العراق والشام والجزيرة",
+          "kind": "battle",
+          "x": 4.5,
+          "y": 54.5,
+          "w": 8.5,
+          "h": 15.5,
+          "fact": "أقصى نقطة بلغها خالد بن الوليد في أعالي الفرات عند التقاء حدود فارس والروم والعرب قبل تحوله للشام.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "f8f24b0070b555425b3ab92e70c613674630af340b933e0b9687088a6536bf7c"
+        }
+      ]
+    },
+    "abubakr:79": {
+      "coverage": "ربيع الأول 12 هـ — فتح الحيرة وصلح أهلها",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w19",
+        "u5-w20"
+      ],
+      "imageSha256": "5b521a45420fb75308de48d7deecddd29a9af975c795b9ba0b146ccdb281d578",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ab79-hirah-city",
+          "name": "الحيرة وقصور المناذرة",
+          "kind": "settlement",
+          "x": 30,
+          "y": 47.5,
+          "w": 28,
+          "h": 10.5,
+          "fact": "حاضرة المناذرة على الفرات؛ صالح أهلها خالد بن الوليد على الجزية وجعلها مقراً لقيادته في العراق.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "5b521a45420fb75308de48d7deecddd29a9af975c795b9ba0b146ccdb281d578"
+        },
+        {
+          "id": "ab79-kufah-site",
+          "name": "موضع الكوفة شمال الحيرة",
+          "kind": "settlement",
+          "x": 17.5,
+          "y": 30,
+          "w": 13,
+          "h": 6.5,
+          "fact": "موضع الكوفة على الضفة الغربية لنهر الفرات شمال الحيرة والقصر الأبيض.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "5b521a45420fb75308de48d7deecddd29a9af975c795b9ba0b146ccdb281d578"
+        },
+        {
+          "id": "ab79-khawarnaq",
+          "name": "قصر الخورنق",
+          "kind": "settlement",
+          "x": 32.5,
+          "y": 71,
+          "w": 14,
+          "h": 3.5,
+          "fact": "من أشهر قصور الحيرة التاريخية جنوب موضع محاصرة القصور الأربعة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "5b521a45420fb75308de48d7deecddd29a9af975c795b9ba0b146ccdb281d578"
+        },
+        {
+          "id": "ab79-sabur-trench",
+          "name": "خندق سابور الفارسي",
+          "kind": "route",
+          "x": 10,
+          "y": 31.5,
+          "w": 5.5,
+          "h": 16,
+          "fact": "الخط الدفاعي الغربي المرسوم بمحاذاة بادية العراق غرب الحيرة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "5b521a45420fb75308de48d7deecddd29a9af975c795b9ba0b146ccdb281d578"
+        }
+      ]
+    },
+    "abubakr:100": {
+      "coverage": "27 جمادى الثانية 13 هـ — معركة أجنادين",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w19"
+      ],
+      "imageSha256": "f0f998117600e377867711b2f0f74a0dd83db2d4201d19f7af112767e167d763",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ab100-ajnadayn",
+          "name": "أجنادين (ميدان المعركة بفلسطين)",
+          "kind": "battle",
+          "x": 15.5,
+          "y": 60.5,
+          "w": 9,
+          "h": 3.5,
+          "fact": "موقع الانتصار الحاسم الأول للمسلمين في فلسطين بين الرملة وبيت جبرين غرب إيلياء وعسقلان.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "f0f998117600e377867711b2f0f74a0dd83db2d4201d19f7af112767e167d763"
+        },
+        {
+          "id": "ab100-muslim-armies",
+          "name": "اجتماع الجيوش الإسلامية بقيادة خالد وعمرو وأبي عبيدة ويزيد وشرحبيل",
+          "kind": "route",
+          "x": 15,
+          "y": 70,
+          "w": 10.5,
+          "h": 10,
+          "fact": "تلاقي ألوية الشام الأربعة مع جيش خالد بن الوليد لتوحيد الصف في مواجهة الحشد البيزنطي.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "f0f998117600e377867711b2f0f74a0dd83db2d4201d19f7af112767e167d763"
+        },
+        {
+          "id": "ab100-damascus-jabiyah-busra",
+          "name": "دمشق والجابية وبصرى",
+          "kind": "settlement",
+          "x": 39,
+          "y": 31,
+          "w": 14,
+          "h": 15.5,
+          "fact": "مواضع تمركز جيوش أبي عبيدة وخالد وشرحبيل ويزيد قبل التحرك المنسق جنوباً إلى أجنادين.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "f0f998117600e377867711b2f0f74a0dd83db2d4201d19f7af112767e167d763"
+        },
+        {
+          "id": "ab100-byzantine-wardan",
+          "name": "جيش الأمير البيزنطي وردان والأسطول البحري",
+          "kind": "battle",
+          "x": 21.5,
+          "y": 27.5,
+          "w": 16,
+          "h": 6.5,
+          "fact": "الحشود البيزنطية البرية والبحرية القادمة عبر ساحل المتوسط لدعم جبهة فلسطين.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "f0f998117600e377867711b2f0f74a0dd83db2d4201d19f7af112767e167d763"
+        }
+      ]
+    },
+    "abubakr:111": {
+      "coverage": "11–13 هـ — حصيلة خلافة الصديق وعهد الاستخلاف لعمر",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w19"
+      ],
+      "imageSha256": "3625939c1283b11e348aac7409dd9b2bd1cb2b2764244911025d80ac19311d9f",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ab111-arabia-united",
+          "name": "جزيرة العرب الموحّدة بعد حروب الردة",
+          "kind": "region",
+          "x": 44.5,
+          "y": 37.5,
+          "w": 18,
+          "h": 12,
+          "fact": "إعادة توحيد جزيرة العرب بأكملها تحت راية الإسلام بعد القضاء على مدّعي النبوة ومانعي الزكاة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "3625939c1283b11e348aac7409dd9b2bd1cb2b2764244911025d80ac19311d9f"
+        },
+        {
+          "id": "ab111-iraq-sham-front",
+          "name": "نطاق الفتح الإسلامي في العراق والشام في عهد أبي بكر",
+          "kind": "region",
+          "x": 18,
+          "y": 16,
+          "w": 34,
+          "h": 9,
+          "fact": "المناطق المفتوحة في جنوب وغرب العراق ومشارف الشام وفلسطين خلال سنتي خلافة أبي بكر.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "3625939c1283b11e348aac7409dd9b2bd1cb2b2764244911025d80ac19311d9f"
+        },
+        {
+          "id": "ab111-succession-covenant",
+          "name": "نص عهد أبي بكر باستخلاف عمر بن الخطاب",
+          "kind": "region",
+          "x": 48,
+          "y": 67,
+          "w": 42,
+          "h": 6.5,
+          "fact": "نص العهد المكتوب الذي أملاه أبو بكر الصديق وحرّره عثمان بن عفان رضي الله عنهم باستخلاف عمر بن الخطاب.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "3625939c1283b11e348aac7409dd9b2bd1cb2b2764244911025d80ac19311d9f"
+        }
+      ]
+    },
+    "umar:54": {
+      "coverage": "23 شعبان سنة 13 هـ — معركة الجسر (أثر عبور النهر)",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w19",
+        "u5-w20"
+      ],
+      "imageSha256": "0954177de81868de44326d55230f887c2621f89a2dec8fb52a2e20196a95301d",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "um54-muslim-camp",
+          "name": "معسكر المسلمين غرب الفرات",
+          "kind": "battle",
+          "x": 28,
+          "y": 38.5,
+          "w": 12,
+          "h": 3.5,
+          "fact": "موضع تمركز جيش أبي عبيد الثقفي على الضفة الغربية لنهر الفرات قبيل العبور.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0954177de81868de44326d55230f887c2621f89a2dec8fb52a2e20196a95301d"
+        },
+        {
+          "id": "um54-bridge",
+          "name": "الجسر على نهر الفرات",
+          "kind": "route",
+          "x": 25,
+          "y": 29,
+          "w": 12.5,
+          "h": 5.5,
+          "fact": "الجسر المنصوب على نهر الفرات الذي عبر منه المسلمون إلى الضفة الشرقية الضيقة في مواجهة الفيلة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0954177de81868de44326d55230f887c2621f89a2dec8fb52a2e20196a95301d"
+        },
+        {
+          "id": "um54-persian-camp",
+          "name": "معسكر الفرس والفيلة شرق النهر",
+          "kind": "battle",
+          "x": 53.5,
+          "y": 13.5,
+          "w": 14,
+          "h": 12,
+          "fact": "تشكيل الجيش الساساني المدعوم بالفيلة شرق الفرات؛ أسهمت دروس هذه الوقعة في اختيار عمر لموضع القادسية لاحقاً.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0954177de81868de44326d55230f887c2621f89a2dec8fb52a2e20196a95301d"
+        },
+        {
+          "id": "um54-babil",
+          "name": "بابل والبرج",
+          "kind": "settlement",
+          "x": 82.5,
+          "y": 31.5,
+          "w": 6.5,
+          "h": 3.5,
+          "fact": "موقع مدينة بابل التاريخية إلى الشرق من ساحة معركة الجسر.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0954177de81868de44326d55230f887c2621f89a2dec8fb52a2e20196a95301d"
+        }
+      ]
+    },
+    "umar:242": {
+      "coverage": "15–16 هـ — رحلة الفاروق عمر إلى الجابية وعهد إيلياء",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w19",
+        "u5-w20"
+      ],
+      "imageSha256": "be15b1ee9f96ba039e4566870e08bbd41ec9049db7ba6b8c019901a492fb0bd4",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "um242-madinah-ali",
+          "name": "(٢) المدينة النبوية — استخلاف علي بن أبي طالب",
+          "kind": "settlement",
+          "x": 37,
+          "y": 81.2,
+          "w": 14.5,
+          "h": 3.2,
+          "fact": "تذكر الخريطة أن أمير المؤمنين عمر استخلف على المدينة علي بن أبي طالب رضي الله عنه وتوجه شمالاً إلى الجابية.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "be15b1ee9f96ba039e4566870e08bbd41ec9049db7ba6b8c019901a492fb0bd4"
+        },
+        {
+          "id": "um242-jabiyah",
+          "name": "(٤ و٧) الجابية — لقاء القادة وكتابة صلح إيلياء",
+          "kind": "settlement",
+          "x": 20.5,
+          "y": 32,
+          "w": 7.5,
+          "h": 4.5,
+          "fact": "موضع التقاء القادة المسلمين بالخليفة عمر في جند الأردن وكتابته نص الأمان والصلح لأهل إيلياء.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "be15b1ee9f96ba039e4566870e08bbd41ec9049db7ba6b8c019901a492fb0bd4"
+        },
+        {
+          "id": "um242-iliya",
+          "name": "(١ و٥) إيلياء (بيت المقدس) وجند فلسطين",
+          "kind": "settlement",
+          "x": 17,
+          "y": 39.5,
+          "w": 5.5,
+          "h": 5.5,
+          "fact": "طلب أهل بيت المقدس الصلح بحضور الخليفة عمر بن الخطاب شخصياً ليكتب لهم العهد والأمان.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "be15b1ee9f96ba039e4566870e08bbd41ec9049db7ba6b8c019901a492fb0bd4"
+        },
+        {
+          "id": "um242-damascus-hims",
+          "name": "(٣ و٦) دمشق وحمص",
+          "kind": "settlement",
+          "x": 27,
+          "y": 25,
+          "w": 8,
+          "h": 10.5,
+          "fact": "تعيين سعيد بن زيد على دمشق واستخلاف عبادة بن الصامت على حمص أثناء التوجه للقاء عمر في الجابية.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "be15b1ee9f96ba039e4566870e08bbd41ec9049db7ba6b8c019901a492fb0bd4"
+        }
+      ]
+    },
+    "umar:248": {
+      "coverage": "17–18 هـ — عام الرمادة وإغاثة الأمصار للمدينة",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w19",
+        "u5-w20"
+      ],
+      "imageSha256": "610dbe3eae682c83327784c4f836931de4ca30f085aacba8ae1c8e5d8bf72079",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "um248-madinah",
+          "name": "المدينة النبوية وما حولها (مركز أزمة الرمادة)",
+          "kind": "settlement",
+          "x": 25.5,
+          "y": 49.5,
+          "w": 9.5,
+          "h": 3.8,
+          "fact": "أصابت الناس سنة جدب شديدة في إمارة عمر حتى تسفي الريح تراباً كالرماد، فألى عمر ألا يذوق سمناً ولا لبناً ولا لحماً حتى يحيا الناس.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "610dbe3eae682c83327784c4f836931de4ca30f085aacba8ae1c8e5d8bf72079"
+        },
+        {
+          "id": "um248-sham-relief",
+          "name": "بلاد الشام (دمشق وإيلياء)",
+          "kind": "region",
+          "x": 17,
+          "y": 21.5,
+          "w": 12,
+          "h": 6.5,
+          "fact": "أحد أقاليم الإمداد الغذائي الكبرى في دولة الخلافة الراشدة إبّان أزمة عام الرمادة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "610dbe3eae682c83327784c4f836931de4ca30f085aacba8ae1c8e5d8bf72079"
+        },
+        {
+          "id": "um248-iraq-basra",
+          "name": "العراق (المدائن والبصرة)",
+          "kind": "region",
+          "x": 41.5,
+          "y": 26.5,
+          "w": 18,
+          "h": 7.5,
+          "fact": "الجناح الشرقي للدولة الإسلامية المتصل بشبكة التموين والخراج في خلافة عمر.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "610dbe3eae682c83327784c4f836931de4ca30f085aacba8ae1c8e5d8bf72079"
+        },
+        {
+          "id": "um248-istisqa-hadith",
+          "name": "استسقاء عمر بالعباس عمّ النبي ﷺ",
+          "kind": "region",
+          "x": 45,
+          "y": 57.5,
+          "w": 43,
+          "h": 5.5,
+          "fact": "توثيق الخريطة لرواية صحيح البخاري عن أنس في استسقاء عمر عام الرمادة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "610dbe3eae682c83327784c4f836931de4ca30f085aacba8ae1c8e5d8bf72079"
+        }
+      ]
+    },
+    "umar:271": {
+      "coverage": "29 ذي الحجة سنة 20 هـ — فتح حصن بابليون بمصر",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w19"
+      ],
+      "imageSha256": "fe76c2f63a6d42ca14645eb46defa5a7bf15d9d51c5f0d677c04044edd77d61f",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "um271-muslim-camp",
+          "name": "(١) معسكر الجيش الإسلامي بقيادة عمرو بن العاص",
+          "kind": "battle",
+          "x": 46.5,
+          "y": 8.2,
+          "w": 20,
+          "h": 3.5,
+          "fact": "معسكر قوات عمرو بن العاص شمال الحصن بعد وصول مدد الأربعة آلاف مقاتل بقيادة الزبير بن العوام.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "fe76c2f63a6d42ca14645eb46defa5a7bf15d9d51c5f0d677c04044edd77d61f"
+        },
+        {
+          "id": "um271-babylon-fort",
+          "name": "(٣) حصن بابليون والخندق المحيط به",
+          "kind": "battle",
+          "x": 37.5,
+          "y": 34,
+          "w": 27.5,
+          "h": 15,
+          "fact": "الحصن الروماني المنيع المحاط بخندق وسكك الحديد؛ تسلّقه الزبير بن العوام في ليلة شاتية وكبّر ففُتح الحصن.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "fe76c2f63a6d42ca14645eb46defa5a7bf15d9d51c5f0d677c04044edd77d61f"
+        },
+        {
+          "id": "um271-amr-mosque",
+          "name": "موضع جامع عمرو بن العاص",
+          "kind": "settlement",
+          "x": 53,
+          "y": 32,
+          "w": 14.5,
+          "h": 3,
+          "fact": "موضع تأسيس جامع عمرو بن العاص ونواة مدينة الفسطاط شمال أسوار حصن بابليون مباشرة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "fe76c2f63a6d42ca14645eb46defa5a7bf15d9d51c5f0d677c04044edd77d61f"
+        },
+        {
+          "id": "um271-roda-nile",
+          "name": "(٤) نهر النيل وجزيرة الروضة",
+          "kind": "route",
+          "x": 20.5,
+          "y": 22,
+          "w": 16.5,
+          "h": 18,
+          "fact": "انسحاب المقوقس ونفر من قومه من الباب القبلي عبر النيل إلى جزيرة الروضة للمفاوضة والصلح.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "fe76c2f63a6d42ca14645eb46defa5a7bf15d9d51c5f0d677c04044edd77d61f"
+        }
+      ]
+    },
+    "umar:289": {
+      "coverage": "سنة 23 هـ / 644 م — حفر خليج أمير المؤمنين والتجارة البحرية",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w19",
+        "u5-w20"
+      ],
+      "imageSha256": "027d0939f7d47f26ae77e04a1affb762969f673b9946de4d7998605430268a8c",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "um289-fustat",
+          "name": "الفسطاط وبابليون على نهر النيل",
+          "kind": "settlement",
+          "x": 17.5,
+          "y": 14.5,
+          "w": 9,
+          "h": 4.5,
+          "fact": "مبدأ خليج أمير المؤمنين عند الفسطاط على نهر النيل لنقل الميرة والطعام من مصر.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "027d0939f7d47f26ae77e04a1affb762969f673b9946de4d7998605430268a8c"
+        },
+        {
+          "id": "um289-canal",
+          "name": "خليج أمير المؤمنين عمر بن الخطاب",
+          "kind": "route",
+          "x": 42,
+          "y": 18,
+          "w": 18,
+          "h": 4.5,
+          "fact": "القناة المائية التي حفرها عمرو بن العاص بأمر عمر بن الخطاب في أقل من حول حتى جرت فيها السفن من النيل إلى القلزم.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "027d0939f7d47f26ae77e04a1affb762969f673b9946de4d7998605430268a8c"
+        },
+        {
+          "id": "um289-qulzum",
+          "name": "القلزم (السويس) وخليج القلزم",
+          "kind": "settlement",
+          "x": 76.5,
+          "y": 19.2,
+          "w": 9.5,
+          "h": 6.5,
+          "fact": "مصبّ خليج أمير المؤمنين في بحر القلزم ومنطلق سفن الطعام نحو ساحل الحجاز.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "027d0939f7d47f26ae77e04a1affb762969f673b9946de4d7998605430268a8c"
+        },
+        {
+          "id": "um289-redsea-madinah",
+          "name": "خط السفن والقوافل بين مصر والمدينة النبوية",
+          "kind": "route",
+          "x": 68,
+          "y": 66,
+          "w": 26.5,
+          "h": 25,
+          "fact": "الخريطة السفلية الموضحة لاتصال الملاحة في بحر القلزم بالقوافل المتجهة إلى المدينة النبوية.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "027d0939f7d47f26ae77e04a1affb762969f673b9946de4d7998605430268a8c"
+        }
+      ]
+    },
+    "umar:304": {
+      "coverage": "المحرم سنة 17 هـ — تمصير مدينة الكوفة",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w19",
+        "u5-w20",
+        "u5-w21"
+      ],
+      "imageSha256": "ca1d0649e5a444b83843173ff921e296326c96838ee8e203980b540f32e04c3a",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "um304-kufah",
+          "name": "الكوفة (مصر الجند على الضفة الغربية للفرات)",
+          "kind": "settlement",
+          "x": 16,
+          "y": 14.8,
+          "w": 8.5,
+          "h": 3.5,
+          "fact": "اختطها سعد بن أبي وقاص في المحرم سنة ١٧ هـ بأمر عمر بن الخطاب على شرط: «منزلاً برياً بحرياً ليس بيني وبينكم فيه بحر ولا جسر».",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "ca1d0649e5a444b83843173ff921e296326c96838ee8e203980b540f32e04c3a"
+        },
+        {
+          "id": "um304-basra",
+          "name": "البصرة والقرنة",
+          "kind": "settlement",
+          "x": 56.5,
+          "y": 28,
+          "w": 9.5,
+          "h": 8.5,
+          "fact": "المِصر التوأم للكوفة في جنوب العراق قرب ملتقى دجلة والفرات وخليج البحرين.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "ca1d0649e5a444b83843173ff921e296326c96838ee8e203980b540f32e04c3a"
+        },
+        {
+          "id": "um304-urban-plan",
+          "name": "نظام التمصير العمراني وتخطيط المسجد الجامع",
+          "kind": "region",
+          "x": 38,
+          "y": 53,
+          "w": 25,
+          "h": 3.5,
+          "fact": "توثيق الخريطة لتخطيط المسجد الجامع وإعادة البناء بالطين واللبن على يد أبي الهياج بن مالك مع النهي عن التطاول فوق ثلاثة أبيات.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "ca1d0649e5a444b83843173ff921e296326c96838ee8e203980b540f32e04c3a"
+        }
+      ]
+    },
+    "uthman:95": {
+      "coverage": "30–31 هـ — نهاية الملك الساساني بفرار يزدجرد إلى خراسان",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w20"
+      ],
+      "imageSha256": "1ae5db7332652670853f43fd7f88ace2cc74ed80bb7a7695e55d8162df6b182e",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ut95-kirman-escape",
+          "name": "كرمان وطَبَس (بداية مسار فرار يزدجرد)",
+          "kind": "route",
+          "x": 14.5,
+          "y": 56.5,
+          "w": 12,
+          "h": 17.5,
+          "fact": "فرار يزدجرد الثالث آخر ملوك الساسانيين من كرمان شمالاً عبر قوهستان وطَبَس نحو خراسان.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "1ae5db7332652670853f43fd7f88ace2cc74ed80bb7a7695e55d8162df6b182e"
+        },
+        {
+          "id": "ut95-nishapur",
+          "name": "نيسابور (أبرشهر)",
+          "kind": "settlement",
+          "x": 14.5,
+          "y": 48,
+          "w": 11.5,
+          "h": 3,
+          "fact": "إحدى أمهات مدائن خراسان الأربع (نيسابور ومرو وبلخ وهراة) على مسار التقدم الإسلامي.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "1ae5db7332652670853f43fd7f88ace2cc74ed80bb7a7695e55d8162df6b182e"
+        },
+        {
+          "id": "ut95-marw",
+          "name": "مرو الشاهجان ومرو الروذ (مقتل يزدجرد سنة ٣١ هـ)",
+          "kind": "settlement",
+          "x": 31.5,
+          "y": 37,
+          "w": 14.5,
+          "h": 10.5,
+          "fact": "نهاية مسار يزدجرد عند طاحونة على شط مرو سنة ٣١ هـ وانطواء الدولة الساسانية نهائياً.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "1ae5db7332652670853f43fd7f88ace2cc74ed80bb7a7695e55d8162df6b182e"
+        },
+        {
+          "id": "ut95-transoxiana",
+          "name": "بلخ وسمرقند وبخارى (بلاد ما وراء النهر)",
+          "kind": "region",
+          "x": 45.5,
+          "y": 26.5,
+          "w": 20.5,
+          "h": 4.5,
+          "fact": "حواضر ما وراء النهر وبلاد الترك شمال نهر جيحون.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "1ae5db7332652670853f43fd7f88ace2cc74ed80bb7a7695e55d8162df6b182e"
+        }
+      ]
+    },
+    "uthman:152": {
+      "coverage": "سنة 27–28 هـ — غزوة قبرص الأولى ونشأة الأسطول الإسلامي",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w20",
+        "tr-100q"
+      ],
+      "imageSha256": "d02609116635cdc48ff45e7e0ba5e3daa1858ccb49d1d0cbec0dd4555f4bb1aa",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ut152-acre",
+          "name": "عكّا (منطلق أسطول الشام بقيادة معاوية)",
+          "kind": "settlement",
+          "x": 65.5,
+          "y": 74,
+          "w": 6.5,
+          "h": 3.2,
+          "fact": "ميناء إبحار جيش الشام بقيادة معاوية بن أبي سفيان وعبد الله بن قيس الجاسي نحو جزيرة قبرص.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "d02609116635cdc48ff45e7e0ba5e3daa1858ccb49d1d0cbec0dd4555f4bb1aa"
+        },
+        {
+          "id": "ut152-alexandria",
+          "name": "الإسكندرية (منطلق أسطول مصر بقيادة ابن أبي السرح)",
+          "kind": "settlement",
+          "x": 24,
+          "y": 84.5,
+          "w": 9,
+          "h": 3.2,
+          "fact": "ميناء خروج الأسطول المصري بقيادة عبد الله بن سعد بن أبي السرح للالتقاء بأسطول الشام في قبرص.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "d02609116635cdc48ff45e7e0ba5e3daa1858ccb49d1d0cbec0dd4555f4bb1aa"
+        },
+        {
+          "id": "ut152-cyprus",
+          "name": "جزيرة قبرص (نيقوسيا — عقد الصلح)",
+          "kind": "battle",
+          "x": 49.5,
+          "y": 56.5,
+          "w": 15,
+          "h": 7,
+          "fact": "أول غزوة بحرية كبرى في المتوسط؛ صالح أهل قبرص المسلمين بشروط موثقة في الصفحة المقابلة من الأطلس.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "d02609116635cdc48ff45e7e0ba5e3daa1858ccb49d1d0cbec0dd4555f4bb1aa"
+        },
+        {
+          "id": "ut152-constantinople",
+          "name": "الإمبراطورية البيزنطية والقسطنطينية",
+          "kind": "region",
+          "x": 22,
+          "y": 21,
+          "w": 32,
+          "h": 12.5,
+          "fact": "العمق البيزنطي في الأناضول وبحر مرمرة الذي كسر الأسطول الإسلامي احتكاره لشرق المتوسط.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "d02609116635cdc48ff45e7e0ba5e3daa1858ccb49d1d0cbec0dd4555f4bb1aa"
+        }
+      ]
+    },
+    "uthman:238": {
+      "coverage": "33–35 هـ — مسرح أحداث الفتنة الكبرى في الأمصار",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w20",
+        "u5-w21",
+        "tr-100q"
+      ],
+      "imageSha256": "b87d5b2fca3990bfbf84aa9b058bfa99b2f335314958614af9bca2ce0d73f8f2",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ut238-madinah",
+          "name": "المدينة النبوية (عاصمة الخلافة ومقصد الوفود)",
+          "kind": "settlement",
+          "x": 42,
+          "y": 49.5,
+          "w": 14.5,
+          "h": 6,
+          "fact": "مركز الخلافة الذي استقبل رسل النصيحة والتحقيق، ومنه بُعث المفتشون إلى الأمصار لفحص الشكايات.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "b87d5b2fca3990bfbf84aa9b058bfa99b2f335314958614af9bca2ce0d73f8f2"
+        },
+        {
+          "id": "ut238-kufah",
+          "name": "الكوفة (بؤرة الاضطراب الأولى في العراق)",
+          "kind": "settlement",
+          "x": 63.5,
+          "y": 27,
+          "w": 9,
+          "h": 5.5,
+          "fact": "إحدى البؤر الثلاث التي نشطت فيها شبكات التذمر والكتب المتبادلة قبيل سنة ٣٥ هـ.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "b87d5b2fca3990bfbf84aa9b058bfa99b2f335314958614af9bca2ce0d73f8f2"
+        },
+        {
+          "id": "ut238-basra",
+          "name": "البصرة (الافتراء على عامر بن عبد القيس)",
+          "kind": "settlement",
+          "x": 76,
+          "y": 32.2,
+          "w": 9,
+          "h": 5.5,
+          "fact": "توثّق الخريطة نشاط حكيم بن جبلة في البصرة والافتراء على العابد الزاهد عامر بن عبد القيس.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "b87d5b2fca3990bfbf84aa9b058bfa99b2f335314958614af9bca2ce0d73f8f2"
+        },
+        {
+          "id": "ut238-egypt-sham",
+          "name": "مصر والشام",
+          "kind": "region",
+          "x": 13.5,
+          "y": 29.8,
+          "w": 8.8,
+          "h": 5.5,
+          "fact": "تباين حال مصر التي اشتد فيها نشاط المحرّضين عن الشام التي بقيت متماسكة تحت ولاية معاوية.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "b87d5b2fca3990bfbf84aa9b058bfa99b2f335314958614af9bca2ce0d73f8f2"
+        }
+      ]
+    },
+    "uthman:248": {
+      "coverage": "شوال – ذو الحجة 35 هـ — زحف الثوار واحتلال المدينة النبوية",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w20",
+        "u5-w21"
+      ],
+      "imageSha256": "8ba480c2746d1cb93a53e49c8bbe7c29bf0ce31359f855754b98d67db9f084ca",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ut248-fustat-contingent",
+          "name": "الفسطاط — خروج ركب ثوار مصر",
+          "kind": "route",
+          "x": 16.5,
+          "y": 31,
+          "w": 6.5,
+          "h": 4,
+          "fact": "انطلاق فرقة مصر ونزولها ذا خُشُب قرب المدينة ومراجعتها علي بن أبي طالب الذي زجرهم وردّهم.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "8ba480c2746d1cb93a53e49c8bbe7c29bf0ce31359f855754b98d67db9f084ca"
+        },
+        {
+          "id": "ut248-kufah-contingent",
+          "name": "الكوفة — خروج ركب ثوار الكوفة",
+          "kind": "route",
+          "x": 63.2,
+          "y": 27.8,
+          "w": 6.5,
+          "h": 3.8,
+          "fact": "انطلاق فرقة الكوفة ونزولها الأعوص ومراجعتها الزبير بن العوام الذي ردّهم كما توثق رواية الطبري بأسفل الخريطة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "8ba480c2746d1cb93a53e49c8bbe7c29bf0ce31359f855754b98d67db9f084ca"
+        },
+        {
+          "id": "ut248-basra-contingent",
+          "name": "البصرة — خروج ركب ثوار البصرة",
+          "kind": "route",
+          "x": 75.2,
+          "y": 33,
+          "w": 6.8,
+          "h": 3.8,
+          "fact": "انطلاق فرقة البصرة ونزولها ذا المروة ومراجعتها طلحة بن عبيد الله الذي زجرهم وردّهم.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "8ba480c2746d1cb93a53e49c8bbe7c29bf0ce31359f855754b98d67db9f084ca"
+        },
+        {
+          "id": "ut248-madinah-siege",
+          "name": "المدينة النبوية — مباغتة الثوار وحصار الدار",
+          "kind": "battle",
+          "x": 47,
+          "y": 50.8,
+          "w": 11.5,
+          "h": 3.8,
+          "fact": "تظاهر الفرق الثلاث بالرجوع ثم كرّهم راجعين بغتةً لإحكام الحصار على دار الخليفة عثمان رضي الله عنه.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "8ba480c2746d1cb93a53e49c8bbe7c29bf0ce31359f855754b98d67db9f084ca"
+        }
+      ]
+    },
+    "uthman:294": {
+      "coverage": "سنة 26 هـ — تحويل ساحل مكة المكرمة من الشعيبة إلى جدة",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w20"
+      ],
+      "imageSha256": "a55b04de45d97331ef5cc44a1ca031711878134720b95b6476cc01a3909c216b",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "ut294-jeddah",
+          "name": "جدة (الميناء الجديد لمكة المكرمة منذ ٢٦ هـ)",
+          "kind": "settlement",
+          "x": 25.5,
+          "y": 55,
+          "w": 4.5,
+          "h": 3.2,
+          "fact": "خرج الخليفة عثمان بنفسه سنة ٢٦ هـ إلى جدة ورأى موضعها لقربها من مكة وأمر بتحويل الساحل إليها وقال: «إنه مبارك».",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "a55b04de45d97331ef5cc44a1ca031711878134720b95b6476cc01a3909c216b"
+        },
+        {
+          "id": "ut294-shuaybah",
+          "name": "الشعيبة (ساحل مكة القديم في الجاهلية)",
+          "kind": "settlement",
+          "x": 29,
+          "y": 59.5,
+          "w": 6,
+          "h": 2.8,
+          "fact": "الميناء القديم لمكة جنوب جدة الذي تُرك بعد اعتماد جدة فرضةً بحرية رئيسية للحرم.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "a55b04de45d97331ef5cc44a1ca031711878134720b95b6476cc01a3909c216b"
+        },
+        {
+          "id": "ut294-makkah-usfan",
+          "name": "مكة المكرمة وطريق عسفان – المدينة",
+          "kind": "route",
+          "x": 34.5,
+          "y": 56.5,
+          "w": 8,
+          "h": 3,
+          "fact": "اتصال ميناء جدة بمكة المكرمة وبخط القوافل المتجه عبر عسفان وبدر إلى المدينة النبوية.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "a55b04de45d97331ef5cc44a1ca031711878134720b95b6476cc01a3909c216b"
+        }
+      ]
+    },
+    "ali:132": {
+      "coverage": "ربيع الثاني – جمادى الأولى 36 هـ — المطالبة بدم عثمان والمسير للبصرة",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w21",
+        "tr-100q"
+      ],
+      "imageSha256": "6d1206b3e3716c78d6fce146f1c69de50d7a2e3de0d9b12b3c60edd93a179e0d",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "al132-madinah-bayah",
+          "name": "المدينة النبوية (بيعة علي بن أبي طالب)",
+          "kind": "settlement",
+          "x": 27.5,
+          "y": 66.5,
+          "w": 14.5,
+          "h": 7.5,
+          "fact": "مبايعة المهاجرين والأنصار لعلي بن أبي طالب بالمدينة في ذي الحجة ٣٥ هـ كما يوثق نص الطبري على الخريطة.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "6d1206b3e3716c78d6fce146f1c69de50d7a2e3de0d9b12b3c60edd93a179e0d"
+        },
+        {
+          "id": "al132-makkah-basra-march",
+          "name": "خروج طلحة والزبير وأم المؤمنين عائشة من مكة إلى البصرة",
+          "kind": "route",
+          "x": 37.5,
+          "y": 85,
+          "w": 13,
+          "h": 4.5,
+          "fact": "المسير من مكة المكرمة إلى البصرة سنة ٣٦ هـ طلباً للإصلاح وإنفاذ القصاص من قتلة عثمان دون نية قتال.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "6d1206b3e3716c78d6fce146f1c69de50d7a2e3de0d9b12b3c60edd93a179e0d"
+        },
+        {
+          "id": "al132-basra",
+          "name": "البصرة",
+          "kind": "settlement",
+          "x": 80,
+          "y": 42.5,
+          "w": 7.5,
+          "h": 2.8,
+          "fact": "وجهة المسير في العراق وموضع المفاوضات التي سبقت موقعة الجمل.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "6d1206b3e3716c78d6fce146f1c69de50d7a2e3de0d9b12b3c60edd93a179e0d"
+        },
+        {
+          "id": "al132-damascus-muawiyah",
+          "name": "دمشق وبلاد الشام (تأخر البيعة)",
+          "kind": "settlement",
+          "x": 15.5,
+          "y": 23.5,
+          "w": 9,
+          "h": 6,
+          "fact": "امتناع الشام تحت إمارة معاوية بن أبي سفيان عن إرسال البيعة انتظاراً لما تؤول إليه قضية قتلة عثمان.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "6d1206b3e3716c78d6fce146f1c69de50d7a2e3de0d9b12b3c60edd93a179e0d"
+        }
+      ]
+    },
+    "ali:144": {
+      "coverage": "جمادى الآخرة 36 هـ — ذي قار والوضع العام قبيل موقعة الجمل",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w21"
+      ],
+      "imageSha256": "acb26005ac0a71d66ce07d90618c51c3b34ccfc27dc391d3c95f4e3ab09b0101",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "al144-dhi-qar",
+          "name": "ذي قار (معسكر الخليفة علي ومقدم مدد الكوفة)",
+          "kind": "settlement",
+          "x": 69,
+          "y": 27,
+          "w": 7.5,
+          "h": 5.5,
+          "fact": "معسكر علي بن أبي طالب الذي توافد إليه أهل الكوفة بعد خطبة الحسن بن علي وعمار بن ياسر رضي الله عنهم.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "acb26005ac0a71d66ce07d90618c51c3b34ccfc27dc391d3c95f4e3ab09b0101"
+        },
+        {
+          "id": "al144-kufah",
+          "name": "الكوفة (استجابة أهلها لخطبة الحسن بن علي)",
+          "kind": "settlement",
+          "x": 53,
+          "y": 18,
+          "w": 7,
+          "h": 4.5,
+          "fact": "خروج قرابة سبعة آلاف إلى تسعة آلاف مقاتل من الكوفة في البر ونهر الفرات للانضمام لمعسكر ذي قار.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "acb26005ac0a71d66ce07d90618c51c3b34ccfc27dc391d3c95f4e3ab09b0101"
+        },
+        {
+          "id": "al144-basra",
+          "name": "البصرة",
+          "kind": "settlement",
+          "x": 83,
+          "y": 31,
+          "w": 7.5,
+          "h": 4.5,
+          "fact": "موضع التقاء الجمعين ومراسلات الصلح قبل أن يشعل الغوغاء القتال فجراً.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "acb26005ac0a71d66ce07d90618c51c3b34ccfc27dc391d3c95f4e3ab09b0101"
+        },
+        {
+          "id": "al144-ali-khutbah",
+          "name": "خطبة علي رضي الله عنه في الترفق ودفع الفساد",
+          "kind": "region",
+          "x": 52,
+          "y": 52,
+          "w": 40,
+          "h": 4.5,
+          "fact": "نص خطبة علي في تاريخ الطبري: «إن يرجعوا فذاك ما نريد، وإن يلجوا داويناهم بالرفق… ولن ندع أمراً فيه صلاح إلا آثرناه على ما فيه الفساد».",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "acb26005ac0a71d66ce07d90618c51c3b34ccfc27dc391d3c95f4e3ab09b0101"
+        }
+      ]
+    },
+    "ali:163": {
+      "coverage": "رجب 36 هـ — اتخاذ الكوفة حاضرة للخلافة وموقعها الاستراتيجي",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w21",
+        "u6-w22"
+      ],
+      "imageSha256": "0f4f68aab6fa934fbe0e9266ddaf4890823b98a6a5f1c192e8b84464074f3133",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "al163-kufah-center",
+          "name": "الكوفة (الموقع المتوسط بين البصرة والشام)",
+          "kind": "settlement",
+          "x": 56,
+          "y": 30,
+          "w": 14,
+          "h": 8.5,
+          "fact": "يبرز التمثيل الجغرافي توسط الكوفة على الفرات بين البصرة والمدائن شرقاً وبلاد الشام غرباً والحجاز جنوباً.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0f4f68aab6fa934fbe0e9266ddaf4890823b98a6a5f1c192e8b84464074f3133"
+        },
+        {
+          "id": "al163-basra",
+          "name": "البصرة على مدخل الخليج",
+          "kind": "settlement",
+          "x": 85.5,
+          "y": 41.2,
+          "w": 7,
+          "h": 2.8,
+          "fact": "القاعدة الجنوبية للعراق المتصلة بالكوفة عبر نهري دجلة والفرات.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0f4f68aab6fa934fbe0e9266ddaf4890823b98a6a5f1c192e8b84464074f3133"
+        },
+        {
+          "id": "al163-sham-damascus",
+          "name": "دمشق وحمص وبادية الشام",
+          "kind": "region",
+          "x": 16.5,
+          "y": 18,
+          "w": 12,
+          "h": 10,
+          "fact": "الجبهة الغربية المقابلة على امتداد الفرات عبر البوكمال.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0f4f68aab6fa934fbe0e9266ddaf4890823b98a6a5f1c192e8b84464074f3133"
+        },
+        {
+          "id": "al163-kufah-mosque-hadith",
+          "name": "مسجد الكوفة ومدرستها العلمية والحديثية",
+          "kind": "settlement",
+          "x": 4.5,
+          "y": 70.5,
+          "w": 16,
+          "h": 3.2,
+          "fact": "توثيق الخريطة لمكانة مسجد الكوفة وحفّاظها الكبار استناداً إلى معجم البلدان لياقوت الحموي.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0f4f68aab6fa934fbe0e9266ddaf4890823b98a6a5f1c192e8b84464074f3133"
+        }
+      ]
+    },
+    "ali:174": {
+      "coverage": "أواخر 36 هـ ومطلع 37 هـ — المسرح السياسي وسفارة جرير قبيل صفين",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w21"
+      ],
+      "imageSha256": "d68ea1a15fe3a4ca109f14163acb2f42c86a038a20ebc6969e4a933bc3eb0988",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "al174-kufah-embassy",
+          "name": "الكوفة (إرسال جرير بن عبد الله البجلي سفيراً)",
+          "kind": "settlement",
+          "x": 48,
+          "y": 19.5,
+          "w": 7.5,
+          "h": 4.5,
+          "fact": "مقر الخليفة علي بن أبي طالب الذي بعث منه الصحابي جرير بن عبد الله البجلي لمراسلة معاوية حقناً للدماء.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "d68ea1a15fe3a4ca109f14163acb2f42c86a038a20ebc6969e4a933bc3eb0988"
+        },
+        {
+          "id": "al174-damascus-camp",
+          "name": "دمشق (استشارة معاوية لأهل الشام)",
+          "kind": "settlement",
+          "x": 29.5,
+          "y": 16.5,
+          "w": 6.5,
+          "h": 4.5,
+          "fact": "مركز حشد جيش الشام وامتناعهم عن البيعة قبل الاقتصاص من قتلة عثمان.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "d68ea1a15fe3a4ca109f14163acb2f42c86a038a20ebc6969e4a933bc3eb0988"
+        },
+        {
+          "id": "al174-jazira-siffin",
+          "name": "الجزيرة الفراتية وقرقيسياء وصفين",
+          "kind": "battle",
+          "x": 36.5,
+          "y": 10.5,
+          "w": 10,
+          "h": 7.5,
+          "fact": "إقليم التماس والتنازع على أعالي الفرات حيث التقى الجيشان في سهل صفين.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "d68ea1a15fe3a4ca109f14163acb2f42c86a038a20ebc6969e4a933bc3eb0988"
+        },
+        {
+          "id": "al174-egypt-qays",
+          "name": "مصر (ولاية قيس بن سعد ثم محمد بن أبي بكر)",
+          "kind": "region",
+          "x": 6,
+          "y": 21.5,
+          "w": 8,
+          "h": 4,
+          "fact": "توثق البطاقة الجانبية وضع ولاية مصر وأثر تغيّر الولاة عليها قبيل صفين.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "d68ea1a15fe3a4ca109f14163acb2f42c86a038a20ebc6969e4a933bc3eb0988"
+        }
+      ]
+    },
+    "ali:262": {
+      "coverage": "35–41 هـ — الخريطة الملخّصة للمواقع الحربية وفهرس خرائط الفتنة والجماعة",
+      "mapType": "خريطة تاريخية محققة بصرياً",
+      "scaleText": null,
+      "rotated": 0,
+      "courseLinks": [
+        "u5-w21",
+        "u6-w22"
+      ],
+      "imageSha256": "0e3c0e74a281730c6706338166ef763d838a5766f635db3ad9b5061af072f9d7",
+      "reviewMethod": "direct-webp-visual-inspection-plus-ocr-anchors",
+      "legends": [],
+      "hotspots": [
+        {
+          "id": "al262-jamal",
+          "name": "موقعة الجمل قرب البصرة (٣٦ هـ)",
+          "kind": "battle",
+          "x": 38.5,
+          "y": 65.5,
+          "w": 8.5,
+          "h": 4.5,
+          "fact": "أولى المواجهات الكبرى في خلافة علي بن أبي طالب قرب البصرة في جمادى الآخرة سنة ٣٦ هـ.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0e3c0e74a281730c6706338166ef763d838a5766f635db3ad9b5061af072f9d7"
+        },
+        {
+          "id": "al262-siffin",
+          "name": "معركة صفين على الفرات (٣٧ هـ)",
+          "kind": "battle",
+          "x": 28.5,
+          "y": 56.5,
+          "w": 8,
+          "h": 4.5,
+          "fact": "المواجهة الكبرى بين جيشي العراق والشام في صفر سنة ٣٧ هـ التي انتهت برفع المصاحف والتحكيم.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0e3c0e74a281730c6706338166ef763d838a5766f635db3ad9b5061af072f9d7"
+        },
+        {
+          "id": "al262-tahkim",
+          "name": "موقع التحكيم بدومة الجندل (٣٧–٣٨ هـ)",
+          "kind": "settlement",
+          "x": 23,
+          "y": 63.5,
+          "w": 8.5,
+          "h": 4.8,
+          "fact": "موضع اجتماع الحكمين بين العراق والشام؛ وفي فهرس الصفحة إشارة لصحيفتي دومة الجندل وعام الجماعة ٤١ هـ.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0e3c0e74a281730c6706338166ef763d838a5766f635db3ad9b5061af072f9d7"
+        },
+        {
+          "id": "al262-nahrawan",
+          "name": "معركة النهروان ضد الخوارج (٣٨ هـ)",
+          "kind": "battle",
+          "x": 40,
+          "y": 59.5,
+          "w": 8,
+          "h": 4.5,
+          "fact": "وقعة أمير المؤمنين علي بن أبي طالب مع الخوارج بعد خروجهم في حروراء واستحلالهم الدماء.",
+          "conf": "high",
+          "placementStatus": "visually-reviewed",
+          "imageSha256": "0e3c0e74a281730c6706338166ef763d838a5766f635db3ad9b5061af072f9d7"
         }
       ]
     }

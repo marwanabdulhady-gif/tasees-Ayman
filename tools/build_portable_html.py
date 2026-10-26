@@ -3,10 +3,10 @@
 Builds Deliverable B: Single-File Portable HTML Edition (release/portable-atlas.html).
 Inlines:
   - IBM Plex Sans Arabic woff2 fonts (base64 data URIs)
-  - All CSS and modular JS scripts
-  - Full 1,069-page manifest + 1,208 gazetteer entries + full search & quiz pools (gzip-compressed)
+  - All CSS and modular JS scripts (including courses.js)
+  - Full 1,597-page 7-volume manifest + 1,692 gazetteer entries + full search & quiz pools (gzip-compressed)
   - All 8 vector SVGs + 8 original WebP pages for Volume 1 (خرائط التاريخ الإسلامي)
-  - Full WebP pages for all curated & comparison maps + covers across all 5 volumes
+  - Full WebP pages for all 80 curated historical maps (Vols. 2–6), course-linked & comparison maps in Vol. 7 (dawal), and all covers across all 7 volumes
   - Thumbnails for bundled maps (and lightweight SVG data-URI placeholders for unbundled thumbs)
 """
 import base64
@@ -15,7 +15,10 @@ import io
 import json
 import os
 import re
-from PIL import Image
+try:
+    from PIL import Image
+except ImportError:
+    Image = None
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -27,6 +30,8 @@ def b64_data_uri(rel_path: str, mime: str) -> str:
 
 
 def compact_webp_data_uri(rel_path: str, max_h: int = 960, quality: int = 52) -> str:
+    if Image is None:
+        return b64_data_uri(rel_path, "image/webp")
     full = os.path.join(ROOT, rel_path)
     im = Image.open(full).convert("RGB")
     w, h = im.size
@@ -59,18 +64,30 @@ def main():
     maps8_vecs_js = open(os.path.join(ROOT, "data/maps8-vectors.js"), encoding="utf-8").read()
     all_ocr_words = load_ocr_words_bundle()
 
-    # Select bundled pages for portable single-file edition
+    # Select bundled pages for portable single-file edition across all 7 volumes
+    dawal_course_pages = {
+        "dawal-001", "dawal-010", "dawal-018", "dawal-020", "dawal-032",
+        "dawal-038", "dawal-040", "dawal-042", "dawal-050", "dawal-064",
+        "dawal-072", "dawal-084", "dawal-102", "dawal-106", "dawal-108",
+        "dawal-118", "dawal-134", "dawal-137", "dawal-141", "dawal-145",
+        "dawal-146", "dawal-149", "dawal-150", "dawal-151", "dawal-152",
+        "dawal-159",
+    }
     bundled_page_ids = set()
     for p in manifest["pages"]:
         if p["volumeId"] == "maps8":
             bundled_page_ids.add(p["id"])
-        elif p.get("hotspots"):
+        elif p["volumeId"] != "dawal" and p.get("hotspots"):
+            bundled_page_ids.add(p["id"])
+        elif p["id"] in dawal_course_pages:
             bundled_page_ids.add(p["id"])
     for cmp_item in manifest.get("comparisons", []):
-        bundled_page_ids.add(cmp_item["leftId"])
-        bundled_page_ids.add(cmp_item["rightId"])
-    # Bundle all 5 scanned volume covers
-    for cov in ("seerah-001", "abubakr-001", "umar-001", "uthman-001", "ali-001"):
+        if cmp_item.get("leftId"):
+            bundled_page_ids.add(cmp_item["leftId"])
+        if cmp_item.get("rightId"):
+            bundled_page_ids.add(cmp_item["rightId"])
+    # Bundle all 6 scanned volume covers
+    for cov in ("seerah-001", "abubakr-001", "umar-001", "uthman-001", "ali-001", "dawal-001"):
         bundled_page_ids.add(cov)
 
     portable_assets = {}
@@ -80,7 +97,7 @@ def main():
             if p["volumeId"] == "maps8":
                 portable_assets[p["pageAsset"]] = b64_data_uri(p["pageAsset"], "image/webp")
             else:
-                portable_assets[p["pageAsset"]] = compact_webp_data_uri(p["pageAsset"], max_h=900, quality=46)
+                portable_assets[p["pageAsset"]] = compact_webp_data_uri(p["pageAsset"], max_h=880, quality=44)
             portable_assets[p["thumbAsset"]] = b64_data_uri(p["thumbAsset"], "image/webp")
             if p["id"] in all_ocr_words:
                 portable_ocr_words[p["id"]] = all_ocr_words[p["id"]]
@@ -114,6 +131,7 @@ def main():
         "src/js/panzoom.js",
         "src/js/viewer.js",
         "src/js/search.js",
+        "src/js/courses.js",
         "src/js/compare.js",
         "src/js/learn.js",
         "src/js/app.js",
