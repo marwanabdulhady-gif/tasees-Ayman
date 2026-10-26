@@ -1,99 +1,111 @@
 {
-  "title": "دورة علم النفس — مستخلصة من محاضرات أيمن عبد الرحيم",
-  "slug": "02_دورة_علم_النفس",
-  "playlist": "transcripts/03-psychology",
-  "playlist_url": "https://www.youtube.com/playlist?list=PL9saDKf7tQ7uklZkouvmrPOw7X7n_DGL2",
-  "channel": "https://www.youtube.com/@AymanComplete",
-  "lessons": [
-    {
-      "no": "01",
-      "file": "01_الدرس_الأول_الملصق_والميزان.md",
-      "title": "الملصق والميزان — إيه اللي يخلّي الكلام علم؟",
-      "episode": 1,
-      "episode_file": "transcripts/03-psychology/01 - دورة علم النفس أيمن عبدالرحيم المحاضرة الأولي.md",
-      "duration": "آخر طابع في الحلقة 1:45:14",
-      "tool": "بطاقة العشر",
-      "status": "مسودة — تحتاج مراجعة المالك",
-      "episode_url": "https://www.youtube.com/watch?v=jmcCEitwVvc",
-      "words": 2177
-    },
-    {
-      "no": "02",
-      "file": "02_الدرس_الثاني_ورقة_المدرسة.md",
-      "title": "ورقة المدرسة — إزاي مدرسة توقف علم ٥٠ سنة؟",
-      "episode": 2,
-      "episode_file": "transcripts/03-psychology/02 - دورة علم النفس أيمن عبدالرحيم المحاضرة الثانية.md",
-      "episode_url": "https://www.youtube.com/watch?v=dvY-khW5X-k",
-      "duration": "آخر طابع في الحلقة 1:32:33",
-      "tool": "ورقة المدرسة",
-      "words": 1912,
-      "status": "مسودة — تحتاج مراجعة المالك"
-    },
-    {
-      "no": "03",
-      "file": "03_الدرس_الثالث_ورقة_الجاهزية.md",
-      "title": "ورقة الجاهزية — إمتى تطلب من الطفل حاجة؟",
-      "episode": 3,
-      "episode_file": "transcripts/03-psychology/03 - دورة علم النفس أيمن عبدالرحيم المحاضرة الثالثة.md",
-      "episode_url": "https://www.youtube.com/watch?v=yh5KG8LocpU",
-      "duration": "آخر طابع في الحلقة 1:59:26",
-      "tool": "ورقة الجاهزية",
-      "words": 1789,
-      "status": "مسودة — تحتاج مراجعة المالك"
-    },
-    {
-      "no": "04",
-      "file": "04_الدرس_الرابع_سلسلة_الخبر.md",
-      "title": "سلسلة الخبر — إزاي تعرف إن اللي وصلك صحيح؟",
-      "episode": 4,
-      "episode_file": "transcripts/03-psychology/04 - دورة علم النفس أيمن عبدالرحيم المحاضرة الرابعة.md",
-      "episode_url": "https://www.youtube.com/watch?v=T3Px9aY2Hkk",
-      "duration": "آخر طابع في الحلقة 1:52:42",
-      "tool": "سلسلة الخبر",
-      "words": 1656,
-      "status": "مسودة — تحتاج مراجعة المالك"
-    },
-    {
-      "no": "05",
-      "file": "05_الدرس_الخامس_ورقة_القياس.md",
-      "title": "ورقة القياس — إيه اللي بيتقاس، وإيه اللي بيتقال عليه؟",
-      "episode": 5,
-      "episode_file": "transcripts/03-psychology/05 - دورة علم النفس أيمن عبدالرحيم المحاضرة الخامسة.md",
-      "episode_url": "https://www.youtube.com/watch?v=hNSKyFtWFNY",
-      "duration": "آخر طابع في الحلقة 1:55:07",
-      "tool": "ورقة القياس",
-      "words": 1573,
-      "status": "مسودة — تحتاج مراجعة المالك"
-    },
-    {
-      "no": "06",
-      "file": "06_الدرس_السادس_خط_الفصل.md",
-      "title": "الطبع والصنعة — إيه اللي جاي معاك، وإيه اللي اتصنع في البيت؟",
-      "episode": 6,
-      "episode_file": "transcripts/03-psychology/06 - دورة علم النفس أيمن عبدالرحيم المحاضرة السادسة.md",
-      "episode_url": "https://www.youtube.com/watch?v=rpjzMpAM0RY",
-      "duration": "آخر طابع في الحلقة 1:50:34",
-      "tool": "خط الفصل",
-      "words": 1600,
-      "status": "مسودة — تحتاج مراجعة المالك"
-    },
-    {
-      "no": "07",
-      "file": "07_الدرس_السابع_اختبار_الاختبار.md",
-      "title": "خمسة أبعاد وكلام عام — إزاي أقرأ نتيجة اختبار شخصية؟",
-      "episode": 7,
-      "episode_file": "transcripts/03-psychology/07 - دورة علم النفس أيمن عبدالرحيم المحاضرة السابعة.md",
-      "episode_url": "https://www.youtube.com/watch?v=Ec2_-tTcCGI",
-      "duration": "آخر طابع في الحلقة 2:03:52",
-      "tool": "اختبار الاختبار",
-      "words": 1517,
-      "status": "مسودة — تحتاج مراجعة المالك"
-    }
-  ],
-  "style_guide": "../00_دليل_الأسلوب.md",
-  "notes": [
-    "الاستناد كله على ملفات التفريغ في transcripts/03-psychology — لا تُضاف معلومة من خارجها.",
-    "كل درس يقابل محاضرة واحدة؛ الحجم المستهدف ٢٠٠٠–٣٥٠٠ كلمة (الدرس الأول: 2177 كلمة).",
-    "التحقق: python3 08_دورات_القوائم/tools/check_lesson.py 08_دورات_القوائم/02_دورة_علم_النفس"
-  ]
+ "title": "دورة علم النفس — مستخلصة من محاضرات أيمن عبد الرحيم",
+ "slug": "02_دورة_علم_النفس",
+ "playlist": "transcripts/03-psychology",
+ "playlist_url": "https://www.youtube.com/playlist?list=PL9saDKf7tQ7uklZkouvmrPOw7X7n_DGL2",
+ "channel": "https://www.youtube.com/@AymanComplete",
+ "lessons": [
+  {
+   "no": "01",
+   "file": "01_الدرس_الأول_الملصق_والميزان.md",
+   "title": "الملصق والميزان — إيه اللي يخلّي الكلام علم؟",
+   "episode": 1,
+   "episode_file": "transcripts/03-psychology/01 - دورة علم النفس أيمن عبدالرحيم المحاضرة الأولي.md",
+   "duration": "آخر طابع في الحلقة 1:45:14",
+   "tool": "بطاقة العشر",
+   "status": "مسودة — تحتاج مراجعة المالك",
+   "episode_url": "https://www.youtube.com/watch?v=jmcCEitwVvc",
+   "words": 2177
+  },
+  {
+   "no": "02",
+   "file": "02_الدرس_الثاني_ورقة_المدرسة.md",
+   "title": "ورقة المدرسة — إزاي مدرسة توقف علم ٥٠ سنة؟",
+   "episode": 2,
+   "episode_file": "transcripts/03-psychology/02 - دورة علم النفس أيمن عبدالرحيم المحاضرة الثانية.md",
+   "episode_url": "https://www.youtube.com/watch?v=dvY-khW5X-k",
+   "duration": "آخر طابع في الحلقة 1:32:33",
+   "tool": "ورقة المدرسة",
+   "words": 1912,
+   "status": "مسودة — تحتاج مراجعة المالك"
+  },
+  {
+   "no": "03",
+   "file": "03_الدرس_الثالث_ورقة_الجاهزية.md",
+   "title": "ورقة الجاهزية — إمتى تطلب من الطفل حاجة؟",
+   "episode": 3,
+   "episode_file": "transcripts/03-psychology/03 - دورة علم النفس أيمن عبدالرحيم المحاضرة الثالثة.md",
+   "episode_url": "https://www.youtube.com/watch?v=yh5KG8LocpU",
+   "duration": "آخر طابع في الحلقة 1:59:26",
+   "tool": "ورقة الجاهزية",
+   "words": 1789,
+   "status": "مسودة — تحتاج مراجعة المالك"
+  },
+  {
+   "no": "04",
+   "file": "04_الدرس_الرابع_سلسلة_الخبر.md",
+   "title": "سلسلة الخبر — إزاي تعرف إن اللي وصلك صحيح؟",
+   "episode": 4,
+   "episode_file": "transcripts/03-psychology/04 - دورة علم النفس أيمن عبدالرحيم المحاضرة الرابعة.md",
+   "episode_url": "https://www.youtube.com/watch?v=T3Px9aY2Hkk",
+   "duration": "آخر طابع في الحلقة 1:52:42",
+   "tool": "سلسلة الخبر",
+   "words": 1656,
+   "status": "مسودة — تحتاج مراجعة المالك"
+  },
+  {
+   "no": "05",
+   "file": "05_الدرس_الخامس_ورقة_القياس.md",
+   "title": "ورقة القياس — إيه اللي بيتقاس، وإيه اللي بيتقال عليه؟",
+   "episode": 5,
+   "episode_file": "transcripts/03-psychology/05 - دورة علم النفس أيمن عبدالرحيم المحاضرة الخامسة.md",
+   "episode_url": "https://www.youtube.com/watch?v=hNSKyFtWFNY",
+   "duration": "آخر طابع في الحلقة 1:55:07",
+   "tool": "ورقة القياس",
+   "words": 1573,
+   "status": "مسودة — تحتاج مراجعة المالك"
+  },
+  {
+   "no": "06",
+   "file": "06_الدرس_السادس_خط_الفصل.md",
+   "title": "الطبع والصنعة — إيه اللي جاي معاك، وإيه اللي اتصنع في البيت؟",
+   "episode": 6,
+   "episode_file": "transcripts/03-psychology/06 - دورة علم النفس أيمن عبدالرحيم المحاضرة السادسة.md",
+   "episode_url": "https://www.youtube.com/watch?v=rpjzMpAM0RY",
+   "duration": "آخر طابع في الحلقة 1:50:34",
+   "tool": "خط الفصل",
+   "words": 1600,
+   "status": "مسودة — تحتاج مراجعة المالك"
+  },
+  {
+   "no": "07",
+   "file": "07_الدرس_السابع_اختبار_الاختبار.md",
+   "title": "خمسة أبعاد وكلام عام — إزاي أقرأ نتيجة اختبار شخصية؟",
+   "episode": 7,
+   "episode_file": "transcripts/03-psychology/07 - دورة علم النفس أيمن عبدالرحيم المحاضرة السابعة.md",
+   "episode_url": "https://www.youtube.com/watch?v=Ec2_-tTcCGI",
+   "duration": "آخر طابع في الحلقة 2:03:52",
+   "tool": "اختبار الاختبار",
+   "words": 1517,
+   "status": "مسودة — تحتاج مراجعة المالك"
+  },
+  {
+   "no": "08",
+   "file": "08_الدرس_الثامن_سؤال_الحد.md",
+   "title": "سؤال الحدّ — إمتى يبقى النمط اضطرابًا؟",
+   "episode": 8,
+   "episode_file": "transcripts/03-psychology/08 - دورة علم النفس أيمن عبدالرحيم المحاضرة الثامنة.md",
+   "episode_url": "https://www.youtube.com/watch?v=bETx82VoYN8",
+   "duration": "آخر طابع في الحلقة 1:48:48",
+   "tool": "سؤال الحدّ",
+   "words": 1523,
+   "status": "مسودة — تحتاج مراجعة المالك"
+  }
+ ],
+ "style_guide": "../00_دليل_الأسلوب.md",
+ "notes": [
+  "الاستناد كله على ملفات التفريغ في transcripts/03-psychology — لا تُضاف معلومة من خارجها.",
+  "كل درس يقابل محاضرة واحدة؛ الحجم المستهدف ٢٠٠٠–٣٥٠٠ كلمة (الدرس الأول: 2177 كلمة).",
+  "التحقق: python3 08_دورات_القوائم/tools/check_lesson.py 08_دورات_القوائم/02_دورة_علم_النفس"
+ ]
 }
