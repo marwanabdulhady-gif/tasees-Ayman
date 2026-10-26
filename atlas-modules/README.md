@@ -27,12 +27,24 @@
   دون اتصال تعمل كل طبقات البيانات (علامات/خطوط/مجالات) على خلفية داكنة.
   مساعد DİA (RAG) يتطلب مفاتيح API.
 
-## 2) `atlas-of-quran/` — أطلس القرآن (نسخة عربية)
+## 2) `atlas-of-quran/` — أطلس القرآن (نسخة عربية · بيانات أصلية أوفلاين)
 - **المصدر الأصلي:** <https://github.com/atlasofquran/atlasofquran.github.io> —
   الالتزام المستنسخ: `d578c9d4da1a9dad7b3faf89533f15966586badd` — الرخصة **GPL v3** (مع حفظ التسمية).
-- **الطبيعة:** المستودع الأصلي صفحة تعريفية تضمين «خريطة خرائط Google» الأصل
-  (`mid=1h5v16ahHjdMNWt3deXH0zEXD6wErVpF2`) — لا يحوي بيانات جغرافية داخل المستودع،
-  لذا النسخة العربية تحافظ على التضمين الأصلي (يتطلب اتصالًا) مع ترجمة كامل المحتوى التعريفي.
+- **الطبيعة:** المستودع الأصلي صفحة تعريفية تضمّين «خريطة خرائط Google» الأصل
+  (`mid=1h5v16ahHjdMNWt3deXH0zEXD6wErVpF2`) — لا يحوي بيانات جغرافية داخل المستودع.
+- **ما بُني هنا (بيانات أصلية):** تطبيق Leaflet عربي/RTL يعمل **أوفلاين بالكامل** (file:// أو http):
+  - `data/locations.json` — 46 موقعًا وشخصية محققة محليًا (البلدان المعروفة، الأنبياء، مواضع ذو القرنين،
+    الطوفان، الكهف…)، لكل إدخال: إحداثيات، نوع، **علامة ثقة** (`high`/`medium`/`traditional`)،
+    إحالات «سورة:آية»، ومقتطفات قرآنية قصيرة معتمدة فقط (حذف أي نص غير مضمون الدقة).
+  - `data/locations.js` — نسخة JS من `locations.json` (توليد: `python3` — انظر سطر التوليد أسفل هذه الفقرة)؛
+    تُحمَّل عبر `<script>` حتى يعمل الملف تحت `file://` بدون fetch.
+  - `leaflet/` — Leaflet 1.9.4 مُصنَّف محليًا (js+css+images) من `islamic-dynasties/node_modules/leaflet/dist`.
+  - الخريطة: بلاطات CARTO/OSM الداكنة عند الاتصال + **شبكة خطوط طول/عرض** مرسومة دائمًا
+    (تبقى البيانات والنقاط وعلامات الثقة كاملة دون اتصال).
+  - المُلحق: خريطة Google My Maps الأصلية خلف `<details>` (اختياري، عند الاتصال فقط).
+- **إعادة توليد JS البيانات:**
+  `python3 -c "import json; d=json.load(open('atlas-of-quran/data/locations.json')); open('atlas-of-quran/data/locations.js','w').write('window.QURAN_DATA = '+json.dumps(d, ensure_ascii=False, indent=1)+';')"`
+- **الاختبار:** `node tools/qa/smoke_quran.cjs` (10/10 — file:// أوفلاين: RTL، 46 عنصرًا، بحث، نافذة آية، علامات الثقة، شبكة، بلا أخطاء JS).
 
 ## 3) uMap (مرجع خارجي)
 - **المستودع:** <https://github.com/atlasofquran/umap> — التزام `88cd3e8cf0b24516ba62fbea4a7f58e6038e2e0f`.
