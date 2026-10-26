@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -65,8 +66,10 @@ def load_episodes(playlist: Path) -> dict[int, dict]:
         text = f.read_text(encoding="utf-8", errors="replace")
         stamps = [to_secs(m.group(0)[3:m.group(0).index("]")]) for m in STAMP.finditer(text)]
         body = STAMP.sub("", text)
+        link = re.search(r"watch\?v=([A-Za-z0-9_-]{6,})", text)
         eps[i] = {"file": f.name, "end": max(stamps) if stamps else None,
-                  "n_plain": norm(body), "n_stamps": norm(text)}
+                  "n_plain": norm(body), "n_stamps": norm(text),
+                  "url": link.group(1) if link else None}
     return eps
 
 
@@ -137,6 +140,14 @@ def main(argv: list[str]) -> int:
                     failures.append(f"{name}:{i + 1} — اقتباس غير موجود في {where}: «{m.group(1)[:60]}»")
                 if target is None:
                     notes.append(f"{name}:{i + 1} — اقتباس بلا إحالة في نفس السطر: «{m.group(1)[:40]}»")
+
+        # ٢.٥) الرابط: رابط الحلقة في «مصدر الدرس» لا بد أن يكون رابط الحلقة المُحال إليها
+        vids = set(re.findall(r"watch\?v=([A-Za-z0-9_-]{6,})", text))
+        if vids and cites:
+            modal = Counter(n for n, _, _ in cites).most_common(1)[0][0]
+            want = eps.get(modal, {}).get("url")
+            if want and want not in vids:
+                failures.append(f"{name} — رابط الحلقة لا يطابق الحلقة {modal} (المتوقع …{want})")
 
         # ٣) البنية
         pos = 0
