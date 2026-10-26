@@ -1,0 +1,246 @@
+{
+ "page": 8,
+ "features": [
+  {
+   "ids": [
+    10,
+    8,
+    11
+   ],
+   "text": "الإمبراطورية العثمانية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high",
+   "note": "تسمية مقوسة على سطرين"
+  },
+  {
+   "ids": [
+    3,
+    4
+   ],
+   "text": "الإمبراطورية الألمانية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "ids": [
+    0
+   ],
+   "text": "السويد",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    1
+   ],
+   "text": "روسيا",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    2
+   ],
+   "text": "بولندا",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    5
+   ],
+   "text": "المجر",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    6
+   ],
+   "text": "سويسرا",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    7
+   ],
+   "text": "فرنسا",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    9
+   ],
+   "text": "البرتغال",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    12
+   ],
+   "text": "المغرب",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    13
+   ],
+   "text": "فزان",
+   "kind": "region",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    14,
+    16
+   ],
+   "text": "كانم بورنو",
+   "kind": "polity",
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "ids": [
+    15
+   ],
+   "text": "تيمبوكتو",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    17,
+    19
+   ],
+   "text": "دول الهاوسا",
+   "kind": "polity",
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "ids": [
+    18
+   ],
+   "text": "باجيرمي",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    20,
+    23
+   ],
+   "text": "ممالك النيجر",
+   "kind": "polity",
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "ids": [
+    21,
+    25
+   ],
+   "text": "دول الولوف",
+   "kind": "polity",
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "ids": [
+    26
+   ],
+   "text": "باوليه",
+   "kind": "people",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    24
+   ],
+   "text": "يوروبا",
+   "kind": "people",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    22
+   ],
+   "text": "إثيوبيا",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    27
+   ],
+   "text": "أزاندي",
+   "kind": "people",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    28
+   ],
+   "text": "كيتارا",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    29
+   ],
+   "text": "أنكول",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    30
+   ],
+   "text": "رواندا",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    31
+   ],
+   "text": "الكونغو",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    32
+   ],
+   "text": "شيوا",
+   "kind": "polity",
+   "conf": "medium",
+   "note": "قراءة واضحة؛ لم يحدد المصدر طبيعة الكيان"
+  },
+  {
+   "ids": [
+    33,
+    34,
+    35
+   ],
+   "text": "بالوبا",
+   "kind": "people",
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  }
+ ],
+ "unlabeledMarkers": [
+  {
+   "note": "علامة نقطية واحدة على ساحل الخليج بلا تسمية مرافقة في المصدر"
+  }
+ ],
+ "clusterSignature": "52417a7d0df0"
+}

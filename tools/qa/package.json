@@ -1,0 +1,12 @@
+{
+  "name": "arabic-atlas-qa",
+  "private": true,
+  "description": "Offline headless-browser QA suite for the 3-volume Arabic Interactive Atlas Platform",
+  "scripts": {
+    "test": "node run_qa.cjs"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "131.0.1",
+    "puppeteer-core": "23.10.4"
+  }
+}

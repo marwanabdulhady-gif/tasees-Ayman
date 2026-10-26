@@ -1,0 +1,647 @@
+{
+ "page": 4,
+ "notes": "الأسهم المتقطعة في هذه الصفحة مرسومة كأشكال مملوءة داكنة، فتلتحم بالتسميات المجاورة في التجميع الآلي؛ لذا استُخدمت مربعات تقريبية (approx) تُلتقط إلى حدود الحروف الفعلية آليًا.",
+ "features": [
+  {
+   "ids": [
+    0,
+    1
+   ],
+   "text": "الشعوب الفينية-الأجرية",
+   "kind": "people",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    7,
+    8
+   ],
+   "text": "الخاقانية الخزرية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    10,
+    11
+   ],
+   "text": "الخاقانية الآفارية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    9,
+    12
+   ],
+   "text": "الممالك الفرنجية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high",
+   "note": "على سطرين: «الممالك» فوق «الفرنجية»"
+  },
+  {
+   "ids": [
+    15
+   ],
+   "text": "اللومبارد",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    19,
+    20,
+    23
+   ],
+   "text": "مملكة القوط الغربيين",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "ids": [
+    29,
+    22
+   ],
+   "text": "الإمبراطورية البيزنطية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high",
+   "note": "تسمية مقوسة"
+  },
+  {
+   "approx": [
+    [
+     285,
+     338,
+     333,
+     363
+    ],
+    [
+     333,
+     342,
+     389,
+     366
+    ]
+   ],
+   "text": "الإمبراطورية الإسلامية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high",
+   "note": "تسمية مائلة تتقاطع مع «الاسكندرية» و«هليوبوليس»"
+  },
+  {
+   "ids": [
+    17,
+    18
+   ],
+   "text": "أرمينيا",
+   "kind": "region",
+   "bold": true,
+   "conf": "high",
+   "note": "مكتوبة مائلة"
+  },
+  {
+   "ids": [
+    60
+   ],
+   "text": "ماكوري",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    65
+   ],
+   "text": "علوة",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    73
+   ],
+   "text": "أكسوم",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    2
+   ],
+   "text": "السويديون",
+   "kind": "people",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    3
+   ],
+   "text": "الدنماركيون",
+   "kind": "people",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    4
+   ],
+   "text": "الاسكتلنديون",
+   "kind": "people",
+   "conf": "high",
+   "note": "مكتوبة بلا همزة في المصدر"
+  },
+  {
+   "ids": [
+    5
+   ],
+   "text": "نورثمبريا",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    6
+   ],
+   "text": "مركة",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    13
+   ],
+   "text": "البريتونيون",
+   "kind": "people",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    14
+   ],
+   "text": "البلغاريون",
+   "kind": "people",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    16
+   ],
+   "text": "الباسكيون",
+   "kind": "people",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    48,
+    49,
+    50
+   ],
+   "text": "البربر الغربيون",
+   "kind": "people",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    30
+   ],
+   "text": "قرطاج",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    37
+   ],
+   "text": "طرابلس",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    36
+   ],
+   "text": "برقة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    39
+   ],
+   "text": "٦٤٣",
+   "kind": "date",
+   "conf": "medium",
+   "note": "أسفل «برقة»؛ الرقم الأخير متداخل جزئيًا مع حروف تسمية أخرى"
+  },
+  {
+   "approx": [
+    [
+     334,
+     328,
+     389,
+     341.5
+    ]
+   ],
+   "text": "الاسكندرية",
+   "kind": "place",
+   "conf": "medium",
+   "note": "وجود همزة تحت الألف غير واضح في المصدر"
+  },
+  {
+   "ids": [
+    43,
+    42,
+    41
+   ],
+   "text": "٦٤١",
+   "kind": "date",
+   "conf": "medium",
+   "note": "قرب «الاسكندرية»؛ متداخل جزئيًا مع تسمية «الإمبراطورية الإسلامية»"
+  },
+  {
+   "ids": [
+    45
+   ],
+   "text": "٦٤٢",
+   "kind": "date",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     304,
+     358,
+     362,
+     373
+    ]
+   ],
+   "text": "هليوبوليس",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    54,
+    53,
+    55
+   ],
+   "text": "٦٤٠",
+   "kind": "date",
+   "conf": "high",
+   "note": "أسفل «هليوبوليس»"
+  },
+  {
+   "ids": [
+    46
+   ],
+   "text": "غدامس",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    57
+   ],
+   "text": "فزان",
+   "kind": "region",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    70
+   ],
+   "text": "غانا",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    66
+   ],
+   "text": "بورنو-كانم",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    63,
+    64
+   ],
+   "text": "دنقلا",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    68
+   ],
+   "text": "سوبا",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    75
+   ],
+   "text": "سنار",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    77
+   ],
+   "text": "دارفور",
+   "kind": "region",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89
+   ],
+   "text": "رعاة البانتو",
+   "kind": "people",
+   "conf": "high",
+   "note": "مكتوبة عموديًا"
+  },
+  {
+   "ids": [
+    25
+   ],
+   "text": "٦٣٥",
+   "kind": "date",
+   "conf": "high",
+   "note": "قرب «حماة»"
+  },
+  {
+   "approx": [
+    [
+     386,
+     304,
+     419,
+     320
+    ]
+   ],
+   "text": "حماة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    28,
+    27,
+    26
+   ],
+   "text": "٦٤٠",
+   "kind": "date",
+   "conf": "high",
+   "note": "قرب «حماة» على سهم متجه شمالًا"
+  },
+  {
+   "approx": [
+    [
+     394,
+     321,
+     427,
+     336
+    ]
+   ],
+   "text": "دمشق",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     398,
+     335.5,
+     434,
+     350
+    ]
+   ],
+   "text": "الكوفة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     403,
+     349.5,
+     419,
+     358
+    ]
+   ],
+   "text": "٦٣٤",
+   "kind": "date",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     396,
+     362,
+     421,
+     378
+    ]
+   ],
+   "text": "دوما",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     439,
+     332,
+     476,
+     341.5
+    ]
+   ],
+   "text": "قطيسفون",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     439,
+     341.5,
+     455,
+     348.5
+    ]
+   ],
+   "text": "٦٣٩",
+   "kind": "date",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    35
+   ],
+   "text": "همدان",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     461,
+     336,
+     485,
+     347
+    ]
+   ],
+   "text": "الأحواز",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     480,
+     342,
+     509,
+     354
+    ]
+   ],
+   "text": "إصطخر",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     490,
+     312,
+     515,
+     328
+    ]
+   ],
+   "text": "الري",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    33,
+    32,
+    31
+   ],
+   "text": "٦٤٣",
+   "kind": "date",
+   "conf": "high",
+   "note": "قرب «الري»"
+  },
+  {
+   "ids": [
+    51
+   ],
+   "text": "هرمز",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     416,
+     384,
+     451,
+     398
+    ]
+   ],
+   "text": "اليمامة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    58
+   ],
+   "text": "المدينة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     441,
+     400,
+     459,
+     410
+    ]
+   ],
+   "text": "٦٣٣",
+   "kind": "date",
+   "conf": "high",
+   "note": "قرب «المدينة» و«اليمامة»"
+  },
+  {
+   "ids": [
+    61
+   ],
+   "text": "مكة",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "approx": [
+    [
+     475,
+     424,
+     493,
+     439
+    ]
+   ],
+   "text": "٦٣٣",
+   "kind": "date",
+   "conf": "high",
+   "note": "على سهم متجه نحو «حضرموت»"
+  },
+  {
+   "ids": [
+    67,
+    71
+   ],
+   "text": "حضرموت",
+   "kind": "region",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    76
+   ],
+   "text": "عدن",
+   "kind": "place",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    21
+   ],
+   "text": "أ",
+   "kind": "other",
+   "conf": "low",
+   "note": "حرف منفرد على الساحل الغربي لبحر قزوين كما يظهر في المصدر؛ قد يكون جزءًا من تسمية مبتورة — يحتاج إلى مراجعة"
+  }
+ ],
+ "clusterSignature": "b52984522b2a"
+}
