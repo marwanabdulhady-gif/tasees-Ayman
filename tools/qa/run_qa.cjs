@@ -371,6 +371,33 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     qRealErrors.length === 0, qRealErrors.slice(0, 3).join(" ; "));
   await qPage.close();
 
+  // --- QA guard: hub links in atlas-modules/index.html must resolve ---
+  const hubHtml = fs.readFileSync(path.join(ROOT, "atlas-modules/index.html"), "utf8");
+  const hubLinks = [...hubHtml.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
+  const brokenHubLinks = [];
+  for (const href of hubLinks) {
+    if (href.startsWith("http")) continue; // external links are allowed
+    const target = path.resolve(path.join(ROOT, "atlas-modules", href));
+    if (!fs.existsSync(target)) brokenHubLinks.push(href);
+  }
+  check("12.1", "All internal hub links in atlas-modules/index.html resolve to existing files",
+    brokenHubLinks.length === 0, brokenHubLinks.length ? `broken=${brokenHubLinks.join(", ")}` : "all OK");
+
+  // --- QA guard: every volume with map pages must have hotspot coverage ---
+  const hubManifest = JSON.parse(fs.readFileSync(path.join(ROOT, "data/manifest.json"), "utf8"));
+  const vols = {};
+  for (const p of hubManifest.pages) {
+    if (p.category !== "map" && p.category !== "spread-map") continue;
+    const v = p.volumeId;
+    if (!vols[v]) vols[v] = { maps: 0, withHot: 0 };
+    vols[v].maps++;
+    if ((p.hotspots || []).length > 0) vols[v].withHot++;
+  }
+  // maps8 uses vector hotspots (maps8-vectors.js), not raster page hotspots — exclude
+  const volMissingHot = Object.entries(vols).filter(([v, s]) => v !== "maps8" && s.withHot === 0 && s.maps > 0);
+  check("12.2", "Every non-maps8 volume with map pages has at least one page with verified hotspots",
+    volMissingHot.length === 0, volMissingHot.length ? `no-hotspot-volumes=${volMissingHot.map(([v])=>v).join(",")}` : "all covered");
+
   await browser.close();
 
   const passed = results.filter((r) => r.ok).length;
