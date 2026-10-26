@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-26T10:01:26.868Z",
+  "timestamp": "2026-10-26T15:12:02.665Z",
   "total": 57,
   "passed": 57,
   "results": [
@@ -331,7 +331,7 @@
       "section": "14.6",
       "name": "Learning module supports scanned Blind Map Challenge («الخريطة الصمّاء») with numbered parchment masks",
       "ok": true,
-      "detail": "pins=6"
+      "detail": "pins=4"
     },
     {
       "section": "14.7",

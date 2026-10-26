@@ -1,12 +1,14 @@
 # Instructions for every AI agent in this repository
 
+> **START HERE: [`00_مهام_الوكلاء.md`](00_مهام_الوكلاء.md)** — the only task list. Pick the first ready task, follow its card step by step, run `python3 07_الهوية_البصرية_والتفاعل/tools/check_all.py` (must print `PASS`), open a pull request, never merge.
+
 Before you change anything visual or interactive, read
 **[`07_الهوية_البصرية_والتفاعل/04_تعليمات_وكلاء_الذكاء_الاصطناعي.md`](07_الهوية_البصرية_والتفاعل/04_تعليمات_وكلاء_الذكاء_الاصطناعي.md)**
 from top to bottom (English summary in its §6).
 
 The short version:
 
-1. Take the first task in §4 of that file that is not done and not blocked. One task, one unit, one branch, one pull request.
+1. Take the first ready task in `00_مهام_الوكلاء.md` (not §4 of the instructions file — that is reference only). One task, one branch, one pull request.
 2. No faces of prophets, companions or any real person (Ayman Abdulrahim included). No text, letters or numbers inside generated images.
 3. Never change course wording or add facts. The scripts in `02_الوحدات_التعليمية/*/01_الأصول_النصية/` are the source.
 4. Colours and fonts come only from `07_الهوية_البصرية_والتفاعل/templates/tokens.json`.

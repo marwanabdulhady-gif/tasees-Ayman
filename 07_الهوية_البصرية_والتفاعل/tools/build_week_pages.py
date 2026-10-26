@@ -11,7 +11,9 @@
     و`check_drift.py` يعرف إن الصفحة صارت قديمة بعد أي تعديل في النص.
   · يتحقق من التسلسل (الخطة البصرية §2) ومن أن الأنماط تتبع ترتيب `visual_plan_data.py`.
 
-لا تُعدّل الصفحات الناتجة يدويًا: عدّل `week_content_data.py` ثم أعد البناء.
+لا تُعدّل الصفحات الناتجة يدويًا: عدّل المحتوى ثم أعد البناء.
+المحتوى: الأسابيع 1–17 في `week_content_data.py`، وكل أسبوع جديد ملف `week_content/wNN.json`
+(نفس الشكل تمامًا — انظر `week_content/_example_w08.json`).
 """
 
 import json
@@ -23,13 +25,28 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from sources import fingerprint  # noqa: E402
 from visual_plan_data import WEEKS, UNIT_DIR, ATLAS  # noqa: E402
-from week_content_data import WEEK_CONTENT  # noqa: E402
+from week_content_data import WEEK_CONTENT as _PY_CONTENT  # noqa: E402
 
 PKG = HERE.parent                       # 07_الهوية_البصرية_والتفاعل
 ROOT = PKG.parent
 UNITS = ROOT / "02_الوحدات_التعليمية"
 TEMPLATE = PKG / "templates" / "week-template.html"
 AR = str.maketrans("0123456789", "٠١٢٣٤٥٦٧٨٩")
+CONTENT_DIR = PKG / "week_content"      # أسبوع جديد = ملف واحد week_content/wNN.json (لا تعارض بين الوكلاء)
+
+
+def load_content():
+    """الأسابيع 1–17 في week_content_data.py؛ ما بعدها ملف JSON لكل أسبوع. لا يُكتب أسبوع في المكانين."""
+    content = dict(_PY_CONTENT)
+    for f in sorted(CONTENT_DIR.glob("w[0-9][0-9].json")):
+        n = int(f.stem[1:])
+        if n in content:
+            raise SystemExit(f"الأسبوع {n} موجود في week_content_data.py وفي {f.name} — احذف واحدًا")
+        content[n] = json.loads(f.read_text(encoding="utf-8"))
+    return content
+
+
+WEEK_CONTENT = load_content()
 LAYOUTS = {"L1", "L2", "L3", "L4", "L5", "L6", "L7"}
 TRACKS = {"مستكشف", "ممارس", "متقدم"}
 
