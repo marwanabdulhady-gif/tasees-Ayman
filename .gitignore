@@ -7,3 +7,15 @@ cookies.txt
 node_modules/
 .DS_Store
 data/ocr/
+
+# --- from PR #2: three-PDF corpus pipeline build products ---
+# Large source PDFs are fetched from Drive links, not committed.
+google_drive/*.pdf
+assets/pages/sira/
+assets/pages/abubakr/
+assets/pages/islamic-maps/
+assets/thumbnails/
+assets/ocr/
+tools/ocr/lang-data/*.traineddata
+tools/ocr/lang-data/*.gz
+Thumbs.db
