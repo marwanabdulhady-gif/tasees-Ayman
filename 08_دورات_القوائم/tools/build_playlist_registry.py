@@ -19,6 +19,16 @@ ROOT = PKG.parent
 AR = str.maketrans("0123456789", "٠١٢٣٤٥٦٧٨٩")
 
 # slug, folder, title, speaker, voice, phase colour, atlas-relevant
+# Each course lives in an Arabic folder (the layout the course agents already use):
+COURSE_DIR = {
+    "ayman-umayyad-abbasid": "تاريخ_الأمويين_والعباسيين",
+    "ayman-linguistic-awareness": "الوعي_اللغوي",
+    "ayman-psychology": "علم_النفس",
+    "ayman-seerah-makkah": "السيرة_النبوية_العهد_المكي",
+    "ayman-reestablishing-awareness": "إعادة_تأسيس_وعي_المسلم_المعاصر",
+    "q100-history": "100_سؤال_في_التاريخ",
+    "rihlat-alyaqeen": "رحلة_اليقين",
+}
 PLAYLISTS = [
     ("ayman-umayyad-abbasid", "transcripts/01-umayyad-abbasid-history", "تاريخ الأمويين والعباسيين",
      "م. أيمن عبد الرحيم", "ayman", 2, True),
@@ -100,12 +110,12 @@ def main():
             if bad:
                 warnings.append(f"فهرس README في `{folder}` يخالف الملفات في {len(bad)} صفًا (مثلًا الصف {bad[0][0]} يقول «المحاضرة {bad[0][1]}») — اعتمد عنوان الملف ومحتواه، لا الفهرس")
         stamped = sum(1 for e in eps if e["timestamps"])
-        reg.append(dict(slug=slug, title=title, folder=folder, speaker=speaker, voice=voice, phase=phase, atlas=atlas,
+        reg.append(dict(slug=slug, course_dir=COURSE_DIR[slug], title=title, folder=folder, speaker=speaker, voice=voice, phase=phase, atlas=atlas,
                         episodes=len(eps), words=sum(e["words"] for e in eps),
                         citation="timestamp" if stamped == len(eps) else "paragraph" if stamped == 0 else "mixed",
                         warnings=warnings, items=eps))
 
-        out = PKG / slug
+        out = PKG / COURSE_DIR[slug]
         out.mkdir(parents=True, exist_ok=True)
         table = [f"# {title} — الحلقات", "", "> **ملف مولَّد** من `08_دورات_القوائم/tools/build_playlist_registry.py`. لا تعدّله يدويًا.", "",
                  f"- **المتحدث:** {speaker}", f"- **المصدر:** `{folder}/`", f"- **الحلقات:** {str(len(eps)).translate(AR)} · **الكلمات:** {sum(e['words'] for e in eps):,}",
@@ -124,8 +134,9 @@ def main():
                 f"دورة قصيرة مستقلة مبنية على قائمة «{title}» ({str(len(eps)).translate(AR)} حلقة)، بهوية «الكراسة والعمود» وقوالبها.\n"
                 f"المواصفة: [`../00_مواصفة_دورة_القائمة.md`](../00_مواصفة_دورة_القائمة.md) · الحلقات: [`00_الحلقات.md`](00_الحلقات.md)\n", encoding="utf-8")
         if not (out / "00_خريطة_الدورة.json").exists():
+            has_lessons = any((out / d).is_dir() and any((out / d).rglob("*.md")) for d in ("الدروس", "دروس"))
             (out / "00_خريطة_الدورة.json").write_text(json.dumps(dict(
-                slug=slug, title=title, status="لم تبدأ", audience="", guiding_question="", phase=phase,
+                slug=slug, title=title, status="نصوص بلا خريطة" if has_lessons else "لم تبدأ", audience="", guiding_question="", phase=phase,
                 voice=voice, lessons=[]), ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
     (PKG / "playlists.json").write_text(json.dumps(dict(
@@ -138,8 +149,8 @@ def main():
     by = {r["slug"]: r for r in reg}
     for i, sl in enumerate(order, 1):
         r = by[sl]
-        st = json.loads((PKG / sl / "00_خريطة_الدورة.json").read_text(encoding="utf-8")).get("status", "")
-        summ.append(f"| {i} | [{r['title']}]({sl}/README.md) | {r['speaker']} | {r['episodes']} | {r['words']:,} | "
+        st = json.loads((PKG / COURSE_DIR[sl] / "00_خريطة_الدورة.json").read_text(encoding="utf-8")).get("status", "")
+        summ.append(f"| {i} | [{r['title']}]({COURSE_DIR[sl]}/README.md) | {r['speaker']} | {r['episodes']} | {r['words']:,} | "
                     f"{dict(timestamp='طابع زمني', paragraph='رقم فقرة', mixed='مختلط')[r['citation']]} | {'نعم' if r['atlas'] else '—'} | {len(r['warnings'])} | {st} |")
     (PKG / "01_القوائم.md").write_text("\n".join(summ) + "\n", encoding="utf-8")
     for r in reg:

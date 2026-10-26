@@ -37,7 +37,7 @@ def main(argv):
     reg = {p["slug"]: p for p in json.loads((PKG / "playlists.json").read_text(encoding="utf-8"))["playlists"]}
     if slug not in reg:
         print(f"FAIL unknown slug {slug}; known: {', '.join(reg)}"); return 1
-    map_path = Path(argv[argv.index("--map") + 1]) if "--map" in argv else PKG / slug / "00_خريطة_الدورة.json"
+    map_path = Path(argv[argv.index("--map") + 1]) if "--map" in argv else PKG / reg[slug]["course_dir"] / "00_خريطة_الدورة.json"
     pl, cmap = reg[slug], json.loads(map_path.read_text(encoding="utf-8"))
     final = cmap.get("status") in ("للمراجعة", "مكتملة")
     eps = {e["n"]: e for e in pl["items"]}
@@ -116,8 +116,11 @@ def main(argv):
                 for hid in pick.get("find", []):
                     if hid not in hs:
                         fails.append(f"{tag}: page {pid} has no hotspot {hid}")
+        txt = l.get("text")
+        if txt and not (PKG / reg[slug]["course_dir"] / txt).exists():
+            fails.append(f"{tag}: lesson text {txt} does not exist")
         page = l.get("page")
-        if page and not (PKG / slug / page).exists():
+        if page and not (PKG / reg[slug]["course_dir"] / page).exists():
             fails.append(f"{tag}: page file {page} does not exist")
 
     built = cmap.get("built_from", {})

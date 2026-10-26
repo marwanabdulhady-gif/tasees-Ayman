@@ -103,7 +103,9 @@ export default function EvliyaView({
     setLoading(true);
     setError(null);
 
-    fetch(EVLIYA_DATA_URL, { signal: controller.signal })
+    const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) || './';
+    const resolvedEvliyaUrl = EVLIYA_DATA_URL.startsWith('/') ? `${base}${EVLIYA_DATA_URL.slice(1)}` : EVLIYA_DATA_URL;
+    fetch(resolvedEvliyaUrl, { signal: controller.signal })
       .then(r => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.json();

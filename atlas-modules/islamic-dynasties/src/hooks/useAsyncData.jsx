@@ -10,6 +10,13 @@ import { useState, useEffect, useRef } from 'react';
 
 const cache = new Map();
 
+export function resolveDataUrl(url) {
+  if (!url) return url;
+  if (/^(https?:|data:|blob:)/.test(url)) return url;
+  const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) || './';
+  return url.startsWith('/') ? `${base}${url.slice(1)}` : url;
+}
+
 export default function useAsyncData(url) {
   const [data, setData] = useState(() => (url && cache.has(url) ? cache.get(url) : null));
   const [loading, setLoading] = useState(() => (url && !cache.has(url)));
@@ -30,7 +37,7 @@ export default function useAsyncData(url) {
     setLoading(true);
     setError(null);
 
-    fetch(url)
+    fetch(resolveDataUrl(url))
       .then(r => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.json();
@@ -59,7 +66,7 @@ export default function useAsyncData(url) {
  */
 export function preloadData(url) {
   if (!url || cache.has(url)) return;
-  fetch(url)
+  fetch(resolveDataUrl(url))
     .then(r => r.ok ? r.json() : null)
     .then(json => { if (json) cache.set(url, json); })
     .catch(() => {});

@@ -91,10 +91,14 @@
 <header>
   <div class="logo" aria-hidden="true"></div>
   <div>
-    <h1>أطلس القرآن — مواقع القرآن الكريم</div>
+    <h1>أطلس القرآن — مواقع القرآن الكريم</h1>
     <div class="sub">الأماكن والأشخاص المذكورون في القرآن · إحالات الآيات · علامة الثقة الجغرافية · يعمل دون اتصال</div>
   </div>
   <div class="stats" id="stats"></div>
+  <nav style="display:flex;gap:8px;align-items:center;font-size:12px">
+    <a href="../../index.html#tab=courses&unit=4" style="color:#f0d9a0;text-decoration:none;border:1px solid #5c4a1e;padding:4px 10px;border-radius:999px">🧭 مسار تأسيس (و٤)</a>
+    <a href="../index.html" style="color:#8bb4de;text-decoration:none;border:1px solid #2b384e;padding:4px 10px;border-radius:999px">← الأطالس الإضافية</a>
+  </nav>
 </header>
 
 <main>
@@ -284,7 +288,26 @@
     });
     const li = listEl.querySelector('li[data-id="'+id+'"]');
     if(li) li.scrollIntoView({block:"nearest",behavior:"smooth"});
+    try { history.replaceState(null, "", "#loc=" + encodeURIComponent(id)); } catch (e) {}
   }
+
+  function applyHashRoute(){
+    const raw = (location.hash || "").replace(/^#/, "");
+    if(!raw) return;
+    const params = new URLSearchParams(raw);
+    const qParam = params.get("q");
+    if(qParam){
+      qEl.value = qParam;
+      applyFilter();
+    }
+    const locParam = params.get("loc");
+    if(locParam){
+      const match = LOCS.find(x => x.id === locParam || x.name.includes(locParam));
+      if(match) setTimeout(() => select(match.id, true), 120);
+    }
+  }
+  window.addEventListener("hashchange", applyHashRoute);
+  applyHashRoute();
 })();
 </script>
 </body>

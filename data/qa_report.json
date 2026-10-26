@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-10-26T07:50:02.191Z",
-  "total": 44,
-  "passed": 44,
+  "timestamp": "2026-10-26T10:01:26.868Z",
+  "total": 57,
+  "passed": 57,
   "results": [
     {
       "section": "12.1",
@@ -91,7 +91,7 @@
       "section": "12.3",
       "name": "Arabic search normalizes Alef Maqsura and Ya (ى ↔ ي)",
       "ok": true,
-      "detail": "hits=30"
+      "detail": "hits=32"
     },
     {
       "section": "12.3",
@@ -163,7 +163,7 @@
       "section": "12.2",
       "name": "Switching to Volume 7 (أطلس دول العالم الإسلامي) loads the cover/front matter",
       "ok": true,
-      "detail": "الغلاف الأمامي — أطلس دول العالم الإسلامي"
+      "detail": "العالم الإسلامي (سياسي) — خريطة العالم"
     },
     {
       "section": "12.3",
@@ -266,6 +266,84 @@
       "name": "Quran Atlas: zero runtime JS errors (expected tile/embed aborts excluded)",
       "ok": true,
       "detail": ""
+    },
+    {
+      "section": "12.1",
+      "name": "All internal hub links in atlas-modules/index.html resolve to existing files",
+      "ok": true,
+      "detail": "all OK"
+    },
+    {
+      "section": "12.2",
+      "name": "Every non-maps8 volume with map pages has at least one page with clickable hotspots",
+      "ok": true,
+      "detail": "all covered"
+    },
+    {
+      "section": "12.2",
+      "name": "Dawal reviewed anchors match source-image hashes and pixel coordinates; pending anchors stay estimated",
+      "ok": true,
+      "detail": "89/89 visually reviewed; "
+    },
+    {
+      "section": "12.1",
+      "name": "Browser manifest bundle exactly matches manifest.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "section": "12.2",
+      "name": "Every visually reviewed Dawal anchor renders at its measured position and opens its own info card offline",
+      "ok": true,
+      "detail": "89 anchors; failures="
+    },
+    {
+      "section": "14.1",
+      "name": "Curated historical map hotspots expanded to 80 maps across Seerah, Abu Bakr, Umar, Uthman & Ali (770 total verified hotspots)",
+      "ok": true,
+      "detail": "curatedVols2to6=80, totalVerifiedHotspots=770"
+    },
+    {
+      "section": "14.2",
+      "name": "Islamic Dynasties Atlas loads offline over file:// via pre-built classic script bundle",
+      "ok": true,
+      "detail": "rootHtmlLen=1689"
+    },
+    {
+      "section": "14.3",
+      "name": "URL deep-link (#page=seerah-110&hs=sr110-taif-thaqif) auto-rotates sideways map 90° and opens target hotspot + reverse course link",
+      "ok": true,
+      "detail": "{\"featTitle\":\"منازل الطائف وثقيف\",\"worldTransform\":\"translate(-94.3px, -368.51px) scale(3.57766) translate(1146px, 0px) rotate(90deg)\",\"reverseCoursePills\":1}"
+    },
+    {
+      "section": "14.4",
+      "name": "Course Pathway (#tab=courses&unit=5&week=w21) highlights Week 21 and renders interactive P11 Fitna timeline stations",
+      "ok": true,
+      "detail": "{\"hasHighlightedW21\":true,\"p11Btns\":5}"
+    },
+    {
+      "section": "14.5",
+      "name": "Raster-registered historical comparison enables interactive Swipe curtain (#cmp-swipe-range updates clip-path)",
+      "ok": true,
+      "detail": "inset(0px 0px 0px 32%)"
+    },
+    {
+      "section": "14.6",
+      "name": "Learning module supports scanned Blind Map Challenge («الخريطة الصمّاء») with numbered parchment masks",
+      "ok": true,
+      "detail": "pins=6"
+    },
+    {
+      "section": "14.7",
+      "name": "Pattern R.P11 («الزمن والأطلس») renders live deep-link buttons resolving to index.html#page=...",
+      "ok": true,
+      "detail": "file:///home/user/tasees-Ayman/index.html#page=ali-251&week=w22"
+    },
+    {
+      "section": "14.8",
+      "name": "Zero runtime JS or blocked external requests across all Track 1–3 tests",
+      "ok": true,
+      "detail": "jsErrors=0, blocked=0"
     }
   ],
   "jsErrors": [],

@@ -33,24 +33,30 @@
   <div class="wrap">
     <header class="top">
       <span>☪ منصة الأطالس الجغرافية والتاريخية العربية</span>
-      <a href="../index.html">→ العودة إلى المنصة الرئيسية</a>
+      <span style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="../index.html#tab=courses">🧭 مسار دورة تأسيس والمحاضرات</a>
+        <a href="../index.html">→ العودة إلى المنصة الرئيسية (الأطالس السبعة)</a>
+      </span>
     </header>
 
     <h1>مجموعة الأطالس الإضافية</h1>
-    <p class="sub">مصادر أطلسية مفتوحة المصدر استُخدمت وورِثت إلى المنصة — مترجمةً إلى العربية حيث أمكن، وموثَّقةً بمصادرها ورخصها.</p>
+    <p class="sub">مصادر أطلسية مفتوحة المصدر مدمجة في المنصة ومربوطة بمسار دورة تأسيس وسلاسل المحاضرات — تعمل دون اتصال بالإنترنت وموثَّقةً بمصادرها ورخصها.</p>
 
     <div class="grid">
       <div class="card">
-        <span class="badge net">يحتاج بناء محلي · npm run build</span>
+        <span class="badge off">أوفلاين · حزمة جاهزة مدمجة</span>
         <h2>أطلس السلالات الإسلامية</h2>
         <p>
           186 سلالة، 830 حاكمًا، 100 معركة، 450 عالمًا، 15 طريقًا تجاريًا، 13,940 ترجمة من «الأعلام» للزركلي،
           12,954 مدخلًا جغرافيًا من «معجم البلدان» لياقوت، و8,528 ترجمة من الموسوعة الإسلامية التركية (DİA) —
           بمحركات خريطة وخط زمني وشبكات سببية وعلماء (632–1924م).
-          المصدر: <em>Islamic Dynasties Atlas</em> (v6.10) — رخصة CC BY-SA 4.0 — الإصدار المحلي عربي/RTL افتراضيًا.
-          <br/><strong>تشغيل:</strong> <code>cd atlas-modules/islamic-dynasties && PUPPETEER_SKIP_DOWNLOAD=1 npm install && npm run build</code>
+          المصدر: <em>Islamic Dynasties Atlas</em> (v6.10) — رخصة CC BY-SA 4.0 — عربي/RTL افتراضيًا، مرتبط بالوحدتين 6 و7 في دورة تأسيس.
+          <br/><small style="color:var(--dim)">لإعادة البناء من المصدر عند التعديل: <code>node tools/build_islamic_dynasties_offline.mjs</code></small>
         </p>
-        <div class="go"><a href="./islamic-dynasties/dist/index.html">افتح الأطلس ←</a></div>
+        <div class="go" style="display:flex;gap:8px;flex-wrap:wrap">
+          <a href="./islamic-dynasties/public/index.html">افتح الأطلس ←</a>
+          <a class="plain" href="../index.html#tab=courses&unit=6">دروس الوحدة 6 المرتبطة</a>
+        </div>
       </div>
 
       <div class="card">
@@ -59,10 +65,13 @@
         <p>
           42 موقعًا وشخصية من القرآن الكريم (مكة، بيت المقدس، الطور، سبأ، الأحقاف، الحِجر، ذو القرنين، الأنبياء…) بمقتطفات من نص المصحف
           على خريطة تفاعلية بأوفلاين، مع إحالات «سورة:آية» وعلامات الثقة الجغرافية (مرفوع / راجح / تقليدي)
-          وصفحات نتائج فورية. الخريطة الخارجية الأصلية <em>Atlas of the Quran</em> (Google My Maps — GPL v3)
+          وروابط عميقة (<code>#loc=...</code>) مرتبطة بالوحدة 4 (السيرة والعهد المكي). الخريطة الخارجية الأصلية <em>Atlas of the Quran</em> (Google My Maps — GPL v3)
           متاحة كمُلحق اختياري عند توفر الاتصال.
         </p>
-        <div class="go"><a href="./atlas-of-quran/index.html">افتح الأطلس ←</a></div>
+        <div class="go" style="display:flex;gap:8px;flex-wrap:wrap">
+          <a href="./atlas-of-quran/index.html">افتح الأطلس ←</a>
+          <a class="plain" href="../index.html#tab=courses&unit=4">دروس الوحدة 4 المرتبطة</a>
+        </div>
       </div>
 
       <div class="card">

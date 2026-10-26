@@ -41,7 +41,8 @@ export async function loadSearchEngine() {
   _loading = true;
   _loadPromise = (async () => {
     try {
-      const res = await fetch('/data/dia_chunks.json');
+      const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) || './';
+      const res = await fetch(`${base}data/dia_chunks.json`);
       if (!res.ok) throw new Error('Failed to load chunks data');
 
       const chunksData = await res.json();

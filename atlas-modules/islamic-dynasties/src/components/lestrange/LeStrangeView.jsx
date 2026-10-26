@@ -158,7 +158,8 @@ function LeStrangeViewInner({ lang, initialSearch }) {
   /* Load xref separately to avoid double-useAsyncData hook issues */
   const [xrefData, setXrefData] = useState(null);
   useEffect(() => {
-    fetch('/data/le_strange_xref.json')
+    const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) || './';
+    fetch(`${base}data/le_strange_xref.json`)
       .then(r => r.json())
       .then(setXrefData)
       .catch(() => setXrefData({}));

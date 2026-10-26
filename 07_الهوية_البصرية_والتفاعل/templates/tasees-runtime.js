@@ -4,8 +4,10 @@
    No libraries. All learner input stays in localStorage (wrapped in try/catch). */
 (function () {
   "use strict";
+  var RUNTIME_SRC = (document.currentScript && document.currentScript.src) || "";
+  var DOC_WEEK = (document.documentElement && document.documentElement.getAttribute ? (document.documentElement.getAttribute("data-week") || "") : "");
   // storage namespace per week: <html data-week="w01">
-  var NS = "tasees-" + (document.documentElement && document.documentElement.getAttribute ? (document.documentElement.getAttribute("data-week") || "tpl") : "tpl") + "-";
+  var NS = "tasees-" + (DOC_WEEK || "tpl") + "-";
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var AR = function (n) { return String(n).replace(/\d/g, function (d) { return "٠١٢٣٤٥٦٧٨٩"[d]; }); };
@@ -103,9 +105,95 @@
     box.append(el("p", { class: "flag" }, d.flag), f, gr, msg);
   };
 
-  R.P11 = function (box, d) {               // timeline
-    var tl = el("div", { class: "tl" }), out = el("p", { class: "t-feedback" }); out.innerHTML = "<strong>" + d.prompt + "</strong>";
-    d.events.forEach(function (e) { var b = el("button", { type: "button", "aria-pressed": "false" }, e[0]); b.onclick = function () { $$("button", tl).forEach(function (x) { x.setAttribute("aria-pressed", x === b); }); out.innerHTML = "<strong>" + e[0] + "</strong>" + e[1]; }; tl.appendChild(b); });
+  function resolveAtlasUrl(relFromRoot, hashParams, customBase) {
+    var base = customBase || (document.documentElement && document.documentElement.getAttribute && document.documentElement.getAttribute("data-atlas-root")) || "";
+    var targetPath = relFromRoot || "index.html";
+    var resolved = targetPath;
+    try {
+      if (base) {
+        resolved = base.replace(/\/?$/, "/") + targetPath;
+      } else if (RUNTIME_SRC) {
+        resolved = new URL("../../" + targetPath, RUNTIME_SRC).href;
+      } else {
+        resolved = "../../" + targetPath;
+      }
+    } catch (err) {
+      resolved = "../../" + targetPath;
+    }
+    var pairs = [];
+    for (var k in (hashParams || {})) {
+      if (hashParams[k] != null && hashParams[k] !== "") {
+        pairs.push(encodeURIComponent(k) + "=" + encodeURIComponent(hashParams[k]));
+      }
+    }
+    return pairs.length ? (resolved + "#" + pairs.join("&")) : resolved;
+  }
+
+  R.P11 = function (box, d) {               // timeline + interactive atlas deep-linking
+    var tl = el("div", { class: "tl" }), out = el("div", { class: "t-feedback" });
+    var wk = d.week || (DOC_WEEK && /^w\d+/i.test(DOC_WEEK) ? DOC_WEEK : "");
+    out.innerHTML = "<strong>" + d.prompt + "</strong>";
+
+    function normEvent(raw) {
+      if (Array.isArray(raw)) {
+        return { date: raw[0], text: raw[1], meta: raw[2] || null };
+      }
+      return { date: raw.date || raw[0] || "", text: raw.text || raw[1] || "", meta: raw };
+    }
+
+    function renderStation(ev) {
+      var m = ev.meta || {};
+      var gradeHtml = m.grade ? ' <span class="t-sanad">' + m.grade + "</span>" : "";
+      var placeHtml = m.place ? '<div class="t-small" style="margin-top:4px">📍 ' + m.place + "</div>" : "";
+      out.innerHTML = "<strong>" + ev.date + gradeHtml + "</strong><div>" + ev.text + "</div>" + placeHtml;
+
+      var bar = el("div", { class: "t-atlas-bar" });
+      var hasLinks = false;
+
+      if (m.moduleUrl) {
+        var modLink = el("a", { class: "t-atlas-link", href: resolveAtlasUrl(m.moduleUrl, m.moduleHash || {}, d.atlasRoot), target: "_blank", rel: "noopener" }, "🗺️ " + (m.label || "افتح في الأطلس التفاعلي ←"));
+        bar.appendChild(modLink);
+        hasLinks = true;
+      } else if (m.page) {
+        var hp = { page: m.page };
+        if (m.hs) hp.hs = m.hs;
+        if (m.ft) hp.ft = m.ft;
+        if (wk) hp.week = wk;
+        var mapLink = el("a", { class: "t-atlas-link", href: resolveAtlasUrl("index.html", hp, d.atlasRoot), target: "_blank", rel: "noopener" }, "🗺️ " + (m.label || "افتح الموضع في الأطلس ←"));
+        bar.appendChild(mapLink);
+        hasLinks = true;
+      }
+
+      if (m.cmp) {
+        var cmpHp = { tab: "compare", cmp: m.cmp };
+        if (wk) cmpHp.week = wk;
+        var cmpLink = el("a", { class: "t-atlas-link t-atlas-link--sub", href: resolveAtlasUrl("index.html", cmpHp, d.atlasRoot), target: "_blank", rel: "noopener" }, "⚖️ " + (m.cmpLabel || "قارن الخريطتين ←"));
+        bar.appendChild(cmpLink);
+        hasLinks = true;
+      }
+
+      if (wk || d.unit) {
+        var courseHp = { tab: "courses" };
+        if (d.unit) courseHp.unit = d.unit;
+        if (wk) courseHp.week = wk;
+        var cLink = el("a", { class: "t-atlas-link t-atlas-link--sub", href: resolveAtlasUrl("index.html", courseHp, d.atlasRoot), target: "_blank", rel: "noopener" }, "🧭 مسار الدرس في الأطلس");
+        bar.appendChild(cLink);
+        hasLinks = true;
+      }
+
+      if (hasLinks) out.appendChild(bar);
+    }
+
+    d.events.forEach(function (rawEv) {
+      var ev = normEvent(rawEv);
+      var hasPin = ev.meta && (ev.meta.page || ev.meta.moduleUrl || ev.meta.cmp);
+      var b = el("button", { type: "button", "aria-pressed": "false" }, ev.date + (hasPin ? " · 🗺️" : ""));
+      b.onclick = function () {
+        $$("button", tl).forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+        renderStation(ev);
+      };
+      tl.appendChild(b);
+    });
     box.append(tl, out);
   };
 

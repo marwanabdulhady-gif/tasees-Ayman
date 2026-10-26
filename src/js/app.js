@@ -1,5 +1,5 @@
 /* ==========================================================================
-   app.js — Main Controller for the 5-Volume Interactive Arabic Atlas Platform
+   app.js — Main Controller for the 7-Volume Interactive Arabic Atlas Platform
    ========================================================================== */
 (function () {
   "use strict";
@@ -38,7 +38,7 @@
     // Persisted user preferences
     const persisted = loadState();
     const state = {
-      activeTab: "explore", // explore | toc | original | compare | gazetteer | learn | audit
+      activeTab: "explore", // explore | courses | toc | original | compare | gazetteer | learn | audit
       activeVolumeId: persisted.activeVolumeId || "maps8",
       lastPageByVol: Object.assign(
         {
@@ -48,6 +48,7 @@
           umar: "umar-038",
           uthman: "uthman-042",
           ali: "ali-131",
+          dawal: "dawal-134",
         },
         persisted.lastPageByVol || {}
       ),
@@ -122,8 +123,45 @@
     let activeViewerHandle = null;
     let compareCtrl = null;
     let learnCtrl = null;
+    let coursesCtrl = null;
     let origPzMain = null;
     let origPzInteractive = null;
+    let suppressHashSync = false;
+
+    function syncUrlHash() {
+      if (suppressHashSync) return;
+      const parts = [];
+      if (state.activeTab === "explore") {
+        parts.push(`page=${encodeURIComponent(state.currentPageId)}`);
+        if (state.selectedFeature && state.selectedFeature.type === "hotspot" && state.selectedFeature.data) {
+          parts.push(`hs=${encodeURIComponent(state.selectedFeature.data.id)}`);
+        } else if (state.selectedFeature && state.selectedFeature.type === "vector" && state.selectedFeature.data) {
+          parts.push(`ft=${encodeURIComponent(state.selectedFeature.data.id)}`);
+        }
+      } else {
+        parts.push(`tab=${encodeURIComponent(state.activeTab)}`);
+        if (state.activeTab === "compare" && compareCtrl && compareCtrl.activePresetId) {
+          parts.push(`cmp=${encodeURIComponent(compareCtrl.activePresetId)}`);
+        } else if (state.activeTab === "courses" && coursesCtrl) {
+          if (coursesCtrl.state.viewMode === "series" && coursesCtrl.state.selectedSeriesId) {
+            parts.push(`series=${encodeURIComponent(coursesCtrl.state.selectedSeriesId)}`);
+          } else {
+            if (coursesCtrl.state.unitFilter && coursesCtrl.state.unitFilter !== "all") {
+              parts.push(`unit=${encodeURIComponent(coursesCtrl.state.unitFilter)}`);
+            }
+            if (coursesCtrl.state.selectedWeekId) {
+              parts.push(`week=${encodeURIComponent(coursesCtrl.state.selectedWeekId)}`);
+            }
+          }
+        }
+      }
+      const nextHash = "#" + parts.join("&");
+      if (window.location.hash !== nextHash) {
+        try {
+          history.replaceState(null, "", nextHash);
+        } catch (_) {}
+      }
+    }
 
     // Tooltip helper
     function showTooltip(text, x, y) {
@@ -222,6 +260,36 @@
       }
     }
 
+    function ensureCoursesCtrl() {
+      if (!coursesCtrl && window.AtlasCourses) {
+        coursesCtrl = new window.AtlasCourses.CoursePathwayController(manifest, {
+          onOpenMap: (pid, opts = {}) => {
+            const p = pageById.get(pid);
+            let sel = null;
+            if (p && opts.hotspotId) {
+              const hsObj = (p.hotspots || []).find((h) => h.id === opts.hotspotId);
+              if (hsObj) sel = { type: "hotspot", data: hsObj };
+            }
+            openPageInExplorer(pid, {
+              autoRotateUpright: true,
+              focusHotspotId: opts.hotspotId || undefined,
+              selectedFeature: sel,
+            });
+          },
+          onOpenComparison: (cmpId) => {
+            switchTab("compare");
+            if (compareCtrl) compareCtrl.selectPreset(cmpId);
+            syncUrlHash();
+          },
+          onStartCourseQuiz: (filterKey, label) => {
+            switchTab("learn");
+            if (learnCtrl) learnCtrl.applyCourseFilter(filterKey, label);
+          },
+        });
+      }
+      return coursesCtrl;
+    }
+
     function switchTab(tabName) {
       if (tabName === "learn" && state.referenceOnly) tabName = "explore";
       state.activeTab = tabName;
@@ -229,6 +297,9 @@
 
       if (tabName === "explore") {
         renderExplorerAll();
+      } else if (tabName === "courses") {
+        const ctrl = ensureCoursesCtrl();
+        if (ctrl) ctrl.render();
       } else if (tabName === "toc") {
         renderTocView();
       } else if (tabName === "original") {
@@ -238,7 +309,7 @@
           compareCtrl = new ComparisonController(
             document.getElementById("view-compare"),
             manifest,
-            (pid) => openPageInExplorer(pid)
+            (pid) => openPageInExplorer(pid, { autoRotateUpright: true })
           );
         }
         compareCtrl.render();
@@ -249,13 +320,22 @@
           learnCtrl = new LearningController(
             document.getElementById("view-learn"),
             manifest,
-            (pid) => openPageInExplorer(pid)
+            (pid, hsid) => {
+              const p = pageById.get(pid);
+              const hsObj = p && hsid ? (p.hotspots || []).find((h) => h.id === hsid) : null;
+              openPageInExplorer(pid, {
+                autoRotateUpright: true,
+                focusHotspotId: hsid || undefined,
+                selectedFeature: hsObj ? { type: "hotspot", data: hsObj } : null,
+              });
+            }
           );
         }
         learnCtrl.render();
       } else if (tabName === "audit") {
         renderAuditView();
       }
+      syncUrlHash();
     }
 
     function switchVolume(volumeId) {
@@ -298,6 +378,7 @@
       } else {
         renderExplorerAll(opts);
       }
+      syncUrlHash();
     }
 
     // ==================== Module A, B, F: Interactive Explorer ====================
@@ -453,6 +534,7 @@
               el.classList.toggle("is-selected", el.getAttribute("data-fid") === ft.id);
             });
             renderExplorerInfo();
+            syncUrlHash();
             if (window.innerWidth <= 900) elInfoDrawer.classList.add("is-open");
           },
           onHoverFeature: (ft, cx, cy) => {
@@ -486,6 +568,7 @@
               el.classList.toggle("is-selected", el.getAttribute("data-hsid") === hs.id);
             });
             renderExplorerInfo();
+            syncUrlHash();
             if (window.innerWidth <= 900) elInfoDrawer.classList.add("is-open");
           },
           onSelectOcrWord: (wItem) => {
@@ -553,7 +636,7 @@
               ${
                 related.length
                   ? `<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border-subtle)">
-                       <div style="font-size:11.5px;font-weight:700;margin-bottom:5px">مواضع أخرى في الأطالس الستة (${toArabicDigits(related.length)}):</div>
+                       <div style="font-size:11.5px;font-weight:700;margin-bottom:5px">مواضع أخرى في الأطالس السبعة (${toArabicDigits(related.length)}):</div>
                        <div style="display:flex;flex-wrap:wrap;gap:5px">
                          ${related
                            .map((r) => {
@@ -764,6 +847,24 @@
            </div>`
         : "";
 
+      // Bidirectional reverse link to Tasees Course Weeks & Lectures
+      const linkedWeeks = window.AtlasCourses ? window.AtlasCourses.getWeeksForPage(page.id) : [];
+      const courseLinksHtml = linkedWeeks.length
+        ? `<div class="info-section course-reverse-box">
+             <h3>🧭 مرتبط بمسار دورة تأسيس (${toArabicDigits(linkedWeeks.length)})</h3>
+             <div style="display:flex;flex-wrap:wrap;gap:6px">
+               ${linkedWeeks
+                 .map(
+                   (wk) => `
+                 <button type="button" class="btn course-reverse-btn" data-jump-week="${escapeHtml(wk.id)}" data-jump-unit="${wk.u}" style="padding:4px 9px;font-size:11.5px;text-align:right">
+                   و${toArabicDigits(wk.u)} · أسبوع ${toArabicDigits(wk.w)}: ${escapeHtml(wk.title)}${wk.p11 ? " (P11)" : ""}
+                 </button>`
+                 )
+                 .join("")}
+             </div>
+           </div>`
+        : "";
+
       elInfoContent.innerHTML = `
         ${renderSelectedFeatureCard(page)}
         <div class="info-section">
@@ -789,6 +890,7 @@
             </button>
           </div>
         </div>
+        ${courseLinksHtml}
         ${legendsHtml}
         ${hotspotsListHtml}
         ${layersHtml}
@@ -840,7 +942,19 @@
               activeViewerHandle.focusHotspot(hsid);
             }
             renderExplorerInfo();
+            syncUrlHash();
           }
+        });
+      });
+
+      elInfoContent.querySelectorAll("[data-jump-week]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const wkId = btn.getAttribute("data-jump-week");
+          const uNum = btn.getAttribute("data-jump-unit");
+          switchTab("courses");
+          const ctrl = ensureCoursesCtrl();
+          if (ctrl) ctrl.applyRoute({ unit: uNum, week: wkId });
+          syncUrlHash();
         });
       });
 
@@ -937,7 +1051,7 @@
         <div class="content-container">
           <div class="section-header-bar">
             <div>
-              <h2 style="margin:0;font-size:18px">الفهرس العام للأطالس الستة (${toArabicDigits(pages.length)} صفحة معروضة من أصل ${toArabicDigits(manifest.pages.length)})</h2>
+              <h2 style="margin:0;font-size:18px">الفهرس العام للأطالس السبعة (${toArabicDigits(pages.length)} صفحة معروضة من أصل ${toArabicDigits(manifest.pages.length)})</h2>
               <p style="margin:4px 0 0 0;font-size:12.5px;color:var(--ink-secondary)">
                 مُستخرج مباشرة من الفهارس المطبوعة والإشارات المرجعية الأصلية دون اختلاق أقسام إضافية.
               </p>
@@ -953,7 +1067,7 @@
 
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
             <select id="toc-vol-sel" style="padding:7px 10px;border-radius:8px;border:1px solid var(--border-subtle);background:var(--bg-surface)">
-              <option value="all" ${state.tocVol === "all" ? "selected" : ""}>جميع الأطالس الستة</option>
+              <option value="all" ${state.tocVol === "all" ? "selected" : ""}>جميع الأطالس السبعة</option>
               ${manifest.volumes
                 .map(
                   (v) =>
@@ -1276,7 +1390,7 @@
 
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
             <select id="gaz-vol-sel" style="padding:7px 10px;border-radius:8px;border:1px solid var(--border-subtle);background:var(--bg-surface)">
-              <option value="all" ${state.gazVol === "all" ? "selected" : ""}>جميع الأطالس الستة</option>
+              <option value="all" ${state.gazVol === "all" ? "selected" : ""}>جميع الأطالس السبعة</option>
               ${manifest.volumes
                 .map(
                   (v) =>
@@ -1384,7 +1498,7 @@
             <div>
               <h2 style="margin:0;font-size:18px">تقرير التدقيق المصدري والمنهجية والإعدادات</h2>
               <p style="margin:4px 0 0 0;font-size:12.5px;color:var(--ink-secondary)">
-                جميع الأرقام أدناه مقيسة فعليًا من الملفات المصدرية الستة بعد فحص جنائي شامل لـ ${toArabicDigits(st.totalPdfPages)} صفحة.
+                جميع الأرقام أدناه مقيسة فعليًا من الملفات المصدرية السبعة بعد فحص جنائي شامل لـ ${toArabicDigits(st.totalPdfPages)} صفحة.
               </p>
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1403,7 +1517,7 @@
             </div>
             <div class="stat-card">
               <div class="stat-num">${toArabicDigits(st.mapsIdentified.totalDistinctMaps)}</div>
-              <div class="stat-label">خريطة تاريخية وجغرافية موثقة في الأطالس الستة</div>
+              <div class="stat-label">خريطة تاريخية وجغرافية موثقة في الأطالس السبعة</div>
             </div>
             <div class="stat-card">
               <div class="stat-num">${toArabicDigits(st.interactiveFeatures.totalVerifiedHotspots)}</div>
@@ -1424,7 +1538,7 @@
           </div>
 
           <div class="quiz-card" style="margin-bottom:16px">
-            <h3 style="margin-top:0">١. المصادر الستة وبصماتها التشفيرية</h3>
+            <h3 style="margin-top:0">١. المصادر السبعة وبصماتها التشفيرية</h3>
             <table class="toc-compact-table">
               <thead>
                 <tr>
@@ -1471,9 +1585,9 @@
           <div class="quiz-card">
             <h3 style="margin-top:0">٣. الحدود التقنية المعروفة والإفصاح العلمي الصريح</h3>
             <ul style="line-height:1.8;font-size:13.5px">
-              <li><strong>لا حدود GIS مختلقة:</strong> لا تحتوي ملفات PDF المصدرية على إحداثيات مكانية جغرافية (GeoJSON / خطوط طول وعرض رقمية). التفاعل في <em>خرائط التاريخ الإسلامي</em> مبني على <strong>أشكال الحروف المتجهية الأصلية وعلامات المدن</strong>، وفي الأطالس الخمسة الممسوحة ضوئيًا (<em>السيرة</em>، <em>الصديق</em>، <em>الفاروق</em>، <em>ذي النورين</em>، <em>أبي الحسنين</em>) مبني على <strong>إحداثيات الصورة الموثقة بصريًا</strong> للخرائط المحورية ومربعات كلمات OCR، دون ادعاء وجود مضلعات حدودية مستقلة حيث لا يدعمها المصدر.</li>
+              <li><strong>لا حدود GIS مختلقة:</strong> لا تحتوي ملفات PDF المصدرية على إحداثيات مكانية جغرافية (GeoJSON / خطوط طول وعرض رقمية). التفاعل في <em>خرائط التاريخ الإسلامي</em> مبني على <strong>أشكال الحروف المتجهية الأصلية وعلامات المدن</strong>، وفي الأطالس الستة الممسوحة ضوئيًا (<em>السيرة</em>، <em>الصديق</em>، <em>الفاروق</em>، <em>ذي النورين</em>، <em>أبي الحسنين</em>، <em>دول العالم الإسلامي</em>) مبني على <strong>إحداثيات الصورة الموثقة بصريًا</strong> للخرائط المحورية ومربعات كلمات OCR، دون ادعاء وجود مضلعات حدودية مستقلة حيث لا يدعمها المصدر.</li>
               <li><strong>دقة الاستخراج الضوئي الآلي (OCR) للخرائط الكثيفة:</strong> نظرًا لأن دقة المسح الأصلية تبلغ نحو ٨٠٠×١٢٠٠ بكسل، فإن النصوص الصغيرة والمائلة داخل الخرائط قد تنتج عنها أخطاء في محرك OCR الآلي (متوسط الثقة ${toArabicDigits(st.meanOcrConfidence)}%). لذلك فُصلت العناوين والفهارس والمعالم المحققة بصريًا فصلًا تامًا عن نصوص OCR الآلية، ووُسمت صفحات OCR منخفضة الثقة (${toArabicDigits(st.lowConfidenceOcrPageIds.length)} صفحة) بوسم «يحتاج مراجعة» مع توفير <strong>عارض الصفحة الأصلية</strong> دائمًا للمطابقة.</li>
-              <li><strong>الفرق بين الحزمة الكاملة والنسخة المحمولة (ملف HTML واحد):</strong> تتضمن الحزمة الكاملة (<code>index.html</code> + <code>assets/</code>) جميع صور الصفحات الـ ${toArabicDigits(st.totalPdfPages)} بدقتها الأصلية الكاملة وتعمل دون إنترنت ودون خادم؛ أما ملف <code>release/portable-atlas.html</code> المستقل فيضم جميع الخرائط المتجهية المزدوجة + ٥٦ خريطة وغلافًا محوريًا عالي الدقة + كامل الفهارس والبحث لـ ${toArabicDigits(st.totalPdfPages)} صفحة في ملف واحد لتسهيل المشاركة السريعة.</li>
+              <li><strong>الفرق بين الحزمة الكاملة والنسخة المحمولة (ملف HTML واحد):</strong> تتضمن الحزمة الكاملة (<code>index.html</code> + <code>assets/</code>) جميع صور الصفحات الـ ${toArabicDigits(st.totalPdfPages)} عبر الأطالس السبعة بدقتها الأصلية الكاملة وتعمل دون إنترنت ودون خادم؛ أما ملف <code>release/portable-atlas.html</code> المستقل فيضم جميع الخرائط المتجهية المزدوجة + أكثر من ١٢٠ خريطة وغلافًا محوريًا عالي الدقة (تشمل كامل خرائط مسار دورة «تأسيس» والمقارنات) + كامل الفهارس والبحث لـ ${toArabicDigits(st.totalPdfPages)} صفحة في ملف واحد لتسهيل المشاركة السريعة.</li>
             </ul>
           </div>
         </div>
@@ -1751,38 +1865,99 @@
       }, 180)
     );
 
-    // Deep links, used by the Tasees course screens (07_الهوية_البصرية_والتفاعل):
-    //   index.html#ali-181            open a page
-    //   index.html#ali-181~<hotspot>  open a page with a verified hotspot selected
-    //   index.html#cmp-<id>           open a comparison preset
-    function applyDeepLink() {
-      let h = "";
-      try { h = decodeURIComponent((location.hash || "").slice(1)); } catch (err) { return false; }
-      if (!h) return false;
-      const preset = (manifest.comparisons || []).find((c) => c.id === h);
-      if (preset) {
-        switchTab("compare");
-        compareCtrl.activePresetId = preset.id;
-        compareCtrl.leftId = preset.leftId;
-        compareCtrl.rightId = preset.rightId;
-        compareCtrl.syncZoom = Boolean(preset.syncAllowed);
-        compareCtrl.swipeMode = preset.mode === "vector-registered";
-        compareCtrl.render();
-        return true;
+    function applyHashRoute() {
+      let raw = (window.location.hash || "").replace(/^#/, "").trim();
+      if (!raw) return false;
+      // Short forms used by the Tasees course screens (07_الهوية_البصرية_والتفاعل):
+      //   #ali-181  ·  #ali-181~<hotspot>  ·  #cmp-<id>
+      if (!raw.includes("=")) {
+        try { raw = decodeURIComponent(raw); } catch (err) { return false; }
+        if ((manifest.comparisons || []).some((c) => c.id === raw)) raw = "cmp=" + encodeURIComponent(raw);
+        else {
+          const [pid, hid] = raw.split("~");
+          raw = "page=" + encodeURIComponent(pid) + (hid ? "&hs=" + encodeURIComponent(hid) : "");
+        }
       }
-      const [pid, hid] = h.split("~");
-      const page = pageById.get(pid);
-      if (!page) return false;
-      const hs = hid ? (page.hotspots || []).find((x) => x.id === hid) : null;
-      openPageInExplorer(page.id, hs ? { selectedFeature: { type: "hotspot", data: hs } } : {});
-      return true;
+      const params = new URLSearchParams(raw);
+      const tabParam = params.get("tab");
+      const pageParam = params.get("page");
+      const hsParam = params.get("hs");
+      const ftParam = params.get("ft");
+      const cmpParam = params.get("cmp");
+      const unitParam = params.get("unit");
+      const weekParam = params.get("week");
+      const seriesParam = params.get("series");
+      const courseParam = params.get("course");
+      const qParam = params.get("q");
+
+      suppressHashSync = true;
+      try {
+        if (pageParam && pageById.has(pageParam)) {
+          const p = pageById.get(pageParam);
+          let sel = null;
+          if (hsParam) {
+            const hsObj = (p.hotspots || []).find((h) => h.id === hsParam);
+            if (hsObj) sel = { type: "hotspot", data: hsObj };
+          } else if (ftParam && p.volumeId === "maps8") {
+            const maps8Vol = volById.get("maps8");
+            const ftObj = (maps8Vol.features || []).find((f) => f.id === ftParam);
+            if (ftObj) sel = { type: "vector", data: ftObj };
+          }
+          openPageInExplorer(pageParam, {
+            autoRotateUpright: true,
+            focusHotspotId: hsParam || undefined,
+            focusFeatureId: ftParam || undefined,
+            highlightQuery: qParam || "",
+            selectedFeature: sel,
+          });
+          return true;
+        }
+
+        if (tabParam === "compare" || cmpParam) {
+          switchTab("compare");
+          if (cmpParam && compareCtrl) compareCtrl.selectPreset(cmpParam);
+          return true;
+        }
+
+        if (tabParam === "courses" || unitParam || weekParam || seriesParam) {
+          switchTab("courses");
+          const ctrl = ensureCoursesCtrl();
+          if (ctrl) {
+            ctrl.applyRoute({
+              unit: unitParam || undefined,
+              week: weekParam || undefined,
+              series: seriesParam || undefined,
+            });
+          }
+          return true;
+        }
+
+        if (tabParam === "learn") {
+          switchTab("learn");
+          if (courseParam && learnCtrl) {
+            learnCtrl.applyCourseFilter(courseParam);
+          }
+          return true;
+        }
+
+        if (tabParam && ["explore", "toc", "original", "gazetteer", "audit"].includes(tabParam)) {
+          switchTab(tabParam);
+          return true;
+        }
+      } finally {
+        suppressHashSync = false;
+      }
+      return false;
     }
-    window.addEventListener("hashchange", applyDeepLink);
+
+    window.addEventListener("hashchange", () => {
+      applyHashRoute();
+    });
 
     // Boot!
-    if (!applyDeepLink()) {
-      recordRecent(state.currentPageId);
-      syncHeaderUi();
+    recordRecent(state.currentPageId);
+    syncHeaderUi();
+    if (!applyHashRoute()) {
       renderExplorerAll();
     }
   }

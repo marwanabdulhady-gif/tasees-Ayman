@@ -3,6 +3,7 @@
  "playlists": [
   {
    "slug": "ayman-umayyad-abbasid",
+   "course_dir": "تاريخ_الأمويين_والعباسيين",
    "title": "تاريخ الأمويين والعباسيين",
    "folder": "transcripts/01-umayyad-abbasid-history",
    "speaker": "م. أيمن عبد الرحيم",
@@ -98,6 +99,7 @@
   },
   {
    "slug": "ayman-linguistic-awareness",
+   "course_dir": "الوعي_اللغوي",
    "title": "دورة الوعي اللغوي",
    "folder": "transcripts/02-linguistic-awareness",
    "speaker": "م. أيمن عبد الرحيم",
@@ -232,6 +234,7 @@
   },
   {
    "slug": "ayman-psychology",
+   "course_dir": "علم_النفس",
    "title": "دورة علم النفس",
    "folder": "transcripts/03-psychology",
    "speaker": "م. أيمن عبد الرحيم",
@@ -379,6 +382,7 @@
   },
   {
    "slug": "ayman-seerah-makkah",
+   "course_dir": "السيرة_النبوية_العهد_المكي",
    "title": "السيرة النبوية — العهد المكي",
    "folder": "transcripts/04-seerah-makkah-period",
    "speaker": "م. أيمن عبد الرحيم",
@@ -474,6 +478,7 @@
   },
   {
    "slug": "ayman-reestablishing-awareness",
+   "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
    "title": "إعادة تأسيس وعي المسلم المعاصر",
    "folder": "transcripts/05-reestablishing-muslim-awareness",
    "speaker": "م. أيمن عبد الرحيم",
@@ -1076,6 +1081,7 @@
   },
   {
    "slug": "q100-history",
+   "course_dir": "100_سؤال_في_التاريخ",
    "title": "١٠٠ سؤال في التاريخ",
    "folder": "01_تفريغات_ومصادر/100_سؤال_في_التاريخ/transcripts",
    "speaker": "بودكاست قناة «تاريخنا» — المقدّم والضيوف يُوثَّقون من الحلقات (مهمة D0)",
@@ -2001,6 +2007,7 @@
   },
   {
    "slug": "rihlat-alyaqeen",
+   "course_dir": "رحلة_اليقين",
    "title": "رحلة اليقين",
    "folder": "01_تفريغات_ومصادر/رحلة_اليقين/transcripts",
    "speaker": "د. إياد قنيبي",

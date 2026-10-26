@@ -223,3 +223,20 @@
 .atlas-cmp.is-swipe .atlas-cmp__a { position: absolute; inset: 0; z-index: 1; }
 .atlas-cmp.is-swipe figcaption { display: none; }  /* one legend under the slider instead */  /* above the base map, whose sheet is positioned too */
 @media (max-width: 640px) { .atlas-cmp:not(.is-swipe) { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- P11 timeline + atlas station bridge ---------- */
+.t-atlas-bar {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--rule);
+}
+.t-atlas-link {
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+  font: 700 var(--t-small)/1.3 var(--f-body); padding: 7px 14px;
+  border: 1.5px solid var(--sepia); border-radius: var(--radius);
+  color: var(--sepia); background: var(--card);
+}
+.t-atlas-link:hover { background: var(--sepia); color: var(--paper); }
+.t-atlas-link--sub { border-color: var(--pen-blue); color: var(--pen-blue); }
+.t-atlas-link--sub:hover { background: var(--pen-blue); color: var(--paper); }
+.t-atlas-link:focus-visible { outline: 3px solid var(--pen-red); outline-offset: 3px; }
+
