@@ -15,6 +15,36 @@
       "evidence": "YouTube search result title is «كيف أتعلم, أيمن عبدالرحيم» and its description links to https://www.youtube.com/@AymanComplete; the official channel identity matches the plan's @AymanComplete seed.",
       "plan": "T2",
       "why_skip": ""
+    },
+    {
+      "id": "PL7ZS5BFtiPLIEpLF4PhDhPiDiwuEWGG2b",
+      "kind": "youtube-playlist",
+      "url": "https://www.youtube.com/playlist?list=PL7ZS5BFtiPLIEpLF4PhDhPiDiwuEWGG2b",
+      "speaker": "ayman",
+      "title": "بره الصندوق",
+      "series": "بره الصندوق",
+      "edition": "2015",
+      "episodes": 9,
+      "captions": "unknown",
+      "checked": "2026-10-26",
+      "evidence": "Search results identify the playlist as «حلقات برنامج: بره الصندوق - المهندس أيمن عبد الرحيم (9 حلقات)»; the corresponding Internet Archive item lists nine files under the same program and attributes them to م. أيمن عبدالرحيم.",
+      "plan": "T2",
+      "why_skip": ""
+    },
+    {
+      "id": "PL2-FkZlJhxqWFQs8Wp4ER3IagmhIJItne",
+      "kind": "youtube-playlist",
+      "url": "https://www.youtube.com/playlist?list=PL2-FkZlJhxqWFQs8Wp4ER3IagmhIJItne",
+      "speaker": "ayman",
+      "title": "تأسيس وعي المسلم المعاصر",
+      "series": "تأسيس وعي المسلم المعاصر",
+      "edition": null,
+      "episodes": 9,
+      "captions": "unknown",
+      "checked": "2026-10-26",
+      "evidence": "Internet Archive search result labels this playlist «تأسيس وعي المسلم المعاصر | م. أيمن عبد الرحيم | صيف 2017»; a Telegram index associates the same playlist with خريف 2017. Since the edition evidence conflicts, edition is intentionally left null for follow-up verification.",
+      "plan": "T2",
+      "why_skip": ""
     }
   ]
 }
