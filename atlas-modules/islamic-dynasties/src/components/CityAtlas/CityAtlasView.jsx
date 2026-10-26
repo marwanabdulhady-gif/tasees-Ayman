@@ -47,7 +47,9 @@ export default function CityAtlasView({ lang: propLang, onClose, initialSearch }
     setSelectedRecord(null);
     setFilters({ categories: [], periods: [], status: 'all', search: '' });
 
-    fetch(city.dataFile)
+    const base = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL) || './';
+    const resolvedCityUrl = city.dataFile.startsWith('/') ? `${base}${city.dataFile.slice(1)}` : city.dataFile;
+    fetch(resolvedCityUrl)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();

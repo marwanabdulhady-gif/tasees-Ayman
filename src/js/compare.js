@@ -1,5 +1,7 @@
 /* ==========================================================================
    compare.js — Module G: Side-by-Side & Registered Swipe Map Comparison
+   Supports both vector-registered spreads (maps8) and visually verified
+   raster-registered historical map pairs across the 7 atlases.
    ========================================================================== */
 (function () {
   "use strict";
@@ -7,6 +9,15 @@
   const { escapeHtml, toArabicDigits } = window.AtlasUtils;
   const { PanZoomController } = window.AtlasPanZoom;
   const { renderMaps8Spread, renderScannedPage } = window.AtlasViewer;
+
+  function isSwipeCapable(preset) {
+    if (!preset) return false;
+    return Boolean(
+      preset.swipeAllowed ||
+        preset.mode === "vector-registered" ||
+        preset.mode === "raster-registered"
+    );
+  }
 
   class ComparisonController {
     constructor(containerEl, manifest, onOpenInExplorer) {
@@ -20,8 +31,8 @@
       this.activePresetId = firstPreset ? firstPreset.id : "custom";
       this.leftId = firstPreset ? firstPreset.leftId : "maps8-003";
       this.rightId = firstPreset ? firstPreset.rightId : "maps8-007";
-      this.swipeMode = true; // default for registered preset 1
-      this.syncZoom = true;
+      this.swipeMode = isSwipeCapable(firstPreset);
+      this.syncZoom = firstPreset ? Boolean(firstPreset.syncAllowed) : true;
       this.swipePct = 50;
 
       this.pzLeft = null;
@@ -29,12 +40,27 @@
       this._syncing = false;
     }
 
+    selectPreset(presetId) {
+      const p = (this.manifest.comparisons || []).find((c) => c.id === presetId);
+      if (!p) return false;
+      this.activePresetId = p.id;
+      this.leftId = p.leftId;
+      this.rightId = p.rightId;
+      this.syncZoom = Boolean(p.syncAllowed);
+      this.swipeMode = isSwipeCapable(p);
+      this.swipePct = 50;
+      this.render();
+      return true;
+    }
+
     render() {
       const presets = this.manifest.comparisons || [];
       const curPreset = presets.find((c) => c.id === this.activePresetId);
-      const canSwipe = Boolean(curPreset && curPreset.mode === "vector-registered");
+      const canSwipe = isSwipeCapable(curPreset);
+      const pageLeft = this.pageById.get(this.leftId);
+      const pageRight = this.pageById.get(this.rightId);
 
-      // Build map/page options grouped by volume (prioritize maps for cleaner UX, plus all pages)
+      // Build map/page options grouped by volume
       const buildOptions = (selectedId) => {
         return this.manifest.volumes
           .map((vol) => {
@@ -53,14 +79,19 @@
 
       const presetOpts = [
         ...presets.map(
-          (c) => `<option value="${c.id}" ${c.id === this.activePresetId ? "selected" : ""}>${escapeHtml(c.title)}</option>`
+          (c) =>
+            `<option value="${c.id}" ${c.id === this.activePresetId ? "selected" : ""}>${
+              isSwipeCapable(c) ? "⇔ " : ""
+            }${escapeHtml(c.title)}</option>`
         ),
-        `<option value="custom" ${this.activePresetId === "custom" ? "selected" : ""}>اختيار حرّ بين أي خريطتين في الأطالس الستة…</option>`,
+        `<option value="custom" ${this.activePresetId === "custom" ? "selected" : ""}>اختيار حرّ بين أي خريطتين في الأطالس السبعة…</option>`,
       ].join("");
 
       const syncWarn =
         curPreset && !curPreset.syncAllowed
           ? `<span class="badge badge-warn">مقياسا الرسم مختلفان — المزامنة التلقائية معطّلة افتراضيًا لمنع الإيهام بتكافؤ القياس</span>`
+          : canSwipe
+          ? `<span class="badge badge-verified">تطابق إطاري موثّق — يدعم شريط السحب المتطابق</span>`
           : `<span class="badge badge-verified">مقارنة جغرافية موثقة بالمصادر</span>`;
 
       this.container.innerHTML = `
@@ -68,7 +99,7 @@
           <div class="dual-controls">
             <div class="toolbar-group" style="flex:1;min-width:260px">
               <label for="cmp-preset-sel" style="font-size:12.5px;font-weight:700">المقارنة المقترحة:</label>
-              <select id="cmp-preset-sel" style="padding:5px 10px;border-radius:6px;border:1px solid var(--border-subtle);background:var(--bg-elevated);max-width:440px">
+              <select id="cmp-preset-sel" style="padding:5px 10px;border-radius:6px;border:1px solid var(--border-subtle);background:var(--bg-elevated);max-width:460px">
                 ${presetOpts}
               </select>
               ${syncWarn}
@@ -76,7 +107,7 @@
             <div class="toolbar-group">
               ${
                 canSwipe
-                  ? `<button type="button" class="btn ${this.swipeMode ? "is-on" : ""}" id="cmp-toggle-swipe">شريط السحب المتطابق</button>`
+                  ? `<button type="button" class="btn ${this.swipeMode ? "is-on" : ""}" id="cmp-toggle-swipe">⇔ شريط السحب المتطابق</button>`
                   : ""
               }
               <label style="font-size:12.5px;display:inline-flex;align-items:center;gap:6px;cursor:pointer">
@@ -88,13 +119,15 @@
           </div>
 
           <div style="padding:6px 16px;background:var(--bg-muted);border-block-end:1px solid var(--border-subtle);font-size:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-            <span>${curPreset ? escapeHtml(curPreset.note) : "قارن بين أي خريطتين من الأطالس الستة جنبًا إلى جنب."}</span>
+            <span>${curPreset ? escapeHtml(curPreset.note) : "قارن بين أي خريطتين من الأطالس السبعة جنبًا إلى جنب."}</span>
             ${
               canSwipe && this.swipeMode
-                ? `<div style="display:flex;align-items:center;gap:8px">
+                ? `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
                      <span>موضع الستارة:</span>
                      <input type="range" id="cmp-swipe-range" min="5" max="95" value="${this.swipePct}" style="width:180px" aria-label="شريط المقارنة بالتمرير" />
-                     <bdi>${toArabicDigits(this.swipePct)}%</bdi>
+                     <bdi id="cmp-swipe-pct-label">${toArabicDigits(this.swipePct)}%</bdi>
+                     <button type="button" class="btn" id="cmp-open-left" style="padding:2px 8px;font-size:11.5px">فتح الأولى بالمستكشف</button>
+                     <button type="button" class="btn" id="cmp-open-right" style="padding:2px 8px;font-size:11.5px">فتح الثانية بالمستكشف</button>
                    </div>`
                 : ""
             }
@@ -106,12 +139,14 @@
                    <div class="map-viewport" id="cmp-vp-base" style="width:100%;height:100%">
                      <div class="panzoom-world" id="cmp-world-base"></div>
                    </div>
-                   <div class="swipe-layer-top" id="cmp-swipe-top">
-                     <div class="map-viewport" id="cmp-vp-top" style="width:100%;height:100%;pointer-events:none;background:transparent">
+                   <div class="swipe-layer-top" id="cmp-swipe-top" style="background:var(--bg-canvas)">
+                     <div class="map-viewport" id="cmp-vp-top" style="width:100%;height:100%;pointer-events:none;background:var(--bg-canvas)">
                        <div class="panzoom-world" id="cmp-world-top"></div>
                      </div>
                    </div>
-                   <div class="swipe-slider-bar" id="cmp-slider-bar"></div>
+                   <div class="swipe-slider-bar" id="cmp-slider-bar" role="slider" aria-label="اسحب للمقارنة بين الخريطتين" aria-valuemin="5" aria-valuemax="95" aria-valuenow="${this.swipePct}" tabindex="0"></div>
+                   <div class="swipe-corner-pill swipe-pill-left">${pageLeft ? escapeHtml(pageLeft.title) : ""}</div>
+                   <div class="swipe-corner-pill swipe-pill-right">${pageRight ? escapeHtml(pageRight.title) : ""}</div>
                  </div>`
               : `<div class="dual-panes">
                    <div class="dual-pane">
@@ -149,7 +184,7 @@
       }
     }
 
-    _bindControls(canSwipe) {
+    _bindControls() {
       const presetSel = this.container.querySelector("#cmp-preset-sel");
       presetSel.addEventListener("change", () => {
         this.activePresetId = presetSel.value;
@@ -158,7 +193,7 @@
           this.leftId = p.leftId;
           this.rightId = p.rightId;
           this.syncZoom = Boolean(p.syncAllowed);
-          this.swipeMode = p.mode === "vector-registered";
+          this.swipeMode = isSwipeCapable(p);
         } else {
           this.swipeMode = false;
         }
@@ -184,7 +219,7 @@
       if (fitBtn) {
         fitBtn.addEventListener("click", () => {
           if (this.pzLeft) this.pzLeft.fit();
-          if (this.pzRight) this.pzRight.fit();
+          if (this.pzRight && !this.swipeMode) this.pzRight.fit();
         });
       }
 
@@ -212,6 +247,7 @@
     }
 
     async _mountSwipeRegistered(preset) {
+      const stage = this.container.querySelector("#cmp-swipe-stage");
       const vpBase = this.container.querySelector("#cmp-vp-base");
       const worldBase = this.container.querySelector("#cmp-world-base");
       const vpTop = this.container.querySelector("#cmp-vp-top");
@@ -219,52 +255,145 @@
       const topWrap = this.container.querySelector("#cmp-swipe-top");
       const bar = this.container.querySelector("#cmp-slider-bar");
       const range = this.container.querySelector("#cmp-swipe-range");
+      const pctLabel = this.container.querySelector("#cmp-swipe-pct-label");
 
-      const updateClip = (pct) => {
+      const updateClip = (rawPct) => {
+        const pct = Math.max(5, Math.min(95, Math.round(rawPct)));
         this.swipePct = pct;
         topWrap.style.clipPath = `inset(0 0 0 ${pct}%)`;
         bar.style.left = `${pct}%`;
+        bar.setAttribute("aria-valuenow", String(pct));
+        if (range && Number(range.value) !== pct) range.value = String(pct);
+        if (pctLabel) pctLabel.textContent = `${toArabicDigits(pct)}%`;
       };
       updateClip(this.swipePct);
 
       if (range) {
         range.addEventListener("input", () => {
           updateClip(Number(range.value));
-          const lbl = range.nextElementSibling;
-          if (lbl) lbl.textContent = `${toArabicDigits(range.value)}%`;
         });
       }
 
-      const maps8Vol = this.volById.get("maps8");
-      const figLeft = maps8Vol.figures.find((f) => f.id === preset.leftFigure);
-      const figRight = maps8Vol.figures.find((f) => f.id === preset.rightFigure);
+      // Direct pointer + keyboard dragging on the vertical curtain bar
+      if (bar && stage) {
+        let draggingBar = false;
+        bar.addEventListener("pointerdown", (ev) => {
+          ev.stopPropagation();
+          ev.preventDefault();
+          draggingBar = true;
+          bar.setPointerCapture(ev.pointerId);
+        });
+        bar.addEventListener("pointermove", (ev) => {
+          if (!draggingBar) return;
+          const rect = stage.getBoundingClientRect();
+          if (rect.width > 0) {
+            updateClip(((ev.clientX - rect.left) / rect.width) * 100);
+          }
+        });
+        const stopDrag = (ev) => {
+          if (!draggingBar) return;
+          draggingBar = false;
+          try {
+            bar.releasePointerCapture(ev.pointerId);
+          } catch (_) {}
+        };
+        bar.addEventListener("pointerup", stopDrag);
+        bar.addEventListener("pointercancel", stopDrag);
+        bar.addEventListener("keydown", (ev) => {
+          if (ev.key === "ArrowLeft") {
+            ev.preventDefault();
+            updateClip(this.swipePct - 4);
+          } else if (ev.key === "ArrowRight") {
+            ev.preventDefault();
+            updateClip(this.swipePct + 4);
+          }
+        });
+      }
+
+      if (preset.mode === "vector-registered") {
+        const maps8Vol = this.volById.get("maps8");
+        const figLeft = maps8Vol.figures.find((f) => f.id === preset.leftFigure);
+        const figRight = maps8Vol.figures.find((f) => f.id === preset.rightFigure);
+
+        this.pzRight = new PanZoomController(vpTop, worldTop, {});
+        this.pzLeft = new PanZoomController(vpBase, worldBase, {
+          onChange: (st) => {
+            this.pzRight.setState(st, true);
+          },
+        });
+
+        await Promise.all([
+          renderMaps8Spread({
+            worldEl: worldBase,
+            panzoom: this.pzLeft,
+            maps8Vol,
+            figure: figLeft,
+            hiddenLayers: [],
+            showHotspots: false,
+          }),
+          renderMaps8Spread({
+            worldEl: worldTop,
+            panzoom: this.pzRight,
+            maps8Vol,
+            figure: figRight,
+            hiddenLayers: [],
+            showHotspots: false,
+          }),
+        ]);
+        this.pzRight.setState(this.pzLeft.getState(), true);
+        return;
+      }
+
+      // Raster-registered historical scanned map pair
+      const pageLeft = this.pageById.get(preset.leftId);
+      const pageRight = this.pageById.get(preset.rightId);
+      if (!pageLeft || !pageRight) return;
+
+      const rotLeft = pageLeft.rotated || 0;
+      const rotRight = pageRight.rotated || 0;
+      const effWidthLeft = Math.abs(rotLeft) === 90 ? pageLeft.height : pageLeft.width;
+      const effWidthRight = Math.abs(rotRight) === 90 ? pageRight.height : pageRight.width;
+      const widthRatio = effWidthLeft && effWidthRight ? effWidthLeft / effWidthRight : 1;
+
+      const syncTopToBase = (st) => {
+        if (!this.pzRight || !st) return;
+        this.pzRight.setState(
+          {
+            tx: st.tx,
+            ty: st.ty,
+            scale: st.scale * widthRatio,
+            rotation: rotRight,
+          },
+          true
+        );
+      };
 
       this.pzRight = new PanZoomController(vpTop, worldTop, {});
       this.pzLeft = new PanZoomController(vpBase, worldBase, {
-        onChange: (st) => {
-          this.pzRight.setState(st, true);
-        },
+        onChange: syncTopToBase,
       });
 
-      await Promise.all([
-        renderMaps8Spread({
-          worldEl: worldBase,
-          panzoom: this.pzLeft,
-          maps8Vol,
-          figure: figLeft,
-          hiddenLayers: [],
-          showHotspots: false,
-        }),
-        renderMaps8Spread({
-          worldEl: worldTop,
-          panzoom: this.pzRight,
-          maps8Vol,
-          figure: figRight,
-          hiddenLayers: [],
-          showHotspots: false,
-        }),
-      ]);
-      this.pzRight.setState(this.pzLeft.getState(), true);
+      renderScannedPage({
+        worldEl: worldBase,
+        panzoom: this.pzLeft,
+        page: pageLeft,
+        ocrWords: [],
+        showHotspots: false,
+        showOcrLayer: false,
+        initialRotation: rotLeft,
+      });
+
+      renderScannedPage({
+        worldEl: worldTop,
+        panzoom: this.pzRight,
+        page: pageRight,
+        ocrWords: [],
+        showHotspots: false,
+        showOcrLayer: false,
+        initialRotation: rotRight,
+      });
+
+      syncTopToBase(this.pzLeft.getState());
     }
 
     async _mountSideBySide() {

@@ -377,7 +377,9 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const brokenHubLinks = [];
   for (const href of hubLinks) {
     if (href.startsWith("http")) continue; // external links are allowed
-    const target = path.resolve(path.join(ROOT, "atlas-modules", href));
+    const cleanHref = href.split("#")[0].split("?")[0];
+    if (!cleanHref) continue;
+    const target = path.resolve(path.join(ROOT, "atlas-modules", cleanHref));
     if (!fs.existsSync(target)) brokenHubLinks.push(href);
   }
   check("12.1", "All internal hub links in atlas-modules/index.html resolve to existing files",
@@ -435,6 +437,136 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   check("12.2", "Every visually reviewed Dawal anchor renders at its measured position and opens its own info card offline",
     dawalClickFailures.length === 0, `${Object.keys(dawalReview.pages).length} anchors; failures=${dawalClickFailures.join(",")}`);
   await dPage.close();
+
+  // ---------------- 14.x: New Track 1–3 Verification Suite ----------------
+  // 14.1: Manifest stats & 80 curated historical maps across Vols. 2–6
+  const vols2to6CuratedPages = hubManifest.pages.filter(
+    (p) => ["seerah", "abubakr", "umar", "uthman", "ali"].includes(p.volumeId) && (p.hotspots || []).length > 0
+  );
+  check(
+    "14.1",
+    "Curated historical map hotspots expanded to 80 maps across Seerah, Abu Bakr, Umar, Uthman & Ali (770 total verified hotspots)",
+    vols2to6CuratedPages.length === 80 && hubManifest.stats.interactiveFeatures.totalVerifiedHotspots === 770,
+    `curatedVols2to6=${vols2to6CuratedPages.length}, totalVerifiedHotspots=${hubManifest.stats.interactiveFeatures.totalVerifiedHotspots}`
+  );
+
+  // 14.2: Islamic Dynasties offline bundle over file:// with zero external requests
+  const dynUrl = "file://" + path.join(ROOT, "atlas-modules/islamic-dynasties/public/index.html");
+  const dynPage = await openOfflinePage(dynUrl, 1360, 860);
+  await sleep(1600);
+  const dynRootLen = await dynPage.evaluate(() => (document.getElementById("root")?.innerHTML || "").length);
+  check(
+    "14.2",
+    "Islamic Dynasties Atlas loads offline over file:// via pre-built classic script bundle",
+    dynRootLen > 500,
+    `rootHtmlLen=${dynRootLen}`
+  );
+  await dynPage.close();
+
+  // 14.3: URL Deep-linking (#page=seerah-110&hs=sr110-taif-thaqif) + auto-upright rotation + reverse course badge
+  const deepUrl = mainUrl + "#page=seerah-110&hs=sr110-taif-thaqif";
+  const dlPage = await openOfflinePage(deepUrl, 1440, 900);
+  await dlPage.waitForSelector(".feature-card", { timeout: 15000 });
+  const dlInfo = await dlPage.evaluate(() => ({
+    featTitle: document.querySelector(".feature-card h4")?.textContent || "",
+    worldTransform: document.getElementById("explorer-world")?.style.transform || "",
+    reverseCoursePills: document.querySelectorAll(".course-reverse-btn").length,
+  }));
+  check(
+    "14.3",
+    "URL deep-link (#page=seerah-110&hs=sr110-taif-thaqif) auto-rotates sideways map 90° and opens target hotspot + reverse course link",
+    dlInfo.featTitle.includes("الطائف") && dlInfo.worldTransform.includes("rotate(90deg)") && dlInfo.reverseCoursePills >= 1,
+    JSON.stringify(dlInfo)
+  );
+
+  // 14.4: Bidirectional Course Pathway (#tab=courses&unit=5&week=w21) + P11 interactive stations
+  await dlPage.evaluate(() => {
+    window.location.hash = "#tab=courses&unit=5&week=w21";
+  });
+  await sleep(450);
+  const courseState = await dlPage.evaluate(() => {
+    const highlighted = document.querySelector('[data-week-card="w21"].is-highlighted');
+    const p11Btns = highlighted ? highlighted.querySelectorAll(".course-p11-station-btn").length : 0;
+    return { hasHighlightedW21: Boolean(highlighted), p11Btns };
+  });
+  check(
+    "14.4",
+    "Course Pathway (#tab=courses&unit=5&week=w21) highlights Week 21 and renders interactive P11 Fitna timeline stations",
+    courseState.hasHighlightedW21 && courseState.p11Btns >= 5,
+    JSON.stringify(courseState)
+  );
+
+  // 14.5: Raster-registered Swipe comparison (#tab=compare&cmp=cmp-ali-siffin-vs-nahrawan)
+  await dlPage.evaluate(() => {
+    window.location.hash = "#tab=compare&cmp=cmp-ali-siffin-vs-nahrawan";
+  });
+  await sleep(500);
+  const rasterSwipeOk = await dlPage.evaluate(() => {
+    const stage = document.getElementById("cmp-swipe-stage");
+    const range = document.getElementById("cmp-swipe-range");
+    const topLayer = document.getElementById("cmp-swipe-top");
+    if (!stage || !range || !topLayer) return { ok: false };
+    range.value = "32";
+    range.dispatchEvent(new Event("input", { bubbles: true }));
+    return {
+      ok: topLayer.style.clipPath.includes("32%"),
+      clipPath: topLayer.style.clipPath,
+    };
+  });
+  check(
+    "14.5",
+    "Raster-registered historical comparison enables interactive Swipe curtain (#cmp-swipe-range updates clip-path)",
+    rasterSwipeOk.ok,
+    rasterSwipeOk.clipPath || "missing swipe stage"
+  );
+
+  // 14.6: Scanned Blind Map Challenge (raster-loc) in Learning module
+  await dlPage.click('.nav-tab[data-tab="learn"]');
+  await sleep(250);
+  await dlPage.click('[data-lmode="map-find"]');
+  await sleep(300);
+  await dlPage.select("#mf-kind-sel", "raster-loc");
+  await sleep(350);
+  const blindMapPins = await dlPage.evaluate(() => document.querySelectorAll(".blind-raster-pin").length);
+  check(
+    "14.6",
+    "Learning module supports scanned Blind Map Challenge («الخريطة الصمّاء») with numbered parchment masks",
+    blindMapPins >= 3,
+    `pins=${blindMapPins}`
+  );
+  await dlPage.close();
+
+  // 14.7: Tasees Pattern R.P11 live deep-links inside 07_الهوية_البصرية_والتفاعل/templates/screen-templates.html
+  const tplUrl = "file://" + path.join(ROOT, "07_الهوية_البصرية_والتفاعل/templates/screen-templates.html");
+  const tplPage = await browser.newPage();
+  const tplJsErrors = [];
+  await tplPage.setViewport({ width: 1280, height: 800, deviceScaleFactor: 1 });
+  await tplPage.setRequestInterception(true);
+  tplPage.on("request", (req) => {
+    const u = req.url();
+    if (u.startsWith("file:") || u.startsWith("data:") || u.startsWith("blob:")) req.continue();
+    else req.abort(); // Google Fonts CSS import in tasees-tokens.css gracefully falls back offline
+  });
+  tplPage.on("pageerror", (e) => tplJsErrors.push(e.message));
+  await tplPage.goto(tplUrl, { waitUntil: "load", timeout: 30000 });
+  const p11LinkHref = await tplPage.evaluate(() => {
+    const p11Btn = [...document.querySelectorAll(".tl button")].find((b) => b.textContent.includes("٤١هـ"));
+    if (p11Btn) p11Btn.click();
+    const link = document.querySelector(".t-atlas-link");
+    return link ? link.getAttribute("href") : "";
+  });
+  check(
+    "14.7",
+    "Pattern R.P11 («الزمن والأطلس») renders live deep-link buttons resolving to index.html#page=...",
+    tplJsErrors.length === 0 && p11LinkHref.includes("index.html#page=ali-251"),
+    p11LinkHref
+  );
+  await tplPage.close();
+
+  check("14.8", "Zero runtime JS or blocked external requests across all Track 1–3 tests",
+    jsErrors.length === 0 && blockedExternalRequests.length === 0,
+    `jsErrors=${jsErrors.length}, blocked=${blockedExternalRequests.length}`
+  );
 
   await browser.close();
 

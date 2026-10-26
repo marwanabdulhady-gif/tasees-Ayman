@@ -13,19 +13,14 @@
 - **تعديلات الدمج (الحد الأدنى):**
   1. اللغة الافتراضية `tr → ar` (`src/App.jsx`، `index.html`، ومفاتيح السقوط في 3 مكوّنات).
   2. مبدّل لغة صفحة الاستقبال: `tr/en فقط → ar/tr/en`.
-  3. بناء محلي `vite build --base ./` (مسارات نسبية تعمل عبر `file://`).
-  4. إخراج Google Analytics (gtag) وخطوط Google الخارجية وLeaflet من CDN
-     (نُسب محليًا في `public/leaflet/`) — للعمل الكامل دون إنترنت.
-- **البناء:**
+  3. توحيد مسارات جلب البيانات `data/...` لتكون نسبية بالكامل وتعمل من نفس مجلد `public/` عبر `file://` أو `http://`، واستبدال بلاطات الخريطة الخارجية بشبكة إحداثيات SVG محلية مضمّنة (`data:image/svg+xml`) لضمان انعدام الطلبات الشبكية الخارجية دون اتصال.
+  4. بناء حزمة أوفلاين أحادية الكود (`IIFE` عبر `<script defer>`) في `public/bundle/{app.js,app.css}` مع `public/index.html` دون تكرار ملفات `public/data/` (تجنبًا لمجلد `dist/` المستثنى من اللقطات والنسخ).
+  5. إخراج Google Analytics (gtag) وخطوط Google الخارجية وLeaflet من CDN (نُسخ محليًا في `public/leaflet/`).
+- **إعادة البناء عند تعديل المصدر:**
   ```bash
-  cd islamic-dynasties
-  PUPPETEER_SKIP_DOWNLOAD=1 npm install --no-audit --no-fund
-  npx vite build --base ./
+  node tools/build_islamic_dynasties_offline.mjs
   ```
-  المخرج `dist/` مُتجاهَل من git (يبني محليًا عند الحاجة).
-- **الحدود المعروفة:** بطاقات الخريطة الأساسية (CARTO tiles) تحتاج اتصالًا بالإنترنت —
-  دون اتصال تعمل كل طبقات البيانات (علامات/خطوط/مجالات) على خلفية داكنة.
-  مساعد DİA (RAG) يتطلب مفاتيح API.
+  يولّد `atlas-modules/islamic-dynasties/public/bundle/{app.js,app.css}` و`atlas-modules/islamic-dynasties/public/index.html` الجاهزين للتشغيل المباشر عبر `file://`.
 
 ## 2) `atlas-of-quran/` — أطلس القرآن (نسخة عربية · بيانات أصلية أوفلاين)
 - **المصدر الأصلي:** <https://github.com/atlasofquran/atlasofquran.github.io> —

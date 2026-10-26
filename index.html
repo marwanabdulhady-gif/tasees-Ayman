@@ -70,7 +70,7 @@
             id="global-search-input"
             autocomplete="off"
             placeholder="ابحث عن مدينة، معركة، غزوة، خريطة، أو اكتب «علي ١٨١»…"
-            aria-label="البحث الشامل في الأطالس الستة"
+            aria-label="البحث الشامل في الأطالس السبعة"
           />
           <button type="button" class="icon-btn-sm" id="global-search-clear" aria-label="مسح البحث" hidden>✕</button>
           <kbd class="search-kbd" title="اختصار لوحة المفاتيح">/</kbd>
@@ -102,6 +102,7 @@
       <!-- Primary Modules Navigation -->
       <nav class="main-nav" role="tablist" aria-label="أقسام المنصة">
         <button type="button" class="nav-tab is-active" role="tab" data-tab="explore">المستكشف</button>
+        <button type="button" class="nav-tab" role="tab" data-tab="courses" title="مسار دورة تأسيس وسلاسل المحاضرات">مسار تأسيس</button>
         <button type="button" class="nav-tab" role="tab" data-tab="toc">الفهرس العام</button>
         <button type="button" class="nav-tab" role="tab" data-tab="original">الصفحات الأصلية</button>
         <button type="button" class="nav-tab" role="tab" data-tab="compare">المقارنة</button>
@@ -195,6 +196,11 @@
         </div>
       </section>
 
+      <!-- MODULE I: Bidirectional Tasees Course & Lectures Pathway -->
+      <section class="view-panel" id="view-courses" data-view="courses" hidden>
+        <div class="content-container" id="courses-root"></div>
+      </section>
+
       <!-- MODULE D: Atlas Table of Contents -->
       <section class="view-panel" id="view-toc" data-view="toc" hidden></section>
 
@@ -225,6 +231,7 @@
   <script src="src/js/panzoom.js"></script>
   <script src="src/js/viewer.js"></script>
   <script src="src/js/search.js"></script>
+  <script src="src/js/courses.js"></script>
   <script src="src/js/compare.js"></script>
   <script src="src/js/learn.js"></script>
   <script src="src/js/app.js"></script>
