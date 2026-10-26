@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="'IBM Plex Sans Arabic', 'Noto Sans Arabic', Tahoma, sans-serif"><defs><pattern id="v1grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0 H0 V24" fill="none" stroke="#D7DDE8" stroke-width="0.7"/></pattern></defs>
+<rect width="1200" height="675" fill="#F7F8F3"/><rect width="1200" height="675" fill="url(#v1grid)"/>
+<text x="600" y="52" fill="#19213A" font-size="30" text-anchor="middle" font-weight="bold">إزاي بتقع دولة؟ مراحل و٢٠ الأربع على السقوط الأموي + عوامل نجاح الثورة</text>
+<g font-size="18" text-anchor="middle" fill="#19213A">
+<rect x="55" y="92" width="255" height="112" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/>
+<text x="182" y="122" fill="#19213A" font-size="20" text-anchor="middle" >١ مظالم حقيقية</text>
+<text x="182" y="152" fill="#4A5470" font-size="14" text-anchor="middle" >الموالي: جزية بعد الإسلام + درجة</text>
+<text x="182" y="172" fill="#4A5470" font-size="14" text-anchor="middle" > تانية</text>
+<text x="323" y="154" fill="#4A5470" font-size="26">←</text>
+<rect x="342" y="92" width="255" height="112" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/>
+<text x="469" y="122" fill="#19213A" font-size="20" text-anchor="middle" >٢ القنوات مقفولة</text>
+<text x="469" y="152" fill="#4A5470" font-size="14" text-anchor="middle" >ما فيش شورى تمتص الغضب — المعارض</text>
+<text x="469" y="172" fill="#4A5470" font-size="14" text-anchor="middle" > ينزل تحت الأرض</text>
+<text x="610" y="154" fill="#4A5470" font-size="26">←</text>
+<rect x="629" y="92" width="255" height="112" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="756" y="122" fill="#19213A" font-size="20" text-anchor="middle" >٣ تنظيم بديل</text>
+<text x="756" y="152" fill="#4A5470" font-size="14" text-anchor="middle" >الدعوة الهاشمية: ١٢ نقيبًا و٧٠ د</text>
+<text x="756" y="172" fill="#4A5470" font-size="14" text-anchor="middle" >اعيًا (رواية عباسية)</text>
+<text x="897" y="154" fill="#4A5470" font-size="26">←</text>
+<rect x="916" y="92" width="255" height="112" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="3"/>
+<text x="1043" y="122" fill="#19213A" font-size="20" text-anchor="middle" >٤ نقطة اللاعودة</text>
+<text x="1043" y="152" fill="#4A5470" font-size="14" text-anchor="middle" >الزاب ١٣٢هـ: القبائل تترك الميدا</text>
+<text x="1043" y="172" fill="#4A5470" font-size="14" text-anchor="middle" >ن — تسعون سنة تنتهي</text>
+</g>
+<text x="600" y="242" fill="#19213A" font-size="20" text-anchor="middle" font-weight="bold">عوامل نجاح الثورة الخمسة — الثورة تنجح بقوة الثوار × ضعف النظام</text>
+<rect x="55" y="262" width="215" height="100" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="162" y="292" fill="#19213A" font-size="19" text-anchor="middle" >التنظيم</text>
+<text x="162" y="320" fill="#4A5470" font-size="13" text-anchor="middle" >شبكة سرية متدرجة — الاخترا</text>
+<text x="162" y="340" fill="#4A5470" font-size="13" text-anchor="middle" >ق ما بيسقطهاش</text>
+<rect x="277" y="262" width="215" height="100" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="384" y="292" fill="#19213A" font-size="19" text-anchor="middle" >الشعار</text>
+<text x="384" y="320" fill="#4A5470" font-size="13" text-anchor="middle" >«الرضا من آل محمد» — أوسع </text>
+<text x="384" y="340" fill="#4A5470" font-size="13" text-anchor="middle" >جبهة عاطفية</text>
+<rect x="499" y="262" width="215" height="100" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="606" y="292" fill="#19213A" font-size="19" text-anchor="middle" >الجغرافيا</text>
+<text x="606" y="320" fill="#4A5470" font-size="13" text-anchor="middle" >خراسان بعيدة + الحميمة للر</text>
+<text x="606" y="340" fill="#4A5470" font-size="13" text-anchor="middle" >أس المحفوظ</text>
+<rect x="721" y="262" width="215" height="100" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="828" y="292" fill="#19213A" font-size="19" text-anchor="middle" >التوقيت</text>
+<text x="828" y="320" fill="#4A5470" font-size="13" text-anchor="middle" >١٢٩–١٣٢ ومروان على تلات جب</text>
+<text x="828" y="340" fill="#4A5470" font-size="13" text-anchor="middle" >هات</text>
+<rect x="943" y="262" width="215" height="100" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="1050" y="292" fill="#19213A" font-size="19" text-anchor="middle" >المعادلة</text>
+<text x="1050" y="320" fill="#4A5470" font-size="13" text-anchor="middle" >قوة الثوار × ضعف النظام = </text>
+<text x="1050" y="340" fill="#4A5470" font-size="13" text-anchor="middle" >الزاب</text>
+<rect x="55" y="382" width="1090" height="62" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="3"/>
+<text x="600" y="408" fill="#19213A" font-size="19" text-anchor="middle" >معادلة شركاء التأسيس: المنصور قتل أبا مسلم ١٣٧هـ — «ما أخاف منك»</text>
+<text x="600" y="432" fill="#4A5470" font-size="17" text-anchor="middle" >وبعد جيلين نكبة البرامكة ١٨٧هـ: بقوا دولة جوه الدولة — الشريك يُقتل لما يبقى أقوى من المؤسس</text>
+<rect x="55" y="458" width="1090" height="62" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="600" y="484" fill="#19213A" font-size="19" text-anchor="middle" >الاستثناء: صقر قريش عبر الفرات سباحة → الأندلس: دولة قرنين ونص وقرطبة أعظم مدن أوروبا</text>
+<text x="600" y="508" fill="#4A5470" font-size="17" text-anchor="middle" >التاريخ ما بيقفلش كل الأبواب — بيسيب صقرًا طايرًا</text>
+<rect x="55" y="534" width="1090" height="56" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="0"/>
+<text x="600" y="568" fill="#4A5470" font-size="18" text-anchor="middle" >درس عمر بن عبد العزيز (٩٩–١٠١هـ): المصلح الفرد ما بينقذش نظام ما بينتجش إصلاح — والنظام المنتج بيعمل قنوات قبل ما يحتاجها</text>
+<text x="600" y="640" fill="#4A5470" font-size="20" text-anchor="middle">مشروع تأسيس — الوحدة 6 v0.4 — الأسبوع 23 — بلا تجسيد · هوية v1</text>
+</svg>

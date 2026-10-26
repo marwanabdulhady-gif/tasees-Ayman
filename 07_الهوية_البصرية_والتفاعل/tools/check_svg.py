@@ -5,7 +5,9 @@
 Checks, and exits non-zero on any failure:
   V1  every hex colour in fill/stroke/style is in the palette (tokens.json, day + night + photo ink)
   V4  the SVG has live <text> (no text drawn as paths) and no embedded raster <image>
-  V6  with ORIGINAL given: the multiset of text strings is identical (restyle may not change a word)
+  V6  with ORIGINAL given: the multiset of text strings is identical (restyle may not change a word).
+      The A2 restyle appends the marker «· هوية v1» to the footer line (04 §A2), so that
+      suffix is stripped from both sides before comparing — nothing else may differ.
   --icon  task A3 only: the twelve pen icons carry no text by design, so the live-text rule is waived.
           Every other check still applies (palette, no raster, and a <title> naming the icon for a11y).
 """
@@ -29,12 +31,21 @@ def palette():
     return cols | {"#ffffff", "#fff"}
 
 
+MARK_V1 = "· هوية v1"
+
+
+def strip_mark(t):
+    """A2 يضيف «· هوية v1» في نهاية سطر التذييل — علامة النسخة لا تغيير نص."""
+    t = " ".join(t.split())
+    return t[: -len(MARK_V1)].strip() if t.endswith(MARK_V1) else t
+
+
 def texts(path):
     root = ET.parse(path).getroot()
     out = []
     for el in root.iter():
         if el.tag.split("}")[-1] in ("text", "tspan") and el.text and el.text.strip():
-            out.append(" ".join(el.text.split()))
+            out.append(strip_mark(el.text))
     return out
 
 

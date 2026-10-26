@@ -19,6 +19,7 @@ STEPS = [
     ("course text unchanged (drift)", ["python3", str(T / "check_drift.py")]),
     ("week pages up to date", ["python3", str(T / "build_week_pages.py"), "--check"]),
     ("playlist registry builds", ["python3", str(ROOT / "08_دورات_القوائم" / "tools" / "build_playlist_registry.py")]),
+    ("A2 v1 recolour copies", ["python3", str(T / "build_v1_recolour.py"), "--check"]),
     ("course index up to date", ["python3", str(T / "build_course_index.py"), "--check"]),
     ("course player page", ["node", str(T / "check_course_page.cjs")]),
 ]

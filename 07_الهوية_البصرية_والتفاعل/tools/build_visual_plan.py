@@ -114,7 +114,8 @@ def main():
                 description=(f"{w['svg']} مرسوم بألوان الهوية من البداية" if native else f"إعادة رسم {w['svg']} بهوية الكراسة (لا تغيير في المحتوى)"),
                 prompt_ref="" if native else "04 §مهمة A2",
                 target_path=f"{vis}/{w['svg']}" if native else f"{vis}/v1_هوية/{w['svg']}", license="أصلي",
-                status="جاهز" if native else "موجود — يحتاج إعادة تلوين", gate="V1, V4, V6")
+                status="جاهز" if (native or (UNITS / udir / "03_المواد_البصرية" / "v1_هوية" / w["svg"]).exists())
+                else "موجود — يحتاج إعادة تلوين", gate="V1, V4, V6")
         for aid, ar, body in w["hooks"]:
             hook_png = UNITS / udir / "03_المواد_البصرية" / "hooks" / f"{aid}.png" if udir else None
             hook_status = ("معتمد" if aid in APPROVED else "مولود — بانتظار اعتماد المالك") \
