@@ -16,6 +16,18 @@
       "status": "مسودة — تحتاج مراجعة المالك",
       "episode_url": "https://www.youtube.com/watch?v=jmcCEitwVvc",
       "words": 2177
+    },
+    {
+      "no": "02",
+      "file": "02_الدرس_الثاني_ورقة_المدرسة.md",
+      "title": "ورقة المدرسة — إزاي مدرسة توقف علم ٥٠ سنة؟",
+      "episode": 2,
+      "episode_file": "transcripts/03-psychology/02 - دورة علم النفس أيمن عبدالرحيم المحاضرة الثانية.md",
+      "episode_url": "https://www.youtube.com/watch?v=jmcCEitwVvc",
+      "duration": "آخر طابع في الحلقة 1:32:33",
+      "tool": "ورقة المدرسة",
+      "words": 1912,
+      "status": "مسودة — تحتاج مراجعة المالك"
     }
   ],
   "style_guide": "../00_دليل_الأسلوب.md",
