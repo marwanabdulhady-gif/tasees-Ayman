@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-phase="2" data-week="w18" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تأسيس · الأسبوع ١٨</title>
+<!--
+  قالب الأسبوع — انسخ هذا الملف إلى <الوحدة>/04_التفاعلي/week-NN.html
+  ثم عدّل فقط: (1) data-phase و data-week في وسم <html>، (2) <title>، (3) كتلة JSON بالمعرّف "week".
+  data-root = المسار إلى جذر المستودع (حيث index.html منصة الأطالس): "../../" هنا، و"../../../" داخل <الوحدة>/04_التفاعلي/.
+  "source_sha" = بصمة نص الأسبوع الذي بنيت منه الصفحة (من source-lock.json). الدورة قيد التحرير:
+  tools/check_drift.py يقارنها بالنص الحالي ويخبرك إن صارت الصفحة قديمة.
+  لا تعدّل CSS ولا JS هنا؛ التعديل في tasees-tokens.css و tasees-runtime.js فقط (بقرار).
+  المحتوى أدناه مثال حقيقي من نص الأسبوع 1 (v0.4).
+-->
+<link rel="stylesheet" href="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; min-height: 100%; }
+.wk { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 24px; }
+.wk .t-screen { border: 1.5px solid var(--ink); }
+.bar { max-width: var(--stage-max); margin: 0 auto 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: var(--t-tag); color: var(--ink-soft); }
+.bar strong { font-family: var(--f-display); font-size: 1.3rem; color: var(--ink); font-weight: 700; }
+.pencil { display: flex; gap: 3px; margin-inline-start: auto; } .pencil i { width: 16px; height: 4px; border-radius: 2px; background: var(--rule); } .pencil i.on { background: var(--phase); }
+.nav { max-width: var(--stage-max); margin: 12px auto 0; display: flex; justify-content: space-between; gap: 12px; }
+.q-box { border: 1.5px solid var(--phase); padding: 12px 16px; background: var(--card); max-width: 36em; }
+.q-box small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.audio { border: 1.5px dashed var(--ink-soft); padding: 10px 14px; max-width: 36em; font-size: var(--t-small); }
+.hook-art { border: 1.5px solid var(--rule); background: var(--card); aspect-ratio: 16 / 7; max-width: 100%; display: grid; place-items: center; color: var(--ink-soft); font-size: var(--t-small); overflow: hidden; }
+.hook-art img { width: 100%; height: 100%; object-fit: cover; }
+.lines { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; counter-reset: l; }
+.lines li { counter-increment: l; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 8px; }
+.lines li::before { content: counter(l, arabic-indic); font-family: var(--f-display); color: var(--phase); font-size: 1.4rem; line-height: 1.3; }
+.wall { display: flex; gap: 4px; } .wall .t-brick { width: 18px; height: 10px; }
+/* pattern parts used by tasees-runtime.js (same as screen-templates.html) */
+.demo { display: flex; flex-direction: column; gap: 10px; }
+.order { display: flex; flex-direction: column; gap: 6px; } .order .t-choice b { color: var(--ink-soft); min-width: 1.4em; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); } .bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.house { width: 100%; max-width: 360px; height: auto; align-self: center; }
+.house .glow { fill: var(--pen-black); opacity: 0; transition: opacity .3s; } .house.is-lit .glow { opacity: .28; }
+.house .ink { stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.house .bulb { fill: var(--card); stroke: var(--ink); stroke-width: 2; } .house.is-lit .bulb { fill: var(--pen-black); }
+@media (prefers-reduced-motion: no-preference) { .house.is-flicker .bulb { animation: flick .9s steps(2) 2; } }
+@keyframes flick { 50% { fill: var(--pen-black); } }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain .t-kart { padding: 8px 12px; font-size: var(--t-small); cursor: pointer; } .chain .t-kart[aria-expanded="false"] span { visibility: hidden; }
+.chain .t-kart small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.portico { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 6px solid var(--phase); border-bottom: 4px solid var(--phase); padding: 8px 0; }
+.portico div { border-inline: 2px solid var(--phase); padding: 4px 6px; min-height: 92px; font-family: var(--f-display); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portico div small { display: block; font-family: var(--f-body); font-size: 11px; color: var(--ink-soft); }
+@media (max-width: 560px) { .builder { grid-template-columns: minmax(0, 1fr); } .bins { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="t-page">
+<div class="wk">
+  <div class="bar"><strong id="wk-name"></strong><span id="wk-pos"></span><div class="pencil" id="pencil" aria-hidden="true"></div></div>
+  <main id="stage" aria-live="polite"></main>
+  <div class="nav"><button class="t-btn t-btn--ghost" id="prev" type="button">السابق</button><button class="t-btn" id="next" type="button">التالي</button></div>
+</div>
+
+<!-- ======================= محتوى الأسبوع — هذا وحده ما يُعدَّل ======================= -->
+<script type="application/json" id="week">
+{
+  "week": 18,
+  "unit": 5,
+  "phase": 2,
+  "source_sha": "dc70ca38e9d6bfe6",
+  "eyebrow": "المرحلة ٢ · مدخل التاريخ — الوحدة ٥ · الأسبوع ١٨",
+  "title": "تاريخنا مزور؟",
+  "subtitle": "منهج قراءة التاريخ",
+  "question": "إزاي أقرأ التاريخ بمنهج — لا بتقديس للعصور ولا بازدراء لها؟",
+  "audio": "الحلقة المسموعة ١٥–٢٠ د · قيد التسجيل بقارئ بشري (بوابة G13)",
+  "next": "الأسبوع الجاي: الصاحبان — أبو بكر وعمر وتأسيس الدولة",
+  "screens": [
+    {
+      "id": "w18-01",
+      "layout": "L1",
+      "sanad": [
+        [
+          "الوحدة ٥",
+          "الأسبوع ١٨"
+        ]
+      ]
+    },
+    {
+      "id": "w18-02",
+      "layout": "L4",
+      "pattern": "P14",
+      "heading": "قبل ما نبدأ",
+      "instruction": "خمّن الأول — الإجابة بتتراجع في القفلة.",
+      "sanad": [
+        [
+          "الخطاف",
+          "الكتلة ٠"
+        ]
+      ],
+      "data": {
+        "q": "«تاريخنا مزور» — إيه إجابتك الأولى؟",
+        "options": [
+          "آه: التاريخ بيقوله المنتصر",
+          "لأ: تاريخنا أنضف تاريخ في العالم",
+          "فيه مزور وفيه محقق — والمقياس درجة الخبر",
+          "مش عارف — محتاج أشوف الميزان"
+        ]
+      }
+    },
+    {
+      "id": "w18-03",
+      "layout": "L2",
+      "art": "tas-w18-hook-lens",
+      "art_src": "../03_المواد_البصرية/hooks/tas-w18-hook-lens.png",
+      "sanad": [
+        [
+          "الخطاف",
+          "الكتلة ٠"
+        ]
+      ],
+      "voice": "واحد بيقول: «التاريخ ده كله كتبه السلاطين». والتاني بيقول: «تاريخنا أنضف تاريخ في العالم». والاتنين بيصوتوا عالي، ومحدش فيهم بيفحص.",
+      "sharh": "أخطر سؤال بيتسأل عن تاريخنا: هل تاريخنا مزور؟ والتهمة مش جديدة — وأغرب حاجة فيها إن أول من حقق فيها هم علماؤنا أنفسهم: التراث فيه جهاز مناعة ذاتي، والجهاز ده اسمه علم النقد."
+    },
+    {
+      "id": "w18-04",
+      "layout": "L3",
+      "heading": "الكتلة ١ · حجم التزوير ومين كشفه",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "الميزان"
+        ]
+      ],
+      "matn": "«أنا جامع لك فيه ما روي، فمنه صحيح ومنها سقيم» — الطبري في مقدمة تاريخه.",
+      "sharh": "آه، فيه تزوير فعلًا: أخبار مختلقة دخلت كتب التاريخ، وأحاديث موضوعة في الفضائل والمثالب، وأساطير شعبية اتسربت من كتب القصاص، وكذب سياسي. بس السؤال المنهجي: إيه الحجم؟ ومين كشفه؟ وإيه اللي فضِل سليم؟ الحجم: الكتب الكبيرة فيها الغث والسمين، وده معروف ومعلن من مصنفيها أنفسهم. ومين كشف؟ جهاز النقد: علم الحديث برجاله وجرحه وتعديله، وعلم النقد التاريخي اللي اشتغل على الروايات. اللي كشف الأحاديث الموضوعة مش مستشرق من بره — ده ابن الجوزي بكتاب «الموضوعات»، والذهبي، وابن حجر.",
+      "trap": {
+        "title": "واللي فضِل سليم؟",
+        "text": "الأصول الكبرى: القرآن بنصه المتواتر، والسنة المصفاة بالصحاح والسنن، ووقائع التاريخ الكبرى المنقولة بالتواتر العملي. التفاصيل الدقيقة — أرقام الجيوش، بعض الحوارات، الحكايات الجانبية — دي اللي فيها الضعيف والموضوع. التاريخ مش كتلة مقدسة ولا كتلة مزورة — التاريخ درجات، زي كل خبر."
+      }
+    },
+    {
+      "id": "w18-05",
+      "layout": "L4",
+      "pattern": "P10",
+      "heading": "بطاقة الرواية التاريخية",
+      "instruction": "جرّب البطاقة على «قالوا» — التعميم المجهول.",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "البطاقة الخماسية"
+        ]
+      ],
+      "data": {
+        "flag": "«قالوا إن كذا حدث» — التعميم المجهول",
+        "fields": [
+          [
+            "١ الراوي",
+            "مين مصدره الأول؟ شاهد عيان، ولا معاصر سمع من شهود، ولا متأخر بيجمع من كتب؟"
+          ],
+          [
+            "٢ السلسلة",
+            "كام واسطة بين الراوي الأول والمؤلف؟ وكل واسطة احتمالية."
+          ],
+          [
+            "٣ المتن",
+            "هل بيخالف خبرًا أقوى منه؟ فيه مبالغة رقمية؟"
+          ],
+          [
+            "٤ السياق والمصلحة",
+            "لصالح مين الحكاية دي بتشتغل؟ اتكتبت في عهد مين؟"
+          ],
+          [
+            "٥ الأثر",
+            "على قد الأثر تكون الصرامة: تفصيلة لون كسوة = تساهل؛ اتهام لعرض صحابي = تشدد لآخر درجة"
+          ]
+        ],
+        "grades": [
+          "قوي",
+          "ضعيف",
+          "لا أعلم بعد"
+        ],
+        "note": "التعميم المجهول زي الرقم من غير مصدر: علامة حمراء تلقائية — مش معناها إن الخبر كذب، معناها إن الخبر لسه ما قدمش أوراقه."
+      }
+    },
+    {
+      "id": "w18-06",
+      "layout": "L3",
+      "heading": "الكتلة ٢ · البطاقة على أشهر مثال",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "أخبار الفتنة"
+        ]
+      ],
+      "matn": "المصلحة كشاف مش تهمة — ودي قاعدة من و٢.",
+      "sharh": "أخبار الفتنة: هتلاقي روايات بتتعارض تعارضًا كاملًا في نفس الحدث — مين بدأ؟ مين قتل؟ مين قال إيه؟ والبطاقة بتقولك: التعارض ده نفسه دليل — إما شهادات من زوايا مختلفة (وممكن نجمع بينها)، وإما اختلاق من معسكر (وممكن نميزه بالسلاسل والمصلحة). واللي يقرا أخبار الفتنة من غير البطاقة دي هيتحول تلقائيًا لقاضي في محكمة اتقفلت من ألف وأربع مية سنة — وهيقضي من غير ما يسمع غير طرف واحد. والقارئ المبتدئ يقبل «قالوا»، والوسيط يسأل «مين قال؟»، والصنايعي بيفتح الكتاب ويشوف السند بنفسه.",
+      "trap": {
+        "title": "كلمة «المستشرق» شحنة",
+        "text": "المستشرقون — زي أي مدرسة — أنواع: فيه اللي اشتغل بتحقيق نصوصنا وطبع لنا أمهات الكتب بتحقيقات لسه بنستعملها، وفيه اللي قرأ تراثنا بعين الاستعمار. الحكم على الكتاب بمنهجه، مش على المنهج بجنسية كاتبه: الحكمة ضالتنا، والحق بيتقبل من أي راوي — بعد فحصه."
+      }
+    },
+    {
+      "id": "w18-07",
+      "layout": "L4",
+      "pattern": "P02",
+      "heading": "مختلَق / ضعيف / ثابت",
+      "instruction": "ضع كل مثال في سلته — من أمثلة النص.",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "أمثلة النص"
+        ]
+      ],
+      "data": {
+        "bins": [
+          "مختلَق",
+          "ضعيف",
+          "ثابت"
+        ],
+        "items": [
+          [
+            "أحاديث موضوعة في الفضائل والمثالب",
+            0
+          ],
+          [
+            "أساطير شعبية من كتب القصاص",
+            0
+          ],
+          [
+            "«قالوا» و«رُوي أن» و«ذُكر أن»",
+            1
+          ],
+          [
+            "سلاسل طويلة أو مجهولة مهما كانت الحكاية حلوة",
+            1
+          ],
+          [
+            "القرآن بنصه المتواتر",
+            2
+          ],
+          [
+            "وقائع التاريخ الكبرى كالفتوحات والدول",
+            2
+          ]
+        ],
+        "done": "اللي يقول «كله مزور» بيكذب بنفس السلاح اللي بيتهم بيه، واللي يقول «كله مقدس» بيدي للخصم فرصة يكذب كله لما يلاقي غلطة واحدة."
+      }
+    },
+    {
+      "id": "w18-08",
+      "layout": "L3",
+      "heading": "الكتلة ٣ · المرضان: تقديس العصر وازدراؤه",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "المنهج الوسط"
+        ]
+      ],
+      "matn": "لما تحولهم لملائكة، تشيل عنهم أعظم ميزاتهم: إنهم بشر قابلون للاقتداء.",
+      "sharh": "المرض الأول: تقديس العصر — تحب عصر الصحابة لدرجة تحوله لعصر بلا بشر: كل قراراته صواب محض، وأي سؤال عنه بدعة. وده قبل ما يكون غلط منهجي، هو ظلم للعصر نفسه: عظمة الصحابة إنها عظمة بشر اجتهدوا — أصابوا وأخطأوا، وتشاوروا واختلفوا، وراجعوا أنفسهم ورجعوا للحق. والمرض التاني: ازدراء العصر — تقرا التاريخ بعين الحاضر بس، وده اسمه الحاضرية: محاكمة أزمنة بمسطرة قرنك. والأمة بلا ذاكرة بتتصرف كالأفراد المصابين بفقدان الذاكرة: كل يوم تبدأ من الصفر.",
+      "trap": {
+        "title": "تلات قواعد عملية",
+        "text": "الأولى: نفحص الخبر لا العصر — الحكم بالدرجة على الرواية، مش بالجملة على الحقبة. التانية: نفهم الأشخاص بشروطهم — مينفعش نحاسب عمر بمنطق القرن الواحد والعشرين ولا نمجده بمنطق العصمة. التالتة: نسأل التاريخ أسئلة الحاضر بأدب — التاريخ مش مخزن إجابات جاهزة، التاريخ مختبر حالات."
+      }
+    },
+    {
+      "id": "w18-09",
+      "layout": "L5",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "المنهج الوسط"
+        ]
+      ],
+      "matn": "العصر يُفهم بشروطه، ويُقيَّم بمعاييره هو ومعايير الوحي الثابتة، ويُستفاد منه لحاضرنا بأسئلة حاضرنا. أقرأ قرار عمر في سنة ١٦هـ وأسأل: إيه الشروط اللي عمل فيها؟ إيه الدليل؟ إيه النتيجة؟ — وبعدين: إيه المبدأ اللي ينقل لحاضري؟ مش القرار نفسه — المبدأ. القرار كان ابن وقته، والمبدأ ابن الوحي.",
+      "classic": "«لو كان في الأرض ملائكة يمشون مطمئنين لنزلنا عليهم من السماء ملكًا رسولًا»"
+    },
+    {
+      "id": "w18-10",
+      "layout": "L4",
+      "pattern": "P06",
+      "heading": "مهمة الأسبوع · بطاقة رواية تاريخية",
+      "instruction": "اختار خبرًا تاريخيًا مشهورًا بتسمعه كتير، واعمل له البطاقة الخماسية، ثم أعطه درجته النهائية.",
+      "sanad": [
+        [
+          "القفلة",
+          "مهمة الأسبوع"
+        ]
+      ],
+      "data": {
+        "key": "history-card",
+        "note": "إحنا مش هنا نضرب التاريخ ولا ندافع عنه — إحنا هنا نبني جهاز قراءة يشتغل بنفسه.",
+        "fields": [
+          {
+            "key": "c",
+            "label": "الخبر كما سمعته",
+            "ph": "بصيغته اللي بتتقال"
+          },
+          {
+            "key": "r",
+            "label": "١ الراوي",
+            "ph": "مين أول من قاله؟ وإمتى عاش؟"
+          },
+          {
+            "key": "s",
+            "label": "٢ السلسلة",
+            "ph": "كام واسطة؟ وكل واسطة موثقة؟"
+          },
+          {
+            "key": "m",
+            "label": "٣ المتن",
+            "ph": "معقول؟ بيخالف خبرًا أقوى؟ فيه مبالغة رقمية؟"
+          },
+          {
+            "key": "i",
+            "label": "٤ السياق والمصلحة",
+            "ph": "لصالح مين بتشتغل الحكاية؟"
+          },
+          {
+            "key": "e",
+            "label": "٥ الأثر",
+            "ph": "لو ثبتت، بيترتب عليها إيه؟"
+          },
+          {
+            "key": "g",
+            "label": "الدرجة النهائية",
+            "options": [
+              "قوي",
+              "ضعيف",
+              "لا أعلم بعد"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "w18-11",
+      "layout": "L6",
+      "pattern": "P15",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "سؤال للدفتر"
+        ]
+      ],
+      "data": {
+        "q": "خبر تاريخي أو ديني سمعته وحكيتَه — وأنت ما سألتش «مين قال؟». اكتبه، واكتب جنبه التعميم المجهول اللي كان مخبِّيه («قالوا» / «الناس بتقول») — وسؤال واحد تسأله المرة الجاية.",
+        "key": "journal"
+      }
+    },
+    {
+      "id": "w18-12",
+      "layout": "L7",
+      "heading": "نلمّ الليلة في تلات سطور",
+      "lines": [
+        "تاريخنا درجات: فيه موضوع مفضوح بأهله، وفيه ثابت متواتر — والمزور مش مستور.",
+        "بطاقة الرواية الخماسية: الراوي · السلسلة · المتن · السياق والمصلحة · الأثر — والتعميم المجهول علامة حمراء.",
+        "لا تقديس للعصور ولا ازدراء لها: نفهم بشروطهم، ونأخذ المبدأ مش القرار."
+      ],
+      "replay": "في الأول خمّنت إن تاريخنا {{predict}}. الجواب بالمنهج: منقول بأمانة درجات، وفيه جهاز نقد ذاتي اشتغل قرونًا — والمزور فيه مفضوح بأهله.",
+      "task": {
+        "مستكشف": "بطاقة واحدة بخاناتها الخمس مكتملة ودرجة.",
+        "ممارس": "بطاقة كاملة لخبر مشهور + تمييز التعميم المجهول فيه.",
+        "متقدم": "بطاقتان لخبرين متعارضين في نفس الحدث، مع بيان أيّهما أقوى سندًا وليه."
+      }
+    }
+  ]
+}
+</script>
+
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/atlas-course-bundle.js" onerror="this.remove()"></script>
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-runtime.js" onerror="this.remove()"></script>
+<script>
+(function () {
+  "use strict";
+  var W = JSON.parse(document.getElementById("week").textContent);
+  var T = window.Tasees, AR = T.AR, el = T.el, store = T.store;
+  var TRACKS = ["مستكشف", "ممارس", "متقدم"];
+  var track = store.get("track") || "ممارس";
+  var visible = function () { return W.screens.filter(function (s) { return !s.track || s.track === track; }); };
+  var i = 0;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sanad(list) { return (list || []).map(function (s) { var tc = /^≈|\d:\d/.test(s[1]); return '<span class="t-sanad"><b>' + esc(s[0]) + "</b>" + (tc ? '<span class="tc">' + esc(s[1]) + "</span>" : esc(s[1])) + "</span>"; }).join(""); }
+  function bricks(n) { var h = '<div class="wall" aria-label="طوب الوحدة">'; for (var k = 1; k <= 4; k++) { h += '<span class="t-brick' + (store.get("done") && k === ((W.week - 1) % 4) + 1 ? " is-laid" + (n ? " is-new" : "") : "") + '"></span>'; } return h + "</div>"; }
+
+  var LAYOUT = {
+    L1: function (s) {
+      return '<p class="t-eyebrow">' + esc(W.eyebrow) + '</p><h1 class="t-title">' + esc(W.title) + '</h1><svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>' +
+        '<p class="t-small" style="margin:0">' + esc(W.subtitle) + '</p><div class="q-box"><small>سؤال الأسبوع</small>' + esc(W.question) + "</div>" +
+        '<div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>' + TRACKS.map(function (t) { return '<button class="t-chip js-track" type="button" aria-pressed="' + (t === track) + '">' + t + "</button>"; }).join("") + "</div>" +
+        '<div class="audio">' + esc(W.audio) + '</div><p class="t-small" style="margin:0">نصوص مستوحاة من أسلوب المهندس أيمن عبد الرحيم في الشرح، كُتبت لأغراض تدريبية داخل مشروع تأسيس، وليست قولًا منسوبًا إليه.</p>';
+    },
+    L2: function (s) {
+      var art = s.art_src ? '<img src="' + esc(s.art_src) + '" alt="">' : "رسم الخطاف <code>" + esc(s.art) + "</code> لم يُولَّد بعد";
+      return '<div class="hook-art">' + art + '</div><p class="t-voice">' + esc(s.voice) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>";
+    },
+    L3: function (s) {
+      return '<h2 class="t-h2">' + esc(s.heading) + '</h2><p class="t-matn">' + esc(s.matn) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>" +
+        (s.trap ? '<p class="t-feedback t-feedback--bad"><strong>' + esc(s.trap.title) + "</strong>" + esc(s.trap.text) + "</p>" : "");
+    },
+    L4: function (s) { return '<h2 class="t-h2">' + esc(s.heading) + "</h2>" + (s.instruction ? '<p class="t-small" style="margin:0">' + esc(s.instruction) + "</p>" : "") + '<div class="demo" data-mount></div>'; },
+    L5: function (s) { return (s.classic ? '<p class="t-classic" style="margin:0">' + esc(s.classic) + "</p>" : "") + '<p class="t-matn">' + esc(s.matn) + '</p><div class="demo" data-mount></div>'; },
+    L6: function (s) { return '<div class="demo" data-mount></div>'; },
+    L7: function (s) {
+      var p = store.get("predict");
+      return '<h2 class="t-title" style="font-size:2.2rem">' + esc(s.heading) + '</h2><ol class="lines">' + s.lines.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ol>" +
+        (p ? '<p class="t-feedback">' + esc(s.replay).replace("{{predict}}", "<strong style=\"display:inline\">«" + esc(p) + "»</strong>") + "</p>" : "") +
+        '<p class="t-feedback t-feedback--ok"><strong>مهمة الأسبوع · ' + esc(track) + "</strong>" + esc(s.task[track]) + '</p><p class="t-small" style="margin:0">' + esc(W.next) + "</p>";
+    }
+  };
+
+  function show() {
+    var list = visible(); i = Math.max(0, Math.min(i, list.length - 1));
+    var s = list[i], last = s.layout === "L7";
+    if (last && !store.get("done")) { store.set("done", "1"); s._new = true; }
+    var stage = document.getElementById("stage");
+    stage.innerHTML = '<section class="t-screen" data-id="' + esc(s.id) + '" data-layout="' + s.layout + '"><aside class="t-margin">' + sanad(s.sanad) + (s.layout === "L1" || last ? bricks(last && s._new) : "") + '</aside><div class="t-main">' + LAYOUT[s.layout](s) + "</div></section>";
+    var mount = stage.querySelector("[data-mount]"); if (mount && s.pattern) T.render(mount, s.pattern, s.data);
+    stage.querySelectorAll(".js-track").forEach(function (b) { b.onclick = function () { track = b.textContent; store.set("track", track); show(); }; });
+    document.getElementById("wk-name").innerHTML = 'تأسيس <span style="font-family:var(--f-body);font-size:1rem;font-weight:500">· الأسبوع ' + AR(W.week) + "</span>";
+    document.getElementById("wk-pos").textContent = "الشاشة " + AR(i + 1) + " من " + AR(list.length);
+    document.getElementById("pencil").innerHTML = list.map(function (_, k) { return '<i class="' + (k <= i ? "on" : "") + '"></i>'; }).join("");
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").textContent = last ? "تم" : i === 0 ? "يلا بينا" : "التالي";
+    document.getElementById("next").disabled = last;
+  }
+  document.getElementById("prev").onclick = function () { i--; show(); window.scrollTo(0, 0); };
+  document.getElementById("next").onclick = function () { i++; show(); window.scrollTo(0, 0); };
+  document.addEventListener("keydown", function (e) { if (e.target.closest("input,textarea,select")) return; if (e.key === "ArrowLeft") { i++; show(); } if (e.key === "ArrowRight") { i--; show(); } });
+  show();
+})();
+</script>
+</body>
+</html>
