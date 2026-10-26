@@ -42,6 +42,14 @@ def phase_of(u):
     return 1 if u in (1, 2, 3, 4, 17) else 2 if u in (5, 6, 26, 0) else 3
 
 
+def approved_assets():
+    """معرّفات الصور التي اعتمدها المالك — من ملف الاعتماد، لا بتحرير السجل يدويًا."""
+    p = PKG / "08_اعتماد_الأصول.json"
+    if not p.exists():
+        return set()
+    return set(json.loads(p.read_text(encoding="utf-8")).get("assets", []))
+
+
 def lib_license():
     out = {}
     with open(LIB / "00_فهرس_المكتبة_البصرية.csv", encoding="utf-8") as f:
@@ -58,6 +66,7 @@ def main():
     lock_path = PKG / "source-lock.json"
     lock = json.loads(lock_path.read_text(encoding="utf-8"))["weeks"] if lock_path.exists() else {}
     lic = lib_license()
+    APPROVED = approved_assets()
     errors, rows, prompts = [], [], []
     add = lambda **k: rows.append(k)
 
@@ -78,9 +87,10 @@ def main():
     for u, name, body in UNIT_COVERS:
         aid = f"tas-u{u}-cover"
         cover_png = ROOT / "07_الهوية_البصرية_والتفاعل" / "assets" / "covers" / f"{aid}.png"
+        cover_status = ("معتمد" if aid in APPROVED else "مولود — بانتظار اعتماد المالك") if cover_png.exists() else "مطلوب"
         add(asset_id=aid, week="", unit=u, kind="غلاف وحدة", route="AI still", description=name,
             prompt_ref=aid, target_path=f"07_الهوية_البصرية_والتفاعل/assets/covers/{aid}.png", license="مولد AI",
-            status="مولود — بانتظار اعتماد المالك" if cover_png.exists() else "مطلوب", gate="V2, V3, V5")
+            status=cover_status, gate="V2, V3, V5")
         prompts.append((aid, f"غلاف الوحدة {str(u).translate(AR)} — {name}", body, phase_of(u)))
 
     imap = []
@@ -101,7 +111,8 @@ def main():
                 status="جاهز" if native else "موجود — يحتاج إعادة تلوين", gate="V1, V4, V6")
         for aid, ar, body in w["hooks"]:
             hook_png = UNITS / udir / "03_المواد_البصرية" / "hooks" / f"{aid}.png" if udir else None
-            hook_status = "مولود — بانتظار اعتماد المالك" if (hook_png and hook_png.exists()) else "مطلوب"
+            hook_status = ("معتمد" if aid in APPROVED else "مولود — بانتظار اعتماد المالك") \
+                if (hook_png and hook_png.exists()) else "مطلوب"
             add(asset_id=aid, week=wk, unit=u, kind="رسم الخطاف", route="AI still", description=ar,
                 prompt_ref=aid, target_path=f"{vis}/hooks/{aid}.png", license="مولد AI", status=hook_status, gate="V2, V3, V5")
             prompts.append((aid, f"الأسبوع {str(wk).translate(AR)} — {ar}", body, phase_of(u)))
