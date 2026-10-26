@@ -1,0 +1,170 @@
+{
+ "page": 7,
+ "features": [
+  {
+   "ids": [
+    27,
+    28,
+    35,
+    29,
+    36,
+    30,
+    31,
+    37,
+    32,
+    33,
+    34,
+    38,
+    39,
+    40
+   ],
+   "text": "شكل ١-٤: العالم الإسلامي نحو عام ١٧٠٠.",
+   "kind": "caption",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    0,
+    1
+   ],
+   "text": "الإمبراطورية الروسية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high"
+  },
+  {
+   "ids": [
+    13,
+    17
+   ],
+   "text": "الإمبراطورية الصفوية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "ids": [
+    18,
+    19
+   ],
+   "text": "الإمبراطورية المغولية",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "ids": [
+    14,
+    15
+   ],
+   "text": "إمبراطورية مانشو",
+   "kind": "polity",
+   "bold": true,
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "ids": [
+    2,
+    3
+   ],
+   "text": "محمية سخالين",
+   "kind": "region",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    4,
+    5
+   ],
+   "text": "منغوليا الخارجية",
+   "kind": "region",
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "ids": [
+    11,
+    8,
+    7,
+    6
+   ],
+   "text": "منغوليا الداخلية",
+   "kind": "region",
+   "conf": "high",
+   "note": "تسمية مائلة/مقوسة"
+  },
+  {
+   "ids": [
+    9,
+    10
+   ],
+   "text": "تيان شان",
+   "kind": "region",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    12
+   ],
+   "text": "تشينغهاي",
+   "kind": "region",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    16
+   ],
+   "text": "التبت",
+   "kind": "region",
+   "conf": "high",
+   "note": "مكتوبة مائلة على امتداد خط الحدود"
+  },
+  {
+   "ids": [
+    22
+   ],
+   "text": "مايسور",
+   "kind": "polity",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    23
+   ],
+   "text": "سايلون",
+   "kind": "region",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    24,
+    25
+   ],
+   "text": "سلطنة ملقا",
+   "kind": "polity",
+   "conf": "high",
+   "note": "على سطرين"
+  },
+  {
+   "ids": [
+    26
+   ],
+   "text": "جاوة",
+   "kind": "region",
+   "conf": "high"
+  },
+  {
+   "ids": [
+    21,
+    20
+   ],
+   "text": "الفلبين",
+   "kind": "region",
+   "conf": "high"
+  }
+ ],
+ "clusterSignature": "50c129f2fbbc"
+}
