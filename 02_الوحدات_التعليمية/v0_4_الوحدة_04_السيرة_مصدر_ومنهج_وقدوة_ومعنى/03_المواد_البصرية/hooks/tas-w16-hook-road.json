@@ -1,0 +1,17 @@
+{
+  "asset_id": "tas-w16-hook-road",
+  "generator": "arena image model (generate_image)",
+  "date": "2026-10-26",
+  "prompt": "A very long straight desert road drawn in perspective, with only a few small stone markers along it, most of the road calm and open under a wide sky. No people, no fighting. Style: a hand-drawn illustration in blue ballpoint pen (#2440A0) on off-white squared notebook paper (#F7F8F3 with faint blue 5 mm grid). Confident single-weight pen lines with light cross-hatching for shade, like an engineer's sketch on a lecture board. Flat, no 3D, no photorealism, no gradients, no glow. At most ONE accent colour used sparingly: brick red #C23B30 for one small detail. Generous empty paper around the subject; keep the right third of the frame quiet for on-screen text. 16:9 landscape, 1920x1080. Absolutely no text, letters, Arabic or Latin script, numbers, logos, signatures or watermarks anywhere. No human faces: any person is a tiny distant outline silhouette with no facial features. No religious figures, no prophets, no companions, no real people, no weapons, no blood, no fire, no flags, no sectarian or national symbols.",
+  "seed": null,
+  "rejected_variants": 0,
+  "checks": {
+    "V2_no_text": true,
+    "V3_no_faces": true,
+    "V4_single_accent": true,
+    "V5_flat_not_3d": true,
+    "V6_1920x1080": true
+  },
+  "notes": "طريق طويل بعلامات حجرية قليلة؛ الشريط الأحمر على حجر واحد.",
+  "review_status": "بانتظار اعتماد المالك"
+}
