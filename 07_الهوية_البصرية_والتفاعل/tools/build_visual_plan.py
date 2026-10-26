@@ -77,9 +77,10 @@ def main():
 
     for u, name, body in UNIT_COVERS:
         aid = f"tas-u{u}-cover"
+        cover_png = ROOT / "07_الهوية_البصرية_والتفاعل" / "assets" / "covers" / f"{aid}.png"
         add(asset_id=aid, week="", unit=u, kind="غلاف وحدة", route="AI still", description=name,
             prompt_ref=aid, target_path=f"07_الهوية_البصرية_والتفاعل/assets/covers/{aid}.png", license="مولد AI",
-            status="مطلوب", gate="V2, V3, V5")
+            status="مولود — بانتظار اعتماد المالك" if cover_png.exists() else "مطلوب", gate="V2, V3, V5")
         prompts.append((aid, f"غلاف الوحدة {str(u).translate(AR)} — {name}", body, phase_of(u)))
 
     imap = []
