@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-phase="1" data-week="w05">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تأسيس · الأسبوع ٥</title>
+<!--
+  قالب الأسبوع — انسخ هذا الملف إلى <الوحدة>/04_التفاعلي/week-NN.html
+  ثم عدّل فقط: (1) data-phase و data-week في وسم <html>، (2) <title>، (3) كتلة JSON بالمعرّف "week".
+  "source_sha" = بصمة نص الأسبوع الذي بنيت منه الصفحة (من source-lock.json). الدورة قيد التحرير:
+  tools/check_drift.py يقارنها بالنص الحالي ويخبرك إن صارت الصفحة قديمة.
+  لا تعدّل CSS ولا JS هنا؛ التعديل في tasees-tokens.css و tasees-runtime.js فقط (بقرار).
+  المحتوى أدناه مثال حقيقي من نص الأسبوع 1 (v0.4).
+-->
+<link rel="stylesheet" href="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; min-height: 100%; }
+.wk { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 24px; }
+.wk .t-screen { border: 1.5px solid var(--ink); }
+.bar { max-width: var(--stage-max); margin: 0 auto 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: var(--t-tag); color: var(--ink-soft); }
+.bar strong { font-family: var(--f-display); font-size: 1.3rem; color: var(--ink); font-weight: 700; }
+.pencil { display: flex; gap: 3px; margin-inline-start: auto; } .pencil i { width: 16px; height: 4px; border-radius: 2px; background: var(--rule); } .pencil i.on { background: var(--phase); }
+.nav { max-width: var(--stage-max); margin: 12px auto 0; display: flex; justify-content: space-between; gap: 12px; }
+.q-box { border: 1.5px solid var(--phase); padding: 12px 16px; background: var(--card); max-width: 36em; }
+.q-box small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.audio { border: 1.5px dashed var(--ink-soft); padding: 10px 14px; max-width: 36em; font-size: var(--t-small); }
+.hook-art { border: 1.5px solid var(--rule); background: var(--card); aspect-ratio: 16 / 7; max-width: 100%; display: grid; place-items: center; color: var(--ink-soft); font-size: var(--t-small); overflow: hidden; }
+.hook-art img { width: 100%; height: 100%; object-fit: cover; }
+.lines { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; counter-reset: l; }
+.lines li { counter-increment: l; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 8px; }
+.lines li::before { content: counter(l, arabic-indic); font-family: var(--f-display); color: var(--phase); font-size: 1.4rem; line-height: 1.3; }
+.wall { display: flex; gap: 4px; } .wall .t-brick { width: 18px; height: 10px; }
+/* pattern parts used by tasees-runtime.js (same as screen-templates.html) */
+.demo { display: flex; flex-direction: column; gap: 10px; }
+.order { display: flex; flex-direction: column; gap: 6px; } .order .t-choice b { color: var(--ink-soft); min-width: 1.4em; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); } .bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.house { width: 100%; max-width: 360px; height: auto; align-self: center; }
+.house .glow { fill: var(--pen-black); opacity: 0; transition: opacity .3s; } .house.is-lit .glow { opacity: .28; }
+.house .ink { stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.house .bulb { fill: var(--card); stroke: var(--ink); stroke-width: 2; } .house.is-lit .bulb { fill: var(--pen-black); }
+@media (prefers-reduced-motion: no-preference) { .house.is-flicker .bulb { animation: flick .9s steps(2) 2; } }
+@keyframes flick { 50% { fill: var(--pen-black); } }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain .t-kart { padding: 8px 12px; font-size: var(--t-small); cursor: pointer; } .chain .t-kart[aria-expanded="false"] span { visibility: hidden; }
+.chain .t-kart small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.portico { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 6px solid var(--phase); border-bottom: 4px solid var(--phase); padding: 8px 0; }
+.portico div { border-inline: 2px solid var(--phase); padding: 4px 6px; min-height: 92px; font-family: var(--f-display); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portico div small { display: block; font-family: var(--f-body); font-size: 11px; color: var(--ink-soft); }
+@media (max-width: 560px) { .builder { grid-template-columns: minmax(0, 1fr); } .bins { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="t-page">
+<div class="wk">
+  <div class="bar"><strong id="wk-name"></strong><span id="wk-pos"></span><div class="pencil" id="pencil" aria-hidden="true"></div></div>
+  <main id="stage" aria-live="polite"></main>
+  <div class="nav"><button class="t-btn t-btn--ghost" id="prev" type="button">السابق</button><button class="t-btn" id="next" type="button">التالي</button></div>
+</div>
+
+<!-- ======================= محتوى الأسبوع — هذا وحده ما يُعدَّل ======================= -->
+<script type="application/json" id="week">
+{
+  "week": 5,
+  "unit": 2,
+  "phase": 1,
+  "source_sha": "f04350a9d6138db0",
+  "eyebrow": "المرحلة ١ · بناء المتلقي — الوحدة ٢ · الأسبوع ٥",
+  "title": "خزانتك مش عقلك",
+  "subtitle": "لهفة التلقي ومنهج التعلم",
+  "question": "إزاي أولّد سؤالًا ساخنًا، وأرتّب ما أجمعه في خزانة مفهرسة — بدل كومة محفوظات؟",
+  "audio": "الحلقة المسموعة ١٥–٢٠ د · قيد التسجيل بقارئ بشري (بوابة G13)",
+  "next": "الأسبوع الجاي: خريطة العلوم — كل علم بيجاوب سؤال",
+  "screens": [
+    {
+      "id": "w05-01",
+      "layout": "L1",
+      "sanad": [
+        [
+          "الوحدة ٢",
+          "الأسبوع ٥"
+        ]
+      ]
+    },
+    {
+      "id": "w05-02",
+      "layout": "L4",
+      "pattern": "P14",
+      "heading": "قبل ما نبدأ",
+      "sanad": [
+        [
+          "الخطاف",
+          "مكتبان"
+        ]
+      ],
+      "data": {
+        "q": "لو سألتك عن آخر مقطع مفيد شفته: هتلاقيه في دقيقة؟",
+        "options": [
+          "هتلاقيه في دقيقة",
+          "هوّن عليّ… هدوّر شوية",
+          "مش فاكر أصلًا شفته فين"
+        ]
+      }
+    },
+    {
+      "id": "w05-03",
+      "layout": "L2",
+      "art": "tas-w05-hook-desks",
+      "art_src": "",
+      "sanad": [
+        [
+          "الخطاف",
+          "الكتلة ٠"
+        ]
+      ],
+      "voice": "مكتبين قدام بعض: واحد عنده كل الكتب كومة، والتاني مكتبه فاضي ووراه خزانة بدروج مكتوب عليها جواها إيه.",
+      "sharh": "الأول لما تسأله يقول: «ثانية، كان عندي حاجة عن ده… مش لاقيها». والتاني يقول: «ده في درج كذا، ورقة رقم كذا — بس خليني أقولك حدّها قبل ما أديك». الفرق مش الذكاء ولا الساعات: الفرق إن الثاني عارف إن عقله للحكم والتركيب مش للتخزين — والمهارة بقت عكس اللي إحنا فاكرينها: مش تجمع أكتر، إنك تفهرس وتعرف فين حدّه."
+    },
+    {
+      "id": "w05-04",
+      "layout": "L3",
+      "heading": "الكتلة ١ · لهفة التلقي: الرغبة قبل المعلومة",
+      "sanad": [
+        [
+          "AT",
+          "إنشاء لهفة التلقي"
+        ]
+      ],
+      "matn": "الترتيب الصح مش: معلومة ← يمكن تنفع ← سؤال. الترتيب: سؤال ساخن ← معلومة ← ممارسة ← مراجعة.",
+      "sharh": "المعلومة اللي بتوصل لواحد مش مستنيها بتعدي زي عربية على طريق سريع — بتشوفها بس ما بتركبهاش. واللهفة مش حماس: الحماس بيجي ويروح زي الضيف، واللهفة عادة تتصنع — ورقة أسئلة على المكتب، كل سؤال جنبه تاريخ فتحه، واللي يفضل شهر من غير ما يوجعك يتشطب من غير ندم. والسؤال المشطوب مش ميت: ده نايم في ورقة الانتظار.",
+      "trap": {
+        "title": "وجع صحي",
+        "text": "خد آخر جملة زعلتك في خبر وما عرفتش تفحصها — دي سؤالك الساخن. اللي ما وجعكش ما كنتش محتاجه."
+      }
+    },
+    {
+      "id": "w05-05",
+      "layout": "L4",
+      "pattern": "P02",
+      "heading": "افهرس الورقة في درجها",
+      "instruction": "اختر السؤال ثم الدرج اللي بيجاوبه — والورقة اللي مالها درج تسيبها في ورقة الانتظار.",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "فهرس بأسئلة"
+        ]
+      ],
+      "data": {
+        "bins": [
+          "إيه اللي بيخلي الفكرة تنتشر؟",
+          "إمتى أثق في رواية؟",
+          "إزاي أفرّق وصف عن حكم؟"
+        ],
+        "items": [
+          [
+            "ليه الناس بتصدّق شائعة بسرعة؟",
+            0
+          ],
+          [
+            "الخبر ده سنده إيه؟",
+            1
+          ],
+          [
+            "الجملة دي وصف ولا وسم؟",
+            2
+          ],
+          [
+            "إيه اللي بيخلي منشور ينتشر أكتر من تقرير؟",
+            0
+          ],
+          [
+            "مين أول من روى الحكاية دي؟",
+            1
+          ],
+          [
+            "الحكم ده على الشخص ولا على فعله؟",
+            2
+          ]
+        ],
+        "done": "الترتيب بأسئلة مش بمواضيع — لأنك وقت الحاجة بتسأل «إيه اللي بيفسّر كذا؟» مش «فين قسم التاريخ؟»"
+      }
+    },
+    {
+      "id": "w05-06",
+      "layout": "L3",
+      "heading": "الكتلة ٢ · الخزانة: فهرس بأسئلة مش بمواضيع",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "ثلاثة سطور"
+        ]
+      ],
+      "matn": "كل ورقة في الدرج عليها تلات سطور بس: الفكرة بإيجاز، مصدرها بوظيفته وحدّه، والسؤال اللي بتجاوبه — وإيه اللي ما بتجاوبهوش.",
+      "sharh": "السطر الأخير هو السر: بيحميك من أخطر عيب في الخزانات — إن الورقة تتوسع وتبقى بتجاوب على كل حاجة، يعني بقت ورم مش ورقة. والصيانة عشر دقايق في يوم ثابت: أنهي ورقة اتعملت النهارده؟ أنهي ورقة اكتشفت إن سؤالها اتغير؟ وأنهي ورقة لازم تتشطب لأن سؤالها مات؟ التشطيب هو اللي بيخلي الدرج بيقفل."
+    },
+    {
+      "id": "w05-07",
+      "layout": "L4",
+      "pattern": "P18",
+      "heading": "عداد لهفة التلقي",
+      "instruction": "حرّك المؤشر من الجمع للفهرسة — وشوف إيه اللي بيتغير فعلًا.",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "الفرز"
+        ]
+      ],
+      "data": {
+        "q": "كام مقطع/يوم — مقابل كم فكرة اتحولت لعمل أو لقرار؟",
+        "steps": [
+          [
+            "جمع بلا فهرس",
+            "مقاطع كتير، وحفظ وسكرين شوتس. الدماغ حاسة إنها بتتعلم لأنها بتمتلك — والتملك أسهل من الفهم."
+          ],
+          [
+            "الباب الواحد",
+            "قاعدة واحدة: ما تدخلش مادة جديدة قبل ما تخرج منها ورقة مفهرسة واحدة. الباب اللي بيقفل بإيدك هو اللي بيفضل خزانة."
+          ],
+          [
+            "سؤال ساخن واحد",
+            "سؤال واحد بيوجعك، بعلامة على وش الورقة — بدل قوائم «اتعلم كل حاجة»."
+          ],
+          [
+            "فهرس بيتشطب",
+            "خزانة بيتعدل فيها وبيتشطب: «كم ورقة اتعدلت؟» مش «كم ورقة ضفت؟» — التعديل هو اللي بيخلي الورقة بتاعتك مش نسخة من مصدرها."
+          ]
+        ]
+      }
+    },
+    {
+      "id": "w05-08",
+      "layout": "L3",
+      "heading": "الكتلة ٣ · تلات مانيَا بتوقع المتعلم",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "أمراض الجمع"
+        ]
+      ],
+      "matn": "الجمع، والشهادات، والسرعة — تلات أمراض بتديك إحساس التعلم وتخلي المصنع ساكت.",
+      "sharh": "الدوا لكل واحد: قاعدة الباب الواحد (جمع)، وسؤال «إيه السؤال الساخن اللي الكورس ده هيجاوبه؟» قبل التسجيل (شهادات)، وجلسات ٢٥ دقيقة وسطر واحد بعدها: إيه اللي اتغير في خزانتك النهارده؟ (سرعة). والمقياس السريع: بعد الجلسة تقدر تقول «كنت فاكر إن… بس طلعت…»؟ لو أه ده تعلم — لو لأ، إحساس الفهم مش فهم.",
+      "trap": {
+        "title": "مقياس صادق",
+        "text": "الإحساس بالفهم زي الإحساس بالشبع من ريحة الأكل. سبع ورقات مفهرسة ضد أربع تيرا محاضرات."
+      }
+    },
+    {
+      "id": "w05-09",
+      "layout": "L5",
+      "sanad": [
+        [
+          "الوحدة ١",
+          "بروتوكول الحوار"
+        ]
+      ],
+      "matn": "الخزانة هي اللي بتخلي بروتوكول الحوار ممكن أصلًا. لما حد يكلمك في دعوى، سؤالك الأول داخليًا: الورقة دي في أنهي درج عندي؟ ولو مالهاش درج، قولها بصوت عالي: «دي بره خزانتي، خليني أفهرسها الأول». الفهرس مش بيديك جواب — بيديك موضع صادق تقف فيه وإنت بتقول: أعرف، ما أعرفش، أو لسه بفهرس."
+    },
+    {
+      "id": "w05-10",
+      "layout": "L4",
+      "pattern": "P06",
+      "heading": "مهمة الأسبوع · عشر ورقات مفهرسة",
+      "instruction": "طلّع عشر ورقات من خزانتك الحالية، وفهرس كل واحدة بالتلات سطور.",
+      "sanad": [
+        [
+          "القفلة",
+          "المهمة"
+        ]
+      ],
+      "data": {
+        "key": "shelf",
+        "note": "عشر ورقات مفهرسة أهم من مية محفوظة من غير فهرس. والخزانة بتنمو زي الشجرة مش زي الكومة.",
+        "fields": [
+          {
+            "key": "d",
+            "label": "اسم الدرج (بالسؤال)",
+            "ph": "إيه اللي بيفسّر…؟"
+          },
+          {
+            "key": "i",
+            "label": "الفكرة بإيجاز",
+            "ph": "سطر واحد بسطرك"
+          },
+          {
+            "key": "s",
+            "label": "المصدر بوظيفته وحدّه",
+            "ph": "مين + بيجاوب إيه + ما بيجاوبوش إيه"
+          },
+          {
+            "key": "q",
+            "label": "السؤال اللي بتجاوبه",
+            "ph": "مثال حقيقي"
+          },
+          {
+            "key": "n",
+            "label": "اللي ما بتجاوبهوش",
+            "ph": "حدّ الورقة — السطر اللي بيمنعها تبقى ورم"
+          }
+        ]
+      }
+    },
+    {
+      "id": "w05-11",
+      "layout": "L6",
+      "pattern": "P15",
+      "sanad": [
+        [
+          "الكتلتان ١ و٣",
+          "سؤال للدفتر"
+        ]
+      ],
+      "data": {
+        "q": "اكتب سؤالك الساخن الواحد: آخر حاجة زعلتك أو حيّرتك وما عرفتش تفحصها. واكتب جنبه: إيه اللي هيتشطب من جمعك عشانه؟",
+        "key": "journal"
+      }
+    },
+    {
+      "id": "w05-12",
+      "layout": "L7",
+      "heading": "نلمّ الليلة في تلات سطور",
+      "lines": [
+        "سؤال ساخن ← معلومة ← ممارسة ← مراجعة — والحماس ضيف، واللهفة عادة تتصنع.",
+        "درج بسؤال، وورقة بتلات سطور: الفكرة، المصدر بحدّه، والسؤال اللي بتجاوبه وما بتجاوبهوش.",
+        "التشطيب صيانة مش خسارة — والخزانة اللي ما بتتشطبش بتبقى مخزن ورق قديم."
+      ],
+      "replay": "في الأول قلت إن آخر مقطع مفيد شفته {{predict}}. عشر ورقات مفهرسة هتخليك تلاقي اللي بعده في دقيقة — والقوائم هتتقرا بعين بتدوّر مش بعين بتكنز.",
+      "task": {
+        "مستكشف": "ثلاث ورقات مفهرسة بالتلات سطور.",
+        "ممارس": "عشر ورقات مفهرسة + صيانة عشر دقايق في يوم ثابت.",
+        "متقدم": "عشر ورقات + قاعدة الباب الواحد شهر كامل + عرض درج واحد في لقاء «معرض الخزائن» (بإذن صاحبه)."
+      }
+    }
+  ]
+}
+</script>
+
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-runtime.js" onerror="this.remove()"></script>
+<script>
+(function () {
+  "use strict";
+  var W = JSON.parse(document.getElementById("week").textContent);
+  var T = window.Tasees, AR = T.AR, el = T.el, store = T.store;
+  var TRACKS = ["مستكشف", "ممارس", "متقدم"];
+  var track = store.get("track") || "ممارس";
+  var visible = function () { return W.screens.filter(function (s) { return !s.track || s.track === track; }); };
+  var i = 0;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sanad(list) { return (list || []).map(function (s) { var tc = /^≈|\d:\d/.test(s[1]); return '<span class="t-sanad"><b>' + esc(s[0]) + "</b>" + (tc ? '<span class="tc">' + esc(s[1]) + "</span>" : esc(s[1])) + "</span>"; }).join(""); }
+  function bricks(n) { var h = '<div class="wall" aria-label="طوب الوحدة">'; for (var k = 1; k <= 4; k++) { h += '<span class="t-brick' + (store.get("done") && k === ((W.week - 1) % 4) + 1 ? " is-laid" + (n ? " is-new" : "") : "") + '"></span>'; } return h + "</div>"; }
+
+  var LAYOUT = {
+    L1: function (s) {
+      return '<p class="t-eyebrow">' + esc(W.eyebrow) + '</p><h1 class="t-title">' + esc(W.title) + '</h1><svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>' +
+        '<p class="t-small" style="margin:0">' + esc(W.subtitle) + '</p><div class="q-box"><small>سؤال الأسبوع</small>' + esc(W.question) + "</div>" +
+        '<div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>' + TRACKS.map(function (t) { return '<button class="t-chip js-track" type="button" aria-pressed="' + (t === track) + '">' + t + "</button>"; }).join("") + "</div>" +
+        '<div class="audio">' + esc(W.audio) + '</div><p class="t-small" style="margin:0">نصوص مستوحاة من أسلوب المهندس أيمن عبد الرحيم في الشرح، كُتبت لأغراض تدريبية داخل مشروع تأسيس، وليست قولًا منسوبًا إليه.</p>';
+    },
+    L2: function (s) {
+      var art = s.art_src ? '<img src="' + esc(s.art_src) + '" alt="">' : "رسم الخطاف <code>" + esc(s.art) + "</code> لم يُولَّد بعد";
+      return '<div class="hook-art">' + art + '</div><p class="t-voice">' + esc(s.voice) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>";
+    },
+    L3: function (s) {
+      return '<h2 class="t-h2">' + esc(s.heading) + '</h2><p class="t-matn">' + esc(s.matn) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>" +
+        (s.trap ? '<p class="t-feedback t-feedback--bad"><strong>' + esc(s.trap.title) + "</strong>" + esc(s.trap.text) + "</p>" : "");
+    },
+    L4: function (s) { return '<h2 class="t-h2">' + esc(s.heading) + "</h2>" + (s.instruction ? '<p class="t-small" style="margin:0">' + esc(s.instruction) + "</p>" : "") + '<div class="demo" data-mount></div>'; },
+    L5: function (s) { return (s.classic ? '<p class="t-classic" style="margin:0">' + esc(s.classic) + "</p>" : "") + '<p class="t-matn">' + esc(s.matn) + '</p><div class="demo" data-mount></div>'; },
+    L6: function (s) { return '<div class="demo" data-mount></div>'; },
+    L7: function (s) {
+      var p = store.get("predict");
+      return '<h2 class="t-title" style="font-size:2.2rem">' + esc(s.heading) + '</h2><ol class="lines">' + s.lines.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ol>" +
+        (p ? '<p class="t-feedback">' + esc(s.replay).replace("{{predict}}", "<strong style=\"display:inline\">«" + esc(p) + "»</strong>") + "</p>" : "") +
+        '<p class="t-feedback t-feedback--ok"><strong>مهمة الأسبوع · ' + esc(track) + "</strong>" + esc(s.task[track]) + '</p><p class="t-small" style="margin:0">' + esc(W.next) + "</p>";
+    }
+  };
+
+  function show() {
+    var list = visible(); i = Math.max(0, Math.min(i, list.length - 1));
+    var s = list[i], last = s.layout === "L7";
+    if (last && !store.get("done")) { store.set("done", "1"); s._new = true; }
+    var stage = document.getElementById("stage");
+    stage.innerHTML = '<section class="t-screen" data-id="' + esc(s.id) + '" data-layout="' + s.layout + '"><aside class="t-margin">' + sanad(s.sanad) + (s.layout === "L1" || last ? bricks(last && s._new) : "") + '</aside><div class="t-main">' + LAYOUT[s.layout](s) + "</div></section>";
+    var mount = stage.querySelector("[data-mount]"); if (mount && s.pattern) T.render(mount, s.pattern, s.data);
+    stage.querySelectorAll(".js-track").forEach(function (b) { b.onclick = function () { track = b.textContent; store.set("track", track); show(); }; });
+    document.getElementById("wk-name").innerHTML = 'تأسيس <span style="font-family:var(--f-body);font-size:1rem;font-weight:500">· الأسبوع ' + AR(W.week) + "</span>";
+    document.getElementById("wk-pos").textContent = "الشاشة " + AR(i + 1) + " من " + AR(list.length);
+    document.getElementById("pencil").innerHTML = list.map(function (_, k) { return '<i class="' + (k <= i ? "on" : "") + '"></i>'; }).join("");
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").textContent = last ? "تم" : i === 0 ? "يلا بينا" : "التالي";
+    document.getElementById("next").disabled = last;
+  }
+  document.getElementById("prev").onclick = function () { i--; show(); window.scrollTo(0, 0); };
+  document.getElementById("next").onclick = function () { i++; show(); window.scrollTo(0, 0); };
+  document.addEventListener("keydown", function (e) { if (e.target.closest("input,textarea,select")) return; if (e.key === "ArrowLeft") { i++; show(); } if (e.key === "ArrowRight") { i--; show(); } });
+  show();
+})();
+</script>
+</body>
+</html>

@@ -76,8 +76,10 @@ def validate(n, c, plan):
         if not c.get(k):
             errs.append(f"حقل مشترك ناقص: {k}")
     # الأنماط: مجموعة جزئية من الخطة، وبنفس ترتيبها.
-    # P15 (الدفتر) بنية ثابتة في L6 — خارج قائمة أنماط الخطة بطبيعتها.
-    used = [s["pattern"] for s in sc if s.get("pattern") and s["pattern"] != "P15"]
+    # استثناءان بنيويان: P15 (الدفتر، L6 دائمًا) وP06 (بطاقة مهمة الأسبوع) — لأن القالب
+    # يفرض مهمة أسبوع في كل صفحة، وبعض صفوف الخطة تذكر المهمة نصًّا في القفلة بلا نمط.
+    STRUCTURAL = {"P15", "P06"}
+    used = [s["pattern"] for s in sc if s.get("pattern") and s["pattern"] not in STRUCTURAL]
     if plan:
         planned = [p for p, _, _ in plan["ix"]]
         outside = [p for p in used if p not in planned]
