@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="'IBM Plex Sans Arabic','Noto Sans Arabic',Tahoma,sans-serif" direction="rtl">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#D7DDE8" stroke-width="0.5"/></pattern>
+<marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2E7D57"/></marker>
+<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C23B30"/></marker>
+</defs>
+<rect width="1200" height="675" fill="#F7F8F3"/>
+<rect width="1200" height="675" fill="url(#grid)"/>
+<text x="600" y="52" text-anchor="middle" font-family="'Aref Ruqaa','Amiri',serif" font-size="34" fill="#19213A">من عالم الأفكار للسلوك — سلسلة الحلقات الست</text>
+<text x="600" y="82" text-anchor="middle" font-size="17" fill="#4A5470">الأسبوع ٣٣ — اللي بيدوم هو الصغير المنتظم لا الكبير المتقطع · مهارة ٣٣: بطاقة الفكرة للمشروع</text>
+<rect x="992" y="105" width="168" height="92" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="1076" y="129" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">١ فكرة مسماة</text>
+<text x="1076" y="152" text-anchor="middle" font-size="12" fill="#4A5470">فعل + شخص + موقف</text>
+<text x="1076" y="172" text-anchor="middle" font-size="12" fill="#4A5470">في جملة واحدة</text>
+<rect x="802" y="105" width="168" height="92" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="886" y="129" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">٢ قرار مربوط</text>
+<text x="886" y="152" text-anchor="middle" font-size="12" fill="#4A5470">بوقت ومكان</text>
+<text x="886" y="172" text-anchor="middle" font-size="12" fill="#4A5470">مش وعدًا مطلقًا</text>
+<rect x="612" y="105" width="168" height="92" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="696" y="129" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">٣ ممارسة صغيرة</text>
+<text x="696" y="152" text-anchor="middle" font-size="12" fill="#4A5470">صغيرة لدرجة إنها</text>
+<text x="696" y="172" text-anchor="middle" font-size="12" fill="#4A5470">ما تفشلش — منتظمة</text>
+<rect x="422" y="105" width="168" height="92" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="506" y="129" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">٤ بيئة حاضنة</text>
+<text x="506" y="152" text-anchor="middle" font-size="12" fill="#4A5470">قول لواحد + رتب</text>
+<text x="506" y="172" text-anchor="middle" font-size="12" fill="#4A5470">المكان والزمان</text>
+<rect x="232" y="105" width="168" height="92" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="316" y="129" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">٥ قياس صادق</text>
+<text x="316" y="152" text-anchor="middle" font-size="12" fill="#4A5470">علامة بأمانة —</text>
+<text x="316" y="172" text-anchor="middle" font-size="12" fill="#4A5470">بلا جلد ذاتي</text>
+<rect x="42" y="105" width="168" height="92" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2.5"/>
+<text x="126" y="129" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">٦ عادة</text>
+<text x="126" y="152" text-anchor="middle" font-size="12" fill="#4A5470">أوتوماتيك — وبعدين</text>
+<text x="126" y="172" text-anchor="middle" font-size="12" fill="#4A5470">فكرة أكبر (سهم راجع)</text>
+<line x1="988" y1="151" x2="974" y2="151" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="798" y1="151" x2="784" y2="151" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="608" y1="151" x2="594" y2="151" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="418" y1="151" x2="404" y2="151" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="228" y1="151" x2="214" y2="151" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M 126 201 C 126 236, 1076 236, 1076 205" fill="none" stroke="#2E7D57" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+<text x="600" y="230" text-anchor="middle" font-size="12" fill="#2E7D57">السلم بيطلع مش بيوقف: العادة المستقرة بتسلم لفكرة أكبر</text>
+<rect x="610" y="252" width="550" height="128" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="2"/>
+<text x="885" y="278" text-anchor="middle" font-size="15" font-weight="700" fill="#C23B30">المظاهر — رخيصة (T13: الخلل السلوكي)</text>
+<text x="885" y="302" text-anchor="middle" font-size="13" fill="#4A5470">مرئية · اجتماعية · مكافأة فورية · بلا صراع داخلي</text>
+<text x="885" y="326" text-anchor="middle" font-size="13" fill="#4A5470">فمجتمعات بتزيد مظاهر تدينها وسلوكها ما بيتحسنش:</text>
+<text x="885" y="350" text-anchor="middle" font-size="13" fill="#4A5470">بتصلي وتغش · وبتصوم وتنقض العهد</text>
+<rect x="40" y="252" width="550" height="128" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="315" y="278" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">السلوك — غالي</text>
+<text x="315" y="302" text-anchor="middle" font-size="13" fill="#4A5470">غير مرئي أغلبه · مكافأة متأخرة · مكلف</text>
+<text x="315" y="326" text-anchor="middle" font-size="13" fill="#4A5470">محتاج الثالوث كاملًا: معرفة (T1: 02:54) + مهارة</text>
+<text x="315" y="350" text-anchor="middle" font-size="13" fill="#4A5470">+ توجه — والتعليم التقليدي بيشتغل على ضلع واحد</text>
+<rect x="40" y="396" width="1120" height="40" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="1.5"/>
+<text x="600" y="421" text-anchor="middle" font-size="14" font-weight="700" fill="#20242C">الاختبار: إسلامك يُقرأ من سلوكك قبل مكتبتك — الناس بتشوف اللي بتعمله مش اللي بتعرفه</text>
+<rect x="760" y="456" width="400" height="150" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="960" y="482" text-anchor="middle" font-size="15" font-weight="700" fill="#19213A">شروط النهضة — عليك إنت (بن نبي)</text>
+<text x="960" y="508" text-anchor="middle" font-size="13" fill="#4A5470">إنسان: إنت بالثالوث — فاعل مش متفرج</text>
+<text x="960" y="532" text-anchor="middle" font-size="13" fill="#4A5470">تراب: اللي حواليك — يُشخَّص ويُزرع، ما يَتلعنش</text>
+<text x="960" y="556" text-anchor="middle" font-size="13" fill="#4A5470">وقت: مش مدة — إيقاع: حاجة كل يوم أو كل أسبوع</text>
+<text x="960" y="584" text-anchor="middle" font-size="13" fill="#2E7D57">+ فكرة فعالة: تجاوب حاجة حقيقية عند إنسان حقيقي</text>
+<path d="M 300 470 L 560 470 L 430 600 Z" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="300" y="462" text-anchor="middle" font-size="13" font-weight="700" fill="#2E7D57">إنسان</text>
+<text x="560" y="462" text-anchor="middle" font-size="13" font-weight="700" fill="#2E7D57">تراب</text>
+<text x="430" y="620" text-anchor="middle" font-size="13" font-weight="700" fill="#2E7D57">وقت</text>
+<text x="430" y="530" text-anchor="middle" font-size="12" fill="#19213A">فكرة فعالة</text>
+<rect x="40" y="456" width="200" height="150" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="140" y="482" text-anchor="middle" font-size="14" font-weight="700" fill="#C23B30">لما حلقة تسقط</text>
+<text x="140" y="508" text-anchor="middle" font-size="12" fill="#4A5470">شخّص الحلقة —</text>
+<text x="140" y="528" text-anchor="middle" font-size="12" fill="#4A5470">مش الشخص:</text>
+<text x="140" y="552" text-anchor="middle" font-size="12" fill="#4A5470">«التالتة كانت كبيرة»</text>
+<text x="140" y="576" text-anchor="middle" font-size="12" fill="#4A5470">وكل مشروع له خروج (و٢٣)</text>
+<text x="600" y="646" text-anchor="middle" font-size="13" fill="#20242C">المصادر: T1 الثالوث (02:54–04:38) · T13 الخلل السلوكي (01:32:40 و01:48:00) · T14 الأفكار والسلوك · بن نبي شروط النهضة (من و٣٠) · قاعدة الخروج (و٢٣)</text>
+<text x="600" y="666" text-anchor="middle" font-size="12" fill="#4A5470">مشروع تأسيس · الوحدة الثامنة v0.4 · هوية v1 · ٢٦ أكتوبر ٢٠٢٦ — أسلوب مستوحى، ليس قولًا منسوبًا</text>
+</svg>
