@@ -15,6 +15,8 @@ The short version:
 
 Two new task families: the six atlases inside the course (patterns P19/P20, tasks A0 and A5) and one short course per playlist in `08_دورات_القوائم/` (tasks D0–D4; check with `08_دورات_القوائم/tools/check_playlist_course.py <slug>`).
 
+Build order and parallel lanes (P11 weeks first, who owns which file): `07_الهوية_البصرية_والتفاعل/07_خطة_البناء_B_والأصول.md`. Transcripts of every Ayman course beyond the five playlists: `09_تفريغات_أيمن/00_خطة_التفريغ.md` (tasks T0–T6).
+
 The owner is still editing the course. Run `07_الهوية_البصرية_والتفاعل/tools/check_drift.py <your weeks>` before you start and before you commit; if your week drifted, report it and move on.
 
 If something is unclear or a step fails, stop and report it. Do not guess.
