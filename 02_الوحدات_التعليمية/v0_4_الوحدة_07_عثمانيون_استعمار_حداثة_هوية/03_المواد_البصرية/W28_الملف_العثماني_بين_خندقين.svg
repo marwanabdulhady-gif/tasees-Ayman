@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="'IBM Plex Sans Arabic','Noto Sans Arabic',Tahoma,sans-serif" direction="rtl">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#D7DDE8" stroke-width="0.5"/></pattern>
+<marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2E7D57"/></marker>
+<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C23B30"/></marker>
+</defs>
+<rect width="1200" height="675" fill="#F7F8F3"/>
+<rect width="1200" height="675" fill="url(#grid)"/>
+<text x="600" y="52" text-anchor="middle" font-family="'Aref Ruqaa','Amiri',serif" font-size="34" fill="#19213A">الملف العثماني بين خندقين — والميزان في الوسط</text>
+<text x="600" y="82" text-anchor="middle" font-size="17" fill="#4A5470">ست مية سنة بلا تقديس ولا شيطنة — مهارة ٢٧: بطاقة الملف المستقطب</text>
+<rect x="40" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="129" y="133" text-anchor="middle" font-size="15" fill="#2E7D57">١٢٩٩</text>
+<text x="129" y="158" text-anchor="middle" font-size="15" fill="#4A5470">إمارة حدودية</text>
+<rect x="232" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="321" y="133" text-anchor="middle" font-size="15" fill="#2E7D57">١٤٥٣</text>
+<text x="321" y="158" text-anchor="middle" font-size="15" fill="#4A5470">القسطنطينية</text>
+<rect x="424" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="513" y="133" text-anchor="middle" font-size="15" fill="#2E7D57">١٥١٧</text>
+<text x="513" y="158" text-anchor="middle" font-size="15" fill="#4A5470">القاهرة والحرمين</text>
+<rect x="616" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="705" y="133" text-anchor="middle" font-size="15" fill="#2E7D57">١٦٨٣</text>
+<text x="705" y="158" text-anchor="middle" font-size="15" fill="#4A5470">فيينا الثانية</text>
+<rect x="808" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="897" y="133" text-anchor="middle" font-size="15" fill="#C23B30">١٧٩٨</text>
+<text x="897" y="158" text-anchor="middle" font-size="15" fill="#4A5470">صدمة مصر</text>
+<rect x="1000" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="1089" y="133" text-anchor="middle" font-size="15" fill="#C23B30">١٩٢٤</text>
+<text x="1089" y="158" text-anchor="middle" font-size="15" fill="#4A5470">إلغاء الخلافة</text>
+<rect x="40" y="197" width="545" height="255" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="312" y="227" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">كفة الإنجاز — بأدلتها</text>
+<text x="312" y="251" text-anchor="middle" font-size="14" fill="#4A5470">فتح ١٤٥٣ وأثره العالمي: نهاية بيزنطة وتحريك المحيطات</text>
+<text x="312" y="275" text-anchor="middle" font-size="14" fill="#4A5470">حماية الحرمين وقرون بلا غزو أوروبي ناجح للمشرق</text>
+<text x="312" y="299" text-anchor="middle" font-size="14" fill="#4A5470">القانون والتنظيم: «القانوني» — قوانين الضرائب والحرف</text>
+<text x="312" y="323" text-anchor="middle" font-size="14" fill="#4A5470">أكبر كيان سياسي إسلامي منذ العباسيين: بودابست لليمن</text>
+<text x="312" y="347" text-anchor="middle" font-size="14" fill="#4A5470">استقبال مهجَّري الأندلس — مسلمين ويهودًا</text>
+<rect x="615" y="197" width="545" height="255" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="2"/>
+<text x="887" y="227" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">كفة الصفحات — بدرجاتها</text>
+<text x="887" y="251" text-anchor="middle" font-size="14" fill="#C23B30">قانون الإخوة: الجريمة تُقنَّن «لأجل نظام العالم»</text>
+<text x="887" y="275" text-anchor="middle" font-size="14" fill="#C23B30">ليلة ١٥٩٥: تسعة عشر أخًا — موثقة وتوصف بحجمها</text>
+<text x="887" y="299" text-anchor="middle" font-size="14" fill="#4A5470">القفص: أمراء بلا خبرة بالحياة يجلسون على العرش</text>
+<text x="887" y="323" text-anchor="middle" font-size="14" fill="#4A5470">الإنكشارية: جيش يتحول شبكة مصالح تهدد العرش</text>
+<text x="887" y="347" text-anchor="middle" font-size="14" fill="#C23B30">التيمار ← الالتزام: الفلاح يُعصر والريف يتفكك</text>
+<rect x="40" y="472" width="360" height="92" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="220" y="500" text-anchor="middle" font-size="15" fill="#C23B30">خندق التقديس</text>
+<text x="220" y="525" text-anchor="middle" font-size="15" fill="#4A5470">«خلافة مثالية — كل نقد خيانة»</text>
+<rect x="800" y="472" width="360" height="92" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="980" y="500" text-anchor="middle" font-size="15" fill="#C23B30">خندق الشيطنة</text>
+<text x="980" y="525" text-anchor="middle" font-size="15" fill="#4A5470">«أربع مية سنة احتلال تركي»</text>
+<line x1="58" y1="482" x2="382" y2="556" stroke="#C23B30" stroke-width="3"/>
+<line x1="58" y1="556" x2="382" y2="482" stroke="#C23B30" stroke-width="3"/>
+<line x1="818" y1="482" x2="1142" y2="556" stroke="#C23B30" stroke-width="3"/>
+<line x1="818" y1="556" x2="1142" y2="482" stroke="#C23B30" stroke-width="3"/>
+<rect x="420" y="472" width="360" height="92" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="600" y="500" text-anchor="middle" font-size="16" fill="#2E7D57">المسمار ١٨</text>
+<text x="600" y="526" text-anchor="middle" font-size="16" fill="#19213A">ميزان + درجة — أو ما تدخلش</text>
+<rect x="40" y="580" width="1120" height="44" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/>
+<text x="600" y="608" text-anchor="middle" font-size="14" fill="#20242C">حكاية «انتقال الخلافة ١٥١٧» بالخماسية: الاحتفال الدرامي ضعيف/متأخر — والوراثة السياسية حقيقة بالتدريج</text>
+<text x="600" y="646" text-anchor="middle" font-size="13" fill="#20242C">المصادر: Q41 التحسس · Q42–Q43 الحماية والفتح · Q44 قانون الإخوة · Q46–Q47 سليم وسؤال الاحتلال · Q48–Q49 القانوني والانحدار</text>
+<text x="600" y="666" text-anchor="middle" font-size="12" fill="#4A5470">مشروع تأسيس · الوحدة السابعة v0.4 · هوية v1 · ٢٥ أكتوبر ٢٠٢٦ — أسلوب مستوحى، ليس قولًا منسوبًا</text>
+</svg>

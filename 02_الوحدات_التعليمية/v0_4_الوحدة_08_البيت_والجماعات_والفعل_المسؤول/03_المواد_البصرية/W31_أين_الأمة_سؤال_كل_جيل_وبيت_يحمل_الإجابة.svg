@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="'IBM Plex Sans Arabic','Noto Sans Arabic',Tahoma,sans-serif" direction="rtl">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#D7DDE8" stroke-width="0.5"/></pattern>
+<marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2E7D57"/></marker>
+<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C23B30"/></marker>
+</defs>
+<rect width="1200" height="675" fill="#F7F8F3"/>
+<rect width="1200" height="675" fill="url(#grid)"/>
+<text x="600" y="52" text-anchor="middle" font-family="'Aref Ruqaa','Amiri',serif" font-size="34" fill="#19213A">أين الأمة؟ سؤال كل جيل — والبيت اللي شايل الإجابة</text>
+<text x="600" y="82" text-anchor="middle" font-size="17" fill="#4A5470">الأسبوع ٣١ — من السؤال الحارق للسؤال الدقيق · مهارة ٣١: خريطة البيت</text>
+<rect x="40" y="105" width="265" height="72" rx="6" fill="#FFFFFF" stroke="#4A5470" stroke-width="1.5"/>
+<text x="172" y="133" text-anchor="middle" font-size="14" font-weight="700" fill="#19213A">الجيل الأندلسي</text>
+<text x="172" y="157" text-anchor="middle" font-size="13" fill="#4A5470">شاف طليطلة بتسقط ٤٧٨هـ وقعد يرثي</text>
+<rect x="330" y="105" width="265" height="72" rx="6" fill="#FFFFFF" stroke="#4A5470" stroke-width="1.5"/>
+<text x="462" y="133" text-anchor="middle" font-size="14" font-weight="700" fill="#19213A">الجيل البغدادي</text>
+<text x="462" y="157" text-anchor="middle" font-size="13" fill="#4A5470">شاف ٦٥٦هـ — وحس إن العالم بينتهي</text>
+<rect x="620" y="105" width="265" height="72" rx="6" fill="#FFFFFF" stroke="#4A5470" stroke-width="1.5"/>
+<text x="752" y="133" text-anchor="middle" font-size="14" font-weight="700" fill="#19213A">جيل ١٧٩٨</text>
+<text x="752" y="157" text-anchor="middle" font-size="13" fill="#4A5470">الصدمة — «إحنا بالذات وصلنا القاع»</text>
+<rect x="910" y="105" width="265" height="72" rx="6" fill="#FFFFFF" stroke="#4A5470" stroke-width="1.5"/>
+<text x="1042" y="133" text-anchor="middle" font-size="14" font-weight="700" fill="#19213A">الجيل العثماني الأخير</text>
+<text x="1042" y="157" text-anchor="middle" font-size="13" fill="#4A5470">عاش «الرجل المريض» وسأل نفس السؤال</text>
+<text x="600" y="203" text-anchor="middle" font-size="14" fill="#C23B30">«كل جيل سأل هذا السؤال — حتى الغربيين والمحتلين سألوه: أين هذه الأمة؟» — الوجع نفسه علامة حياة (Q66)</text>
+<rect x="430" y="222" width="340" height="52" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="2"/>
+<text x="600" y="254" text-anchor="middle" font-size="16" font-weight="700" fill="#C23B30">«أين الأمة؟» — سؤال عام حارق</text>
+<line x1="510" y1="274" x2="230" y2="308" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="600" y1="274" x2="600" y2="308" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="690" y1="274" x2="970" y2="308" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="40" y="312" width="340" height="76" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="210" y="342" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">أي مؤسسة سقطت؟</text>
+<text x="210" y="366" text-anchor="middle" font-size="13" fill="#4A5470">باسمها وتاريخها — الخلافة السياسية ١٩٢٤ مثلًا</text>
+<rect x="420" y="312" width="340" height="76" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="590" y="342" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">أي رابط انقطع؟</text>
+<text x="590" y="366" text-anchor="middle" font-size="13" fill="#4A5470">بيت · شارع · حلقة · جمعية — أي وعاء بالظبط؟</text>
+<rect x="800" y="312" width="340" height="76" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="970" y="342" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">إيه اللي لسه قائم وبيشتغل؟</text>
+<text x="970" y="366" text-anchor="middle" font-size="13" fill="#4A5470">أصل واحد على الأقل — وسؤال الأسبوع الجاي كله</text>
+<rect x="40" y="404" width="1120" height="44" rx="6" fill="#FFFFFF" stroke="#4A5470" stroke-width="1"/>
+<text x="600" y="432" text-anchor="middle" font-size="14" fill="#20242C">السؤال العام بيولد يأسًا عامًا — والسؤال الدقيق بيولد عملًا دقيقًا · الأمة مش حد تاني: الأمة مجموع وكلاء — وأول وكالة ليك دايرة تقدر توصلها</text>
+<rect x="40" y="466" width="1120" height="100" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2.5"/>
+<text x="600" y="492" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">البيت — أول مؤسسة: كل أصل نجا من القرن الطويل نجا لأن له بيتًا يشيله (لغة · ذاكرة · قرآن · روابط)</text>
+<rect x="70" y="508" width="250" height="42" rx="6" fill="#F7F8F3" stroke="#2E7D57" stroke-width="1"/>
+<text x="195" y="534" text-anchor="middle" font-size="13" fill="#2E7D57">ساعة حضور — أكلة بلا شاشات</text>
+<rect x="350" y="508" width="250" height="42" rx="6" fill="#F7F8F3" stroke="#2E7D57" stroke-width="1"/>
+<text x="475" y="534" text-anchor="middle" font-size="13" fill="#2E7D57">حكاية من جيل أكبر — بصوتك إنت</text>
+<rect x="630" y="508" width="250" height="42" rx="6" fill="#F7F8F3" stroke="#2E7D57" stroke-width="1"/>
+<text x="755" y="534" text-anchor="middle" font-size="13" fill="#2E7D57">لغة حية — كلمة أو بيت أو آية لحد أصغر</text>
+<rect x="910" y="508" width="250" height="42" rx="6" fill="#F7F8F3" stroke="#2E7D57" stroke-width="1"/>
+<text x="1035" y="534" text-anchor="middle" font-size="13" fill="#2E7D57">مسؤولية ثابتة لواحد صغير في البيت</text>
+<rect x="40" y="582" width="1120" height="42" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="600" y="608" text-anchor="middle" font-size="13" fill="#C23B30">خط أحمر — حق المرور: خريطة البيت تُكتب ولا تُعرض · البيوت أوضاع مختلفة · لا إفصاح إجباري ولا مقارنة بيوت · ومسمار ١٩: البيت مش تفصيلة — ده أول مؤسسة</text>
+<text x="600" y="646" text-anchor="middle" font-size="13" fill="#20242C">المصادر: Q65 من نحن ومطاردة الدين · Q66 كل جيل سأل · L الوعي اللغوي (اللغة الحية) · B البيت المسلم (هدف جلب موثق)</text>
+<text x="600" y="666" text-anchor="middle" font-size="12" fill="#4A5470">مشروع تأسيس · الوحدة الثامنة v0.4 · هوية v1 · ٢٦ أكتوبر ٢٠٢٦ — أسلوب مستوحى، ليس قولًا منسوبًا</text>
+</svg>

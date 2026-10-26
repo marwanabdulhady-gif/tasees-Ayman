@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="Cairo, sans-serif">
+<rect width="1200" height="675" fill="#0e1b2e"/>
+<text x="600" y="56" fill="#e8f1f8" font-size="34" text-anchor="middle" font-weight="bold">المرحلة ١ «بناء المتلقي»: سلم المهارات — 15 مهارة في 16 أسبوعًا + تنفس</text>
+<g font-size="22" text-anchor="middle">
+<rect x="60" y="90" width="255" height="86" rx="14" fill="#123a5c" stroke="#39c0ba" stroke-width="3"/><text x="187" y="124" fill="#e8f1f8">و١ التفكير (1–4)</text><text x="187" y="154" fill="#bcd6e6" font-size="18">وصف≠وسم · تهويل/تهوين · حوار منصف</text>
+<rect x="340" y="90" width="255" height="86" rx="14" fill="#123a5c" stroke="#39c0ba" stroke-width="3"/><text x="467" y="124" fill="#e8f1f8">و٢ التعلم (5–8)</text><text x="467" y="154" fill="#bcd6e6" font-size="18">خزانة · خريطة أبواب · بطاقة رقم</text>
+<rect x="620" y="90" width="255" height="86" rx="14" fill="#123a5c" stroke="#39c0ba" stroke-width="3"/><text x="747" y="124" fill="#e8f1f8">و٣ اللغة (9–12)</text><text x="747" y="154" fill="#bcd6e6" font-size="18">درجات · جذور · وظائف · مشروع</text>
+<rect x="900" y="90" width="240" height="86" rx="14" fill="#123a5c" stroke="#39c0ba" stroke-width="3"/><text x="1020" y="124" fill="#e8f1f8">و٤ السيرة (13–16)</text><text x="1020" y="154" fill="#bcd6e6" font-size="18">درجات خبر · أنواع فعل · ميزان</text>
+</g>
+<g stroke="#39c0ba" stroke-width="4" fill="none"><path d="M315 133 H335"/><path d="M595 133 H615"/><path d="M875 133 H895"/></g>
+<g font-size="21" fill="#bcd6e6" text-anchor="middle">
+<rect x="120" y="208" width="960" height="54" rx="12" fill="#0f2740"/><text x="600" y="242">الاتفاق الموحد: 7 قواعد + 5 مسامير (رقم/كلمة/تاريخ/خبر/سؤال صعب) — تتراكم وحدة فوق وحدة</text>
+<rect x="120" y="276" width="960" height="54" rx="12" fill="#0f2740"/><text x="600" y="310">الملفات الأربعة = رأس المال: تشخيص وحوار · فهرس وخريطة وبطاقة وقيمة · لساني وجذور وقراءة ومشروع · خبر ومحطات وتصنيف وإجابة</text>
+<rect x="120" y="344" width="960" height="54" rx="12" fill="#0f2740"/><text x="600" y="378">الخطوط الحمراء: لا تجسيد · لا نكات على مقدسات/أشخاص · لا درجات على المواقف · وصف≠وسم يشمل المتعلمين</text>
+<rect x="330" y="430" width="540" height="70" rx="14" fill="#123a5c" stroke="#f2b134" stroke-width="4"/><text x="600" y="460" fill="#e8f1f8" font-size="24">🫁 أسبوع التنفس 17</text><text x="600" y="488" font-size="18">مراجعة 4 ملفات + مختبر اختياري (L1–L8) + راحة بلا ذنب — «هل الشعلة ولعة؟»</text>
+<rect x="330" y="540" width="540" height="58" rx="12" fill="#0f2740" stroke="#39c0ba" stroke-width="2"/><text x="600" y="576">المرحلة ٢: التاريخ (18–25) — بطاقة الخبر تصير بطاقة الراوي، وبطاقة الرقم تصير بطاقة الرواية</text>
+</g>
+<g stroke="#f2b134" stroke-width="4" fill="none"><path d="M600 398 V426"/><path d="M600 500 V536"/></g>
+<text x="600" y="644" fill="#7fa3bb" font-size="18" text-anchor="middle">مشروع تأسيس — تغليف المرحلة ١ v0.4 — 2026-10-25</text>
+</svg>

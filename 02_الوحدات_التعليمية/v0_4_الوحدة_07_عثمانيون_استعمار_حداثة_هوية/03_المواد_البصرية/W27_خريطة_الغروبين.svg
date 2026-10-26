@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="'IBM Plex Sans Arabic','Noto Sans Arabic',Tahoma,sans-serif" direction="rtl">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#D7DDE8" stroke-width="0.5"/></pattern>
+<marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2E7D57"/></marker>
+<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C23B30"/></marker>
+</defs>
+<rect width="1200" height="675" fill="#F7F8F3"/>
+<rect width="1200" height="675" fill="url(#grid)"/>
+<text x="600" y="52" text-anchor="middle" font-family="'Aref Ruqaa','Amiri',serif" font-size="34" fill="#19213A">خريطة الغروبين — العالم سنة ١٤٩٢</text>
+<text x="600" y="82" text-anchor="middle" font-size="17" fill="#4A5470">غرب واقع · شرق محاصر · مركز صاعد — مهارة ٢٦: خريطة ومراحل ومعادلة</text>
+<rect x="40" y="105" width="360" height="300" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="2"/>
+<text x="220" y="135" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">الغرب: الأندلس — سقوط</text>
+<text x="220" y="159" text-anchor="middle" font-size="14" fill="#4A5470">سقوط غرناطة ٨٩٧هـ / ١٤٩٢م — آخر مملكة</text>
+<text x="220" y="183" text-anchor="middle" font-size="14" fill="#C23B30">معاهدة تُوقَّع ثم تُكسر: تنصير إجباري</text>
+<text x="220" y="207" text-anchor="middle" font-size="14" fill="#C23B30">كتب تُحرق ومحاكم تفتيش — المورسكيون</text>
+<text x="220" y="231" text-anchor="middle" font-size="14" fill="#C23B30">١٦٠٩م: الترحيل النهائي — محو بالهوية</text>
+<text x="220" y="255" text-anchor="middle" font-size="14" fill="#4A5470">ثماني مراحل: من الفتح ٩٢هـ للتشقق فالسقوط</text>
+<rect x="420" y="105" width="360" height="300" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="600" y="135" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">المركز: العثمانيون — صعود</text>
+<text x="600" y="159" text-anchor="middle" font-size="14" fill="#4A5470">إمارة حدودية من ١٢٩٩م — عصبية الأطراف</text>
+<text x="600" y="183" text-anchor="middle" font-size="14" fill="#2E7D57">١٤٥٣م: فتح القسطنطينية — تحول عالمي</text>
+<text x="600" y="207" text-anchor="middle" font-size="14" fill="#4A5470">قوة بحرية في شرق المتوسط — وغربُه بعيد</text>
+<text x="600" y="231" text-anchor="middle" font-size="14" fill="#4A5470">استقبال مهجَّري الأندلس: باب اللجوء فُتح</text>
+<text x="600" y="255" text-anchor="middle" font-size="14" fill="#4A5470">وريث مسؤوليات أطراف ما شافهاش</text>
+<rect x="800" y="105" width="360" height="300" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="2"/>
+<text x="980" y="135" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">الشرق: الهند والمحيطات — حصار</text>
+<text x="980" y="159" text-anchor="middle" font-size="14" fill="#4A5470">سلطنات قائمة: دلهي — وقطب منارها شاهد</text>
+<text x="980" y="183" text-anchor="middle" font-size="14" fill="#C23B30">فاسكو دي جاما ١٤٩٨م: المحيط يتبدل إيد</text>
+<text x="980" y="207" text-anchor="middle" font-size="14" fill="#C23B30">المحيط الهندي: بحيرة إسلامية ← ساحة أوروبية</text>
+<text x="980" y="231" text-anchor="middle" font-size="14" fill="#C23B30">مليلية ١٤٩٧م ووهران: الشمال الإفريقي يُقرص</text>
+<text x="980" y="255" text-anchor="middle" font-size="14" fill="#4A5470">الشركة والديون ستكملان ما بدأته الأشرعة</text>
+<line x1="402" y1="255" x2="418" y2="255" stroke="#2E7D57" stroke-width="2.5" marker-end="url(#arr)"/>
+<text x="410" y="247" text-anchor="middle" font-size="13" fill="#4A5470">مهجَّرون ونقل</text>
+<line x1="782" y1="255" x2="798" y2="255" stroke="#C23B30" stroke-width="2.5" marker-end="url(#arrR)"/>
+<text x="790" y="247" text-anchor="middle" font-size="13" fill="#4A5470">أشرعة وحرب</text>
+<rect x="40" y="435" width="1120" height="70" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="600" y="465" text-anchor="middle" font-size="16" font-weight="700" fill="#2E7D57">الجسر — اللي انتقل وما ماتش</text>
+<text x="600" y="489" text-anchor="middle" font-size="14" fill="#4A5470">علوم قرطبة ← طليطلة ← جامعات أوروبا: ابن رشد يُترجم، والزهرافي مرجع جراحي لخمس مية سنة</text>
+<rect x="40" y="520" width="1120" height="70" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="600" y="550" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">الدرس المنهجي</text>
+<text x="600" y="574" text-anchor="middle" font-size="14" fill="#C23B30">السقوط يبدأ من الداخل — والخارج يُكمل بس: مراحل و٢٠ الأربع على ملوك الطوائف كما على كل الأطراف</text>
+<text x="600" y="646" text-anchor="middle" font-size="13" fill="#20242C">المصادر: Q38 المراحل الثمان · Q39 أندلس الشرق · Q40 منهج القراءة · Q45 الاستغاثة · Q51 الإسبان والبرتغال — التواريخ تُدقق قبل النشر (G9)</text>
+<text x="600" y="666" text-anchor="middle" font-size="12" fill="#4A5470">مشروع تأسيس · الوحدة السابعة v0.4 · هوية v1 · ٢٥ أكتوبر ٢٠٢٦ — أسلوب مستوحى، ليس قولًا منسوبًا</text>
+</svg>

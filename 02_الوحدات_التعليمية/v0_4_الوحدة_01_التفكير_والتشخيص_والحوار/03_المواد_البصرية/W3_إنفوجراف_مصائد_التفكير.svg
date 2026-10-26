@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850" style="direction:rtl" font-family="Cairo, 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif">
+  <defs>
+    <marker id="arw" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2b2b2b"/></marker>
+    <marker id="arwR" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b3423a"/></marker>
+  </defs>
+  <rect width="1200" height="850" fill="#fdf8ee"/>
+  <text x="600" y="52" text-anchor="middle" font-size="34" font-weight="700" fill="#2b2b2b">إنفوجراف الأسبوع ٣ — مصائد التفكير وفكّ الدعوى</text>
+  <text x="600" y="82" text-anchor="middle" font-size="17" fill="#6b6b6b">بين حماس مستعجل وشك قاعد: عدة الصنايعي · مشروع تأسيس · الوحدة 1 · v0.3</text>
+
+  <!-- center claim -->
+  <circle cx="600" cy="280" r="86" fill="#2b2b2b"/>
+  <text x="600" y="272" text-anchor="middle" font-size="26" font-weight="700" fill="#ffffff">الدعوى</text>
+  <text x="600" y="302" text-anchor="middle" font-size="14" fill="#d9d2c0">أي جملة خبرية</text>
+  <text x="600" y="322" text-anchor="middle" font-size="14" fill="#d9d2c0">تصلك ملفوفة في كلام</text>
+
+  <!-- 4 traps -->
+  <g stroke="#b3423a" stroke-width="2.5" stroke-dasharray="6,4" fill="none" marker-end="url(#arwR)">
+    <path d="M400,180 L522,232"/><path d="M800,180 L678,232"/><path d="M400,380 L522,328"/><path d="M800,380 L678,328"/>
+  </g>
+  <g font-size="15" fill="#2b2b2b">
+    <rect x="130" y="120" width="290" height="118" rx="14" fill="#f9e9e7" stroke="#b3423a" stroke-width="2.5"/>
+    <text x="275" y="152" text-anchor="middle" font-size="20" font-weight="700" fill="#b3423a">١. التشبيه الزائف</text>
+    <text x="275" y="182" text-anchor="middle">تقارن حاجتين شبه بعض في الاسم</text>
+    <text x="275" y="204" text-anchor="middle">لا في المعيار</text>
+    <text x="275" y="228" text-anchor="middle" font-size="13" fill="#6b6b6b">«المجتمع ده زي المجتمع ده — فيهم بحر!»</text>
+
+    <rect x="780" y="120" width="290" height="118" rx="14" fill="#f9e9e7" stroke="#b3423a" stroke-width="2.5"/>
+    <text x="925" y="152" text-anchor="middle" font-size="20" font-weight="700" fill="#b3423a">٢. التعميم المتسرع</text>
+    <text x="925" y="182" text-anchor="middle">من حالة واحدة لكل الحالات</text>
+    <text x="925" y="204" text-anchor="middle">«مرة = دايمًا»</text>
+    <text x="925" y="228" text-anchor="middle" font-size="13" fill="#6b6b6b">«أعرف واحد سافر ونجح → كل قاعد جبان»</text>
+
+    <rect x="130" y="342" width="290" height="118" rx="14" fill="#f9e9e7" stroke="#b3423a" stroke-width="2.5"/>
+    <text x="275" y="374" text-anchor="middle" font-size="20" font-weight="700" fill="#b3423a">٣. تفكير القطيع</text>
+    <text x="275" y="404" text-anchor="middle">«الكل بيقول كده يبقى صح»</text>
+    <text x="275" y="426" text-anchor="middle">العدد ليس دليلًا</text>
+    <text x="275" y="450" text-anchor="middle" font-size="13" fill="#6b6b6b">الكل قال قديمًا: الأرض مركز الكون</text>
+
+    <rect x="780" y="342" width="290" height="118" rx="14" fill="#f9e9e7" stroke="#b3423a" stroke-width="2.5"/>
+    <text x="925" y="374" text-anchor="middle" font-size="20" font-weight="700" fill="#b3423a">٤. معضلة السجين</text>
+    <text x="925" y="404" text-anchor="middle">عقلانية فردية منفصلة</text>
+    <text x="925" y="426" text-anchor="middle">= خسارة جماعية</text>
+    <text x="925" y="450" text-anchor="middle" font-size="13" fill="#6b6b6b">«أسكت لأن غيري سكت» — القرارات الكارثية 05/08</text>
+  </g>
+
+  <!-- layers strip -->
+  <text x="600" y="512" text-anchor="middle" font-size="23" font-weight="700" fill="#2b2b2b">قبل الفك: سمِّ الطبقة — كل طبقة ولها دليلها</text>
+  <g font-size="15" fill="#ffffff">
+    <rect x="80" y="530" width="250" height="72" rx="10" fill="#0e7c6b"/><text x="205" y="560" text-anchor="middle" font-weight="700">تاريخية: حصل ولا لأ؟</text><text x="205" y="586" text-anchor="middle" font-size="13">رواية · إسناد · وثائق · آثار</text>
+    <rect x="350" y="530" width="250" height="72" rx="10" fill="#0e7c6b"/><text x="475" y="560" text-anchor="middle" font-weight="700">علمية: بيحصل إزاي؟</text><text x="475" y="586" text-anchor="middle" font-size="13">ملاحظة · تجربة · قياس</text>
+    <rect x="620" y="530" width="250" height="72" rx="10" fill="#0e7c6b"/><text x="745" y="560" text-anchor="middle" font-weight="700">فلسفية: يعني إيه؟</text><text x="745" y="586" text-anchor="middle" font-size="13">حجة · اتساق · مفاهيم</text>
+    <rect x="890" y="530" width="230" height="72" rx="10" fill="#0e7c6b"/><text x="1005" y="560" text-anchor="middle" font-weight="700">أخلاقية: ينبغي إيه؟</text><text x="1005" y="586" text-anchor="middle" font-size="13">وحي + فهم أهله · عقل عملي</text>
+  </g>
+  <text x="600" y="630" text-anchor="middle" font-size="15" fill="#b3423a" font-weight="700">القفز بين الطبقات بلا كوبري = مصدر أغلب اليقين المزيف — في الاتجاهين</text>
+
+  <!-- six screws -->
+  <text x="600" y="678" text-anchor="middle" font-size="23" font-weight="700" fill="#2b2b2b">المسامير الستة — فك أي دعوى (D-S-I-A-B-L)</text>
+  <g font-size="15" fill="#2b2b2b">
+    <rect x="80" y="698" width="160" height="70" rx="10" fill="#ffffff" stroke="#d98e04" stroke-width="3"/><text x="160" y="726" text-anchor="middle" font-weight="700" fill="#8a5a02">دعوى</text><text x="160" y="750" text-anchor="middle" font-size="12">الجملة بالظبط</text>
+    <rect x="256" y="698" width="160" height="70" rx="10" fill="#ffffff" stroke="#d98e04" stroke-width="3"/><text x="336" y="726" text-anchor="middle" font-weight="700" fill="#8a5a02">شاهد</text><text x="336" y="750" text-anchor="middle" font-size="12">مين؟ فين؟ امتى؟</text>
+    <rect x="432" y="698" width="160" height="70" rx="10" fill="#ffffff" stroke="#d98e04" stroke-width="3"/><text x="512" y="726" text-anchor="middle" font-weight="700" fill="#8a5a02">استدلال</text><text x="512" y="750" text-anchor="middle" font-size="12">الوصلة أخطر جزء</text>
+    <rect x="608" y="698" width="160" height="70" rx="10" fill="#ffffff" stroke="#d98e04" stroke-width="3"/><text x="688" y="726" text-anchor="middle" font-weight="700" fill="#8a5a02">افتراض</text><text x="688" y="750" text-anchor="middle" font-size="12">المطمور تحت</text>
+    <rect x="784" y="698" width="160" height="70" rx="10" fill="#ffffff" stroke="#d98e04" stroke-width="3"/><text x="864" y="726" text-anchor="middle" font-weight="700" fill="#8a5a02">بديل</text><text x="864" y="750" text-anchor="middle" font-size="12">تفسير منافس</text>
+    <rect x="960" y="698" width="160" height="70" rx="10" fill="#ffffff" stroke="#d98e04" stroke-width="3"/><text x="1040" y="726" text-anchor="middle" font-weight="700" fill="#8a5a02">حد</text><text x="1040" y="750" text-anchor="middle" font-size="12">تصح فين وماتصحش</text>
+  </g>
+  <g stroke="#d98e04" stroke-width="2.5" fill="none" marker-end="url(#arw)">
+    <path d="M240,733 L252,733"/><path d="M416,733 L428,733"/><path d="M592,733 L604,733"/><path d="M768,733 L780,733"/><path d="M944,733 L956,733"/>
+  </g>
+
+  <text x="600" y="802" text-anchor="middle" font-size="15" fill="#6b6b6b">المصادر: 05/08 «القرارات الكارثية — معضلة السجين» · 05/13 «الاستلحاد» · 05/31 نقاش «أفكار خارج القفص» · AT-04 تحرير العقل (PDF ص214–271)</text>
+  <text x="600" y="828" text-anchor="middle" font-size="13" fill="#9a9a9a">«ما لقيتش» إجابة شريفة · «دراسات تقول» بلا تفصيل ديكور شاهد لا شاهد · مادة بصرية أصلية لمشروع تأسيس — تعليمي داخلي · v0.3</text>
+</svg>

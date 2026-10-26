@@ -1,0 +1,11 @@
+source_id,week,corpus,source_file_or_title,precise_locator,role,claim_type,verification_status,required_action,content_guardrail
+M6V2-AT04,21–22,أين الطريق,04-الخطوة_الثالثة_تحرير_العقل_وطريقة_التفكير.md,ملف محلي,دعوى/دليل/حد,معياري/تربوي,corpus محلي,لا يعرض كمصدر علمي,لا احتكار للحقيقة أو اختبار اعتقاد
+M6V2-AT10,23,أين الطريق,10-الخطوة_التاسعة_إنشاء_لهفة_التلقي_والتعلم.md,ملف محلي,تلقي وتعلم,تربوي,corpus محلي,حدد وظيفة المصدر,لا وصاية أو قياس متعلم
+M6V2-AT11,23,أين الطريق,11-الخطوة_العاشرة_القرآن_كمصدر_وحيد_للتلقي.md,ملف محلي,تلقي ديني,ديني/معياري,corpus محلي,ميز المجال والدليل,لا يحل محل برهان تجريبي
+M6V2-AT14,24,أين الطريق,14-الخطوة_الثالثة_عشرة_فريضة_العمل_لدين_الله.md,PDF 768–813,عمل,معياري/تربوي,corpus محلي,حلل كموضوع لا أمر تنظيمي,لا تعبئة/تنظيم/سياسة/عنف
+M6V2-R01,21,UC Berkeley,Understanding Science 101,https://undsci.berkeley.edu/understanding-science-101/,طبيعة العلم,تعليمي,تحقق سابق,للمفاهيم التمهيدية,لا بديل لبحث متخصص
+M6V2-R03,22,National Academies,"Science, Evolution, and Creationism (2008)",https://nap.nationalacademies.org/catalog/11876/science-evolution-and-creationism,علم/تطور,علمي/تعليمي,تحقق سابق,حدد طبقة السؤال,لا يعالج الغاية تجريبياً
+M6V2-R04,22,National Academies,Teaching About Evolution and the Nature of Science (1998),https://nap.nationalacademies.org/catalog/5787/teaching-about-evolution-and-the-nature-of-science,تعليم/طبيعة علم,علمي/تعليمي,تحقق سابق,للمفاهيم التعليمية,ليس موقفاً إيمانياً
+M6V2-S20,21,رحلة اليقين,الحلقات 20–26,مسار محلي: rihlat_al_yaqeen_transcripts,تحليل حجاجي,حجاجي,تحويل محلي من PDFs,راجع المصدر/مصدر علمي,لا إجماع علمي من المادة
+M6V2-S27,22,رحلة اليقين,الحلقات 27–45,مسار محلي: rihlat_al_yaqeen_transcripts,تحليل طبقات/لغة,حجاجي,تحويل محلي من PDFs,مصدر علمي مواز,لا اختبار اعتقاد
+M6V2-H66,23,100 سؤال في التاريخ,الحلقات 66–70,مسار محلي: 100_questions_history_transcripts,سيناريو/مستقبل,تاريخي/تفسيري,captions آلية محلية,راجع المصدر,لا نبوءة أو برنامج سياسي

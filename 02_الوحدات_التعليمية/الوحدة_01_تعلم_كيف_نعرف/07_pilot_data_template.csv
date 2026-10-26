@@ -1,0 +1,4 @@
+participant_id,track,consent_date,attended_w1,attended_w2,attended_w3,attended_w4,prep_minutes_w1,prep_minutes_w2,prep_minutes_w3,prep_minutes_w4,pre_understanding_12,post_understanding_12,dialogue_score_10,workload_w1_1to5,workload_w2_1to5,workload_w3_1to5,workload_w4_1to5,safety_w1_1to5,safety_w2_1to5,safety_w3_1to5,safety_w4_1to5,respect_w1_1to5,respect_w2_1to5,respect_w3_1to5,respect_w4_1to5,impact_immediate_1to5,impact_30day_1to5,application_note_deidentified,revision_note_deidentified
+"P01","explorer","YYYY-MM-DD","Y","Y","Y","Y",,,,,,,,,,,,,,,,,,,,,,,
+"P02","practitioner","YYYY-MM-DD","Y","Y","Y","Y",,,,,,,,,,,,,,,,,,,,,,,
+"P03","advanced","YYYY-MM-DD","Y","Y","Y","Y",,,,,,,,,,,,,,,,,,,,,,,

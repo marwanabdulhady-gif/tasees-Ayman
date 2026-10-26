@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="'IBM Plex Sans Arabic','Noto Sans Arabic',Tahoma,sans-serif" direction="rtl">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#D7DDE8" stroke-width="0.5"/></pattern>
+<marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2E7D57"/></marker>
+<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C23B30"/></marker>
+</defs>
+<rect width="1200" height="675" fill="#F7F8F3"/>
+<rect width="1200" height="675" fill="url(#grid)"/>
+<text x="600" y="52" text-anchor="middle" font-family="'Aref Ruqaa','Amiri',serif" font-size="34" fill="#19213A">الجماعات الوسيطة — سلم من الفرد للشبكة</text>
+<text x="600" y="82" text-anchor="middle" font-size="17" fill="#4A5470">الأسبوع ٣٢ — إزاي أمة فقدت دولتها حافظت على حضورها؟ · مهارة ٣٢: درج السلم</text>
+<rect x="40" y="100" width="1120" height="60" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="600" y="124" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">«بقاء الإسلام وتسيده للحالة الإسلامية — أهم إنجازات يمكن أن نضعها في ميزان الحركة الإسلامية» (Q67)</text>
+<text x="600" y="148" text-anchor="middle" font-size="13" fill="#4A5470">الأمة حافظت على حضورها بشبكاتها لا بدولها — الدول سقطت والشبكات فضلت تشيل الماء لوعاء جديد</text>
+<rect x="990" y="200" width="170" height="60" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="1075" y="226" text-anchor="middle" font-size="14" font-weight="700" fill="#19213A">الفرد</text>
+<text x="1075" y="248" text-anchor="middle" font-size="12" fill="#4A5470">وحده = ضعيف</text>
+<rect x="800" y="230" width="170" height="30" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="885" y="250" text-anchor="middle" font-size="13" fill="#19213A">البيت</text>
+<rect x="610" y="260" width="170" height="60" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="695" y="286" text-anchor="middle" font-size="14" font-weight="700" fill="#19213A">الحي والشارع</text>
+<text x="695" y="308" text-anchor="middle" font-size="12" fill="#4A5470">الجيرة سند يومي</text>
+<rect x="420" y="290" width="170" height="90" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="505" y="320" text-anchor="middle" font-size="14" font-weight="700" fill="#19213A">المسجد والحلقة</text>
+<text x="505" y="342" text-anchor="middle" font-size="12" fill="#4A5470">الحلقة المتنقلة</text>
+<text x="505" y="360" text-anchor="middle" font-size="12" fill="#4A5470">أصعب حاجة تُحاصر</text>
+<rect x="230" y="320" width="170" height="120" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="315" y="350" text-anchor="middle" font-size="14" font-weight="700" fill="#19213A">الوقف والنقابة</text>
+<text x="315" y="372" text-anchor="middle" font-size="12" fill="#4A5470">أطعمت المدارس</text>
+<text x="315" y="390" text-anchor="middle" font-size="12" fill="#4A5470">لما الدولة نسيت</text>
+<text x="315" y="408" text-anchor="middle" font-size="12" fill="#4A5470">— ثم أُممت</text>
+<rect x="40" y="350" width="170" height="150" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2.5"/>
+<text x="125" y="382" text-anchor="middle" font-size="14" font-weight="700" fill="#2E7D57">المبادرة والشبكة</text>
+<text x="125" y="406" text-anchor="middle" font-size="12" fill="#4A5470">عقد صغيرة بتتصل</text>
+<text x="125" y="424" text-anchor="middle" font-size="12" fill="#4A5470">بعقد صغيرة تانية</text>
+<text x="125" y="442" text-anchor="middle" font-size="12" fill="#4A5470">مش من مؤتمرات</text>
+<text x="125" y="460" text-anchor="middle" font-size="12" fill="#4A5470">ولا إعلانات (و٣٠)</text>
+<line x1="985" y1="235" x2="975" y2="243" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="795" y1="262" x2="785" y2="270" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="605" y1="292" x2="595" y2="300" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="415" y1="322" x2="405" y2="330" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="225" y1="352" x2="215" y2="360" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<text x="600" y="522" text-anchor="middle" font-size="13" fill="#C23B30">الانقطاع الحديث: الدولة المركزية بلعت الوسائط واحدة واحدة — والفرد بقى وشًّا لوش مع أجهزة ضخمة (من محمد علي — و٢٩)</text>
+<rect x="40" y="536" width="360" height="56" rx="6" fill="#FFFFFF" stroke="#4A5470" stroke-width="1"/>
+<text x="220" y="558" text-anchor="middle" font-size="13" font-weight="700" fill="#19213A">تكافل — سند بوش وعلاقة</text>
+<text x="220" y="580" text-anchor="middle" font-size="12" fill="#4A5470">المعاش ما بيمسكش إيد حد</text>
+<rect x="420" y="536" width="360" height="56" rx="6" fill="#FFFFFF" stroke="#4A5470" stroke-width="1"/>
+<text x="600" y="558" text-anchor="middle" font-size="13" font-weight="700" fill="#19213A">انتماء — هوية بتتعاش</text>
+<text x="600" y="580" text-anchor="middle" font-size="12" fill="#4A5470">بتتعلم إنت مين من اللي بيشوفوك كل يوم</text>
+<rect x="800" y="536" width="360" height="56" rx="6" fill="#FFFFFF" stroke="#4A5470" stroke-width="1"/>
+<text x="980" y="558" text-anchor="middle" font-size="13" font-weight="700" fill="#19213A">تدريب — مدرسة المسؤولية</text>
+<text x="980" y="580" text-anchor="middle" font-size="12" fill="#4A5470">تقود بلا سلطة وتختلف بلا خصام</text>
+<rect x="40" y="604" width="1120" height="34" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="600" y="626" text-anchor="middle" font-size="13" fill="#20242C">درج السلم: مشارك (انتظام مش حماس) ← مساهم (مهمة ثابتة) ← باني (عقدة تشتغل من غيرك أسبوعًا) · ومسمار ٢٠: الشبكات الكبيرة بتتولد من عقد صغيرة</text>
+<text x="600" y="656" text-anchor="middle" font-size="12" fill="#20242C">المصادر: Q67 ميزان البقاء · عصبية ابن خلدون (و٢٥) · دعوة و٢٣ وشبكات و٣٠ · بروتوكولات و١ (أمان الدوائر) · B الجماعات الوسيطة (هدف جلب)</text>
+<text x="600" y="671" text-anchor="middle" font-size="11" fill="#4A5470">مشروع تأسيس · الوحدة الثامنة v0.4 · هوية v1 · ٢٦ أكتوبر ٢٠٢٦ — أسلوب مستوحى، ليس قولًا منسوبًا</text>
+</svg>

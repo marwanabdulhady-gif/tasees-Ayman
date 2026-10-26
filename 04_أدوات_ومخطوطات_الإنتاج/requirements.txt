@@ -1,0 +1,3 @@
+yt-dlp>=2025.1.15
+youtube-transcript-api>=1.0.0
+pypdf>=5.0.0

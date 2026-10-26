@@ -32,7 +32,7 @@ import pymupdf
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PDF = os.path.join(ROOT, "source", "islamic-history-maps.pdf")
-SVG_DIR = os.path.join(ROOT, "assets", "svg")
+SVG_DIR = os.path.join(ROOT, "assets", "svg", "maps8")
 OUT = os.path.join(ROOT, "data", "vectors.json")
 
 LAYERS = {

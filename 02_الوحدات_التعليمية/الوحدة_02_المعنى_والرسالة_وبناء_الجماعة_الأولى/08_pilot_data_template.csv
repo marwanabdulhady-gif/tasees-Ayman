@@ -1,0 +1,31 @@
+record_type,participant_code,track,week_or_timepoint,item_or_metric,value_1_5_or_score,optional_comment_or_evidence,follow_up_action,owner,privacy_note
+consent,P001,young_adult,pre,consent_confirmed,yes,,,facilitator,Keep code-name key separate and restricted
+baseline,P001,young_adult,pre,task_A_layers_0_4,,,,researcher,Do not rank participants
+baseline,P001,young_adult,pre,task_B_evidence_map_0_4,,,,researcher,Do not rank participants
+survey,P001,young_adult,week5,clarity_1_5,,,,facilitator,Anonymous aggregation only
+survey,P001,young_adult,week5,safety_to_ask_or_pass_1_5,,,,facilitator,Escalate any safety concern without identifying in reports
+survey,P001,young_adult,week5,workload_fit_1_5,,,,facilitator,Anonymous aggregation only
+survey,P001,young_adult,week5,small_practice_feasible_1_5,,,,facilitator,Anonymous aggregation only
+exit,P001,young_adult,week5,open_question_or_uncertainty,,,add_to_question_log,facilitator,Remove identifying details
+observation,GROUP,all,week5,clarifying_questions_count,,,,observer,No names
+observation,GROUP,all,week5,source_vs_interpretation_separations_count,,,,observer,No names
+observation,GROUP,all,week5,fair_restating_count,,,,observer,No names
+observation,GROUP,all,week5,unknowns_named_count,,,,observer,No names
+observation,GROUP,all,week5,stereotyping_or_derision_count,,,,observer,No names
+observation,GROUP,all,week5,facilitator_safety_interventions_count,,,,observer,No names
+survey,P001,young_adult,week6,clarity_1_5,,,,facilitator,Anonymous aggregation only
+survey,P001,young_adult,week6,safety_to_ask_or_pass_1_5,,,,facilitator,Anonymous aggregation only
+survey,P001,young_adult,week6,workload_fit_1_5,,,,facilitator,Anonymous aggregation only
+survey,P001,young_adult,week6,small_practice_feasible_1_5,,,,facilitator,Anonymous aggregation only
+survey,P001,young_adult,week7,clarity_1_5,,,,facilitator,Anonymous aggregation only
+survey,P001,young_adult,week7,safety_to_ask_or_pass_1_5,,,,facilitator,Anonymous aggregation only
+survey,P001,young_adult,week7,workload_fit_1_5,,,,facilitator,Anonymous aggregation only
+safety,P001,young_adult,week7,language_or_case_not_safe,,,immediate_review,facilitator,Restrict access; do not include identifying details in general report
+survey,P001,young_adult,week8,clarity_1_5,,,,facilitator,Anonymous aggregation only
+survey,P001,young_adult,week8,safety_to_ask_or_pass_1_5,,,,facilitator,Anonymous aggregation only
+survey,P001,young_adult,week8,workload_fit_1_5,,,,facilitator,Anonymous aggregation only
+post,P001,young_adult,post,task_A_layers_0_4,,,,researcher,Do not rank participants
+post,P001,young_adult,post,task_B_evidence_map_0_4,,,,researcher,Do not rank participants
+post,P001,young_adult,post,transfer_intention_1_5,,,,researcher,Not a commitment test
+follow_up,P001,young_adult,day7_10,practice_or_dialogue_or_charter_yes_partial_no,,,note_barrier,facilitator,Optional
+revision,GROUP,all,post,change_requested,,,add_to_change_log,design_lead,Aggregate only

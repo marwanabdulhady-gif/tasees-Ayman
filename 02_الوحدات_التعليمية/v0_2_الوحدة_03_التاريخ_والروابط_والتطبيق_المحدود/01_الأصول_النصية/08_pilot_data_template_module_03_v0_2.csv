@@ -1,0 +1,30 @@
+record_type,participant_code,track,week_or_timepoint,item_or_metric,value,optional_comment_or_evidence,owner,privacy_note
+consent,P001,explorer,pre,consent_confirmed,yes,,facilitator,Separate key
+baseline,P001,explorer,pre,layers_source_scope_limit_0_4,,,researcher,No ranking
+baseline,P001,explorer,pre,systems_or_bounded_application_0_4,,,researcher,No ranking
+survey,P001,explorer,week9,clarity_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week9,safety_to_ask_or_pass_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week9,workload_fit_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week9,skill_use_1_5,,,facilitator,Aggregate only
+observation,GROUP,all,week9,source_scope_limit_named_count,,,observer,No names
+observation,GROUP,all,week9,sectarian_or_personalizing_language_count,,,observer,Immediate review; no names
+survey,P001,explorer,week10,clarity_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week10,safety_to_ask_or_pass_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week10,workload_fit_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week10,skill_use_1_5,,,facilitator,Aggregate only
+observation,GROUP,all,week10,source_scope_limit_named_count,,,observer,No names
+observation,GROUP,all,week10,sectarian_or_personalizing_language_count,,,observer,Immediate review; no names
+survey,P001,explorer,week11,clarity_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week11,safety_to_ask_or_pass_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week11,workload_fit_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week11,skill_use_1_5,,,facilitator,Aggregate only
+observation,GROUP,all,week11,source_scope_limit_named_count,,,observer,No names
+observation,GROUP,all,week11,sectarian_or_personalizing_language_count,,,observer,Immediate review; no names
+survey,P001,explorer,week12,clarity_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week12,safety_to_ask_or_pass_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week12,workload_fit_1_5,,,facilitator,Aggregate only
+survey,P001,explorer,week12,skill_use_1_5,,,facilitator,Aggregate only
+observation,GROUP,all,week12,source_scope_limit_named_count,,,observer,No names
+observation,GROUP,all,week12,sectarian_or_personalizing_language_count,,,observer,Immediate review; no names
+post,P001,explorer,post,layers_source_scope_limit_0_4,,,researcher,No ranking
+follow_up,P001,explorer,day7_10,source_check_or_limit_yes_partial_no,,,facilitator,Optional
