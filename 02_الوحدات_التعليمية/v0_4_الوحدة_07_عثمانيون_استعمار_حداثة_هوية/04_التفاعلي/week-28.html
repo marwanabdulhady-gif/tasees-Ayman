@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-phase="3" data-week="w28" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تأسيس · الأسبوع ٢٨</title>
+<!--
+  قالب الأسبوع — انسخ هذا الملف إلى <الوحدة>/04_التفاعلي/week-NN.html
+  ثم عدّل فقط: (1) data-phase و data-week في وسم <html>، (2) <title>، (3) كتلة JSON بالمعرّف "week".
+  data-root = المسار إلى جذر المستودع (حيث index.html منصة الأطالس): "../../" هنا، و"../../../" داخل <الوحدة>/04_التفاعلي/.
+  "source_sha" = بصمة نص الأسبوع الذي بنيت منه الصفحة (من source-lock.json). الدورة قيد التحرير:
+  tools/check_drift.py يقارنها بالنص الحالي ويخبرك إن صارت الصفحة قديمة.
+  لا تعدّل CSS ولا JS هنا؛ التعديل في tasees-tokens.css و tasees-runtime.js فقط (بقرار).
+  المحتوى أدناه مثال حقيقي من نص الأسبوع 1 (v0.4).
+-->
+<link rel="stylesheet" href="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; min-height: 100%; }
+.wk { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 24px; }
+.wk .t-screen { border: 1.5px solid var(--ink); }
+.bar { max-width: var(--stage-max); margin: 0 auto 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: var(--t-tag); color: var(--ink-soft); }
+.bar strong { font-family: var(--f-display); font-size: 1.3rem; color: var(--ink); font-weight: 700; }
+.pencil { display: flex; gap: 3px; margin-inline-start: auto; } .pencil i { width: 16px; height: 4px; border-radius: 2px; background: var(--rule); } .pencil i.on { background: var(--phase); }
+.nav { max-width: var(--stage-max); margin: 12px auto 0; display: flex; justify-content: space-between; gap: 12px; }
+.q-box { border: 1.5px solid var(--phase); padding: 12px 16px; background: var(--card); max-width: 36em; }
+.q-box small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.audio { border: 1.5px dashed var(--ink-soft); padding: 10px 14px; max-width: 36em; font-size: var(--t-small); }
+.hook-art { border: 1.5px solid var(--rule); background: var(--card); aspect-ratio: 16 / 7; max-width: 100%; display: grid; place-items: center; color: var(--ink-soft); font-size: var(--t-small); overflow: hidden; }
+.hook-art img { width: 100%; height: 100%; object-fit: cover; }
+.lines { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; counter-reset: l; }
+.lines li { counter-increment: l; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 8px; }
+.lines li::before { content: counter(l, arabic-indic); font-family: var(--f-display); color: var(--phase); font-size: 1.4rem; line-height: 1.3; }
+.wall { display: flex; gap: 4px; } .wall .t-brick { width: 18px; height: 10px; }
+/* pattern parts used by tasees-runtime.js (same as screen-templates.html) */
+.demo { display: flex; flex-direction: column; gap: 10px; }
+.order { display: flex; flex-direction: column; gap: 6px; } .order .t-choice b { color: var(--ink-soft); min-width: 1.4em; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); } .bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.house { width: 100%; max-width: 360px; height: auto; align-self: center; }
+.house .glow { fill: var(--pen-black); opacity: 0; transition: opacity .3s; } .house.is-lit .glow { opacity: .28; }
+.house .ink { stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.house .bulb { fill: var(--card); stroke: var(--ink); stroke-width: 2; } .house.is-lit .bulb { fill: var(--pen-black); }
+@media (prefers-reduced-motion: no-preference) { .house.is-flicker .bulb { animation: flick .9s steps(2) 2; } }
+@keyframes flick { 50% { fill: var(--pen-black); } }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain .t-kart { padding: 8px 12px; font-size: var(--t-small); cursor: pointer; } .chain .t-kart[aria-expanded="false"] span { visibility: hidden; }
+.chain .t-kart small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.portico { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 6px solid var(--phase); border-bottom: 4px solid var(--phase); padding: 8px 0; }
+.portico div { border-inline: 2px solid var(--phase); padding: 4px 6px; min-height: 92px; font-family: var(--f-display); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portico div small { display: block; font-family: var(--f-body); font-size: 11px; color: var(--ink-soft); }
+@media (max-width: 560px) { .builder { grid-template-columns: minmax(0, 1fr); } .bins { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="t-page">
+<div class="wk">
+  <div class="bar"><strong id="wk-name"></strong><span id="wk-pos"></span><div class="pencil" id="pencil" aria-hidden="true"></div></div>
+  <main id="stage" aria-live="polite"></main>
+  <div class="nav"><button class="t-btn t-btn--ghost" id="prev" type="button">السابق</button><button class="t-btn" id="next" type="button">التالي</button></div>
+</div>
+
+<!-- ======================= محتوى الأسبوع — هذا وحده ما يُعدَّل ======================= -->
+<script type="application/json" id="week">
+{
+  "week": 28,
+  "unit": 7,
+  "phase": 3,
+  "source_sha": "eb6e68eb8805b579",
+  "eyebrow": "المرحلة ٣ · عثمانيون واستعمار وحداثة — الوحدة ٧ · الأسبوع ٢٨",
+  "title": "الملف العثماني: لا تقديس ولا شيطنة",
+  "subtitle": "من إمارة حدودية لـ«الرجل المريض»",
+  "question": "إزاي نقرا أطول دولة في تاريخنا الأخير بميزان الدولة — لا تقديس ولا شيطنة؟",
+  "audio": "الحلقة المسموعة ١٥–٢٠ د · قيد التسجيل بقارئ بشري (بوابة G13)",
+  "next": "الأسبوع الجاي: الصدمة والتجربة — استعمار ودولة حديثة",
+  "screens": [
+    {
+      "id": "w28-01",
+      "layout": "L1",
+      "sanad": [
+        [
+          "الوحدة ٧",
+          "الأسبوع ٢٨"
+        ]
+      ]
+    },
+    {
+      "id": "w28-02",
+      "layout": "L2",
+      "art": "tas-w28-hook-scale",
+      "art_src": "../03_المواد_البصرية/hooks/tas-w28-hook-scale.png",
+      "sanad": [
+        [
+          "الخطاف",
+          "الكتلة ٠"
+        ]
+      ],
+      "voice": "لأن الدولة دي مش «تاريخ» بالنسبة لناس كتير — دي معركة هوية لسه شغالة.",
+      "sharh": "خندق بيقول: «دولة الخلافة — ستة قرون من العزة». وخندق بيقول: «أربع مية سنة احتلال تركي جهيل». والاتنين بيصوتوا عالي ومحدش بيفحص. النهارده نفتح الملف بميزان — كفتان على سور قلعة عند الفجر، مايلة ولا واحدة منهم."
+    },
+    {
+      "id": "w28-03",
+      "layout": "L3",
+      "heading": "الكتلة ١ · الصعود: من إمارة حدودية لوريثة روما",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "≈ 08:00"
+        ]
+      ],
+      "matn": "«عصبية على الأطراف» — زي معادلة ابن خلدون بالظبط.",
+      "sharh": "الإمارة العثمانية اتولدت حوالي ١٢٩٩م على حدود بيزنطة — إمارة صغيرة من غزاة الأتراك الأوغوز، ووظيفتها الطبيعية: الجبهة. والعصبية الحدودية دي هي الوقود: محاربين بلا ترف، وقضية واضحة، وتوسع مستمر بياكل أراضي بيزنطة المنهكة قطعة قطعة. والتواريخ المفصلية: ١٣٢٦ بورصة، ١٣٦٢ أدرنة — يعني العثمانيين عبروا لأوروبا قبل ما يفتحوا الأناضول كله. و١٤٥٣: فتح القسطنطينية — محمد الثاني استلم السلطنة وعمره تسع عشر سنة، وحاصر مدينة سورها ما اتخرقش إلا مرة واحدة في ألف سنة: ٥١ يومًا، و٢٩ مايو ١٤٥٣ المدينة سقطت.",
+      "trap": {
+        "title": "طبقة الأثر",
+        "text": "بيزنطة انتهت بعد ألف ومية سنة، والعلماء البيزنطيين هربوا لإيطاليا بمخطوطاتهم — وقود إضافي للنهضة. والأهم: العثمانيين بقوا بوابات طريق الحرير والتوابل، فالأوروبيين ابتدوا يفكروا: إزاي نوصل للهند من غير ما نعدّي على مسلمين؟ كولومبوس غربًا ١٤٩٢، وفاسكو دي جاما شرقًا ١٤٩٨."
+      }
+    },
+    {
+      "id": "w28-04",
+      "layout": "L3",
+      "heading": "سؤال Q44 · قانون الإخوة والقفص",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "Q44"
+        ]
+      ],
+      "matn": "«الفاتح حوّل الممارسة العرفية لنص قانوني — وده أسوأ أنواع التقنين: الجريمة بقت مؤسسة».",
+      "sharh": "طبقة الوقائع: الثابت إن الفاتح لما تولى كان له أخ رضيع مات في ظروف غامضة سنة توليه — والمصادر العثمانية نفسها ما بتجاملش في كده. والأهم: الفاتح نفسه هو اللي دوّن مبدأ «نظام العالم» في قانون‌نامه: اللي يتولى السلطنة من أبنائي يجوز له قتل إخوته. طبقة القرار: السلطنة العثمانية ما ورثتش آلية انتقال سلمية — دي ورثت قانون الغلبة من التاريخ السياسي كله. طبقة الأثر: كل انتقال للعرش تقريبًا فيه دم — وأبشع ليلة متوثقة: محمد التالت سنة ١٥٩٥ قتل تسعة عشر أخًا في ليلة واحدة؛ وبعدها النظام ابتكر بديلًا أسوأ: القفص — الأمراء يعيشوا محبوسين عشرات السنين، واللي بيخرج للحكم بيخرج من غير أي خبرة بالدنيا.",
+      "trap": {
+        "title": "وصف الجريمة بحجمها",
+        "text": "قانون الإخوة ما حمّاش الدولة — خدّر عقلها الحاكم. ووصف الجريمة بحجمها، من غير تضخيم ومن غير تهوين — وبلا نكات، لأن دي أولاد ناس اتقتلت."
+      }
+    },
+    {
+      "id": "w28-05",
+      "layout": "L4",
+      "pattern": "P12",
+      "heading": "ميزان الفاتح",
+      "instruction": "ضع كل واقعة في كفتها — الميزان مش محاكمة، الميزان سجل.",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "U7-A3"
+        ]
+      ],
+      "data": {
+        "pans": [
+          "ما يُحسب للفاتح",
+          "ما يُحسب على قانون الإخوة"
+        ],
+        "items": [
+          [
+            "فتح القسطنطينية بعد حصار ٥١ يومًا — ٢٩ مايو ١٤٥٣",
+            0
+          ],
+          [
+            "سور ثيودوسيوس ما اتخرقش إلا مرة واحدة في ألف سنة",
+            0
+          ],
+          [
+            "الحسم بالتقنية: مدافع أوربان العملاقة",
+            0
+          ],
+          [
+            "مبدأ «نظام العالم» في قانون‌نامه: قتل الإخوة نصًا",
+            1
+          ],
+          [
+            "أخوه الرضيع مات في ظروف غامضة سنة توليه",
+            1
+          ],
+          [
+            "قانون الغلبة بقى مؤسسة تُورَّث",
+            1
+          ]
+        ],
+        "done": "وصف بلا وسم: وقائع في كفتين، ودرجة على الخبر، والأثر على مدى قرنين — بلا نكات وبلا تهوين."
+      }
+    },
+    {
+      "id": "w28-06",
+      "layout": "L3",
+      "heading": "الكتلة ٢ · سليم والمماليك: انتقال المركز",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "≈ 15:00"
+        ]
+      ],
+      "matn": "«الدولة اللي ورثت بغداد ٦٥٦ ووقفت للمغول في عين جالوت انتهت في أسبوعين».",
+      "sharh": "في الشرق قوة جديدة بتتصاعد: الدولة الصفوية في إيران بمذهبها الشيعي الاثنا عشري ودعايتها بين قبائل الأناضول. وسليم تحرك ضدها أولًا — جالديران ١٥١٤م — وبعدين التفت للجنوب. ونظام المماليك كان نظامًا عسكريًا عظيمًا بس بلا تجديد: فرسان بمهارات القرون الوسطى قدام مدافع وبنادق العثمانيين. مرج دابق ١٥١٦: قانصوه الغوري — سلطان فوق السبعين — نزل الميدان بنفسه ومات فيه. والريدانية ١٥١٧: طومان باي اتشنق على باب زويلة. ودخل سليم القاهرة واستلم معها الحجاز، وأخذ لقب «خادم الحرمين الشريفين» — بس الحماية دي كانت لحماية منظومة إمبراطورية، مش مشروع نهضة عربية.",
+      "trap": {
+        "title": "Q42: نصف الصورة",
+        "text": "الدولة العثمانية كانت حامية الديار العربية بمعنى حقيقي — تأمين طرق الحج، وعمارة الحرمين، وقرون طويلة من غير غزو أوروبي ناجح على المشرق. والولايات العربية بقت أطرافًا لمركز جديد، والضرائب والمناصب اتوزعت من إستانبول."
+      }
+    },
+    {
+      "id": "w28-07",
+      "layout": "L4",
+      "pattern": "P10",
+      "heading": "بطاقة «انتقال الخلافة ١٥١٧»",
+      "instruction": "افحص الحكاية الأشهر في تاريخنا — وأضعفها إسنادًا — بالخماسية.",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "U7-A4 · مهارة ١٦"
+        ]
+      ],
+      "data": {
+        "flag": "«الخليفة العباسي في القاهرة سلّم الخلافة لسليم في احتفال — بالبردة والسيف»",
+        "fields": [
+          [
+            "١ الراوي",
+            "التفاصيل الدرامية جاية من مصادر متأخرة، أغلبها بعد الحدث بعقود أو قرن، وبعضها من مؤرخين بلاط عثمانيين. والمعاصر للحدث — ابن إياس في «بدائع الزهور»، شاهد عيان قاهري — ما بيذكرش احتفال التسليم بالصورة المشهورة."
+          ],
+          [
+            "٢ السلسلة",
+            "انقطاع بين الحدث والرواية الدرامية."
+          ],
+          [
+            "٣ المتن",
+            "بيتناقض مع وضع الخلافة نفسها: خلافة القاهرة من ٦٥٩هـ كانت خلافة ظل رمزي تحت المماليك — من غير جيش ولا سلطة؛ يعني إيه اللي هيتنقل بالظبط؟"
+          ],
+          [
+            "٤ السياق والمصلحة",
+            "الرواية الدرامية بتخدم السلطان العثماني اللي محتاج شرعية دينية قدام العالم الإسلامي — وقصاد الصفوي والشيعي بالذات."
+          ],
+          [
+            "٥ الأثر",
+            "«انتقال الخلافة ١٥١٧» بقت عقيدة تاريخية بتتقال في المناهج كأنها حدث موثق، وعليها بيتبني خطاب كامل — فالتشديد واجب."
+          ]
+        ],
+        "grades": [
+          "ثابت",
+          "ضعيف",
+          "مختلَق"
+        ],
+        "note": "الاحتفال الدرامي: ضعيف/متأخر. اللي حصل فعلًا: العثمانيين ورثوا أراضي الحرمين ولقب خادم الحرمين، وادّعوا مقام الخلافة تدريجيًا على مدى عقود، والعالم الإسلامي السني تقبل القيادة الجديدة بحكم الأمر الواقع. الخلافة ما اتنقلتش في احتفال — اتبنت بالسياسة عبر جيل."
+      }
+    },
+    {
+      "id": "w28-08",
+      "layout": "L3",
+      "heading": "الكتلة ٣ · سليمان: الذروة والقانون",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "≈ 20:00"
+        ]
+      ],
+      "matn": "«حاكم قوي وبلاط مترف — والترَف غير الفسق».",
+      "sharh": "القانوني (١٥٢٠–١٥٦٦) هو الذروة: قوانين مدونة نظمت الضرائب والحرف وحماية الفلاح، وبلغراد ١٥٢١، ورودس ١٥٢٢، وموهاج ١٥٢٦ — المجر اتفتحت في معركة ساعتين — وحصار فيينا الأول ١٥٢٩ فشل بسبب المطر واللوجستيات والشتاء. وفي البحر: بربروس بقى قائد الأسطول العثماني. دولة من بودابست لبغداد ومن الجزائر لليمن — أكبر كيان سياسي في العالم الإسلامي من زمن العباسيين. وحكايات الحريم ملفات بتتحكى بمتعة درامية، ومنهجنا فيها واحد: تفحص بدرجاتها زي أي خبر — السياسة العثمانية كانت أعقد من حكايات الحريم.",
+      "trap": {
+        "title": "١٦٨٣ · فيينا التانية",
+        "text": "الحصار ده فشل، والفشل كان بداية مية وخمسين سنة من التراجع على كل الجبهات: كارلوفجة ١٦٩٩ — أول معاهدة العثمانيين بيسلموا فيها أراضي واسعة، وبعدها معاهدات كتير بتقص من الخريطة."
+      }
+    },
+    {
+      "id": "w28-09",
+      "layout": "L3",
+      "heading": "سؤال Q49 · إزاي انحدرت الدولة؟",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "Q49"
+        ]
+      ],
+      "matn": "«القوة المستوردة تملك مستوردها» — نفس معادلة العسكر في و٢٤.",
+      "sharh": "العثمانيين حالة خلدونية نموذجية. العصبية: محاربو الثغر — انضباط وزهد نسبي وقفية. الملك: إمبراطورية قارات وثروة. الترف: التيمار اتحول لنظام التزام — الفلاح بقى بيدفع لملتزم بيشتري وظيفته، والإنكشارية من نخبة منضبطة بقيت شبكة مصالح بتتجوز وبتتاجر وبتهدد العرش نفسه. والخلافة من القفص بتنتج سلاطين أطفال أو معزولين. والمالية: فضة أمريكا بتغرق السوق فبتضخم، والامتيازات الأجنبية اللي اديت لأوروبا من موقع قوة في عهد القانوني بقت قيودًا من موقع ضعف. والخارج تغير: أوروبا بقت دولًا قومية بمؤسسات وجيوش نظامية وبنوك وثورة علمية.",
+      "trap": {
+        "title": "الفجوة بتكبر لوحدها",
+        "text": "الفجوة التقنية بتتحول لفجوة عسكرية، والعسكرية لمالية — والقرن التمنتاشر الدولة بتقترض لأول مرة، والقرن التسعتاشر بتفلس."
+      }
+    },
+    {
+      "id": "w28-10",
+      "layout": "L4",
+      "pattern": "P02",
+      "heading": "«الرجل المريض» — تسمية أم وصف؟",
+      "instruction": "ضع كل عبارة في خانتها: تسمية مشحونة، وصف مدقَّق، ولا سؤال حكم؟",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "تسمية الحقبة · و٢٤"
+        ]
+      ],
+      "data": {
+        "bins": [
+          "تسمية مشحونة",
+          "وصف مدقَّق",
+          "سؤال ما ينفعش نحكم فيه هنا"
+        ],
+        "items": [
+          [
+            "«رجل أوروبا المريض»",
+            0
+          ],
+          [
+            "«دولة الخلافة — ستة قرون من العزة»",
+            0
+          ],
+          [
+            "«أربع مية سنة احتلال تركي جهيل»",
+            0
+          ],
+          [
+            "العصبية ثم الملك ثم الترف ثم السقوط",
+            1
+          ],
+          [
+            "تسعة عشر أخًا في ليلة واحدة سنة ١٥٩٥",
+            1
+          ],
+          [
+            "التيمار اتحول لنظام التزام",
+            1
+          ],
+          [
+            "هل الدولة دي كانت عزة ولا احتلال؟",
+            2
+          ]
+        ],
+        "done": "مين سماها؟ القوى اللي بتتقاسم تركته فعلًا — روسيا وبريطانيا وفرنسا. والتسمية بتبرز الضعف وبتخفي إن «المريض» ده كان بيقاتل وبيصلح وبيعيش — وإن اللي بيسموه مريض كانوا واقفين حوالين السرير مستنيين الميراث."
+      }
+    },
+    {
+      "id": "w28-11",
+      "layout": "L4",
+      "pattern": "P06",
+      "heading": "مهمة الأسبوع · ميزان الدولة العثمانية",
+      "instruction": "تلات إنجازات بأدلتها، وتلات صفحات سوداء بدرجاتها، ثم جملة حكم واحدة.",
+      "sanad": [
+        [
+          "القفلة",
+          "مهارة ٢١"
+        ]
+      ],
+      "data": {
+        "key": "ottoman",
+        "note": "الجملة الأخيرة لازم تكون وصفًا بلا وسم: لا «أعظم دولة» ولا «احتلال جهيل».",
+        "fields": [
+          {
+            "key": "g1",
+            "label": "إنجاز ١ + دليله",
+            "ph": "الواقعة والدليل اللي يثبتها"
+          },
+          {
+            "key": "g2",
+            "label": "إنجاز ٢ + دليله",
+            "ph": "من غير رقم بلا مصدر"
+          },
+          {
+            "key": "g3",
+            "label": "إنجاز ٣ + دليله",
+            "ph": "من الحلقة، مش من الإنترنت"
+          },
+          {
+            "key": "b1",
+            "label": "صفحة سوداء ١ + درجتها",
+            "ph": "الواقعة ودرجة الخبر فيها"
+          },
+          {
+            "key": "b2",
+            "label": "صفحة سوداء ٢ + درجتها",
+            "ph": "بحجمها: لا تضخيم ولا تهوين"
+          },
+          {
+            "key": "b3",
+            "label": "صفحة سوداء ٣ + درجتها",
+            "ph": "وقائع ودرجات، مش نكات"
+          },
+          {
+            "key": "v",
+            "label": "جملة الحكم",
+            "ph": "وصف بلا وسم — سطر واحد"
+          }
+        ]
+      },
+      "note": "مهارة الملف المستقطب: شيل الخندقين بره الأول، وبعدين افتح العدة — ميزان الدولة للأفعال وبطاقة الرواية للأخبار. وملف مستقطب بلا ميزان ودرجة — ما تدخلوش. والجملة الأخيرة لازم تكون وصفًا بلا وسم."
+    },
+    {
+      "id": "w28-12",
+      "layout": "L4",
+      "pattern": "P20",
+      "heading": "قارن الخريطتين",
+      "sanad": [
+        [
+          "الأطلس",
+          "cmp-spreads-1-1-vs-1-4"
+        ]
+      ],
+      "data": {
+        "compare": "cmp-spreads-1-1-vs-1-4",
+        "prompt": "الفتوحات الأولى مقابل العالم الإسلامي نحو ١٧٠٠م: اسحب الشريط بين الخريطتين."
+      }
+    },
+    {
+      "id": "w28-13",
+      "layout": "L6",
+      "pattern": "P15",
+      "sanad": [
+        [
+          "الكتلتان ١ و٣",
+          "سؤال للدفتر"
+        ]
+      ],
+      "data": {
+        "q": "اكتب ملفًا إنت مستقطب فيه من غير ما تاخد بالك — في التاريخ أو في الشغل أو في العيلة: إيه الخندقان؟ وإيه أول ميزان هتعمله؟",
+        "key": "journal"
+      }
+    },
+    {
+      "id": "w28-14",
+      "layout": "L7",
+      "heading": "نلمّ الليلة في تلات سطور",
+      "lines": [
+        "من إمارة حدودية على ثغر بيزنطة لوريثة روما: العصبية الحدودية هي الوقود، والتقنية حسمت القسطنطينية.",
+        "الخلافة ما اتنقلتش في احتفال — اتبنت بالسياسة عبر جيل: بطاقة الرواية تكشف حكاية البردة والسيف.",
+        "الانحدار خلدوني نموذجي: تيمار صار التزامًا، والإنكشارية شبكة مصالح، والامتيازات انقلبت من قوة لقيود."
+      ],
+      "replay": "سؤال الأسبوع مكان {{predict}} — كان: إزاي نقرا أطول دولة في تاريخنا بميزان — لا تقديس ولا شيطنة؟ والجواب: ملف مستقطب بلا ميزان ودرجة ما تدخلوش.",
+      "task": {
+        "مستكشف": "كفتان مختصرتان: تلات وقائع في كل كفة بلا تفاصيل.",
+        "ممارس": "ميزان الدولة العثمانية كاملًا: تلات إنجازات + تلات صفحات بدرجات + جملة حكم وصف بلا وسم.",
+        "متقدم": "الميزان + بطاقة الملف المستقطب على ملف تاني (الأندلس أو صلاح الدين): الخندقان، ثم العدة."
+      }
+    }
+  ]
+}
+</script>
+
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/atlas-course-bundle.js" onerror="this.remove()"></script>
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-runtime.js" onerror="this.remove()"></script>
+<script>
+(function () {
+  "use strict";
+  var W = JSON.parse(document.getElementById("week").textContent);
+  var T = window.Tasees, AR = T.AR, el = T.el, store = T.store;
+  var TRACKS = ["مستكشف", "ممارس", "متقدم"];
+  var track = store.get("track") || "ممارس";
+  var visible = function () { return W.screens.filter(function (s) { return !s.track || s.track === track; }); };
+  var i = 0;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sanad(list) { return (list || []).map(function (s) { var tc = /^≈|\d:\d/.test(s[1]); return '<span class="t-sanad"><b>' + esc(s[0]) + "</b>" + (tc ? '<span class="tc">' + esc(s[1]) + "</span>" : esc(s[1])) + "</span>"; }).join(""); }
+  function bricks(n) { var h = '<div class="wall" aria-label="طوب الوحدة">'; for (var k = 1; k <= 4; k++) { h += '<span class="t-brick' + (store.get("done") && k === ((W.week - 1) % 4) + 1 ? " is-laid" + (n ? " is-new" : "") : "") + '"></span>'; } return h + "</div>"; }
+
+  var LAYOUT = {
+    L1: function (s) {
+      return '<p class="t-eyebrow">' + esc(W.eyebrow) + '</p><h1 class="t-title">' + esc(W.title) + '</h1><svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>' +
+        '<p class="t-small" style="margin:0">' + esc(W.subtitle) + '</p><div class="q-box"><small>سؤال الأسبوع</small>' + esc(W.question) + "</div>" +
+        '<div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>' + TRACKS.map(function (t) { return '<button class="t-chip js-track" type="button" aria-pressed="' + (t === track) + '">' + t + "</button>"; }).join("") + "</div>" +
+        '<div class="audio">' + esc(W.audio) + '</div><p class="t-small" style="margin:0">نصوص مستوحاة من أسلوب المهندس أيمن عبد الرحيم في الشرح، كُتبت لأغراض تدريبية داخل مشروع تأسيس، وليست قولًا منسوبًا إليه.</p>';
+    },
+    L2: function (s) {
+      var art = s.art_src ? '<img src="' + esc(s.art_src) + '" alt="">' : "رسم الخطاف <code>" + esc(s.art) + "</code> لم يُولَّد بعد";
+      return '<div class="hook-art">' + art + '</div><p class="t-voice">' + esc(s.voice) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>";
+    },
+    L3: function (s) {
+      return '<h2 class="t-h2">' + esc(s.heading) + '</h2><p class="t-matn">' + esc(s.matn) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>" +
+        (s.trap ? '<p class="t-feedback t-feedback--bad"><strong>' + esc(s.trap.title) + "</strong>" + esc(s.trap.text) + "</p>" : "");
+    },
+    L4: function (s) { return '<h2 class="t-h2">' + esc(s.heading) + "</h2>" + (s.instruction ? '<p class="t-small" style="margin:0">' + esc(s.instruction) + "</p>" : "") + '<div class="demo" data-mount></div>'; },
+    L5: function (s) { return (s.classic ? '<p class="t-classic" style="margin:0">' + esc(s.classic) + "</p>" : "") + '<p class="t-matn">' + esc(s.matn) + '</p><div class="demo" data-mount></div>'; },
+    L6: function (s) { return '<div class="demo" data-mount></div>'; },
+    L7: function (s) {
+      var p = store.get("predict");
+      return '<h2 class="t-title" style="font-size:2.2rem">' + esc(s.heading) + '</h2><ol class="lines">' + s.lines.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ol>" +
+        (p ? '<p class="t-feedback">' + esc(s.replay).replace("{{predict}}", "<strong style=\"display:inline\">«" + esc(p) + "»</strong>") + "</p>" : "") +
+        '<p class="t-feedback t-feedback--ok"><strong>مهمة الأسبوع · ' + esc(track) + "</strong>" + esc(s.task[track]) + '</p><p class="t-small" style="margin:0">' + esc(W.next) + "</p>";
+    }
+  };
+
+  function show() {
+    var list = visible(); i = Math.max(0, Math.min(i, list.length - 1));
+    var s = list[i], last = s.layout === "L7";
+    if (last && !store.get("done")) { store.set("done", "1"); s._new = true; }
+    var stage = document.getElementById("stage");
+    stage.innerHTML = '<section class="t-screen" data-id="' + esc(s.id) + '" data-layout="' + s.layout + '"><aside class="t-margin">' + sanad(s.sanad) + (s.layout === "L1" || last ? bricks(last && s._new) : "") + '</aside><div class="t-main">' + LAYOUT[s.layout](s) + "</div></section>";
+    var mount = stage.querySelector("[data-mount]"); if (mount && s.pattern) T.render(mount, s.pattern, s.data);
+    stage.querySelectorAll(".js-track").forEach(function (b) { b.onclick = function () { track = b.textContent; store.set("track", track); show(); }; });
+    document.getElementById("wk-name").innerHTML = 'تأسيس <span style="font-family:var(--f-body);font-size:1rem;font-weight:500">· الأسبوع ' + AR(W.week) + "</span>";
+    document.getElementById("wk-pos").textContent = "الشاشة " + AR(i + 1) + " من " + AR(list.length);
+    document.getElementById("pencil").innerHTML = list.map(function (_, k) { return '<i class="' + (k <= i ? "on" : "") + '"></i>'; }).join("");
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").textContent = last ? "تم" : i === 0 ? "يلا بينا" : "التالي";
+    document.getElementById("next").disabled = last;
+  }
+  document.getElementById("prev").onclick = function () { i--; show(); window.scrollTo(0, 0); };
+  document.getElementById("next").onclick = function () { i++; show(); window.scrollTo(0, 0); };
+  document.addEventListener("keydown", function (e) { if (e.target.closest("input,textarea,select")) return; if (e.key === "ArrowLeft") { i++; show(); } if (e.key === "ArrowRight") { i--; show(); } });
+  show();
+})();
+</script>
+</body>
+</html>
