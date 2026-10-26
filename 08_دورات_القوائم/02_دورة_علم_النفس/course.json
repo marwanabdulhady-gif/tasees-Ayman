@@ -1,0 +1,27 @@
+{
+  "title": "دورة علم النفس — مستخلصة من محاضرات أيمن عبد الرحيم",
+  "slug": "02_دورة_علم_النفس",
+  "playlist": "transcripts/03-psychology",
+  "playlist_url": "https://www.youtube.com/playlist?list=PL9saDKf7tQ7uklZkouvmrPOw7X7n_DGL2",
+  "channel": "https://www.youtube.com/@AymanComplete",
+  "lessons": [
+    {
+      "no": "01",
+      "file": "01_الدرس_الأول_الملصق_والميزان.md",
+      "title": "الملصق والميزان — إيه اللي يخلّي الكلام علم؟",
+      "episode": 1,
+      "episode_file": "transcripts/03-psychology/01 - دورة علم النفس أيمن عبدالرحيم المحاضرة الأولي.md",
+      "duration": "آخر طابع في الحلقة 1:45:14",
+      "tool": "بطاقة العشر",
+      "status": "مسودة — تحتاج مراجعة المالك",
+      "episode_url": "https://www.youtube.com/watch?v=jmcCEitwVvc",
+      "words": 2177
+    }
+  ],
+  "style_guide": "../00_دليل_الأسلوب.md",
+  "notes": [
+    "الاستناد كله على ملفات التفريغ في transcripts/03-psychology — لا تُضاف معلومة من خارجها.",
+    "كل درس يقابل محاضرة واحدة؛ الحجم المستهدف ٢٠٠٠–٣٥٠٠ كلمة (الدرس الأول: 2177 كلمة).",
+    "التحقق: python3 08_دورات_القوائم/tools/check_lesson.py 08_دورات_القوائم/02_دورة_علم_النفس"
+  ]
+}
