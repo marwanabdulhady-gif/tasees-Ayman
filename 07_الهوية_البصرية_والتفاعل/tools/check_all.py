@@ -22,11 +22,28 @@ STEPS = [
 ]
 
 
+def browser_available():
+    """Chromium من Playwright قد لا يكون قابلًا للتنزيل في بعض البيئات (بلا صلاحية root أو شبكة محجوبة)."""
+    try:
+        import subprocess as sp
+        r = sp.run(["node", "-e", "require('playwright'); const {chromium}=require('playwright');"
+                    "chromium.launch().then(b=>b.close()).then(()=>process.exit(0)).catch(()=>process.exit(1))"],
+                   cwd=ROOT, capture_output=True, text=True, timeout=60)
+        return r.returncode == 0
+    except Exception:
+        return False
+
+
 def main(argv):
     steps = list(STEPS)
     if "--week" in argv:
         wk = argv[argv.index("--week") + 1]
-        steps.append((f"week {wk} in the browser", ["node", str(T / "check_week_page.cjs"), wk]))
+        if browser_available():
+            steps.append((f"week {wk} in the browser", ["node", str(T / "check_week_page.cjs"), wk]))
+        else:
+            # بديل موثّق: jsdom يشغّل الصفحة ويمشي على الشاشات — بلا لقطات ولا فحص عرض.
+            print("ملاحظة: Chromium غير متاح هنا — فحص الصفحة يعمل بـjsdom (بلا لقطات).")
+            steps.append((f"week {wk} in jsdom (بديل)", ["node", str(T / "check_week_page_dom.cjs"), wk]))
     failed = 0
     for name, cmd in steps:
         r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
