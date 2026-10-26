@@ -95,7 +95,7 @@
       "license": "GPL-3.0",
       "localPath": "atlas-modules/atlas-of-quran/",
       "dataSizeMB": 1,
-      "integration": "Offline-first Arabic RTL Leaflet app with native curated dataset (data/locations.json: 46 Quranic places+people, surah:ayah references, confidence flags high/medium/traditional, verified short Quran excerpts); vendored Leaflet 1.9.4 (leaflet/); CARTO dark tiles + permanent graticule; original Google My Maps embed kept as optional online addon (mid=1h5v16ahHjdMNWt3deXH0zEXD6wErVpF2)",
+      "integration": "Offline-first Arabic RTL Leaflet app with native curated dataset (data/locations.json: 42 Quranic places+people built by tools/build_locations.py; every cited verse names the entity; every excerpt cut from data/quran-uthmani.json — semarketir/quranjson, MIT, 6236 verses — and checked by tools/qa/check_quran_texts.cjs; confidence flags high/medium/traditional); vendored Leaflet 1.9.4 (leaflet/); CARTO dark tiles + permanent graticule; original Google My Maps embed kept as optional online addon (mid=1h5v16ahHjdMNWt3deXH0zEXD6wErVpF2)",
       "attributionKept": [
         "LICENSE (GPL v3) referenced in page footer",
         "original project name + GPL v3 in page footer"

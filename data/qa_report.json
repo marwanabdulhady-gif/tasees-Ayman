@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-10-26T06:40:53.684Z",
-  "total": 43,
-  "passed": 43,
+  "timestamp": "2026-10-26T07:50:02.191Z",
+  "total": 44,
+  "passed": 44,
   "results": [
     {
       "section": "12.1",
@@ -233,27 +233,33 @@
     },
     {
       "section": "13.1",
+      "name": "Every Quran excerpt is an exact slice of its cited verse, and every reference exists (vendored Uthmani text)",
+      "ok": true,
+      "detail": "63 excerpts, 203 refs, 6236 verses; "
+    },
+    {
+      "section": "13.1",
       "name": "Quran Atlas loads offline via file:// in Arabic RTL with full native dataset",
       "ok": true,
-      "detail": "locs=46"
+      "detail": "locs=42"
     },
     {
       "section": "13.1",
-      "name": "All 46 locations rendered as sidebar list items and map markers",
+      "name": "All 42 locations rendered as sidebar list items and map markers",
       "ok": true,
-      "detail": "items=46, markers=46"
+      "detail": "items=42, markers=42"
     },
     {
       "section": "13.1",
-      "name": "Arabic search filters the list (مكة → 1 hit)",
+      "name": "Arabic search filters the list (مكة)",
       "ok": true,
-      "detail": "shown=1"
+      "detail": "shown=2"
     },
     {
       "section": "13.1",
       "name": "Selecting a place opens a popup with a verified Quran excerpt",
       "ok": true,
-      "detail": "مكة المكرمة — البيت الحرام|«وَإِذْ جَعَلْنَا الْبَيْتَ مَثَا"
+      "detail": "مكة المكرمة — البيت الحرام|«إِنَّ أَوَّلَ بَيْتٍۢ وُضِعَ لِل"
     },
     {
       "section": "13.1",
