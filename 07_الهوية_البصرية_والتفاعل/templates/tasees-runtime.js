@@ -162,6 +162,87 @@
     box.append(el("p", { class: "t-small" }, d.q), r, t, out);
   };
 
+  /* ---------- the six-atlas platform (repo root index.html) ----------
+     Needs atlas-course-bundle.js (window.TaseesAtlas) and <html data-root="…/"> pointing at the repo root.
+     Facts come from the atlas's verified hotspots; nothing here is typed by hand. */
+  var ROOT = function () { return (document.documentElement.getAttribute("data-root") || ""); };
+  var ATLAS = function () { return window.TaseesAtlas || { pages: {}, comparisons: {} }; };
+  var atlasHref = function (pid, hid) { return ROOT() + "index.html#" + pid + (hid ? "~" + hid : ""); };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+
+  function atlasFigure(p, opts) {             // one atlas page with hotspot boxes in % coordinates
+    var fig = el("figure", { class: "atlas" });
+    var scroller = el("div", { class: "atlas__scroll" });
+    var sheet = el("div", { class: "atlas__sheet", style: "aspect-ratio:" + p.w + " / " + p.h });
+    sheet.appendChild(el("img", { src: ROOT() + p.img, alt: p.title, loading: "lazy" }));
+    // large boxes first, small ones on top, so a box nested inside another stays clickable; numbers keep atlas order
+    (p.hotspots || []).map(function (h, i) { return [h, i]; })
+      .sort(function (a, b) { return b[0].w * b[0].h - a[0].w * a[0].h; })
+      .forEach(function (hi) {
+      var h = hi[0], i = hi[1];
+      var b = el("button", { type: "button", class: "atlas__hs" + (opts.hidden ? " is-hidden" : ""), "data-id": h.id,
+        style: "left:" + h.x + "%;top:" + h.y + "%;width:" + h.w + "%;height:" + h.h + "%", "aria-label": h.name }, opts.hidden ? "" : "<span>" + AR(i + 1) + "</span>");
+      b.onclick = function () { opts.onHit(h, b); };
+      sheet.appendChild(b);
+    });
+    scroller.appendChild(sheet);
+    var cap = el("figcaption", {}, esc(p.volume) + " · ص " + AR(p.printed) + " — " + esc(p.title) +
+      ' · <a href="' + atlasHref(opts.pid) + '" target="_blank" rel="noopener">افتح في الأطلس الكامل ←</a>');
+    var zoom = el("button", { type: "button", class: "t-chip atlas__zoom", "aria-pressed": "false" }, "تكبير");
+    zoom.onclick = function () { var on = zoom.getAttribute("aria-pressed") !== "true"; zoom.setAttribute("aria-pressed", on); sheet.style.width = on ? "200%" : ""; };
+    fig.append(zoom, scroller, cap);
+    return fig;
+  }
+
+  R.P19 = function (box, d) {                // atlas page(s): explore every hotspot, or find named ones
+    var A = ATLAS(), stations = d.stations || [["", d.page]], cur = 0;
+    var bar = el("div", { class: "tl", role: "group", "aria-label": "المحطات" }), stage = el("div"), info = el("p", { class: "t-feedback" });
+    var seen = {}, findIdx = 0;
+    function show() {
+      var pid = stations[cur][1], p = A.pages[pid];
+      stage.innerHTML = "";
+      if (!p) { stage.appendChild(el("p", { class: "t-feedback t-feedback--bad" }, "<strong>صفحة الأطلس غير موجودة في الحزمة</strong>" + esc(pid) + " — شغّل build_atlas_links.py")); return; }
+      var finding = d.mode === "find" && d.find && findIdx < d.find.length;
+      var target = finding ? p.hotspots.filter(function (h) { return h.id === d.find[findIdx]; })[0] : null;
+      info.innerHTML = "<strong>" + esc(d.prompt || "") + "</strong>" + (target ? "ابحث على الخريطة عن: <b>" + esc(target.name) + "</b>" : "انقر الأرقام على الخريطة.");
+      info.className = "t-feedback";
+      stage.appendChild(atlasFigure(p, { pid: pid, hidden: finding, onHit: function (h, b) {
+        if (finding) {
+          if (h.id !== d.find[findIdx]) { fb(info, false, "مش ده المكان", "ده: " + esc(h.name) + ". دوّر تاني على: " + esc(target.name)); return; }
+          findIdx++; b.classList.remove("is-hidden"); b.classList.add("is-found");
+          if (findIdx < d.find.length) { var nx = p.hotspots.filter(function (x) { return x.id === d.find[findIdx]; })[0]; fb(info, true, h.name, esc(h.fact) + "<br>التالي: <b>" + esc(nx.name) + "</b>"); }
+          else { show(); fb(info, true, h.name, esc(h.fact) + "<br>✓ لقيت كل الأماكن. الأرقام ظهرت: افتح الباقي."); }
+          return;
+        }
+        seen[pid + h.id] = 1; $$(".atlas__hs", stage).forEach(function (x) { x.classList.toggle("is-open", x === b); });
+        var total = stations.reduce(function (n, s) { return n + ((A.pages[s[1]] || {}).hotspots || []).length; }, 0);
+        fb(info, true, h.name, esc(h.fact) + ' · <a href="' + atlasHref(pid, h.id) + '" target="_blank" rel="noopener">في الأطلس</a>' +
+          (Object.keys(seen).length === total ? "<br><b>✓ فتحت كل المعالم.</b>" : ""));
+      } }));
+    }
+    if (stations.length > 1) stations.forEach(function (s, i) { var b = el("button", { type: "button", "aria-pressed": String(i === 0) }, esc(s[0])); b.onclick = function () { cur = i; $$("button", bar).forEach(function (x) { x.setAttribute("aria-pressed", x === b); }); show(); }; bar.appendChild(b); });
+    box.append.apply(box, (stations.length > 1 ? [bar] : []).concat([info, stage]));
+    show();
+  };
+
+  R.P20 = function (box, d) {                // compare two atlas maps (the atlas's own comparison presets)
+    var A = ATLAS(), c = A.comparisons[d.compare];
+    if (!c) { box.appendChild(el("p", { class: "t-feedback t-feedback--bad" }, "<strong>المقارنة غير موجودة في الحزمة</strong>" + esc(d.compare))); return; }
+    var L = A.pages[c.left], Rp = A.pages[c.right];
+    box.appendChild(el("p", { class: "t-feedback" }, "<strong>" + esc(d.prompt || c.title) + "</strong>" + esc(c.title)));
+    var wrap = el("div", { class: "atlas-cmp" + (c.registered ? " is-swipe" : "") });
+    var pane = function (p, side) { return '<figure class="atlas-cmp__pane atlas-cmp__' + side + '"><div class="atlas__sheet" style="aspect-ratio:' + p.w + " / " + p.h + '"><img src="' + ROOT() + p.img + '" alt="' + esc(p.title) + '"></div><figcaption>' + esc(p.volume) + " · ص " + AR(p.printed) + " — " + esc(p.title) + "</figcaption></figure>"; };
+    wrap.innerHTML = pane(L, "a") + pane(Rp, "b");   // RTL: the earlier map reads first (right)
+    box.appendChild(wrap);
+    if (c.registered) {                       // same base map: swipe one over the other
+      var r = el("input", { type: "range", min: "0", max: "100", value: "50", "aria-label": "شريط المقارنة" });
+      var top = $(".atlas-cmp__a", wrap), set = function () { top.style.clipPath = "inset(0 0 0 " + (100 - r.value) + "%)"; /* RTL: range grows leftwards; earlier map reveals from the right */ };
+      r.addEventListener("input", set); set(); box.appendChild(r);
+      box.appendChild(el("p", { class: "t-small atlas-cmp__legend" }, "يمين الشريط: " + esc(L.title) + " (" + esc(L.volume) + " · ص " + AR(L.printed) + ")<br>يسار الشريط: " + esc(Rp.title) + " (" + esc(Rp.volume) + " · ص " + AR(Rp.printed) + ")"));
+    }
+    box.appendChild(el("p", { class: "t-small" }, '<a href="' + ROOT() + "index.html#" + esc(d.compare) + '" target="_blank" rel="noopener">افتح المقارنة في الأطلس الكامل (تكبير متزامن) ←</a>' + (c.note ? " · " + esc(c.note) : "")));
+  };
+
 
   window.Tasees = {
     render: function (box, pattern, data) { if (!R[pattern]) throw new Error("unknown pattern " + pattern); R[pattern](box, data); },

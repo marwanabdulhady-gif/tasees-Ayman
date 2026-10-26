@@ -43,16 +43,19 @@ def main(argv):
         now = fingerprint(UNIT_DIR.get(w["u"]), n, w["svg"])
         was = lock.get(str(n), {})
         notes = []
-        if was.get("script_sha") != now["script_sha"]:
+        if not was.get("script_sha") and not was.get("svg_sha"):
+            if now["script_sha"] or now["svg_sha"]:
+                notes.append("أسبوع نصه جديد ولم تُراجع خطته بعد → مهمة A0: راجع صفه في visual_plan_data.py ثم يقبله المالك بـ --relock")
+        elif was.get("script_sha") != now["script_sha"]:
             notes.append("نص الأسبوع تغيّر → راجع صف الأسبوع في visual_plan_data.py (الأنماط والتغذية الراجعة)"
                          + (f"، وبرومبت الخطاف {', '.join(h[0] for h in w['hooks'])} إن تغيّرت القصة الافتتاحية" if w["hooks"] else ""))
-        if was.get("svg_sha") != now["svg_sha"]:
+        if was.get("svg_sha") and was.get("svg_sha") != now["svg_sha"]:
             notes.append(f"المشجر {w['svg']} تغيّر → أعد مهمة A2 لهذا الأسبوع")
         if n in pages and pages[n][1] != now["script_sha"]:
             notes.append(f"صفحة الأسبوع {pages[n][0].relative_to(ROOT)} مبنية على نص أقدم → أعد مهمة B لهذا الأسبوع")
         if notes:
             drift += 1
-            print(f"الأسبوع {str(n).translate(AR)} — {w['title']}")
+            print(f"الأسبوع {str(n).translate(AR)} — {w['title']}", flush=True)
             for x in notes:
                 print("   ·", x)
     if not drift:

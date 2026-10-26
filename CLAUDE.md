@@ -13,6 +13,8 @@ The short version:
 5. Never delete an old file; new versions sit next to old ones. Never hand-edit generated files.
 6. Run the checks in §3, open a pull request, never merge it yourself, and end with the report in §5.
 
+Two new task families: the six atlases inside the course (patterns P19/P20, tasks A0 and A5) and one short course per playlist in `08_دورات_القوائم/` (tasks D0–D4; check with `08_دورات_القوائم/tools/check_playlist_course.py <slug>`).
+
 The owner is still editing the course. Run `07_الهوية_البصرية_والتفاعل/tools/check_drift.py <your weeks>` before you start and before you commit; if your week drifted, report it and move on.
 
 If something is unclear or a step fails, stop and report it. Do not guess.

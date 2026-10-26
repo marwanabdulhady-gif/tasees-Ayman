@@ -14,8 +14,9 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from visual_plan_data import PATTERNS, WEEKS, UNIT_DIR, UNIT_COVERS  # noqa: E402
+from visual_plan_data import PATTERNS, WEEKS, UNIT_DIR, UNIT_COVERS, ATLAS  # noqa: E402
 from sources import fingerprint  # noqa: E402
+from check_svg import palette, HEX  # noqa: E402
 
 PKG = HERE.parent                    # 07_الهوية_البصرية_والتفاعل
 ROOT = PKG.parent                    # repo root
@@ -38,7 +39,7 @@ ACCENT = {1: "brick red #C23B30 for one small detail", 2: "sepia ink #8A5A2B", 3
 
 
 def phase_of(u):
-    return 1 if u in (1, 2, 3, 4, 17) else 2 if u in (5, 6, 0) else 3
+    return 1 if u in (1, 2, 3, 4, 17) else 2 if u in (5, 6, 26, 0) else 3
 
 
 def lib_license():
@@ -90,9 +91,13 @@ def main():
             src = UNITS / udir / "03_المواد_البصرية" / w["svg"]
             if not src.exists():
                 errors.append(f"missing SVG: {src}")
-            add(asset_id=f"tas-w{wk:02d}-svg", week=wk, unit=u, kind="مشجر/إنفوجراف", route="SVG إعادة تلوين",
-                description=f"إعادة رسم {w['svg']} بهوية الكراسة (لا تغيير في المحتوى)", prompt_ref="04 §مهمة A2",
-                target_path=f"{vis}/v1_هوية/{w['svg']}", license="أصلي", status="موجود — يحتاج إعادة تلوين", gate="V1, V4, V6")
+            native = src.exists() and not ({h.lower() for h in HEX.findall(src.read_text(encoding="utf-8"))} - palette())
+            add(asset_id=f"tas-w{wk:02d}-svg", week=wk, unit=u, kind="مشجر/إنفوجراف",
+                route="بهوية v1 أصلًا" if native else "SVG إعادة تلوين",
+                description=(f"{w['svg']} مرسوم بألوان الهوية من البداية" if native else f"إعادة رسم {w['svg']} بهوية الكراسة (لا تغيير في المحتوى)"),
+                prompt_ref="" if native else "04 §مهمة A2",
+                target_path=f"{vis}/{w['svg']}" if native else f"{vis}/v1_هوية/{w['svg']}", license="أصلي",
+                status="جاهز" if native else "موجود — يحتاج إعادة تلوين", gate="V1, V4, V6")
         for aid, ar, body in w["hooks"]:
             add(asset_id=aid, week=wk, unit=u, kind="رسم الخطاف", route="AI still", description=ar,
                 prompt_ref=aid, target_path=f"{vis}/hooks/{aid}.png", license="مولد AI", status="مطلوب", gate="V2, V3, V5")
@@ -106,10 +111,20 @@ def main():
             add(asset_id=f"tas-w{wk:02d}-photo-{i}", week=wk, unit=u, kind="صورة مكتبة", route="duotone CSS",
                 description=Path(ph).stem.replace("_", " "), prompt_ref="", target_path=f"06_المكتبة_البصرية/{ph}",
                 license=lic.get(ph, "غير مفهرس — يُتحقق"), status="موجود" if (LIB / ph).exists() else "مفقود", gate="V5, V7")
+        atlas_screens = []
+        for c in ATLAS.get(wk, []):
+            pat = "P20" if c.get("compare") else "P19"
+            ids = [c["compare"]] if c.get("compare") else ([c["page"]] if c.get("page") else [pid for _, pid in c["stations"]])
+            atlas_screens.append(dict(pattern=pat, pattern_name=PATTERNS[pat][0], what=c["prompt"], source="الأطلس: " + "، ".join(ids),
+                                      data={k: v for k, v in c.items()}))
+            for aid in ids:
+                add(asset_id=f"tas-w{wk:02d}-atlas-{aid}", week=wk, unit=u, kind="صفحة أطلس", route=f"{pat} من منصة الأطالس",
+                    description=c["prompt"], prompt_ref="atlas/00_مرشحو_الأطلس_لكل_أسبوع.md", target_path=f"index.html#{aid}",
+                    license="أطالس منشورة (ردمك) — داخلي تعليمي فقط حتى إذن الناشر", status="مربوط", gate="V5, G12")
         imap.append(dict(week=wk, unit=u, phase=phase_of(u), title=w["title"], status=w["status"],
                          concept_svg=w["svg"] or None,
                          screens=[dict(pattern=p, pattern_name=PATTERNS[p][0], what=what, source=src)
-                                  for p, what, src in w["ix"]],
+                                  for p, what, src in w["ix"]] + atlas_screens,
                          hook_assets=[h[0] for h in w["hooks"]], authored_assets=[a[0] for a in w["authored"]],
                          library_photos=w["photos"]))
 
@@ -165,7 +180,7 @@ def main():
           "|---:|---:|---|---|---|---|---|---:|"]
     for w in imap:
         pats = "<br>".join(f"`{s['pattern']}` {s['pattern_name']}: {s['what']}" for s in w["screens"])
-        u = "تنفس" if w["unit"] in (0, 17) else str(w["unit"]).translate(AR)
+        u = "تنفس" if w["unit"] in (0, 17, 26) else str(w["unit"]).translate(AR)
         wm.append(f"| {str(w['week']).translate(AR)} | {u} | {w['title']} | {w['status']} | {w['concept_svg'] or '—'} | {pats} | "
                   f"{'<br>'.join('`'+h+'`' for h in w['hook_assets']) or '—'} | {str(len(w['library_photos'])).translate(AR)} |")
     (PKG / "06_خريطة_الأسابيع.md").write_text("\n".join(wm) + "\n", encoding="utf-8")

@@ -1751,10 +1751,40 @@
       }, 180)
     );
 
+    // Deep links, used by the Tasees course screens (07_الهوية_البصرية_والتفاعل):
+    //   index.html#ali-181            open a page
+    //   index.html#ali-181~<hotspot>  open a page with a verified hotspot selected
+    //   index.html#cmp-<id>           open a comparison preset
+    function applyDeepLink() {
+      let h = "";
+      try { h = decodeURIComponent((location.hash || "").slice(1)); } catch (err) { return false; }
+      if (!h) return false;
+      const preset = (manifest.comparisons || []).find((c) => c.id === h);
+      if (preset) {
+        switchTab("compare");
+        compareCtrl.activePresetId = preset.id;
+        compareCtrl.leftId = preset.leftId;
+        compareCtrl.rightId = preset.rightId;
+        compareCtrl.syncZoom = Boolean(preset.syncAllowed);
+        compareCtrl.swipeMode = preset.mode === "vector-registered";
+        compareCtrl.render();
+        return true;
+      }
+      const [pid, hid] = h.split("~");
+      const page = pageById.get(pid);
+      if (!page) return false;
+      const hs = hid ? (page.hotspots || []).find((x) => x.id === hid) : null;
+      openPageInExplorer(page.id, hs ? { selectedFeature: { type: "hotspot", data: hs } } : {});
+      return true;
+    }
+    window.addEventListener("hashchange", applyDeepLink);
+
     // Boot!
-    recordRecent(state.currentPageId);
-    syncHeaderUi();
-    renderExplorerAll();
+    if (!applyDeepLink()) {
+      recordRecent(state.currentPageId);
+      syncHeaderUi();
+      renderExplorerAll();
+    }
   }
 
   async function bootApp() {

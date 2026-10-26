@@ -25,10 +25,13 @@ PATTERNS = {
     "P16": ("السند", "سلسلة تُكشف حلقة حلقة: مصدر ← ناقل ← محتوى ← درجة", "«السند أقدم خريطة»"),
     "P17": ("قلّب البطاقة", "وجه: مفهوم أو سؤال · ظهر: الشرح بصوت أيمن", "بطاقات المفاهيم"),
     "P18": ("السلم", "منزلق أو درج: المتعلم يضع نفسه أو الخبر على مقياس", "السلم اللغوي، طبقات الأدلة"),
+    "P19": ("الأطلس", "صفحة من الأطالس الستة بمعالمها المحققة: استكشف كل معلم، أو ابحث عن أماكن بعينها؛ ومحطات زمنية تبدّل الصفحة", "التاريخ بسند ومكان — منصة الأطالس"),
+    "P20": ("قارن الخريطتين", "مقارنة جاهزة من الأطلس: شريط سحب للخرائط المتطابقة، أو جنبًا إلى جنب", "قبل/بعد على نفس الأرض"),
 }
 
 # ---------------------------------------------------------------- weeks
-# status: "نص جاهز" = script exists in v0.4; "بانتظار النص" = unit not written yet
+# status: "نص جاهز" = script exists and the row was reviewed against it;
+#         "نص جاهز — الصف ينتظر المراجعة (A0)" = script exists, patterns/hooks below are placeholders
 # svg: existing concept SVG in the unit's 03_المواد_البصرية (to be restyled, task A2)
 # ix: list of (pattern, what exactly, content source)
 # hooks: list of (asset_id, arabic concept, english prompt body) — AI stills, no text, no faces
@@ -43,6 +46,9 @@ UNIT_DIR = {
     17: "v0_4_تغليف_المرحلة_١_وأسبوع_التنفس_17",
     5: "v0_4_الوحدة_05_مدخل_التاريخ_منهج_وراشدون_وفتنة",
     6: "v0_4_الوحدة_06_الدول_والحضارة_من_الأمويين_للمماليك",
+    26: "v0_4_تغليف_المرحلة_٢_وأسبوع_التنفس_26",
+    7: "v0_4_الوحدة_07_عثمانيون_استعمار_حداثة_هوية",
+    8: "v0_4_الوحدة_08_البيت_والجماعات_والفعل_المسؤول",
 }
 
 WEEKS = [
@@ -277,22 +283,32 @@ WEEKS = [
                  "A small caravan walking calmly past the ruins of a fallen city wall, continuing toward a distant new city skyline on the horizon. Figures are tiny faceless silhouettes. No battle, no fire.")],
          photos=["أماكن/حطين_قرنا_حطين_01_blog.jpg", "أماكن/قلعة_الكرك_الأردن_01_kaleela.png", "أماكن/عكا_خان_العمدان_01_nbc.jpg", "شخصيات/ابن_خلدون_تمثال_تونس_02.jpg"],
          authored=[]),
-    dict(w=26, u=0, title="أسبوع التنفس ٢٦: مراجعة المرحلة ٢", status="بانتظار النص",
-         svg="", ix=[("P07", "مشجر مهارات المرحلة ٢", "يُكتب"), ("P15", "رسالة لنفسك قبل المرحلة ٣", "يُكتب")],
+    dict(w=26, u=26, title="أسبوع التنفس ٢٦: العدة الكاملة والأدب الممتحن", status="نص جاهز — الصف ينتظر المراجعة (A0)",
+         svg="مشجر_مهارات_المرحلة_٢.svg",
+         ix=[("P07", "مشجر مهارات المرحلة ٢: فحص ذاتي", "مشجر المرحلة"), ("P15", "رسالة لنفسك قبل المرحلة ٣", "الحلقة")],
          hooks=[], photos=[], authored=[("tas-w26-ix-column", "اكتمال صف المرحلة ٢ ووضع الرباط الثاني")]),
 ]
 
-# phase 3 — units 7 and 8 have no scripts yet; patterns are reserved, assets wait for the text
-for w in range(27, 31):
-    WEEKS.append(dict(w=w, u=7, title="الوحدة ٧: عثمانيون، استعمار، حداثة، هوية", status="بانتظار النص", svg="",
+# phase 3 — scripts written 2026-10-26 (units 7 and 8). Titles and diagrams are real; the patterns
+# below are the reserved placeholders until an agent reviews each row against its script (task A0).
+_U7 = [(27, "الغروبان: الأندلس والهند والعالم قبيل العثمانيين", "W27_خريطة_الغروبين.svg"),
+       (28, "الملف العثماني: لا تقديس ولا شيطنة", "W28_الملف_العثماني_بين_خندقين.svg"),
+       (29, "الصدمة والتجربة: استعمار ودولة حديثة", "W29_ثلاثية_الاستعمار_وميزان_التجربة.svg"),
+       (30, "القرن اللي أعاد رسمنا: حدود وفلسطين وعلمانية — وإحنا + ملف الوحدة 7", "W30_القرن_الطويل_وبطاقة_الهوية.svg")]
+for w, title, svg in _U7:
+    WEEKS.append(dict(w=w, u=7, title=title, status="نص جاهز — الصف ينتظر المراجعة (A0)", svg=svg,
                       ix=[("P11", "خط زمني عثماني ↔ استعماري على الأطلس", "Q38–64"),
                           ("P02", "انزع الملصق: حكم جاهز أم وصف؟", "T"),
                           ("P12", "ميزان تجارب التحديث", "T")],
                       hooks=[], authored=[],
                       photos=["أماكن/افتتاح_قناة_السويس_1869_نقش_01_kent.jpg", "مقتنيات_تاريخية/وصف_مصر_لوح_14_نيويورك_01_nyu.jpg",
                               "مقتنيات_تاريخية/غلاف_مجلة_المنار_1899_ويكيميديا.jpg", "خرائط/خريطة_سايكس_بيكو_تقسيم_المشرق_01_youm7.jpg"] if w == 27 else []))
-for w in range(31, 35):
-    WEEKS.append(dict(w=w, u=8, title="الوحدة ٨: البيت والجماعات والفعل المسؤول", status="بانتظار النص", svg="",
+_U8 = [(31, "أين الأمة؟ سؤال كل جيل — والبيت اللي شايل الإجابة", "W31_أين_الأمة_سؤال_كل_جيل_وبيت_يحمل_الإجابة.svg"),
+       (32, "الجماعات الوسيطة: إزاي الأمة حافظت على حضورها؟", "W32_سلم_الجماعات_الوسيطة.svg"),
+       (33, "من عالم الأفكار للسلوك: إزاي المعرفة بتبقى ممارسة؟", "W33_من_الفكرة_للسلوك_سلسلة_الحلقات.svg"),
+       (34, "الفعل المسؤول الآمن + ملف الوحدة 8", "W34_شروط_الفعل_المدني_الآمن.svg")]
+for w, title, svg in _U8:
+    WEEKS.append(dict(w=w, u=8, title=title, status="نص جاهز — الصف ينتظر المراجعة (A0)", svg=svg,
                       ix=[("P06", "خطة البيت: فعل صغير متكرر", "B"),
                           ("P07", "خريطة الجماعات الوسيطة حولك", "B"),
                           ("P05", "حوار في البيت: من الأمر للحوار", "B")],
@@ -308,3 +324,32 @@ UNIT_COVERS = [
     (7, "عثمانيون، استعمار، حداثة، هوية", "An old steamship and a sailing dhow on the same calm sea, seen from a harbour wall with a closed suitcase on it."),
     (8, "البيت والجماعات والفعل المسؤول", "A small house with an open door, a lit window and a low courtyard wall that connects it to a few neighbouring houses, all drawn on squared paper."),
 ]
+# ---------------------------------------------------------------- atlas (six-atlas platform at repo root)
+# Week -> atlas screens. Pattern P19 shows one page or a strip of "stations" with the atlas's own verified
+# hotspots; P20 shows one of the atlas's comparison presets. Facts on screen come from the atlas data
+# (data/manifest.json), never typed here. Candidates per week: atlas/00_مرشحو_الأطلس_لكل_أسبوع.md
+#   page / stations [(label, page_id)] / compare (preset id) · mode: explore | find · find: hotspot ids · prompt
+ATLAS = {
+    8: [dict(stations=[("الشرق نحو ١١٠٠م", "maps8-005"), ("الغرب نحو ١١٠٠م", "maps8-006")], mode="explore",
+             prompt="الورقة اتكتبت في سمرقند، واتترجمت في بغداد، واتشرحت في قرطبة: تتبّع رحلتها على خريطة العالم الإسلامي.")],
+    14: [dict(page="seerah-090", mode="explore", prompt="مكة وسط قبائل الجزيرة عند البعثة: افتح القبائل الخمس."),
+         dict(page="seerah-118", mode="find", find=["s118-makkah", "s118-quba", "s118-madinah"],
+              prompt="طريق الهجرة: حدّد نقطة الانطلاق، ثم مدخل المدينة، ثم دار الهجرة.")],
+    16: [dict(page="seerah-150", mode="explore",
+              prompt="خريطة الغزوات العامة: افتح المواقع الخمسة، ثم ارجع لأرقام النص — ٢٣ سنة دعوة، والقتال الفعلي في عدد قليل منها.")],
+    19: [dict(page="abubakr-043", mode="explore", prompt="حركة الردة: افتح البؤر، ثم الحواضر التي ثبتت ومنها انطلقت الألوية."),
+         dict(compare="cmp-umar-start-vs-end", prompt="مطلع خلافة عمر (١٣هـ) مقابل ختامها (٢٣هـ): ماذا تغيّر في عشر سنين؟")],
+    20: [dict(compare="cmp-uthman-start-vs-peak", prompt="«أول ثماني سنين منهم من أزهى سنين الدولة»: حدود ٢٤هـ مقابل أقصى الاتساع ٣٥هـ."),
+         dict(page="uthman-282", mode="find", find=["ut282-medina-imam"],
+              prompt="المصحف الإمام: أين حُبس؟ بعدها افتح الأمصار التي أُرسلت إليها النسخ.")],
+    21: [dict(stations=[("٣٥هـ البيعة", "ali-131"), ("٣٦هـ الجمل", "ali-147"), ("٣٧هـ صفين", "ali-181"), ("٣٧هـ التحكيم", "ali-191"),
+                        ("٣٨هـ النهروان", "ali-199"), ("٤٠هـ", "ali-210"), ("٤١هـ عام الجماعة", "ali-251")], mode="explore",
+              prompt="المحطات من ٣٥ إلى ٤١هـ على الأطلس. المكان من الأطلس، ودرجة كل رواية من بطاقة الرواية في النص.")],
+    22: [dict(stations=[("الشرق", "maps8-003"), ("الغرب", "maps8-004")], mode="explore",
+              prompt="«أقصى توسع: عقبة بالمغرب وخراسان والأندلس والسند» — تتبّعها على خريطة الفتوحات الأولى.")],
+    24: [dict(stations=[("الشرق نحو ١١٠٠م", "maps8-005"), ("الغرب نحو ١١٠٠م", "maps8-006")], mode="explore",
+              prompt="من «قرن الهيمنة» إلى «قرن تعدد المراكز»: كم مركزًا تعدّ على الخريطة؟")],
+    25: [dict(stations=[("الشرق نحو ١١٠٠م", "maps8-005"), ("الغرب نحو ١١٠٠م", "maps8-006")], mode="explore",
+              prompt="العالم الإسلامي نحو ١١٠٠م، قرابة ٤٩٢هـ: الخريطة التي دخلها الصليبيون.")],
+    28: [dict(compare="cmp-spreads-1-1-vs-1-4", prompt="الفتوحات الأولى مقابل العالم الإسلامي نحو ١٧٠٠م: اسحب الشريط بين الخريطتين.")],
+}

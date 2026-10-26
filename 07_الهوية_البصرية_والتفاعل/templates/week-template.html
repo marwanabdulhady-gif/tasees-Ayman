@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ar" dir="rtl" data-phase="1" data-week="w01">
+<html lang="ar" dir="rtl" data-phase="1" data-week="w01" data-root="../../">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -7,6 +7,7 @@
 <!--
   قالب الأسبوع — انسخ هذا الملف إلى <الوحدة>/04_التفاعلي/week-NN.html
   ثم عدّل فقط: (1) data-phase و data-week في وسم <html>، (2) <title>، (3) كتلة JSON بالمعرّف "week".
+  data-root = المسار إلى جذر المستودع (حيث index.html منصة الأطالس): "../../" هنا، و"../../../" داخل <الوحدة>/04_التفاعلي/.
   "source_sha" = بصمة نص الأسبوع الذي بنيت منه الصفحة (من source-lock.json). الدورة قيد التحرير:
   tools/check_drift.py يقارنها بالنص الحالي ويخبرك إن صارت الصفحة قديمة.
   لا تعدّل CSS ولا JS هنا؛ التعديل في tasees-tokens.css و tasees-runtime.js فقط (بقرار).
@@ -118,6 +119,8 @@ body { margin: 0; min-height: 100%; }
 }
 </script>
 
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/atlas-course-bundle.js" onerror="this.remove()"></script>
+<script src="atlas-course-bundle.js" onerror="this.remove()"></script>
 <script src="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-runtime.js" onerror="this.remove()"></script>
 <script src="tasees-runtime.js"></script>
 <script>
