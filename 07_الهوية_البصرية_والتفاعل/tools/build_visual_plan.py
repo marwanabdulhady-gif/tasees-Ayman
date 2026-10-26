@@ -94,8 +94,10 @@ def main():
                 description=f"إعادة رسم {w['svg']} بهوية الكراسة (لا تغيير في المحتوى)", prompt_ref="04 §مهمة A2",
                 target_path=f"{vis}/v1_هوية/{w['svg']}", license="أصلي", status="موجود — يحتاج إعادة تلوين", gate="V1, V4, V6")
         for aid, ar, body in w["hooks"]:
+            hook_png = UNITS / udir / "03_المواد_البصرية" / "hooks" / f"{aid}.png" if udir else None
+            hook_status = "مولود — بانتظار اعتماد المالك" if (hook_png and hook_png.exists()) else "مطلوب"
             add(asset_id=aid, week=wk, unit=u, kind="رسم الخطاف", route="AI still", description=ar,
-                prompt_ref=aid, target_path=f"{vis}/hooks/{aid}.png", license="مولد AI", status="مطلوب", gate="V2, V3, V5")
+                prompt_ref=aid, target_path=f"{vis}/hooks/{aid}.png", license="مولد AI", status=hook_status, gate="V2, V3, V5")
             prompts.append((aid, f"الأسبوع {str(wk).translate(AR)} — {ar}", body, phase_of(u)))
         for aid, ar in w["authored"]:
             add(asset_id=aid, week=wk, unit=u, kind="رسم تفاعل", route="SVG يدوي", description=ar,

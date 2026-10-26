@@ -153,6 +153,12 @@ def main(argv):
             continue
         plan = week_plan(n)
         errs = validate(n, WEEK_CONTENT[n], plan)
+        # صورة الخطاف: إن كُتب لها مسار فلا بد أن يكون الملف موجودًا من موضع الصفحة.
+        out_dir = target_path(n).parent
+        for s in WEEK_CONTENT[n]["screens"]:
+            src = s.get("art_src")
+            if src and not (out_dir / src).exists():
+                errs.append(f"صورة الخطاف {s.get('art')}: الملف غير موجود `{src}`")
         if errs:
             failed.append(n)
             print(f"✗ الأسبوع {ar(n)}: " + " · ".join(errs))
