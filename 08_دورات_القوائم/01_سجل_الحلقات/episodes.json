@@ -35,11 +35,19 @@
     },
     {
       "folder": "05-reestablishing-muslim-awareness",
-      "title": "إعادة تأسيس وعي المسلم المعاصر",
+      "title": "محاضرات متفرقة",
       "presenter": "أيمن عبد الرحيم",
       "episodes": 45,
       "words": 284879,
       "longest": 14259
+    },
+    {
+      "folder": "06-tasees-muslim-awareness",
+      "title": "دورة تأسيس وعي المسلم المعاصر (١+٢)",
+      "presenter": "أيمن عبد الرحيم",
+      "episodes": 17,
+      "words": 257755,
+      "longest": 7806
     }
   ],
   "episodes": [
@@ -954,6 +962,210 @@
       "words": 1528,
       "playlist": "05-reestablishing-muslim-awareness",
       "n": 45
+    },
+    {
+      "file": "01 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة الأولي.md",
+      "title": "01 أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة الأولي",
+      "video": "https://www.youtube.com/watch?v=kOcyMYIvmec&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 43,
+      "end": 7339,
+      "stamps": 2572,
+      "words": 18741,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 1
+    },
+    {
+      "file": "02 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر , المحاضرة الثانية.md",
+      "title": "02 أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر , المحاضرة الثانية",
+      "video": "https://www.youtube.com/watch?v=wQbQM2Hxqe8&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 44,
+      "end": 6945,
+      "stamps": 2471,
+      "words": 18008,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 2
+    },
+    {
+      "file": "03 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة الثالثة.md",
+      "title": "03 أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة الثالثة",
+      "video": "https://www.youtube.com/watch?v=9SOyLc6EHRc&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 44,
+      "end": 6889,
+      "stamps": 2343,
+      "words": 16407,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 3
+    },
+    {
+      "file": "04 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة الرابعة.md",
+      "title": "04 أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة الرابعة",
+      "video": "https://www.youtube.com/watch?v=lHM5aD5Ma50&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 44,
+      "end": 5169,
+      "stamps": 1759,
+      "words": 12483,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 4
+    },
+    {
+      "file": "05 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة الخامسة.md",
+      "title": "05 أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة الخامسة",
+      "video": "https://www.youtube.com/watch?v=51CickB_8e0&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 13,
+      "end": 5803,
+      "stamps": 2057,
+      "words": 14940,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 5
+    },
+    {
+      "file": "06 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة السادسة.md",
+      "title": "06 أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة السادسة",
+      "video": "https://www.youtube.com/watch?v=Zi9hUk8XUaI&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 43,
+      "end": 6457,
+      "stamps": 2198,
+      "words": 15298,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 6
+    },
+    {
+      "file": "07 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة السابعة.md",
+      "title": "07 أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة السابعة",
+      "video": "https://www.youtube.com/watch?v=_jTErIOMf78&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 22,
+      "end": 5445,
+      "stamps": 1874,
+      "words": 13066,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 7
+    },
+    {
+      "file": "08 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة الثامنة.md",
+      "title": "08 أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة الثامنة",
+      "video": "https://www.youtube.com/watch?v=f9vvRfjCDak&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 44,
+      "end": 6571,
+      "stamps": 2224,
+      "words": 15889,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 8
+    },
+    {
+      "file": "09 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة التاسعة.md",
+      "title": "09 أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة التاسعة",
+      "video": "https://www.youtube.com/watch?v=Fk1h2qfRtcw&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 44,
+      "end": 7806,
+      "stamps": 2937,
+      "words": 21859,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 9
+    },
+    {
+      "file": "10 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الأولي.md",
+      "title": "أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الأولي",
+      "video": "https://www.youtube.com/watch?v=kY85VBAWMQ0&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 4,
+      "end": 7721,
+      "stamps": 2663,
+      "words": 19830,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 10
+    },
+    {
+      "file": "11 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الثانية.md",
+      "title": "أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الثانية",
+      "video": "https://www.youtube.com/watch?v=JZSsUmZBZuY&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 14,
+      "end": 7798,
+      "stamps": 2611,
+      "words": 19318,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 11
+    },
+    {
+      "file": "12 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الثالثة.md",
+      "title": "أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الثالثة",
+      "video": "https://www.youtube.com/watch?v=6Nkm3LV7V64&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 6,
+      "end": 6134,
+      "stamps": 2026,
+      "words": 15179,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 12
+    },
+    {
+      "file": "13 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الرابعة.md",
+      "title": "أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الرابعة",
+      "video": "https://www.youtube.com/watch?v=cZADKKBd5bk&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 4,
+      "end": 7704,
+      "stamps": 2495,
+      "words": 18331,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 13
+    },
+    {
+      "file": "14 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الخامسة.md",
+      "title": "أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الخامسة",
+      "video": "https://www.youtube.com/watch?v=J9chC0C7bQU&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 9,
+      "end": 5530,
+      "stamps": 1593,
+      "words": 11004,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 14
+    },
+    {
+      "file": "15 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة السادسة.md",
+      "title": "أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة السادسة",
+      "video": "https://www.youtube.com/watch?v=84NvmEC5XhM&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 2,
+      "end": 7075,
+      "stamps": 2323,
+      "words": 15983,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 15
+    },
+    {
+      "file": "16 - أيمن عبدالرحيم,دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الثامنة والأخيرة.md",
+      "title": "أيمن عبدالرحيم,دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة الثامنة والأخيرة",
+      "video": "https://www.youtube.com/watch?v=v1KaEyg4_vw&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "timestamped",
+      "start": 3,
+      "end": 5239,
+      "stamps": 1604,
+      "words": 11329,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 16
+    },
+    {
+      "file": "16 - دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة السابعة.md",
+      "title": "دورة تأسيس وعي المسلم المعاصر|| المستوي الثاني || المحاضرة السابعة",
+      "video": "https://www.youtube.com/watch?v=197B3SlGI90&list=PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "format": "plain",
+      "start": null,
+      "end": null,
+      "stamps": 0,
+      "words": 90,
+      "playlist": "06-tasees-muslim-awareness",
+      "n": 17
     }
   ],
   "warnings": [
@@ -961,7 +1173,9 @@
     "**دورة الوعي اللغوي** — فهرس `README.md` مقلوب أو مخالف في ٨ صفًا (الصف ١ يشير إلى آخر محاضرة). **الملفات هي المرجع**، لا الفهرس.",
     "**دورة علم النفس** — فهرس `README.md` مقلوب أو مخالف في ١٠ صفًا (الصف ١ يشير إلى آخر محاضرة). **الملفات هي المرجع**، لا الفهرس.",
     "**السيرة النبوية — العهد المكي** — فهرس `README.md` مقلوب أو مخالف في ٥ صفًا (الصف ١ يشير إلى آخر محاضرة). **الملفات هي المرجع**، لا الفهرس.",
-    "**إعادة تأسيس وعي المسلم المعاصر** — `01 - num م أيمن عبد الرحيم إعادة تأسيس وعي المسلم المعاصر 2 من ميدان رابعة العدوية 1.md` بلا طوابع زمنية: الاقتباس منه برقم الفقرة.",
-    "**إعادة تأسيس وعي المسلم المعاصر** — ١٣ نص قصير (< ١٢٠٠ كلمة) قد يكون تفريغًا ناقصًا: `02 - أيمن عبدالرحيم فوضى الحدود في البلاد الإسلاميه.md` (١١٦٢) · `05 - الأنسان بحسب فكر المسيري أيمن عبدالرحيم.md` (١١٩٣) · `06 - أروع دقائق مع المهندس أيمن عبدالرحيم والدكتور حسام أبو البخاري فك الله أسرهما.md` (٦٢٩) · `07 - الكسل الحضاري بعد الثورات.md` (٩٥١) و٩ غيرها. راجعها قبل بناء درس عليها."
+    "**محاضرات متفرقة** — `01 - num م أيمن عبد الرحيم إعادة تأسيس وعي المسلم المعاصر 2 من ميدان رابعة العدوية 1.md` بلا طوابع زمنية: الاقتباس منه برقم الفقرة.",
+    "**محاضرات متفرقة** — ١٣ نص قصير (< ١٢٠٠ كلمة) قد يكون تفريغًا ناقصًا: `02 - أيمن عبدالرحيم فوضى الحدود في البلاد الإسلاميه.md` (١١٦٢) · `05 - الأنسان بحسب فكر المسيري أيمن عبدالرحيم.md` (١١٩٣) · `06 - أروع دقائق مع المهندس أيمن عبدالرحيم والدكتور حسام أبو البخاري فك الله أسرهما.md` (٦٢٩) · `07 - الكسل الحضاري بعد الثورات.md` (٩٥١) و٩ غيرها. راجعها قبل بناء درس عليها.",
+    "**دورة تأسيس وعي المسلم المعاصر (١+٢)** — `16 - دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة السابعة.md` بلا طوابع زمنية: الاقتباس منه برقم الفقرة.",
+    "**دورة تأسيس وعي المسلم المعاصر (١+٢)** — ١ نص قصير (< ١٢٠٠ كلمة) قد يكون تفريغًا ناقصًا: `16 - دورة تأسيس وعي المسلم المعاصر المستوي الثاني المحاضرة السابعة.md` (٩٠). راجعها قبل بناء درس عليها."
   ]
 }
