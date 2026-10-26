@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أطلس القرآن — Atlas of the Quran</title>
+  <meta name="description" content="نسخة عربية من أطلس القرآن: المواقع والأشخاص والأنبياء المذكورون في القرآن على خريطة عالمية تفاعلية، مع الآيات والأحاديث ذات الصلة." />
+  <style>
+    :root { --bg:#0b1020; --card:#121a30; --gold:#c9a84c; --ink:#e8ecf7; --dim:#9aa5c0; --line:#232e4e; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--ink); font-family:"Noto Naskh Arabic","Amiri","Traditional Arabic",serif; line-height:1.8; }
+    .wrap { max-width:1080px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+    header.top { display:flex; justify-content:space-between; align-items:center; padding-bottom:1rem; border-bottom:1px solid var(--line); margin-bottom:2rem; }
+    header.top a { color:var(--gold); text-decoration:none; font-size:.95rem; }
+    h1 { font-size:2.1rem; color:var(--gold); margin-bottom:.35rem; }
+    .sub { color:var(--dim); font-size:1.02rem; margin-bottom:2rem; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1.4rem 1.5rem; margin-bottom:1.4rem; }
+    .card h2 { color:var(--gold); font-size:1.25rem; margin-bottom:.6rem; }
+    .card ul { padding-right:1.3rem; }
+    .card li { margin-bottom:.45rem; }
+    .card li::marker { color:var(--gold); }
+    .map-frame { width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#0e1526; }
+    .note { font-size:.92rem; color:var(--dim); }
+    .note a { color:var(--gold); }
+    footer { margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--line); font-size:.85rem; color:var(--dim); }
+    @media (max-width:640px){ h1{font-size:1.6rem} .map-frame{aspect-ratio:4/3} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <span>☪ مجموعة الأطالس</span>
+      <a href="../index.html">→ العودة إلى المجموع</a>
+    </header>
+
+    <h1>أطلس القرآن</h1>
+    <p class="sub">نسخة عربية عن <em>Atlas of the Quran</em> — عرض المواقع والأشخاص والأنبياء المذكورين في القرآن الكريم على خريطة عالمية تفاعلية.</p>
+
+    <div class="card">
+      <h2>الأهداف</h2>
+      <p>إبراز جميع الأماكن والأشخاص والأنبياء المذكورين في القرآن على خريطة عالمية تفاعلية؛ إذ يُساعد هذا الطرح الكشفي لـ«أنثروبولوجيا القرآن» الجغرافية القارئ على تكوين فهم مكاني متين للنص القرآني، وربما يدفعه إلى استجلاء منظورات جديدة وطرح أسئلة كان يصعب بلوغها في التناول الورقي وحده. ونعي تمامًا الإشكاليات المطروحة حول خريطة العالم المعاصرة، ونرجو أن يأخذ القارئ هذه الدقائق بعين الاعتبار أثناء استكشافه للأطلس التفاعلي.</p>
+    </div>
+
+    <div class="card">
+      <h2>ما يقدمه الأطلس</h2>
+      <ul>
+        <li>خريطة عالمية تفاعلية.</li>
+        <li>المواقع الجغرافية لأنبياء وأماكن وأشخاص ورد ذكرهم في القرآن.</li>
+        <li>الآيات القرآنية والأحاديث ذات الصلة بكل موقع.</li>
+        <li>مصادر إضافية: صور، وإحالات إلى مواضيع وأبحاث ذات صلة.</li>
+        <li>رسم شبكي تفاعلي لمواضيع القرآن وأنبيائه وأشخاصه وأماكنه.</li>
+      </ul>
+      <p class="note" style="margin-top:.6rem">الغاية: نموذج لطرق جديدة توطّد التواصل العميق مع القرآن وتفتح رحلات فريدة من الاستكشاف القرآني وصنع المعاني.</p>
+    </div>
+
+    <div class="card">
+      <h2>استكشف الأطلس</h2>
+      <iframe class="map-frame" src="https://www.google.com/maps/d/u/2/embed?mid=1h5v16ahHjdMNWt3deXH0zEXD6wErVpF2" allowfullscreen title="خريطة أطلس القرآن التفاعلية" loading="lazy"></iframe>
+      <p class="note" style="margin-top:.7rem">
+        ملاحظة: العمل جارٍ لدى الفريق على بناء أطلس أكثر متانة اعتمادًا على خرائط OpenStreetMap —
+        انظر مستودع <a href="https://github.com/atlasofquran/umap" rel="noopener">atlasofquran/umap</a> (استضافة خاصة لتطبيق uMap المفتوح)
+        والموقع الأصلي <a href="https://atlasofquran.github.io/" rel="noopener">atlasofquran.github.io</a>.
+      </p>
+    </div>
+
+    <footer>
+      المحتوى الأصلي: فريق <a href="https://github.com/atlasofquran/atlasofquran.github.io" rel="noopener">Atlas of the Quran</a> — مرخص تحت <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="noopener">GNU GPL v3</a>. ترجمة عربية ضمن مشروع «تأسيس».
+    </footer>
+  </div>
+</body>
+</html>
