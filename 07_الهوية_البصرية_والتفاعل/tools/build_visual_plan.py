@@ -165,7 +165,8 @@ def main():
           "|---:|---:|---|---|---|---|---|---:|"]
     for w in imap:
         pats = "<br>".join(f"`{s['pattern']}` {s['pattern_name']}: {s['what']}" for s in w["screens"])
-        u = "تنفس" if w["unit"] in (0, 17) else str(w["unit"]).translate(AR)
+        u = ("تنفس" if w["unit"] in (0, 17, 35) else "ختامي" if w["unit"] == 36
+             else str(w["unit"]).translate(AR))
         wm.append(f"| {str(w['week']).translate(AR)} | {u} | {w['title']} | {w['status']} | {w['concept_svg'] or '—'} | {pats} | "
                   f"{'<br>'.join('`'+h+'`' for h in w['hook_assets']) or '—'} | {str(len(w['library_photos'])).translate(AR)} |")
     (PKG / "06_خريطة_الأسابيع.md").write_text("\n".join(wm) + "\n", encoding="utf-8")

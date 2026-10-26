@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="'IBM Plex Sans Arabic','Noto Sans Arabic',Tahoma,sans-serif" direction="rtl">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#D7DDE8" stroke-width="0.5"/></pattern>
+<marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2E7D57"/></marker>
+<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C23B30"/></marker>
+</defs>
+<rect width="1200" height="675" fill="#F7F8F3"/>
+<rect width="1200" height="675" fill="url(#grid)"/>
+<text x="600" y="54" text-anchor="middle" font-family="'Aref Ruqaa','Amiri',serif" font-size="36" fill="#19213A">مشجر مهارات المرحلة الثالثة</text>
+<text x="600" y="86" text-anchor="middle" font-size="17" fill="#4A5470">تسع درجات فوق خمسة وعشرين — الأسابيع 27 إلى 34 · وحدة 7 (26–30) ثم وحدة 8 (31–34) · سلم تراكمي: كل درجة واقفة على اللي تحتها</text>
+<line x1="60" y1="100" x2="1140" y2="100" stroke="#D7DDE8" stroke-width="1.5"/>
+
+<rect x="615" y="118" width="525" height="300" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="877" y="146" text-anchor="middle" font-size="17" font-weight="700" fill="#2E7D57">وحدة 7 — عثمانيون، استعمار، حداثة، هوية</text>
+<rect x="640" y="160" width="475" height="46" rx="6" fill="#F7F8F3" stroke="#D7DDE8" stroke-width="1"/>
+<text x="1100" y="180" text-anchor="end" font-size="14" font-weight="700" fill="#19213A">26 · خريطة الغروبين</text>
+<text x="1100" y="198" text-anchor="end" font-size="12" fill="#4A5470">أطراف ثلاث: اللي سقط / اللي اتغيّر / اللي صعد — ومسمار الأطراف أمة كمان</text>
+<rect x="640" y="212" width="475" height="46" rx="6" fill="#F7F8F3" stroke="#D7DDE8" stroke-width="1"/>
+<text x="1100" y="232" text-anchor="end" font-size="14" font-weight="700" fill="#19213A">27 · ميزان الدولة على ملف مستقطب</text>
+<text x="1100" y="250" text-anchor="end" font-size="12" fill="#4A5470">إنجاز وجريمة في سجل واحد + بطاقة انتقال الخلافة — والمسمار: ملف بلا ميزان ما تدخلوش</text>
+<rect x="640" y="264" width="475" height="46" rx="6" fill="#F7F8F3" stroke="#D7DDE8" stroke-width="1"/>
+<text x="1100" y="284" text-anchor="end" font-size="14" font-weight="700" fill="#19213A">28 · ترسانة المصطلحات</text>
+<text x="1100" y="302" text-anchor="end" font-size="12" fill="#4A5470">احتلال / استعمار / هيمنة بتعريف إجرائي + تصنيف الأخبار على الدرجات</text>
+<rect x="640" y="316" width="475" height="46" rx="6" fill="#F7F8F3" stroke="#D7DDE8" stroke-width="1"/>
+<text x="1100" y="336" text-anchor="end" font-size="14" font-weight="700" fill="#19213A">29 · بطاقة الوثيقة</text>
+<text x="1100" y="354" text-anchor="end" font-size="12" fill="#4A5470">مين رسم؟ بإيه وثيقة؟ وطلع منه إيه؟ — ثلاث وثائق رسمت خرايط</text>
+<rect x="640" y="368" width="475" height="46" rx="6" fill="#F7F8F3" stroke="#D7DDE8" stroke-width="1"/>
+<text x="1100" y="388" text-anchor="end" font-size="14" font-weight="700" fill="#19213A">30 · بطاقة الهوية الحية</text>
+<text x="1100" y="406" text-anchor="end" font-size="12" fill="#4A5470">ضاع / فاضل / بيتجدد — والقابلية للاستعمار فحص يبدأ مني لا لوم</text>
+
+<rect x="60" y="118" width="525" height="300" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="322" y="146" text-anchor="middle" font-size="17" font-weight="700" fill="#2E7D57">وحدة 8 — البيت والجماعات والفعل المسؤول</text>
+<rect x="85" y="160" width="475" height="58" rx="6" fill="#F7F8F3" stroke="#D7DDE8" stroke-width="1"/>
+<text x="545" y="180" text-anchor="end" font-size="14" font-weight="700" fill="#19213A">31 · خريطة البيت</text>
+<text x="545" y="199" text-anchor="end" font-size="12" fill="#4A5470">أربع ممارسات: ساعة حضور / حكاية من جيل / لغة حية / مسؤولية ثابتة</text>
+<text x="545" y="213" text-anchor="end" font-size="12" fill="#4A5470">والمسمار: المسؤولية تبدأ من البيت</text>
+<rect x="85" y="224" width="475" height="58" rx="6" fill="#F7F8F3" stroke="#D7DDE8" stroke-width="1"/>
+<text x="545" y="244" text-anchor="end" font-size="14" font-weight="700" fill="#19213A">32 · درج السلم في الجماعات الوسيطة</text>
+<text x="545" y="263" text-anchor="end" font-size="12" fill="#4A5470">مشارك / مساهم / باني — درجتك الحقيقية مش اللي نفسك تكون</text>
+<text x="545" y="277" text-anchor="end" font-size="12" fill="#4A5470">والمسمار: الشبكات بتتبني من عقد صغيرة</text>
+<rect x="85" y="288" width="475" height="58" rx="6" fill="#F7F8F3" stroke="#D7DDE8" stroke-width="1"/>
+<text x="545" y="308" text-anchor="end" font-size="14" font-weight="700" fill="#19213A">33 · سلسلة الحلقات الست</text>
+<text x="545" y="327" text-anchor="end" font-size="12" fill="#4A5470">فكرة مسماة ← قرار مربوط ← ممارسة صغيرة ← بيئة ← قياس صادق ← عادة</text>
+<text x="545" y="341" text-anchor="end" font-size="12" fill="#4A5470">والحلقة الواقفة هي اللي بتوقف المشروع</text>
+<rect x="85" y="352" width="475" height="58" rx="6" fill="#F7F8F3" stroke="#D7DDE8" stroke-width="1"/>
+<text x="545" y="372" text-anchor="end" font-size="14" font-weight="700" fill="#19213A">34 · بطاقة الفعل المدني الآمن</text>
+<text x="545" y="391" text-anchor="end" font-size="12" fill="#4A5470">ميدان + ست شروط: القانون / اللاعنف / بلا حزبية ولا تكفير</text>
+<text x="545" y="405" text-anchor="end" font-size="12" fill="#4A5470">/ صغير ومقاس / بروتوكول الحوار / الأمان ليك ولغيرك</text>
+
+<rect x="60" y="436" width="1080" height="86" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="1120" y="466" text-anchor="end" font-size="15" font-weight="700" fill="#19213A">العدّ الكامل قبل المحكمة</text>
+<text x="1120" y="492" text-anchor="end" font-size="13" fill="#4A5470">٣٤ مهارة · ٢٠ مسمارًا · ٨ ملفات · ٣٦ أسبوعًا — وحلقة واحدة لكل أسبوع</text>
+<text x="1120" y="512" text-anchor="end" font-size="13" fill="#4A5470">الملفات: و1 إلى و8 — كل ملف بخمسة مكونات، وآخر سطر فيه «لسه ما أعرفوش»</text>
+
+<line x1="600" y1="530" x2="600" y2="546" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="760" y="548" width="380" height="62" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="950" y="572" text-anchor="middle" font-size="15" font-weight="700" fill="#2E7D57">تنفس 35 — أربع وثلاثين درجة</text>
+<text x="950" y="594" text-anchor="middle" font-size="12" fill="#4A5470">فحص القلب والعدة · بلا مادة جديدة · الراحة من المنهج</text>
+<rect x="60" y="548" width="380" height="62" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="250" y="572" text-anchor="middle" font-size="15" font-weight="700" fill="#C23B30">الأسبوع 36 — المحكمة والمشروع</text>
+<text x="250" y="594" text-anchor="middle" font-size="12" fill="#4A5470">دعوى واحدة تُفحص · فعل واحد يبدأ — وبلا حكم نهائي</text>
+<line x1="760" y1="579" x2="446" y2="579" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<text x="600" y="636" text-anchor="middle" font-size="13" font-weight="700" fill="#20242C">قاعدة السلم: ما فيش درجة بتنزل لوحدها — الضعيفة بتتعوّض باللي فوقها، والقوية بتقوّي اللي تحتها.</text>
+<text x="600" y="660" text-anchor="middle" font-size="12" fill="#8A5A2B">مشروع «تأسيس» · المرحلة الثالثة · بصريات بهوية الكراسة v1 — ألوان وخطوط من tokens.json فقط</text>
+</svg>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="'IBM Plex Sans Arabic','Noto Sans Arabic',Tahoma,sans-serif" direction="rtl">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#D7DDE8" stroke-width="0.5"/></pattern>
+<marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2E7D57"/></marker>
+<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C23B30"/></marker>
+</defs>
+<rect width="1200" height="675" fill="#F7F8F3"/>
+<rect width="1200" height="675" fill="url(#grid)"/>
+<text x="600" y="52" text-anchor="middle" font-family="'Aref Ruqaa','Amiri',serif" font-size="34" fill="#19213A">خريطة الأسبوع الختامي — دعوى تُفحص وفعل يبدأ</text>
+<text x="600" y="82" text-anchor="middle" font-size="17" fill="#4A5470">الأسبوع 36 — آخر أسبوع في الدورة · مخرجاته: بطاقة دعوى + بطاقة مشروع + ميزان الدورة</text>
+
+<rect x="640" y="104" width="500" height="66" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="1120" y="130" text-anchor="end" font-size="15" font-weight="700" fill="#2E7D57">١ · اختيار الدعوى</text>
+<text x="1120" y="152" text-anchor="end" font-size="12" fill="#4A5470">جملة واحدة قابلة للصدق والكذب — على فكرة أو سياسة أو واقعة</text>
+<text x="1120" y="166" text-anchor="end" font-size="12" fill="#4A5470">ممنوع: شخص · طائفة · شعب</text>
+
+<rect x="640" y="182" width="500" height="66" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="1120" y="208" text-anchor="end" font-size="15" font-weight="700" fill="#2E7D57">٢ · المحكمة — خمس جولات</text>
+<text x="1120" y="230" text-anchor="end" font-size="12" fill="#4A5470">صياغة ← وقائع ← تفسير ← عجز وضعف ← ما يترتب عليه</text>
+<text x="1120" y="244" text-anchor="end" font-size="12" fill="#4A5470">تسعة أدوار · كل محقق أداة واحدة · ومفيش دور اسمه الحكم</text>
+
+<rect x="640" y="260" width="500" height="66" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="2"/>
+<text x="1120" y="286" text-anchor="end" font-size="15" font-weight="700" fill="#C23B30">٣ · خانة إلزامية: لا نعلم بعد</text>
+<text x="1120" y="308" text-anchor="end" font-size="12" fill="#4A5470">لو فضلت فاضية، المحكمة ما اشتغلتش أو الدعوى مصاغة عشان تُصدَّق</text>
+<text x="1120" y="322" text-anchor="end" font-size="12" fill="#4A5470">«صدق + نصوص + غياب منهج = كارثة» — درس الفتنة</text>
+
+<rect x="640" y="338" width="500" height="66" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="1120" y="364" text-anchor="end" font-size="15" font-weight="700" fill="#2E7D57">٤ · بطاقة المشروع في سطر</text>
+<text x="1120" y="386" text-anchor="end" font-size="12" fill="#4A5470">فعل واحد صغير + علامة تُقاس + خروج مكتوب + أول خطوة في ٢٤ ساعة</text>
+<text x="1120" y="400" text-anchor="end" font-size="12" fill="#4A5470">الميدان: معرفة / حي / وقفي صغير / مهنة كخدمة / توثيق ذاكرة</text>
+
+<rect x="640" y="416" width="500" height="66" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="1120" y="442" text-anchor="end" font-size="15" font-weight="700" fill="#2E7D57">٥ · ميزان الدورة والتسليم</text>
+<text x="1120" y="464" text-anchor="end" font-size="12" fill="#4A5470">٣٤ مهارة · ٢٠ مسمارًا · ٨ ملفات · مهارة بقت سلوكًا</text>
+<text x="1120" y="478" text-anchor="end" font-size="12" fill="#4A5470">ملف التخرج + إفادة إتمام تدريب داخلي (ليست إجازة علمية)</text>
+
+<line x1="640" y1="137" x2="566" y2="137" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="640" y1="215" x2="566" y2="215" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="640" y1="293" x2="566" y2="293" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="640" y1="371" x2="566" y2="371" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="640" y1="449" x2="566" y2="449" stroke="#2E7D57" stroke-width="2" marker-end="url(#arr)"/>
+
+<rect x="60" y="104" width="500" height="378" rx="6" fill="#FFFFFF" stroke="#19213A" stroke-width="1.5"/>
+<text x="310" y="132" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">الشروط الستة لبطاقة المشروع</text>
+<rect x="86" y="148" width="20" height="20" rx="3" fill="none" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="546" y="163" text-anchor="end" font-size="13" font-weight="700" fill="#19213A">١ · القانون أولًا</text>
+<text x="546" y="181" text-anchor="end" font-size="12" fill="#4A5470">في النور وبالمؤسسات — مفيش فعل بيحمي الناس وهو بيخالف القانون</text>
+<rect x="86" y="196" width="20" height="20" rx="3" fill="none" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="546" y="211" text-anchor="end" font-size="13" font-weight="700" fill="#19213A">٢ · اللاعنف</text>
+<text x="546" y="229" text-anchor="end" font-size="12" fill="#4A5470">العنف بيهدم اللي بيقول إنه بيحميه — درس كل الفتن</text>
+<rect x="86" y="244" width="20" height="20" rx="3" fill="none" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="546" y="259" text-anchor="end" font-size="13" font-weight="700" fill="#19213A">٣ · بلا حزبية ولا تكفير</text>
+<text x="546" y="277" text-anchor="end" font-size="12" fill="#4A5470">فعلك «علشان» حاجة — مش «ضد» ناس</text>
+<rect x="86" y="292" width="20" height="20" rx="3" fill="none" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="546" y="307" text-anchor="end" font-size="13" font-weight="700" fill="#19213A">٤ · صغير ومقاس</text>
+<text x="546" y="325" text-anchor="end" font-size="12" fill="#4A5470">بحجم قدرتك الشهر ده مش بحجم حماسك</text>
+<rect x="86" y="340" width="20" height="20" rx="3" fill="none" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="546" y="355" text-anchor="end" font-size="13" font-weight="700" fill="#19213A">٥ · بروتوكول الحوار</text>
+<text x="546" y="373" text-anchor="end" font-size="12" fill="#4A5470">تسمع وتلخص وتسأل وتعترف وتفرّق بين الفكرة وصاحبها</text>
+<rect x="86" y="388" width="20" height="20" rx="3" fill="none" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="546" y="403" text-anchor="end" font-size="13" font-weight="700" fill="#19213A">٦ · الأمان ليك ولغيرك</text>
+<text x="546" y="421" text-anchor="end" font-size="12" fill="#4A5470">سمعتك وسمعة الناس وأمان أهلك واللي هتكلمهم</text>
+<text x="546" y="456" text-anchor="end" font-size="12" fill="#C23B30">أي مربع فاضي: المشروع يتعاد تصميمه — مش صاحبه يترفض</text>
+
+<rect x="60" y="498" width="1080" height="76" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="1.5"/>
+<text x="1120" y="524" text-anchor="end" font-size="15" font-weight="700" fill="#8A5A2B">بعد الأسبوع 36 — ثلاث التزامات</text>
+<text x="1120" y="546" text-anchor="end" font-size="12" fill="#4A5470">أداة واحدة كل أسبوع على خبر من الحاضر · المشروع ثلاثة شهور (صغير ← شبر ← حكاية)</text>
+<text x="1120" y="564" text-anchor="end" font-size="12" fill="#4A5470">تعلّم أداة واحدة لواحد — لأن اللي بيلقّن أداة بيحفظها</text>
+
+<text x="600" y="604" text-anchor="middle" font-size="13" font-weight="700" fill="#20242C">المحكمة على الورق مش على الناس — والأدوار تُبدَّل عشان كل واحد يقف في الدور اللي ما يحبّوش.</text>
+<text x="600" y="632" text-anchor="middle" font-size="12" fill="#4A5470">مفيش حكم نهائي: المخرج بطاقة درجات + «لا نعلم بعد» + فعل صغير آمن يبدأ النهارده.</text>
+<text x="600" y="658" text-anchor="middle" font-size="12" fill="#2E7D57">مشروع «تأسيس» · الأسبوع الختامي · بصريات بهوية الكراسة v1 — ألوان وخطوط من tokens.json فقط</text>
+</svg>
