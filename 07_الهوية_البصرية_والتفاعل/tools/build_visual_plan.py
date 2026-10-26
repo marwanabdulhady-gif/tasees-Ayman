@@ -123,8 +123,10 @@ def main():
                 prompt_ref=aid, target_path=f"{vis}/hooks/{aid}.png", license="مولد AI", status=hook_status, gate="V2, V3, V5")
             prompts.append((aid, f"الأسبوع {str(wk).translate(AR)} — {ar}", body, phase_of(u)))
         for aid, ar in w["authored"]:
+            authored_svg = ROOT / vis / "interactive" / f"{aid}.svg"
             add(asset_id=aid, week=wk, unit=u, kind="رسم تفاعل", route="SVG يدوي", description=ar,
-                prompt_ref="04 §مهمة A4", target_path=f"{vis}/interactive/{aid}.svg", license="أصلي", status="مطلوب", gate="V1, V4, V6")
+                prompt_ref="04 §مهمة A4", target_path=f"{vis}/interactive/{aid}.svg", license="أصلي",
+                status="جاهز" if authored_svg.exists() else "مطلوب", gate="V1, V4, V6")
         for i, ph in enumerate(w["photos"], 1):
             if not (LIB / ph).exists():
                 errors.append(f"missing photo: {ph}")
