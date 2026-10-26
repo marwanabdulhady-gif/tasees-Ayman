@@ -7,6 +7,8 @@
 
   1) **الإحالة**: كل `〔حN MM:SS〕` أو `〔حN H:MM:SS〕` → الحلقة N موجودة،
      والطابع الزمني داخل مداها الفعلي (لا يتجاوز آخر طابع في الملف).
+     وللمصادر التي لا طوابع فيها (تفريغ PDF): `〔حN فM〕` → الفقرة M داخل الحلقة،
+     أو `〔حN صM〕` → صفحة PDF رقم M (حيث يحمل التفريغ علامات صفحات).
   2) **الاقتباس**: كل ما بين «…» موجود حرفيًا في الحلقة المُحال إليها
      (بعد تطبيع الهمزات والتشكيل والمسافات). الاقتباس بلا إحالة يُبحث عنه في كل حلقات القائمة.
   3) **البنية**: العناوين الإلزامية لدرسٍ بأسلوب التأسيس موجودة وبالترتيب.
@@ -27,6 +29,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 AR = str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")
 CITE = re.compile(r"〔ح([٠-٩\d]+)\s+(\d{1,2}:\d{2}(?::\d{2})?)〕")
+# إحالة بالفِقرة: للمصادر التي لا طوابع زمنية فيها (تفريغ PDF مثلًا)
+CITE_P = re.compile(r"〔ح([٠-٩\d]+)\s+ف([٠-٩\d]+)〕")
+# إحالة بصفحة PDF: للمصادر المستخرجة من كتاب/PDF بعلامات صفحات
+CITE_G = re.compile(r"〔ح([٠-٩\d]+)\s+ص([٠-٩\d]+)〕")
 QUOTE = re.compile(r"«([^»]{4,300})»")
 STAMP = re.compile(r"\*\*\[(\d{1,2}):(\d{2})(?::(\d{2}))?\]\([^)]*\)\*\*")
 REQUIRED = [
@@ -67,8 +73,13 @@ def load_episodes(playlist: Path) -> dict[int, dict]:
         stamps = [to_secs(m.group(0)[3:m.group(0).index("]")]) for m in STAMP.finditer(text)]
         body = STAMP.sub("", text)
         link = re.search(r"watch\?v=([A-Za-z0-9_-]{6,})", text)
-        eps[i] = {"file": f.name, "end": max(stamps) if stamps else None,
+        paras = [norm(x) for x in re.split(r"\n\s*\n", body) if len(norm(x)) > 20]
+        pages = {int(ar2en(pg)) for pg in re.findall(r"بداي[ةه]\s*صفح[ةه]\s*PDF\s*([٠-٩\d]+)", text)}
+        m_ep = re.search(r"^episode:\s*([٠-٩\d]+)", text, re.M)
+        key = int(ar2en(m_ep.group(1))) if m_ep else i
+        eps[key] = {"file": f.name, "end": max(stamps) if stamps else None,
                   "n_plain": norm(body), "n_stamps": norm(text),
+                  "paras": paras, "pages": pages,
                   "url": link.group(1) if link else None}
     return eps
 
@@ -112,11 +123,29 @@ def main(argv: list[str]) -> int:
         lines = text.splitlines()
         name = lesson.name
 
-        # ١) الإحالات
+        # ١) الإحالات (طوابع زمنية، أو فِقرات حيث لا طوابع)
         cites = [(int(ar2en(m.group(1))), m.group(2), i + 1)
                  for i, ln in enumerate(lines) for m in CITE.finditer(ln)]
-        if len(cites) < 6:
+        pcites = [(int(ar2en(m.group(1))), int(ar2en(m.group(2))), i + 1)
+                  for i, ln in enumerate(lines) for m in CITE_P.finditer(ln)]
+        gcites = [(int(ar2en(m.group(1))), int(ar2en(m.group(2))), i + 1)
+                  for i, ln in enumerate(lines) for m in CITE_G.finditer(ln)]
+        if len(cites) + len(pcites) + len(gcites) < 6:
             failures.append(f"{name}: إحالات قليلة ({len(cites)}) — الدرس بلا سند كافٍ")
+        for n, para, ln in pcites:
+            e = eps.get(n)
+            if not e:
+                failures.append(f"{name}:{ln} — الحلقة {n} غير موجودة (القائمة {len(eps)} حلقة)")
+            elif not (1 <= para <= len(e["paras"])):
+                failures.append(f"{name}:{ln} — الفقرة {para} خارج نطاق الحلقة {n} ({len(e['paras'])} فقرة)")
+        for n, pg, ln in gcites:
+            e = eps.get(n)
+            if not e:
+                failures.append(f"{name}:{ln} — الحلقة {n} غير موجودة (القائمة {len(eps)} حلقة)")
+            elif not e["pages"]:
+                failures.append(f"{name}:{ln} — الحلقة {n} بلا علامات صفحات، استعمل 〔ح{n} فM〕")
+            elif pg not in e["pages"]:
+                failures.append(f"{name}:{ln} — الصفحة {pg} غير موجودة في الحلقة {n}")
         for n, ts, ln in cites:
             e = eps.get(n)
             if not e:
@@ -132,7 +161,9 @@ def main(argv: list[str]) -> int:
                 if len(q) < 4:
                     continue
                 # الإحالة تُنسب للاقتباس إن سبقته أو لحقته في نفس السطر (الأقرب مسافةً)
-                cands = [(abs(c.start() - m.start()), int(ar2en(c.group(1)))) for c in CITE.finditer(ln)]
+                cands = [(abs(c.start() - m.start()), int(ar2en(c.group(1))), c.group(0)) for c in CITE.finditer(ln)]
+                cands += [(abs(c.start() - m.start()), int(ar2en(c.group(1))), c.group(0)) for c in CITE_P.finditer(ln)]
+                cands += [(abs(c.start() - m.start()), int(ar2en(c.group(1))), c.group(0)) for c in CITE_G.finditer(ln)]
                 target = min(cands)[1] if cands else None
                 pool = {target: eps[target]} if target in eps else eps
                 if not any(q in e["n_stamps"] or q in e["n_plain"] for e in pool.values()):
