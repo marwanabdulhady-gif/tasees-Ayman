@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850" style="direction:rtl" font-family="Cairo, 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif">
+  <defs>
+    <marker id="arw" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2b2b2b"/></marker>
+  </defs>
+  <rect width="1200" height="850" fill="#fdf8ee"/>
+  <text x="600" y="52" text-anchor="middle" font-size="34" font-weight="700" fill="#2b2b2b">مشجر الأسبوع ١ — خريطة العلوم والأسئلة الوجودية</text>
+  <text x="600" y="82" text-anchor="middle" font-size="17" fill="#6b6b6b">كل علم يجيب جزءًا من السؤال — من أخذ جواب علم واحد لكل الأسئلة عطّل الاثنين · مشروع تأسيس · الوحدة 1 · v0.3</text>
+
+  <!-- root -->
+  <rect x="430" y="105" width="340" height="64" rx="14" fill="#0e7c6b"/>
+  <text x="600" y="145" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">الأسئلة الوجودية الكبرى</text>
+
+  <!-- branches lines -->
+  <g stroke="#2b2b2b" stroke-width="2.5" fill="none">
+    <path d="M600,169 L600,195 M180,195 L1020,195 M180,195 L180,225 M460,195 L460,225 M740,195 L740,225 M1020,195 L1020,225"/>
+  </g>
+
+  <!-- question nodes -->
+  <g font-size="21" font-weight="700">
+    <rect x="80" y="225" width="200" height="56" rx="12" fill="#d98e04"/><text x="180" y="260" text-anchor="middle" fill="#ffffff">من أنا؟</text>
+    <rect x="360" y="225" width="200" height="56" rx="12" fill="#d98e04"/><text x="460" y="260" text-anchor="middle" fill="#ffffff">لماذا أنا؟</text>
+    <rect x="640" y="225" width="200" height="56" rx="12" fill="#d98e04"/><text x="740" y="260" text-anchor="middle" fill="#ffffff">إلى أين؟</text>
+    <rect x="920" y="225" width="200" height="56" rx="12" fill="#d98e04"/><text x="1020" y="260" text-anchor="middle" fill="#ffffff">ما الصواب؟</text>
+  </g>
+
+  <!-- connector to sciences -->
+  <g stroke="#2b2b2b" stroke-width="2" stroke-dasharray="5,4" fill="none" marker-end="url(#arw)">
+    <path d="M180,281 L180,318"/><path d="M460,281 L460,318"/><path d="M740,281 L740,318"/><path d="M1020,281 L1020,318"/>
+  </g>
+
+  <!-- science nodes -->
+  <g font-size="17" fill="#2b2b2b">
+    <rect x="70" y="320" width="220" height="92" rx="12" fill="#ffffff" stroke="#0e7c6b" stroke-width="2.5"/>
+    <text x="180" y="350" text-anchor="middle" font-weight="700" fill="#0e7c6b">علوم الإنسان</text>
+    <text x="180" y="376" text-anchor="middle">النفس · الاجتماع · اللغة</text>
+    <text x="180" y="399" text-anchor="middle" font-size="14" fill="#6b6b6b">+ العقيدة: من خلقني</text>
+
+    <rect x="350" y="320" width="220" height="92" rx="12" fill="#ffffff" stroke="#0e7c6b" stroke-width="2.5"/>
+    <text x="460" y="350" text-anchor="middle" font-weight="700" fill="#0e7c6b">الشرع ومقاصده</text>
+    <text x="460" y="376" text-anchor="middle">الفقه · الأصول · التزكية</text>
+    <text x="460" y="399" text-anchor="middle" font-size="14" fill="#6b6b6b">لماذا: العبادة والعمارة</text>
+
+    <rect x="630" y="320" width="220" height="92" rx="12" fill="#ffffff" stroke="#0e7c6b" stroke-width="2.5"/>
+    <text x="740" y="350" text-anchor="middle" font-weight="700" fill="#0e7c6b">الآخرة والتاريخ</text>
+    <text x="740" y="376" text-anchor="middle">السيرة · التاريخ · الغيب</text>
+    <text x="740" y="399" text-anchor="middle" font-size="14" fill="#6b6b6b">عبرة الماضي + المآل</text>
+
+    <rect x="910" y="320" width="220" height="92" rx="12" fill="#ffffff" stroke="#0e7c6b" stroke-width="2.5"/>
+    <text x="1020" y="350" text-anchor="middle" font-weight="700" fill="#0e7c6b">القيم والأحكام</text>
+    <text x="1020" y="376" text-anchor="middle">الأخلاق · قواعد الشرع</text>
+    <text x="1020" y="399" text-anchor="middle" font-size="14" fill="#6b6b6b">ميزان الصح والخطأ</text>
+  </g>
+
+  <!-- separator -->
+  <line x1="80" y1="450" x2="1120" y2="450" stroke="#d9d2c0" stroke-width="2"/>
+  <text x="600" y="488" text-anchor="middle" font-size="26" font-weight="700" fill="#2b2b2b">خريطة التعلم — الأعمدة الأربعة</text>
+
+  <!-- 4-step chain -->
+  <g font-size="18" fill="#ffffff" font-weight="700">
+    <rect x="80" y="510" width="230" height="76" rx="12" fill="#2b2b2b"/>
+    <text x="195" y="542" text-anchor="middle">١. سؤال محدد</text>
+    <text x="195" y="568" text-anchor="middle" font-size="13" font-weight="400">قابل للتعلم لا شعار</text>
+    <rect x="360" y="510" width="230" height="76" rx="12" fill="#2b2b2b"/>
+    <text x="475" y="542" text-anchor="middle">٢. علم / مصدر</text>
+    <text x="475" y="568" text-anchor="middle" font-size="13" font-weight="400">من يجيب؟ وما لا يجيبه</text>
+    <rect x="640" y="510" width="230" height="76" rx="12" fill="#2b2b2b"/>
+    <text x="755" y="542" text-anchor="middle">٣. فجوة</text>
+    <text x="755" y="568" text-anchor="middle" font-size="13" font-weight="400">عارف / فاكر / مش عارف</text>
+    <rect x="920" y="510" width="230" height="76" rx="12" fill="#2b2b2b"/>
+    <text x="1035" y="542" text-anchor="middle">٤. عادة ١٤ يومًا</text>
+    <text x="1035" y="568" text-anchor="middle" font-size="13" font-weight="400">فعل ١٠ دقائق بميعاد</text>
+  </g>
+  <g stroke="#d98e04" stroke-width="3" fill="none" marker-end="url(#arw)">
+    <path d="M310,548 L352,548"/><path d="M590,548 L632,548"/><path d="M870,548 L912,548"/>
+  </g>
+
+  <!-- analogy band -->
+  <rect x="80" y="626" width="1040" height="90" rx="14" fill="#fbeadb" stroke="#d98e04" stroke-width="2"/>
+  <text x="600" y="662" text-anchor="middle" font-size="19" font-weight="700" fill="#8a5a02">تشبيه الحلقة: حزمة الكروت المرتبة 🂡</text>
+  <text x="600" y="694" text-anchor="middle" font-size="17" fill="#5c4a2e">التعلم بلا خريطة = سحب كروت عشوائي من حزمة مرتبة — معلومات بلا بناء · كنز التفريغات بلا خريطة يفحم ولا يضيء</text>
+
+  <!-- sources footer -->
+  <rect x="80" y="740" width="1040" height="76" rx="12" fill="#ffffff" stroke="#d9d2c0"/>
+  <text x="600" y="770" text-anchor="middle" font-size="15" fill="#6b6b6b">المصادر: تفريغ 05/41 «خارطة العلوم وعلاقتها بالأسئلة الوجودية الكبرى» · تفريغ 05/03 «الأسئلة الوجودية الكبرى» · تفريغ 05/39 «الحلول المتوهمة والخلل في التفكير»</text>
+  <text x="600" y="796" text-anchor="middle" font-size="15" fill="#6b6b6b">خيط «أين الطريق؟» AT-00 الاستعداد (PDF ص9–53) · مادة مكتبية 05/01 و05/17 · راجع الأصول قبل النشر</text>
+</svg>

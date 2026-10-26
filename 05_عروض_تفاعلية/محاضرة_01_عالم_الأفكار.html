@@ -1,0 +1,1362 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>عالم الأفكار — تأسيس وعي المسلم المعاصر · المحاضرة ١ | مشروع تأسيس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Lemonada:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+@property --c   { syntax:'<color>'; inherits:true; initial-value:#2dd4bf; }
+@property --c-2 { syntax:'<color>'; inherits:true; initial-value:#14b8a6; }
+
+:root{
+  --c:#2dd4bf; --c-2:#14b8a6;
+  --c-grad:linear-gradient(90deg,var(--c),var(--c-2));
+  --brand-1:#14b8a6;
+  --brand-2:#f59e0b;
+  --brand-grad:linear-gradient(135deg,var(--brand-1),var(--brand-2));
+  --bg:#07070d; --board:#0a0a13;
+  --tp:#f0eeff; --ts:#8a8aa3; --tm:#4b4b62;
+  --border:rgba(255,255,255,.06);
+  --font-ui:'Cairo',sans-serif;
+  --font-hand:'Lemonada',cursive;
+}
+*{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ height:100%; }
+body{
+  background:radial-gradient(1200px 700px at 80% -10%, #10101d 0%, var(--bg) 55%);
+  color:var(--tp); font-family:var(--font-ui);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:14px; padding:20px 12px; min-height:100%;
+}
+
+/* ===== الستيج ===== */
+.deck{
+  position:relative; width:min(1100px,96vw); aspect-ratio:16/9;
+  border-radius:20px; overflow:hidden; background:var(--bg);
+  box-shadow:0 40px 120px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.05);
+  transition:--c .9s ease, --c-2 .9s ease;
+}
+.slide{
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  padding:30px 38px 16px; opacity:0; pointer-events:none; visibility:hidden;
+}
+.slide.active{ opacity:1; pointer-events:auto; visibility:visible; }
+.slide>*{ opacity:0; transform:translateY(14px); transition:opacity .25s ease, transform .25s ease; }
+.slide.active>*{ opacity:1; transform:none; transition:opacity .55s cubic-bezier(.2,.7,.2,1), transform .55s cubic-bezier(.2,.7,.2,1); }
+.slide.active>*:nth-child(1){ transition-delay:.00s }
+.slide.active>*:nth-child(2){ transition-delay:.08s }
+.slide.active>*:nth-child(3){ transition-delay:.16s }
+.slide.active>*:nth-child(4){ transition-delay:.24s }
+.slide.active>*:nth-child(5){ transition-delay:.32s }
+.slide.active>*:nth-child(6){ transition-delay:.40s }
+.slide.active>*:nth-child(7){ transition-delay:.48s }
+
+.lbl{ font-size:13px; font-weight:800; letter-spacing:.02em; color:var(--c); margin-bottom:6px; }
+h2{ font-size:clamp(24px,3.1vw,38px); font-weight:900; line-height:1.3; }
+h2 em{ font-style:normal; background:var(--c-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.sub{ color:var(--ts); font-size:clamp(13px,1.35vw,16px); font-weight:600; margin-top:6px; max-width:85%; }
+.stage{ position:relative; flex:1; min-height:0; margin:12px 0 8px; }
+.stage canvas{ width:100%; height:100%; display:block; }
+aside.notes{ display:none; }
+
+/* ===== الفوتر ===== */
+.sf{ display:flex; align-items:center; gap:16px; font-size:12.5px; color:var(--ts); min-height:34px; }
+.sf .brand{ font-weight:800; font-size:15px; background:var(--brand-grad); -webkit-background-clip:text; background-clip:text; color:transparent; white-space:nowrap; }
+.sf .pd{ display:flex; gap:6px; align-items:center; }
+.sf .pd i{ width:7px; height:7px; border-radius:50%; background:var(--tm); transition:background .4s, transform .4s; }
+.sf .pd i.on{ background:var(--c); transform:scale(1.35); }
+.sf .cn{ font-variant-numeric:tabular-nums; color:var(--tm); font-weight:700; }
+.sf .tease{ margin-inline-start:auto; color:var(--ts); font-weight:600; text-align:end; }
+
+/* ===== سلايدات العنوان (افتتاح/ختام) ===== */
+.slide.title-slide{ align-items:center; justify-content:center; text-align:center; padding:40px; }
+.slide.title-slide .stage{ position:absolute; inset:0; margin:0; }
+.title-content{ position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:14px; }
+.bigbrand{ font-size:clamp(30px,4.4vw,56px); font-weight:800; background:var(--brand-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+h1{ font-size:clamp(40px,6.4vw,84px); font-weight:900; line-height:1.15; }
+h1 em{ font-style:normal; background:var(--c-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.title-content .sub{ max-width:70%; text-align:center; }
+.slide.title-slide .sf{ position:absolute; bottom:16px; inset-inline:38px; margin:0; }
+
+/* ===== فلاش الفصل ===== */
+.chapter-flash{
+  position:absolute; inset:0; z-index:50; display:flex; align-items:center; justify-content:center;
+  pointer-events:none; opacity:0;
+}
+.chapter-flash span{
+  font-size:clamp(36px,5.4vw,64px); font-weight:900;
+  background:var(--c-grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 0 24px rgba(0,0,0,.4));
+}
+.chapter-flash.show{ animation:chap 1.6s cubic-bezier(.2,.7,.2,1) forwards; }
+@keyframes chap{
+  0%{ opacity:0 } 12%{ opacity:1 }
+  55%{ opacity:1; transform:scale(1) translateY(0) }
+  100%{ opacity:0; transform:scale(.82) translateY(-38px) }
+}
+
+/* ===== النوتس ===== */
+.notes-panel{
+  position:absolute; z-index:40; bottom:56px; inset-inline-start:26px; width:min(430px,52%);
+  background:rgba(8,8,16,.92); border:1px solid var(--border); border-radius:14px;
+  padding:14px 16px; backdrop-filter:blur(8px); display:none;
+  box-shadow:0 18px 50px rgba(0,0,0,.5);
+}
+.notes-panel.open{ display:block; }
+.notes-panel h4{ font-size:12.5px; color:var(--c); font-weight:800; margin-bottom:8px; }
+.notes-panel p{ font-size:13.5px; line-height:1.75; color:var(--ts); padding:6px 10px; border-radius:8px; border-inline-start:3px solid transparent; transition:all .3s; margin-bottom:2px; }
+.notes-panel p.now{ color:var(--tp); background:rgba(255,255,255,.045); border-inline-start-color:var(--c); }
+
+/* ===== التوست + شريط الاختصارات ===== */
+.toast{
+  position:absolute; z-index:60; top:18px; inset-inline-start:18px;
+  background:rgba(10,10,19,.9); border:1px solid var(--border); color:var(--tp);
+  padding:7px 14px; border-radius:999px; font-size:12.5px; font-weight:700;
+  opacity:0; transform:translateY(-6px); transition:.3s; pointer-events:none;
+}
+.toast.show{ opacity:1; transform:none; }
+.help{ display:flex; gap:14px; flex-wrap:wrap; justify-content:center; color:var(--tm); font-size:12px; font-weight:600; }
+.help b{ color:var(--ts); }
+kbd{ background:#12121e; border:1px solid var(--border); border-bottom-width:2px; border-radius:6px; padding:1px 7px; font-family:var(--font-ui); font-size:11px; color:var(--tp); }
+
+/* ===== وضع التصوير ===== */
+body.filming .sf, body.filming .notes-panel, body.filming .help, body.filming .toast, body.filming .lbl{ visibility:hidden; }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+  <div class="chapter-flash" id="chapFlash"><span></span></div>
+
+  <!-- ١ · افتتاح -->
+  <section class="slide part-idea title-slide" data-draw="dTitle" data-beats="1">
+    <div class="stage"><canvas></canvas></div>
+    <div class="title-content">
+      <div class="bigbrand">مشروع تأسيس</div>
+      <h1>عالم <em>الأفكار</em></h1>
+      <p class="sub">دورة تأسيس وعي المسلم المعاصر — المحاضرة الأولى · م. أيمن عبد الرحيم · شيخ العمود، العباسية · يوليو ٢٠١٧</p>
+    </div>
+    <aside class="notes"><p data-beat="0">الدورة دي كلها، بكلمة واحدة — بتتكلم عن إزاي الأفكار اللي جوه دماغك بتحرّك واقعك.</p></aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">ليه بنجري كتير… والنتيجة بتخيّب؟</span>
+    </div>
+  </section>
+
+  <!-- ٢ · الوجع -->
+  <section class="slide part-pain" data-draw="dPain" data-beats="3">
+    <div class="lbl">الوجع</div>
+    <h2>بنجري كتير… <em>والنتيجة بتخيّب</em></h2>
+    <p class="sub">محلات بتقلّب، مشاريع بتموت — وإحنا بنلوم الحظ.</p>
+    <div class="stage"><canvas></canvas></div>
+    <aside class="notes">
+      <p data-beat="0">بص حواليك — محل بيفتح ويقلّب كل شوية: أحذية، بعدين فودافون، بعدين مكوجي، بعدين بلايستيشن.</p>
+      <p data-beat="1">إحنا دايماً مستعجلين على الفعل — والنتيجة بتخيّب كل مرة، فنقول: حظ.</p>
+      <p data-beat="2">المشكلة مش في الفعل نفسه — المشكلة في حاجة بتحصل قبل الفعل.</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">طيب المشكلة الحقيقية فين؟ جوه حاجة اسمها…</span>
+    </div>
+  </section>
+
+  <!-- ٣ · السبورة: عالم الأفكار -->
+  <section class="slide part-idea" data-draw="dBoard" data-beats="3">
+    <div class="lbl">إيه هو</div>
+    <h2>عالم الأفكار — <em>العدسة اللي بتشوف بيها كل حاجة</em></h2>
+    <p class="sub">فكرة واحدة بتتغير… بتغير واقع دنيا.</p>
+    <div class="stage"><canvas></canvas></div>
+    <aside class="notes">
+      <p data-beat="0">جوه دماغك في عالم كامل من الأفكار — انت بتشوف كل حاجة حواليك من خلاله.</p>
+      <p data-beat="1">لما مفهوم واحد اتغير في عالم أفكاري — اتغيرت حاجات كتير في دنيا الواقع، بمجرد فهمه.</p>
+      <p data-beat="2">فالقاعدة: عالم الأفكار هو العدسة — غيّر العدسة، تتغير صورة الواقع.</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">وهتكسب إيه من الدورة دي؟ تلاتة — والمستهدف واحد.</span>
+    </div>
+  </section>
+
+  <!-- ٤ · ثلاثة مكاسب -->
+  <section class="slide part-idea" data-draw="dGains" data-beats="3">
+    <div class="lbl">إيه هو</div>
+    <h2>هتكسب إيه من الدورة؟ <em>تلاتة والمستهدف واحد</em></h2>
+    <p class="sub">معلومات · مهارات · توجهات — الهدف مش الحفظ.</p>
+    <div class="stage"><canvas></canvas></div>
+    <aside class="notes">
+      <p data-beat="0">أي دورة في الدنيا بتديك حاجة من تلاتة: معلومات — زي ما تعرف الكونغو فين.</p>
+      <p data-beat="1">أو مهارات — زي إنك تعرب جملة وتمسك نائب الفاعل.</p>
+      <p data-beat="2">أو توجهات — ودي بتاعة الدورة دي: إزاي تشوف نفسك والعالم، مش إزاي تحفظ.</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">طيب المسار إيه؟ رحلة أطول من خمسة قرون.</span>
+    </div>
+  </section>
+
+  <!-- ٥ · خريطة السرد -->
+  <section class="slide part-idea" data-draw="dTimeline" data-beats="4">
+    <div class="lbl">إيه هو</div>
+    <h2>رحلة من <em>١٤٩٢</em> لحد «نعمل إيه؟»</h2>
+    <p class="sub">التاريخ مش للحفظ — للقراية ورا كل عصر: إيه عالم أفكاره؟</p>
+    <div class="stage"><canvas></canvas></div>
+    <aside class="notes">
+      <p data-beat="0">السرد هيبدأ من ١٤٩٢ — عصر الكشوف الجغرافية، لما أوروبا خرجت للعالم.</p>
+      <p data-beat="1">من إندونيسيا للهند وأفريقيا، لتركيا وإيران وأفغانستان — لحد مصر والعراق والشام تحت الاحتلال.</p>
+      <p data-beat="2">وفي النص محاضرة استثنائية عن اللغة العربية — لأن اللغة اللي بتفكر بيها بتشكّل رؤيتك للعالم.</p>
+      <p data-beat="3">وفي الآخر: نعمل إيه دلوقتي — بكل الأفكار دي؟</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">هل التفكير فعلاً يستاهل ٢٠ ساعة من كل ١٠٠؟</span>
+    </div>
+  </section>
+
+  <!-- ٦ · الآلية: سلسلة القيادة -->
+  <section class="slide part-mech" data-draw="dFlow" data-beats="3">
+    <div class="lbl">بيشتغل إزاي</div>
+    <h2>التفكير مش رفاهية — <em>ده أول السلسلة</em></h2>
+    <p class="sub">فكرة ← قرار ← فعل ← واقع.</p>
+    <div class="stage"><canvas></canvas></div>
+    <aside class="notes">
+      <p data-beat="0">تجربة يابانية: فريقين متساويين المهارة، ومشروع بيتكلف ١٠٠ ساعة شغل.</p>
+      <p data-beat="1">الفريق اللي قعد ٢٠ ساعة يفكر قبل ما يتحرك — خلص أسبق، وبكفاءة أعلى.</p>
+      <p data-beat="2">لأن السلسلة كده: فكرة بتقود قرار، وقرار بيقود فعل، وفعل بيبني واقع — صلّح الأول، الأخير يتصلّح لوحده.</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">قصة حقيقية — عن تأخير عشر دقايق.</span>
+    </div>
+  </section>
+
+  <!-- ٧ · المدفع وقاعدة الحصان -->
+  <section class="slide part-mech" data-draw="dCannon" data-beats="3">
+    <div class="lbl">بيشتغل إزاي</div>
+    <h2>عشر دقايق كشفت <em>قاعدة الحصان</em></h2>
+    <p class="sub">أوقات الحل مش في الفعل — في الفكرة اللي ورا الفعل.</p>
+    <div class="stage"><canvas></canvas></div>
+    <aside class="notes">
+      <p data-beat="0">المدفعية الأمريكية: في كل المناورات في تأخير ثابت — عشر دقايق قبل القصف.</p>
+      <p data-beat="1">جرّبوا كل الحلول العملية: مدافع أحدث، تدريب مكثف، تغيير أفراد — مفيش فايدة.</p>
+      <p data-beat="2">لحد ما حد فتح اللايحة: «استنى عشر دقايق» — قاعدة من زمن الخيول، كان الجندي بيمسك الحصان. الحصان مشي… القاعدة قعدت.</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">وإيه الحيل اللي بتخلينا نقرر كارثة؟</span>
+    </div>
+  </section>
+
+  <!-- ٨ · أربع حيل -->
+  <section class="slide part-field" data-draw="dTraps" data-beats="4">
+    <div class="lbl">على الأرض</div>
+    <h2>أربع حيل <em>جوه دماغك</em></h2>
+    <p class="sub">بتتدرس في الاجتماع وعلم النفس ونظرية الألعاب — حيل بتنتج قرارات كارثية.</p>
+    <div class="stage"><canvas></canvas></div>
+    <aside class="notes">
+      <p data-beat="0">التشبيه الزائف: البلد كلها أجمعت إن فلافيو وحش — وفجأة بقى بيهدف ويتشال على الأكتاف. مرة وحش مش معناها دايماً وحش.</p>
+      <p data-beat="1">التعميم المتسرع: «هنكسب زي كل مرة» — لأ، كل ماتش حالة جديدة.</p>
+      <p data-beat="2">تفكير القطيع: «ما دام الكل عمله، يبقى صح» — والنبي ﷺ حرّصنا: «لا يكونن أحدكم إمعة».</p>
+      <p data-beat="3">معضلة السد: اللي ساكن تحت السد بيقول «مش هينهار» — مش من الأمان، عشان يعرف ينام.</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">قصة واحدة بتشرح الحيل كلها — قصة قرارين.</span>
+    </div>
+  </section>
+
+  <!-- ٩ · خليج الخنازير / الصواريخ -->
+  <section class="slide part-field" data-draw="dBeforeAfter" data-beats="3">
+    <div class="lbl">على الأرض</div>
+    <h2>نفس الفريق — <em>قراران ومصيران</em></h2>
+    <p class="sub">خليج الخنازير ١٩٦١ × أزمة الصواريخ الكوبية ١٩٦٢.</p>
+    <div class="stage"><canvas></canvas></div>
+    <aside class="notes">
+      <p data-beat="0">خليج الخنازير: كينيدي سأل فريقه — الكل قال «طبعاً يا ريس». نزلت القوات، اتنفخت، وأمريكا اتكسفت قدام العالم.</p>
+      <p data-beat="1">الدرس: ما تخلّش حد يوافقك قبل ما يفكر — قسّم الفريق نصين، والرئيس ما يحضرش غير لما الآراء تستوي.</p>
+      <p data-beat="2">نفس الفريق بعد سنتين في أزمة الصواريخ الكوبية: قرار هادي — العالم كله فكك المنصات.</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">وفي عالم الشغل؟ لما الفريق ما يعرفش الجون فين؟</span>
+    </div>
+  </section>
+
+  <!-- ١٠ · الذكاء التنفيذي -->
+  <section class="slide part-field" data-draw="dStats" data-beats="3">
+    <div class="lbl">على الأرض</div>
+    <h2>الفريق عارف <em>الجون فين؟</em></h2>
+    <p class="sub">الذكاء التنفيذي — في الملعب وفي الشركة.</p>
+    <div class="stage"><canvas></canvas></div>
+    <aside class="notes">
+      <p data-beat="0">الإحصائيات اتقلبت لمثال كورة: ٤ بس من ١١ عارفين الجون فين، و٢ بس مهتمين بالماتش، و٢ بس عارفين دورهم الخططي.</p>
+      <p data-beat="1">عشان كده من ٧٠ لـ٩٠ بالمئة من الشركات بتقع — مش نقص مهارة، نقص معنى.</p>
+      <p data-beat="2">واللي بتصمد ليها سر واحد مشترك: العنصر البشري مقدم على أي حاجة.</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">خليك فايق — في حراميين بيسرقوا العزم.</span>
+    </div>
+  </section>
+
+  <!-- ١١ · حراميَين -->
+  <section class="slide part-act" data-draw="dThieves" data-beats="3">
+    <div class="lbl">نفّذ</div>
+    <h2>حراميَين <em>بيسرقوا انتباهك</em></h2>
+    <p class="sub">أثر فلين… وتبديل المهام.</p>
+    <div class="stage"><canvas></canvas></div>
+    <aside class="notes">
+      <p data-beat="0">الحرامي الأول: أثر فلين — كل شوية الذكاء بيزيد تلات نقط، ومعاه بتزيد قدرتك على التفلت من التكليفات.</p>
+      <p data-beat="1">الحرامي التاني: تبديل المهام — فاكر إنك بتعمل خمس حاجات مع بعض؟ انت بتدي لكل واحدة ٢ لـ٣ بالمئة من انتباهك.</p>
+      <p data-beat="2">عايز تختبر نفسك؟ إحساس بعدم الإنجاز، تلكؤ في البدء، نفاد صبر — اقرا الأعراض بصدق.</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">طيب إيه القاعدة اللي نمشي بيها؟</span>
+    </div>
+  </section>
+
+  <!-- ١٢ · لوح القاعدة -->
+  <section class="slide part-act" data-draw="dRule" data-beats="3">
+    <div class="lbl">نفّذ</div>
+    <h2>القاعدة اللي نمشي بيها: <em>صح… بسرعة</em></h2>
+    <p class="sub">وسؤال واحد قبل أي قرار.</p>
+    <div class="stage"><canvas></canvas></div>
+    <aside class="notes">
+      <p data-beat="0">قبل أي قرار اسأل نفسك سؤال واحد: إيه الفكرة اللي بتحركني دلوقتي؟</p>
+      <p data-beat="1">واحفظ القاعدة دي: إحنا عايزين نعمل حاجة صح بسرعة — مش نعمل حاجة بسرعة وبس.</p>
+      <p data-beat="2">معلومة صحيحة الأول، وبعدين فعل — زي الوضوء قبل الصلاة.</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">والحكاية بتبدأ… المرة الجاية.</span>
+    </div>
+  </section>
+
+  <!-- ١٣ · ختام -->
+  <section class="slide part-act title-slide" data-draw="dClosing" data-beats="2">
+    <div class="stage"><canvas></canvas></div>
+    <div class="title-content">
+      <div class="bigbrand">مشروع تأسيس</div>
+      <h2 style="font-size:clamp(30px,4.4vw,54px)">شكل المجتمع — <em>والسرد بيقلع</em></h2>
+      <p class="sub">المرة الجاية: الجماعات الوسيطة — المجتمع التقليدي حصل له إيه في الحداثة؟… وبعدها السرد التاريخي يبدأ من إندونيسيا المسلمة.</p>
+    </div>
+    <aside class="notes">
+      <p data-beat="0">المرة الجاية: مفهوم الجماعات الوسيطة — شكل المجتمع التقليدي كان إيه، وإيه اللي حصل له في الحداثة.</p>
+      <p data-beat="1">ومن هناك السرد بيقلع — من إندونيسيا المسلمة. ما تفوتكش.</p>
+    </aside>
+    <div class="sf">
+      <span class="brand">مشروع تأسيس</span>
+      <div class="pd"></div><span class="cn"></span>
+      <span class="tease">تأسيس وعي المسلم المعاصر — المحاضرة الثانية</span>
+    </div>
+  </section>
+
+  <div class="notes-panel" id="notesPanel"><h4></h4><div class="nb"></div></div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<div class="help">
+  <span><kbd>←</kbd> التالي</span><span><kbd>→</kbd> السابق</span>
+  <span><kbd>مسافة</kbd>/<kbd>↓</kbd> البيت الجاي</span><span><kbd>⇧ مسافة</kbd> البيت اللي فات</span>
+  <span><kbd>S</kbd> أوتو/خطوة</span><span><kbd>R</kbd> إعادة الرسمة</span>
+  <span><kbd>N</kbd> السكريبت</span><span><kbd>F</kbd> وضع التصوير</span>
+</div>
+
+<script>
+'use strict';
+/* ============ لغة واتجاه ============ */
+const LANG = document.documentElement.lang;            // 'ar'
+const RTL  = LANG === 'ar';
+const NUM  = n => n.toLocaleString(RTL ? 'ar-EG' : 'en-US');
+const WPS  = RTL ? 2.3 : 2.5;                          // كلمة/ثانية
+const DIR  = RTL ? -1 : 1;                             // اتجاه «لقدّام»
+
+/* ============ أساسات ============ */
+const lerp  = (a, b, t) => a + (b - a) * t;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const at    = (f, a, b) => clamp((f - a) / (b - a));
+const pulse = (f, period = 240) => .5 + .5 * Math.sin(f / period * Math.PI * 2);
+
+function fit(cv){
+  const S = { ctx: cv.getContext('2d'), W: 0, H: 0 };
+  const resize = () => {
+    const r = cv.getBoundingClientRect(), d = devicePixelRatio || 1;
+    cv.width = Math.max(1, Math.round(r.width * d));
+    cv.height = Math.max(1, Math.round(r.height * d));
+    S.ctx.setTransform(d, 0, 0, d, 0, 0); S.W = r.width; S.H = r.height;
+  };
+  new ResizeObserver(resize).observe(cv); resize();
+  return S;
+}
+
+/* ============ ألوان من CSS ============ */
+const deckEl = document.getElementById('deck');
+const css = k => getComputedStyle(deckEl).getPropertyValue(k).trim();
+const _probe = document.createElement('canvas').getContext('2d');
+function hexOf(c){
+  _probe.fillStyle = '#000000'; _probe.fillStyle = c;
+  const v = _probe.fillStyle;
+  if (typeof v === 'string' && v.charAt(0) === '#'){
+    return v.length === 4 ? '#' + v[1]+v[1] + v[2]+v[2] + v[3]+v[3] : v;
+  }
+  return '#ffffff';
+}
+const C  = () => hexOf(css('--c'));
+const C2 = () => hexOf(css('--c-2'));
+const TP = () => css('--tp') || '#f0eeff';
+const rgba = (hex, a) => {
+  const h = hexOf(hex);
+  const n = parseInt(h.slice(1), 16);
+  return 'rgba(' + ((n>>16)&255) + ',' + ((n>>8)&255) + ',' + (n&255) + ',' + a + ')';
+};
+
+/* ============ رسم ============ */
+function rr(ctx, x, y, w, h, r = 12){
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(x, y, w, h, r);
+  else { ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+}
+function card(ctx, x, y, w, h, o){
+  o = o || {};
+  const fill = o.fill || 'rgba(255,255,255,.04)', stroke = o.stroke || C(), r = o.r == null ? 12 : o.r;
+  rr(ctx, x, y, w, h, r); ctx.fillStyle = fill; ctx.fill();
+  ctx.strokeStyle = stroke; ctx.lineWidth = 1.5; ctx.stroke();
+}
+function txt(ctx, s, x, y, o){
+  o = o || {};
+  const size = o.size || 18, col = o.col || TP(), font = o.font || 'ui',
+        weight = o.weight || 600, align = o.align || 'center', alpha = o.alpha == null ? 1 : o.alpha;
+  ctx.save();
+  ctx.font = weight + ' ' + size + 'px ' + (font === 'hand' ? css('--font-hand') : css('--font-ui'));
+  ctx.fillStyle = col; ctx.textAlign = align; ctx.textBaseline = 'middle';
+  ctx.direction = RTL ? 'rtl' : 'ltr'; ctx.globalAlpha = alpha;
+  ctx.fillText(s, x, y);
+  ctx.restore();
+}
+/* ✍️ الماركر — بيرسم المسار بالتدريج ورأس الماركر ظاهر */
+function marker(ctx, pts, prog, col, w = 4){
+  if (prog <= 0 || pts.length < 2) return;
+  const seg = []; let L = 0;
+  for (let i = 1; i < pts.length; i++){
+    const d = Math.hypot(pts[i][0]-pts[i-1][0], pts[i][1]-pts[i-1][1]) || 1;
+    seg.push(d); L += d;
+  }
+  let left = L * clamp(prog), tip = pts[0];
+  ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = w; ctx.lineCap = ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length && left > 0; i++){
+    const k = Math.min(1, left / seg[i-1]);
+    tip = [lerp(pts[i-1][0], pts[i][0], k), lerp(pts[i-1][1], pts[i][1], k)];
+    ctx.lineTo(tip[0], tip[1]); left -= seg[i-1];
+  }
+  ctx.stroke();
+  if (prog < 1){ ctx.fillStyle = col; ctx.beginPath(); ctx.arc(tip[0], tip[1], w * 1.3, 0, 7); ctx.fill(); }
+  ctx.restore();
+}
+function bezierPts(p0, c, p1, n = 40){
+  return Array.from({length: n + 1}, (_, i) => {
+    const t = i / n, u = 1 - t;
+    return [u*u*p0[0] + 2*u*t*c[0] + t*t*p1[0], u*u*p0[1] + 2*u*t*c[1] + t*t*p1[1]];
+  });
+}
+function arrow(ctx, a, b, prog, col, w = 3){
+  marker(ctx, [a, b], prog, col, w);
+  if (prog < 1) return;
+  const ang = Math.atan2(b[1]-a[1], b[0]-a[0]), s = 10;
+  ctx.save(); ctx.fillStyle = col; ctx.beginPath(); ctx.moveTo(b[0], b[1]);
+  ctx.lineTo(b[0] - s*Math.cos(ang - .45), b[1] - s*Math.sin(ang - .45));
+  ctx.lineTo(b[0] - s*Math.cos(ang + .45), b[1] - s*Math.sin(ang + .45));
+  ctx.fill(); ctx.restore();
+}
+function cross(ctx, x, y, s, prog, col){
+  col = col || '#f43f5e';
+  marker(ctx, [[x-s,y-s],[x+s,y+s]], clamp(prog*2), col, 5);
+  marker(ctx, [[x+s,y-s],[x-s,y+s]], clamp(prog*2-1), col, 5);
+}
+function check(ctx, x, y, s, prog, col){
+  col = col || '#34d399';
+  marker(ctx, [[x-s, y], [x-s*.3, y+s*.7], [x+s, y-s*.8]], prog, col, 5);
+}
+function fig(ctx, x, y, s, col, alpha){
+  s = s == null ? 1 : s; col = col || TP(); alpha = alpha == null ? 1 : alpha;
+  ctx.save(); ctx.globalAlpha = alpha; ctx.strokeStyle = ctx.fillStyle = col;
+  ctx.lineWidth = 3 * s; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.arc(x, y - 34*s, 11*s, 0, 7); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x, y - 22*s); ctx.lineTo(x, y + 8*s);
+  ctx.moveTo(x - 16*s, y - 10*s); ctx.lineTo(x + 16*s, y - 10*s);
+  ctx.moveTo(x, y + 8*s); ctx.lineTo(x - 12*s, y + 30*s);
+  ctx.moveTo(x, y + 8*s); ctx.lineTo(x + 12*s, y + 30*s); ctx.stroke(); ctx.restore();
+}
+function board(ctx, W, H, f){
+  ctx.save();
+  rr(ctx, 8, 8, W - 16, H - 16, 16); ctx.fillStyle = css('--board'); ctx.fill();
+  ctx.fillStyle = css('--border');
+  for (let x = 28; x < W - 16; x += 24) for (let y = 28; y < H - 16; y += 24) ctx.fillRect(x, y, 1.5, 1.5);
+  const g = ctx.createLinearGradient(0, 0, W, H);
+  g.addColorStop(0, css('--brand-1')); g.addColorStop(1, css('--brand-2'));
+  ctx.globalAlpha = .45 + .3 * pulse(f); ctx.strokeStyle = g; ctx.lineWidth = 2;
+  rr(ctx, 8, 8, W - 16, H - 16, 16); ctx.stroke();
+  ctx.restore();
+}
+function ambient(ctx, W, H, f){
+  ctx.save();
+  const g = ctx.createRadialGradient(W * .85, H * .15, 0, W * .85, H * .15, W * .5);
+  g.addColorStop(0, rgba(C(), .13)); g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.globalAlpha = .6 + .4 * pulse(f); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  ctx.restore();
+}
+/* نص بيتكتب كلمة كلمة */
+const wordOn = (s, p) => { const w = s.split(' '); return w.slice(0, Math.ceil(w.length * clamp(p))).join(' '); };
+
+/* ============ حركة ============ */
+const E = {
+  out:    t => 1 - Math.pow(1 - t, 3),
+  inOut:  t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2,
+  back:   t => { const c = 1.70158; return 1 + (c+1)*Math.pow(t-1, 3) + c*Math.pow(t-1, 2); },
+  spring: t => 1 - Math.cos(t * Math.PI * 4.5) * Math.exp(-t * 6),
+};
+const stagger = (p, i, n, spread = .5) => clamp((p - spread / Math.max(1, n - 1) * i) / (1 - spread));
+const countUp = (p, to) => NUM(Math.round(to * E.out(p)));
+const typeOn  = (s, p) => s.slice(0, Math.ceil(s.length * p));
+function pointAt(pts, u){
+  u = clamp(u);
+  const i = Math.min(pts.length - 2, Math.floor(u * (pts.length - 1)));
+  const k = u * (pts.length - 1) - i;
+  return [lerp(pts[i][0], pts[i+1][0], k), lerp(pts[i][1], pts[i+1][1], k)];
+}
+function flow(ctx, pts, f, o){
+  o = o || {};
+  const n = o.n || 8, speed = o.speed || .004, col = o.col || C(), r = o.r || 3;
+  ctx.save(); ctx.fillStyle = col; ctx.shadowColor = col; ctx.shadowBlur = 8;
+  for (let i = 0; i < n; i++){
+    const p = pointAt(pts, (f * speed + i / n) % 1);
+    ctx.beginPath(); ctx.arc(p[0], p[1], r, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.restore();
+}
+function cam(ctx, W, H, o){
+  o = o || {};
+  const x = o.x == null ? W/2 : o.x, y = o.y == null ? H/2 : o.y, z = o.z == null ? 1 : o.z;
+  ctx.translate(W/2, H/2); ctx.scale(z, z); ctx.translate(-x, -y);
+}
+const shake = p => Math.sin(p * Math.PI * 6) * (1 - p) * 6;
+
+/* ============ بيتس ============ */
+const beatFrames = line => Math.max(60, Math.round(line.trim().split(/\s+/).length / WPS * 60));
+function timeline(lines, hold = 120){
+  let t = 0;
+  const spans = lines.map(l => { const a = t; t += beatFrames(l); return {a, b:t}; });
+  return {
+    spans, total: t + hold,
+    p: (f, i, from, to) => {
+      from = from == null ? 0 : from; to = to == null ? 1 : to;
+      const s = spans[i]; if (!s) return 0;
+      const a = s.a + (s.b - s.a) * from, b = s.a + (s.b - s.a) * to;
+      return Math.min(1, Math.max(0, (f - a) / Math.max(1, b - a)));
+    }
+  };
+}
+const Deck = { i: 0, mode: 'auto', beat: 0 };
+function playhead(f, tl){
+  if (Deck.mode === 'auto') return f % tl.total;
+  const cap = tl.spans[Math.min(Deck.beat, tl.spans.length - 1)];
+  return Math.min(f, cap ? cap.b : f);
+}
+function currentBeat(f, tl){
+  for (let i = 0; i < tl.spans.length; i++){
+    if (f >= tl.spans[i].a && f < tl.spans[i].b) return i;
+  }
+  return f < tl.spans[0].a ? 0 : tl.spans.length - 1;
+}
+
+/* ============ أيقونات صغيرة ============ */
+function iconBook(ctx, x, y, s, col, prog){
+  marker(ctx, [[x-s,y-s*.7],[x+s,y-s*.7]], prog, col, 3);
+  marker(ctx, [[x-s,y],[x+s,y]], clamp(prog*2-1), col, 3);
+  marker(ctx, [[x-s,y+s*.7],[x+s*.4,y+s*.7]], clamp(prog*2-1), col, 3);
+}
+function iconPen(ctx, x, y, s, col, prog){
+  marker(ctx, [[x-s*.8,y+s*.8],[x+s*.8,y-s*.8]], prog, col, 3.5);
+  marker(ctx, [[x+s*.45,y-s*.45],[x+s*.95,y-s*.95]], clamp(prog*2-1), col, 3.5);
+}
+function iconHeart(ctx, x, y, s, col, prog){
+  const pts = bezierPts([x, y+s*.8], [x-s*1.6, y-s*.6], [x, y-s*.35], 22)
+    .concat(bezierPts([x, y-s*.35], [x+s*1.6, y-s*.6], [x, y+s*.8], 22));
+  marker(ctx, pts, prog, col, 3.5);
+}
+function iconBrain(ctx, x, y, s, col, prog){
+  ctx.save();
+  marker(ctx, bezierPts([x-s*.2,y+s], [x-s*1.3,y+s*.2], [x-s*.55,y-s*.35], 24), prog, col, 3.5);
+  marker(ctx, bezierPts([x-s*.55,y-s*.35], [x-s*.1,y-s*1.2], [x+s*.7,y-s*.8], 24), clamp(prog*2-.4), col, 3.5);
+  marker(ctx, bezierPts([x+s*.7,y-s*.8], [x+s*1.3,y-s*.1], [x+s*.3,y+s*.9], 24), clamp(prog*2-.9), col, 3.5);
+  ctx.restore();
+}
+function iconPhone(ctx, x, y, s, col, prog){
+  const p = clamp(prog);
+  ctx.save(); ctx.globalAlpha = p;
+  rr(ctx, x-s*.55, y-s, s*1.1, s*2, s*.25);
+  ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.stroke();
+  marker(ctx, [[x-s*.2, y+s*.62],[x+s*.2, y+s*.62]], clamp(prog*2-1), col, 3);
+  ctx.restore();
+}
+function iconHorse(ctx, x, y, s, col, prog){
+  const body = [[x-s,y],[x-s*.3,y-s*.25],[x+s*.45,y-s*.2],[x+s*.75,y-s*.5],[x+s*.95,y-s*.95]];
+  marker(ctx, body, clamp(prog*1.4), col, 3.5);
+  marker(ctx, [[x+s*.95,y-s*.95],[x+s*1.25,y-s*.8]], clamp(prog*2-1), col, 3.5);
+  const legs = prog => {
+    marker(ctx, [[x-s*.75,y+s*.05],[x-s*.85,y+s]], prog, col, 3);
+    marker(ctx, [[x-s*.2,y+s*.05],[x-s*.1,y+s]], prog, col, 3);
+    marker(ctx, [[x+s*.3,y+s*.0],[x+s*.25,y+s]], prog, col, 3);
+    marker(ctx, [[x+s*.6,y-s*.1],[x+s*.7,y+s]], prog, col, 3);
+  };
+  legs(clamp(prog*2-1));
+  marker(ctx, [[x-s,y],[x-s*1.35,y-s*.5]], clamp(prog*2-1.2), col, 3);
+}
+function iconCannon(ctx, x, y, s, col, prog, alpha){
+  ctx.save(); ctx.globalAlpha = alpha == null ? 1 : alpha;
+  marker(ctx, [[x-s*.2,y+s*.2],[x+s,y-s*.5]], clamp(prog*1.5), col, 6);
+  const wheel = [];
+  for (let i = 0; i <= 20; i++){ const a = i/20*Math.PI*2*clamp(prog*2-.5); wheel.push([x-s*.45+Math.cos(a)*s*.45, y+s*.45+Math.sin(a)*s*.45]); }
+  if (wheel.length > 1) marker(ctx, wheel, 1, col, 3);
+  ctx.restore();
+}
+
+/* ============ الرسّامات ============ */
+const DRAWERS = {};
+
+/* ١ · افتتاح */
+DRAWERS.dTitle = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  ambient(ctx, W, H, raw);
+  board(ctx, W, H, raw);
+  const p = E.out(tl_p(s, f, 0, 0, .9));
+  ctx.save(); ctx.globalAlpha = .5 * p;
+  const cx = W/2, cy = H/2;
+  for (let i = 0; i < 3; i++){
+    const r = H*.30 + i*H*.10 + pulse(raw + i*80, 300) * 6;
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2);
+    ctx.strokeStyle = rgba(i % 2 ? C2() : C(), .16); ctx.lineWidth = 1.5; ctx.stroke();
+  }
+  ctx.restore();
+  flow(ctx, circlePts(W/2, H/2, Math.min(W,H)*.42, 80), raw, {n: 7, speed: .0012, r: 2.5});
+};
+function tl_p(s, f, i, from, to){ return s.tl.p(f, i, from, to); }
+function circlePts(cx, cy, r, n){
+  return Array.from({length: n + 1}, (_, i) => [cx + Math.cos(i/n*Math.PI*2)*r, cy + Math.sin(i/n*Math.PI*2)*r*.999]);
+}
+
+/* ٢ · الوجع — شخص ودواير المشاريع بتكبر */
+DRAWERS.dPain = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  ambient(ctx, W, H, raw);
+  const zoomP = E.inOut(tl_p(s, f, 2, .25, .95));
+  const px = W*.62, py = H*.58;
+  ctx.save();
+  if (zoomP > 0) cam(ctx, W, H, {x: lerp(W/2, px, zoomP), y: lerp(H/2, py - H*.14, zoomP), z: lerp(1, 1.16, zoomP)});
+  const dim = 1 - .72 * zoomP;
+  fig(ctx, px, py, 1.15, rgba(TP(), .92 * dim) , E.out(tl_p(s, f, 0, .05, .4)));
+  const labels = ['أحذية', 'فودافون', 'مكوجي', 'بلايستيشن', 'بلياردو'];
+  const anchors = [[-.30,-.34],[.26,-.40],[-.36,.16],[.34,.10],[.02,.40]];
+  for (let i = 0; i < 5; i++){
+    const appear = i < 2 ? tl_p(s, f, 0, .45 + i*.22, .95) : tl_p(s, f, 1, (i-2)*.22, (i-2)*.22 + .5);
+    const p = E.back(appear);
+    if (p <= 0) continue;
+    const bx = px + anchors[i][0] * W * (.42), by = py + anchors[i][1] * H * (.8);
+    const grow = 1 + .10 * pulse(raw + i*60, 240) + .12 * E.out(tl_p(s, f, 1, .2, .95));
+    ctx.save(); ctx.globalAlpha = dim;
+    ctx.translate(bx, by); ctx.scale(p*grow, p*grow);
+    card(ctx, -52, -24, 104, 48, {stroke: rgba(C(), .55), fill: 'rgba(255,255,255,.03)'});
+    txt(ctx, labels[i], 0, 0, {size: 15, font: 'hand', col: rgba(TP(), .9)});
+    ctx.restore();
+  }
+  /* البيت ٢: علامة الاستفهام هي البطلة */
+  const qp = tl_p(s, f, 2, .1, .6);
+  if (qp > 0){
+    ctx.save();
+    ctx.shadowColor = C(); ctx.shadowBlur = 14 * qp;
+    txt(ctx, typeOn('؟', E.out(qp)), px, py - H*.30, {size: 54 * E.back(qp), weight: 900, col: C()});
+    ctx.restore();
+    txt(ctx, wordOn('المشكلة قبل الفعل', E.out(tl_p(s, f, 2, .55, .95))), px, py - H*.30 + 46, {size: 15, font: 'hand', col: rgba(TP(), .85), alpha: dim});
+  }
+  ctx.restore();
+};
+
+/* ٣ · السبورة — العدسة */
+DRAWERS.dBoard = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  board(ctx, W, H, raw);
+  const hx = W*.72, hy = H*.40, R = Math.min(W,H)*.20;
+  /* رأس + عدسة */
+  const headP = tl_p(s, f, 0, .05, .65);
+  if (headP > 0){
+    ctx.save(); ctx.globalAlpha = E.out(headP);
+    ctx.beginPath(); ctx.arc(hx, hy, R, 0, Math.PI*2);
+    ctx.strokeStyle = rgba(TP(), .8); ctx.lineWidth = 3; ctx.stroke();
+    ctx.restore();
+    const lensP = tl_p(s, f, 0, .45, .9);
+    if (lensP > 0){
+      ctx.save();
+      ctx.shadowColor = C(); ctx.shadowBlur = 10 * lensP * (.6 + .4*pulse(raw, 240));
+      ctx.beginPath(); ctx.arc(hx, hy, R*.52, 0, Math.PI*2);
+      ctx.strokeStyle = C(); ctx.lineWidth = 4; ctx.stroke();
+      ctx.restore();
+      marker(ctx, bezierPts([hx-R*.52, hy], [hx, hy-R*.3], [hx+R*.52, hy], 24), tl_p(s, f, 0, .7, 1), rgba(C2(), .8), 2.5);
+      txt(ctx, wordOn('دماغك', E.out(tl_p(s, f, 0, .7, 1))), hx, hy - R - 18, {size: 15, font: 'hand', col: rgba(TP(), .75)});
+      txt(ctx, wordOn('عالم الأفكار', E.out(tl_p(s, f, 0, .85, 1))), hx, hy + R + 22, {size: 17, font: 'hand', col: C()});
+    }
+  }
+  /* أشعة للواقع */
+  const rayP = tl_p(s, f, 1, .05, .7);
+  if (rayP > 0){
+    const rx = W*.20, ry = H*.40;
+    for (let i = -1; i <= 1; i++){
+      marker(ctx, bezierPts([hx - R*.6, hy + i*10], [(hx+rx)/2, hy + i*34], [rx + 60, ry + i*26], 30), rayP, rgba(C(), .5 - Math.abs(i)*.12), 2.5);
+    }
+    const cardP = E.back(tl_p(s, f, 1, .5, .95));
+    if (cardP > 0){
+      ctx.save(); ctx.translate(rx, ry); ctx.scale(cardP, cardP);
+      card(ctx, -70, -46, 140, 92, {stroke: rgba(TP(), .4)});
+      iconBook(ctx, 0, -8, 16, rgba(TP(), .8), 1);
+      txt(ctx, 'الواقع', 0, 28, {size: 14, font: 'hand', col: rgba(TP(), .85)});
+      ctx.restore();
+    }
+    txt(ctx, wordOn('الواقع زي ما انت شايفه', E.out(tl_p(s, f, 1, .75, 1))), rx, ry + 66, {size: 14, font: 'hand', col: rgba(TP(), .6)});
+  }
+  /* القاعدة بخط اليد */
+  const ruleP = tl_p(s, f, 2, .05, .8);
+  if (ruleP > 0){
+    const y = H*.82;
+    txt(ctx, wordOn('غيّر العدسة… تتغير صورة الواقع', E.out(ruleP)), W/2, y, {size: 30, font: 'hand', weight: 700, col: TP()});
+    const ul = tl_p(s, f, 2, .78, 1);
+    if (ul > 0){
+      ctx.save(); ctx.shadowColor = C(); ctx.shadowBlur = 10;
+      marker(ctx, [[W/2 + 190, y + 24], [W/2 - 190, y + 24]], ul, C(), 5);
+      ctx.restore();
+    }
+  }
+};
+
+/* ٤ · جزء من كل — تلات صناديق */
+DRAWERS.dGains = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  ambient(ctx, W, H, raw);
+  const boxes = [
+    {t: 'معلوماتي', ex: 'الكونغو فين؟', icon: iconBook},
+    {t: 'مهاري', ex: 'امسك نائب الفاعل', icon: iconPen},
+    {t: 'وجداني', ex: 'توجهك هو المستهدف', icon: iconHeart},
+  ];
+  const bw = W*.26, bh = H*.56, gap = (W - bw*3) / 4;
+  for (let i = 0; i < 3; i++){
+    const pIn = E.back(tl_p(s, f, i, .08, .6));
+    if (pIn <= 0) continue;
+    /* RTL: أول صندوق من اليمين */
+    const x = RTL ? W - gap - bw*(i+1) : gap + bw*i;
+    const y = (H - bh)/2 + 6;
+    const isHero = i === 2;
+    const lit = isHero ? E.out(tl_p(s, f, 2, .55, .95)) : 0;
+    const dimOthers = isHero ? 0 : E.out(tl_p(s, f, 2, .6, 1)) * .55;
+    ctx.save();
+    ctx.globalAlpha = 1 - dimOthers;
+    ctx.translate(x + bw/2, y + bh/2); ctx.scale(pIn, pIn); ctx.translate(-(x + bw/2), -(y + bh/2));
+    if (lit > 0){ ctx.shadowColor = C(); ctx.shadowBlur = 16 * lit; }
+    card(ctx, x, y, bw, bh, {stroke: lit > 0 ? C() : rgba(TP(), .35), fill: lit > 0 ? rgba(C(), .10 + .06*lit) : 'rgba(255,255,255,.03)', r: 16});
+    ctx.shadowBlur = 0;
+    boxes[i].icon(ctx, x + bw/2, y + bh*.34, 26, lit > 0 ? C() : rgba(TP(), .8), tl_p(s, f, i, .4, .9));
+    txt(ctx, wordOn(boxes[i].t, E.out(tl_p(s, f, i, .55, 1))), x + bw/2, y + bh*.66, {size: 21, font: 'hand', weight: 700, col: lit > 0 ? C() : TP()});
+    txt(ctx, wordOn(boxes[i].ex, E.out(tl_p(s, f, i, .75, 1))), x + bw/2, y + bh*.84, {size: 13, col: rgba(TP(), .55)});
+    ctx.restore();
+  }
+  const capP = tl_p(s, f, 2, .8, 1);
+  if (capP > 0) txt(ctx, wordOn('المستهدف هنا — التوجه مش الحفظ', E.out(capP)), W/2, H*.93, {size: 16, font: 'hand', col: C()});
+};
+
+/* ٥ · خط زمني — رحلة السرد */
+DRAWERS.dTimeline = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  ambient(ctx, W, H, raw);
+  const y = H*.58, x0 = RTL ? W*.90 : W*.10, x1 = RTL ? W*.10 : W*.90;
+  const stops = [
+    {t: NUM(1492), s: 'الكشوف الجغرافية — أوروبا تخرج للعالم'},
+    {t: 'العالم الإسلامي', s: 'إندونيسيا… الهند… أفريقيا… مصر والشام'},
+    {t: 'اللغة العربية', s: 'محاضرة استثنائية — اللغة تصنع الرؤية'},
+    {t: 'نعمل إيه؟', s: 'الختام — الأفكار تتحول لفعل'},
+  ];
+  const lineP = E.inOut(tl_p(s, f, 0, .05, .8));
+  marker(ctx, [[x0, y], [x1, y]], lineP, rgba(C(), .8), 3);
+  for (let i = 0; i < 4; i++){
+    const px = lerp(x0, x1, i/3);
+    const p = E.back(tl_p(s, f, Math.min(i, 3), .05 + (i===0?0:.05), .55));
+    if (p <= 0) continue;
+    ctx.save();
+    ctx.shadowColor = C(); ctx.shadowBlur = i === 3 ? 12 * (.5+.5*pulse(raw,200)) : 8 * p;
+    ctx.beginPath(); ctx.arc(px, y, 7*p, 0, Math.PI*2); ctx.fillStyle = C(); ctx.fill();
+    ctx.restore();
+    const up = i % 2 === 0;
+    const cy = up ? y - H*.24 : y + H*.24;
+    marker(ctx, [[px, y + (up?-10:10)], [px, cy + (up?26:-26)]], clamp(p*1.4-.4), rgba(TP(), .3), 1.5);
+    ctx.save(); ctx.globalAlpha = p;
+    txt(ctx, wordOn(stops[i].t, E.out(tl_p(s, f, Math.min(i,3), .4, .95))), px, cy - (up?8:-8), {size: i===0?22:17, font: 'hand', weight: 700, col: i===3 ? C() : TP()});
+    txt(ctx, wordOn(stops[i].s, E.out(tl_p(s, f, Math.min(i,3), .6, 1))), px, cy + (up?16:-16), {size: 12, col: rgba(TP(), .55)});
+    ctx.restore();
+  }
+  if (tl_p(s, f, 3, .85, 1) > 0) flow(ctx, [[x0,y],[x1,y]], raw, {n: 6, speed: .003 * DIR * -1, r: 2.5, col: C2()});
+};
+
+/* ٦ · الآلية — تجربة الفريقين + سلسلة التدفق */
+DRAWERS.dFlow = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  ambient(ctx, W, H, raw);
+  const dimTop = 1 - .6 * E.out(tl_p(s, f, 2, .05, .4));
+  /* التجربة — فريقين */
+  ctx.save(); ctx.globalAlpha = dimTop;
+  const bx = RTL ? W*.56 : W*.08, bw = W*.36, bh = 26;
+  const teams = [
+    {t: 'فريق يفكر ٥ ساعات', think: .05},
+    {t: 'فريق يفكر ٢٠ ساعة', think: .20},
+  ];
+  for (let i = 0; i < 2; i++){
+    const p = E.out(tl_p(s, f, 0, .1 + i*.35, .7));
+    if (p <= 0) continue;
+    const y = H*.16 + i*H*.20;
+    txt(ctx, wordOn(teams[i].t, p), RTL ? bx - 14 : bx + bw + 14, y + bh/2, {size: 15, font: 'hand', align: RTL ? 'right' : 'left', col: rgba(TP(), .9)});
+    card(ctx, bx, y, bw, bh, {stroke: rgba(TP(), .25), r: 8});
+    const barP = tl_p(s, f, 1, .1, .85);
+    if (barP > 0){
+      const speed = i === 1 ? 1 : .55;                     /* فريق التفكير بيخلص أسبق */
+      const w = bw * clamp(E.inOut(barP) * speed * (i===1?1:.92), 0, i===1?1:.92);
+      ctx.save();
+      if (i === 1){ ctx.shadowColor = C(); ctx.shadowBlur = 10; }
+      rr(ctx, bx + (RTL ? bw - w : 0), y + 4, w, bh - 8, 6);
+      ctx.fillStyle = i === 1 ? C() : rgba(TP(), .4); ctx.fill();
+      ctx.restore();
+      if (barP >= 1){
+        if (i === 1) check(ctx, bx + (RTL ? -22 : bw + 22), y + bh/2, 9, E.spring(tl_p(s, f, 1, .8, 1)));
+        else cross(ctx, bx + (RTL ? -22 : bw + 22), y + bh/2, 7, tl_p(s, f, 1, .85, 1), rgba('#f43f5e', .8));
+      }
+    }
+  }
+  txt(ctx, wordOn('نفس المشروع — ١٠٠ ساعة', E.out(tl_p(s, f, 0, .6, 1))), W/2, H*.07, {size: 14, col: rgba(TP(), .5)});
+  ctx.restore();
+  /* السلسلة — فكرة ← قرار ← فعل ← واقع */
+  const chainP = tl_p(s, f, 2, .05, .75);
+  if (chainP > 0){
+    const cy = H*.80;
+    const names = ['فكرة', 'قرار', 'فعل', 'واقع'];
+    const cx0 = RTL ? W*.86 : W*.14, cx1 = RTL ? W*.14 : W*.86;
+    const pts = names.map((_, i) => [lerp(cx0, cx1, i/3), cy]);
+    marker(ctx, pts, E.inOut(chainP), C(), 3);
+    for (let i = 0; i < 4; i++){
+      const p = E.back(stagger(chainP, i, 4, .45));
+      if (p <= 0) continue;
+      const x = pts[i][0];
+      ctx.save(); ctx.translate(x, cy); ctx.scale(p, p);
+      ctx.beginPath(); ctx.arc(0, 0, 17, 0, Math.PI*2);
+      ctx.fillStyle = rgba(C(), .16); ctx.fill();
+      ctx.strokeStyle = C(); ctx.lineWidth = 2; ctx.stroke();
+      txt(ctx, names[i], 0, 34, {size: 15, font: 'hand', weight: 700, col: TP()});
+      ctx.restore();
+    }
+    if (chainP >= 1) flow(ctx, pts, raw, {n: 8, speed: .0035, r: 3});
+  }
+};
+
+/* ٧ · الغلطة الشائعة — المدفع وقاعدة الحصان */
+DRAWERS.dCannon = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  ambient(ctx, W, H, raw);
+  /* كارت القاعدة الرئيسي */
+  const cw = W*.34, ch = H*.52;
+  let cx = RTL ? W*.60 : W*.06, cy = H*.20;
+  const sh1 = tl_p(s, f, 2, .05, .55);
+  const sx = sh1 > 0 && sh1 < 1 ? shake(sh1) : 0;
+  const morphP = E.inOut(tl_p(s, f, 2, .5, .95));
+  ctx.save();
+  ctx.translate(cx + sx, cy);
+  const p0 = E.out(tl_p(s, f, 0, .05, .5));
+  if (p0 > 0){
+    ctx.globalAlpha = p0;
+    card(ctx, 0, 0, cw, ch, {stroke: rgba(TP(), .4), r: 14});
+    iconCannon(ctx, cw*.30, ch*.38, Math.min(cw,ch)*.20, rgba(TP(), .85), tl_p(s, f, 0, .3, .85), 1 - morphP);
+    iconHorse(ctx, cw*.30 - 10, ch*.40, Math.min(cw,ch)*.17, C(), morphP);
+    txt(ctx, wordOn('تأخير ثابت: ١٠ دقايق قبل كل رمية', E.out(tl_p(s, f, 0, .5, .95))), cw*.62, ch*.22, {size: 14.5, font: 'hand', col: TP()});
+    txt(ctx, wordOn('اللائحة بتقول: «استنى ١٠ دقايق»', E.out(tl_p(s, f, 0, .7, 1))), cw*.62, ch*.40, {size: 13, col: rgba(TP(), .6)});
+    const why = E.out(tl_p(s, f, 2, .75, 1));
+    if (why > 0){
+      ctx.save(); ctx.shadowColor = C(); ctx.shadowBlur = 10 * why;
+      txt(ctx, wordOn('قاعدة من زمن الخيول — الحصان مشي، القاعدة قعدت', why), cw*.5, ch*.78, {size: 15.5, font: 'hand', weight: 700, col: C()});
+      ctx.restore();
+    }
+    if (sh1 > 0) cross(ctx, cw*.62, ch*.55, 26, sh1);
+  }
+  ctx.restore();
+  /* الحلول العملية الفاشلة */
+  const sols = ['مدافع أحدث', 'تدريب مكثف', 'تغيير الأفراد'];
+  for (let i = 0; i < 3; i++){
+    const p = E.back(stagger(tl_p(s, f, 1, .05, .7), i, 3, .5));
+    if (p <= 0) continue;
+    const y = H*.24 + i * H*.20;
+    const chipW = W*.30, chipX = RTL ? W*.08 : W*.62;
+    ctx.save(); ctx.globalAlpha = p;
+    ctx.translate(chipX + chipW/2, y + 20); ctx.scale(p, p); ctx.translate(-(chipX + chipW/2), -(y + 20));
+    const shp = tl_p(s, f, 1, .45 + i*.18, .8 + i*.15);
+    card(ctx, chipX, y, chipW, 40, {stroke: rgba(TP(), .3), r: 999});
+    txt(ctx, sols[i], chipX + chipW/2 + (shp > 0 ? (RTL ? -16 : 16) : 0), y + 20, {size: 14.5, font: 'hand', col: rgba(TP(), .85)});
+    if (shp > 0) cross(ctx, chipX + (RTL ? chipW - 24 : 24), y + 20, 9, shp);
+    ctx.restore();
+  }
+  txt(ctx, wordOn('الحلول العملية وحدها…', E.out(tl_p(s, f, 1, .1, .5))), RTL ? W*.23 : W*.77, H*.12, {size: 14, col: rgba(TP(), .5)});
+};
+
+/* ٨ · كروت الحيل الأربع */
+DRAWERS.dTraps = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  ambient(ctx, W, H, raw);
+  const traps = [
+    {n: '١', t: 'تشبيه زائف', k: '«مرة وحش = دايماً وحش»… فلافيو قال لأ'},
+    {n: '٢', t: 'تعميم متسرع', k: '«هنكسب زي كل مرة» — كل ماتش حالة'},
+    {n: '٣', t: 'تفكير القطيع', k: '«الكل عمله يبقى صح» — لا تكونن إمعة'},
+    {n: '٤', t: 'معضلة السد', k: '«مش هينهار» — عشان يعرف ينام'},
+  ];
+  const cw = W*.44, ch = H*.36, gx = W*.04, gy = H*.06;
+  for (let i = 0; i < 4; i++){
+    const p = E.back(tl_p(s, f, i, .06, .55));
+    if (p <= 0) continue;
+    const col = i % 2, row = Math.floor(i/2);
+    const x = (RTL ? W - gx - cw*(col+1) : gx + cw*col);
+    const y = gy*.7 + row * (ch + gy);
+    ctx.save();
+    ctx.translate(x + cw/2, y - 26*(1-p)); ctx.globalAlpha = p;
+    const isNow = currentBeat(f, s.tl) === i;
+    if (isNow){ ctx.shadowColor = C(); ctx.shadowBlur = 12; }
+    card(ctx, -cw/2, -ch/2 + 26, cw, ch, {stroke: isNow ? C() : rgba(TP(), .28), fill: isNow ? rgba(C(), .07) : 'rgba(255,255,255,.03)', r: 14});
+    ctx.shadowBlur = 0;
+    txt(ctx, traps[i].n, RTL ? cw/2 - 30 : -cw/2 + 30, 26 - ch/2 + 30, {size: 20, weight: 900, col: C()});
+    txt(ctx, wordOn(traps[i].t, E.out(tl_p(s, f, i, .35, .8))), 0, 26 - ch/2 + 34, {size: 20, font: 'hand', weight: 700, col: TP()});
+    txt(ctx, wordOn(traps[i].k, E.out(tl_p(s, f, i, .55, 1))), 0, 26 + ch/2 - 40, {size: 13.5, col: rgba(TP(), .62)});
+    ctx.restore();
+  }
+};
+
+/* ٩ · قبل/بعد — خليج الخنازير × أزمة الصواريخ */
+DRAWERS.dBeforeAfter = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  ambient(ctx, W, H, raw);
+  const half = W/2 - 14;
+  /* قبل — على يمين (RTL) */
+  const beforeX = RTL ? W/2 + 14 : 0;
+  const afterX  = RTL ? 0 : W/2 + 14;
+  const p0 = tl_p(s, f, 0, .05, .8);
+  if (p0 > 0){
+    ctx.save(); ctx.globalAlpha = E.out(p0);
+    txt(ctx, wordOn('قبل — خليج الخنازير ١٩٦١', p0), beforeX + half/2, H*.10, {size: 16, font: 'hand', weight: 700, col: rgba(TP(), .9)});
+    fig(ctx, beforeX + half/2, H*.42, .8, C2(), E.out(tl_p(s, f, 0, .15, .5)));
+    txt(ctx, 'كيندي', beforeX + half/2, H*.42 + 44, {size: 12, font: 'hand', col: rgba(TP(), .6)});
+    for (let i = 0; i < 4; i++){
+      const pp = E.back(stagger(tl_p(s, f, 0, .35, .9), i, 4, .5));
+      if (pp <= 0) continue;
+      const ax = beforeX + half*.16 + i * half*.23;
+      ctx.save(); ctx.globalAlpha = pp * E.out(p0);
+      ctx.beginPath(); ctx.arc(ax, H*.66, 8, 0, Math.PI*2); ctx.fillStyle = rgba(TP(), .55); ctx.fill();
+      rr(ctx, ax - 34, H*.72, 68, 24, 12); ctx.fillStyle = 'rgba(255,255,255,.05)'; ctx.fill();
+      txt(ctx, 'طبعاً!', ax, H*.72 + 12, {size: 11.5, font: 'hand', col: rgba(TP(), .75)});
+      ctx.restore();
+    }
+    const xp = tl_p(s, f, 0, .75, 1);
+    if (xp > 0){ cross(ctx, beforeX + half/2, H*.30, 20, xp); txt(ctx, 'كارثة', beforeX + half/2 + 34, H*.30 + 2, {size: 13, font: 'hand', col: '#f43f5e', alpha: xp}); }
+    ctx.restore();
+  }
+  /* الفاصل بيتسحب في اتجاه القراية */
+  const divP = tl_p(s, f, 1, .05, .65);
+  if (divP > 0){
+    const dx = RTL ? lerp(W - 8, W/2, E.inOut(divP)) : lerp(8, W/2, E.inOut(divP));
+    marker(ctx, [[dx, 10], [dx, H - 10]], E.inOut(divP), rgba(C(), .85), 3);
+    txt(ctx, wordOn('الدرس: قسّم الفريق — والرئيس يحضر آخر حاجة', E.out(tl_p(s, f, 1, .45, 1))), W/2, H*.90, {size: 15, font: 'hand', weight: 700, col: C()});
+  }
+  /* بعد */
+  const p2 = tl_p(s, f, 2, .05, .8);
+  if (p2 > 0){
+    ctx.save(); ctx.globalAlpha = E.out(p2);
+    txt(ctx, wordOn('بعد — أزمة الصواريخ ١٩٦٢', p2), afterX + half/2, H*.10, {size: 16, font: 'hand', weight: 700, col: rgba(TP(), .9)});
+    for (let g = 0; g < 2; g++){
+      const gx = afterX + half*.10 + g*half*.50;
+      rr(ctx, gx, H*.24, half*.40, H*.34, 12);
+      ctx.strokeStyle = rgba(C(), .5); ctx.lineWidth = 1.5; ctx.stroke();
+      for (let i = 0; i < 3; i++){
+        ctx.beginPath(); ctx.arc(gx + half*.10 + i*half*.10, H*.41, 7, 0, Math.PI*2);
+        ctx.fillStyle = rgba(C(), .65); ctx.fill();
+      }
+      txt(ctx, g === 0 ? 'نص أ' : 'نص ب', gx + half*.20, H*.52, {size: 11.5, font: 'hand', col: rgba(TP(), .6)});
+    }
+    const arP = tl_p(s, f, 2, .35, .7);
+    if (arP > 0){
+      arrow(ctx, [afterX + half/2 + (RTL?-70:70), H*.70], [afterX + half/2, H*.70], arP, C2(), 3);
+      txt(ctx, 'الرئيس يسمع الأخير', afterX + half/2, H*.78, {size: 12, font: 'hand', col: rgba(TP(), .65)});
+    }
+    const cp = tl_p(s, f, 2, .6, .95);
+    if (cp > 0){ ctx.save(); ctx.shadowColor = '#34d399'; ctx.shadowBlur = 12 * cp; check(ctx, afterX + half/2, H*.30, 18, cp, '#34d399'); ctx.restore(); txt(ctx, 'العالم فكك المنصات', afterX + half/2, H*.30 - 34, {size: 13, font: 'hand', col: '#34d399', alpha: cp}); }
+    ctx.restore();
+  }
+};
+
+/* ١٠ · إحصائية — الملعب والشركات */
+DRAWERS.dStats = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  ambient(ctx, W, H, raw);
+  const fw = W*.46, fh = H*.70;
+  const fx = RTL ? W*.04 : W*.50, fy = (H - fh)/2;
+  const fieldDim = 1 - .72 * E.out(tl_p(s, f, 1, .05, .4));
+  /* الملعب */
+  ctx.save();
+  const fp = E.out(tl_p(s, f, 0, .02, .35));
+  if (fp > 0){
+    ctx.globalAlpha = fp * fieldDim;
+    rr(ctx, fx, fy, fw, fh, 14); ctx.strokeStyle = rgba(TP(), .35); ctx.lineWidth = 2; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(fx + fw/2, fy); ctx.lineTo(fx + fw/2, fy + fh); ctx.strokeStyle = rgba(TP(), .18); ctx.stroke();
+    ctx.beginPath(); ctx.arc(fx + fw/2, fy + fh/2, fh*.13, 0, Math.PI*2); ctx.stroke();
+    const dots = [];
+    for (let i = 0; i < 11; i++){
+      const row = i === 0 ? 0 : i <= 4 ? 1 : i <= 8 ? 2 : 3;
+      const inRow = i === 0 ? 0 : row === 1 || row === 2 ? (i - (row===1?1:5)) % 4 : (i - 9) % 2;
+      const perRow = row === 0 ? 1 : row === 3 ? 2 : 4;
+      const px = fx + fw * (row + .5) / 4;
+      const py = fy + fh * ((inRow + 1) / (perRow + 1));
+      dots.push([px, py]);
+    }
+    const lit4 = tl_p(s, f, 0, .3, .55), lit2a = tl_p(s, f, 0, .55, .75), lit2b = tl_p(s, f, 0, .75, .95);
+    for (let i = 0; i < 11; i++){
+      const pp = E.back(stagger(tl_p(s, f, 0, .15, .5), i, 11, .6));
+      if (pp <= 0) continue;
+      const knowsGoal = i < 4, cares = i >= 4 && i < 6, role = i >= 6 && i < 8;
+      let col = rgba(TP(), .35), r = 5, glow = 0;
+      if (knowsGoal && lit4 > 0){ col = rgba(C2(), .8); glow = 6 * lit4; }
+      if (cares && lit2a > 0){ col = C2(); r = 6; glow = 10 * lit2a; }
+      if (role && lit2b > 0){ col = C(); r = 7; glow = 14 * lit2b; }
+      ctx.save(); ctx.shadowColor = col; ctx.shadowBlur = glow;
+      ctx.beginPath(); ctx.arc(dots[i][0], dots[i][1], r * pp, 0, Math.PI*2); ctx.fillStyle = col; ctx.fill();
+      ctx.restore();
+    }
+    const lx = fx + fw/2;
+    if (lit4 > 0)  txt(ctx, countUp(lit4, 4) + ' عارفين الجون', lx, fy - 16, {size: 13, font: 'hand', col: rgba(TP(), .75)});
+    if (lit2a > 0) txt(ctx, countUp(lit2a, 2) + ' مهتمين', lx - (RTL?-130:130), fy + fh + 20, {size: 13, font: 'hand', col: C2()});
+    if (lit2b > 0) txt(ctx, countUp(lit2b, 2) + ' عارفين الدور', lx + (RTL?-140:140), fy - 16, {size: 13, font: 'hand', col: C()});
+  }
+  ctx.restore();
+  /* النسبة الكبيرة */
+  const stP = tl_p(s, f, 1, .15, .9);
+  if (stP > 0){
+    const bx = RTL ? W*.56 : W*.08, bw = W*.36;
+    txt(ctx, countUp(stP, 90) + '٪', bx + bw/2, H*.30, {size: 74 * E.out(stP), weight: 900, col: C()});
+    txt(ctx, wordOn('من ٧٠ لـ٩٠ بالمئة من الشركات بتقع', E.out(tl_p(s, f, 1, .55, 1))), bx + bw/2, H*.46, {size: 15, font: 'hand', col: rgba(TP(), .85)});
+    const barP = E.back(tl_p(s, f, 1, .35, .95));
+    if (barP > 0){
+      rr(ctx, bx, H*.55, bw, 14, 7); ctx.fillStyle = 'rgba(255,255,255,.06)'; ctx.fill();
+      rr(ctx, bx + (RTL ? bw*(1 - .8*barP) : 0), H*.55, bw*.8*barP, 14, 7); ctx.fillStyle = C(); ctx.fill();
+    }
+  }
+  /* اللي بتصمد */
+  const huP = tl_p(s, f, 2, .1, .8);
+  if (huP > 0){
+    const hx = RTL ? W*.74 : W*.26;
+    ctx.save(); ctx.shadowColor = C(); ctx.shadowBlur = 14 * huP * (.55 + .45*pulse(raw, 200));
+    fig(ctx, hx, H*.76, .75, C(), E.out(huP));
+    ctx.restore();
+    txt(ctx, wordOn('واللي بتصمد: الإنسان أولاً', E.out(tl_p(s, f, 2, .45, 1))), hx, H*.93, {size: 15.5, font: 'hand', weight: 700, col: TP()});
+  }
+};
+
+/* ١١ · حراميَين — كروت */
+DRAWERS.dThieves = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  ambient(ctx, W, H, raw);
+  const cw = W*.44, ch = H*.62, gy = H*.06;
+  /* كارت ١ — أثر فلين */
+  const p1 = E.back(tl_p(s, f, 0, .06, .55));
+  if (p1 > 0){
+    const x = RTL ? W - W*.04 - cw : W*.04;
+    ctx.save(); ctx.globalAlpha = p1; ctx.translate(0, (1-p1)*-22);
+    card(ctx, x, gy, cw, ch, {stroke: rgba(TP(), .3), r: 16});
+    txt(ctx, 'الحرامي ١', x + cw/2, gy + 30, {size: 13, weight: 800, col: C()});
+    txt(ctx, wordOn('أثر فلين', E.out(tl_p(s, f, 0, .3, .7))), x + cw/2, gy + 62, {size: 22, font: 'hand', weight: 700, col: TP()});
+    iconBrain(ctx, x + cw*.30, gy + ch*.45, 30, rgba(C(), .9), tl_p(s, f, 0, .35, .85));
+    const arP = tl_p(s, f, 0, .55, .95);
+    if (arP > 0){
+      arrow(ctx, [x + cw*.56, gy + ch*.60], [x + cw*.80, gy + ch*.34], E.inOut(arP), C(), 3);
+      txt(ctx, '+' + NUM(3) + ' نقط ذكاء', x + cw*.72, gy + ch*.28, {size: 13, font: 'hand', col: C(), alpha: arP});
+    }
+    txt(ctx, wordOn('…ومعاها بتزيد قدرتك على التفلت', E.out(tl_p(s, f, 0, .75, 1))), x + cw/2, gy + ch*.82, {size: 13.5, col: rgba(TP(), .6)});
+    ctx.restore();
+  }
+  /* كارت ٢ — تبديل المهام */
+  const p2 = E.back(tl_p(s, f, 1, .06, .55));
+  if (p2 > 0){
+    const x = RTL ? W*.04 : W - W*.04 - cw;
+    ctx.save(); ctx.globalAlpha = p2; ctx.translate(0, (1-p2)*-22);
+    card(ctx, x, gy, cw, ch, {stroke: rgba(TP(), .3), r: 16});
+    txt(ctx, 'الحرامي ٢', x + cw/2, gy + 30, {size: 13, weight: 800, col: C()});
+    txt(ctx, wordOn('تبديل المهام', E.out(tl_p(s, f, 1, .3, .7))), x + cw/2, gy + 62, {size: 22, font: 'hand', weight: 700, col: TP()});
+    iconPhone(ctx, x + cw*.22, gy + ch*.45, 22, rgba(TP(), .8), tl_p(s, f, 1, .35, .7));
+    /* شريط الانتباه بيتفتت */
+    const bw2 = cw*.52, bx2 = x + cw*.40, by2 = gy + ch*.42;
+    const frP = tl_p(s, f, 1, .5, .95);
+    rr(ctx, bx2, by2, bw2, 16, 8); ctx.fillStyle = 'rgba(255,255,255,.07)'; ctx.fill();
+    if (frP > 0){
+      for (let i = 0; i < 5; i++){
+        const sp = E.out(stagger(frP, i, 5, .6));
+        ctx.save(); ctx.globalAlpha = sp;
+        rr(ctx, bx2 + 2 + i*(bw2-4)/5, by2 + 2 - sp*0, (bw2-4)/5 - 3, 12, 5);
+        ctx.fillStyle = rgba(C(), .5 + .1*i); ctx.fill();
+        txt(ctx, NUM(2) + '٪', bx2 + 2 + i*(bw2-4)/5 + (bw2-4)/10, by2 + 30, {size: 9.5, col: rgba(TP(), .55), alpha: sp});
+        ctx.restore();
+      }
+    }
+    txt(ctx, wordOn('فاكرهم مع بعض؟ كل واحدة بتاخد ٢–٣٪', E.out(tl_p(s, f, 1, .7, 1))), x + cw/2, gy + ch*.72, {size: 13.5, col: rgba(TP(), .6)});
+    ctx.restore();
+  }
+  /* شريط الأعراض — صف تحت الكارتين */
+  const sy = gy + ch + 16;
+  if (tl_p(s, f, 2, .1, .8) > 0){
+    const sym = ['إحساس بعدم الإنجاز', 'صعوبة تنظيم', 'تلكؤ في البدء', 'نفاد صبر'];
+    for (let i = 0; i < 4; i++){
+      const sp = E.back(stagger(tl_p(s, f, 2, .15, .9), i, 4, .55));
+      if (sp <= 0) continue;
+      const chipW = W*.205;
+      const xx = RTL ? W - W*.04 - chipW*(i+1) - i*W*.018 : W*.04 + i*(chipW + W*.018);
+      ctx.save(); ctx.globalAlpha = sp;
+      rr(ctx, xx, sy, chipW, 30, 999);
+      ctx.fillStyle = rgba(C(), .07); ctx.fill(); ctx.strokeStyle = rgba(C(), .35); ctx.lineWidth = 1; ctx.stroke();
+      txt(ctx, sym[i], xx + chipW/2, sy + 15, {size: 12, font: 'hand', col: rgba(TP(), .8)});
+      ctx.restore();
+    }
+  }
+};
+
+/* ١٢ · لوح القاعدة */
+DRAWERS.dRule = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  board(ctx, W, H, raw);
+  /* السؤال */
+  const q = tl_p(s, f, 0, .05, .85);
+  if (q > 0){
+    txt(ctx, wordOn('قبل أي قرار، اسأل نفسك:', E.out(q)), W/2, H*.20, {size: 16, font: 'hand', col: rgba(TP(), .7)});
+    const qp = E.out(tl_p(s, f, 0, .35, .95));
+    if (qp > 0){
+      ctx.save(); ctx.shadowColor = C(); ctx.shadowBlur = 12 * qp;
+      txt(ctx, wordOn('«إيه الفكرة اللي بتحركني دلوقتي؟»', qp), W/2, H*.32, {size: 23, font: 'hand', weight: 700, col: C()});
+      ctx.restore();
+    }
+  }
+  /* القاعدة الكبيرة */
+  const r = tl_p(s, f, 1, .05, .78);
+  if (r > 0){
+    ctx.save();
+    txt(ctx, wordOn('عايزين نعمل حاجة صح بسرعة', E.out(r)), W/2, H*.56, {size: 37, font: 'hand', weight: 700, col: TP()});
+    ctx.restore();
+    const r2 = tl_p(s, f, 1, .55, 1);
+    if (r2 > 0) txt(ctx, wordOn('مش نعمل حاجة بسرعة وبس', E.out(r2)), W/2, H*.71, {size: 24, font: 'hand', col: rgba(TP(), .55)});
+    const ul = tl_p(s, f, 1, .8, 1);
+    if (ul > 0){
+      ctx.save(); ctx.shadowColor = C(); ctx.shadowBlur = 12;
+      marker(ctx, [[W/2 + 250, H*.56 + 26], [W/2 - 250, H*.56 + 26]], ul, C(), 6);
+      ctx.restore();
+    }
+  }
+  /* الخاتمة */
+  const c = tl_p(s, f, 2, .15, .9);
+  if (c > 0){
+    txt(ctx, wordOn('معلومة صحيحة الأول — وبعدين فعل… زي الوضوء قبل الصلاة', E.out(c)), W/2, H*.87, {size: 15.5, font: 'hand', col: rgba(TP(), .75)});
+  }
+};
+
+/* ١٣ · ختام */
+DRAWERS.dClosing = (s, raw) => {
+  const {ctx, W, H} = s.S, f = playhead(raw, s.tl);
+  ctx.clearRect(0, 0, W, H);
+  ambient(ctx, W, H, raw);
+  board(ctx, W, H, raw);
+  const p = E.out(tl_p(s, f, 0, .05, .8));
+  ctx.save(); ctx.globalAlpha = .6 * p;
+  const cx = W/2, cy = H/2;
+  for (let i = 0; i < 2; i++){
+    const r = H*.32 + i*H*.12 + pulse(raw + i*90, 300) * 6;
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2);
+    ctx.strokeStyle = rgba(i ? C2() : C(), .18); ctx.lineWidth = 1.5; ctx.stroke();
+  }
+  ctx.restore();
+  flow(ctx, circlePts(W/2, H/2, Math.min(W,H)*.40, 80), raw, {n: 6, speed: .0015, r: 2.5, col: C2()});
+  const p2 = tl_p(s, f, 1, .1, .8);
+  if (p2 > 0){
+    ctx.save(); ctx.globalAlpha = p2;
+    txt(ctx, wordOn('…ومن إندونيسيا المسلمة، السرد بيقلع', E.out(p2)), W/2, H*.86, {size: 16, font: 'hand', col: rgba(TP(), .75)});
+    ctx.restore();
+  }
+};
+
+/* ============ الفصل والألوان ============ */
+const CHAPTERS = {
+  pain:  ['الوجع',        '#fb7185', '#f43f5e'],
+  idea:  ['إيه هو',       '#2dd4bf', '#14b8a6'],
+  mech:  ['بيشتغل إزاي',  '#fbbf24', '#f59e0b'],
+  field: ['على الأرض',    '#a78bfa', '#8b5cf6'],
+  act:   ['نفّذ',         '#34d399', '#10b981'],
+};
+function partOf(el){
+  for (const k in CHAPTERS) if (el.classList.contains('part-' + k)) return k;
+  return 'idea';
+}
+const chapFlash = document.getElementById('chapFlash');
+function flashChapter(name){
+  chapFlash.querySelector('span').textContent = name;
+  chapFlash.classList.remove('show');
+  void chapFlash.offsetWidth;
+  chapFlash.classList.add('show');
+}
+
+/* ============ بناء السلايدات ============ */
+const slides = Array.prototype.map.call(document.querySelectorAll('.slide'), el => {
+  const cv = el.querySelector('canvas');
+  const S = cv ? fit(cv) : null;
+  const lines = Array.prototype.map.call(el.querySelectorAll('.notes [data-beat]'), n => n.textContent.trim());
+  const tl = lines.length ? timeline(lines) : timeline(['…']);
+  return { el, cv, S, lines, tl, f: 0, draw: DRAWERS[el.dataset.draw] || null, lastBeat: -1 };
+});
+
+/* نقط التقدم + العداد */
+Array.prototype.forEach.call(document.querySelectorAll('.pd'), pd => {
+  for (let i = 0; i < slides.length; i++) pd.appendChild(document.createElement('i'));
+});
+function updateHUD(){
+  Array.prototype.forEach.call(document.querySelectorAll('.pd'), pd => {
+    Array.prototype.forEach.call(pd.children, (d, i) => d.classList.toggle('on', i === Deck.i));
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.cn'), c => {
+    c.textContent = NUM(Deck.i + 1) + ' / ' + NUM(slides.length);
+  });
+}
+
+/* لوحة النوتس */
+const notesPanel = document.getElementById('notesPanel');
+function buildNotes(){
+  const s = slides[Deck.i];
+  notesPanel.querySelector('h4').textContent = 'السكريبت — ' + (s.el.querySelector('h2,h1') ? s.el.querySelector('h2,h1').textContent.trim() : '');
+  const nb = notesPanel.querySelector('.nb');
+  nb.innerHTML = '';
+  s.lines.forEach((l, i) => {
+    const p = document.createElement('p');
+    p.textContent = l; p.dataset.i = i;
+    nb.appendChild(p);
+  });
+  s.lastBeat = -1;
+}
+function highlightBeat(){
+  const s = slides[Deck.i];
+  if (!s || !notesPanel.classList.contains('open')) return;
+  const b = currentBeat(playhead(s.f, s.tl), s.tl);
+  if (b !== s.lastBeat){
+    s.lastBeat = b;
+    Array.prototype.forEach.call(notesPanel.querySelectorAll('.nb p'), (p, i) => p.classList.toggle('now', i === b));
+  }
+}
+
+/* حلقة الرسم — السلايد الظاهرة بس */
+function tick(){
+  const s = slides[Deck.i];
+  if (s && s.draw && s.el.classList.contains('active')){
+    if (s.S && s.S.W > 0) s.draw(s, s.f++);
+    highlightBeat();
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ============ التنقل ============ */
+function go(n){
+  n = clamp(n, 0, slides.length - 1);
+  const prev = slides[Deck.i], s = slides[n];
+  const pk = partOf(s.el);
+  deckEl.style.setProperty('--c', CHAPTERS[pk][1]);
+  deckEl.style.setProperty('--c-2', CHAPTERS[pk][2]);
+  if (n !== Deck.i && partOf(prev.el) !== pk) flashChapter(CHAPTERS[pk][0]);
+  prev.el.classList.remove('active');
+  s.el.classList.add('active');
+  Deck.i = n; Deck.beat = 0; s.f = 0;
+  updateHUD(); buildNotes();
+}
+function beatNext(){
+  const s = slides[Deck.i];
+  if (Deck.beat < s.lines.length - 1){
+    Deck.beat++;
+    s.f = s.tl.spans[Deck.beat].a;   /* الرسمة بتلعب البيت الجديد من أوله */
+  } else go(Deck.i + 1);
+}
+function beatPrev(){
+  const s = slides[Deck.i];
+  if (Deck.beat > 0){ Deck.beat--; s.f = s.tl.spans[Deck.beat].a; }
+}
+
+/* توست */
+const toastEl = document.getElementById('toast');
+let toastT = 0;
+function toast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => toastEl.classList.remove('show'), 1400);
+}
+
+/* كيبورد — عربي: التالي بالسهم الشمال */
+addEventListener('keydown', e => {
+  const k = e.key;
+  if (k === 'ArrowLeft' || k === 'PageDown'){ e.preventDefault(); go(Deck.i + 1); }
+  else if (k === 'ArrowRight' || k === 'PageUp'){ e.preventDefault(); go(Deck.i - 1); }
+  else if (k === ' ' || k === 'ArrowDown' || k === 'Enter'){
+    e.preventDefault();
+    if (e.shiftKey && k === ' ') beatPrev();
+    else if (Deck.mode === 'step') beatNext();
+    else go(Deck.i + 1);
+  }
+  else if (k === 'ArrowUp'){ e.preventDefault(); go(Deck.i - 1); }
+  else if (k === 's' || k === 'S' || k === 'س'){
+    Deck.mode = Deck.mode === 'auto' ? 'step' : 'auto';
+    const s = slides[Deck.i];
+    if (Deck.mode === 'step') s.f = s.tl.spans[Math.min(Deck.beat, s.tl.spans.length-1)].a;
+    toast(Deck.mode === 'auto' ? 'وضع أوتو — الرسمة بتمشي لوحدها' : 'وضع خطوة — مسافة للبيت الجاي');
+  }
+  else if (k === 'r' || k === 'R' || k === 'ر'){ slides[Deck.i].f = 0; Deck.beat = 0; toast('إعادة الرسمة'); }
+  else if (k === 'n' || k === 'N' || k === 'ن'){ notesPanel.classList.toggle('open'); }
+  else if (k === 'f' || k === 'F' || k === 'ب'){ document.body.classList.toggle('filming'); toast(document.body.classList.contains('filming') ? 'وضع التصوير — الواجهة اختفت' : 'رجعت الواجهة'); }
+  else if (k === 'Home'){ go(0); }
+  else if (k === 'End'){ go(slides.length - 1); }
+});
+
+/* بدا */
+go(0);
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>

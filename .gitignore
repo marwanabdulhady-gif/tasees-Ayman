@@ -1,7 +1,9 @@
-.cache/
-.venv/
 __pycache__/
 *.pyc
+.venv*/
+.venv/
+cookies.txt
+.cache/
 node_modules/
 .DS_Store
 data/ocr/

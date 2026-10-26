@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="Cairo, sans-serif">
+<rect width="1200" height="675" fill="#0e1b2e"/>
+<text x="600" y="64" fill="#e8f1f8" font-size="38" text-anchor="middle" font-weight="bold">بطاقة الرقم الخماسية + كدبات الإطار الأربع</text>
+<g font-size="24" text-anchor="middle">
+<rect x="60" y="104" width="212" height="80" rx="12" fill="#123a5c" stroke="#f2b134" stroke-width="3"/><text x="166" y="150" fill="#e8f1f8">١ المصدر ومصلحته</text>
+<rect x="288" y="104" width="212" height="80" rx="12" fill="#123a5c" stroke="#f2b134" stroke-width="3"/><text x="394" y="150" fill="#e8f1f8">٢ عدّ/قياس/تقدير</text>
+<rect x="516" y="104" width="212" height="80" rx="12" fill="#123a5c" stroke="#f2b134" stroke-width="3"/><text x="622" y="150" fill="#e8f1f8">٣ عينة وفترة</text>
+<rect x="744" y="104" width="212" height="80" rx="12" fill="#123a5c" stroke="#f2b134" stroke-width="3"/><text x="850" y="150" fill="#e8f1f8">٤ التعريف</text>
+<rect x="972" y="104" width="168" height="80" rx="12" fill="#123a5c" stroke="#f2b134" stroke-width="3"/><text x="1056" y="150" fill="#e8f1f8">٥ المقارنة</text>
+</g>
+<g font-size="22" fill="#bcd6e6" text-anchor="middle">
+<rect x="120" y="220" width="960" height="58" rx="12" fill="#0f2740"><title></title></rect><text x="600" y="257">محور مقطوع: الصفر فين؟ · عينة غير ممثلة: مين بره؟</text>
+<rect x="120" y="292" width="960" height="58" rx="12" fill="#0f2740"/><text x="600" y="329">ارتباط≠سببية: دوّر على المتغير التالت · مقام ناقص: مقابل كام ومن كام؟</text>
+<rect x="120" y="364" width="960" height="58" rx="12" fill="#0f2740"/><text x="600" y="401">فخ المتوسط: اسأل الوسيط والتوزيع</text>
+<rect x="120" y="436" width="960" height="58" rx="12" fill="#0f2740"/><text x="600" y="473">الحكم النهائي: إشارة · دليل · انطباع مرقّم</text>
+<rect x="120" y="508" width="960" height="58" rx="12" fill="#0f2740"/><text x="600" y="545">رقمك أنت: اعرض بطاقته معاه واعرض الأضعف أولًا</text>
+</g>
+<text x="600" y="630" fill="#7fa3bb" font-size="20" text-anchor="middle">مشروع تأسيس — الوحدة 2 v0.4 — الأسبوع 7</text>
+</svg>

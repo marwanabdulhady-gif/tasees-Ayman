@@ -1,0 +1,14 @@
+record_type,participant_code,track,timepoint,metric,value,optional_evidence_or_comment,action,privacy
+consent,P001,young_adult,pre,consent_confirmed,yes,,,key_separate
+baseline,P001,young_adult,pre,task_A_fall_four_stages_0_4,,,,aggregate_only
+baseline,P001,young_adult,pre,task_B_charge_word_card_0_3,,,,aggregate_only
+baseline,P001,young_adult,pre,task_C_ruler_balance_3_3,,,,aggregate_only
+weekly,P001,young_adult,w22,mission_report_card_yazid_done,yes/no,,,aggregate_only
+weekly,P001,young_adult,w23,mission_fall_table_done,yes/no,,,aggregate_only
+weekly,P001,young_adult,w24,mission_golden_table_done,yes/no,,,aggregate_only
+weekly,P001,young_adult,w25,mission_unit6_file_done,yes/no,,,aggregate_only
+post,P001,young_adult,post,task_A_fall_four_stages_0_4,,,,aggregate_only
+post,P001,young_adult,post,task_B_charge_word_card_0_3,,,,aggregate_only
+post,P001,young_adult,post,task_C_ruler_balance_3_3,,,,aggregate_only
+post,P001,young_adult,post,sectarian_neutrality_check,0/1,,خلو الملف من انحياز طائفي أو تلميع أو لعن,aggregate_only
+note,P001,young_adult,any,facilitator_note,,,,review_flag

@@ -1,0 +1,15 @@
+record_type,participant_code,track,timepoint,metric,value,optional_evidence_or_comment,action,privacy
+consent,P001,young_adult,pre,consent_confirmed,yes,,,key_separate
+baseline,P001,young_adult,pre,task_A_two_sunsets_map_0_4,,,,aggregate_only
+baseline,P001,young_adult,pre,task_B_terms_arsenal_0_4,,,,aggregate_only
+baseline,P001,young_adult,pre,task_C_ruler_balance_3_3,,,,aggregate_only
+weekly,P001,young_adult,w27,mission_map_1492_done,yes/no,,,aggregate_only
+weekly,P001,young_adult,w28,mission_ottoman_balance_done,yes/no,,,aggregate_only
+weekly,P001,young_adult,w29,mission_classify_three_news_done,yes/no,,,aggregate_only
+weekly,P001,young_adult,w30,mission_unit7_file_done,yes/no,,,aggregate_only
+post,P001,young_adult,post,task_A_two_sunsets_map_0_4,,,,aggregate_only
+post,P001,young_adult,post,task_B_terms_arsenal_0_4,,,,aggregate_only
+post,P001,young_adult,post,task_C_ruler_balance_3_3,,,,aggregate_only
+post,P001,young_adult,post,polarization_neutrality_check,0/1,,خلو الملف من تقديس أو شيطنة أو تحريض ديني أو استغلال حزبي,aggregate_only
+post,P001,young_adult,post,identity_card_built,0/1,,بطاقة الهوية (ضاع/فاضل/بيتجدد) مكتملة بمثال شخصي اختياري,aggregate_only
+note,P001,young_adult,any,facilitator_note,,,,review_flag

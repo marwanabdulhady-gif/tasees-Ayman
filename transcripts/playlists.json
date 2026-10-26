@@ -1,0 +1,35 @@
+{
+  "channel": "https://www.youtube.com/@AymanComplete",
+  "languages": ["ar", "ar-EG", "ar-SA"],
+  "playlists": [
+    {
+      "folder": "01-umayyad-abbasid-history",
+      "title": "تاريخ الأمويين والعباسيين",
+      "playlist_id": "PL9saDKf7tQ7tZIBOBtDxFgVBetGRl9KhO",
+      "sort_by_lecture": true
+    },
+    {
+      "folder": "02-linguistic-awareness",
+      "title": "دورة الوعي اللغوي",
+      "playlist_id": "PL9saDKf7tQ7usEdh1iKGgx69tgI5Vnfbp",
+      "sort_by_lecture": true
+    },
+    {
+      "folder": "03-psychology",
+      "title": "دورة علم النفس",
+      "playlist_id": "PL9saDKf7tQ7uklZkouvmrPOw7X7n_DGL2",
+      "sort_by_lecture": true
+    },
+    {
+      "folder": "04-seerah-makkah-period",
+      "title": "السيرة النبوية - العهد المكي",
+      "playlist_id": "PL9saDKf7tQ7syHLZjUqS4JcZhUuRgGxFu",
+      "sort_by_lecture": true
+    },
+    {
+      "folder": "05-reestablishing-muslim-awareness",
+      "title": "إعادة تأسيس وعي المسلم المعاصر",
+      "playlist_id": "PL9saDKf7tQ7uVWqOR1OrDCYR4-o2KYEQW"
+    }
+  ]
+}

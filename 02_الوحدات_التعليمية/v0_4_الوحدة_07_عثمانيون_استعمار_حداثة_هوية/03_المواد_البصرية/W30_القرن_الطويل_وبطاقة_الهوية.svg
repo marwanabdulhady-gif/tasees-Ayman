@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="'IBM Plex Sans Arabic','Noto Sans Arabic',Tahoma,sans-serif" direction="rtl">
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#D7DDE8" stroke-width="0.5"/></pattern>
+<marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2E7D57"/></marker>
+<marker id="arrR" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C23B30"/></marker>
+</defs>
+<rect width="1200" height="675" fill="#F7F8F3"/>
+<rect width="1200" height="675" fill="url(#grid)"/>
+<text x="600" y="52" text-anchor="middle" font-family="'Aref Ruqaa','Amiri',serif" font-size="34" fill="#19213A">القرن العشرون الطويل وبطاقة الهوية</text>
+<text x="600" y="82" text-anchor="middle" font-size="17" fill="#4A5470">من ١٩٠٨ للدول القُطرية — ومهارتان ٢٩ و٣٠: قراءة الخط وفحص الهوية</text>
+<rect x="40" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="129" y="133" text-anchor="middle" font-size="14" fill="#2E7D57">١٩٠٨</text>
+<text x="129" y="157" text-anchor="middle" font-size="14" fill="#4A5470">دستور ثم تتريك</text>
+<rect x="232" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="321" y="133" text-anchor="middle" font-size="14" fill="#2E7D57">١٩١٥–١٦</text>
+<text x="321" y="157" text-anchor="middle" font-size="14" fill="#4A5470">وعدان وتقسيم سري</text>
+<rect x="424" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="513" y="133" text-anchor="middle" font-size="14" fill="#2E7D57">١٩١٧</text>
+<text x="513" y="157" text-anchor="middle" font-size="14" fill="#4A5470">وعد بلفور</text>
+<rect x="616" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="705" y="133" text-anchor="middle" font-size="14" fill="#2E7D57">١٩٢٠</text>
+<text x="705" y="157" text-anchor="middle" font-size="14" fill="#4A5470">سان ريمو: الانتدابات</text>
+<rect x="808" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="897" y="133" text-anchor="middle" font-size="14" fill="#C23B30">١٩٢٤</text>
+<text x="897" y="157" text-anchor="middle" font-size="14" fill="#4A5470">إلغاء الخلافة</text>
+<rect x="1000" y="105" width="178" height="72" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="1089" y="133" text-anchor="middle" font-size="14" fill="#C23B30">—</text>
+<text x="1089" y="157" text-anchor="middle" font-size="14" fill="#4A5470">دول قُطرية وحدود من برا</text>
+<rect x="40" y="200" width="360" height="270" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="2"/>
+<text x="220" y="230" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">اللي ضاع — بصراحة</text>
+<text x="220" y="254" text-anchor="middle" font-size="14" fill="#C23B30">الوحدة السياسية — مفيش كيان جامع من ١٩٢٤</text>
+<text x="220" y="278" text-anchor="middle" font-size="14" fill="#C23B30">القرار الاقتصادي — من التبعية للهيمنة</text>
+<text x="220" y="302" text-anchor="middle" font-size="14" fill="#C23B30">اللغة في المجال العام — الفصحى انزوت</text>
+<text x="220" y="326" text-anchor="middle" font-size="14" fill="#C23B30">ثقة النموذج — صدمة ١٧٩٨ وعقدة النقص</text>
+<rect x="420" y="200" width="360" height="270" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2"/>
+<text x="600" y="230" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">اللي فاضل — بلا رومانسية</text>
+<text x="600" y="254" text-anchor="middle" font-size="14" fill="#2E7D57">القرآن — محفوظ بحرفه: واقعة تاريخية فريدة</text>
+<text x="600" y="278" text-anchor="middle" font-size="14" fill="#2E7D57">العربية ومخزونها — ابن خلدون يُقرأ اليوم</text>
+<text x="600" y="302" text-anchor="middle" font-size="14" fill="#2E7D57">الذاكرة الشعبية — تتوجع لفلسطين وتفرح لآيا صوفيا</text>
+<text x="600" y="326" text-anchor="middle" font-size="14" fill="#2E7D57">الشبكات — من طرق الحج للإنترنت</text>
+<rect x="800" y="200" width="360" height="270" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="2.5"/>
+<text x="980" y="230" text-anchor="middle" font-size="16" font-weight="700" fill="#19213A">اللي بيتجدد — بأدلة</text>
+<text x="980" y="254" text-anchor="middle" font-size="14" fill="#4A5470">تحقيق التراث ونشره بمقاييس علمية</text>
+<text x="980" y="278" text-anchor="middle" font-size="14" fill="#4A5470">محتوى عربي رقمي — ودورتك دي نفسها فعل تجديد</text>
+<text x="980" y="302" text-anchor="middle" font-size="14" fill="#4A5470">أوقاف جديدة ومؤسسات أهلية وتعليم مستقل</text>
+<text x="980" y="326" text-anchor="middle" font-size="14" fill="#2E7D57">الشبكات الكبيرة بتتولد من عقد صغيرة (و٢٣)</text>
+<rect x="40" y="492" width="1120" height="56" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="1.5"/>
+<text x="600" y="520" text-anchor="middle" font-size="14" fill="#C23B30">«القابلية للاستعمار» (مالك بن نبي): فحص للقابلية — لا لوم للضحية: الجريمة تفضل جريمة، والمستعمر يفضل مجرمًا — وإنت كمان ليك شروط نهضة تبنيها</text>
+<rect x="40" y="566" width="1120" height="50" rx="6" fill="#FFFFFF" stroke="#2E7D57" stroke-width="1.5"/>
+<text x="600" y="594" text-anchor="middle" font-size="14" fill="#20242C">مهارة ٢٩ — قراءة الخط: أي خط على خريطة أو في قانون: مين رسمه؟ بإيه وثيقة؟ وطلع منه إيه؟ — الخطوط مش قدرًا: رسمها بشر ويعدلها بشر</text>
+<text x="600" y="646" text-anchor="middle" font-size="13" fill="#20242C">المصادر: Q58 الثورة والتتريك · Q60–Q61 القرن الطويل والحدود · Q62 فلسطين · Q63–Q64 الخلافة والعلمانية · T (تجارب التحديث) · L (الوعي اللغوي — اللغة هوية)</text>
+<text x="600" y="666" text-anchor="middle" font-size="12" fill="#4A5470">مشروع تأسيس · الوحدة السابعة v0.4 · هوية v1 · ٢٥ أكتوبر ٢٠٢٦ — أسلوب مستوحى، ليس قولًا منسوبًا</text>
+</svg>

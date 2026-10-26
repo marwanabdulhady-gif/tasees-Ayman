@@ -1,0 +1,15 @@
+record_type,participant_code,track,timepoint,metric,value,optional_evidence_or_comment,action,privacy
+consent,P001,young_adult,pre,consent_confirmed,yes,,,key_separate
+baseline,P001,young_adult,pre,task_A_where_ummah_decompose_0_3,,,,aggregate_only
+baseline,P001,young_adult,pre,task_B_intermediary_functions_0_3,,,,aggregate_only
+baseline,P001,young_adult,pre,task_C_ruler_balance_3_3,,,,aggregate_only
+weekly,P001,young_adult,w31,mission_house_map_practice_done,yes/no,,,aggregate_only
+weekly,P001,young_adult,w32,mission_ladder_rung_circle_done,yes/no,,,aggregate_only
+weekly,P001,young_adult,w33,mission_idea_chain_card_done,yes/no,,,aggregate_only
+weekly,P001,young_adult,w34,mission_unit8_file_done,yes/no,,,aggregate_only
+post,P001,young_adult,post,task_A_where_ummah_decompose_0_3,,,,aggregate_only
+post,P001,young_adult,post,task_B_intermediary_functions_0_3,,,,aggregate_only
+post,P001,young_adult,post,task_C_ruler_balance_3_3,,,,aggregate_only
+post,P001,young_adult,post,safety_boundaries_check,0/1,,خلو الملف من إفصاح إجباري أو تمجيد حزبي أو تكفير أو تحريض أو مشروع خارج الشروط الستة,aggregate_only
+post,P001,young_adult,post,course_balance_built,0/1,,ميزان الدورة: مهارة واحدة على الأقل بقت سلوكًا + أدب واحد اتغير,aggregate_only
+note,P001,young_adult,any,facilitator_note,,,,review_flag
