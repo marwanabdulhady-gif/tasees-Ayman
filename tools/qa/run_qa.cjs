@@ -371,6 +371,71 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     qRealErrors.length === 0, qRealErrors.slice(0, 3).join(" ; "));
   await qPage.close();
 
+  // --- QA guard: hub links in atlas-modules/index.html must resolve ---
+  const hubHtml = fs.readFileSync(path.join(ROOT, "atlas-modules/index.html"), "utf8");
+  const hubLinks = [...hubHtml.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
+  const brokenHubLinks = [];
+  for (const href of hubLinks) {
+    if (href.startsWith("http")) continue; // external links are allowed
+    const target = path.resolve(path.join(ROOT, "atlas-modules", href));
+    if (!fs.existsSync(target)) brokenHubLinks.push(href);
+  }
+  check("12.1", "All internal hub links in atlas-modules/index.html resolve to existing files",
+    brokenHubLinks.length === 0, brokenHubLinks.length ? `broken=${brokenHubLinks.join(", ")}` : "all OK");
+
+  // --- QA guard: every volume with map pages must have hotspot coverage ---
+  const hubManifest = JSON.parse(fs.readFileSync(path.join(ROOT, "data/manifest.json"), "utf8"));
+  const vols = {};
+  for (const p of hubManifest.pages) {
+    if (p.category !== "map" && p.category !== "spread-map") continue;
+    const v = p.volumeId;
+    if (!vols[v]) vols[v] = { maps: 0, withHot: 0 };
+    vols[v].maps++;
+    if ((p.hotspots || []).length > 0) vols[v].withHot++;
+  }
+  // maps8 uses vector hotspots (maps8-vectors.js), not raster page hotspots — exclude
+  const volMissingHot = Object.entries(vols).filter(([v, s]) => v !== "maps8" && s.withHot === 0 && s.maps > 0);
+  check("12.2", "Every non-maps8 volume with map pages has at least one page with clickable hotspots",
+    volMissingHot.length === 0, volMissingHot.length ? `no-hotspot-volumes=${volMissingHot.map(([v])=>v).join(",")}` : "all covered");
+
+  const dawalReview = JSON.parse(fs.readFileSync(path.join(ROOT, "data/dawal_hotspot_review.json"), "utf8"));
+  const placementErrors = require("../refine_dawal_hotspots.cjs").validate(dawalReview, hubManifest);
+  check("12.2", "Dawal reviewed anchors match source-image hashes and pixel coordinates; pending anchors stay estimated",
+    placementErrors.length === 0, `${Object.keys(dawalReview.pages).length}/89 visually reviewed; ${placementErrors.join("; ")}`);
+  const bundleText = fs.readFileSync(path.join(ROOT, "data/atlas-bundle.js"), "utf8");
+  const bundleBase64 = bundleText.match(/=\s*"([A-Za-z0-9+/=]+)"/)[1];
+  const bundledManifest = JSON.parse(zlib.gunzipSync(Buffer.from(bundleBase64, "base64")));
+  check("12.1", "Browser manifest bundle exactly matches manifest.json", JSON.stringify(bundledManifest) === JSON.stringify(hubManifest));
+
+  // Exercise every reviewed city through the real TOC -> viewer -> info-card path.
+  const dPage = await openOfflinePage(mainUrl, 1440, 900);
+  await dPage.waitForSelector('.vol-pill[data-vol="dawal"]', { timeout: 20000 });
+  const dawalClickFailures = [];
+  for (const [id, review] of Object.entries(dawalReview.pages)) {
+    await dPage.click('.nav-tab[data-tab="toc"]');
+    await dPage.select("#toc-vol-sel", "dawal");
+    await dPage.evaluate((pid) => {
+      const card = document.querySelector(`[data-open-pid="${pid}"]`);
+      if (!card) throw new Error(`Missing TOC entry: ${pid}`);
+      card.click();
+    }, id);
+    const selector = `.raster-hotspot[data-hsid="${id}-reviewed-city"]`;
+    await dPage.waitForSelector(selector, { timeout: 10000 });
+    const passed = await dPage.evaluate((sel, r) => {
+      const hotspot = document.querySelector(sel);
+      hotspot.click();
+      const card = document.querySelector(".feature-card");
+      return card && card.querySelector("h4").textContent === r.name &&
+        card.textContent.includes("محقق بصريًا") &&
+        Math.abs(parseFloat(hotspot.style.left) + 2.5 - r.pixelX / r.width * 100) < .011 &&
+        Math.abs(parseFloat(hotspot.style.top) + 2.5 - r.pixelY / r.height * 100) < .011;
+    }, selector, review);
+    if (!passed) dawalClickFailures.push(id);
+  }
+  check("12.2", "Every visually reviewed Dawal anchor renders at its measured position and opens its own info card offline",
+    dawalClickFailures.length === 0, `${Object.keys(dawalReview.pages).length} anchors; failures=${dawalClickFailures.join(",")}`);
+  await dPage.close();
+
   await browser.close();
 
   const passed = results.filter((r) => r.ok).length;
