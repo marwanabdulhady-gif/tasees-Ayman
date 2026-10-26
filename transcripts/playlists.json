@@ -1,6 +1,10 @@
 {
   "channel": "https://www.youtube.com/@AymanComplete",
-  "languages": ["ar", "ar-EG", "ar-SA"],
+  "languages": [
+    "ar",
+    "ar-EG",
+    "ar-SA"
+  ],
   "playlists": [
     {
       "folder": "01-umayyad-abbasid-history",
@@ -28,8 +32,22 @@
     },
     {
       "folder": "05-reestablishing-muslim-awareness",
-      "title": "إعادة تأسيس وعي المسلم المعاصر",
-      "playlist_id": "PL9saDKf7tQ7uVWqOR1OrDCYR4-o2KYEQW"
+      "title": "محاضرات متفرقة",
+      "playlist_id": "PL9saDKf7tQ7uVWqOR1OrDCYR4-o2KYEQW",
+      "youtube_title": "أيمن عبدالرحيم , محاضرات متفرقة",
+      "title_note": "تصحيح 2026-10-26: الاسم المسجَّل سابقًا «إعادة تأسيس وعي المسلم المعاصر» كان خطأً؛ القائمة على يوتيوب اسمها «محاضرات متفرقة» (٤٥ فيديو)، وفيها محاضرة واحدة عنوانها «إعادة تأسيس وعي المسلم المعاصر 2». الدورة الحقيقية «دورة تأسيس وعي المسلم المعاصر» قائمة مستقلة (١٧ فيديو) وليست عندنا تفريغها. اسم المجلد لم يُغيَّر حفاظًا على المسارات."
+    },
+    {
+      "folder": "06-tasees-muslim-awareness",
+      "title": "دورة تأسيس وعي المسلم المعاصر (المستوى الأول والثاني)",
+      "youtube_title": "أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر",
+      "playlist_id": "PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+      "sort_by_lecture": true,
+      "levels": {
+        "الأول": "الحلقات ٠١–٠٩",
+        "الثاني": "الحلقات ١٠–١٧"
+      },
+      "note": "١٧ فيديو في قائمة واحدة = ٩ محاضرات مستوى أول + ٨ مستوى ثاني. الحلقة ١٦ (م٧ مستوى ثاني) بلا ترجمة."
     }
   ]
 }

@@ -1,4 +1,4 @@
-# إعادة تأسيس وعي المسلم المعاصر
+# محاضرات متفرقة
 
 قائمة التشغيل: https://www.youtube.com/playlist?list=PL9saDKf7tQ7uVWqOR1OrDCYR4-o2KYEQW
 

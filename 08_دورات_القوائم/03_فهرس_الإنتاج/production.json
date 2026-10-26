@@ -1,0 +1,242 @@
+{
+ "channel": "https://www.youtube.com/@AymanComplete",
+ "verified_on": "2026-10-26",
+ "totals": {
+  "official_playlists": 11,
+  "official_rows": 12,
+  "official_videos": 185,
+  "unofficial": 3,
+  "with_transcripts": 7,
+  "external_corpora": 3,
+  "lessons_written": 10
+ },
+ "productions": [
+  {
+   "id": "tasees-1",
+   "title": "دورة تأسيس وعي المسلم المعاصر — المستوى الأول",
+   "family": "تأسيس",
+   "kind": "دورة",
+   "playlist_id": "PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+   "videos": 9,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": "06-tasees-muslim-awareness",
+   "transcript_episodes": 9
+  },
+  {
+   "id": "tasees-2",
+   "title": "دورة تأسيس وعي المسلم المعاصر — المستوى الثاني",
+   "family": "تأسيس",
+   "kind": "دورة",
+   "playlist_id": "PL9saDKf7tQ7u280crdGI8ZsWu782ZVsDU",
+   "videos": 8,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": "06-tasees-muslim-awareness",
+   "transcript_episodes": 8
+  },
+  {
+   "id": "tasis-marifi-2",
+   "title": "دورة التأسيس المعرفي 2",
+   "family": "تأسيس",
+   "kind": "دورة",
+   "playlist_id": "PLD6aiwS_5jn17bK4P5HwCQwuT3AHQuohG",
+   "videos": 8,
+   "official": false,
+   "channel": "MEPHYCS",
+   "transcripts_folder": null,
+   "transcript_episodes": 0
+  },
+  {
+   "id": "mutafarriqa",
+   "title": "محاضرات متفرقة (وفيها محاضرة «إعادة تأسيس وعي المسلم المعاصر»)",
+   "family": "تأسيس",
+   "kind": "سلسلة",
+   "playlist_id": "PL9saDKf7tQ7uVWqOR1OrDCYR4-o2KYEQW",
+   "videos": 45,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": "05-reestablishing-muslim-awareness",
+   "transcript_episodes": 45
+  },
+  {
+   "id": "psychology",
+   "title": "دورة علم النفس — كاملة",
+   "family": "علوم",
+   "kind": "دورة",
+   "playlist_id": "PL9saDKf7tQ7uklZkouvmrPOw7X7n_DGL2",
+   "videos": 10,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": "03-psychology",
+   "transcript_episodes": 10
+  },
+  {
+   "id": "linguistic-awareness",
+   "title": "دورة الوعي اللغوي — الدورة الكاملة",
+   "family": "علوم",
+   "kind": "دورة",
+   "playlist_id": "PL9saDKf7tQ7usEdh1iKGgx69tgI5Vnfbp",
+   "videos": 9,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": "02-linguistic-awareness",
+   "transcript_episodes": 9
+  },
+  {
+   "id": "intro-linguistics",
+   "title": "مدخل إلى علم اللغة — المجموعة الكاملة",
+   "family": "علوم",
+   "kind": "دورة",
+   "playlist_id": "PL9saDKf7tQ7tfeKVyG4brVYVZQoenUUo_",
+   "videos": 9,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": null,
+   "transcript_episodes": 0
+  },
+  {
+   "id": "how-to-learn",
+   "title": "كيف أتعلم",
+   "family": "علوم",
+   "kind": "سلسلة",
+   "playlist_id": "PL9saDKf7tQ7uPlqhlafX3tRbnr4oKrvQG",
+   "videos": 3,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": null,
+   "transcript_episodes": 0
+  },
+  {
+   "id": "muslim-home",
+   "title": "دورة البيت المسلم",
+   "family": "علوم",
+   "kind": "دورة",
+   "playlist_id": "PL9saDKf7tQ7s6d8UMa9PjnnQ-TS2wpb4d",
+   "videos": 6,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": null,
+   "transcript_episodes": 0
+  },
+  {
+   "id": "umayyad-abbasid",
+   "title": "تاريخ الأمويين والعباسيين",
+   "family": "تاريخ",
+   "kind": "دورة",
+   "playlist_id": "PL9saDKf7tQ7tZIBOBtDxFgVBetGRl9KhO",
+   "videos": 6,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": "01-umayyad-abbasid-history",
+   "transcript_episodes": 6
+  },
+  {
+   "id": "seerah-makkah",
+   "title": "سلسلة السيرة النبوية — العهد المكي",
+   "family": "تاريخ",
+   "kind": "دورة",
+   "playlist_id": "PL9saDKf7tQ7syHLZjUqS4JcZhUuRgGxFu",
+   "videos": 6,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": "04-seerah-makkah-period",
+   "transcript_episodes": 6
+  },
+  {
+   "id": "bara-alsandouq",
+   "title": "برة الصندوق — السلسلة كاملة",
+   "family": "وعي",
+   "kind": "برنامج",
+   "playlist_id": "PL9saDKf7tQ7vRKXzW0Rlaa8WFLqUTNI34",
+   "videos": 11,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": null,
+   "transcript_episodes": 0
+  },
+  {
+   "id": "muqtatafat",
+   "title": "مقتطفات صغيرة",
+   "family": "وعي",
+   "kind": "سلسلة",
+   "playlist_id": "PL9saDKf7tQ7u0JzFN1TVOFKXJQbtuYWle",
+   "videos": 63,
+   "official": true,
+   "channel": "@AymanComplete",
+   "transcripts_folder": null,
+   "transcript_episodes": 0
+  },
+  {
+   "id": "fan-193",
+   "title": "المُهَنْدِس أيمن عبد الرحيم (تجميعة ١٩٣ فيديو)",
+   "family": "تجميعات",
+   "kind": "تجميعة",
+   "playlist_id": "PLug4Oyw1OntDyE18Sd1Ewam_5OTgrmE2Q",
+   "videos": 193,
+   "official": false,
+   "channel": "Amir Ahmed",
+   "transcripts_folder": null,
+   "transcript_episodes": 0
+  },
+  {
+   "id": "fan-psychology-38",
+   "title": "علم النفس (تجميعة ٣٨ فيديو)",
+   "family": "تجميعات",
+   "kind": "تجميعة",
+   "playlist_id": "PL7bWYmoNujBs4yiMfAyRSwINO7j7GYm7J",
+   "videos": 38,
+   "official": false,
+   "channel": "ABDULLAH Shrif",
+   "transcripts_folder": null,
+   "transcript_episodes": 0
+  }
+ ],
+ "external_corpora": [
+  {
+   "id": "yaqeen",
+   "title": "رحلة اليقين",
+   "owner": "د. إياد قنيبي",
+   "episodes": 48,
+   "local_path": "01_تفريغات_ومصادر/رحلة_اليقين/حلقات/",
+   "format": "تفريغ من PDF بلا طوابع زمنية",
+   "playlist_id": "PL56IcDjrf3YJr__TEOJ2UOv3jCzht1_yc",
+   "note": "موجودة في المشروع كمصدر خام (٤٨ ملفًا استُخرجت اليوم من ZIP كان مغلقًا)، لكنها **ليست من إنتاج المهندس**، ولا تدخل دورات القوائم."
+  },
+  {
+   "id": "100-question",
+   "title": "١٠٠ سؤال في التاريخ",
+   "owner": "أ. محمد إلهامي",
+   "episodes": 70,
+   "local_path": "01_تفريغات_ومصادر/100_سؤال_في_التاريخ/transcripts/",
+   "format": "تفريغ بطوابع + روابط",
+   "playlist_id": "PLVVfonyXVJI3BXB9Wd2C5yXMr63w3SGXB",
+   "note": "موجودة كاملة (٧٠ حلقة). ليست من إنتاج المهندس."
+  },
+  {
+   "id": "where-road",
+   "title": "أين الطريق",
+   "owner": "الشيخ حازم صلاح أبو إسماعيل",
+   "episodes": 16,
+   "local_path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/",
+   "format": "تفريغ بلا طوابع (v0.1، غير مكتمل)",
+   "playlist_id": null,
+   "note": "١٦ ملفًا فقط من سلسلة أطول، وبلا طوابع زمنية. ليست من إنتاج المهندس."
+  }
+ ],
+ "not_his": [
+  {
+   "title": "١٠٠ سؤال (برنامج تلفزيوني)",
+   "owner": "إعلامي — تقديم راغدة شلهوب",
+   "playlist_id": null,
+   "reason": "برنامج توك شو على قناة الحياة، لا علاقة له بالمهندس ولا بدورة تأسيس، ويُخلط باسمه مع سلسلة «١٠٠ سؤال في التاريخ»."
+  }
+ ],
+ "to_verify": [
+  "الدورة التعريفية بالعلوم الإسلامية — مذكورة في فهارس تلغرام شيخ العمود بلا قائمة رسمية متحقَّقة",
+  "الدورة التعريفية بالعلوم الإنسانية — نفس الحالة",
+  "تاريخ الخلفاء الراشدين — ملفات صوتية على تلغرام، بلا قائمة يوتيوب متحقَّقة",
+  "هندسة النهضة عند مالك بن نبي — محاضرات منشورة مفردة، بلا قائمة",
+  "التأسيس المعرفي 1 (مقابل التأسيس المعرفي 2) — لم تُعثر على قائمته"
+ ]
+}
