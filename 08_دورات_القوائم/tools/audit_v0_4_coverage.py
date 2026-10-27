@@ -13,7 +13,7 @@
 فك الإسناد:
   * معرّف الصف (M5V5-Q16 = وحدة ٥ إصدار v5 مادة Q16) يحمل الحرف الدال على الكوربس:
     Q ١٠٠ سؤال · H الأمويون والعباسيون · S السيرة المكية · L الوعي اللغوي ·
-    Y رحلة اليقين · T تأسيس وعي المسلم المعاصر (وفي و1/و2 بالحرف T يراد به
+    N علم النفس (03-psychology) · Y رحلة اليقين · T تأسيس وعي المسلم المعاصر (وفي و1/و2 بالحرف T يراد به
     «إعادة تأسيس الوعي» — تمييزه بالمسار `05-reestablishing`) · AT أين الطريق.
   * بعض الصفوف كُتب معرّفها بحرف لا يطابق كوربسها (S في وحدة ٢ وهي من Q، وR في و1
     وهي من رحلة اليقين…) → تُفكّ من `OVERRIDES` أدناه بالمسار أو بالنص، لا بالتخمين.
@@ -56,6 +56,7 @@ OVERRIDES = {
 PREFIX = {
     "Q": "q100-history", "H": "ayman-umayyad-abbasid", "S": "ayman-seerah-makkah",
     "L": "ayman-linguistic-awareness", "Y": "rihlat-alyaqeen", "T": "ayman-tasees",
+    "N": "ayman-psychology",
 }
 
 AR = str.maketrans("0123456789", "٠١٢٣٤٥٦٧٨٩")
@@ -88,6 +89,9 @@ def attribute(r):
     if "05-reestablishing" in src:
         m = re.search(r"-T(\d+)", rid)
         return "ayman-reestablishing-awareness", int(m.group(1)) if m else None
+    if "03-psychology" in src:
+        m = re.search(r"-N(\d+)", rid)
+        return "ayman-psychology", int(m.group(1)) if m else None
     if "02-linguistic" in src:
         m = re.search(r"-L(\d+)", rid) or re.search(r"/(\d{1,2})\s*[-–]", src)
         return "ayman-linguistic-awareness", int(m.group(1)) if m else None
@@ -109,7 +113,7 @@ def attribute(r):
     if "ayn_al_tariq" in src or "أين_الطريق" in src:
         m = re.search(r"/(\d{1,2})\s*[-–]", src)
         return "AT", int(m.group(1)) if m else None
-    m = re.match(r"M\d+V\d-([QHLSYT])(\d+)", rid)
+    m = re.match(r"M\d+V\d-([QHLSYNT])(\d+)", rid)
     if m:
         pre, n = m.group(1), int(m.group(2))
         if pre == "T":
