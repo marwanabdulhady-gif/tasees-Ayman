@@ -179,7 +179,7 @@ WEEKS = [
                  "A scholar's low wooden desk lit by a small oil lamp: an open blank manuscript, a neat row of blank index cards, a reed pen and inkwell. No person.")],
          photos=["مقتنيات_تاريخية/نقش_زهير_24هـ_أقدم_نقش_إسلامي_مؤرخ_01.jpg", "مقتنيات_تاريخية/ورقة_مصحف_خط_حجازي_رق_القرن_7_reddit.jpg"],
          authored=[]),
-    dict(w=14, u=4, title="الرجل في الغار: العهد المكي ثلاثة عشر عامًا", status="نص جاهز",
+    dict(w=14, u=4, title="النبي ﷺ في الغار: العهد المكي ثلاثة عشر عامًا", status="نص جاهز",
          svg="W14_مشجر_محطات_مكة.svg",
          ix=[("P14", "أول أمر نزل: تتوقع كان إيه؟", "الكتلة ١"),
              ("P11", "خط مكة الزمني (١٣ سنة) مربوط بخريطة مكة وطريق الهجرة", "W14 SVG + خرائط المكتبة"),
