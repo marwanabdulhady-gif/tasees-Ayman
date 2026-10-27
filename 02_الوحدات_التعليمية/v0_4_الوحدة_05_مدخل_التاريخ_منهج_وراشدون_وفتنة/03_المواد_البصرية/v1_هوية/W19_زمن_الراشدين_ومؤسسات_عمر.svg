@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="'IBM Plex Sans Arabic', 'Noto Sans Arabic', Tahoma, sans-serif"><defs><pattern id="v1grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0 H0 V24" fill="none" stroke="#D7DDE8" stroke-width="0.7"/></pattern></defs>
+<rect width="1200" height="675" fill="#F7F8F3"/><rect width="1200" height="675" fill="url(#v1grid)"/>
+<text x="600" y="58" fill="#19213A" font-size="34" text-anchor="middle" font-weight="bold">زمن الراشدين: انتقال بلا وراثة + دولة مؤسسات</text>
+<g font-size="20" text-anchor="middle" fill="#19213A">
+<rect x="70" y="96" width="250" height="104" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="195" y="128" fill="#19213A" font-size="24" text-anchor="middle" >أبو بكر</text>
+<text x="195" y="156" fill="#4A5470" font-size="17" text-anchor="middle" >١١–١٣هـ</text>
+<text x="195" y="182" fill="#4A5470" font-size="13" text-anchor="middle" >السقيفة: شورى+بيعة · الر</text>
+<text x="195" y="200" fill="#4A5470" font-size="13" text-anchor="middle" >دة: وحدة+ركن</text>
+<rect x="340" y="96" width="250" height="104" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="465" y="128" fill="#19213A" font-size="24" text-anchor="middle" >عمر</text>
+<text x="465" y="156" fill="#4A5470" font-size="17" text-anchor="middle" >١٣–٢٣هـ</text>
+<text x="465" y="182" fill="#4A5470" font-size="13" text-anchor="middle" >الفتوح + المؤسسات الست ·</text>
+<text x="465" y="200" fill="#4A5470" font-size="13" text-anchor="middle" > «من أين لك هذا؟»</text>
+<rect x="610" y="96" width="250" height="104" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/>
+<text x="735" y="128" fill="#19213A" font-size="24" text-anchor="middle" >عثمان</text>
+<text x="735" y="156" fill="#4A5470" font-size="17" text-anchor="middle" >٢٣–٣٥هـ</text>
+<text x="735" y="182" fill="#4A5470" font-size="13" text-anchor="middle" >أقصى اتساع · الأسطول · ا</text>
+<text x="735" y="200" fill="#4A5470" font-size="13" text-anchor="middle" >لمصحف الإمام</text>
+<rect x="880" y="96" width="250" height="104" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="3"/>
+<text x="1005" y="128" fill="#19213A" font-size="24" text-anchor="middle" >علي</text>
+<text x="1005" y="156" fill="#4A5470" font-size="17" text-anchor="middle" >٣٥–٤٠هـ</text>
+<text x="1005" y="182" fill="#4A5470" font-size="13" text-anchor="middle" >الفتنة الكبرى · التحكيم </text>
+<text x="1005" y="200" fill="#4A5470" font-size="13" text-anchor="middle" >· مقتله ٤٠هـ</text>
+</g>
+<text x="600" y="244" fill="#19213A" font-size="22" text-anchor="middle" font-weight="bold">مؤسسات عمر — كل بند «أول مرة في تاريخ المنطقة»</text>
+<g font-size="20" text-anchor="middle" fill="#19213A">
+<rect x="70" y="264" width="350" height="78" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="245" y="296" fill="#19213A" font-size="20" text-anchor="middle" >الدواوين</text>
+<text x="245" y="322" fill="#4A5470" font-size="15" text-anchor="middle" >مرتبات بجداول — دولة إدارة لا بيت شيخ</text>
+<rect x="440" y="264" width="350" height="78" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="615" y="296" fill="#19213A" font-size="20" text-anchor="middle" >التقويم الهجري</text>
+<text x="615" y="322" fill="#4A5470" font-size="15" text-anchor="middle" >قرار هوية في ثوب إداري</text>
+<rect x="810" y="264" width="350" height="78" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="985" y="296" fill="#19213A" font-size="20" text-anchor="middle" >القضاء المستقل</text>
+<text x="985" y="322" fill="#4A5470" font-size="15" text-anchor="middle" >فصل سلطات قبل مونتسكيو بألف ومية سنة</text>
+<rect x="70" y="356" width="350" height="78" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="245" y="388" fill="#19213A" font-size="20" text-anchor="middle" >الحسبة والسوق</text>
+<text x="245" y="414" fill="#4A5470" font-size="15" text-anchor="middle" >حماية اقتصادية للعامة</text>
+<rect x="440" y="356" width="350" height="78" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="615" y="388" fill="#19213A" font-size="20" text-anchor="middle" >محاسبة الولاة</text>
+<text x="615" y="414" fill="#4A5470" font-size="15" text-anchor="middle" >حصر الثروة قبل وبعد — «من أين لك هذا؟»</text>
+<rect x="810" y="356" width="350" height="78" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/>
+<text x="985" y="388" fill="#19213A" font-size="20" text-anchor="middle" >بيت المال والرعاية</text>
+<text x="985" y="414" fill="#4A5470" font-size="15" text-anchor="middle" >رعاية اجتماعية حتى لغير المسلمين</text>
+</g>
+<rect x="70" y="466" width="1060" height="52" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="0"/>
+<text x="600" y="498" fill="#4A5470" font-size="19" text-anchor="middle" >قصة ابن القبطي: «متى استعبدتم الناس وقد ولدتهم أمهاتهم أحرارًا؟» — محاسبة الولاة واقعة بأسمائها</text>
+<rect x="70" y="530" width="1060" height="52" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="0"/>
+<text x="600" y="562" fill="#4A5470" font-size="19" text-anchor="middle" >الفتح ≠ الاستعمار: الأرض · الدين · المال · شهادة المفتوحين — وسؤال الأحقية: وقائع/أفهام/ثمرة = الأدب</text>
+<text x="600" y="640" fill="#4A5470" font-size="20" text-anchor="middle">مشروع تأسيس — الوحدة 5 v0.4 — الأسبوع 19 — بلا تجسيد · هوية v1</text>
+</svg>

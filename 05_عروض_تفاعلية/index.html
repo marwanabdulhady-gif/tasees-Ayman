@@ -1,11 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=محاضرة_01_عالم_الأفكار.html">
-<title>مشروع تأسيس — العروض التفاعلية</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تأسيس — العروض التفاعلية</title>
+<!--
+  L2 — فهرس العروض التفاعلية بهوية الكراسة.
+  لا يُعدَّل ملف المحاضرة نفسه؛ كل عرض جديد = بطاقة جديدة في <main> أسفله.
+  القائمة الفعلية لعروض اليوم: محاضرة_01_عالم_الأفكار.html (كما هي).
+-->
+<link rel="stylesheet" href="../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; }
+.wrap { max-width: 940px; margin: 0 auto; padding: 22px max(16px, env(safe-area-inset-left, 0px)) 44px; }
+.top { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 18px; border-bottom: 1.5px solid var(--ink); padding-bottom: 12px; }
+.top h1 { margin: 0; font-family: var(--f-display); font-size: var(--t-hero); line-height: 1.15; }
+.top p { margin: 6px 0 0; color: var(--ink-soft); font-size: var(--t-small); max-width: 44em; }
+.top .acts { margin-inline-start: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.deck { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 20px; }
+.card { display: flex; flex-direction: column; gap: 8px; border: 1.5px solid var(--rule); background: var(--card); border-radius: var(--radius); padding: 14px 16px 12px; text-decoration: none; color: inherit; }
+.card:hover, .card:focus-visible { border-color: var(--pen-blue); }
+.card .n { font: 700 var(--t-tag)/1 var(--f-body); color: var(--pen-blue); letter-spacing: .02em; }
+.card h2 { margin: 0; font-family: var(--f-display); font-size: 1.25rem; line-height: 1.35; }
+.card p { margin: 0; color: var(--ink-soft); font-size: var(--t-tag); }
+.card .go { margin-top: auto; font-size: var(--t-tag); color: var(--pen-blue); border-top: 1px dashed var(--rule); padding-top: 8px; }
+.note { margin-top: 20px; border: 1.5px dashed var(--ink-soft); border-radius: var(--radius); padding: 10px 13px; font-size: var(--t-small); color: var(--ink-soft); background: var(--paper); }
+.foot { margin-top: 24px; padding-top: 12px; border-top: 1.5px solid var(--rule); font-size: var(--t-tag); color: var(--ink-soft); }
+</style>
 </head>
-<body style="background:#07070d;color:#e5e7eb;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0">
-<p>جارٍ فتح <a style="color:#14b8a6" href="محاضرة_01_عالم_الأفكار.html">المحاضرة الأولى — عالم الأفكار</a>…</p>
+<body class="t-page">
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="t-eyebrow">العروض التفاعلية · تأسيس وعي المسلم المعاصر</div>
+      <h1>العروض</h1>
+      <p>كل عرض صفحة قائمة بذاتها: تُفتح من هنا أو تُعرض من الملف نفسه. العرض ليس بديلًا عن الأسبوع — الأسبوع فيه الشاشات والدفتر، والعرض شرح متصل لمحاضرة.</p>
+    </div>
+    <div class="acts">
+      <a class="t-btn t-btn--ghost" href="../course.html">مشغّل الدورة</a>
+      <a class="t-btn t-btn--ghost" href="../index.html">الأطلس الكامل</a>
+    </div>
+  </header>
+
+  <main class="deck">
+    <a class="card" href="محاضرة_01_عالم_الأفكار.html">
+      <span class="n">المحاضرة ١</span>
+      <h2>عالم الأفكار</h2>
+      <p>العرض الأول: من أين تجيء الأفكار، وكيف تُفحص قبل أن تُصدَّق. شرائح تفاعلية بلا تسجيل صوتي بعد (بوابة G13).</p>
+      <span class="go">افتح العرض ←</span>
+    </a>
+  </main>
+
+  <p class="note">عرض جديد = بطاقة جديدة هنا فقط. لا يُعدَّل ملف أي محاضرة قائمة.</p>
+
+  <footer class="foot">العروض في هذا المجلد · الدورة الرئيسة في <a href="../course.html">course.html</a> · الأطلس في <a href="../index.html">index.html</a>.</footer>
+</div>
 </body>
 </html>

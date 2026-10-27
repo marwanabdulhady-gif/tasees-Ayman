@@ -6,19 +6,19 @@
 
 | الملف | الحجم (بايت) | MD5 |
 |---|---:|---|
-| `01_facilitator_guide_module_04_v0_4.docx` | 43,393 | `f6d894a0e80c9fdb3c2fca999a2e366e` |
-| `02_learner_workbook_module_04_v0_4.docx` | 41,305 | `66f4730a584b9235ae05108b169cf125` |
-| `03_activity_cards_module_04_v0_4.docx` | 40,367 | `755932159b8741db89f2216be085ea80` |
-| `04_resource_registry_and_glossary_module_04_v0_4.docx` | 41,418 | `a6eb298b40e586277788f75d97170d3e` |
-| `05_assessment_and_pilot_module_04_v0_4.docx` | 40,923 | `24b5575fecc606aa6730bf93ca520d02` |
-| `06_operations_map_module_04_v0_4.xlsx` | 7,929 | `0efc4419cf2c266001803812faa74a74` |
-| `07_resource_registry_and_glossary_module_04_v0_4.xlsx` | 10,290 | `70b682c8d2779b1f2f80409d2b84edd7` |
-| `08_pilot_tracker_module_04_v0_4.xlsx` | 7,331 | `639389389d48a162f60b7591d0c2d220` |
-| `10_week_1_meeting_slides_module_04_v0_4.pptx` | 41,399 | `3d62163296a314338bb10c8f3b21fe2a` |
-| `11_week_2_meeting_slides_module_04_v0_4.pptx` | 41,415 | `f48266b2177f3bb54285104ffb8d1ebd` |
-| `12_week_3_meeting_slides_module_04_v0_4.pptx` | 41,590 | `b5558419c108b0e4c5fb07354d71ab07` |
-| `13_week_4_meeting_slides_module_04_v0_4.pptx` | 41,880 | `6bfd35aed8addc3b259ca22759084398` |
-| `14_session_scripts_module_04_v0_4.docx` | 62,849 | `eff1192bbc705c16991a88a7bfccb9c8` |
+| `01_facilitator_guide_module_04_v0_4.docx` | 43,393 | `4227d3d3625330df2563d6c09b3c38fa` |
+| `02_learner_workbook_module_04_v0_4.docx` | 41,310 | `f8567291e87cfdd914e9e5d8ba9c2052` |
+| `03_activity_cards_module_04_v0_4.docx` | 40,367 | `b55dfc10d162801b4bdf4ef7306d579d` |
+| `04_resource_registry_and_glossary_module_04_v0_4.docx` | 41,418 | `247782ddff5b04882805c02cde010ebe` |
+| `05_assessment_and_pilot_module_04_v0_4.docx` | 40,928 | `18325879582a0b1e4b13093a780cda9f` |
+| `06_operations_map_module_04_v0_4.xlsx` | 7,929 | `ee871c82b234524ce1465f22d1ca2fb8` |
+| `07_resource_registry_and_glossary_module_04_v0_4.xlsx` | 10,290 | `cb02b0fe813758e4db283c16b0deab01` |
+| `08_pilot_tracker_module_04_v0_4.xlsx` | 7,331 | `334281497fba2208bb1b37e812160142` |
+| `10_week_1_meeting_slides_module_04_v0_4.pptx` | 41,404 | `aa5ebb5adb323963ce6c8337580a4934` |
+| `11_week_2_meeting_slides_module_04_v0_4.pptx` | 41,420 | `d2647cfc569b2c00aab464d08ef7ef10` |
+| `12_week_3_meeting_slides_module_04_v0_4.pptx` | 41,590 | `3b4aa79705d47c28fc442489a150b7fa` |
+| `13_week_4_meeting_slides_module_04_v0_4.pptx` | 41,880 | `2e2b0519bd17c30a610a0bf3ca0dd820` |
+| `14_session_scripts_module_04_v0_4.docx` | 62,889 | `c779ffe30a08b873c3d466f8a8eec910` |
 
 ## البصريات (SVG أصلية)
 
@@ -33,8 +33,8 @@
 
 | الحزمة | الحجم | MD5 |
 |---|---:|---|
-| `module_04_v0_4_production_pack.zip` | 419,889 | `57c94dbf7054b0d4bc428ce67aeddc7e` |
-| `module_04_v0_4_full_project_files.zip` | 456,555 | `60d1f8efc8de8101d7374446ac7b95f0` |
+| `module_04_v0_4_production_pack.zip` | 420,248 | `d52f2336d69fffba05c4c4ca4c465015` |
+| `module_04_v0_4_full_project_files.zip` | 2,801,151 | `50eeb69467262c43cc544086c7ea9fcd` |
 
 ## فحص القبول
 

@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-phase="3" data-week="w36" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تأسيس · الأسبوع ٣٦</title>
+<!--
+  قالب الأسبوع — انسخ هذا الملف إلى <الوحدة>/04_التفاعلي/week-NN.html
+  ثم عدّل فقط: (1) data-phase و data-week في وسم <html>، (2) <title>، (3) كتلة JSON بالمعرّف "week".
+  data-root = المسار إلى جذر المستودع (حيث index.html منصة الأطالس): "../../" هنا، و"../../../" داخل <الوحدة>/04_التفاعلي/.
+  "source_sha" = بصمة نص الأسبوع الذي بنيت منه الصفحة (من source-lock.json). الدورة قيد التحرير:
+  tools/check_drift.py يقارنها بالنص الحالي ويخبرك إن صارت الصفحة قديمة.
+  لا تعدّل CSS ولا JS هنا؛ التعديل في tasees-tokens.css و tasees-runtime.js فقط (بقرار).
+  المحتوى أدناه مثال حقيقي من نص الأسبوع 1 (v0.4).
+-->
+<link rel="stylesheet" href="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; min-height: 100%; }
+.wk { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 24px; }
+.wk .t-screen { border: 1.5px solid var(--ink); }
+.bar { max-width: var(--stage-max); margin: 0 auto 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: var(--t-tag); color: var(--ink-soft); }
+.bar strong { font-family: var(--f-display); font-size: 1.3rem; color: var(--ink); font-weight: 700; }
+.pencil { display: flex; gap: 3px; margin-inline-start: auto; } .pencil i { width: 16px; height: 4px; border-radius: 2px; background: var(--rule); } .pencil i.on { background: var(--phase); }
+.nav { max-width: var(--stage-max); margin: 12px auto 0; display: flex; justify-content: space-between; gap: 12px; }
+.q-box { border: 1.5px solid var(--phase); padding: 12px 16px; background: var(--card); max-width: 36em; }
+.q-box small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.audio { border: 1.5px dashed var(--ink-soft); padding: 10px 14px; max-width: 36em; font-size: var(--t-small); }
+.hook-art { border: 1.5px solid var(--rule); background: var(--card); aspect-ratio: 16 / 7; max-width: 100%; display: grid; place-items: center; color: var(--ink-soft); font-size: var(--t-small); overflow: hidden; }
+.hook-art img { width: 100%; height: 100%; object-fit: cover; }
+.lines { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; counter-reset: l; }
+.lines li { counter-increment: l; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 8px; }
+.lines li::before { content: counter(l, arabic-indic); font-family: var(--f-display); color: var(--phase); font-size: 1.4rem; line-height: 1.3; }
+.wall { display: flex; gap: 4px; } .wall .t-brick { width: 18px; height: 10px; }
+/* pattern parts used by tasees-runtime.js (same as screen-templates.html) */
+.demo { display: flex; flex-direction: column; gap: 10px; }
+.order { display: flex; flex-direction: column; gap: 6px; } .order .t-choice b { color: var(--ink-soft); min-width: 1.4em; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); } .bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.house { width: 100%; max-width: 360px; height: auto; align-self: center; }
+.house .glow { fill: var(--pen-black); opacity: 0; transition: opacity .3s; } .house.is-lit .glow { opacity: .28; }
+.house .ink { stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.house .bulb { fill: var(--card); stroke: var(--ink); stroke-width: 2; } .house.is-lit .bulb { fill: var(--pen-black); }
+@media (prefers-reduced-motion: no-preference) { .house.is-flicker .bulb { animation: flick .9s steps(2) 2; } }
+@keyframes flick { 50% { fill: var(--pen-black); } }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain .t-kart { padding: 8px 12px; font-size: var(--t-small); cursor: pointer; } .chain .t-kart[aria-expanded="false"] span { visibility: hidden; }
+.chain .t-kart small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.portico { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 6px solid var(--phase); border-bottom: 4px solid var(--phase); padding: 8px 0; }
+.portico div { border-inline: 2px solid var(--phase); padding: 4px 6px; min-height: 92px; font-family: var(--f-display); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portico div small { display: block; font-family: var(--f-body); font-size: 11px; color: var(--ink-soft); }
+@media (max-width: 560px) { .builder { grid-template-columns: minmax(0, 1fr); } .bins { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="t-page">
+<div class="wk">
+  <div class="bar"><strong id="wk-name"></strong><span id="wk-pos"></span><div class="pencil" id="pencil" aria-hidden="true"></div></div>
+  <main id="stage" aria-live="polite"></main>
+  <div class="nav"><button class="t-btn t-btn--ghost" id="prev" type="button">السابق</button><button class="t-btn" id="next" type="button">التالي</button></div>
+</div>
+
+<!-- ======================= محتوى الأسبوع — هذا وحده ما يُعدَّل ======================= -->
+<script type="application/json" id="week">
+{
+  "week": 36,
+  "unit": 36,
+  "phase": 3,
+  "source_sha": "8698e97d45ed9622",
+  "eyebrow": "المرحلة ٣ · الوحدة الختامية · الأسبوع ٣٦",
+  "title": "المحكمة والمشروع",
+  "subtitle": "دعوى واحدة، وفعل واحد",
+  "question": "وأنا عارف، أعمل إيه؟ — وإزاي يبقى فِعلي مسؤولًا وآمنًا ومقيسًا؟",
+  "audio": "الحلقة المسموعة ١٥–٢٠ د · قيد التسجيل بقارئ بشري (بوابة G13)",
+  "next": "بعد الدورة: أداة كل أسبوع، ومشروع لتلات شهور، وأداة تعلّمها لحد",
+  "screens": [
+    {
+      "id": "w36-01",
+      "layout": "L1",
+      "sanad": [
+        [
+          "الدورة",
+          "الأسبوع ٣٦"
+        ]
+      ]
+    },
+    {
+      "id": "w36-02",
+      "layout": "L3",
+      "heading": "الكتلة ١ · ليه دعوى واحدة؟",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "≈ 05:00"
+        ]
+      ],
+      "matn": "«إحنا مش هنعمل مراجعة ختامية — العلم اللي بيتخزن على الرف مش علم».",
+      "sharh": "أهم درس في الدورة: الفرق بين اللي بيعرف واللي بيتكلم مش في كمية الكلام، في عدد الخطوات بين السؤال والجواب. واحد عنده عشرة آراء عن عشرة مواضيع وما عندوش ولا خطوة موثقة من سؤال لجواب — ده بيتردد بصوت عالي. وواحد عنده دعوى واحدة فحصها بالبطاقة والميزان والدرجات — ده عنده جهاز، والجهاز بيشتغل على أي دعوى تانية لوحده. والدعوى الواحدة بتكشف حاجة ما بيكشفهاش الكلام العام: بتكشف إنت مين وإنت بتفحص — لو أول حاجة عملتها إنك دورت على اللي يثبت اللي إنت مصدقه أصلًا، يبقى كل الأدوات بقت ديكور.",
+      "trap": {
+        "title": "وعي بالأدوار",
+        "text": "لو أول حاجة عملتها إنك قلت «أنا مش متأكد، تعال نشوف» — يبقى إنت فعلًا اتعلمت."
+      }
+    },
+    {
+      "id": "w36-03",
+      "layout": "L3",
+      "heading": "أدوار المحكمة · ومفيش دور اسمه «الحكم»",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "≈ 09:00"
+        ]
+      ],
+      "matn": "«مفيش دور اسمه «الحكم» — المحكمة بتصدر بطاقة، مش حكمًا».",
+      "sharh": "فيه مدّعي بيقدم الدعوى وصياغتها، ومدافع بيحاول يلاقي للدعوى أوضح صياغة ممكنة (مش بيحاول يكسب)، ومحققين — وكل محقق مسؤول عن أداة واحدة بس: واحد على البطاقة الخماسية والدرجات، وواحد على الكلمة المشحونة والتسمية، وواحد على الرقم ومصدره، وواحد على الميزان والوسم، وواحد على الوثيقة، وواحد على الأدب — يعني على سؤال: الكلام ده لو اتقال قدام أهلك وأهل الطرف التاني، هيقف؟ والبطاقة بتقول: إيه اللي ثبت بدرجة، وإيه اللي ضعيف، وإيه اللي تفسير مش وقائع، وإيه اللي ما ينفعش نعرف درجته بالأدوات المتاحة، وإيه اللي بيترتب عليه عمل.",
+      "trap": {
+        "title": "ليه مفيش حكم؟",
+        "text": "لأن أكبر كارثة بتحصل لما حد بيمسك نص وعنده صدق وليس عنده منهج، ويقعد على كرسي الحكم: صدق + نصوص + غياب منهج = كارثة."
+      }
+    },
+    {
+      "id": "w36-04",
+      "layout": "L4",
+      "pattern": "P10",
+      "heading": "بطاقة الدعوى · خمس جولات",
+      "instruction": "دعوى واحدة كبيرة على الطاولة — والبطاقة بدل الحكم.",
+      "sanad": [
+        [
+          "بروتوكول المحكمة",
+          "≈ 12:00"
+        ]
+      ],
+      "data": {
+        "flag": "الدعوى: «إن التاريخ بيمشي بناس أعلى مننا، وإحنا مالنا في إيدينا حاجة»",
+        "fields": [
+          [
+            "١ الوقائع",
+            "اللي بيحصل فعلًا في السجل: دول بتبدأ بعصبية صغيرة في طرف وتنتهي بـ«الرجل المريض»؛ ومجتمعات بتقعد قرون وتفضل شغالة في مسجد وحلقة ووقف وعيلة — وقائع ودرجات، ولا ألفاظ؟"
+          ],
+          [
+            "٢ التفسير",
+            "إيه اللي تفسير مش واقعة؟ «مالنا في إيدينا حاجة» — دي جملة عن الإحساس، مش عن السجل: أفكار بتتحول لسلوك لما حد يصغّرها ويعيدها."
+          ],
+          [
+            "٣ الضعيف",
+            "أي جزء من الدعوى دليله ضعيف؟ الجملة العامة «ناس أعلى مننا» بتخفي التفصيل: مين بالظبط؟ بأي مؤسسة؟ وبأي وثيقة؟"
+          ],
+          [
+            "٤ لا نعلم بعد",
+            "«لا أعلم» عندي أنا كمان: إنت هتعمل إيه بالعدة دي — ده سؤال ما ينفعش نحكم فيه بالأدوات المتاحة."
+          ],
+          [
+            "٥ ما يترتب عليه عمل",
+            "اللي ينفع نعمله بكرة: فعل واحد صغير، مقيس، بشروط ستة، وله علامة وخروج."
+          ]
+        ],
+        "grades": [
+          "وقائع ثابتة",
+          "تفسير لا وقائع",
+          "ضعيف — بلا درجة",
+          "لا نعلم بعد"
+        ],
+        "note": "مفيش لحظة في التاريخ ده كان فيها الإنسان مجبرًا، ومفيش لحظة كان فيها حرًا من غير مسؤولية. الحرية والمسؤولية حاجة واحدة — وسمعناها في كل قصة."
+      }
+    },
+    {
+      "id": "w36-05",
+      "layout": "L3",
+      "heading": "الكتلة ٢ · المشروع: من الدعوى للفعل",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "≈ 16:00"
+        ]
+      ],
+      "matn": "«المشروع مش لازم يبقى كبير عشان يبقى صادق».",
+      "sharh": "مش مشروع أمة، ومش «هغير العالم»: حاجة صغيرة، مقاسة على حياتك، تعملها الشهر الجاي، وتقدر تحكي عنها بعد سنة من غير ما تخبّي. والستة شروط مش شروط مثالية — دول شروط استمرار: القانون (اللي بيخالف القانون بيحمي نفسه مش بيحمي الناس)، واللاعنف (العنف بيهدم اللي بيقول إنه بيحميه)، وبلا حزبية ولا تكفير (فعلك «علشان» حاجة، مش «ضد» ناس)، وصغير ومقاس (الممارسة الكبيرة أشهر قاتل للمشاريع الصادقة)، وبروتوكول الحوار، وأمان ليك ولغيرك. وأي مشروع بدأ في تاريخنا وخرج عن أي واحد فيهم، اتبني بسقف، وبعدين السقف وقع على أصحابه.",
+      "trap": {
+        "title": "أمثلة صادقة",
+        "text": "واحد قرر يمشي ربع ساعة كل يوم مع ابنه من غير موبايل — عمل حاجة. وواحد كتب ورقة عن الدورة ووزعها على تلاتة — عمل حاجة. المهم إن الفعل يكون مقيس ومكتوب وله علامة، مش عاطفة في بوست."
+      }
+    },
+    {
+      "id": "w36-06",
+      "layout": "L4",
+      "pattern": "P12",
+      "heading": "ميزان الدعوى",
+      "instruction": "جملة من كل خندق على كفتين — والميزان اللي بيقف في صف واحد مش ميزان.",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "≈ 20:00"
+        ]
+      ],
+      "data": {
+        "pans": [
+          "وقائع ودرجات",
+          "تفسير ووسم"
+        ],
+        "items": [
+          [
+            "دول بتبدأ بعصبية صغيرة في طرف وتنتهي بـ«الرجل المريض»",
+            0
+          ],
+          [
+            "الخلافة اتلغت ١٩٢٤ بمرسوم",
+            0
+          ],
+          [
+            "كل جيل سال هذا السؤال — حتى المحتلين سألوه",
+            0
+          ],
+          [
+            "مجتمعات بتقعد قرون شغالة في مسجد وحلقة ووقف وعيلة",
+            0
+          ],
+          [
+            "«كل حاجة حوالينا مؤامرة»",
+            1
+          ],
+          [
+            "«اللي مش مع X خاين»",
+            1
+          ],
+          [
+            "«هما السبب في كل حاجة»",
+            1
+          ]
+        ],
+        "done": "الإجابة عمرها ما بتخلص بـ«هما السبب» — بتخلص بـ«أنا أعمل إيه»."
+      }
+    },
+    {
+      "id": "w36-07",
+      "layout": "L3",
+      "heading": "الكتلة ٣ · ميزان الدورة، واللي بعدها",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "≈ 24:00"
+        ]
+      ],
+      "matn": "«أربعة وتلاتين مهارة، وعشرين مسمار، وتمانية ملفات — والملفات دي رأس مال».",
+      "sharh": "إنت لما بدأت الدورة ما كنتش نفس الشخص اللي واقف دلوقتي على باب الأسبوع 36: بدأنا بسؤال «إزاي أعرف؟» وعندنا كروت مبعثرة ومقال من فيسبوك. والملفات مش ورق: بطاقة الرواية، وميزان الدولة، وبطاقة الهوية، وخريطة البيت، وبطاقة الفعل الآمن — أي واحدة فيهم تقدر تفتحها بعد عشر سنين وتشتغل بيها. والأمانة بتقول كمان: إنت لسه ما تعرفش كل حاجة — وعمرك ما هتعرف، وفي كل ملف سطر «لسه ما أعرفوش»، وده أشرف سطر فيه. واللي بعد الأسبوع ده تلات حاجات صغيرة: أداة واحدة كل أسبوع على خبر من أخبار الأسبوع، والمشروع لثلاث شهور (صغير، ثم أكبر شبر، ثم تحكي عنه)، وتعلّم حدًا واحدًا أداة واحدة.",
+      "trap": {
+        "title": "الدورة كانت في طريقة مش في إجابات",
+        "text": "ما قلتلكش رأيي في معظم الأسئلة — اللي أديتك هو العدة: إزاي تفحص، وإزاي تفرّق، وإزاي تحكي بجملة تصلح تتقال قدام الطرفين."
+      }
+    },
+    {
+      "id": "w36-08",
+      "layout": "L4",
+      "pattern": "P06",
+      "heading": "بطاقة المشروع · ورقة واحدة",
+      "instruction": "فعل واحد، صغير، مقاس على حياتك: ميدان + الشروط الستة + علامة + خروج.",
+      "sanad": [
+        [
+          "القفلة",
+          "ورقة المشروع"
+        ]
+      ],
+      "data": {
+        "key": "project",
+        "note": "المشروع مش لازم يبقى كبير عشان يبقى صادق — المهم إنه مقيس ومكتوب وله علامة وخروج: إمتى توقف، ومين يقدر يقولك قف.",
+        "fields": [
+          {
+            "key": "f",
+            "label": "الميدان",
+            "options": [
+              "خدمة معرفة",
+              "خدمة حي",
+              "خدمة وقفية صغيرة",
+              "مهنة كخدمة",
+              "توثيق ذاكرة"
+            ]
+          },
+          {
+            "key": "a",
+            "label": "الفعل في سطر واحد",
+            "ph": "حاجة تعملها الشهر الجاي وتحكي عنها بعد سنة"
+          },
+          {
+            "key": "l",
+            "label": "١ القانون",
+            "ph": "في النور وبالمؤسسات"
+          },
+          {
+            "key": "n",
+            "label": "٢ اللاعنف",
+            "ph": "أدواتك السلمية"
+          },
+          {
+            "key": "p",
+            "label": "٣ بلا حزبية ولا تكفير",
+            "ph": "علشان إيه — مش ضد مين؟"
+          },
+          {
+            "key": "s",
+            "label": "٤ صغير ومقاس",
+            "ph": "أصغر نسخة مضمونة"
+          },
+          {
+            "key": "d",
+            "label": "٥ بروتوكول الحوار",
+            "ph": "تسمع، تلخص، تسأل، تعترف، تفرّق، تفصل"
+          },
+          {
+            "key": "c",
+            "label": "٦ الأمان ليك ولغيرك",
+            "ph": "سمعة الناس وأمان أهلك وأمانك"
+          },
+          {
+            "key": "m",
+            "label": "العلامة",
+            "ph": "علامة واحدة تتقاس"
+          },
+          {
+            "key": "x",
+            "label": "الخروج",
+            "ph": "إمتى توقف — ومين يقدر يقولك قف"
+          }
+        ]
+      }
+    },
+    {
+      "id": "w36-09",
+      "layout": "L6",
+      "pattern": "P15",
+      "sanad": [
+        [
+          "القفلة",
+          "سطر التخرج"
+        ]
+      ],
+      "data": {
+        "q": "الدعوى اللي إحنا كلنا فيها: «إن التاريخ بيمشي بناس أعلى مننا، وإحنا مالنا في إيدينا حاجة» — اكتب دليلًا واحدًا ضدها من حياتك إنت، وسطر «لسه ما أعرفوش» بتاعك.",
+        "key": "journal"
+      }
+    },
+    {
+      "id": "w36-10",
+      "layout": "L7",
+      "heading": "نلمّ الليلة في تلات سطور",
+      "lines": [
+        "محكمة الدعوى بتصدر بطاقة مش حكمًا: وقائع بدرجة، وتفسير، وضعيف، و«لا أعلم بعد»، وما يترتب عليه عمل.",
+        "المشروع: فعل واحد صغير مقاس، بستة شروط استمرار، وعلامة تتقاس، وخروج مكتوب.",
+        "خرج وإنت ثابت مش متحمس: عدة، وفعل، وأدب، وسطر «لسه ما أعرفوش» بتحترمه."
+      ],
+      "replay": "سؤال الأسبوع مكان {{predict}} — كان: وأنا عارف، أعمل إيه؟ والجواب: فعل واحد صغير آمن، مقيس، وله علامة وخروج.",
+      "task": {
+        "مستكشف": "بطاقة الدعوى بالجولات الخمس، وسطر واحد في «ما يترتب عليه عمل».",
+        "ممارس": "بطاقة الدعوى + بطاقة المشروع بشروطها الستة وعلامتها وخروجها.",
+        "متقدم": "المشروع + خطة تلات شهور (صغير، ثم أكبر شبر، ثم تحكي عنه) + أداة تعلّمها لحد واحد."
+      }
+    }
+  ]
+}
+</script>
+
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/atlas-course-bundle.js" onerror="this.remove()"></script>
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-runtime.js" onerror="this.remove()"></script>
+<script>
+(function () {
+  "use strict";
+  var W = JSON.parse(document.getElementById("week").textContent);
+  var T = window.Tasees, AR = T.AR, el = T.el, store = T.store;
+  var TRACKS = ["مستكشف", "ممارس", "متقدم"];
+  var track = store.get("track") || "ممارس";
+  var visible = function () { return W.screens.filter(function (s) { return !s.track || s.track === track; }); };
+  var i = 0;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sanad(list) { return (list || []).map(function (s) { var tc = /^≈|\d:\d/.test(s[1]); return '<span class="t-sanad"><b>' + esc(s[0]) + "</b>" + (tc ? '<span class="tc">' + esc(s[1]) + "</span>" : esc(s[1])) + "</span>"; }).join(""); }
+  function bricks(n) { var h = '<div class="wall" aria-label="طوب الوحدة">'; for (var k = 1; k <= 4; k++) { h += '<span class="t-brick' + (store.get("done") && k === ((W.week - 1) % 4) + 1 ? " is-laid" + (n ? " is-new" : "") : "") + '"></span>'; } return h + "</div>"; }
+
+  var LAYOUT = {
+    L1: function (s) {
+      return '<p class="t-eyebrow">' + esc(W.eyebrow) + '</p><h1 class="t-title">' + esc(W.title) + '</h1><svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>' +
+        '<p class="t-small" style="margin:0">' + esc(W.subtitle) + '</p><div class="q-box"><small>سؤال الأسبوع</small>' + esc(W.question) + "</div>" +
+        '<div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>' + TRACKS.map(function (t) { return '<button class="t-chip js-track" type="button" aria-pressed="' + (t === track) + '">' + t + "</button>"; }).join("") + "</div>" +
+        '<div class="audio">' + esc(W.audio) + '</div><p class="t-small" style="margin:0">نصوص مستوحاة من أسلوب المهندس أيمن عبد الرحيم في الشرح، كُتبت لأغراض تدريبية داخل مشروع تأسيس، وليست قولًا منسوبًا إليه.</p>';
+    },
+    L2: function (s) {
+      var art = s.art_src ? '<img src="' + esc(s.art_src) + '" alt="">' : "رسم الخطاف <code>" + esc(s.art) + "</code> لم يُولَّد بعد";
+      return '<div class="hook-art">' + art + '</div><p class="t-voice">' + esc(s.voice) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>";
+    },
+    L3: function (s) {
+      return '<h2 class="t-h2">' + esc(s.heading) + '</h2><p class="t-matn">' + esc(s.matn) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>" +
+        (s.trap ? '<p class="t-feedback t-feedback--bad"><strong>' + esc(s.trap.title) + "</strong>" + esc(s.trap.text) + "</p>" : "");
+    },
+    L4: function (s) { return '<h2 class="t-h2">' + esc(s.heading) + "</h2>" + (s.instruction ? '<p class="t-small" style="margin:0">' + esc(s.instruction) + "</p>" : "") + '<div class="demo" data-mount></div>'; },
+    L5: function (s) { return (s.classic ? '<p class="t-classic" style="margin:0">' + esc(s.classic) + "</p>" : "") + '<p class="t-matn">' + esc(s.matn) + '</p><div class="demo" data-mount></div>'; },
+    L6: function (s) { return '<div class="demo" data-mount></div>'; },
+    L7: function (s) {
+      var p = store.get("predict");
+      return '<h2 class="t-title" style="font-size:2.2rem">' + esc(s.heading) + '</h2><ol class="lines">' + s.lines.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ol>" +
+        (p ? '<p class="t-feedback">' + esc(s.replay).replace("{{predict}}", "<strong style=\"display:inline\">«" + esc(p) + "»</strong>") + "</p>" : "") +
+        '<p class="t-feedback t-feedback--ok"><strong>مهمة الأسبوع · ' + esc(track) + "</strong>" + esc(s.task[track]) + '</p><p class="t-small" style="margin:0">' + esc(W.next) + "</p>";
+    }
+  };
+
+  function show() {
+    var list = visible(); i = Math.max(0, Math.min(i, list.length - 1));
+    var s = list[i], last = s.layout === "L7";
+    if (last && !store.get("done")) { store.set("done", "1"); s._new = true; }
+    var stage = document.getElementById("stage");
+    stage.innerHTML = '<section class="t-screen" data-id="' + esc(s.id) + '" data-layout="' + s.layout + '"><aside class="t-margin">' + sanad(s.sanad) + (s.layout === "L1" || last ? bricks(last && s._new) : "") + '</aside><div class="t-main">' + LAYOUT[s.layout](s) + "</div></section>";
+    var mount = stage.querySelector("[data-mount]"); if (mount && s.pattern) T.render(mount, s.pattern, s.data);
+    stage.querySelectorAll(".js-track").forEach(function (b) { b.onclick = function () { track = b.textContent; store.set("track", track); show(); }; });
+    document.getElementById("wk-name").innerHTML = 'تأسيس <span style="font-family:var(--f-body);font-size:1rem;font-weight:500">· الأسبوع ' + AR(W.week) + "</span>";
+    document.getElementById("wk-pos").textContent = "الشاشة " + AR(i + 1) + " من " + AR(list.length);
+    document.getElementById("pencil").innerHTML = list.map(function (_, k) { return '<i class="' + (k <= i ? "on" : "") + '"></i>'; }).join("");
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").textContent = last ? "تم" : i === 0 ? "يلا بينا" : "التالي";
+    document.getElementById("next").disabled = last;
+  }
+  document.getElementById("prev").onclick = function () { i--; show(); window.scrollTo(0, 0); };
+  document.getElementById("next").onclick = function () { i++; show(); window.scrollTo(0, 0); };
+  document.addEventListener("keydown", function (e) { if (e.target.closest("input,textarea,select")) return; if (e.key === "ArrowLeft") { i++; show(); } if (e.key === "ArrowRight") { i--; show(); } });
+  show();
+})();
+</script>
+</body>
+</html>

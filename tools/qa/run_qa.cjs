@@ -439,14 +439,14 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   await dPage.close();
 
   // ---------------- 14.x: New Track 1–3 Verification Suite ----------------
-  // 14.1: Manifest stats & 80 curated historical maps across Vols. 2–6
+  // 14.1: Manifest stats & 86 curated historical maps across Vols. 2–6
   const vols2to6CuratedPages = hubManifest.pages.filter(
     (p) => ["seerah", "abubakr", "umar", "uthman", "ali"].includes(p.volumeId) && (p.hotspots || []).length > 0
   );
   check(
     "14.1",
-    "Curated historical map hotspots expanded to 80 maps across Seerah, Abu Bakr, Umar, Uthman & Ali (770 total verified hotspots)",
-    vols2to6CuratedPages.length === 80 && hubManifest.stats.interactiveFeatures.totalVerifiedHotspots === 770,
+    "Curated historical map hotspots expanded to 86 maps across Seerah, Abu Bakr, Umar, Uthman & Ali (817 total verified hotspots)",
+    vols2to6CuratedPages.length === 86 && hubManifest.stats.interactiveFeatures.totalVerifiedHotspots === 817,
     `curatedVols2to6=${vols2to6CuratedPages.length}, totalVerifiedHotspots=${hubManifest.stats.interactiveFeatures.totalVerifiedHotspots}`
   );
 

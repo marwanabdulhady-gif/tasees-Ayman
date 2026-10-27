@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-phase="2" data-week="w24" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تأسيس · الأسبوع ٢٤</title>
+<!--
+  قالب الأسبوع — انسخ هذا الملف إلى <الوحدة>/04_التفاعلي/week-NN.html
+  ثم عدّل فقط: (1) data-phase و data-week في وسم <html>، (2) <title>، (3) كتلة JSON بالمعرّف "week".
+  data-root = المسار إلى جذر المستودع (حيث index.html منصة الأطالس): "../../" هنا، و"../../../" داخل <الوحدة>/04_التفاعلي/.
+  "source_sha" = بصمة نص الأسبوع الذي بنيت منه الصفحة (من source-lock.json). الدورة قيد التحرير:
+  tools/check_drift.py يقارنها بالنص الحالي ويخبرك إن صارت الصفحة قديمة.
+  لا تعدّل CSS ولا JS هنا؛ التعديل في tasees-tokens.css و tasees-runtime.js فقط (بقرار).
+  المحتوى أدناه مثال حقيقي من نص الأسبوع 1 (v0.4).
+-->
+<link rel="stylesheet" href="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; min-height: 100%; }
+.wk { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 24px; }
+.wk .t-screen { border: 1.5px solid var(--ink); }
+.bar { max-width: var(--stage-max); margin: 0 auto 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: var(--t-tag); color: var(--ink-soft); }
+.bar strong { font-family: var(--f-display); font-size: 1.3rem; color: var(--ink); font-weight: 700; }
+.pencil { display: flex; gap: 3px; margin-inline-start: auto; } .pencil i { width: 16px; height: 4px; border-radius: 2px; background: var(--rule); } .pencil i.on { background: var(--phase); }
+.nav { max-width: var(--stage-max); margin: 12px auto 0; display: flex; justify-content: space-between; gap: 12px; }
+.q-box { border: 1.5px solid var(--phase); padding: 12px 16px; background: var(--card); max-width: 36em; }
+.q-box small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.audio { border: 1.5px dashed var(--ink-soft); padding: 10px 14px; max-width: 36em; font-size: var(--t-small); }
+.hook-art { border: 1.5px solid var(--rule); background: var(--card); aspect-ratio: 16 / 7; max-width: 100%; display: grid; place-items: center; color: var(--ink-soft); font-size: var(--t-small); overflow: hidden; }
+.hook-art img { width: 100%; height: 100%; object-fit: cover; }
+.lines { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; counter-reset: l; }
+.lines li { counter-increment: l; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 8px; }
+.lines li::before { content: counter(l, arabic-indic); font-family: var(--f-display); color: var(--phase); font-size: 1.4rem; line-height: 1.3; }
+.wall { display: flex; gap: 4px; } .wall .t-brick { width: 18px; height: 10px; }
+/* pattern parts used by tasees-runtime.js (same as screen-templates.html) */
+.demo { display: flex; flex-direction: column; gap: 10px; }
+.order { display: flex; flex-direction: column; gap: 6px; } .order .t-choice b { color: var(--ink-soft); min-width: 1.4em; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); } .bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.house { width: 100%; max-width: 360px; height: auto; align-self: center; }
+.house .glow { fill: var(--pen-black); opacity: 0; transition: opacity .3s; } .house.is-lit .glow { opacity: .28; }
+.house .ink { stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.house .bulb { fill: var(--card); stroke: var(--ink); stroke-width: 2; } .house.is-lit .bulb { fill: var(--pen-black); }
+@media (prefers-reduced-motion: no-preference) { .house.is-flicker .bulb { animation: flick .9s steps(2) 2; } }
+@keyframes flick { 50% { fill: var(--pen-black); } }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain .t-kart { padding: 8px 12px; font-size: var(--t-small); cursor: pointer; } .chain .t-kart[aria-expanded="false"] span { visibility: hidden; }
+.chain .t-kart small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.portico { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 6px solid var(--phase); border-bottom: 4px solid var(--phase); padding: 8px 0; }
+.portico div { border-inline: 2px solid var(--phase); padding: 4px 6px; min-height: 92px; font-family: var(--f-display); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portico div small { display: block; font-family: var(--f-body); font-size: 11px; color: var(--ink-soft); }
+@media (max-width: 560px) { .builder { grid-template-columns: minmax(0, 1fr); } .bins { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="t-page">
+<div class="wk">
+  <div class="bar"><strong id="wk-name"></strong><span id="wk-pos"></span><div class="pencil" id="pencil" aria-hidden="true"></div></div>
+  <main id="stage" aria-live="polite"></main>
+  <div class="nav"><button class="t-btn t-btn--ghost" id="prev" type="button">السابق</button><button class="t-btn" id="next" type="button">التالي</button></div>
+</div>
+
+<!-- ======================= محتوى الأسبوع — هذا وحده ما يُعدَّل ======================= -->
+<script type="application/json" id="week">
+{
+  "week": 24,
+  "unit": 6,
+  "phase": 2,
+  "source_sha": "9b22ac8f3dddeac8",
+  "eyebrow": "المرحلة ٢ · الدول والحضارة — الوحدة ٦ · الأسبوع ٢٤",
+  "title": "العصر الذهبي وتشريح الانحدار",
+  "subtitle": "العباسيون: من بيت الحكمة إلى سامراء",
+  "question": "إزاي نفس الدولة اللي عملت العصر الذهبي — عملت انحدارها؟ وهل الانحدار بيجي فجأة ولا بيتزرع؟",
+  "audio": "الحلقة المسموعة ١٥–٢٠ د · قيد التسجيل بقارئ بشري (بوابة G13)",
+  "next": "الأسبوع الجاي: الصليبيون والمغول — صلاح الدين والمماليك",
+  "screens": [
+    {
+      "id": "w24-01",
+      "layout": "L1",
+      "sanad": [
+        [
+          "الوحدة ٦",
+          "الأسبوع ٢٤"
+        ]
+      ]
+    },
+    {
+      "id": "w24-02",
+      "layout": "L4",
+      "pattern": "P14",
+      "heading": "قبل ما نبدأ",
+      "instruction": "خمّن الأول — الإجابة بتتراجع في القفلة.",
+      "sanad": [
+        [
+          "الخطاف",
+          "سؤال الأسبوع"
+        ]
+      ],
+      "data": {
+        "q": "الانحدار بيبدأ إمتى في رأيك؟",
+        "options": [
+          "فجأة — بلحظة سقوط واحدة",
+          "من ذروة القوة نفسها — بيتزرع وينتظر",
+          "من ضعف الجيش بس",
+          "مش عارف — محتاج أشوف البذور"
+        ]
+      }
+    },
+    {
+      "id": "w24-03",
+      "layout": "L2",
+      "art": "tas-w24-hook-seed",
+      "art_src": "../03_المواد_البصرية/hooks/tas-w24-hook-seed.png",
+      "sanad": [
+        [
+          "الخطاف",
+          "الكتلة ٠"
+        ]
+      ],
+      "voice": "«ألف ليلة وليلة» — الاسم اللي بيلمع في خيال العالم كله لما يسمع «الخلافة العباسية»: هارون الرشيد، وقصور بغداد، وذهب وبركة.",
+      "sharh": "بس افتح Q29 وهتلاقي صورة تانية تمامًا: «هل الرشيد خليفة عابد زاهد — أم مبذر شارب للخمر؟» صورتان متناقضتان لرجل واحد. إزاي؟ وإيه الحقيقة؟ والسؤال أكبر من الرشيد: إزاي نفس الدولة اللي عملت العصر الذهبي عملت انحدارها؟ وهل الانحدار بيجي فجأة ولا بيتزرع؟"
+    },
+    {
+      "id": "w24-04",
+      "layout": "L3",
+      "heading": "الكتلة ١ · الرشيد بين صورتين",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "≈ 10:00"
+        ]
+      ],
+      "matn": "«الترَف غير الفسق: بلاط فيه موسيقى وشعر ومال كثير — ده واقع موثق».",
+      "sharh": "الصورة الأولى: الرشيد الزاهد — بيحج سنة ويغزو سنة، وبيصلي في اليوم مائة ركعة، ودمعته قريبة. والصورة التانية: الرشيد اللي في حكايات الليالي — ندماء ومغنيات وخمر ومؤامرات حريم القصر. والمصادر اللي بتنقل الصورتين فيها الغث: كتب الأدب بتجمع الشعر والحكاية من غير بطاقة إسناد صارمة، والخصوم لهم مصلحة في التسويد، والمحبون لهم مصلحة في التبييض. والبطاقة الخماسية على أشهر حكاية تكشف تناقضًا بنيويًا: الرجل اللي بيصلي مائة ركعة وبيحج ماشيًا في رواية، نفس الرجل كل ليلة سكران في رواية تانية؟ التناقض نفسه دليل إن واحدة من الصورتين على الأقل مبالغة.",
+      "trap": {
+        "title": "قوة المنهج: «لا أعلم بعد»",
+        "text": "كون الراجل نفسه صالح أو طالح — ده اللي بنقول عليه بأمانة: «لا أعلم بعد». والإمام مالك اتسأل في أربعين مسألة فقال في أكترها «لا أدري»، وقالوا عنه: «لا أدري نصف العلم»."
+      }
+    },
+    {
+      "id": "w24-05",
+      "layout": "L4",
+      "pattern": "P07",
+      "heading": "أركان العصر الذهبي الخمسة",
+      "instruction": "انقر كل ركن لتفتح دليله (لا تتقدم قبل فتح الكل).",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "و٢٤ · W24"
+        ]
+      ],
+      "data": {
+        "prompt": "العصر الذهبي مش أسطورة — ده نقل معرفة ممنهج. خمسة أركان بأدلتها:",
+        "parts": [
+          {
+            "name": "بيت الحكمة والترجمة النقدية",
+            "c": "var(--pen-blue)",
+            "text": "ما حرقوا تراث اليونان ولا ابتلعوه: خدوا الطب والرياضيات والفلك والمنطق، وسابوا الميتافيزيقا الخلافية تتناقش بحرية."
+          },
+          {
+            "name": "الورق",
+            "c": "var(--pen-green)",
+            "text": "سر الورق وصل من أسرى صينيين بعد طلاس ١٣٣هـ، والورق أرخص من الرق بمراحل: الكتب اتضربت بالآلاف، وسوق الوراقين بقى مؤسسة — «مطبعة» قبل جوتنبرج بستميت سنة."
+          },
+          {
+            "name": "البيمارستانات",
+            "c": "var(--sepia)",
+            "text": "مؤسسة طبية قائمة بذاتها: علاج وتعليم وسجلات — من إنجازات الدولة الحضارية."
+          },
+          {
+            "name": "الأزهر",
+            "c": "var(--pen-black)",
+            "text": "اتأسس ٣٦١هـ — وبقى بعد قرون أعظم مؤسسة سنية في العالم: المؤسسات بتعمر أطول من العقائد اللي بنتها."
+          },
+          {
+            "name": "المنافسة بين المراكز",
+            "c": "var(--pen-blue)",
+            "text": "اللامركزية السياسية عملت منافسة حضارية: كل أمير عايز «بغداد» تانية في عاصمته — بيجذب العلماء ويبني المدارس والمكتبات."
+          }
+        ]
+      }
+    },
+    {
+      "id": "w24-06",
+      "layout": "L3",
+      "heading": "الكتلة ٢ · ثلاث بذور في ذروة القوة",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "≈ 14:00"
+        ]
+      ],
+      "matn": "«الانحدار بيتزرع في ذروة القوة» — وتلات بذور، كل واحدة درس.",
+      "sharh": "البذرة الأولى: صراع الإخوة — الرشيد عمل ترتيبًا للوراثة، والأمين شال اسم أخوه من ولاية العهد، وحرب أهلية أربع سنين، وبغداد اتحاصرت سنة كاملة سنة ١٩٨هـ ودُمرت أحياءها وحرقت المكتبات. البذرة التانية: المحنة — تحويل مسألة كلامية خلافية لامتحان دولة، خمسة عشر سنة سجن وجلد، وأحمد بن حنبل صمد. البذرة التالتة: العسكر — جنود أتراك مملوكين اتولوا، وسامراء اتبنت لعزلهم، وبعدها بقوا هم الدولة.",
+      "trap": {
+        "title": "أسوأ قرار في وقت القوة",
+        "text": "الرشيد — أعظم خلفاء العصر الذهبي — هو اللي زرع القنبلة بالترتيب الوراثي المزدوج. والدرس: أسوأ قرار بتاخده وأنت قوي، هو قرار الخلافة من بعدك."
+      }
+    },
+    {
+      "id": "w24-07",
+      "layout": "L4",
+      "pattern": "P02",
+      "heading": "بذور الانحدار الثلاث",
+      "instruction": "ضع كل واقعة تحت بذرتها — كلها من النص.",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "و٢٤ · Q30–Q31"
+        ]
+      ],
+      "data": {
+        "bins": [
+          "صراع الإخوة",
+          "المحنة: دولة تفرض العقيدة",
+          "العسكر: قوة بلا قيادة"
+        ],
+        "items": [
+          [
+            "الرشيد علّق ورقة العهد في الكعبة: خليفة ثم أخوه",
+            0
+          ],
+          [
+            "الأمين شال اسم أخوه من ولاية العهد، والمأمون رفض",
+            0
+          ],
+          [
+            "حرب أهلية أربع سنين وحصار بغداد سنة كاملة (١٩٨هـ)",
+            0
+          ],
+          [
+            "تحويل مسألة «خلق القرآن» لامتحان دولة",
+            1
+          ],
+          [
+            "سجن أحمد بن حنبل وضربه بالسياط",
+            1
+          ],
+          [
+            "خمسة عشر سنة امتحان في العقائد بالسجن والجلد",
+            1
+          ],
+          [
+            "جنود أتراك مملوكين ولّاهم المعتصم وبنى لهم سامراء",
+            2
+          ],
+          [
+            "المتوكل قُتل بيد حرسه الأتراك سنة ٢٤٧",
+            2
+          ],
+          [
+            "من ٢٤٧ لـ٦٥٦: الخليفة رمز ديني، والسلطة لمن يملك الجيش",
+            2
+          ]
+        ],
+        "done": "القوة المسلحة اللي تستوردها وما تملكش قيادتها — هتملكك هي. المعتصم افتكر إنه بيصنع أداة — الأداة بقت صانعًا."
+      }
+    },
+    {
+      "id": "w24-08",
+      "layout": "L3",
+      "heading": "الكتلة ٣ · كلمة الشحنة: «قرن الهيمنة»",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "≈ 22:00"
+        ]
+      ],
+      "matn": "«التسمية الغلط مش بس بتظلم الحقبة — بتعميك عن دروسها».",
+      "sharh": "سياسيًا اللقطة صحيحة: البويهيون دخلوا بغداد سنة ٣٣٤ وبقي الخليفة السني تحت وصايتهم قرنًا، والفاطميون بنوا دولة من المغرب لمصر (٣٥٨هـ القاهرة والأزهر)، والحمدانيون في حلب والموصل. بس فكك الكلمة: «هيمنة» — على مين؟ الجمهور في بغداد ومصر والشام وخراسان والأندلس فضل سنيًا — ما اتحولش. فالكلمة بتصور حالة سياسية (نخب حاكمة) كأنها حالة مجتمعية (تحول جماهيري) — وده اللي بتعمله كلمة الشحنة: بتهرّب استنتاجًا جوه وصف. والبديل الأدق: «قرن تعدد المراكز».",
+      "trap": {
+        "title": "ثلاثة أسئلة على أي تسمية حقبة",
+        "text": "مين اللي سماها؟ وإيه اللي بتبرزه وإيه اللي بتخفيه؟ وإيه البديل الأدق؟ — ونفس القرن اللي اسمها بيشيع عنه الضعف هو قرن ابن سينا والبيروني والفردوسي والأزهر."
+      }
+    },
+    {
+      "id": "w24-09",
+      "layout": "L4",
+      "pattern": "P18",
+      "heading": "من «قرن الهيمنة» إلى «قرن تعدد المراكز»",
+      "instruction": "حرّك المؤشر: من التسمية الشائعة للبديل الأدق — وشوف إيه اللي بيتغير.",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "و٢٤ · Q34"
+        ]
+      ],
+      "data": {
+        "q": "إيه اللي بيخفيه الوصف وإيه اللي بيظهره؟",
+        "steps": [
+          [
+            "التسمية الشائعة",
+            "«قرن الهيمنة الشيعية»: تلات قوى من أصول شيعية مسكت مفاتيح العالم الإسلامي — البويهيون ببغداد ٣٣٤، الفاطميون بالقاهرة ٣٥٨، الحمدانيون بحلب والموصل. اللقطة سياسيًا صحيحة."
+          ],
+          [
+            "مين سماها؟",
+            "التسمية منتشرة في كتابات سنية متأخرة بتأسي — وبتخدم رسالة: «شوفوا لما سيطروا، الدولة ضعفت». والوصف المكتوب بأثر رجعي من خصم يحتاج فحصًا."
+          ],
+          [
+            "إيه اللي بتخفيه؟",
+            "الجمهور فضل سنيًا — ما اتحولش. والقرن كان فيه ازدهار هائل في ظل نفس «الهيمنة»: الأزهر ٣٦١هـ، وابن سينا والبيروني اشتغلوا في كنف أمراء من كل المذاهب."
+          ],
+          [
+            "البديل الأدق",
+            "«قرن تعدد المراكز»: قوة سياسية موزعة على مذاهب وأعراق، وجمهور سني في الأغلب، وحضارة مشتركة بتنتج فوق الخلاف — والتنافسية غذّت العلم ووسّعت مدارسه."
+          ]
+        ]
+      }
+    },
+    {
+      "id": "w24-10",
+      "layout": "L3",
+      "heading": "المفارقة المنهجية · انحدار سياسي وحضارة في الذروة",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "Q32–Q33"
+        ]
+      ],
+      "matn": "«اللامركزية السياسية عملت منافسة حضارية».",
+      "sharh": "في نفس القرون دي — الانحدار السياسي — الحضارة كانت في ذروة تانية: الأندلس الأموية بقرطبة (جامعتها ومكتباتها الأربع مائة ألف كتاب في رواية)، والطولونيون بمصر (ابن طولون ومسجده وبيمارستانه)، والسامانيون ببخارى، والغزنويون، والأدارسة، والأغالبة بصقلية. والتقييم السطحي بيقول: «تفتت = ضعف». والتقييم المنهجي أدق: كل أمير عايز «بغداد» تانية في عاصمته — بيجذب العلماء ويبني المدارس والمكتبات، والعلم للمرة الأولى له عدة مراكز: لو سقط مركز، الباقي شايل.",
+      "trap": {
+        "title": "الرموز أطول من الجيوش",
+        "text": "البويهيون دخلوا بغداد وما ألغوش الخلافة السنية — حكموا باسمها. الشرعية حتى المنهارة كان ليها وزن: الرموز بتعيش أطول من الجيوش اللي بتحرسها."
+      }
+    },
+    {
+      "id": "w24-11",
+      "layout": "L4",
+      "pattern": "P06",
+      "heading": "مهمة الأسبوع · جدول العصر الذهبي",
+      "instruction": "خمسة إنجازات ولكل واحد دليله — وضعيف الدليل يروح «لا أعلم بعد».",
+      "sanad": [
+        [
+          "القفلة",
+          "مهمة الأسبوع"
+        ]
+      ],
+      "data": {
+        "key": "golden",
+        "note": "لو لقيت إنجازًا دليله ضعيف — اكتبه في عمود «لا أعلم بعد»: دي مش خسارة، دي صنعة.",
+        "fields": [
+          {
+            "key": "a",
+            "label": "الإنجاز",
+            "options": [
+              "بيت الحكمة",
+              "الورق",
+              "البيمارستانات",
+              "الأزهر",
+              "المنافسة بين المراكز"
+            ]
+          },
+          {
+            "key": "e",
+            "label": "المصدر أو الدليل",
+            "ph": "إيه اللي يثبت إنه حصل فعلًا؟"
+          },
+          {
+            "key": "d",
+            "label": "درجة الدليل",
+            "options": [
+              "ثابت — بمصدر جاد",
+              "ضعيف — في عمود «لا أعلم بعد»"
+            ]
+          },
+          {
+            "key": "w",
+            "label": "ليه مهم",
+            "ph": "إيه اللي بيتغير في فهمي للعصر لو ثبت؟"
+          }
+        ]
+      }
+    },
+    {
+      "id": "w24-12",
+      "layout": "L4",
+      "pattern": "P19",
+      "heading": "على الأطلس",
+      "sanad": [
+        [
+          "الأطلس",
+          "maps8-005، maps8-006"
+        ]
+      ],
+      "data": {
+        "stations": [
+          [
+            "الشرق نحو ١١٠٠م",
+            "maps8-005"
+          ],
+          [
+            "الغرب نحو ١١٠٠م",
+            "maps8-006"
+          ]
+        ],
+        "mode": "explore",
+        "prompt": "من «قرن الهيمنة» إلى «قرن تعدد المراكز»: كم مركزًا تعدّ على الخريطة؟"
+      }
+    },
+    {
+      "id": "w24-13",
+      "layout": "L6",
+      "pattern": "P15",
+      "sanad": [
+        [
+          "الكتلتان ٢ و٣",
+          "سؤال للدفتر"
+        ]
+      ],
+      "data": {
+        "q": "«إنك تقدر تقف في «لا أعلم» من غير ما تحس بالنقص» — اكتب قرارًا أو رأيًا إنت واقف فيه على دليل ضعيف، وقول بصراحة: إيه اللي «لا أعلمه بعد» فيه؟",
+        "key": "journal"
+      }
+    },
+    {
+      "id": "w24-14",
+      "layout": "L7",
+      "heading": "نلمّ الليلة في تلات سطور",
+      "lines": [
+        "العصر الذهبي مش ديكور ألف ليلة — ده نقل معرفة ممنهج: ترجمة نقدية، ورق، ومؤسسات.",
+        "الانحدار بيتزرع في الذروة — تلات بذور: توريث مزدوج، دولة تفرض اللاهوت، وقوة مسلحة بلا قيادة.",
+        "«قرن الهيمنة» تسمية بتهرّب استنتاجًا جوه وصف — والبديل الأدق: قرن تعدد المراكز."
+      ],
+      "replay": "في الأول خمّنت إن الانحدار {{predict}}. النص بيقول: بيتزرع في ذروة القوة — وبذوره تلاتة، كل واحدة درس.",
+      "task": {
+        "مستكشف": "جدول بثلاثة إنجازات وأدلتها من الحلقة.",
+        "ممارس": "جدول العصر الذهبي الخمسة كاملًا: إنجاز + دليل + درجة، وعمود «لا أعلم بعد».",
+        "متقدم": "الجدول + ورقة تسمية حقبة: تلات أسئلة على تسمية مشهورة، والبديل الأدق اللي تقترحه."
+      }
+    }
+  ]
+}
+</script>
+
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/atlas-course-bundle.js" onerror="this.remove()"></script>
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-runtime.js" onerror="this.remove()"></script>
+<script>
+(function () {
+  "use strict";
+  var W = JSON.parse(document.getElementById("week").textContent);
+  var T = window.Tasees, AR = T.AR, el = T.el, store = T.store;
+  var TRACKS = ["مستكشف", "ممارس", "متقدم"];
+  var track = store.get("track") || "ممارس";
+  var visible = function () { return W.screens.filter(function (s) { return !s.track || s.track === track; }); };
+  var i = 0;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sanad(list) { return (list || []).map(function (s) { var tc = /^≈|\d:\d/.test(s[1]); return '<span class="t-sanad"><b>' + esc(s[0]) + "</b>" + (tc ? '<span class="tc">' + esc(s[1]) + "</span>" : esc(s[1])) + "</span>"; }).join(""); }
+  function bricks(n) { var h = '<div class="wall" aria-label="طوب الوحدة">'; for (var k = 1; k <= 4; k++) { h += '<span class="t-brick' + (store.get("done") && k === ((W.week - 1) % 4) + 1 ? " is-laid" + (n ? " is-new" : "") : "") + '"></span>'; } return h + "</div>"; }
+
+  var LAYOUT = {
+    L1: function (s) {
+      return '<p class="t-eyebrow">' + esc(W.eyebrow) + '</p><h1 class="t-title">' + esc(W.title) + '</h1><svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>' +
+        '<p class="t-small" style="margin:0">' + esc(W.subtitle) + '</p><div class="q-box"><small>سؤال الأسبوع</small>' + esc(W.question) + "</div>" +
+        '<div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>' + TRACKS.map(function (t) { return '<button class="t-chip js-track" type="button" aria-pressed="' + (t === track) + '">' + t + "</button>"; }).join("") + "</div>" +
+        '<div class="audio">' + esc(W.audio) + '</div><p class="t-small" style="margin:0">نصوص مستوحاة من أسلوب المهندس أيمن عبد الرحيم في الشرح، كُتبت لأغراض تدريبية داخل مشروع تأسيس، وليست قولًا منسوبًا إليه.</p>';
+    },
+    L2: function (s) {
+      var art = s.art_src ? '<img src="' + esc(s.art_src) + '" alt="">' : "رسم الخطاف <code>" + esc(s.art) + "</code> لم يُولَّد بعد";
+      return '<div class="hook-art">' + art + '</div><p class="t-voice">' + esc(s.voice) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>";
+    },
+    L3: function (s) {
+      return '<h2 class="t-h2">' + esc(s.heading) + '</h2><p class="t-matn">' + esc(s.matn) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>" +
+        (s.trap ? '<p class="t-feedback t-feedback--bad"><strong>' + esc(s.trap.title) + "</strong>" + esc(s.trap.text) + "</p>" : "");
+    },
+    L4: function (s) { return '<h2 class="t-h2">' + esc(s.heading) + "</h2>" + (s.instruction ? '<p class="t-small" style="margin:0">' + esc(s.instruction) + "</p>" : "") + '<div class="demo" data-mount></div>'; },
+    L5: function (s) { return (s.classic ? '<p class="t-classic" style="margin:0">' + esc(s.classic) + "</p>" : "") + '<p class="t-matn">' + esc(s.matn) + '</p><div class="demo" data-mount></div>'; },
+    L6: function (s) { return '<div class="demo" data-mount></div>'; },
+    L7: function (s) {
+      var p = store.get("predict");
+      return '<h2 class="t-title" style="font-size:2.2rem">' + esc(s.heading) + '</h2><ol class="lines">' + s.lines.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ol>" +
+        (p ? '<p class="t-feedback">' + esc(s.replay).replace("{{predict}}", "<strong style=\"display:inline\">«" + esc(p) + "»</strong>") + "</p>" : "") +
+        '<p class="t-feedback t-feedback--ok"><strong>مهمة الأسبوع · ' + esc(track) + "</strong>" + esc(s.task[track]) + '</p><p class="t-small" style="margin:0">' + esc(W.next) + "</p>";
+    }
+  };
+
+  function show() {
+    var list = visible(); i = Math.max(0, Math.min(i, list.length - 1));
+    var s = list[i], last = s.layout === "L7";
+    if (last && !store.get("done")) { store.set("done", "1"); s._new = true; }
+    var stage = document.getElementById("stage");
+    stage.innerHTML = '<section class="t-screen" data-id="' + esc(s.id) + '" data-layout="' + s.layout + '"><aside class="t-margin">' + sanad(s.sanad) + (s.layout === "L1" || last ? bricks(last && s._new) : "") + '</aside><div class="t-main">' + LAYOUT[s.layout](s) + "</div></section>";
+    var mount = stage.querySelector("[data-mount]"); if (mount && s.pattern) T.render(mount, s.pattern, s.data);
+    stage.querySelectorAll(".js-track").forEach(function (b) { b.onclick = function () { track = b.textContent; store.set("track", track); show(); }; });
+    document.getElementById("wk-name").innerHTML = 'تأسيس <span style="font-family:var(--f-body);font-size:1rem;font-weight:500">· الأسبوع ' + AR(W.week) + "</span>";
+    document.getElementById("wk-pos").textContent = "الشاشة " + AR(i + 1) + " من " + AR(list.length);
+    document.getElementById("pencil").innerHTML = list.map(function (_, k) { return '<i class="' + (k <= i ? "on" : "") + '"></i>'; }).join("");
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").textContent = last ? "تم" : i === 0 ? "يلا بينا" : "التالي";
+    document.getElementById("next").disabled = last;
+  }
+  document.getElementById("prev").onclick = function () { i--; show(); window.scrollTo(0, 0); };
+  document.getElementById("next").onclick = function () { i++; show(); window.scrollTo(0, 0); };
+  document.addEventListener("keydown", function (e) { if (e.target.closest("input,textarea,select")) return; if (e.key === "ArrowLeft") { i++; show(); } if (e.key === "ArrowRight") { i--; show(); } });
+  show();
+})();
+</script>
+</body>
+</html>

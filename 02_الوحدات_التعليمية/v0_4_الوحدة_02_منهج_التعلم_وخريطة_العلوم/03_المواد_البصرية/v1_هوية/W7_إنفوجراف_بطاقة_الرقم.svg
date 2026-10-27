@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="'IBM Plex Sans Arabic', 'Noto Sans Arabic', Tahoma, sans-serif"><defs><pattern id="v1grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0 H0 V24" fill="none" stroke="#D7DDE8" stroke-width="0.7"/></pattern></defs>
+<rect width="1200" height="675" fill="#F7F8F3"/><rect width="1200" height="675" fill="url(#v1grid)"/>
+<text x="600" y="64" fill="#19213A" font-size="38" text-anchor="middle" font-weight="bold">بطاقة الرقم الخماسية + كدبات الإطار الأربع</text>
+<g font-size="24" text-anchor="middle">
+<rect x="60" y="104" width="212" height="80" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/><text x="166" y="150" fill="#19213A">١ المصدر ومصلحته</text>
+<rect x="288" y="104" width="212" height="80" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/><text x="394" y="150" fill="#19213A">٢ عدّ/قياس/تقدير</text>
+<rect x="516" y="104" width="212" height="80" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/><text x="622" y="150" fill="#19213A">٣ عينة وفترة</text>
+<rect x="744" y="104" width="212" height="80" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/><text x="850" y="150" fill="#19213A">٤ التعريف</text>
+<rect x="972" y="104" width="168" height="80" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/><text x="1056" y="150" fill="#19213A">٥ المقارنة</text>
+</g>
+<g font-size="22" fill="#4A5470" text-anchor="middle">
+<rect x="120" y="220" width="960" height="58" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"><title></title></rect><text x="600" y="257">محور مقطوع: الصفر فين؟ · عينة غير ممثلة: مين بره؟</text>
+<rect x="120" y="292" width="960" height="58" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="329">ارتباط≠سببية: دوّر على المتغير التالت · مقام ناقص: مقابل كام ومن كام؟</text>
+<rect x="120" y="364" width="960" height="58" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="401">فخ المتوسط: اسأل الوسيط والتوزيع</text>
+<rect x="120" y="436" width="960" height="58" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="473">الحكم النهائي: إشارة · دليل · انطباع مرقّم</text>
+<rect x="120" y="508" width="960" height="58" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="545">رقمك أنت: اعرض بطاقته معاه واعرض الأضعف أولًا</text>
+</g>
+<text x="600" y="630" fill="#4A5470" font-size="20" text-anchor="middle">مشروع تأسيس — الوحدة 2 v0.4 — الأسبوع 7 · هوية v1</text>
+</svg>

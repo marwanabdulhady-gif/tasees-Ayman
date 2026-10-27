@@ -42,6 +42,14 @@ def phase_of(u):
     return 1 if u in (1, 2, 3, 4, 17) else 2 if u in (5, 6, 26, 0) else 3
 
 
+def approved_assets():
+    """معرّفات الصور التي اعتمدها المالك — من ملف الاعتماد، لا بتحرير السجل يدويًا."""
+    p = PKG / "08_اعتماد_الأصول.json"
+    if not p.exists():
+        return set()
+    return set(json.loads(p.read_text(encoding="utf-8")).get("assets", []))
+
+
 def lib_license():
     out = {}
     with open(LIB / "00_فهرس_المكتبة_البصرية.csv", encoding="utf-8") as f:
@@ -58,6 +66,7 @@ def main():
     lock_path = PKG / "source-lock.json"
     lock = json.loads(lock_path.read_text(encoding="utf-8"))["weeks"] if lock_path.exists() else {}
     lic = lib_license()
+    APPROVED = approved_assets()
     errors, rows, prompts = [], [], []
     add = lambda **k: rows.append(k)
 
@@ -70,16 +79,24 @@ def main():
     ]:
         add(asset_id=aid, week="", unit="", kind="برنامج", route="SVG/HTML يدوي", description=desc,
             prompt_ref="", target_path=path, license="أصلي", status="جاهز", gate="V1–V8")
+    icons_dir = ROOT / "07_الهوية_البصرية_والتفاعل" / "templates" / "icons"
+    icon_names = ("sanad", "notebook", "brick", "card", "trap", "check",
+                  "review", "listen", "predict", "breaker", "scale", "map")
+    icon_done = sum((icons_dir / f"icon-{n}.svg").exists() for n in icon_names)
+    icon_status = ("جاهز — ١٢ أيقونة ولوحة" if icon_done == len(icon_names)
+                   else f"جزئي — {icon_done}/{len(icon_names)}" if icon_done else "مطلوب")
     add(asset_id="tas-prog-pen-icons", week="", unit="", kind="برنامج", route="SVG يدوي",
         description="12 أيقونة بخط القلم: سند، دفتر، طوبة، كارت، مصيدة، صح، راجع، سماعة، توقّع، قاطع، ميزان، خريطة",
         prompt_ref="04 §مهمة A3", target_path="07_الهوية_البصرية_والتفاعل/templates/icons/", license="أصلي",
-        status="مطلوب", gate="V1, V4")
+        status=icon_status, gate="V1, V4")
 
     for u, name, body in UNIT_COVERS:
         aid = f"tas-u{u}-cover"
+        cover_png = ROOT / "07_الهوية_البصرية_والتفاعل" / "assets" / "covers" / f"{aid}.png"
+        cover_status = ("معتمد" if aid in APPROVED else "مولود — بانتظار اعتماد المالك") if cover_png.exists() else "مطلوب"
         add(asset_id=aid, week="", unit=u, kind="غلاف وحدة", route="AI still", description=name,
             prompt_ref=aid, target_path=f"07_الهوية_البصرية_والتفاعل/assets/covers/{aid}.png", license="مولد AI",
-            status="مطلوب", gate="V2, V3, V5")
+            status=cover_status, gate="V2, V3, V5")
         prompts.append((aid, f"غلاف الوحدة {str(u).translate(AR)} — {name}", body, phase_of(u)))
 
     imap = []
@@ -97,16 +114,20 @@ def main():
                 description=(f"{w['svg']} مرسوم بألوان الهوية من البداية" if native else f"إعادة رسم {w['svg']} بهوية الكراسة (لا تغيير في المحتوى)"),
                 prompt_ref="" if native else "04 §مهمة A2",
                 target_path=f"{vis}/{w['svg']}" if native else f"{vis}/v1_هوية/{w['svg']}", license="أصلي",
-                status="جاهز" if native else "موجود — يحتاج إعادة تلوين", gate="V1, V4, V6")
+                status="جاهز" if (native or (UNITS / udir / "03_المواد_البصرية" / "v1_هوية" / w["svg"]).exists())
+                else "موجود — يحتاج إعادة تلوين", gate="V1, V4, V6")
         for aid, ar, body in w["hooks"]:
             hook_png = UNITS / udir / "03_المواد_البصرية" / "hooks" / f"{aid}.png" if udir else None
-            hook_status = "مولود — بانتظار اعتماد المالك" if (hook_png and hook_png.exists()) else "مطلوب"
+            hook_status = ("معتمد" if aid in APPROVED else "مولود — بانتظار اعتماد المالك") \
+                if (hook_png and hook_png.exists()) else "مطلوب"
             add(asset_id=aid, week=wk, unit=u, kind="رسم الخطاف", route="AI still", description=ar,
                 prompt_ref=aid, target_path=f"{vis}/hooks/{aid}.png", license="مولد AI", status=hook_status, gate="V2, V3, V5")
             prompts.append((aid, f"الأسبوع {str(wk).translate(AR)} — {ar}", body, phase_of(u)))
         for aid, ar in w["authored"]:
+            authored_svg = ROOT / vis / "interactive" / f"{aid}.svg"
             add(asset_id=aid, week=wk, unit=u, kind="رسم تفاعل", route="SVG يدوي", description=ar,
-                prompt_ref="04 §مهمة A4", target_path=f"{vis}/interactive/{aid}.svg", license="أصلي", status="مطلوب", gate="V1, V4, V6")
+                prompt_ref="04 §مهمة A4", target_path=f"{vis}/interactive/{aid}.svg", license="أصلي",
+                status="جاهز" if authored_svg.exists() else "مطلوب", gate="V1, V4, V6")
         for i, ph in enumerate(w["photos"], 1):
             if not (LIB / ph).exists():
                 errors.append(f"missing photo: {ph}")

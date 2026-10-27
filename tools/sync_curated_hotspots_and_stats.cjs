@@ -1229,6 +1229,377 @@ const NEW_CURATED_MAPS = {
         summary: "وقعة أمير المؤمنين علي بن أبي طالب مع الخوارج بعد خروجهم في حروراء واستحلالهم الدماء."
       }
     ]
+  },
+  "abubakr-021": {
+    rotated: 0,
+    period: "١ هـ — طريق هجرة النبي ﷺ وأبي بكر من مكة إلى المدينة",
+    courseLinks: ["u4-w14", "tr-seerah-makkah"],
+    hotspots: [
+      {
+        id: "ab21-madinah",
+        name: "المدينة النبوية",
+        kind: "city",
+        x: 57.5, y: 4.0, w: 12.0, h: 6.5,
+        summary: ""
+      },
+      {
+        id: "ab21-quba",
+        name: "قباء",
+        kind: "place",
+        x: 65.0, y: 14.0, w: 7.0, h: 6.0,
+        summary: ""
+      },
+      {
+        id: "ab21-rakuba",
+        name: "ثنية ركوبة",
+        kind: "place",
+        x: 48.5, y: 18.5, w: 12.0, h: 5.5,
+        summary: ""
+      },
+      {
+        id: "ab21-safra",
+        name: "وادي الصفراء",
+        kind: "place",
+        x: 23.0, y: 10.5, w: 10.5, h: 5.0,
+        summary: ""
+      },
+      {
+        id: "ab21-juhfa",
+        name: "الجحفة",
+        kind: "place",
+        x: 15.5, y: 44.0, w: 7.5, h: 4.5,
+        summary: ""
+      },
+      {
+        id: "ab21-ghadir",
+        name: "غدير خم",
+        kind: "place",
+        x: 24.0, y: 42.5, w: 8.5, h: 5.5,
+        summary: ""
+      },
+      {
+        id: "ab21-ummamabad",
+        name: "خيمتا أم معبد",
+        kind: "place",
+        x: 20.5, y: 50.0, w: 10.0, h: 5.0,
+        summary: ""
+      },
+      {
+        id: "ab21-usfan",
+        name: "عسفان",
+        kind: "place",
+        x: 14.5, y: 67.0, w: 7.5, h: 5.0,
+        summary: ""
+      },
+      {
+        id: "ab21-makkah",
+        name: "مكة المكرمة",
+        kind: "city",
+        x: 30.5, y: 72.5, w: 11.0, h: 5.0,
+        summary: ""
+      },
+      {
+        id: "ab21-thawr",
+        name: "جبل ثور",
+        kind: "landmark",
+        x: 24.5, y: 76.0, w: 6.0, h: 4.5,
+        summary: ""
+      }
+    ]
+  },
+  "abubakr-025": {
+    rotated: 0,
+    period: "المدينة المنورة وما جاورها: المسجد النبوي ومساجدها ومواردها",
+    courseLinks: ["u4-w14"],
+    hotspots: [
+      {
+        id: "ab25-uhud",
+        name: "جبل أحد",
+        kind: "landmark",
+        x: 27.0, y: 10.5, w: 9.0, h: 3.8,
+        summary: ""
+      },
+      {
+        id: "ab25-aqiq",
+        name: "وادي العين (العقيق)",
+        kind: "water",
+        x: 44.0, y: 21.6, w: 10.0, h: 3.6,
+        summary: ""
+      },
+      {
+        id: "ab25-utqub",
+        name: "بئر الأطبق",
+        kind: "water",
+        x: 53.0, y: 27.4, w: 9.5, h: 3.4,
+        summary: ""
+      },
+      {
+        id: "ab25-harra",
+        name: "حرة المحتضر",
+        kind: "region",
+        x: 43.0, y: 31.0, w: 10.5, h: 3.2,
+        summary: ""
+      },
+      {
+        id: "ab25-jumuah",
+        name: "بئر جمعة",
+        kind: "water",
+        x: 85.5, y: 29.9, w: 9.5, h: 3.6,
+        summary: ""
+      },
+      {
+        id: "ab25-adb",
+        name: "بئر عضب",
+        kind: "water",
+        x: 45.0, y: 43.6, w: 9.0, h: 3.2,
+        summary: ""
+      },
+      {
+        id: "ab25-city",
+        name: "المدينة النبوية والمسجد النبوي",
+        kind: "city",
+        x: 61.5, y: 50.4, w: 19.5, h: 5.4,
+        summary: ""
+      },
+      {
+        id: "ab25-key",
+        name: "مفتاح خريطة المدينة النبوية",
+        kind: "legend",
+        x: 62.0, y: 56.4, w: 15.0, h: 3.2,
+        summary: ""
+      }
+    ]
+  },
+  "ali-101": {
+    rotated: 0,
+    period: "موقعا فدك وخيبر من المدينة النبوية وقبائل الحجاز حولهما",
+    courseLinks: ["u4-w13", "u4-w14"],
+    hotspots: [
+      {
+        id: "al101-ghatafan",
+        name: "غطفان",
+        kind: "people",
+        x: 51.5, y: 9.4, w: 9.5, h: 4.0,
+        summary: ""
+      },
+      {
+        id: "al101-fadak",
+        name: "فدك (الحائط)",
+        kind: "settlement",
+        x: 57.5, y: 14.0, w: 12.0, h: 4.4,
+        summary: ""
+      },
+      {
+        id: "al101-khaybar",
+        name: "خيبر",
+        kind: "settlement",
+        x: 42.5, y: 17.0, w: 8.5, h: 4.6,
+        summary: ""
+      },
+      {
+        id: "al101-madinah",
+        name: "المدينة النبوية",
+        kind: "city",
+        x: 44.0, y: 29.4, w: 14.0, h: 5.2,
+        summary: ""
+      },
+      {
+        id: "al101-aws-khazraj",
+        name: "الأوس والخزرج",
+        kind: "people",
+        x: 57.5, y: 28.4, w: 12.0, h: 4.4,
+        summary: ""
+      },
+      {
+        id: "al101-juhaynah",
+        name: "جهينة",
+        kind: "people",
+        x: 11.5, y: 28.2, w: 7.5, h: 4.4,
+        summary: ""
+      },
+      {
+        id: "al101-yanbu",
+        name: "ينبع",
+        kind: "settlement",
+        x: 12.5, y: 34.2, w: 7.0, h: 4.2,
+        summary: ""
+      },
+      {
+        id: "al101-abwa",
+        name: "الأبواء",
+        kind: "settlement",
+        x: 32.5, y: 45.0, w: 8.0, h: 4.2,
+        summary: ""
+      },
+      {
+        id: "al101-muzaynah",
+        name: "مزينة",
+        kind: "people",
+        x: 57.0, y: 39.6, w: 9.0, h: 4.0,
+        summary: ""
+      }
+    ]
+  },
+  "ali-207": {
+    rotated: 0,
+    period: "٣٩ هـ — غزو بلاد السند وحدود الخلافة شرقًا",
+    courseLinks: ["u6-w22"],
+    hotspots: [
+      {
+        id: "al207-kufah",
+        name: "الكوفة",
+        kind: "settlement",
+        x: 2.5, y: 14.0, w: 8.0, h: 5.5,
+        summary: ""
+      },
+      {
+        id: "al207-herat",
+        name: "هراة",
+        kind: "settlement",
+        x: 64.5, y: 9.3, w: 6.5, h: 4.2,
+        summary: ""
+      },
+      {
+        id: "al207-tukharistan",
+        name: "طخارستان",
+        kind: "region",
+        x: 77.0, y: 10.6, w: 11.0, h: 5.0,
+        summary: ""
+      },
+      {
+        id: "al207-faryab",
+        name: "فارياب",
+        kind: "settlement",
+        x: 90.5, y: 10.3, w: 7.0, h: 4.2,
+        summary: ""
+      },
+      {
+        id: "al207-sijistan",
+        name: "سجستان",
+        kind: "region",
+        x: 65.5, y: 16.0, w: 12.0, h: 4.0,
+        summary: ""
+      },
+      {
+        id: "al207-zaranj",
+        name: "زرنج",
+        kind: "settlement",
+        x: 67.5, y: 20.4, w: 6.5, h: 3.6,
+        summary: ""
+      },
+      {
+        id: "al207-qandahar",
+        name: "قندهار",
+        kind: "settlement",
+        x: 80.5, y: 16.9, w: 7.0, h: 4.2,
+        summary: ""
+      },
+      {
+        id: "al207-kallat",
+        name: "كالآت",
+        kind: "settlement",
+        x: 79.5, y: 23.2, w: 6.5, h: 3.8,
+        summary: ""
+      },
+      {
+        id: "al207-jakobabad",
+        name: "جاكو بياد",
+        kind: "settlement",
+        x: 88.5, y: 23.5, w: 8.0, h: 3.8,
+        summary: ""
+      },
+      {
+        id: "al207-makran",
+        name: "مكوران",
+        kind: "region",
+        x: 96.0, y: 26.6, w: 4.0, h: 3.4,
+        summary: ""
+      },
+      {
+        id: "al207-sind",
+        name: "أرض السند",
+        kind: "region",
+        x: 83.0, y: 27.3, w: 11.0, h: 4.4,
+        summary: ""
+      },
+      {
+        id: "al207-daybul",
+        name: "الديبل",
+        kind: "settlement",
+        x: 80.5, y: 32.0, w: 7.5, h: 3.8,
+        summary: ""
+      }
+    ]
+  },
+  "umar-064": {
+    rotated: 0,
+    period: "١٢ هـ — الإغارة على سوق بغداد قبل خلافة عمر",
+    courseLinks: ["u5-w19"],
+    hotspots: [
+      {
+        id: "um64-anbar",
+        name: "الأنبار",
+        kind: "settlement",
+        x: 13.0, y: 11.8, w: 9.0, h: 5.5,
+        summary: ""
+      },
+      {
+        id: "um64-suq-baghdad",
+        name: "سوق بغداد",
+        kind: "settlement",
+        x: 46.0, y: 12.0, w: 12.0, h: 7.0,
+        summary: ""
+      },
+      {
+        id: "um64-khanafis",
+        name: "الخنافس",
+        kind: "settlement",
+        x: 24.5, y: 26.0, w: 9.5, h: 5.5,
+        summary: ""
+      },
+      {
+        id: "um64-madain",
+        name: "المدائن",
+        kind: "settlement",
+        x: 69.0, y: 38.0, w: 10.5, h: 6.0,
+        summary: ""
+      },
+      {
+        id: "um64-dijla",
+        name: "نهر دجلة",
+        kind: "water",
+        x: 61.0, y: 33.3, w: 10.0, h: 4.8,
+        summary: ""
+      },
+      {
+        id: "um64-sabat",
+        name: "ساباط",
+        kind: "settlement",
+        x: 76.0, y: 43.8, w: 7.5, h: 4.8,
+        summary: ""
+      }
+    ]
+  },
+  "umar-165": {
+    rotated: 0,
+    period: "صورة بلاد السند لابن حوقل النصيبي",
+    courseLinks: ["u5-w19"],
+    hotspots: [
+      {
+        id: "um165-sind-map",
+        name: "صورة بلاد السند عند ابن حوقل",
+        kind: "other",
+        x: 52.5, y: 9.6, w: 41.0, h: 42.0,
+        summary: ""
+      },
+      {
+        id: "um165-oldworld-globe",
+        name: "خريطة أوروبا وآسيا وأفريقيا (العالم القديم)",
+        kind: "other",
+        x: 56.8, y: 64.3, w: 27.5, h: 20.4,
+        summary: ""
+      }
+    ]
   }
 };
 
@@ -1452,7 +1823,7 @@ manifest.generatedAt = "2026-10-26";
 
 // Save updated files (compact JSON for manifest.json matching build_unified_manifest.py)
 curatedData.description =
-  "Curated historical map hotspots across Seerah, Abu Bakr, Umar, Uthman & Ali atlases (80 maps total: 47 baseline + 33 visually reviewed course-linked maps with SHA-256 verification).";
+  "Curated historical map hotspots across Seerah, Abu Bakr, Umar, Uthman & Ali atlases (86 maps total: 47 baseline + 39 visually reviewed course-linked maps with SHA-256 verification; X1 added 6 maps).";
 fs.writeFileSync(CURATED_PATH, JSON.stringify(curatedData, null, 2) + "\n", "utf8");
 fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest), "utf8");
 

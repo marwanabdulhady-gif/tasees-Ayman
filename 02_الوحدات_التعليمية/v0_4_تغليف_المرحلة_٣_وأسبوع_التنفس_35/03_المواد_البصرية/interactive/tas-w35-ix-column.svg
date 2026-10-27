@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 160 300 320" width="300" height="310" role="img" aria-label="عمود التأسيس: ٨ وحدات × ٤ أسابيع، وأسبوعا تنفس بين المراحل">
+<title>عمود التأسيس — مؤشر التقدم</title>
+<style>
+ .brick rect{fill:none;stroke:var(--c);stroke-width:1.6}
+ .brick.is-laid rect{fill:var(--c)}
+ .brick.is-current rect{stroke-dasharray:4 3;stroke-width:2.2}
+ .breath rect{fill:none;stroke:#4A5470;stroke-width:1.4;stroke-dasharray:2 3}
+ .breath.is-laid rect{fill:#D7DDE8}
+ .stone{fill:none;stroke:#19213A;stroke-width:1.8;stroke-linecap:round}
+ .lbl{font:500 12px 'IBM Plex Sans Arabic',Tahoma,sans-serif;fill:#4A5470;text-anchor:middle}
+ .cap{font:400 13px 'Aref Ruqaa','Amiri',serif;fill:#4A5470}
+</style>
+<path class="stone" d="M42,450 h216 M50,450 v-10 h200 v10" />
+<text class="lbl" x="36" y="419">و١</text>
+<g class="brick is-laid" data-unit="1" data-week="1" style="--c:#2440A0"><title>الأسبوع ١ — ما تسحبش الكروت من غير ترتيب</title><rect x="60" y="406" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="1" data-week="2" style="--c:#2440A0"><title>الأسبوع ٢ — حقيقة الأشياء: تصف ولا توسم</title><rect x="104" y="406" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="1" data-week="3" style="--c:#2440A0"><title>الأسبوع ٣ — تحرير العقل</title><rect x="148" y="406" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="1" data-week="4" style="--c:#2440A0"><title>الأسبوع ٤ — التفكير مع آخرين: الحوار المنصف</title><rect x="192" y="406" width="40" height="18" rx="2"/></g>
+<text class="lbl" x="36" y="397">و٢</text>
+<g class="brick is-laid" data-unit="2" data-week="5" style="--c:#2440A0"><title>الأسبوع ٥ — خزانتك مش عقلك</title><rect x="64" y="384" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="2" data-week="6" style="--c:#2440A0"><title>الأسبوع ٦ — خريطة العلوم</title><rect x="108" y="384" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="2" data-week="7" style="--c:#2440A0"><title>الأسبوع ٧ — الأرقام بتكدب؟</title><rect x="152" y="384" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="2" data-week="8" style="--c:#2440A0"><title>الأسبوع ٨ — المعرفة بتسافر</title><rect x="196" y="384" width="40" height="18" rx="2"/></g>
+<text class="lbl" x="36" y="375">و٣</text>
+<g class="brick is-laid" data-unit="3" data-week="9" style="--c:#2440A0"><title>الأسبوع ٩ — لغتك مش هدومك</title><rect x="60" y="362" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="3" data-week="10" style="--c:#2440A0"><title>الأسبوع ١٠ — الجذر أداة</title><rect x="104" y="362" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="3" data-week="11" style="--c:#2440A0"><title>الأسبوع ١١ — النحو مش كرابيج</title><rect x="148" y="362" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="3" data-week="12" style="--c:#2440A0"><title>الأسبوع ١٢ — اللغة مشروع</title><rect x="192" y="362" width="40" height="18" rx="2"/></g>
+<text class="lbl" x="36" y="353">و٤</text>
+<g class="brick is-laid" data-unit="4" data-week="13" style="--c:#2440A0"><title>الأسبوع ١٣ — إزاي وصلتنا السيرة؟</title><rect x="64" y="340" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="4" data-week="14" style="--c:#2440A0"><title>الأسبوع ١٤ — النبي ﷺ في الغار</title><rect x="108" y="340" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="4" data-week="15" style="--c:#2440A0"><title>الأسبوع ١٥ — القدوة مش استنساخ</title><rect x="152" y="340" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="4" data-week="16" style="--c:#2440A0"><title>الأسبوع ١٦ — السيرة مش غزوات وبس</title><rect x="196" y="340" width="40" height="18" rx="2"/></g>
+<g class="breath is-laid" data-week="17"><title>مكتمل — أسبوع التنفس ١٧</title><rect x="54" y="326" width="192" height="10" rx="2"/></g>
+<text class="lbl" x="36" y="317">و٥</text>
+<g class="brick is-laid" data-unit="5" data-week="18" style="--c:#8A5A2B"><title>الأسبوع ١٨ — تاريخنا مزور؟</title><rect x="60" y="304" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="5" data-week="19" style="--c:#8A5A2B"><title>الأسبوع ١٩ — الصاحبان</title><rect x="104" y="304" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="5" data-week="20" style="--c:#8A5A2B"><title>الأسبوع ٢٠ — عثمان وبذور الفتنة</title><rect x="148" y="304" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="5" data-week="21" style="--c:#8A5A2B"><title>الأسبوع ٢١ — الفتنة بلا تقديس ولا ازدراء</title><rect x="192" y="304" width="40" height="18" rx="2"/></g>
+<text class="lbl" x="36" y="295">و٦</text>
+<g class="brick is-laid" data-unit="6" data-week="22" style="--c:#8A5A2B"><title>الأسبوع ٢٢ — بنو أمية: الملك الأول</title><rect x="64" y="282" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="6" data-week="23" style="--c:#8A5A2B"><title>الأسبوع ٢٣ — إزاي بتقع دولة؟</title><rect x="108" y="282" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="6" data-week="24" style="--c:#8A5A2B"><title>الأسبوع ٢٤ — العصر الذهبي وتشريح الانحدار</title><rect x="152" y="282" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="6" data-week="25" style="--c:#8A5A2B"><title>الأسبوع ٢٥ — الصليبيون والمغول</title><rect x="196" y="282" width="40" height="18" rx="2"/></g>
+<g class="breath is-laid" data-week="26"><title>مكتمل — أسبوع التنفس ٢٦</title><rect x="54" y="268" width="192" height="10" rx="2"/></g>
+<text class="lbl" x="36" y="259">و٧</text>
+<g class="brick is-laid" data-unit="7" data-week="27" style="--c:#2E7D57"><title>الأسبوع ٢٧ — الوحدة ٧ — مكتمل — صفحة الأسبوع جاهزة</title><rect x="60" y="246" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="7" data-week="28" style="--c:#2E7D57"><title>الأسبوع ٢٨ — الوحدة ٧ — مكتمل — صفحة الأسبوع جاهزة</title><rect x="104" y="246" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="7" data-week="29" style="--c:#2E7D57"><title>الأسبوع ٢٩ — الوحدة ٧ — مكتمل — صفحة الأسبوع جاهزة</title><rect x="148" y="246" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="7" data-week="30" style="--c:#2E7D57"><title>الأسبوع ٣٠ — الوحدة ٧ — مكتمل — صفحة الأسبوع جاهزة</title><rect x="192" y="246" width="40" height="18" rx="2"/></g>
+<text class="lbl" x="36" y="237">و٨</text>
+<g class="brick is-laid" data-unit="8" data-week="31" style="--c:#2E7D57"><title>الأسبوع ٣١ — الوحدة ٨ — مكتمل — صفحة الأسبوع جاهزة</title><rect x="64" y="224" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="8" data-week="32" style="--c:#2E7D57"><title>الأسبوع ٣٢ — الوحدة ٨ — مكتمل — صفحة الأسبوع جاهزة</title><rect x="108" y="224" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="8" data-week="33" style="--c:#2E7D57"><title>الأسبوع ٣٣ — الوحدة ٨ — مكتمل — صفحة الأسبوع جاهزة</title><rect x="152" y="224" width="40" height="18" rx="2"/></g>
+<g class="brick is-laid" data-unit="8" data-week="34" style="--c:#2E7D57"><title>الأسبوع ٣٤ — الوحدة ٨ — مكتمل — صفحة الأسبوع جاهزة</title><rect x="196" y="224" width="40" height="18" rx="2"/></g>
+<path class="stone" d="M46,218 h208 M54,218 q96.0,-26 192,0" />
+<g class="bond"><title>الرباط الحجري الأول — إغلاق المرحلة ١</title><path class="stone" d="M52,324 h196 M52,338 h196 M52,324 v14 M248,324 v14"/></g><g class="bond"><title>الرباط الحجري الثاني — إغلاق المرحلة ٢</title><path class="stone" d="M52,266 h196 M52,280 h196 M52,266 v14 M248,266 v14"/></g><g class="bond"><title>الرباط الحجري الثالث — إضاءة تاج الختام</title><path d="M46,218 h208 M54,218 q96.0,-26 192,0" fill="#2E7D57" fill-opacity="0.3" stroke="#2E7D57" stroke-width="2.4" stroke-linecap="round"/></g>
+<text class="cap" x="150.0" y="184" text-anchor="middle">تاج الختام</text>
+<text class="cap" x="150.0" y="464" text-anchor="middle" style="font-size:11px">٣٢ طوبة — المرحلة ٣ مكتملة والرباط الثالث مضاء</text>
+</svg>
