@@ -3,6 +3,7 @@
     python main.py ingest                 # Stage 1: transcripts -> data/chunks.jsonl
     python main.py stats                  # look at what you built
     python main.py search "سؤالك"         # Stage 2: keyword search
+    python main.py eval                   # Stage 2: score the retriever on tests/eval_questions.jsonl
     python main.py embed                  # Stage 3: build the vector index
     python main.py ask "سؤالك"            # Stage 4: retrieve + generate an answer
 """
@@ -68,6 +69,17 @@ def cmd_search(config, log, question):
         print(f"\n#{rank}  score {score:.2f}  {chunk.citation()}\n    {chunk.url}\n    {chunk.text[:300]}…")
 
 
+def cmd_eval(config, log):
+    from src.retrieval.evaluate import evaluate, load_questions, print_report
+    top_k = config["retrieval"]["top_k"]
+    questions = load_questions(Path(__file__).parent / "tests" / "eval_questions.jsonl")
+    report = evaluate(make_retriever(config), questions, top_k)
+    print(f"Retriever: {config['retrieval']['method']}   chunk_words: {config['chunking']['chunk_words']}\n")
+    print_report(report, top_k)
+    log.info("eval method=%s chunk_words=%s hit@%d=%.2f mrr=%.2f", config["retrieval"]["method"],
+             config["chunking"]["chunk_words"], top_k, report["all"]["hit"], report["all"]["mrr"])
+
+
 def cmd_embed(config, log):
     from src.embeddings.embedder import Embedder
     from src.vectordb.vector_store import NumpyVectorStore
@@ -89,7 +101,7 @@ def cmd_ask(config, log, question):
 
 def main():
     parser = argparse.ArgumentParser(description="Ayman RAG lab")
-    parser.add_argument("command", choices=["ingest", "stats", "search", "embed", "ask"])
+    parser.add_argument("command", choices=["ingest", "stats", "search", "eval", "embed", "ask"])
     parser.add_argument("question", nargs="?", default="")
     args = parser.parse_args()
 
@@ -102,6 +114,7 @@ def main():
         "ingest": lambda: cmd_ingest(config, log),
         "stats": lambda: cmd_stats(config, log),
         "search": lambda: cmd_search(config, log, args.question),
+        "eval": lambda: cmd_eval(config, log),
         "embed": lambda: cmd_embed(config, log),
         "ask": lambda: cmd_ask(config, log, args.question),
     }[args.command]()

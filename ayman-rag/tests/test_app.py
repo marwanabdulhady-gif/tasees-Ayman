@@ -6,6 +6,7 @@ from pathlib import Path
 
 from src.chunking.chunker import chunk_lecture
 from src.ingestion.loader import Lecture, Paragraph, parse_transcript
+from src.retrieval.evaluate import first_hit_rank
 from src.retrieval.retriever import BM25Retriever
 from src.utils.helpers import normalize_arabic
 
@@ -69,6 +70,14 @@ class TestBM25(unittest.TestCase):
         chunks = chunk_lecture(lec, chunk_words=3, overlap_words=0)
         best, _ = BM25Retriever(chunks).search("ما هو الوعي اللغوي؟", 1)[0]
         self.assertIn("اللغوي", best.text)
+
+
+class TestEvaluate(unittest.TestCase):
+    def test_first_hit_rank(self):
+        lec = Lecture("c", 7, "t", "", [Paragraph(0, "ا ب ج")])
+        results = [(chunk_lecture(lec)[0], 1.0)]
+        self.assertEqual(first_hit_rank(results, {"c/7"}), 1)
+        self.assertIsNone(first_hit_rank(results, {"c/8"}))
 
 
 if __name__ == "__main__":

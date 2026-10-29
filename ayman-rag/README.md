@@ -49,14 +49,18 @@ transcripts/*.md ─▶ ingestion ─▶ chunking ─▶ embeddings ─▶ vecto
 | `src/api/routes.py` | FastAPI endpoint so a web page can call the search | later | ready to try |
 | `src/utils/helpers.py` | Config, logging, Arabic normalisation | | working |
 | `tests/test_app.py` | Unit tests for loading, chunking, normalising and searching | | working |
+| `tests/eval_questions.jsonl` | 15 test questions with the lecture(s) that answer each | 2 | |
+| `src/retrieval/evaluate.py` | Scores a retriever: Hit@5 and MRR, split by direct vs paraphrase | 2 | working |
 | `logs/` | `app.log` is written here | | |
 | `data/` | Generated chunks and vectors (not committed) | | |
-| `main.py` | Entry point: `ingest`, `stats`, `search`, `embed`, `ask` | | |
+| `main.py` | Entry point: `ingest`, `stats`, `search`, `eval`, `embed`, `ask` | | |
 
 ## Stages
 
 1. **Clean and chunk.** `python main.py ingest`, then `stats`. Try `chunk_words: 200` and `800` in `config.yaml`.
-2. **Keyword search.** `python main.py search "..."`. Write 15 test questions you know the answers to and count how often the right lecture appears in the top 5.
+2. **Keyword search.** `python main.py search "..."`, then `python main.py eval` to score it on the 15 test questions in `tests/eval_questions.jsonl`.
+
+   Baseline (BM25, 400-word chunks): **Hit@5 80% (12/15), MRR 0.69.** Direct questions 9/9; paraphrased questions only 3/6. Search by meaning in Stage 3 should close that gap.
 3. **Search by meaning.** `pip install sentence-transformers`, `python main.py embed`, set `retrieval.method: vector` and compare against your BM25 score.
 4. **Generate.** Put your key in `.env` (or set `provider: ollama`), then `python main.py ask "..."`.
 5. **Train a tiny GPT** on the same text in Google Colab (separate notebook, coming later).

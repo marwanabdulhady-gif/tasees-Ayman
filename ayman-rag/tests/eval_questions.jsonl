@@ -1,0 +1,15 @@
+{"id": "q01", "type": "direct", "question": "ما هي معضلة السجين؟", "relevant": ["05-reestablishing-muslim-awareness/8", "06-tasees-muslim-awareness/1"]}
+{"id": "q02", "type": "direct", "question": "ما الفرق بين المدرسة البنائية والمدرسة الوظيفية في علم النفس؟", "relevant": ["03-psychology/2", "03-psychology/1"]}
+{"id": "q03", "type": "direct", "question": "ما معنى الاستلحاد وكيف يختلف عن الإلحاد؟", "relevant": ["05-reestablishing-muslim-awareness/13"]}
+{"id": "q04", "type": "direct", "question": "ما هي شروط النهضة عند مالك بن نبي؟", "relevant": ["05-reestablishing-muslim-awareness/19", "05-reestablishing-muslim-awareness/20"]}
+{"id": "q05", "type": "direct", "question": "هل انتشر الإسلام بالسيف؟ وما هدف الفتوحات؟", "relevant": ["05-reestablishing-muslim-awareness/30"]}
+{"id": "q06", "type": "direct", "question": "كيف يؤثر إدمان الإباحية على الإنسان؟", "relevant": ["05-reestablishing-muslim-awareness/43"]}
+{"id": "q07", "type": "direct", "question": "ما هي الجماعات الوسيطة ولماذا هي مهمة للمجتمع؟", "relevant": ["06-tasees-muslim-awareness/2", "05-reestablishing-muslim-awareness/32", "05-reestablishing-muslim-awareness/35", "05-reestablishing-muslim-awareness/36", "05-reestablishing-muslim-awareness/42"]}
+{"id": "q08", "type": "direct", "question": "ما هي فتنة خلق القرآن ومتى انتهت؟", "relevant": ["01-umayyad-abbasid-history/5"]}
+{"id": "q09", "type": "direct", "question": "كيف أصبح معاوية بن أبي سفيان خليفة؟", "relevant": ["01-umayyad-abbasid-history/1"]}
+{"id": "q10", "type": "paraphrase", "question": "ما الفرق بين الشخص الاجتماعي المنفتح والشخص الهادئ المنعزل؟", "relevant": ["03-psychology/6"]}
+{"id": "q11", "type": "paraphrase", "question": "كيف كانت ملامح الرسول ﷺ وهيئته الجسدية؟", "relevant": ["04-seerah-makkah-period/6"]}
+{"id": "q12", "type": "paraphrase", "question": "لماذا ترك بعض الصحابة مكة وسافروا إلى أرض النجاشي؟", "relevant": ["04-seerah-makkah-period/4"]}
+{"id": "q13", "type": "paraphrase", "question": "هل يمكن أن ندرّس الطب في الجامعات بلغتنا بدل الإنجليزية؟", "relevant": ["05-reestablishing-muslim-awareness/22", "02-linguistic-awareness/4", "05-reestablishing-muslim-awareness/28"]}
+{"id": "q14", "type": "paraphrase", "question": "هل تستطيع أجهزة الكمبيوتر أن تفهم العربية وتعالجها؟", "relevant": ["02-linguistic-awareness/6", "05-reestablishing-muslim-awareness/24", "05-reestablishing-muslim-awareness/26"]}
+{"id": "q15", "type": "paraphrase", "question": "هل ينفع أن نعرف شخصية الإنسان من تاريخ ميلاده؟", "relevant": ["03-psychology/7"]}
