@@ -15,3 +15,5 @@
 ## نسخة Drive المستوردة
 
 توجد الملفات النصية الأصلية المستوردة من مجلد أيمن على Drive في [`../transcripts/drive-import-2026-11-01/`](../transcripts/drive-import-2026-11-01/README.md): 173 ملفًا في 20 مجلدًا، محفوظة دون تعديل وبجوار التفريغات السابقة. انظر الفهرس لمصدر كل مجلد وحدود التحقق.
+
+[`drive_inventory.json`](drive_inventory.json) جرد مولَّد ببصمات ومسارات ومعلومات غير متحققة، يُعاد بناؤه بأداة `tools/build_drive_inventory.py`. تجربة البحث والإجابة المحلية، وحدودها ومتطلبات النموذج، في [`../ayman_rag/README.md`](../ayman_rag/README.md).
