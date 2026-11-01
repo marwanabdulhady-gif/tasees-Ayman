@@ -55,6 +55,16 @@ class TextLessonTests(unittest.TestCase):
         self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
         self.assertIn('بلا توقيتات', r.stdout)
 
+    def test_spec_template_names_and_missing_lesson_filter(self):
+        self.run_check([self.valid()] * 6)
+        self.lesson.rename(self.lessons / 'lesson-01.md')
+        cmd = [sys.executable, str(CHECK), str(self.lessons), '--playlist', str(self.source_dir)]
+        r = subprocess.run(cmd + ['--lesson', '01'], capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        missing = subprocess.run(cmd + ['--lesson', '02'], capture_output=True, text=True)
+        self.assertEqual(missing.returncode, 2, missing.stdout + missing.stderr)
+        self.assertIn('لا دروس', missing.stdout)
+
     def test_number_notes_ignore_metadata_but_not_visible_claims(self):
         metadata = f'المصدر [رابط](https://example.com/2026/%D8%88) SHA-256 `{self.sha}`'
         r = self.run_check([self.valid()] * 6 + [metadata, 'النتيجة المزعومة 987654'])

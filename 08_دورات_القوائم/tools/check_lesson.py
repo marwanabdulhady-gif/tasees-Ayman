@@ -3,7 +3,7 @@
 """
 فاحص دروس دورات القوائم.
 
-يفحص كل درس (`NN_*.md`) أمام حلقات قائمة التشغيل التي بُني عليها:
+يفحص كل درس (`NN_*.md` أو `lesson-NN.md`) أمام حلقات قائمة التشغيل التي بُني عليها:
 
   1) **الإحالة**: كل `〔حN MM:SS〕` أو `〔حN H:MM:SS〕` → الحلقة N موجودة،
      والطابع الزمني داخل مداها الفعلي (لا يتجاوز آخر طابع في الملف).
@@ -136,9 +136,9 @@ def main(argv: list[str]) -> int:
         print(f"✗ لا حلقات في {playlist}")
         return 2
 
-    lessons = sorted(p for p in course.glob("[0-9][0-9]_*.md"))
+    lessons = sorted(set(course.glob("[0-9][0-9]_*.md")) | set(course.glob("lesson-[0-9][0-9].md")))
     if only:
-        lessons = [p for p in lessons if p.name.startswith(only)] or lessons
+        lessons = [p for p in lessons if p.name.startswith(only) or p.stem == f"lesson-{only}"]
     if not lessons:
         print("✗ لا دروس (ملفات NN_*.md)")
         return 2
