@@ -255,9 +255,18 @@ def main(argv: list[str]) -> int:
             else:
                 pos = m.start()
 
-        # ٤) أرقام لاتينية غير موجودة في الحلقات
+        # ٤) أرقام لاتينية في المحتوى، لا بصمات أو إحالات أو وجهات روابط.
+        # Keep the visible link label: a number in it can still be a claim.
+        number_text = CITE_L.sub(' ', text)
+        number_text = CITE.sub(' ', number_text)
+        number_text = CITE_P.sub(' ', number_text)
+        number_text = CITE_G.sub(' ', number_text)
+        number_text = re.sub(r'\]\([^\n)]*\)', ']', number_text)
+        number_text = re.sub(r'https?://\S+', ' ', number_text)
+        number_text = re.sub(r'(?<![\w])[0-9a-f]{64}(?![\w])', ' ', number_text)
+        number_text = re.sub(r'\bSHA-?256\b', ' ', number_text, flags=re.IGNORECASE)
         alltext = " ".join(e["n_stamps"] for e in eps.values())
-        for tok in dict.fromkeys(re.findall(r"(?<![\w/])\d{2,}(?![\w])", text)):
+        for tok in dict.fromkeys(re.findall(r"(?<![\w/])\d{2,}(?![\w])", number_text)):
             if ar2en(tok) not in alltext:
                 notes.append(f"{name} — رقم «{tok}» غير موجود في الحلقات: راجعه")
 

@@ -55,6 +55,17 @@ class TextLessonTests(unittest.TestCase):
         self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
         self.assertIn('بلا توقيتات', r.stdout)
 
+    def test_number_notes_ignore_metadata_but_not_visible_claims(self):
+        metadata = f'المصدر [رابط](https://example.com/2026/%D8%88) SHA-256 `{self.sha}`'
+        r = self.run_check([self.valid()] * 6 + [metadata, 'النتيجة المزعومة 987654'])
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn('987654', r.stdout)
+        self.assertNotIn('2026', r.stdout)
+        self.assertNotIn('256', r.stdout)
+        self.assertNotIn('«88»', r.stdout)
+        r = self.run_check([self.valid()] * 6 + ['[987654](https://example.com/2026)'])
+        self.assertIn('987654', r.stdout)
+
     def test_two_quotes_or_two_citations_on_one_line_fail(self):
         for bad in (self.valid() + ' «نهاية أخرى مفيدة»', self.valid() + ' ' + self.valid()):
             r = self.run_check([self.valid()] * 6 + [bad])
