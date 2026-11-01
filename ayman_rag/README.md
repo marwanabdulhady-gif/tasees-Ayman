@@ -45,6 +45,16 @@ The adapter calls the local CLI with `-m`, `-f`, `--simple-io`, `--no-display-pr
 
 The generated catalogue [`drive_inventory.json`](../09_تفريغات_أيمن/drive_inventory.json) records stable path-based IDs, the original text SHA-256, a Drive **folder** link and unverified metadata. It verifies the import-time checksum manifest before writing. The index is created under `.cache/ayman-rag/` and is deliberately not checked into Git. Rebuild it after rebuilding the catalogue. Search refuses results if the catalogue or any returned source changed, and prints original text with 1-based inclusive line numbers and source SHA-256. FTS uses Arabic-normalized text solely for indexing and search; the source is never rewritten.
 
+## Offline two-source comparison
+
+```sh
+python3 ayman_rag/compare.py drive-57f2ce520d28eddf9f87 drive-8d691d57543232ceb069 --max-runs 10
+python3 ayman_rag/compare.py SOURCE_ID_A SOURCE_ID_B --catalog ayman_rag/psychology_inventory.json
+python3 08_دورات_القوائم/tools/build_foundation_overlap_report.py
+```
+
+`compare.py` verifies both catalogued paths and raw SHA-256 hashes before tokenizing, without an index, model, or network. It removes Markdown timestamp links and URLs, applies the search normalizer, and uses unique five-word shingles for Jaccard and smaller-set overlap. Ten bins count shingles in each segment that occur anywhere in the other source; they are **not** aligned time intervals. Runs require a series of shingles appearing exactly once in each source and contiguous in both. They omit repetitive matches, can split at small textual differences, and may overlap; only the requested longest runs are shown. Line numbers are inclusive original source lines; the previews are normalized and **not literal quotations**. The metrics are lexical set measures, not a percentage of identical recordings or proof of semantic agreement, attribution, accuracy, or completeness. See the [foundation overlap report](../08_دورات_القوائم/التأسيس_المعرفي/01_مقارنة_ملفي_المستوى_الثاني.md).
+
 ## Exploratory retrieval probes
 
 [`eval_cases.json`](eval_cases.json) contains six manually selected known-source query/line pairs from the preliminary foundation-course inventory. `evaluate.py` checks each literal reference against the checksum-verified original, searches the full 173-file corpus and reports the first rank whose source and inclusive line span contain the selected line. Other results are **unjudged**: a miss can include other useful passages, and overlapping chunks can repeat one passage. The sample is small, drawn from the same course and in several cases closely echoes the source; it is not representative, an exhaustive relevance judgment, a semantic test, or an answer correctness evaluation.
