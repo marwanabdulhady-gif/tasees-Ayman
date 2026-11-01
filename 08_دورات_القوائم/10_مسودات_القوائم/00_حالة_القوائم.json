@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "status": "مسودات غير معتمدة",
+  "note": "تغطية هيكلية لكل القوائم المسجلة؛ لا اعتماد محتوى ولا صوت ولا تسجيل.",
+  "rag_catalog": "ayman_rag/playlist_inventory.json",
+  "totals": {
+    "playlists": 10,
+    "sources": 225,
+    "lessons": 94,
+    "screens": 940
+  },
+  "playlists": [
+    {
+      "slug": "ayman-umayyad-abbasid",
+      "title": "تاريخ الأمويين والعباسيين",
+      "episodes": 6,
+      "lessons": 6,
+      "screens": 60,
+      "voice": "ayman",
+      "owner_gate": "approval pending"
+    },
+    {
+      "slug": "ayman-linguistic-awareness",
+      "title": "دورة الوعي اللغوي",
+      "episodes": 9,
+      "lessons": 9,
+      "screens": 90,
+      "voice": "ayman",
+      "owner_gate": "approval pending"
+    },
+    {
+      "slug": "ayman-psychology",
+      "title": "دورة علم النفس",
+      "episodes": 10,
+      "lessons": 10,
+      "screens": 100,
+      "voice": "ayman",
+      "owner_gate": "approval pending"
+    },
+    {
+      "slug": "ayman-seerah-makkah",
+      "title": "السيرة النبوية — العهد المكي",
+      "episodes": 6,
+      "lessons": 6,
+      "screens": 60,
+      "voice": "ayman",
+      "owner_gate": "approval pending"
+    },
+    {
+      "slug": "ayman-reestablishing-awareness",
+      "title": "إعادة تأسيس وعي المسلم المعاصر — محاضرات متفرقة",
+      "episodes": 45,
+      "lessons": 12,
+      "screens": 120,
+      "voice": "ayman",
+      "owner_gate": "approval pending"
+    },
+    {
+      "slug": "ayman-tasees",
+      "title": "تأسيس وعي المسلم المعاصر (المستويان ١ و٢)",
+      "episodes": 17,
+      "lessons": 6,
+      "screens": 60,
+      "voice": "ayman",
+      "owner_gate": "approval pending"
+    },
+    {
+      "slug": "q100-history",
+      "title": "١٠٠ سؤال في التاريخ",
+      "episodes": 70,
+      "lessons": 18,
+      "screens": 180,
+      "voice": "owner-decision",
+      "owner_gate": "Q1 pending"
+    },
+    {
+      "slug": "rihlat-alyaqeen",
+      "title": "رحلة اليقين",
+      "episodes": 47,
+      "lessons": 12,
+      "screens": 120,
+      "voice": "owner-decision",
+      "owner_gate": "Q1 pending"
+    },
+    {
+      "slug": "cognitive-foundation-1",
+      "title": "التأسيس المعرفي — المستوى الأول",
+      "episodes": 8,
+      "lessons": 8,
+      "screens": 80,
+      "voice": "ayman",
+      "owner_gate": "approval pending"
+    },
+    {
+      "slug": "cognitive-foundation-2",
+      "title": "التأسيس المعرفي — المستوى الثاني",
+      "episodes": 7,
+      "lessons": 7,
+      "screens": 70,
+      "voice": "ayman",
+      "owner_gate": "approval pending"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Ayman transcript search — offline foundation
 
-This is an **early offline RAG prototype**, not a finished assistant. The default index covers 173 imported Drive text files locally with Python's SQLite FTS5. An optional separate psychology index combines the 11 Drive psychology files and the 10 existing timestamped psychology Markdown files, keeping every edition separate. Other existing timestamped collections are **not yet indexed**. The optional answer command invokes a trusted local llama.cpp CLI and a user-provided local GGUF model; it does not call an API or download models. Neither retrieval nor generation establishes that passages are factually correct or spoken by Ayman.
+This is an **early offline RAG prototype**, not a finished assistant. The default index covers 173 imported Drive text files locally with Python's SQLite FTS5. An optional separate psychology index combines the 11 Drive psychology files and the 10 existing timestamped psychology Markdown files, keeping every edition separate. A third, optional **unified playlist catalogue** now covers all 10 registered playlists (225 files) plus the 173 Drive files, with 15 overlapping paths represented once: 383 checksum-verified sources in total. The optional answer command invokes a trusted local llama.cpp CLI and a user-provided local GGUF model; it does not call an API or download models. Neither retrieval nor generation establishes that passages are factually correct, spoken by a verified speaker, or approved course content.
 
 ## Run
 
@@ -33,12 +33,30 @@ python3 ayman_rag/evaluate.py --cases ayman_rag/psychology_eval_cases.json --cat
 
 Pass the same `--catalog` and `--index` to `answer.py` to retrieve from that index. The separate `--folder 03-psychology` filter restricts to the ten older files; use the exact Drive folder for imported text. The 21-file catalogue includes SHA-256 for the current bytes, and recording links and transcription methods **as claimed by the older files' headers**; timestamps and recordings are not verified. Legacy hashes are not independent evidence of authenticity, and similarities between editions do not prove they derive from the same recording. Rebuild the catalogue only after reviewing source changes, then rebuild its index. Do not infer a recording link or a timestamp for Drive text.
 
+### All registered playlists: one optional unified index
+
+Build a separate catalogue and index; the default Drive index and the psychology-only index remain unchanged:
+
+```sh
+python3 ayman_rag/build_playlist_catalog.py --check
+python3 ayman_rag/search.py build --catalog ayman_rag/playlist_inventory.json --index .cache/ayman-rag/playlists.sqlite3
+python3 ayman_rag/search.py search 'اللغة والاحتلال العقلي' --catalog ayman_rag/playlist_inventory.json --index .cache/ayman-rag/playlists.sqlite3 --playlist cognitive-foundation-1 --json
+python3 ayman_rag/search.py search 'ما الذي يجعلنا نثق بالتاريخ' --catalog ayman_rag/playlist_inventory.json --index .cache/ayman-rag/playlists.sqlite3 --playlist q100-history
+python3 ayman_rag/evaluate.py --cases ayman_rag/playlist_eval_cases.json --catalog ayman_rag/playlist_inventory.json --index .cache/ayman-rag/playlists.sqlite3
+```
+
+`playlist_inventory.json` is checked in; `.cache/ayman-rag/playlists.sqlite3` is not. The catalogue records one path-based ID, current SHA-256, source folder, playlist slug, episode number, citation kind, voice policy and unverified metadata for every source. `--playlist` is an exact slug filter; `--folder`, `--source-id` and `--match` still apply, and all filters combine. Pass `--playlist` to `answer.py` too. Search results include the playlist slug, episode, citation kind and voice policy.
+
+Episode numbers follow the deterministic file ordering, `episode:` front matter, or numbered raw-text filenames used by `check_lesson.py`; they are **not** recording times. The legacy `playlists.json` `n` field can differ or repeat (notably `ayman-tasees`, where two files share `n = 16`), so the catalogue also keeps `registry_episode` and `registry_sha`. Non-Ayman playlists (`q100-history`, `rihlat-alyaqeen`) stay separate, are labeled `owner-decision`, and are not written in Ayman voice; the owner's Q1 decision remains pending. The catalogue does not approve an official course map, a recording, a speaker, or a transcription.
+
+[`playlist_eval_cases.json`](playlist_eval_cases.json) has ten manually selected known-source query/line pairs, one per playlist. On the current unified index, all ten selected locations were recovered in the top five (nine at rank 1 and one at rank 4). The queries heavily echo their source lines; the sample is tiny, selected with knowledge of the sources, and other retrieved passages are unjudged. It does not measure semantic relevance, medical correctness, or answer correctness. No generated answers were assessed.
+
 For experimental local answer drafting, separately install a trusted `llama-cli` and place a compatible GGUF model on the machine. With both already present, and after building the index:
 
 ```sh
 python3 ayman_rag/answer.py 'ما المقصود بالشك المنهجي؟' --model /path/to/local-model.gguf
 # Optional: --llama-cli /path/to/llama-cli --folder 'exact folder name'
-# Optional retrieval filters: --source-id drive-... --match all
+# Optional retrieval filters: --source-id drive-... --playlist cognitive-foundation-1 --match all
 ```
 
 The adapter calls the local CLI with `-m`, `-f`, `--simple-io`, `--no-display-prompt`, and `--no-conversation`; it needs a compatible llama.cpp version. It has been tested with a stub executable only, **not with a real model or runtime**. Keep models outside Git. It requires valid retrieved IDs and a reference in each punctuation/newline-delimited output segment, or the exact abstention message; outputs that do not meet this conservative formatting rule are rejected. This is not an Arabic sentence parser: it can reject harmless formatting and cannot guarantee that every claim is cited or that a cited passage supports it. The output is a draft requiring human review.

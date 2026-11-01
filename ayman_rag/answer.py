@@ -71,13 +71,14 @@ def main():
     parser.add_argument('--llama-cli', default='llama-cli', help='path to a trusted local llama.cpp CLI')
     parser.add_argument('--folder', help='exact source folder name')
     parser.add_argument('--source-id', help='exact source ID from the inventory')
+    parser.add_argument('--playlist', help='exact playlist slug from the unified catalogue')
     parser.add_argument('--match', choices=('any', 'all'), default='any', help='match any or all query tokens in one passage')
     parser.add_argument('--limit', type=int, default=5)
     parser.add_argument('--catalog', type=Path, default=CATALOG, help='local catalogue JSON')
     parser.add_argument('--index', type=Path, default=INDEX, help='SQLite index matching that catalogue')
     args = parser.parse_args()
     try:
-        passages = search(args.question, index_path=args.index, catalog_path=args.catalog, limit=args.limit, folder=args.folder, source_id=args.source_id, match=args.match)
+        passages = search(args.question, index_path=args.index, catalog_path=args.catalog, limit=args.limit, folder=args.folder, source_id=args.source_id, match=args.match, playlist_slug=args.playlist)
         if not passages:
             print(ABSTAIN)
             return

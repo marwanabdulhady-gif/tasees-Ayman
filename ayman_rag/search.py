@@ -44,8 +44,11 @@ def chunks(text, target_words=180, overlap_lines=1):
 
 def read_verified(doc, root=ROOT):
     path = (root / doc['path']).resolve()
-    allowed = ((root / 'transcripts/drive-import-2026-11-01').resolve(),
-               (root / 'transcripts/03-psychology').resolve())
+    # The unified playlist catalogue adds the other timestamped collections and
+    # the two externally imported transcript folders. Keep an explicit allowlist:
+    # a catalogue entry must never be able to read arbitrary repository files.
+    allowed = ((root / 'transcripts').resolve(),
+               (root / '01_تفريغات_ومصادر').resolve())
     if not any(path.is_relative_to(directory) for directory in allowed) or not path.is_file():
         raise ValueError(f"unsafe or missing source path: {doc['path']}")
     data = path.read_bytes()
@@ -67,13 +70,19 @@ def build_index(catalog_path=CATALOG, index_path=INDEX, root=ROOT):
         tmp.unlink()
     try:
         with sqlite3.connect(tmp) as db:
-            db.executescript('''CREATE TABLE sources (id TEXT PRIMARY KEY, path TEXT NOT NULL, sha256 TEXT NOT NULL, title TEXT NOT NULL, folder TEXT NOT NULL, folder_url TEXT NOT NULL);
+            db.executescript('''CREATE TABLE sources (id TEXT PRIMARY KEY, path TEXT NOT NULL, sha256 TEXT NOT NULL, title TEXT NOT NULL, folder TEXT NOT NULL, folder_url TEXT NOT NULL, playlist_slug TEXT NOT NULL DEFAULT '', episode INTEGER NOT NULL DEFAULT 0, citation_kind TEXT NOT NULL DEFAULT '', voice TEXT NOT NULL DEFAULT '', speaker_status TEXT NOT NULL DEFAULT 'unverified');
               CREATE TABLE chunks (id INTEGER PRIMARY KEY, source_id TEXT NOT NULL, start_line INTEGER NOT NULL, end_line INTEGER NOT NULL);
               CREATE VIRTUAL TABLE passage_search USING fts5(text, chunk_id UNINDEXED, tokenize="unicode61");
               CREATE TABLE metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);''')
             count = 0
             for doc, text in verified:
-                db.execute('INSERT INTO sources VALUES (?, ?, ?, ?, ?, ?)', (doc['id'], doc['path'], doc['sha256'], doc['title'], doc['folder'], doc['source_folder_url']))
+                db.execute('''INSERT INTO sources
+                    (id, path, sha256, title, folder, folder_url, playlist_slug, episode, citation_kind, voice, speaker_status)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+                    (doc['id'], doc['path'], doc['sha256'], doc['title'], doc['folder'],
+                     doc.get('source_folder_url', ''), doc.get('playlist_slug', ''),
+                     doc.get('episode', 0), doc.get('citation_kind', ''), doc.get('voice', ''),
+                     doc.get('speaker_status', 'unverified')))
                 for start, end, passage in chunks(text):
                     cur = db.execute('INSERT INTO chunks(source_id,start_line,end_line) VALUES (?,?,?)', (doc['id'], start, end))
                     db.execute('INSERT INTO passage_search(text,chunk_id) VALUES (?,?)', (normalize(passage), cur.lastrowid))
@@ -87,7 +96,7 @@ def build_index(catalog_path=CATALOG, index_path=INDEX, root=ROOT):
 
 
 def search(query, index_path=INDEX, limit=5, root=ROOT, catalog_path=CATALOG, folder=None,
-           source_id=None, match='any'):
+           source_id=None, match='any', playlist_slug=None):
     tokens = list(dict.fromkeys(WORD.findall(normalize(query))))[:20]
     if not tokens:
         raise ValueError('query contains no searchable terms')
@@ -112,16 +121,26 @@ def search(query, index_path=INDEX, limit=5, root=ROOT, catalog_path=CATALOG, fo
         if source_id is not None and not db.execute('SELECT 1 FROM sources WHERE id = ?', (source_id,)).fetchone():
             raise ValueError('unknown source ID')
         rows = db.execute('''SELECT s.id, s.path, s.sha256, s.title, s.folder, s.folder_url,
+                   s.playlist_slug, s.episode, s.citation_kind, s.voice, s.speaker_status,
                    c.start_line, c.end_line, bm25(passage_search) AS rank
             FROM passage_search JOIN chunks c ON c.id = passage_search.chunk_id
             JOIN sources s ON s.id = c.source_id
             WHERE passage_search MATCH ? AND (? IS NULL OR s.folder = ?)
               AND (? IS NULL OR s.id = ?)
-            ORDER BY rank, c.id LIMIT ?''', (expression, folder, folder, source_id, source_id, limit)).fetchall()
+              AND (? IS NULL OR s.playlist_slug = ?)
+            ORDER BY rank, c.id LIMIT ?''',
+            (expression, folder, folder, source_id, source_id, playlist_slug, playlist_slug, limit)).fetchall()
     results, verified = [], {}
-    for id_, path, sha, title, folder, folder_url, start, end, rank in rows:
+    for (id_, path, sha, title, folder, folder_url, playlist_slug_value, episode,
+         citation_kind, voice, speaker_status, start, end, rank) in rows:
         doc = catalog_by_id.get(id_)
-        if not doc or (path, sha, title, folder, folder_url) != (doc['path'], doc['sha256'], doc['title'], doc['folder'], doc['source_folder_url']):
+        expected = (doc['path'], doc['sha256'], doc['title'], doc['folder'],
+                    doc.get('source_folder_url', ''), doc.get('playlist_slug', ''),
+                    doc.get('episode', 0), doc.get('citation_kind', ''), doc.get('voice', ''),
+                    doc.get('speaker_status', 'unverified')) if doc else None
+        actual = (path, sha, title, folder, folder_url, playlist_slug_value, episode,
+                  citation_kind, voice, speaker_status)
+        if not doc or actual != expected:
             raise ValueError(f'index source metadata does not match catalogue: {id_}; rebuild index')
         if id_ not in verified:
             verified[id_] = read_verified(doc, root).splitlines(keepends=True)
@@ -130,7 +149,9 @@ def search(query, index_path=INDEX, limit=5, root=ROOT, catalog_path=CATALOG, fo
             raise ValueError(f'invalid source span for {path}; rebuild index')
         results.append({'source_id': id_, 'title': title, 'folder': folder, 'path': path,
                         'sha256': sha, 'start_line': start, 'end_line': end,
-                        'source_folder_url': folder_url or None, 'speaker_status': 'unverified',
+                        'source_folder_url': folder_url or None, 'speaker_status': speaker_status,
+                        'playlist_slug': playlist_slug_value or None, 'episode': episode or None,
+                        'citation_kind': citation_kind or None, 'voice': voice or None,
                         'original_media_url': doc.get('original_media_url'),
                         'transcription_method': doc.get('transcription_method'),
                         'timestamps_status': doc.get('timestamps'),
@@ -142,7 +163,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
     build = sub.add_parser('build')
-    p = sub.add_parser('search'); p.add_argument('query'); p.add_argument('--limit', type=int, default=5); p.add_argument('--folder', help='exact folder name from the inventory'); p.add_argument('--source-id', help='exact source ID from the inventory'); p.add_argument('--match', choices=('any', 'all'), default='any', help='match any token (default) or all tokens in one passage'); p.add_argument('--json', action='store_true')
+    p = sub.add_parser('search'); p.add_argument('query'); p.add_argument('--limit', type=int, default=5); p.add_argument('--folder', help='exact folder name from the inventory'); p.add_argument('--source-id', help='exact source ID from the inventory'); p.add_argument('--playlist', help='exact playlist slug from the unified catalogue'); p.add_argument('--match', choices=('any', 'all'), default='any', help='match any token (default) or all tokens in one passage'); p.add_argument('--json', action='store_true')
     for command in (build, p):
         command.add_argument('--catalog', type=Path, default=CATALOG, help='local catalogue JSON')
         command.add_argument('--index', type=Path, default=INDEX, help='local SQLite index for that catalogue')
@@ -151,7 +172,7 @@ def main():
         if args.command == 'build':
             docs, count = build_index(args.catalog, args.index); print(f'Indexed {docs} sources and {count} passages locally in {args.index}')
         else:
-            results = search(args.query, index_path=args.index, catalog_path=args.catalog, limit=args.limit, folder=args.folder, source_id=args.source_id, match=args.match)
+            results = search(args.query, index_path=args.index, catalog_path=args.catalog, limit=args.limit, folder=args.folder, source_id=args.source_id, match=args.match, playlist_slug=args.playlist)
             if args.json:
                 print(json.dumps(results, ensure_ascii=False, indent=2))
             elif not results:

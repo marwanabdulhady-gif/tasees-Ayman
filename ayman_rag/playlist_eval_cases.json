@@ -1,0 +1,96 @@
+{
+  "description": "Ten exploratory known-location lexical retrieval probes, one per registered playlist, selected with knowledge of the source text. They measure recovery of one selected location in the unified catalogue, not answer quality, semantic relevance, medical correctness, or exhaustive relevance. Other retrieved passages are unjudged.",
+  "limit": 5,
+  "cases": [
+    {
+      "query": "اخرج بقي صعب لا يا عمي",
+      "source_id": "playlist-b9cccb452148144cc7fe",
+      "playlist_slug": "ayman-umayyad-abbasid",
+      "episode": 1,
+      "source_path": "transcripts/01-umayyad-abbasid-history/01 - أيمن عبدالرحيم, تاريخ الأمويين والعباسيين المحاضرة الأولي.md",
+      "line": 47,
+      "quote": "اخرج بقى صعب لا يا عمي لا لا لا ليه"
+    },
+    {
+      "query": "المفروض عيني علي حاجتين لحظه حظه",
+      "source_id": "playlist-46def8405219c9f4d2cc",
+      "playlist_slug": "ayman-linguistic-awareness",
+      "episode": 2,
+      "source_path": "transcripts/02-linguistic-awareness/02 - دورة الوعي اللغوي أيمن عبدالرحيم المحاضرة الثانية.md",
+      "line": 93,
+      "quote": "المفروض عيني على حاجتين لحظه حظه عيني على قوه خارجيه"
+    },
+    {
+      "query": "الانجاز الاكبر والاضخم علي الاطلاق لنيوتن",
+      "source_id": "playlist-21985760fae7f1743958",
+      "playlist_slug": "ayman-psychology",
+      "episode": 1,
+      "source_path": "transcripts/03-psychology/01 - دورة علم النفس أيمن عبدالرحيم المحاضرة الأولي.md",
+      "line": 49,
+      "quote": "الانجاز الاكبر والاضخم على الاطلاق لنيوتن احنا دايما بنتكلم عن"
+    },
+    {
+      "query": "الله محمد رسول الله ففتحت له",
+      "source_id": "playlist-fc00f64d5e952a6ebd30",
+      "playlist_slug": "ayman-seerah-makkah",
+      "episode": 1,
+      "source_path": "transcripts/04-seerah-makkah-period/01 - 01 المحاضرة الأولى السيرة النبوية العهد المكي م أيمن عبد الرحيم شيخ العمود.md",
+      "line": 45,
+      "quote": "الله محمد رسول الله ففتحت له ففتحت له ففتحت له"
+    },
+    {
+      "query": "كده دوله لوحدها الشاهد ان لما",
+      "source_id": "playlist-52c529c4852cbd8645cd",
+      "playlist_slug": "ayman-reestablishing-awareness",
+      "episode": 1,
+      "source_path": "transcripts/05-reestablishing-muslim-awareness/01 - num م أيمن عبد الرحيم إعادة تأسيس وعي المسلم المعاصر 2 من ميدان رابعة العدوية 1.md",
+      "line": 63,
+      "quote": "كده دوله لوحدها الشاهد ان لما اناجي ساعتها وهم البرتغاليين"
+    },
+    {
+      "query": "قاعدين جماعه انجليز ولا مش عارف",
+      "source_id": "playlist-08090fa1a7b51086bb2e",
+      "playlist_slug": "ayman-tasees",
+      "episode": 1,
+      "source_path": "transcripts/06-tasees-muslim-awareness/01 - أيمن عبدالرحيم, دورة تأسيس وعي المسلم المعاصر المحاضرة الأولي.md",
+      "line": 4095,
+      "quote": "قاعدين جماعه انجليز ولا مش عارف"
+    },
+    {
+      "query": "هيطرح حلول كلها تحاول ان تنهي",
+      "source_id": "playlist-b19a14a4128f44425742",
+      "playlist_slug": "q100-history",
+      "episode": 1,
+      "source_path": "01_تفريغات_ومصادر/100_سؤال_في_التاريخ/transcripts/01-هل-تاريخنا-مزور-100-سؤال-في-التاريخ-الحلقة-01.md",
+      "line": 44,
+      "quote": "هيُطرح حلول كلها تحاول أن تنهي أو يا, تـ تنهي"
+    },
+    {
+      "query": "رحله اليقين الفوائد السته من ادله",
+      "source_id": "playlist-823e1862ed5bef48f4d9",
+      "playlist_slug": "rihlat-alyaqeen",
+      "episode": 2,
+      "source_path": "01_تفريغات_ومصادر/رحلة_اليقين/transcripts/02 - 2- رحلة اليقين ٢- الفوائد الستة من أدلة وجود الله للموقن أصلا بوجوده.md",
+      "line": 47,
+      "quote": "رِحْلَةُ اليَقِيْن  (الفَوَائِدُ السِّتَّةُ مِنْ أَدِلَّةِ وجُودِ اللَّهِ للمُوقِنِ أَصْلًا"
+    },
+    {
+      "query": "واداره صالون تزوق الثقافي احنا بنرحب",
+      "source_id": "drive-9b6f5de831f98b66eda9",
+      "playlist_slug": "cognitive-foundation-1",
+      "episode": 1,
+      "source_path": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم/001 - دورة-التأسيس-المعرفي-1-المحاضرة-الأولى-م-أيمن-عبدالرحيم.txt",
+      "line": 1,
+      "quote": "وادارة صالون تزوق الثقافي احنا بنرحب بكم. دي اول فاعلية"
+    },
+    {
+      "query": "التواب بس قبل كده ما سمعناش",
+      "source_id": "drive-700b6fe9401850b31330",
+      "playlist_slug": "cognitive-foundation-2",
+      "episode": 1,
+      "source_path": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم/001 - دورة-التأسيس-المعرفي-2-المحاضرة-الأولي-م-أيمن-عبدالرحيم.txt",
+      "line": 72,
+      "quote": "التواب بس قبل كده ما سمعناش ان في كتاب اية"
+    }
+  ]
+}

@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-phase="1" data-week="q100-history-l10" data-root="../../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تأسيس · قراءة مقاطع من مائة سؤال في التاريخ — الدفعة العاشرة</title>
+<!-- قالب شاشة الدرس: مشتق من week-template.html، بنفس CSS وtasees-runtime.js. عدّل المحتوى في 01_نصوص_الدروس ثم أعد build_lesson_screens.py. -->
+<link rel="stylesheet" href="../../../../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; min-height: 100%; }
+.wk { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 24px; }
+.wk .t-screen { border: 1.5px solid var(--ink); }
+.bar { max-width: var(--stage-max); margin: 0 auto 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: var(--t-tag); color: var(--ink-soft); }
+.bar strong { font-family: var(--f-display); font-size: 1.3rem; color: var(--ink); font-weight: 700; }
+.pencil { display: flex; gap: 3px; margin-inline-start: auto; } .pencil i { width: 16px; height: 4px; border-radius: 2px; background: var(--rule); } .pencil i.on { background: var(--phase); }
+.nav { max-width: var(--stage-max); margin: 12px auto 0; display: flex; justify-content: space-between; gap: 12px; }
+.q-box { border: 1.5px solid var(--phase); padding: 12px 16px; background: var(--card); max-width: 36em; }
+.q-box small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.audio { border: 1.5px dashed var(--ink-soft); padding: 10px 14px; max-width: 36em; font-size: var(--t-small); }
+.hook-art { border: 1.5px solid var(--rule); background: var(--card); aspect-ratio: 16 / 7; max-width: 100%; display: grid; place-items: center; color: var(--ink-soft); font-size: var(--t-small); overflow: hidden; }
+.hook-art img { width: 100%; height: 100%; object-fit: cover; }
+.lines { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; counter-reset: l; }
+.lines li { counter-increment: l; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 8px; }
+.lines li::before { content: counter(l, arabic-indic); font-family: var(--f-display); color: var(--phase); font-size: 1.4rem; line-height: 1.3; }
+.wall { display: flex; gap: 4px; } .wall .t-brick { width: 18px; height: 10px; }
+/* pattern parts used by tasees-runtime.js (same as screen-templates.html) */
+.demo { display: flex; flex-direction: column; gap: 10px; }
+.order { display: flex; flex-direction: column; gap: 6px; } .order .t-choice b { color: var(--ink-soft); min-width: 1.4em; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); } .bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.house { width: 100%; max-width: 360px; height: auto; align-self: center; }
+.house .glow { fill: var(--pen-black); opacity: 0; transition: opacity .3s; } .house.is-lit .glow { opacity: .28; }
+.house .ink { stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.house .bulb { fill: var(--card); stroke: var(--ink); stroke-width: 2; } .house.is-lit .bulb { fill: var(--pen-black); }
+@media (prefers-reduced-motion: no-preference) { .house.is-flicker .bulb { animation: flick .9s steps(2) 2; } }
+@keyframes flick { 50% { fill: var(--pen-black); } }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain .t-kart { padding: 8px 12px; font-size: var(--t-small); cursor: pointer; } .chain .t-kart[aria-expanded="false"] span { visibility: hidden; }
+.chain .t-kart small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.portico { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 6px solid var(--phase); border-bottom: 4px solid var(--phase); padding: 8px 0; }
+.portico div { border-inline: 2px solid var(--phase); padding: 4px 6px; min-height: 92px; font-family: var(--f-display); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portico div small { display: block; font-family: var(--f-body); font-size: 11px; color: var(--ink-soft); }
+@media (max-width: 560px) { .builder { grid-template-columns: minmax(0, 1fr); } .bins { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="t-page">
+<div class="wk">
+  <div class="bar"><strong id="wk-name"></strong><span id="wk-pos"></span><div class="pencil" id="pencil" aria-hidden="true"></div></div>
+  <main id="stage" aria-live="polite"></main>
+  <div class="nav"><button class="t-btn t-btn--ghost" id="prev" type="button">السابق</button><button class="t-btn" id="next" type="button">التالي</button></div>
+</div>
+
+<!-- ======================= محتوى الدرس — هذا وحده ما يُعدَّل ======================= -->
+<script type="application/json" id="week">
+{
+ "week": 10,
+ "lesson": 10,
+ "course": "١٠٠ سؤال في التاريخ",
+ "source_sha": "59dab67af8cb183fd496606096fed9220f9a5ad4df7f6443fb790e5afa663a7b",
+ "source_shas": [
+  "ea26b753297a3d88858f3867e4edb74fb128eabe5c98baf88b7518f4cb12bd36",
+  "a7a0d4016f4628ce0f3f4fd6303fe5fa0ab53e910b38bfeaaeccf39431316058",
+  "26d16fa6a4ff215bce0331cc423dfeb513ecf863b74dd0b1c0f929057782ec87",
+  "397c2d3aa8edbfcf1c37ffb83adb6f0a1715061cbae3bb8597decc57408a24cf"
+ ],
+ "source_ids": [
+  "playlist-36dc3339dbf85b0ebd10",
+  "playlist-d65acee3eaab9086d5a2",
+  "playlist-726b3ba64916a7d67142",
+  "playlist-00dc2147dd099306cf39"
+ ],
+ "source_links": [
+  "../../../../01_%D8%AA%D9%81%D8%B1%D9%8A%D8%BA%D8%A7%D8%AA_%D9%88%D9%85%D8%B5%D8%A7%D8%AF%D8%B1/100_%D8%B3%D8%A4%D8%A7%D9%84_%D9%81%D9%8A_%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE/transcripts/37-%D9%84%D9%85%D8%A7%D8%B0%D8%A7-%D9%82%D8%AA%D9%84-%D8%A7%D9%84%D8%B8%D8%A7%D9%87%D8%B1-%D8%A8%D9%8A%D8%A8%D8%B1%D8%B3-%D9%82%D8%B7%D8%B2-%D9%88%D9%83%D9%8A%D9%81-%D8%AD%D9%83%D9%85-%D8%A7%D9%84%D9%85%D9%85%D8%A7%D9%84%D9%8A%D9%83-%D8%A3%D8%B9%D8%B8%D9%85-%D8%A7%D9%84%D8%AF%D9%88%D9%84-%D8%A7%D9%84%D8%A5%D8%B3.md",
+  "../../../../01_%D8%AA%D9%81%D8%B1%D9%8A%D8%BA%D8%A7%D8%AA_%D9%88%D9%85%D8%B5%D8%A7%D8%AF%D8%B1/100_%D8%B3%D8%A4%D8%A7%D9%84_%D9%81%D9%8A_%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE/transcripts/38-%D8%A7%D9%84%D8%A3%D9%86%D8%AF%D9%84%D8%B3-%D9%85%D9%86-%D9%81%D8%AA%D8%AD-%D8%B9%D8%B8%D9%8A%D9%85-%D8%A5%D9%84%D9%89-%D8%B3%D9%82%D9%88%D8%B7-%D9%85%D8%A4%D9%84%D9%85-%D9%85%D8%A7%D8%B0%D8%A7-%D8%AD%D8%AF%D8%AB-100-%D8%B3%D8%A4%D8%A7%D9%84-%D9%81%D9%8A-%D8%A7%D9%84%D8%AA%D8%A7%D8%B1.md",
+  "../../../../01_%D8%AA%D9%81%D8%B1%D9%8A%D8%BA%D8%A7%D8%AA_%D9%88%D9%85%D8%B5%D8%A7%D8%AF%D8%B1/100_%D8%B3%D8%A4%D8%A7%D9%84_%D9%81%D9%8A_%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE/transcripts/39-%D8%AB%D9%85%D8%A7%D9%86%D9%8A%D8%A9-%D9%82%D8%B1%D9%88%D9%86-%D9%85%D9%86-%D8%A7%D9%84%D8%AD%D9%83%D9%85-%D9%83%D9%8A%D9%81-%D9%81%D9%82%D8%AF%D9%87%D8%A7-%D8%A7%D9%84%D9%85%D8%B3%D9%84%D9%85%D9%88%D9%86-%D9%81%D9%8A-%D8%A7%D9%84%D9%87%D9%86%D8%AF-100-%D8%B3%D8%A4%D8%A7%D9%84-%D9%81%D9%8A.md",
+  "../../../../01_%D8%AA%D9%81%D8%B1%D9%8A%D8%BA%D8%A7%D8%AA_%D9%88%D9%85%D8%B5%D8%A7%D8%AF%D8%B1/100_%D8%B3%D8%A4%D8%A7%D9%84_%D9%81%D9%8A_%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE/transcripts/40-%D9%85%D9%86-%D8%A3%D9%8A%D9%86-%D9%86%D8%A8%D8%AF%D8%A3-%D9%84%D9%81%D9%87%D9%85-%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE-%D8%A7%D9%84%D8%AF%D9%88%D9%84-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D9%82%D9%84%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%D9%8A-100.md"
+ ],
+ "episodes": [
+  37,
+  38,
+  39,
+  40
+ ],
+ "citation_kinds": [
+  "timestamp"
+ ],
+ "eyebrow": "١٠٠ سؤال في التاريخ · الدرس ١٠",
+ "title": "قراءة مقاطع من مائة سؤال في التاريخ — الدفعة العاشرة",
+ "subtitle": "درس من حلقات القائمة · مسودة تعليمية غير معتمدة",
+ "question": "كيف نقرأ مقاطع من هذه القائمة قراءة تعليمية محكومة بالسند، من غير تحويل التفريغ إلى حكم معتمد؟",
+ "audio": "لا تسجيل متحقق مرتبط بهذا الدرس؛ الطوابع أو الفقرات أو السطور مواضع نصية غير مؤكدة من التسجيل.",
+ "next": "الدرس الجاي يواصل قراءة المقاطع التالية بالحد نفسه.",
+ "text_href": "../01_نصوص_الدروس/lesson-10.md",
+ "draft": "مسودة تعليمية غير معتمدة — راجع التسجيل والمراجع قبل النشر.",
+ "screens": [
+  {
+   "id": "q100-history-l10-01",
+   "layout": "L1",
+   "sanad": [
+    [
+     "الدرس ١٠",
+     "4 مصدر"
+    ],
+    [
+     "السند",
+     "إحالة + بصمة"
+    ]
+   ]
+  },
+  {
+   "id": "q100-history-l10-02",
+   "layout": "L2",
+   "art": "rasms-al-khattaf-q100-history-l10",
+   "art_src": "",
+   "sanad": [
+    [
+     "الافتتاح",
+     "مثال تعليمي"
+    ]
+   ],
+   "voice": "نفتح هذا الدرس بورقة قراءة لا بخلاصة نهائية.",
+   "sharh": "أمامنا مقاطع من قائمة تشغيل، وكل مقطع له موضع وبصمة وسؤال. مرشد الدورة يقرأ بفصحى مبسطة، ولا يتبنّى صوت صاحب السلسلة ولا ينسب إليه صياغة الدرس. سلسلة مائة سؤال في التاريخ، وليست منسوبة إلى أيمن عبد الرحيم."
+  },
+  {
+   "id": "q100-history-l10-03",
+   "layout": "L4",
+   "pattern": "P14",
+   "heading": "قبل ما نبدأ",
+   "instruction": "اختر توقّعًا واحدًا؛ سنعود إليه في القفلة.",
+   "sanad": [
+    [
+     "سؤال الدرس",
+     "توقّع"
+    ]
+   ],
+   "data": {
+    "q": "ما الذي تتوقع أن يثبته هذا الدرس من ملفات القائمة؟",
+    "options": [
+     "إحالات واقتباسات قابلة للفحص",
+     "أحكامًا نهائية عن الموضوع",
+     "لا أعلم بعد — أحتاج قراءة المصدر"
+    ],
+    "saved": "اتسجلت. نرجع لها في القفلة."
+   }
+  },
+  {
+   "id": "q100-history-l10-04",
+   "layout": "L3",
+   "heading": "الكتلة ١ — الشاهد قبل السؤال",
+   "matn": "«مماليك برجية. بدنا نحكي عن المماليك. استلموا البلاد وهي مهددة»",
+   "sharh": "نبدأ بالموضع: أين وردت العبارة؟ وما نوع الإحالة؟ قبل أي كلام عن المعنى، نثبّت أن الاقتباس من الملف الحالي لا من ذاكرة.",
+   "sanad": [
+    [
+     "الدرس ١٠",
+     "4 مصدر"
+    ],
+    [
+     "السند",
+     "إحالة + بصمة"
+    ],
+    [
+     "ح37",
+     "00:00"
+    ],
+    [
+     "ح38",
+     "00:00"
+    ]
+   ]
+  },
+  {
+   "id": "q100-history-l10-05",
+   "layout": "L4",
+   "pattern": "P02",
+   "heading": "نص، أم لبس، أم أداة؟",
+   "instruction": "اختر العبارة ثم السلة.",
+   "sanad": [
+    [
+     "الدرس",
+     "فرز المادة"
+    ]
+   ],
+   "data": {
+    "bins": [
+     "منقول من المصدر",
+     "لبس شائع",
+     "أداة أضافها الدرس"
+    ],
+    "items": [
+     [
+      "مماليك برجية. بدنا نحكي عن المماليك.…",
+      0
+     ],
+     [
+      "الاندلس دي حاله كده حافله بمئات العلماء…",
+      0
+     ],
+     [
+      "اندلس الشرق الهند الهند اللي بنتكلم عليها…",
+      0
+     ],
+     [
+      "أن تظن أن كثرة الإحالات تعني أن الدرس…",
+      1
+     ],
+     [
+      "بطاقة المصدر",
+      2
+     ]
+    ],
+    "done": "الفرز بين النص والتفسير أول خطوة في المراجعة."
+   }
+  },
+  {
+   "id": "q100-history-l10-06",
+   "layout": "L3",
+   "heading": "الكتلة ٢ — النقل قبل التفسير",
+   "matn": "«اندلس الشرق الهند الهند اللي بنتكلم عليها في التاريخ الاسلامي»",
+   "sharh": "ننتقل إلى الفرق بين عبارة منقولة وأداة يضيفها الدرس. الأداة للتعلّم، وليست شاهدًا جديدًا ولا تثبيتًا لصحة العبارة.",
+   "sanad": [
+    [
+     "الدرس ١٠",
+     "4 مصدر"
+    ],
+    [
+     "السند",
+     "إحالة + بصمة"
+    ],
+    [
+     "ح39",
+     "00:00"
+    ],
+    [
+     "ح40",
+     "00:00"
+    ]
+   ]
+  },
+  {
+   "id": "q100-history-l10-07",
+   "layout": "L4",
+   "pattern": "P17",
+   "heading": "بطاقات أدوات الدرس",
+   "instruction": "اقلب كل بطاقة لتقرأ وصف الأداة.",
+   "sanad": [
+    [
+     "الكتل الثلاث",
+     "أدوات"
+    ]
+   ],
+   "data": {
+    "cards": [
+     [
+      "بطاقة المصدر",
+      "اكتب الاقتباس في خانة، والإحالة في خانة، والبصمة في خانة. ثم اكتب ما لا تثبته هذه الخانات: المتحدث، والتسجيل، والطبعة، والمعنى. البطاقة تمنع خلط…"
+     ],
+     [
+      "ميزان النقل",
+      "قسّم الورقة بين عبارة منقولة وقراءة تعليمية. العبارة المنقولة تُترك كما هي، والقراءة تُوصَف بأنها سؤال أو أداة لا حكم. إذا لم تجد فاصلًا واضحًا،…"
+     ],
+     [
+      "خانة لا أعلم بعد",
+      "لكل مقطع اكتب ثلاث خانات: ما يثبته الموضع، وما يحتاج تسجيلًا، وما يحتاج مرجعًا مستقلًا. لا تملأ خانة بحدس. هذه الخانة ليست نقصًا في الدرس؛ هي الحد…"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "q100-history-l10-08",
+   "layout": "L3",
+   "heading": "الكتلة ٣ — الحد قبل التعميم",
+   "matn": "«طيب فدلوقتي الـ إذا المماليك كانوا عبيدا كويس العبيد دول»",
+   "sharh": "نختم بحدود الاستنتاج: وجود بصمة وسطر أو طابع أو فقرة لا يكفي وحده لإصدار حكم أو تعميم أو نسبة متحدث.",
+   "sanad": [
+    [
+     "الدرس ١٠",
+     "4 مصدر"
+    ],
+    [
+     "السند",
+     "إحالة + بصمة"
+    ],
+    [
+     "ح37",
+     "18:33"
+    ],
+    [
+     "ح38",
+     "20:40"
+    ]
+   ],
+   "trap": {
+    "title": "مصيدة الفهم",
+    "text": "أن تظن أن كثرة الإحالات تعني أن الدرس مكتمل أو أن كل عبارة صحيحة. الإحالات تثبت المواضع، والاعتماد قرار مالك بعد مراجعة التسجيلات والمراجع. تُسجّل هذه المصيدة في طابور المراجعة."
+   }
+  },
+  {
+   "id": "q100-history-l10-09",
+   "layout": "L6",
+   "pattern": "P15",
+   "sanad": [
+    [
+     "الدفتر",
+     "مهمة الدرس"
+    ]
+   ],
+   "data": {
+    "q": "ما الذي أخذته من الدرس، وما الذي أجّلته للمراجعة؟",
+    "key": "journal-q100-history-l10"
+   }
+  },
+  {
+   "id": "q100-history-l10-10",
+   "layout": "L7",
+   "heading": "نلمّ الدرس في تلات سطور",
+   "sanad": [
+    [
+     "الدرس ١٠",
+     "4 مصدر"
+    ],
+    [
+     "السند",
+     "إحالة + بصمة"
+    ]
+   ],
+   "lines": [
+    "نبدأ بالموضع، ثم نفصل النقل عن القراءة، ثم نُبقي الاعتماد معلّقًا.",
+    "ثلاث أدوات: بطاقة المصدر · ميزان النقل · خانة لا أعلم بعد",
+    "مسودة غير معتمدة: الاقتباس يثبت الموضع، والتسجيل والمراجع يثبتان الباقي."
+   ],
+   "replay": "في الأول اخترت {{predict}}. والآن: الاقتباس يثبت الموضع لا المعنى.",
+   "task": {
+    "مستكشف": "اختر اقتباسًا واحدًا واكتب سؤالًا يفتحه، ثم اكتب ما لا يجيب عنه الاقتباس.",
+    "ممارس": "اعمل جدولًا من ثلاثة أعمدة: الاقتباس، والإحالة، وما يحتاج تحققًا. املأ سطرين من حلقات مختلفة إن وُجدت، واترك كل خانة ناقصة بعبارة لا أعلم بعد.",
+    "متقدم": "قارن إحالتين من نوعين مختلفين إن وُجدا، واذكر أي طبقة يثبتها كل نوع، وأي طبقة لا يثبتها، وكيف تمنع المقارنةُ التعميمَ."
+   }
+  }
+ ]
+}
+</script>
+
+<script src="../../../../07_الهوية_البصرية_والتفاعل/templates/atlas-course-bundle.js" onerror="this.remove()"></script>
+<script src="../../../../07_الهوية_البصرية_والتفاعل/templates/tasees-runtime.js"></script>
+<script>
+(function () {
+  "use strict";
+  var W = JSON.parse(document.getElementById("week").textContent);
+  var T = window.Tasees, AR = T.AR, el = T.el, store = T.store;
+  var TRACKS = ["مستكشف", "ممارس", "متقدم"];
+  var track = store.get("track") || "ممارس";
+  var visible = function () { return W.screens.filter(function (s) { return !s.track || s.track === track; }); };
+  var i = 0;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sanad(list) { return (list || []).map(function (s) { var tc = /^≈|\d:\d/.test(s[1]); return '<span class="t-sanad"><b>' + esc(s[0]) + "</b>" + (tc ? '<span class="tc">' + esc(s[1]) + "</span>" : esc(s[1])) + "</span>"; }).join(""); }
+  function bricks(n) { var h = '<div class="wall" aria-label="طوب الوحدة">'; for (var k = 1; k <= 4; k++) { h += '<span class="t-brick' + (store.get("done") && k === ((W.week - 1) % 4) + 1 ? " is-laid" + (n ? " is-new" : "") : "") + '"></span>'; } return h + "</div>"; }
+
+  var LAYOUT = {
+    L1: function (s) {
+      return '<p class="t-eyebrow">' + esc(W.eyebrow) + '</p><h1 class="t-title">' + esc(W.title) + '</h1><svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>' +
+        '<p class="t-small" style="margin:0">' + esc(W.subtitle) + '</p><div class="q-box"><small>سؤال الدرس</small>' + esc(W.question) + "</div>" +
+        '<div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>' + TRACKS.map(function (t) { return '<button class="t-chip js-track" type="button" aria-pressed="' + (t === track) + '">' + t + "</button>"; }).join("") + "</div>" +
+        '<div class="audio">' + esc(W.audio) + '</div>' + '<p class="t-feedback t-feedback--bad"><strong>مسودة</strong>' + esc(W.draft) + '</p>' + '<p class="t-small" style="margin:0"><a href="' + esc(W.text_href) + '">اقرأ نص الدرس كاملًا ←</a></p>' + '<p class="t-small" style="margin:0">مسودة تعليمية؛ لا تُنسب عباراتها لصاحب التسجيل قبل التحقق.</p>';
+    },
+    L2: function (s) {
+      var art = s.art_src ? '<img src="' + esc(s.art_src) + '" alt="">' : "رسم الخطاف <code>" + esc(s.art) + "</code> لم يُولَّد بعد";
+      return '<div class="hook-art">' + art + '</div><p class="t-voice">' + esc(s.voice) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>";
+    },
+    L3: function (s) {
+      return '<h2 class="t-h2">' + esc(s.heading) + '</h2><p class="t-matn">' + esc(s.matn) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>" +
+        (s.trap ? '<p class="t-feedback t-feedback--bad"><strong>' + esc(s.trap.title) + "</strong>" + esc(s.trap.text) + "</p>" : "");
+    },
+    L4: function (s) { return '<h2 class="t-h2">' + esc(s.heading) + "</h2>" + (s.instruction ? '<p class="t-small" style="margin:0">' + esc(s.instruction) + "</p>" : "") + '<div class="demo" data-mount></div>'; },
+    L5: function (s) { return (s.classic ? '<p class="t-classic" style="margin:0">' + esc(s.classic) + "</p>" : "") + '<p class="t-matn">' + esc(s.matn) + '</p><div class="demo" data-mount></div>'; },
+    L6: function (s) { return '<div class="demo" data-mount></div>'; },
+    L7: function (s) {
+      var p = store.get("predict");
+      return '<h2 class="t-title" style="font-size:2.2rem">' + esc(s.heading) + '</h2><ol class="lines">' + s.lines.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ol>" +
+        (p ? '<p class="t-feedback">' + esc(s.replay).replace("{{predict}}", "<strong style=\"display:inline\">«" + esc(p) + "»</strong>") + "</p>" : "") +
+        '<p class="t-feedback t-feedback--ok"><strong>مهمة الدرس · ' + esc(track) + "</strong>" + esc(s.task[track]) + '</p><p class="t-small" style="margin:0">' + esc(W.next) + "</p>";
+    }
+  };
+
+  function show() {
+    var list = visible(); i = Math.max(0, Math.min(i, list.length - 1));
+    var s = list[i], last = s.layout === "L7";
+    if (last && !store.get("done")) { store.set("done", "1"); s._new = true; }
+    var stage = document.getElementById("stage");
+    stage.innerHTML = '<section class="t-screen" data-id="' + esc(s.id) + '" data-layout="' + s.layout + '"><aside class="t-margin">' + sanad(s.sanad) + (s.layout === "L1" || last ? bricks(last && s._new) : "") + '</aside><div class="t-main">' + LAYOUT[s.layout](s) + "</div></section>";
+    var mount = stage.querySelector("[data-mount]"); if (mount && s.pattern) T.render(mount, s.pattern, s.data);
+    stage.querySelectorAll(".js-track").forEach(function (b) { b.onclick = function () { track = b.textContent; store.set("track", track); show(); }; });
+    document.getElementById("wk-name").innerHTML = 'تأسيس <span style="font-family:var(--f-body);font-size:1rem;font-weight:500">· الدرس ' + AR(W.week) + "</span>";
+    document.getElementById("wk-pos").textContent = "الشاشة " + AR(i + 1) + " من " + AR(list.length);
+    document.getElementById("pencil").innerHTML = list.map(function (_, k) { return '<i class="' + (k <= i ? "on" : "") + '"></i>'; }).join("");
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").textContent = last ? "تم" : i === 0 ? "يلا بينا" : "التالي";
+    document.getElementById("next").disabled = last;
+  }
+  document.getElementById("prev").onclick = function () { i--; show(); window.scrollTo(0, 0); };
+  document.getElementById("next").onclick = function () { i++; show(); window.scrollTo(0, 0); };
+  document.addEventListener("keydown", function (e) { if (e.target.closest("input,textarea,select")) return; if (e.key === "ArrowLeft") { i++; show(); } if (e.key === "ArrowRight") { i--; show(); } });
+  show();
+})();
+</script>
+</body>
+</html>

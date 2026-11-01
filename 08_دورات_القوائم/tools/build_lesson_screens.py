@@ -181,7 +181,7 @@ def lesson_template() -> str:
                '<link rel="stylesheet" href="{{SHARED}}tasees-tokens.css">', t, count=1)
     t = t.replace('<link rel="stylesheet" href="tasees-tokens.css">\n', '')
     t = re.sub(r'<script src="[^"]*atlas-course-bundle\.js" onerror="this\.remove\(\)"></script>',
-               '<script src="{{SHARED}}atlas-course-bundle.js" onerror="this.remove()"></script>', t)
+               '<script src="{{SHARED}}atlas-course-bundle.js" onerror="this.remove()"></script>', t, count=1)
     t = t.replace('<script src="atlas-course-bundle.js" onerror="this.remove()"></script>\n', '')
     t = re.sub(r'<script src="[^"]*templates/tasees-runtime\.js" onerror="this\.remove\(\)"></script>',
                '<script src="{{SHARED}}tasees-runtime.js"></script>', t)
@@ -292,10 +292,12 @@ def build() -> dict[Path, str]:
             idx_rows, idx_root, hub)
         hub_rows.append((f'{c["label"]} — {len(lessons)} درسًا',
                          f'{c["folder"]}/02_الشاشات/index.html'))
+    hub_rows.append(('مسودات كل قوائم التشغيل — عشر قوائم', '10_مسودات_القوائم/index.html'))
     out[PKG / 'index.html'] = index_page(
         'دورات القوائم — مسودات الدروس والشاشات',
-        'ثلاثة مسارات مكتوبة بقالب المشروع: التأسيس المعرفي بمستوييه، والمسودة الموازية لعلم النفس. '
-        'كل درس له نص محقق السند وشاشات تفاعلية مبنية منه.',
+        'ثلاثة مسارات مكتوبة بقالب المشروع: التأسيس المعرفي بمستوييه، والمسودة الموازية لعلم النفس، '
+        'إلى جانب رف مسودات منفصل يغطي كل قوائم التشغيل المسجلة. كل درس له نص محقق السند '
+        'وشاشات تفاعلية مبنية منه.',
         hub_rows, '../', None)
     return out
 
