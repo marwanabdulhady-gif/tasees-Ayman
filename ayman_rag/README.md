@@ -1,6 +1,6 @@
 # Ayman transcript search — offline foundation
 
-This is an **early offline RAG prototype**, not a finished assistant. It indexes the 173 imported Drive text files locally with Python's SQLite FTS5. The optional answer command invokes a trusted local llama.cpp CLI and a user-provided local GGUF model; it does not call an API or download models. The existing timestamped transcript collections are **not yet indexed**, and neither retrieval nor generation establishes that passages are factually correct or spoken by Ayman.
+This is an **early offline RAG prototype**, not a finished assistant. The default index covers 173 imported Drive text files locally with Python's SQLite FTS5. An optional separate psychology index combines the 11 Drive psychology files and the 10 existing timestamped psychology Markdown files, keeping every edition separate. Other existing timestamped collections are **not yet indexed**. The optional answer command invokes a trusted local llama.cpp CLI and a user-provided local GGUF model; it does not call an API or download models. Neither retrieval nor generation establishes that passages are factually correct or spoken by Ayman.
 
 ## Run
 
@@ -19,6 +19,20 @@ python3 ayman_rag/evaluate.py --match all
 python3 -m unittest discover -s ayman_rag/tests -v
 ```
 
+### Psychology: both transcript editions
+
+Build a separate catalogue and index; the default Drive index remains unchanged:
+
+```sh
+python3 09_تفريغات_أيمن/tools/build_drive_inventory.py
+python3 ayman_rag/build_psychology_catalog.py
+python3 ayman_rag/search.py build --catalog ayman_rag/psychology_inventory.json --index .cache/ayman-rag/psychology.sqlite3
+python3 ayman_rag/search.py search 'الشك المنهجي' --catalog ayman_rag/psychology_inventory.json --index .cache/ayman-rag/psychology.sqlite3 --json
+python3 ayman_rag/evaluate.py --cases ayman_rag/psychology_eval_cases.json --catalog ayman_rag/psychology_inventory.json --index .cache/ayman-rag/psychology.sqlite3
+```
+
+Pass the same `--catalog` and `--index` to `answer.py` to retrieve from that index. The separate `--folder 03-psychology` filter restricts to the ten older files; use the exact Drive folder for imported text. The 21-file catalogue includes SHA-256 for the current bytes, and recording links and transcription methods **as claimed by the older files' headers**; timestamps and recordings are not verified. Legacy hashes are not independent evidence of authenticity, and similarities between editions do not prove they derive from the same recording. Rebuild the catalogue only after reviewing source changes, then rebuild its index. Do not infer a recording link or a timestamp for Drive text.
+
 For experimental local answer drafting, separately install a trusted `llama-cli` and place a compatible GGUF model on the machine. With both already present, and after building the index:
 
 ```sh
@@ -35,7 +49,7 @@ The generated catalogue [`drive_inventory.json`](../09_تفريغات_أيمن/d
 
 [`eval_cases.json`](eval_cases.json) contains six manually selected known-source query/line pairs from the preliminary foundation-course inventory. `evaluate.py` checks each literal reference against the checksum-verified original, searches the full 173-file corpus and reports the first rank whose source and inclusive line span contain the selected line. Other results are **unjudged**: a miss can include other useful passages, and overlapping chunks can repeat one passage. The sample is small, drawn from the same course and in several cases closely echoes the source; it is not representative, an exhaustive relevance judgment, a semantic test, or an answer correctness evaluation.
 
-On the current catalogue/index, the default `any` mode found 5 of the 6 selected locations in the top five (ranks 1, 1, 1, 2, miss, 3); `all` found 4 of 6 (miss, 1, 1, 2, miss, 3). For example, the first target contains `بالتحسين`, not the query token `التحسين`, so requiring every token loses it. These are exploratory comparisons, not a quality guarantee. No generated answers were assessed.
+On the current default catalogue/index, the default `any` mode found 5 of the 6 selected locations in the top five (ranks 1, 1, 1, 2, miss, 3); `all` found 4 of 6 (miss, 1, 1, 2, miss, 3). For example, the first target contains `بالتحسين`, not the query token `التحسين`, so requiring every token loses it. A separate set of six psychology probes in [`psychology_eval_cases.json`](psychology_eval_cases.json), chosen from manually inspected source locations and heavily echoing their wording, found 6/6 locations in the top five on the 21-source psychology index. These samples are tiny, selected with knowledge of the sources, and do not measure general relevance, medical correctness, or answer correctness. No generated answers were assessed.
 
 ## Important limits
 

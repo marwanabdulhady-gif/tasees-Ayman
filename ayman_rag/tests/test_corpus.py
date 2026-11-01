@@ -2,6 +2,9 @@ import hashlib
 import importlib.util
 import json
 import re
+import subprocess
+import sys
+import tempfile
 import unittest
 from pathlib import Path
 from urllib.parse import unquote
@@ -20,6 +23,54 @@ class CorpusTests(unittest.TestCase):
         self.assertEqual(stored, mod.build())
         self.assertEqual(len(stored['documents']), 173)
         self.assertTrue(all(d['speaker_status'] == 'unverified' for d in stored['documents']))
+
+    def test_psychology_catalogue_rebuilds_and_preserves_editions(self):
+        from ayman_rag.build_psychology_catalog import build
+        stored = json.loads((ROOT / 'ayman_rag/psychology_inventory.json').read_text(encoding='utf-8'))
+        self.assertEqual(stored, build())
+        legacy = [d for d in stored['documents'] if d['id'].startswith('legacy-psy-')]
+        drive = [d for d in stored['documents'] if d['id'].startswith('drive-')]
+        self.assertEqual((len(drive), len(legacy)), (11, 10))
+        self.assertTrue(all(d['speaker_status'] == 'unverified' for d in stored['documents']))
+        self.assertTrue(all(d['timestamps'] == 'present_unverified' and d['original_media_url'] for d in legacy))
+        self.assertTrue(all(d['original_media_url'] is None for d in drive))
+        self.assertEqual(len({d['path'] for d in stored['documents']}), 21)
+
+    def test_real_psychology_index_recovers_both_editions(self):
+        from ayman_rag.search import build_index, search
+        catalog_path = ROOT / 'ayman_rag/psychology_inventory.json'
+        catalog = json.loads(catalog_path.read_text(encoding='utf-8'))['documents']
+        cases = json.loads((ROOT / 'ayman_rag/psychology_eval_cases.json').read_text(encoding='utf-8'))['cases']
+        by_id = {d['id']: d for d in catalog}
+        with tempfile.TemporaryDirectory() as temp:
+            index = Path(temp) / 'psych.sqlite3'
+            self.assertEqual(build_index(catalog_path, index, ROOT)[0], 21)
+            for case in cases:
+                with self.subTest(case=case['source_id']):
+                    doc = by_id[case['source_id']]
+                    lines = (ROOT / doc['path']).read_text(encoding='utf-8').splitlines()
+                    self.assertIn(case['quote'], lines[case['line'] - 1])
+                    # Constraining by the already-known source tests retrieval
+                    # and exact evidence, not general retrieval relevance.
+                    results = search(case['query'], index_path=index, catalog_path=catalog_path,
+                                     root=ROOT, source_id=case['source_id'], limit=50)
+                    self.assertTrue(any(r['start_line'] <= case['line'] <= r['end_line'] for r in results))
+                    self.assertTrue(all(r['source_id'] == case['source_id'] for r in results))
+                    self.assertTrue(all(r['speaker_status'] == 'unverified' for r in results))
+            model = Path(temp) / 'model.gguf'
+            model.write_bytes(b'not a real model')
+            runner = Path(temp) / 'stub-llama'
+            runner.write_text('#!/usr/bin/env python3\nprint("مسودة تجريبية [S1]")\n', encoding='utf-8')
+            runner.chmod(0o755)
+            legacy = next(c for c in cases if c['source_id'].startswith('legacy-psy-'))
+            run = subprocess.run([sys.executable, str(ROOT / 'ayman_rag/answer.py'), legacy['query'],
+                                  '--model', str(model), '--llama-cli', str(runner),
+                                  '--catalog', str(catalog_path), '--index', str(index),
+                                  '--source-id', legacy['source_id']], capture_output=True, text=True)
+            self.assertEqual(run.returncode, 0, run.stderr)
+            self.assertIn(by_id[legacy['source_id']]['path'], run.stdout)
+            self.assertIn('رابط تسجيل مذكور', run.stdout)
+            self.assertIn('مسودة تجريبية [S1]', run.stdout)
 
     def test_course_anchors_and_excerpts(self):
         docs = {d['id']: d for d in json.loads(CATALOG.read_text(encoding='utf-8'))['documents']}

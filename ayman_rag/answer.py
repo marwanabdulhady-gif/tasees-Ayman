@@ -11,7 +11,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from search import search
+from search import CATALOG, INDEX, search
 
 ABSTAIN = 'لا أجد في المقاطع المتاحة ما يكفي للإجابة.'
 
@@ -73,9 +73,11 @@ def main():
     parser.add_argument('--source-id', help='exact source ID from the inventory')
     parser.add_argument('--match', choices=('any', 'all'), default='any', help='match any or all query tokens in one passage')
     parser.add_argument('--limit', type=int, default=5)
+    parser.add_argument('--catalog', type=Path, default=CATALOG, help='local catalogue JSON')
+    parser.add_argument('--index', type=Path, default=INDEX, help='SQLite index matching that catalogue')
     args = parser.parse_args()
     try:
-        passages = search(args.question, limit=args.limit, folder=args.folder, source_id=args.source_id, match=args.match)
+        passages = search(args.question, index_path=args.index, catalog_path=args.catalog, limit=args.limit, folder=args.folder, source_id=args.source_id, match=args.match)
         if not passages:
             print(ABSTAIN)
             return
@@ -84,7 +86,10 @@ def main():
         print(answer)
         print('\nالمقاطع المسترجعة (المتحدث والطبعة ودقة التفريغ غير محققة):')
         for i, p in enumerate(passages, 1):
-            print(f"\n[S{i}] {p['path']} — السطور {p['start_line']}–{p['end_line']}\nSHA-256: {p['sha256']}\n{p['excerpt']}")
+            print(f"\n[S{i}] {p['path']} — السطور {p['start_line']}–{p['end_line']}\nSHA-256: {p['sha256']}")
+            if p.get('original_media_url'):
+                print(f"رابط تسجيل مذكور في ترويسة المصدر (غير متحقق): {p['original_media_url']}")
+            print(p['excerpt'])
     except (ValueError, OSError, sqlite3.Error, subprocess.TimeoutExpired) as exc:
         parser.exit(1, f'error: {exc}\n')
 

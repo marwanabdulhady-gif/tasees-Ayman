@@ -1,5 +1,6 @@
 import hashlib
 import json
+import sqlite3
 import tempfile
 import unittest
 from pathlib import Path
@@ -71,6 +72,32 @@ class OfflineSearchTests(unittest.TestCase):
             self.find('الشك')
         with self.assertRaisesRegex(ValueError, 'source changed'):
             build_index(self.catalog, self.index, self.root)
+
+    def test_index_source_metadata_must_match_catalogue(self):
+        with sqlite3.connect(self.index) as db:
+            db.execute("UPDATE sources SET title = 'tampered' WHERE id = ?", (self.doc['id'],))
+        with self.assertRaisesRegex(ValueError, 'metadata does not match'):
+            self.find('الشك')
+
+    def test_existing_psychology_sources_are_allowed_and_verified(self):
+        legacy = self.root / 'transcripts/03-psychology/01 - example.md'
+        legacy.parent.mkdir(parents=True)
+        legacy.write_text('**[01:15](https://example.com)** سطر نفسي تجريبي\n', encoding='utf-8')
+        doc2 = dict(self.doc, id='legacy-psy-example', path=str(legacy.relative_to(self.root)),
+                    sha256=hashlib.sha256(legacy.read_bytes()).hexdigest(), folder='03-psychology',
+                    source_folder_url='', original_media_url='https://example.com', timestamps='present_unverified')
+        self.catalog.write_text(json.dumps({'documents': [self.doc, doc2]}), encoding='utf-8')
+        build_index(self.catalog, self.index, self.root)
+        result = search('تجريبي', self.index, root=self.root, catalog_path=self.catalog)[0]
+        self.assertEqual(result['source_id'], 'legacy-psy-example')
+        self.assertEqual(result['start_line'], 1)
+        self.assertEqual(result['excerpt'], legacy.read_text().strip())
+        self.assertEqual(result['original_media_url'], 'https://example.com')
+        self.assertEqual(result['timestamps_status'], 'present_unverified')
+        self.assertIsNone(result['source_folder_url'])
+        legacy.write_text(legacy.read_text() + 'تغيير', encoding='utf-8')
+        with self.assertRaisesRegex(ValueError, 'source changed'):
+            search('تجريبي', self.index, root=self.root, catalog_path=self.catalog)
 
     def test_changed_catalog_requires_rebuild(self):
         self.catalog.write_text(self.catalog.read_text() + ' ', encoding='utf-8')
