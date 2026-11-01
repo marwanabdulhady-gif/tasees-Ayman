@@ -3,14 +3,16 @@
 """
 فاحص دروس دورات القوائم.
 
-يفحص كل درس (`NN_*.md`) أمام حلقات قائمة التشغيل التي بُني عليها:
+يفحص كل درس (`NN_*.md` أو `lesson-NN.md`) أمام حلقات قائمة التشغيل التي بُني عليها:
 
   1) **الإحالة**: كل `〔حN MM:SS〕` أو `〔حN H:MM:SS〕` → الحلقة N موجودة،
      والطابع الزمني داخل مداها الفعلي (لا يتجاوز آخر طابع في الملف).
      وللمصادر التي لا طوابع فيها (تفريغ PDF): `〔حN فM〕` → الفقرة M داخل الحلقة،
      أو `〔حN صM〕` → صفحة PDF رقم M (حيث يحمل التفريغ علامات صفحات).
-  2) **الاقتباس**: كل ما بين «…» موجود حرفيًا في الحلقة المُحال إليها
-     (بعد تطبيع الهمزات والتشكيل والمسافات). الاقتباس بلا إحالة يُبحث عنه في كل حلقات القائمة.
+     للتفريغات النصية الأصلية: `〔حN سM[-K] sha256=<البصمة الكاملة>〕` + اقتباس حرفي واحد في السطر نفسه.
+  2) **الاقتباس**: كل ما بين «…» موجود في الحلقة المُحال إليها
+     بعد تطبيع الهمزات والتشكيل والمسافات، عدا إحالات السطور التي تتطلب تطابقًا حرفيًا داخل النطاق المحدد.
+     الاقتباس بلا إحالة يُبحث عنه في كل حلقات القائمة.
   3) **البنية**: العناوين الإلزامية لدرسٍ بأسلوب التأسيس موجودة وبالترتيب.
   4) **الأرقام**: أي رقم لاتيني في الدرس لا يوجد في الحلقات → تحذير (لا فشل) للمراجعة.
 
@@ -21,6 +23,7 @@
 """
 from __future__ import annotations
 
+import hashlib
 import re
 import sys
 from collections import Counter
@@ -33,6 +36,9 @@ CITE = re.compile(r"〔ح([٠-٩\d]+)\s+(\d{1,2}:\d{2}(?::\d{2})?)〕")
 CITE_P = re.compile(r"〔ح([٠-٩\d]+)\s+ف([٠-٩\d]+)〕")
 # إحالة بصفحة PDF: للمصادر المستخرجة من كتاب/PDF بعلامات صفحات
 CITE_G = re.compile(r"〔ح([٠-٩\d]+)\s+ص([٠-٩\d]+)〕")
+# Exact original 1-based text lines + full byte hash; do not infer timestamps.
+CITE_L = re.compile(r"〔ح([٠-٩\d]+)\s+س([٠-٩\d]+)(?:-([٠-٩\d]+))?\s+sha256=([0-9a-f]{64})〕")
+CITE_L_LIKE = re.compile(r"〔ح[٠-٩\d]+\s+س[^〕]*〕")
 QUOTE = re.compile(r"«([^»]{4,300})»")
 STAMP = re.compile(r"\*\*\[(\d{1,2}):(\d{2})(?::(\d{2}))?\]\([^)]*\)\*\*")
 REQUIRED = [
@@ -68,6 +74,22 @@ def to_secs(ts: str) -> int:
 def load_episodes(playlist: Path) -> dict[int, dict]:
     eps = {}
     files = sorted(p for p in playlist.glob("*.md") if p.name.lower() != "readme.md")
+    # Existing Markdown numbering and behavior remain unchanged. Only use
+    # numbered raw text files when a playlist has no Markdown transcripts.
+    if not files:
+        for f in sorted(playlist.glob("*.txt")):
+            match = re.match(r"^(\d+)", f.name)
+            if not match:
+                continue
+            key = int(match.group(1))
+            if key < 1 or key in eps:
+                raise ValueError(f"invalid or duplicate text episode number: {f.name}")
+            data = f.read_bytes()
+            text = data.decode("utf-8")
+            eps[key] = {"file": f.name, "end": None, "n_plain": norm(text), "n_stamps": norm(text),
+                        "paras": [], "pages": set(), "url": None,
+                        "source_lines": text.splitlines(keepends=True), "sha256": hashlib.sha256(data).hexdigest()}
+        return eps
     for i, f in enumerate(files, 1):
         text = f.read_text(encoding="utf-8", errors="replace")
         stamps = [to_secs(m.group(0)[3:m.group(0).index("]")]) for m in STAMP.finditer(text)]
@@ -105,14 +127,18 @@ def main(argv: list[str]) -> int:
     if not playlist.is_absolute():
         playlist = ROOT / playlist
 
-    eps = load_episodes(playlist)
+    try:
+        eps = load_episodes(playlist)
+    except (OSError, UnicodeDecodeError, ValueError) as exc:
+        print(f"✗ تعذر قراءة المصدر: {exc}")
+        return 2
     if not eps:
         print(f"✗ لا حلقات في {playlist}")
         return 2
 
-    lessons = sorted(p for p in course.glob("[0-9][0-9]_*.md"))
+    lessons = sorted(set(course.glob("[0-9][0-9]_*.md")) | set(course.glob("lesson-[0-9][0-9].md")))
     if only:
-        lessons = [p for p in lessons if p.name.startswith(only)] or lessons
+        lessons = [p for p in lessons if p.name.startswith(only) or p.stem == f"lesson-{only}"]
     if not lessons:
         print("✗ لا دروس (ملفات NN_*.md)")
         return 2
@@ -130,8 +156,40 @@ def main(argv: list[str]) -> int:
                   for i, ln in enumerate(lines) for m in CITE_P.finditer(ln)]
         gcites = [(int(ar2en(m.group(1))), int(ar2en(m.group(2))), i + 1)
                   for i, ln in enumerate(lines) for m in CITE_G.finditer(ln)]
-        if len(cites) + len(pcites) + len(gcites) < 6:
-            failures.append(f"{name}: إحالات قليلة ({len(cites)}) — الدرس بلا سند كافٍ")
+        lcites = [(m, i + 1) for i, ln in enumerate(lines) for m in CITE_L.finditer(ln)]
+        count = len(cites) + len(pcites) + len(gcites) + len(lcites)
+        if count < 6:
+            failures.append(f"{name}: إحالات قليلة ({count}) — الدرس بلا سند كافٍ")
+        for i, ln in enumerate(lines, 1):
+            line_cites = list(CITE_L.finditer(ln))
+            candidates = list(CITE_L_LIKE.finditer(ln))
+            for start_match in re.finditer(r"〔ح[٠-٩\d]+\s+س", ln):
+                if not any(candidate.start() == start_match.start() for candidate in candidates):
+                    failures.append(f"{name}:{i} — إحالة سطور غير مكتملة")
+            for candidate in candidates:
+                if not CITE_L.fullmatch(candidate.group()):
+                    failures.append(f"{name}:{i} — إحالة سطور غير صالحة أو بلا بصمة SHA-256 كاملة")
+            if not line_cites:
+                continue
+            quotes = list(QUOTE.finditer(ln))
+            if len(line_cites) != 1 or len(quotes) != 1:
+                failures.append(f"{name}:{i} — يجب إحالة سطور واحدة واقتباس واحد في السطر نفسه")
+                continue
+            m = line_cites[0]
+            n, start = int(ar2en(m.group(1))), int(ar2en(m.group(2)))
+            end = int(ar2en(m.group(3))) if m.group(3) else start
+            e = eps.get(n)
+            if not e or 'source_lines' not in e:
+                failures.append(f"{name}:{i} — الحلقة النصية {n} غير موجودة")
+                continue
+            if m.group(4) != e['sha256']:
+                failures.append(f"{name}:{i} — بصمة الحلقة {n} لا تطابق بايتات المصدر")
+            if start < 1 or end < start or end > len(e['source_lines']) or end - start + 1 > 10:
+                failures.append(f"{name}:{i} — نطاق سطور غير صالح للحلقة {n}")
+                continue
+            quote = quotes[0].group(1)
+            if not 3 <= len(quote.split()) <= 30 or quote not in ''.join(e['source_lines'][start - 1:end]):
+                failures.append(f"{name}:{i} — الاقتباس ليس حرفيًا داخل السطور أو ليس 3–30 كلمة")
         for n, para, ln in pcites:
             e = eps.get(n)
             if not e:
@@ -151,11 +209,17 @@ def main(argv: list[str]) -> int:
             if not e:
                 failures.append(f"{name}:{ln} — الحلقة {n} غير موجودة (القائمة {len(eps)} حلقة)")
                 continue
-            if e["end"] and to_secs(ts) > e["end"]:
+            if 'source_lines' in e:
+                failures.append(f"{name}:{ln} — الحلقة النصية {n} بلا توقيتات؛ استخدم إحالة السطور")
+            elif e["end"] and to_secs(ts) > e["end"]:
                 failures.append(f"{name}:{ln} — {ts} بعد آخر الحلقة ({e['end'] // 60}:{e['end'] % 60:02d})")
 
         # ٢) الاقتباسات — كل اقتباس يُنسب لأقرب إحالة قبله في نفس الفقرة
         for i, ln in enumerate(lines):
+            # A line citation has already been checked literally against its
+            # exact source span above, not against a normalized whole episode.
+            if CITE_L_LIKE.search(ln):
+                continue
             for m in QUOTE.finditer(ln):
                 q = norm(m.group(1))
                 if len(q) < 4:
@@ -191,9 +255,18 @@ def main(argv: list[str]) -> int:
             else:
                 pos = m.start()
 
-        # ٤) أرقام لاتينية غير موجودة في الحلقات
+        # ٤) أرقام لاتينية في المحتوى، لا بصمات أو إحالات أو وجهات روابط.
+        # Keep the visible link label: a number in it can still be a claim.
+        number_text = CITE_L.sub(' ', text)
+        number_text = CITE.sub(' ', number_text)
+        number_text = CITE_P.sub(' ', number_text)
+        number_text = CITE_G.sub(' ', number_text)
+        number_text = re.sub(r'\]\([^\n)]*\)', ']', number_text)
+        number_text = re.sub(r'https?://\S+', ' ', number_text)
+        number_text = re.sub(r'(?<![\w])[0-9a-f]{64}(?![\w])', ' ', number_text)
+        number_text = re.sub(r'\bSHA-?256\b', ' ', number_text, flags=re.IGNORECASE)
         alltext = " ".join(e["n_stamps"] for e in eps.values())
-        for tok in dict.fromkeys(re.findall(r"(?<![\w/])\d{2,}(?![\w])", text)):
+        for tok in dict.fromkeys(re.findall(r"(?<![\w/])\d{2,}(?![\w])", number_text)):
             if ar2en(tok) not in alltext:
                 notes.append(f"{name} — رقم «{tok}» غير موجود في الحلقات: راجعه")
 

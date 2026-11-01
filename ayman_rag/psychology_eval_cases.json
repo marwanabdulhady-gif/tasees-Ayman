@@ -1,0 +1,12 @@
+{
+  "description": "Exploratory psychology known-location probes from manual lesson-source triage; some paired cases intentionally target different editions. Other locations may be relevant and are unjudged.",
+  "limit": 5,
+  "cases": [
+    {"query":"العلوم الغربية اساس شرعي التطبيق المعاصر", "source_id":"drive-07f4e443d9df39daa4ff", "line":6, "quote":"احد العلوم الغربية وليس لها اساس شرعي مباشر في التطبيق المعاصر"},
+    {"query":"العلوم الغربيه اساس شرعي التطبيق المعاصر", "source_id":"legacy-psy-21985760fae7f1743958", "line":13, "quote":"احد العلوم الغربيه وليس لها اساس شرعي مباشر في التطبيق المعاصر"},
+    {"query":"كمشاهد تقيسه هتدخل فيه", "source_id":"drive-36454e2756598b4aced7", "line":7, "quote":"ان انت انت كمشاهد لما تيجي تقيسه هتدخل فيه"},
+    {"query":"الاوبزرفر ايفيكت كمشاهد تقيسه", "source_id":"legacy-psy-9c18a4caf52faf70bac2", "line":13, "quote":"الاوبزرفر ايفيكت ان انت انت كمشاهد لما تيجي تقيسه هتدخل فيه"},
+    {"query":"ويليام فونت اول معمل 1879", "source_id":"legacy-psy-21985760fae7f1743958", "line":69, "quote":"اول معمل ويليام فونت 1879"},
+    {"query":"الشخصية المضادة للمجتمع علاجها", "source_id":"drive-cf89f5a1c6a900d49417", "line":3, "quote":"في علاجها آآ الشخصية المضادة للمجتمع"}
+  ]
+}
