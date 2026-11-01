@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Report known-location lexical retrieval, not answer quality or exhaustive relevance."""
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -18,7 +19,7 @@ def target_rank(results, case):
     return None
 
 
-def evaluate(cases_path=CASES):
+def evaluate(cases_path=CASES, match='any'):
     dataset = json.loads(cases_path.read_text(encoding='utf-8'))
     catalog = {d['id']: d for d in json.loads(CATALOG.read_text(encoding='utf-8'))['documents']}
     ranks = []
@@ -29,16 +30,19 @@ def evaluate(cases_path=CASES):
         line = case['line']
         if not isinstance(line, int) or line < 1 or line > len(lines) or not case['quote'] or case['quote'] not in lines[line - 1]:
             raise ValueError(f"reference quote/line invalid for {case['source_id']}")
-        rank = target_rank(search(case['query'], limit=dataset['limit']), case)
+        rank = target_rank(search(case['query'], limit=dataset['limit'], match=match), case)
         ranks.append(rank)
         print(f"{case['query']} | {case['source_id']} L{line} | " + (f'rank {rank}' if rank else 'not in top results'))
-    print(f"Known-location hits@{dataset['limit']}: {sum(r is not None for r in ranks)}/{len(ranks)}")
+    print(f"Known-location hits@{dataset['limit']} ({match}): {sum(r is not None for r in ranks)}/{len(ranks)}")
     print('Other results are unjudged; this does not measure semantic relevance or answer correctness.')
     return ranks
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--match', choices=('any', 'all'), default='any')
+    args = parser.parse_args()
     try:
-        evaluate()
+        evaluate(match=args.match)
     except (OSError, ValueError, KeyError) as exc:
         sys.exit(f'error: {exc}')

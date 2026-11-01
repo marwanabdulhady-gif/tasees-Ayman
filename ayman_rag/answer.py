@@ -62,10 +62,12 @@ def main():
     parser.add_argument('--model', required=True, help='path to a locally available GGUF model')
     parser.add_argument('--llama-cli', default='llama-cli', help='path to a trusted local llama.cpp CLI')
     parser.add_argument('--folder', help='exact source folder name')
+    parser.add_argument('--source-id', help='exact source ID from the inventory')
+    parser.add_argument('--match', choices=('any', 'all'), default='any', help='match any or all query tokens in one passage')
     parser.add_argument('--limit', type=int, default=5)
     args = parser.parse_args()
     try:
-        passages = search(args.question, limit=args.limit, folder=args.folder)
+        passages = search(args.question, limit=args.limit, folder=args.folder, source_id=args.source_id, match=args.match)
         if not passages:
             print(ABSTAIN)
             return

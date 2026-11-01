@@ -46,6 +46,25 @@ class OfflineSearchTests(unittest.TestCase):
         self.assertEqual(len(search('الشك', self.index, root=self.root, catalog_path=self.catalog, folder='test')), 1)
         self.assertEqual(search('الشك', self.index, root=self.root, catalog_path=self.catalog, folder='other'), [])
 
+    def test_source_filter_and_all_terms(self):
+        other = self.root / 'transcripts/drive-import-2026-11-01/test/other.txt'
+        other.write_text('الشك وحده في نص آخر.\n', encoding='utf-8')
+        doc2 = dict(self.doc, id='drive-other', path=str(other.relative_to(self.root)),
+                    sha256=hashlib.sha256(other.read_bytes()).hexdigest())
+        self.catalog.write_text(json.dumps({'documents': [self.doc, doc2]}), encoding='utf-8')
+        build_index(self.catalog, self.index, self.root)
+        def query(**kwargs):
+            return search('الشك المنهجي', self.index, root=self.root, catalog_path=self.catalog, **kwargs)
+        self.assertEqual({r['source_id'] for r in query()}, {'drive-test', 'drive-other'})
+        self.assertEqual([r['source_id'] for r in query(match='all')], ['drive-test'])
+        self.assertEqual([r['source_id'] for r in query(source_id='drive-other')], ['drive-other'])
+        self.assertEqual(query(source_id='drive-other', match='all'), [])
+        self.assertEqual(query(source_id='drive-test', folder='other'), [])
+        with self.assertRaisesRegex(ValueError, 'unknown source ID'):
+            query(source_id='missing')
+        with self.assertRaisesRegex(ValueError, 'match must'):
+            query(match='invalid')
+
     def test_changed_source_fails_closed(self):
         self.source.write_text(self.text + 'تغيير', encoding='utf-8')
         with self.assertRaisesRegex(ValueError, 'source changed'):

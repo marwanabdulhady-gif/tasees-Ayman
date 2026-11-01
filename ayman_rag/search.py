@@ -85,27 +85,33 @@ def build_index(catalog_path=CATALOG, index_path=INDEX, root=ROOT):
     return len(docs), count
 
 
-def search(query, index_path=INDEX, limit=5, root=ROOT, catalog_path=CATALOG, folder=None):
+def search(query, index_path=INDEX, limit=5, root=ROOT, catalog_path=CATALOG, folder=None,
+           source_id=None, match='any'):
     tokens = list(dict.fromkeys(WORD.findall(normalize(query))))[:20]
     if not tokens:
         raise ValueError('query contains no searchable terms')
     if not 1 <= limit <= 50:
         raise ValueError('limit must be between 1 and 50')
+    if match not in ('any', 'all'):
+        raise ValueError('match must be any or all')
     if not index_path.is_file():
         raise ValueError('index missing: run build first')
     # Quote tokens so FTS operators and punctuation cannot change the query.
-    expression = ' OR '.join('"' + t.replace('"', '""') + '"' for t in tokens)
+    expression = (' OR ' if match == 'any' else ' AND ').join('"' + t.replace('"', '""') + '"' for t in tokens)
     uri = index_path.resolve().as_uri() + '?mode=ro'
     with sqlite3.connect(uri, uri=True) as db:
         saved = db.execute("SELECT value FROM metadata WHERE key='catalog_sha256'").fetchone()
         if not saved or saved[0] != hashlib.sha256(catalog_path.read_bytes()).hexdigest():
             raise ValueError('catalogue changed; rebuild the index')
+        if source_id is not None and not db.execute('SELECT 1 FROM sources WHERE id = ?', (source_id,)).fetchone():
+            raise ValueError('unknown source ID')
         rows = db.execute('''SELECT s.id, s.path, s.sha256, s.title, s.folder, s.folder_url,
                    c.start_line, c.end_line, bm25(passage_search) AS rank
             FROM passage_search JOIN chunks c ON c.id = passage_search.chunk_id
             JOIN sources s ON s.id = c.source_id
             WHERE passage_search MATCH ? AND (? IS NULL OR s.folder = ?)
-            ORDER BY rank, c.id LIMIT ?''', (expression, folder, folder, limit)).fetchall()
+              AND (? IS NULL OR s.id = ?)
+            ORDER BY rank, c.id LIMIT ?''', (expression, folder, folder, source_id, source_id, limit)).fetchall()
     results, verified = [], {}
     for id_, path, sha, title, folder, folder_url, start, end, rank in rows:
         if id_ not in verified:
@@ -124,20 +130,20 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('build')
-    p = sub.add_parser('search'); p.add_argument('query'); p.add_argument('--limit', type=int, default=5); p.add_argument('--folder', help='exact folder name from the inventory'); p.add_argument('--json', action='store_true')
+    p = sub.add_parser('search'); p.add_argument('query'); p.add_argument('--limit', type=int, default=5); p.add_argument('--folder', help='exact folder name from the inventory'); p.add_argument('--source-id', help='exact source ID from the inventory'); p.add_argument('--match', choices=('any', 'all'), default='any', help='match any token (default) or all tokens in one passage'); p.add_argument('--json', action='store_true')
     args = parser.parse_args()
     try:
         if args.command == 'build':
             docs, count = build_index(); print(f'Indexed {docs} sources and {count} passages locally in {INDEX.relative_to(ROOT)}')
         else:
-            results = search(args.query, limit=args.limit, folder=args.folder)
+            results = search(args.query, limit=args.limit, folder=args.folder, source_id=args.source_id, match=args.match)
             if args.json:
                 print(json.dumps(results, ensure_ascii=False, indent=2))
             elif not results:
                 print('No matching passages. Try different terms.')
             else:
                 for i, r in enumerate(results, 1):
-                    print(f"\n[{i}] {r['title']} — lines {r['start_line']}–{r['end_line']}\n{r['path']}\nSource SHA-256: {r['sha256']}\n{r['excerpt']}\n")
+                    print(f"\n[{i}] {r['title']} — lines {r['start_line']}–{r['end_line']}\nSource ID: {r['source_id']}\n{r['path']}\nSource SHA-256: {r['sha256']}\n{r['excerpt']}\n")
     except (ValueError, OSError, sqlite3.Error, KeyError, json.JSONDecodeError) as exc:
         parser.exit(1, f'error: {exc}\n')
 
