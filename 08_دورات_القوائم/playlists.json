@@ -2883,6 +2883,238 @@
      "sha": "66f2c324eb961bc0"
     }
    ]
+  },
+  {
+   "slug": "cognitive-foundation-1",
+   "course_dir": "التأسيس_المعرفي/المستوى_الأول",
+   "title": "التأسيس المعرفي — المستوى الأول",
+   "folder": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم",
+   "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق",
+   "voice": "ayman",
+   "phase": 1,
+   "atlas": false,
+   "episodes": 8,
+   "words": 136399,
+   "citation": "line",
+   "warnings": [
+    "ملفات Drive الأصلية بلا طوابع أو روابط تسجيل؛ المتحدث والطبعة ودقة التفريغ والتداخل تحتاج تحققًا."
+   ],
+   "items": [
+    {
+     "n": 1,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم/001 - دورة-التأسيس-المعرفي-1-المحاضرة-الأولى-م-أيمن-عبدالرحيم.txt",
+     "title": "001 - دورة-التأسيس-المعرفي-1-المحاضرة-الأولى-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 18015,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "53a2bf9b511bf7dc"
+    },
+    {
+     "n": 2,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم/002 - دورة-التأسيس-المعرفي-1-المحاضرة-الثانية-م-أيمن-عبدالرحيم.txt",
+     "title": "002 - دورة-التأسيس-المعرفي-1-المحاضرة-الثانية-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 19053,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "844a805340e881a5"
+    },
+    {
+     "n": 3,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم/003 - دورة-التأسيس-المعرفي-1-المحاضرة-الثالثة-م-أيمن-عبدالرحيم.txt",
+     "title": "003 - دورة-التأسيس-المعرفي-1-المحاضرة-الثالثة-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 19596,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "253154b9806480f3"
+    },
+    {
+     "n": 4,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم/004 - دورة-التأسيس-المعرفي-1-المحاضرة-الرابعة-م-أيمن-عبدالرحيم.txt",
+     "title": "004 - دورة-التأسيس-المعرفي-1-المحاضرة-الرابعة-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 11459,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "25eab7a5af28d1d4"
+    },
+    {
+     "n": 5,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم/005 - دورة-التأسيس-المعرفي-1-المحاضرة-الخامسة-م-أيمن-عبدالرحيم.txt",
+     "title": "005 - دورة-التأسيس-المعرفي-1-المحاضرة-الخامسة-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 14399,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "1cb06cd0eaf98a9b"
+    },
+    {
+     "n": 6,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم/006 - دورة-التأسيس-المعرفي-1-المحاضرة-السادسة-م-أيمن-عبدالرحيم.txt",
+     "title": "006 - دورة-التأسيس-المعرفي-1-المحاضرة-السادسة-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 16400,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "a8075e091fd7cac7"
+    },
+    {
+     "n": 7,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم/007 - دورة-التأسيس-المعرفي-1-المحاضرة-السابعة-م-أيمن-عبدالرحيم.txt",
+     "title": "007 - دورة-التأسيس-المعرفي-1-المحاضرة-السابعة-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 19722,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "257418d3e255ac78"
+    },
+    {
+     "n": 8,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم/008 - دورة-التأسيس-المعرفي-1-المحاضرة-الثامنة-م-أيمن-عبدالرحيم.txt",
+     "title": "008 - دورة-التأسيس-المعرفي-1-المحاضرة-الثامنة-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 17755,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "1e2b927f0e1d080f"
+    }
+   ]
+  },
+  {
+   "slug": "cognitive-foundation-2",
+   "course_dir": "التأسيس_المعرفي/المستوى_الثاني",
+   "title": "التأسيس المعرفي — المستوى الثاني",
+   "folder": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم",
+   "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق",
+   "voice": "ayman",
+   "phase": 1,
+   "atlas": false,
+   "episodes": 7,
+   "words": 92275,
+   "citation": "line",
+   "warnings": [
+    "ملفات Drive الأصلية بلا طوابع أو روابط تسجيل؛ المتحدث والطبعة ودقة التفريغ والتداخل تحتاج تحققًا.",
+    "اشتباه تداخل بين الملفين ٦ و٧؛ يلزم مراجعتهما قبل اعتماد التغطية."
+   ],
+   "items": [
+    {
+     "n": 1,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم/001 - دورة-التأسيس-المعرفي-2-المحاضرة-الأولي-م-أيمن-عبدالرحيم.txt",
+     "title": "001 - دورة-التأسيس-المعرفي-2-المحاضرة-الأولي-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 14695,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "b26f9fb4ca645f65"
+    },
+    {
+     "n": 2,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم/002 - دورة-التأسيس-المعرفي-2-المحاضرة-الثانية-م-أيمن-عبدالرحيم.txt",
+     "title": "002 - دورة-التأسيس-المعرفي-2-المحاضرة-الثانية-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 15489,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "6ada8d50637d56e6"
+    },
+    {
+     "n": 3,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم/003 - دورة-التأسيس-المعرفي-2-المحاضرة-الثالثة-م-أيمن-عبدالرحيم.txt",
+     "title": "003 - دورة-التأسيس-المعرفي-2-المحاضرة-الثالثة-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 18414,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "3fdb26b18bf4b3de"
+    },
+    {
+     "n": 4,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم/004 - دورة-التأسيس-المعرفي-2-المحاضرة-الرابعة-م-أيمن-عبدالرحيم.txt",
+     "title": "004 - دورة-التأسيس-المعرفي-2-المحاضرة-الرابعة-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 9727,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "3bc71f0297960446"
+    },
+    {
+     "n": 5,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم/005 - دورة-التأسيس-المعرفي-2-المحاضرة-الخامسة-م-أيمن-عبدالرحيم.txt",
+     "title": "005 - دورة-التأسيس-المعرفي-2-المحاضرة-الخامسة-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 9648,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "905bfce9988a71d0"
+    },
+    {
+     "n": 6,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم/006 - دورة-التأسيس-المعرفي-2-المحاضرة-السادسة-م-أيمن-عبدالرحيم.txt",
+     "title": "006 - دورة-التأسيس-المعرفي-2-المحاضرة-السادسة-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 12101,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "fe9594475ce7f8e9"
+    },
+    {
+     "n": 7,
+     "file": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم/007 - دورة-التأسيس-المعرفي-2-المحاضرة-السابعة-م-أيمن-عبدالرحيم.txt",
+     "title": "007 - دورة-التأسيس-المعرفي-2-المحاضرة-السابعة-م-أيمن-عبدالرحيم",
+     "url": null,
+     "words": 12201,
+     "paragraphs": 1,
+     "timestamps": 0,
+     "last_ts": null,
+     "minutes": null,
+     "lecture_in_title": null,
+     "sha": "9c236fcebdf610e7"
+    }
+   ]
   }
  ]
 }

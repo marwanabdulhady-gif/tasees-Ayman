@@ -29,7 +29,13 @@ COURSE_DIR = {
     "q100-history": "100_سؤال_في_التاريخ",
     "rihlat-alyaqeen": "رحلة_اليقين",
     "ayman-tasees": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
+    "cognitive-foundation-1": "التأسيس_المعرفي/المستوى_الأول",
+    "cognitive-foundation-2": "التأسيس_المعرفي/المستوى_الثاني",
 }
+
+# Imported Drive files have no reliable recording links or timestamps. Keep each
+# level separate, and never infer speaker/edition from its filename.
+LINE_SOURCE_SLUGS = {"cognitive-foundation-1", "cognitive-foundation-2"}
 PLAYLISTS = [
     ("ayman-umayyad-abbasid", "transcripts/01-umayyad-abbasid-history", "تاريخ الأمويين والعباسيين",
      "م. أيمن عبد الرحيم", "ayman", 2, True),
@@ -47,6 +53,10 @@ PLAYLISTS = [
      "أ. محمد إلهامي — بودكاست قناة «تاريخنا» (يُتحقق من الحلقات، مهمة D0)", "owner-decision", 2, True),
     ("rihlat-alyaqeen", "01_تفريغات_ومصادر/رحلة_اليقين/transcripts", "رحلة اليقين",
      "د. إياد قنيبي", "owner-decision", 1, False),
+    ("cognitive-foundation-1", "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم", "التأسيس المعرفي — المستوى الأول",
+     "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق", "ayman", 1, False),
+    ("cognitive-foundation-2", "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم", "التأسيس المعرفي — المستوى الثاني",
+     "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق", "ayman", 1, False),
 ]
 
 ORD = {"الاولي": 1, "الاولى": 1, "الثانيه": 2, "الثالثه": 3, "الرابعه": 4, "الخامسه": 5, "السادسه": 6,
@@ -79,7 +89,9 @@ def body_of(text):
 
 
 def parse(f):
-    raw = f.read_text(encoding="utf-8")
+    # Preserve raw line endings for byte-identical Drive text fingerprints.
+    # Keep the legacy Markdown fingerprint behaviour unchanged.
+    raw = f.read_bytes().decode("utf-8") if f.suffix == ".txt" else f.read_text(encoding="utf-8")
     title = next((l[2:].strip() for l in raw.splitlines() if l.startswith("# ")), f.stem)
     url = re.search(r"https://www\.youtube\.com/watch\?v=[\w-]+", raw)
     body = body_of(raw)
@@ -97,9 +109,14 @@ def main():
     reg = []
     for slug, folder, title, speaker, voice, phase, atlas in PLAYLISTS:
         d = ROOT / folder
-        files = sorted(p for p in d.glob("*.md") if p.name.lower() not in ("readme.md", "index.md") and not p.name.startswith("_"))
+        extension = "*.txt" if slug in LINE_SOURCE_SLUGS else "*.md"
+        files = sorted(p for p in d.glob(extension) if p.name.lower() not in ("readme.md", "index.md") and not p.name.startswith("_"))
         eps = [parse(f) for f in files]
         warnings = []
+        if slug in LINE_SOURCE_SLUGS:
+            warnings.append("ملفات Drive الأصلية بلا طوابع أو روابط تسجيل؛ المتحدث والطبعة ودقة التفريغ والتداخل تحتاج تحققًا.")
+            if slug == "cognitive-foundation-2":
+                warnings.append("اشتباه تداخل بين الملفين ٦ و٧؛ يلزم مراجعتهما قبل اعتماد التغطية.")
         for e in eps:
             if e["lecture_in_title"] and e["n"] and e["lecture_in_title"] != e["n"]:
                 warnings.append(f"الملف {e['n']} عنوانه «المحاضرة {e['lecture_in_title']}» — رتّب بالمحتوى لا باسم الملف")
@@ -113,16 +130,16 @@ def main():
             if bad:
                 warnings.append(f"فهرس README في `{folder}` يخالف الملفات في {len(bad)} صفًا (مثلًا الصف {bad[0][0]} يقول «المحاضرة {bad[0][1]}») — اعتمد عنوان الملف ومحتواه، لا الفهرس")
         stamped = sum(1 for e in eps if e["timestamps"])
+        citation = "line" if slug in LINE_SOURCE_SLUGS else ("timestamp" if stamped == len(eps) else "paragraph" if stamped == 0 else "mixed")
         reg.append(dict(slug=slug, course_dir=COURSE_DIR[slug], title=title, folder=folder, speaker=speaker, voice=voice, phase=phase, atlas=atlas,
-                        episodes=len(eps), words=sum(e["words"] for e in eps),
-                        citation="timestamp" if stamped == len(eps) else "paragraph" if stamped == 0 else "mixed",
+                        episodes=len(eps), words=sum(e["words"] for e in eps), citation=citation,
                         warnings=warnings, items=eps))
 
         out = PKG / COURSE_DIR[slug]
         out.mkdir(parents=True, exist_ok=True)
         table = [f"# {title} — الحلقات", "", "> **ملف مولَّد** من `08_دورات_القوائم/tools/build_playlist_registry.py`. لا تعدّله يدويًا.", "",
                  f"- **المتحدث:** {speaker}", f"- **المصدر:** `{folder}/`", f"- **الحلقات:** {str(len(eps)).translate(AR)} · **الكلمات:** {sum(e['words'] for e in eps):,}",
-                 f"- **طريقة الاستشهاد:** {'طابع زمني [mm:ss]' if stamped == len(eps) else 'رقم الفقرة ¶ + اقتباس قصير' if stamped == 0 else 'طابع زمني حيث يوجد، وإلا رقم الفقرة'}", ""]
+                 f"- **طريقة الاستشهاد:** {dict(timestamp='طابع زمني [mm:ss]', paragraph='رقم الفقرة ¶ + اقتباس قصير', mixed='طابع زمني حيث يوجد، وإلا رقم الفقرة', line='سطور النص الأصلي + اقتباس حرفي + بصمة SHA-256')[citation]}", ""]
         if warnings:
             table += ["## ⚠ تنبيهات", ""] + [f"- {w}" for w in warnings] + [""]
         table += ["| # | العنوان (من الملف) | الكلمات | الفقرات | الطوابع | المدة التقريبية | الرابط |", "|---:|---|---:|---:|---:|---:|---|"]
@@ -145,16 +162,22 @@ def main():
     (PKG / "playlists.json").write_text(json.dumps(dict(
         note="Generated by 08_دورات_القوائم/tools/build_playlist_registry.py — do not edit by hand.",
         playlists=reg), ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    order = ["ayman-psychology", "ayman-linguistic-awareness", "ayman-seerah-makkah", "ayman-umayyad-abbasid",
+    order = ["cognitive-foundation-1", "cognitive-foundation-2",
+             "ayman-psychology", "ayman-linguistic-awareness", "ayman-seerah-makkah", "ayman-umayyad-abbasid",
              "ayman-tasees", "ayman-reestablishing-awareness", "q100-history", "rihlat-alyaqeen"]
-    summ = ["# القوائم ودوراتها", "", "> **ملف مولَّد** من `tools/build_playlist_registry.py`. الترتيب = ترتيب العمل الموصى به (مواصفة §6).", "",
+    summ = ["# القوائم ودوراتها", "", "> **ملف مولَّد** من `tools/build_playlist_registry.py`. التأسيس المعرفي أولًا وفق أولوية المالك الحالية؛ بقية الترتيب وفق المواصفة §6.", "",
             "| الترتيب | الدورة | المتحدث | الحلقات | الكلمات | الاستشهاد | الأطلس | تنبيهات | الحالة |", "|---:|---|---|---:|---:|---|---|---:|---|"]
     by = {r["slug"]: r for r in reg}
     for i, sl in enumerate(order, 1):
         r = by[sl]
-        st = json.loads((PKG / COURSE_DIR[sl] / "00_خريطة_الدورة.json").read_text(encoding="utf-8")).get("status", "")
+        cmap = json.loads((PKG / COURSE_DIR[sl] / "00_خريطة_الدورة.json").read_text(encoding="utf-8"))
+        st = cmap.get("status", "")
+        if sl in LINE_SOURCE_SLUGS and st == "خريطة":
+            covered = {n for lesson in cmap.get("lessons", []) for n in lesson.get("episodes", [])}
+            covered.update(item.get("ep") for item in cmap.get("excluded", []) if item.get("why", "").strip())
+            st = "خريطة غير معتمدة" if all(e["n"] in covered for e in r["items"]) else "خريطة جزئية غير معتمدة"
         summ.append(f"| {i} | [{r['title']}]({COURSE_DIR[sl]}/README.md) | {r['speaker']} | {r['episodes']} | {r['words']:,} | "
-                    f"{dict(timestamp='طابع زمني', paragraph='رقم فقرة', mixed='مختلط')[r['citation']]} | {'نعم' if r['atlas'] else '—'} | {len(r['warnings'])} | {st} |")
+                    f"{dict(timestamp='طابع زمني', paragraph='رقم فقرة', mixed='مختلط', line='سطور المصدر')[r['citation']]} | {'نعم' if r['atlas'] else '—'} | {len(r['warnings'])} | {st} |")
     (PKG / "01_القوائم.md").write_text("\n".join(summ) + "\n", encoding="utf-8")
     for r in reg:
         print(f"{r['slug']:32} {r['episodes']:3} eps {r['words']:8,} words  cite={r['citation']:9} warnings={len(r['warnings'])}")
