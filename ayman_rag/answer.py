@@ -33,9 +33,17 @@ def validate_answer(answer, count):
     answer = answer.strip()
     if answer == ABSTAIN:
         return answer
-    refs = re.findall(r'\[S(\d+)\]', answer)
-    if not refs or any(not 1 <= int(ref) <= count for ref in refs):
+    markers = re.findall(r'\[S([^\]]*)\]', answer)
+    if not markers or any(not ref.isascii() or not ref.isdigit() or not 1 <= int(ref) <= count for ref in markers):
         raise ValueError('model output has missing or invalid source IDs; no draft returned')
+    # Associate a reference immediately following terminal punctuation with
+    # the preceding sentence, then require a reference per nonempty segment.
+    # This is only a conservative formatting check, not factual entailment.
+    prepared = re.sub(r'([.!?؟؛])\s*((?:\[S\d+\]\s*)+)', r' \2\1 ', answer)
+    for sentence in re.split(r'(?<=[.!?؟؛])\s+|\n+', prepared):
+        content = re.sub(r'\[S\d+\]', '', sentence)
+        if re.search(r'\w', content) and not re.search(r'\[S\d+\]', sentence):
+            raise ValueError('model output has an uncited sentence; no draft returned')
     return answer
 
 
