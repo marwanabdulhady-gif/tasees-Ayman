@@ -12,9 +12,9 @@ COURSES = ROOT / '08_دورات_القوائم'
 IMPORT = ROOT / 'transcripts/drive-import-2026-11-01'
 CHECK = COURSES / 'tools/check_lesson.py'
 CASES = [
-    ('التأسيس_المعرفي/المستوى_الأول', 'دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم', 4),
-    ('التأسيس_المعرفي/المستوى_الثاني', 'دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم', 2),
-    ('علم_النفس', 'دورة-علم-النفس-م-أيمن-عبد-الرحيم', 1),
+    ('التأسيس_المعرفي/المستوى_الأول', 'دورة-التأسيس-المعرفى-1-م-أيمن-عبدالرحيم', 8),
+    ('التأسيس_المعرفي/المستوى_الثاني', 'دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم', 7),
+    ('علم_النفس', 'دورة-علم-النفس-م-أيمن-عبد-الرحيم', 10),
 ]
 
 
@@ -25,9 +25,11 @@ class TemplateLessonsTest(unittest.TestCase):
         for course, folder, minimum in CASES:
             scripts = COURSES / course / '01_نصوص_الدروس'
             lessons = sorted(scripts.glob('lesson-[0-9][0-9].md'))
-            self.assertGreaterEqual(len(lessons), minimum)
+            self.assertEqual(len(lessons), minimum)
+            self.assertEqual([int(p.stem[-2:]) for p in lessons], list(range(1, minimum + 1)))
             check = subprocess.run([sys.executable, str(CHECK), str(scripts), '--playlist', str(IMPORT / folder)], text=True, capture_output=True)
             self.assertEqual(check.returncode, 0, check.stdout + check.stderr)
+            self.assertIn('ملاحظات: 0', check.stdout)
             for lesson in lessons:
                 with self.subTest(lesson=lesson):
                     text = lesson.read_text(encoding='utf-8')

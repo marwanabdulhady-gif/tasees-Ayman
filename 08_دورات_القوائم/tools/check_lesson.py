@@ -262,6 +262,11 @@ def main(argv: list[str]) -> int:
         number_text = CITE_P.sub(' ', number_text)
         number_text = CITE_G.sub(' ', number_text)
         number_text = re.sub(r'\]\([^\n)]*\)', ']', number_text)
+        # Structural numbers are metadata, not claims: the H1 lesson number and
+        # the number inside the standard source-link label. Other visible link
+        # labels are kept, so a numeric claim in a link is still flagged.
+        number_text = re.sub(r'(?m)^#\s*الدرس\s+[^\s—]+\s+—', ' ', number_text)
+        number_text = re.sub(r'\[التفريغ النصي للحلقة [٠-٩\d]+\]', ' ', number_text)
         number_text = re.sub(r'https?://\S+', ' ', number_text)
         number_text = re.sub(r'(?<![\w])[0-9a-f]{64}(?![\w])', ' ', number_text)
         number_text = re.sub(r'\bSHA-?256\b', ' ', number_text, flags=re.IGNORECASE)

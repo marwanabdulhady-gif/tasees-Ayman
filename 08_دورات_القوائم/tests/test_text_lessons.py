@@ -76,6 +76,17 @@ class TextLessonTests(unittest.TestCase):
         r = self.run_check([self.valid()] * 6 + ['[987654](https://example.com/2026)'])
         self.assertIn('987654', r.stdout)
 
+    def test_structural_numbers_ignored_but_claims_still_flagged(self):
+        metadata = (f'# الدرس ١٠ — عنوان الدرس\n'
+                    f'[التفريغ النصي للحلقة 10](https://example.com/2026/file)\n'
+                    f'المصدر SHA-256 `{self.sha}`')
+        r = self.run_check([self.valid()] * 6 + [metadata])
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertNotIn('رقم «10»', r.stdout)
+        self.assertNotIn('رقم «١٠»', r.stdout)
+        claim = self.run_check([self.valid()] * 6 + [metadata, 'النتيجة المزعومة 987654'])
+        self.assertIn('987654', claim.stdout)
+
     def test_two_quotes_or_two_citations_on_one_line_fail(self):
         for bad in (self.valid() + ' «نهاية أخرى مفيدة»', self.valid() + ' ' + self.valid()):
             r = self.run_check([self.valid()] * 6 + [bad])
