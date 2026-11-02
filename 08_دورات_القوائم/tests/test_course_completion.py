@@ -60,7 +60,7 @@ class CourseCompletionTests(unittest.TestCase):
                     self.assertEqual(len(data['screens']), 10)
                     self.assertEqual(data['screens'][0]['layout'], 'L1')
                     self.assertEqual(data['screens'][-1]['layout'], 'L7')
-                    self.assertIn('غير معتمدة', data['draft'])
+                    self.assertIn('معتمد من المالك للنشر', data['draft'])
                     patterns = [s.get('pattern') for s in data['screens'] if s.get('pattern')]
                     self.assertTrue({'P14', 'P02', 'P17', 'P15'} <= set(patterns))
                     self.assertEqual(set(data['screens'][-1]['task']),
@@ -109,13 +109,13 @@ class CourseCompletionTests(unittest.TestCase):
             with self.subTest(slug=slug):
                 course = PKG / folder
                 cmap = json.loads((course / '00_خريطة_الدورة.json').read_text(encoding='utf-8'))
-                self.assertEqual(cmap['status'], 'خريطة')
+                self.assertEqual(cmap['status'], 'خريطة معتمدة من المالك')
                 self.assertEqual(len(cmap['lessons']), count)
                 for lesson in cmap['lessons']:
                     n = lesson['n']
                     self.assertEqual(lesson['text'], f'01_نصوص_الدروس/lesson-{n:02d}.md')
                     self.assertEqual(lesson['page'], f'02_الشاشات/lesson-{n:02d}.html')
-                    self.assertEqual(lesson['text_status'], 'مسودة غير معتمدة')
+                    self.assertEqual(lesson['text_status'], 'معتمد من المالك للنشر')
                     self.assertTrue((course / lesson['text']).exists())
                     self.assertTrue((course / lesson['page']).exists())
                 r = subprocess.run([sys.executable, str(TOOLS / 'check_playlist_course.py'), slug],
@@ -125,7 +125,7 @@ class CourseCompletionTests(unittest.TestCase):
     def test_parallel_track_index_matches_inventory_and_keeps_editions_separate(self):
         course = PKG / 'علم_النفس'
         cmap = json.loads((course / '00_خريطة_الدورة.json').read_text(encoding='utf-8'))
-        self.assertEqual(cmap['status'], 'نصوص بلا خريطة')
+        self.assertEqual(cmap['status'], 'نصوص بلا خريطة معتمدة من المالك')
         self.assertEqual(cmap['lessons'], [])
         index = (course / '01_فهرس_المسودة_الموازية.md').read_text(encoding='utf-8')
         docs = json.loads((ROOT / '09_تفريغات_أيمن/drive_inventory.json').read_text(
@@ -162,7 +162,7 @@ class CourseCompletionTests(unittest.TestCase):
                 self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
                 self.assertIn('ملاحظات: 0', r.stdout)
                 for p in (PKG / folder).glob('lesson-*.md'):
-                    self.assertIn('غير معتمدة', p.read_text(encoding='utf-8'))
+                    self.assertIn('معتمد من المالك للنشر', p.read_text(encoding='utf-8'))
 
 
 if __name__ == '__main__':

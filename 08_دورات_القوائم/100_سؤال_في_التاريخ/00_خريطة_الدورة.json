@@ -1,10 +1,10 @@
 {
- "slug": "q100-history",
- "title": "١٠٠ سؤال في التاريخ",
- "status": "نصوص بلا خريطة",
- "audience": "",
- "guiding_question": "",
- "phase": 2,
- "voice": "owner-decision",
- "lessons": []
+  "slug": "q100-history",
+  "title": "١٠٠ سؤال في التاريخ",
+  "status": "نصوص بلا خريطة معتمدة من المالك",
+  "audience": "",
+  "guiding_question": "",
+  "phase": 2,
+  "voice": "owner-decision",
+  "lessons": []
 }

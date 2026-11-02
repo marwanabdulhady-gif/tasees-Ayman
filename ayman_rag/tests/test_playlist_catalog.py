@@ -19,13 +19,13 @@ class UnifiedPlaylistCatalogTests(unittest.TestCase):
         stored = json.loads(CATALOG.read_text(encoding='utf-8'))
         self.assertEqual(stored, build())
         docs = stored['documents']
-        self.assertEqual(len(docs), 383)
-        self.assertEqual(len({d['id'] for d in docs}), 383)
-        self.assertEqual(len({d['path'] for d in docs}), 383)
+        self.assertEqual(len(docs), 398)
+        self.assertEqual(len({d['id'] for d in docs}), 398)
+        self.assertEqual(len({d['path'] for d in docs}), 398)
         playlist_docs = [d for d in docs if d.get('playlist_slug')]
-        self.assertEqual(len(playlist_docs), 225)
-        self.assertEqual(len(stored['playlists']), 10)
-        self.assertEqual(sum(p['episodes'] for p in stored['playlists']), 225)
+        self.assertEqual(len(playlist_docs), 240)
+        self.assertEqual(len(stored['playlists']), 11)
+        self.assertEqual(sum(p['episodes'] for p in stored['playlists']), 240)
         drive_paths = {d['path'] for d in json.loads(DRIVE.read_text(encoding='utf-8'))['documents']}
         self.assertTrue(drive_paths <= {d['path'] for d in docs})
         for doc in docs:
@@ -33,8 +33,11 @@ class UnifiedPlaylistCatalogTests(unittest.TestCase):
                 self.assertEqual(hashlib.sha256((ROOT / doc['path']).read_bytes()).hexdigest(), doc['sha256'])
                 self.assertEqual(doc['speaker_status'], 'unverified')
         decision = [d for d in playlist_docs if d.get('voice') == 'owner-decision']
-        self.assertEqual({d['playlist_slug'] for d in decision}, {'q100-history', 'rihlat-alyaqeen'})
-        self.assertTrue(all(d['owner_gate'] == 'Q1 pending' for d in decision))
+        self.assertEqual({d['playlist_slug'] for d in decision},
+                         {'q100-history', 'rihlat-alyaqeen', 'ayn-al-tariq'})
+        self.assertTrue(all(d['owner_gate'] == 'Q1 decided: neutral named guide' for d in decision))
+        self.assertTrue(all(d['owner_gate'] == 'approved by owner for publication'
+                            for d in playlist_docs if d.get('voice') != 'owner-decision'))
 
     def test_read_verified_accepts_other_source_roots_and_rejects_escape(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -77,9 +80,9 @@ class UnifiedPlaylistCatalogTests(unittest.TestCase):
             self.assertEqual(search('مشتركة', index_path=index, catalog_path=catalog,
                                     root=root, playlist_slug='missing', limit=5), [])
 
-    def test_ten_known_location_cases_recover_on_the_real_unified_index(self):
+    def test_eleven_known_location_cases_recover_on_the_real_unified_index(self):
         dataset = json.loads(CASES.read_text(encoding='utf-8'))
-        self.assertEqual(len(dataset['cases']), 10)
+        self.assertEqual(len(dataset['cases']), 11)
         self.assertEqual({c['playlist_slug'] for c in dataset['cases']},
                          {p['slug'] for p in build()['playlists']})
         by_id = {d['id']: d for d in json.loads(CATALOG.read_text(encoding='utf-8'))['documents']}
@@ -93,7 +96,7 @@ class UnifiedPlaylistCatalogTests(unittest.TestCase):
             index = Path(temp) / 'playlists.sqlite3'
             build_index(CATALOG, index, ROOT)
             ranks = evaluate(cases_path=CASES, catalog_path=CATALOG, index_path=index)
-            self.assertEqual(len(ranks), 10)
+            self.assertEqual(len(ranks), 11)
             self.assertTrue(all(rank is not None and rank <= dataset['limit'] for rank in ranks))
 
 

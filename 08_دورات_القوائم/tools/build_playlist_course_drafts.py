@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Build unapproved, source-grounded course drafts for all ten playlists.
+"""Build owner-approved, source-grounded course lessons for all eleven playlists.
 
     python3 08_دورات_القوائم/tools/build_playlist_course_drafts.py
     python3 08_دورات_القوائم/tools/build_playlist_course_drafts.py --check
@@ -13,11 +13,13 @@ literal quotations with a citation form accepted by ``check_lesson.py``:
 timestamps, paragraphs, or exact lines plus SHA-256. Quotations and hashes are
 read from the original files, never from memory.
 
-The drafts are explicitly unapproved. Retrieval proves only that a quote is at
-a location in the current bytes; it does not prove the recording, speaker,
-edition, transcription accuracy, interpretation, or factual correctness.
-Non-Ayman playlists use a neutral guide voice and keep the owner's Q1 decision
-pending. Sensitive-playlist red lines remain in force.
+The owner has recorded a final approval for publication and a neutral-named-guide
+Q1 decision. Retrieval proves only that a quote is at a location in the current
+bytes; it does not prove the recording, speaker, edition, transcription
+accuracy, interpretation, independent references or factual correctness.
+Non-Ayman playlists use a neutral named guide and are not written in Ayman
+voice. Sensitive-playlist red lines remain in force. Approval does not merge
+pull requests or publish outside this repository.
 """
 from __future__ import annotations
 
@@ -34,13 +36,20 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from check_lesson import norm  # noqa: E402
 from playlist_sources import ROOT, PKG, STAMP, citation_kind, ordered_items, registry, source_dir  # noqa: E402
+from owner_decisions import (APPROVED_STATUS, CAVEATS, LABELS, PUBLICATION_STATUS,  # noqa: E402
+                             Q1_STATUS, SHORT_STATUS, VERIFICATION_STATUS, gate_for,
+                             publication, status)
 
 OUT = PKG / '10_مسودات_القوائم'
 CATALOG = ROOT / 'ayman_rag' / 'playlist_inventory.json'
 AR = str.maketrans('0123456789', '٠١٢٣٤٥٦٧٨٩')
+AR2EN = str.maketrans('٠١٢٣٤٥٦٧٨٩', '0123456789')
+PDF_START = re.compile(r'<!--\s*بداية صفحة PDF\s+([٠-٩\d]+)')
+PDF_END = re.compile(r'<!--\s*نهاية صفحة PDF')
 KIND_AR = {'timestamp': 'طوابع زمنية في التفريغ، غير متحققة من التسجيل',
            'paragraph': 'أرقام فقرات، ليست توقيتات',
-           'line': 'سطور وبصمة بايتات، ليست توقيتات'}
+           'line': 'سطور وبصمة بايتات، ليست توقيتات',
+           'pdf': 'صفحات PDF مستخرجة من الكتاب، ليست توقيتات'}
 TOOLS = [
     ('بطاقة المصدر', 'اكتب الاقتباس في خانة، والإحالة في خانة، والبصمة في خانة. ثم اكتب ما لا تثبته هذه الخانات: المتحدث، والتسجيل، والطبعة، والمعنى. البطاقة تمنع خلط الشاهد بالتفسير، وتجعل كل سؤال قابلًا للإحالة إلى مراجعة لاحقة.'),
     ('ميزان النقل', 'قسّم الورقة بين عبارة منقولة وقراءة تعليمية. العبارة المنقولة تُترك كما هي، والقراءة تُوصَف بأنها سؤال أو أداة لا حكم. إذا لم تجد فاصلًا واضحًا، اكتب: لا أعلم بعد، وأحِل العبارة إلى طابور المراجعة.'),
@@ -58,16 +67,19 @@ SAFETY = {
     'ayman-seerah-makkah': 'بلا تجسيد للنبي ﷺ، مع أدب الصحابة، وبلا ترجيح طائفي.',
     'ayman-umayyad-abbasid': 'بلا ترجيح طائفي ولا حكم على النيات؛ الأحداث تُقرأ بوصفها مادة تفريغ تحتاج مراجعة.',
     'ayman-reestablishing-awareness': 'لا تحريض، ولا أسماء أشخاص أحياء في سياق اتهام، ولا دعوة لفعل غير آمن.',
-    'q100-history': 'لا نسبة تفصيلية للمقدّم أو الضيوف قبل توثيق الحلقات، ولا حكم تاريخي مستقل؛ القرار الأول للمالك ما زال معلّقًا.',
-    'rihlat-alyaqeen': 'محتوى عقدي يُقرأ بوصفه مادة منقولة من التفريغ، بلا إضافة حكم أو فتوى؛ القرار الأول للمالك ما زال معلّقًا.',
+    'q100-history': 'لا نسبة تفصيلية للمقدّم أو الضيوف قبل توثيق الحلقات، ولا حكم تاريخي مستقل؛ قرار Q1 مثبّت بمرشد محايد منسوب بالاسم.',
+    'rihlat-alyaqeen': 'محتوى عقدي يُقرأ بوصفه مادة منقولة من التفريغ، بلا إضافة حكم أو فتوى؛ قرار Q1 مثبّت بمرشد محايد منسوب بالاسم.',
+    'ayn-al-tariq': 'نص مستخرج من PDF مرفق؛ تُعاد مطابقة الاقتباسات مقابل ملف PDF الأصلي قبل أي إسناد نهائي، بلا نسبة إلى أيمن عبد الرحيم.',
 }
 SERIES = {
     'q100-history': 'سلسلة مائة سؤال في التاريخ، وليست منسوبة إلى أيمن عبد الرحيم.',
     'rihlat-alyaqeen': 'سلسلة رحلة اليقين للدكتور إياد قنيبي، وليست منسوبة إلى أيمن عبد الرحيم.',
+    'ayn-al-tariq': 'كتاب أين الطريق؟، الطبعة الأولى، من ملف PDF مرفق من المستخدم؛ وليس منسوبًا إلى أيمن عبد الرحيم.',
 }
 TITLE_OVERRIDES = {
     'q100-history': 'مائة سؤال في التاريخ',
     'rihlat-alyaqeen': 'رحلة اليقين',
+    'ayn-al-tariq': 'أين الطريق؟',
 }
 ORDINALS = [
     'الأولى', 'الثانية', 'الثالثة', 'الرابعة', 'الخامسة', 'السادسة', 'السابعة', 'الثامنة',
@@ -77,24 +89,24 @@ ORDINALS = [
 HEADER_WORDS = [
     'num', 'Episode', 'Supadata', 'youtube', 'youtubetranscript', 'transcript_source',
     'source_folder', 'source_file', 'converted_at_utc', 'title:', 'series:', 'channel:',
-    'upload_date', 'duration:', 'language:', 'url:', 'video_id:', 'الحلقة:', 'الرابط:', 'المصدر:',
+    'upload_date', 'duration:', 'language:', 'url:', 'video_id:', 'episode:', 'pdf_pages:',
+    'source_type:', 'extraction_method:', 'verification_status:', 'الحلقة:', 'الرابط:', 'المصدر:',
 ]
-DRAFT_NOTE = ('> **مسودة تعليمية للمراجعة، غير معتمدة.** الاقتباسات حرفية من تفريغات محلية، '
-              'لا من تسجيل تم الاستماع إليه. المتحدث والتسجيل والطبعة ودقة التفريغ والمراجع '
-              'غير متحققة. الإحالة تثبت الموضع في البايتات الحالية فقط. لا يُنشر شيء قبل '
-              'قرار المالك والمراجعة البشرية.')
-SOURCE_NOTE = ('الطوابع الزمنية وأرقام الفقرات والسطور كلها مواضع نصية، لا توقيتات مؤكدة. '
+DRAFT_NOTE = LABELS['draft_note']
+APPROVAL_NOTE = LABELS['publication_note']
+VERIFICATION_NOTE = LABELS['verification_note']
+SOURCE_NOTE = ('الطوابع الزمنية وأرقام الفقرات وصفحات PDF والسطور كلها مواضع نصية، لا توقيتات مؤكدة. '
                'روابط التسجيل وطرائق التفريغ المذكورة في الترويسات تُقرأ بوصفها ادعاءات في '
                'الملف، لا بوصفها توثيقًا مستقلًا. لا تُدمج النسخ، ولا تُصحّح الاقتباسات، '
-               'ولا تُحوّل عبارة منقولة إلى رأي معتمد.')
-METHOD_PAD = ('منهج القراءة في هذه المسودة يقوم على فصل أربع طبقات: البايتات التي تحمل '
+               'ولا تُحوّل عبارة منقولة إلى رأي متحقق؛ ' + VERIFICATION_NOTE)
+METHOD_PAD = ('منهج القراءة في هذه الدروس يقوم على فصل أربع طبقات: البايتات التي تحمل '
               'البصمة، والاقتباس كما ورد، والإحالة التي تحدد موضعه، والسؤال التعليمي الذي '
               'يفتحه الدرس. الطبقة الأولى يفحصها سكربت آلي، والثانية تُقرأ كما هي، والثالثة '
               'يُعاد التحقق منها أمام الملف، أما الرابعة فهي اجتهاد تعليمي قابل للمراجعة '
               'والحذف. إذا تعارضت طبقة مع أخرى، تُقدَّم البايتات على التأويل، ويُسجّل '
-              'الخلاف في طابور المراجعة. لذلك لا تُعدّ كثرة الاقتباسات تغطية شاملة، ولا '
-              'تُقرأ هذه الدروس بوصفها خريطة معتمدة، ولا يُبنى عليها حكم تاريخي أو سريري '
-              'أو صوت منسوب إلى متحدث قبل التحقق.')
+              'الخلاف في طابور الاعتماد. لذلك لا تُعدّ كثرة الاقتباسات تغطية شاملة، ولا '
+              'تُقرأ هذه الدروس بوصفها تحققًا مستقلًا، ولا يُبنى عليها حكم تاريخي أو سريري '
+              'أو صوت منسوب إلى متحدث قبل التحقق. ' + APPROVAL_NOTE)
 
 
 def ar(n: int) -> str:
@@ -122,7 +134,8 @@ def link_from(lesson_dir: Path, source: Path) -> str:
 
 def is_header_line(line: str) -> bool:
     s = line.strip()
-    return (not s or s.startswith(('#', '-', '---', '|')) or
+    return (not s or s.startswith(('#', '-', '---', '|', '<!--')) or
+            'صفحة PDF' in s or
             any(word.lower() in s.lower() for word in HEADER_WORDS))
 
 
@@ -130,7 +143,8 @@ def bad_token(token: str) -> bool:
     low = token.lower()
     return (not re.search(r'[\u0600-\u06ff\w]', token) or 'http' in low or 'num' == low
             or 'episode' in low or 'supadata' in low or 'youtube' in low or '**' in token
-            or '](' in token or '---' in token or re.search(r'[0-9٠-٩]{2,}', token))
+            or '](' in token or '---' in token or '<!--' in token or '-->' in token
+            or re.search(r'[0-9٠-٩]{2,}', token))
 
 
 def phrase(raw: str, nwords: int) -> str | None:
@@ -219,6 +233,26 @@ def extract_candidates(item: dict, catalog: dict[str, dict], limit: int = 6) -> 
                     all_rows.append(candidate(item, ep, kind, ts,
                                               f'〔ح{ar(ep)} {ts}〕', ts, q, i, sha, source_id))
                     break
+    elif kind == 'pdf':
+        page: int | None = None
+        for i, line in enumerate(lines, 1):
+            raw = line.rstrip('\n')
+            start = PDF_START.search(raw)
+            if start:
+                page = int(start.group(1).translate(AR2EN))
+                continue
+            if PDF_END.search(raw):
+                page = None
+                continue
+            if page is None or is_header_line(raw):
+                continue
+            for nwords in (10, 8, 6, 4):
+                q = phrase(raw, nwords)
+                if q:
+                    all_rows.append(candidate(item, ep, kind, 'ص' + ar(page),
+                                              f'〔ح{ar(ep)} ص{ar(page)}〕', f'PDF p.{page}',
+                                              q, i, sha, source_id, {'pdf_page': page}))
+                    break
     else:
         body = STAMP.sub('', text)
         paras = [seg for seg in re.split(r'\n\s*\n', body) if len(norm(seg)) > 20]
@@ -304,9 +338,12 @@ def build_lesson(playlist: dict, rows: list[dict], group: list[int], n: int,
                    'الدرس ده مش حكم جاهز ولا صوت منسوب لصاحب التسجيل؛ هو تمرين على الفصل بين '
                    'الشاهد والقراءة. الصياغة مستوحاة من إيقاع تأسيس، والاقتباسات وحدها هي المنقول.')
     else:
+        named = ('والنسبة بالاسم إلى ' + course_title + ' موثقة في قرار المالك. '
+                 if playlist.get('voice') == 'owner-decision' else '')
         opening = ('نفتح هذا الدرس بورقة قراءة لا بخلاصة نهائية. أمامنا مقاطع من قائمة تشغيل، '
                    'وكل مقطع له موضع وبصمة وسؤال. مرشد الدورة يقرأ بفصحى مبسطة، ولا يتبنّى '
-                   'صوت صاحب السلسلة ولا ينسب إليه صياغة الدرس. ' + SERIES.get(playlist['slug'], ''))
+                   'صوت صاحب السلسلة ولا ينسب إليه صياغة الدرس. ' + named +
+                   LABELS['q1_text'] + ' ' + SERIES.get(playlist['slug'], ''))
     source_links = []
     for row in source_rows:
         ep = row['episode']
@@ -317,8 +354,7 @@ def build_lesson(playlist: dict, rows: list[dict], group: list[int], n: int,
             f'معرّف المصدر `{entry["id"]}` · SHA-256 `{entry["sha256"]}` · '
             f'{KIND_AR[citation_kind(row["path"])]}.')
     safety = SAFETY.get(playlist['slug'], 'الخطوط الحمراء العامة للمشروع تسري على النص والشاشات معًا.')
-    q1 = (' **قرار المالك الأول معلّق:** لا يُكتب هذا المسار بصوت أيمن، ولا يُنسب إليه، '
-          'ولا يُعدّ خريطة معتمدة.' if voice == 'owner-decision' else '')
+    q1 = LABELS['q1_text'] if voice == 'owner-decision' else ''
     parts = [
         f'# الدرس {ar(n)} — {title}', '', DRAFT_NOTE, '',
         '## افتتاح وخطاف', '', opening, '',
@@ -357,7 +393,7 @@ def build_lesson(playlist: dict, rows: list[dict], group: list[int], n: int,
     parts += [
         '## مصيدة الفهم',
         'أن تظن أن كثرة الإحالات تعني أن الدرس مكتمل أو أن كل عبارة صحيحة. الإحالات تثبت المواضع، '
-        'والاعتماد قرار مالك بعد مراجعة التسجيلات والمراجع. تُسجّل هذه المصيدة في طابور المراجعة.', '',
+        'وقرار المالك بالاعتماد موثق لكنه لا يثبت التسجيلات والمراجع. تُسجّل هذه المصيدة في طابور الاعتماد مع قيودها.', '',
         '## المهمة', '',
         '**مستكشف:** اختر اقتباسًا واحدًا واكتب سؤالًا يفتحه، ثم اكتب ما لا يجيب عنه الاقتباس.', '',
         '**ممارس:** اعمل جدولًا من ثلاثة أعمدة: الاقتباس، والإحالة، وما يحتاج تحققًا. املأ سطرين '
@@ -370,8 +406,8 @@ def build_lesson(playlist: dict, rows: list[dict], group: list[int], n: int,
         'تحتاج تسجيلًا، والمعنى يحتاج سياقًا، والحكم يحتاج مرجعًا مستقلًا. إن غاب شاهد، '
         'تُترك الخانة بعبارة لا أعلم بعد بدل ملئها بحدس.', '',
         '## القفلة',
-        'نبدأ بالموضع، ثم نفصل النقل عن القراءة، ثم نُبقي الاعتماد معلّقًا.',
-        'ما لم يُعتمد في خريطة رسمية يبقى مسودة، والاعتماد قرار المالك بعد المراجعة.', '',
+        'نبدأ بالموضع، ثم نفصل النقل عن القراءة، ثم نُبقي قيود التحقق موثقة.',
+        'قرار المالك بالاعتماد موثق، لكنه لا يثبت التسجيل أو المراجع؛ والخرائط الرسمية لم تُعدّل.', '',
         'الدرس الجاي يواصل قراءة المقاطع التالية بالحد نفسه. استنى هناك.',
     ]
     text = '\n'.join(parts) + '\n'
@@ -400,49 +436,50 @@ def map_lesson(playlist: dict, rows: list[dict], group: list[int], n: int,
         ideas.append(idea)
     built = {str(ep): rows[ep - 1].get('sha') for ep in group}
     course_title = TITLE_OVERRIDES.get(playlist['slug']) or clean_title(playlist['title'])
-    return {'n': n, 'unit': 'مسودة غير معتمدة',
+    return {'n': n, 'unit': 'درس معتمد من المالك',
             'title': f'قراءة مقاطع من {course_title} — الدفعة {ordinal(n)}',
-            'question': 'كيف نقرأ المقاطع بسند محقق الموضع وبلا اعتماد محتوى؟',
+            'question': 'كيف نقرأ المقاطع بسند محقق الموضع مع بقاء قيود التحقق موثقة؟',
             'episodes': group, 'ideas': ideas,
             'patterns': ['P14', 'P02', 'P17', 'P15'], 'atlas': [],
             'text': f'01_نصوص_الدروس/lesson-{n:02d}.md',
             'page': f'02_الشاشات/lesson-{n:02d}.html',
-            'text_status': 'مسودة غير معتمدة', 'built_from': built}
+            'text_status': status(), 'built_from': built}
 
 
 def index_markdown(playlist: dict, lessons: list[dict], rows: list[dict]) -> str:
-    lines = [f'# فهرس المسودة — {playlist["title"]}', '',
-             '> **مسودة هيكلية غير معتمدة.** هذا فهرس لرف مسودات منفصل، لا `00_خريطة_الدورة.json`، '
-             'ولا يُحتسب ضمن جداول الدورات المعتمدة.', '',
+    lines = [f'# فهرس الدروس المعتمدة — {playlist["title"]}', '',
+             '> **معتمد من المالك للنشر.** هذا فهرس لرف الدروس، لا `00_خريطة_الدورة.json`، '
+             'ولا يُحتسب ضمن جداول الخرائط الرسمية. ' + APPROVAL_NOTE, '',
              f'- القائمة: `{playlist["slug"]}`',
              f'- عدد ملفات المصدر: {len(rows)}',
              f'- عدد الدروس: {len(lessons)}',
-             f'- الصوت: {"مرشد محايد بفصحى مبسطة؛ قرار المالك الأول معلّق" if playlist.get("voice") == "owner-decision" else "مستوحى من إيقاع تأسيس، بلا نسبة كلام للمتحدث"}',
+             f'- الصوت: {"مرشد محايد بفصحى مبسطة مع النسبة بالاسم؛ قرار Q1 مثبّت" if playlist.get("voice") == "owner-decision" else "مستوحى من إيقاع تأسيس، معتمد من المالك"}',
              f'- الإحالات: {playlist.get("citation")}',
              '', '## الدروس', '',
              '| الدرس | الحلقات | النص | الشاشات | الحالة |', '|---|---|---|---|---|']
     for l in lessons:
         eps = '، '.join(ar(ep) for ep in l['episodes'])
         lines.append(f'| {ar(l["n"])} | {eps} | [{Path(l["text"]).name}]({l["text"]}) | '
-                     f'[{Path(l["page"]).name}]({l["page"]}) | مسودة غير معتمدة |')
+                     f'[{Path(l["page"]).name}]({l["page"]}) | {SHORT_STATUS} |')
     lines += ['', '## حدود', '', SOURCE_NOTE, '',
               SAFETY.get(playlist['slug'], 'الخطوط الحمراء العامة للمشروع تسري على النص والشاشات معًا.'), '',
-              'الاعتماد قرار المالك بعد مراجعة التسجيلات والمراجع؛ لا تُقرأ التغطية بوصفها صحة محتوى.', '',
-              '[طابور مراجعة هذه القائمة](00_طابور_المراجعة.md) · '
-              '[لوحة المراجعة](../03_لوحة_المراجعة/index.html) · '
-              '[الطابور الجذري](../00_طابور_المراجعة.md)']
+              VERIFICATION_NOTE + ' لا تُقرأ التغطية بوصفها صحة محتوى.', '',
+              '[طابور اعتماد هذه القائمة](00_طابور_المراجعة.md) · '
+              '[لوحة الاعتماد](../03_لوحة_المراجعة/index.html) · '
+              '[الطابور الجذري](../00_طابور_المراجعة.md) · '
+              '[قرار المالك](../../00_قرارات_المالك.md)']
     return '\n'.join(lines) + '\n'
 
 
 def readme(playlist: dict, lessons: list[dict], rows: list[dict]) -> str:
     warnings = '\n'.join(f'- {w}' for w in playlist.get('warnings', [])) or '- لا تحذيرات إضافية في السجل.'
-    decision = ('قرار المالك الأول ما زال معلّقًا؛ الصوت محايد بفصحى مبسطة، ولا تُنسب هذه '
+    decision = ('قرار Q1 مثبّت: مرشد محايد بفصحى مبسطة مع النسبة بالاسم، ولا تُنسب هذه '
                 'الصياغة إلى أيمن عبد الرحيم.' if playlist.get('voice') == 'owner-decision'
-                else 'الصياغة مستوحاة من إيقاع «تأسيس»، وليست كلامًا منسوبًا إلى متحدث متحقق.')
+                else 'الصياغة مستوحاة من إيقاع «تأسيس»، وليست كلامًا منسوبًا إلى متحدث متحقق؛ قرار المالك بالاعتماد موثق.')
     return '\n'.join([
-        f'# مسودة دورة القائمة — {playlist["title"]}', '',
-        '> **غير معتمدة.** رف منفصل عن الدورات الرسمية؛ لا يُعدّل `00_خريطة_الدورة.json` ولا '
-        'النسخ الأساسية، ولا يُحتسب ضمن «مكتمل» في فهرس الدورات.', '',
+        f'# دورة القائمة — {playlist["title"]}', '',
+        '> **معتمد من المالك للنشر.** رف منفصل عن الخرائط الرسمية؛ لا يُعدّل `00_خريطة_الدورة.json` ولا '
+        'النسخ الأساسية. ' + APPROVAL_NOTE, '',
         f'- **القائمة:** `{playlist["slug"]}`',
         f'- **ملفات المصدر:** {len(rows)}',
         f'- **الدروس:** {len(lessons)}',
@@ -451,11 +488,11 @@ def readme(playlist: dict, lessons: list[dict], rows: list[dict]) -> str:
         f'- **السند:** {playlist.get("citation")}؛ كل درس ستة اقتباسات حرفية على الأقل '
         'مع إحالة مقبولة لدى `check_lesson.py` وبصمة بايتات لكل ملف.', '',
         '## ما في هذا المجلد', '',
-        '- `01_نصوص_الدروس/` — نصوص بقالب المشروع، مسودة غير معتمدة.',
+        '- `01_نصوص_الدروس/` — نصوص بقالب المشروع، معتمدة من المالك مع قيود موثقة.',
         '- `02_الشاشات/` — شاشات مشتقة من `week-template.html` بنفس الهوية.',
-        '- `00_خريطة_المسودة.json` — فهرس هيكلي للمسودة فقط، ليس خريطة رسمية.',
-        '- `00_فهرس_المسودة.md` — جدول الدروس وحدود القراءة.',
-        '- `00_طابور_المراجعة.md` — بوابات المراجعة البشرية المعلّقة لهذه القائمة.', '',
+        '- `00_خريطة_المسودة.json` — فهرس هيكلي معتمد من المالك، وليس خريطة رسمية.',
+        '- `00_فهرس_المسودة.md` — جدول الدروس وحدود القراءة والاعتماد.',
+        '- `00_طابور_المراجعة.md` — قرار المالك وقيود التحقق غير الثابت آليًا لهذه القائمة.', '',
         '## تحذيرات السجل', '', warnings, '',
         '## خطوط حمراء', '', SAFETY.get(playlist['slug'], 'الخطوط الحمراء العامة للمشروع تسري على النص والشاشات معًا.'), '',
         SOURCE_NOTE, '',
@@ -466,9 +503,9 @@ def readme(playlist: dict, lessons: list[dict], rows: list[dict]) -> str:
         'python3 08_دورات_القوائم/tools/build_review_queue.py --check',
         'python3 08_دورات_القوائم/tools/check_lesson.py <مجلد النصوص> --playlist <مجلد التفريغات>',
         '```', '',
-        '[طابور مراجعة القائمة](00_طابور_المراجعة.md) · [لوحة المراجعة](../03_لوحة_المراجعة/index.html) '
-        'تسجّلان كل البوابات المعلّقة؛ لا بند معتمد ولا نشر قبل قرار المالك.', '',
-        'الاعتماد قرار المالك بعد مراجعة التسجيل والمراجع المتخصصة؛ لا يثبت الفحص الآلي سوى المواضع والبصمات.',
+        '[طابور اعتماد القائمة](00_طابور_المراجعة.md) · [لوحة الاعتماد](../03_لوحة_المراجعة/index.html) · '
+        '[قرار المالك](../../00_قرارات_المالك.md) تسجّل الاعتماد والقيود؛ أُزيلت بوابة النشر داخل المستودع.', '',
+        VERIFICATION_NOTE + ' لا يثبت الفحص الآلي سوى المواضع والبصمات.',
     ]) + '\n'
 
 
@@ -487,10 +524,10 @@ def build() -> dict[Path, str]:
             out[lesson_dir / f'lesson-{n:02d}.md'] = text
             lessons.append(map_lesson(playlist, rows, group, n, quotes))
         out[course_dir / '00_خريطة_المسودة.json'] = json.dumps({
-            'schema_version': 1, 'status': 'مسودة هيكلية غير معتمدة',
-            'note': 'ليست 00_خريطة_الدورة.json؛ لا تُقرأ بوصفها خريطة معتمدة ولا إذن نشر.',
+            'schema_version': 2, 'status': status(),
+            'note': 'ليست 00_خريطة_الدورة.json؛ قرار المالك بالاعتماد موثق مع بقاء قيود التحقق. ' + APPROVAL_NOTE,
             'slug': playlist['slug'], 'title': playlist['title'],
-            'voice': playlist.get('voice'), 'owner_gate': 'approval pending',
+            'voice': playlist.get('voice'), 'owner_gate': gate_for(playlist.get('voice')),
             'source_dir': str(source_dir(playlist).relative_to(ROOT)),
             'episode_numbering': 'check_lesson.py file order / front matter / numbered text files',
             'lessons': lessons,
@@ -500,45 +537,48 @@ def build() -> dict[Path, str]:
         summary.append({'slug': playlist['slug'], 'title': playlist['title'],
                         'episodes': len(rows), 'lessons': len(lessons),
                         'screens': len(lessons) * 10, 'voice': playlist.get('voice'),
-                        'owner_gate': 'Q1 pending' if playlist.get('voice') == 'owner-decision' else 'approval pending'})
+                        'owner_gate': gate_for(playlist.get('voice'))})
     total_lessons = sum(x['lessons'] for x in summary)
     total_screens = sum(x['screens'] for x in summary)
     out[OUT / '00_حالة_القوائم.json'] = json.dumps({
-        'schema_version': 1, 'status': 'مسودات غير معتمدة',
-        'note': 'تغطية هيكلية لكل القوائم المسجلة؛ لا اعتماد محتوى ولا صوت ولا تسجيل.',
+        'schema_version': 2, 'status': status(),
+        'note': 'تغطية هيكلية لكل القوائم المسجلة؛ قرار المالك بالاعتماد موثق. ' + APPROVAL_NOTE + ' ' + VERIFICATION_NOTE,
         'rag_catalog': 'ayman_rag/playlist_inventory.json',
         'rag_audit': 'ayman_rag/playlist_retrieval_audit.json',
         'review_queue': '08_دورات_القوائم/10_مسودات_القوائم/00_طابور_المراجعة.json',
         'review_board': '08_دورات_القوائم/10_مسودات_القوائم/03_لوحة_المراجعة/index.html',
-        'review_status': 'pending; no approval; publication blocked',
+        'review_status': f'{publication()}; owner decision recorded; independent verification {VERIFICATION_STATUS}',
         'totals': {'playlists': len(summary), 'sources': sum(x['episodes'] for x in summary),
                    'lessons': total_lessons, 'screens': total_screens},
         'playlists': summary,
     }, ensure_ascii=False, indent=2) + '\n'
-    lines = ['# مسودات كل قوائم التشغيل — غير معتمدة', '',
+    lines = [LABELS['shelf_title'], '',
              '> هذا رف منفصل أنشئ لإكمال بناء **كل قائمة مسجلة** بقالب المشروع. '
-             'لا يُعدّل أي خريطة رسمية، ولا تُعتمد النصوص أو الشاشات أو الأصوات أو المحتوى.', '',
+             'قرار المالك باعتماد النصوص والشاشات والنشر داخل المستودع موثق؛ لا يُعدّل أي خريطة رسمية. '
+             + APPROVAL_NOTE, '',
              f'**{len(summary)} قوائم · {sum(x["episodes"] for x in summary)} ملف مصدر · '
              f'{total_lessons} درسًا · {total_screens} شاشة.**', '',
              '| القائمة | الملفات | الدروس | الشاشات | الصوت / البوابة |',
              '|---|---:|---:|---:|---|']
     for x in summary:
-        policy = ('مرشد محايد، القرار الأول معلّق' if x['voice'] == 'owner-decision' else 'إيقاع تأسيس، اعتماد معلّق')
+        policy = ('مرشد محايد بالاسم، Q1 مثبّت' if x['voice'] == 'owner-decision' else 'إيقاع تأسيس، معتمد')
         lines.append(f'| [{x["title"]}]({x["slug"]}/README.md) | {x["episodes"]} | {x["lessons"]} | '
                      f'{x["screens"]} | {policy} |')
     lines += ['', '[فهرس الشاشات](index.html) · [فهرس دورات القوائم](../index.html) · '
-              '[طابور المراجعة](00_طابور_المراجعة.md) · '
-              '[لوحة المراجعة](03_لوحة_المراجعة/index.html) · '
+              '[طابور الاعتماد](00_طابور_المراجعة.md) · '
+              '[لوحة الاعتماد](03_لوحة_المراجعة/index.html) · '
+              '[قرار المالك](../00_قرارات_المالك.md) · '
               '[كتالوج RAG الموحد](../../ayman_rag/playlist_inventory.json) · '
               '[تدقيق الاسترجاع](../../ayman_rag/playlist_retrieval_audit.md)', '',
               '## ما تثبته الفحوص', '',
-              '- كل درس ستة اقتباسات حرفية على الأقل، بإحالة طابع أو فقرة أو سطر وبصمة.',
+              '- كل درس ستة اقتباسات حرفية على الأقل، بإحالة طابع أو فقرة أو صفحة PDF أو سطر وبصمة.',
               '- كل شاشة مشتقة من نص الدرس نفسه، بنفس `tasees-runtime.js` و`tasees-tokens.css`.',
               '- بصمات الملفات وسطور الاقتباس تُعاد مطابقتها أمام البايتات الحالية.', '',
               '## ما لا تثبته', '',
               'صحة التفريغ، نسبة المتحدث، مطابقة التسجيل، الطبعة، المراجع المستقلة، سلامة '
-              'التفسير، أو موافقة المالك. دورتا «١٠٠ سؤال» و«رحلة اليقين» ليستا لأيمن، '
-              'وتنتظران قرار المالك الأول قبل أي اعتماد صوتي أو نشري.', '',
+              'التفسير، أو المراجعة السريرية/العلمية/التاريخية. ' + VERIFICATION_NOTE + ' '
+              'القوائم الثلاث «١٠٠ سؤال» و«رحلة اليقين» و«أين الطريق؟» ليست لأيمن، '
+              'وقرار Q1 مثبّت لها بمرشد محايد منسوب بالاسم.', '',
               '```bash',
               'python3 ayman_rag/build_playlist_catalog.py --check',
               'python3 ayman_rag/audit_playlist_retrieval.py --check',

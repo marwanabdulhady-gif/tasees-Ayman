@@ -7,7 +7,7 @@
     python3 ayman_rag/audit_playlist_retrieval.py --index .cache/ayman-rag/playlists.sqlite3
 
 This checks local bytes, catalogue counts, exact ``--playlist`` isolation,
-cross-playlist leakage, unknown-slug/negative controls and the ten existing
+cross-playlist leakage, unknown-slug/negative controls and the eleven existing
 known-location lexical probes. It does **not** measure semantic relevance,
 answer correctness, recording/speaker accuracy, references or owner approval.
 The default Drive index is unchanged; a temporary unified index is built when
@@ -31,6 +31,7 @@ sys.path.insert(0, str(ROOT / '08_دورات_القوائم' / 'tools'))
 from ayman_rag.evaluate import evaluate, target_rank  # noqa: E402
 from ayman_rag.search import ROOT as SEARCH_ROOT, build_index, read_verified, search  # noqa: E402
 from playlist_sources import ordered_items, registry  # noqa: E402
+from owner_decisions import APPROVED_GATE, Q1_GATE  # noqa: E402
 
 CATALOG = ROOT / 'ayman_rag' / 'playlist_inventory.json'
 CASES = ROOT / 'ayman_rag' / 'playlist_eval_cases.json'
@@ -42,15 +43,17 @@ UNKNOWN_SLUG = 'playlist-slug-that-does-not-exist'
 NOTE = (
     'Deterministic plumbing audit of the optional unified offline playlist index. '
     'PASS means local bytes, catalogue metadata, exact playlist filters and the '
-    'selected known-location probes behaved as expected. It is not semantic '
-    'relevance, answer correctness, medical/scientific accuracy, recording or '
-    'speaker verification, reference review, or owner approval.'
+    'selected known-location probes behaved as expected. The owner has recorded a '
+    'final approval and a neutral-named-guide Q1 decision; this audit is not '
+    'semantic relevance, answer correctness, medical/scientific accuracy, '
+    'recording or speaker verification, independent reference review, or '
+    'automated proof of that administrative decision.'
 )
 LIMITS = [
-    'FTS5/BM25 retrieval is lexical, not semantic; the ten probes echo their source wording.',
+    'FTS5/BM25 retrieval is lexical, not semantic; the eleven probes echo their source wording.',
     'Other retrieved passages are unjudged; a hit does not prove the passage answers a question.',
     'Exact --playlist isolation is a metadata/plumbing check, not proof of attribution or content truth.',
-    'No audio, speaker, edition, transcription, independent reference, safety or owner approval is established.',
+    'The owner approval is administrative; audio, speaker, edition, transcription, independent references, clinical/scientific/historical review and external publication are not automatically established.',
     'The default Drive index and the psychology-only index are unchanged; this report concerns the optional unified index.',
 ]
 
@@ -65,8 +68,8 @@ def _catalog_checks(catalog_path: Path):
     docs = data['documents']
     by_id = {d['id']: d for d in docs}
     by_path = {d['path']: d for d in docs}
-    _require(len(docs) == len(by_id) == len(by_path) == 383,
-             f'expected 383 unique catalogue documents, got {len(docs)}')
+    _require(len(docs) == len(by_id) == len(by_path) == 398,
+             f'expected 398 unique catalogue documents, got {len(docs)}')
     for doc in docs:
         path = ROOT / doc['path']
         _require(path.is_file(), f'missing source: {doc["path"]}')
@@ -78,13 +81,18 @@ def _catalog_checks(catalog_path: Path):
     expected = {p['slug']: len(ordered_items(p)) for p in registry()['playlists']}
     for slug, count in expected.items():
         _require(counts[slug] == count, f'{slug}: expected {count} sources, got {counts[slug]}')
-    _require(sum(expected.values()) == 225, 'registry playlist sources must total 225')
+    _require(sum(expected.values()) == 240, 'registry playlist sources must total 240')
+    _require(len(expected) == 11, 'expected eleven registered playlists')
     _require(counts[''] == 158, f'expected 158 unassigned Drive sources, got {counts[""]}')
     decision = [d for d in docs if d.get('voice') == 'owner-decision']
-    _require({d['playlist_slug'] for d in decision} == {'q100-history', 'rihlat-alyaqeen'},
+    _require({d['playlist_slug'] for d in decision} ==
+             {'q100-history', 'rihlat-alyaqeen', 'ayn-al-tariq'},
              'owner-decision voice policy changed')
-    _require(all(d['owner_gate'] == 'Q1 pending' for d in decision),
+    _require(all(d['owner_gate'] == Q1_GATE for d in decision),
              'Q1 gate missing from owner-decision sources')
+    _require(all(d['owner_gate'] == APPROVED_GATE for d in docs
+                 if d.get('voice') != 'owner-decision'),
+             'owner approval gate missing from non-decision sources')
     return {
         'catalog_sha256': hashlib.sha256(catalog_path.read_bytes()).hexdigest(),
         'documents': len(docs),
@@ -101,8 +109,8 @@ def _search_checks(catalog_path: Path, cases_path: Path, index_path: Path):
     cases = dataset['cases']
     limit = dataset['limit']
     slugs = [c['playlist_slug'] for c in cases]
-    _require(len(cases) == 10 and len(set(slugs)) == 10,
-             'expected one known-location case for each of the ten playlists')
+    _require(len(cases) == 11 and len(set(slugs)) == 11,
+             'expected one known-location case for each of the eleven playlists')
     catalog_docs = {d['id']: d for d in json.loads(catalog_path.read_text(encoding='utf-8'))['documents']}
 
     filter_rows, leak_rows = [], []
@@ -174,7 +182,7 @@ def build(catalog_path=CATALOG, cases_path=CASES, index_path=None):
                    f'{catalog_info["playlist_sources"]} playlist sources; '
                    f'{catalog_info["unassigned_drive_sources"]} unassigned Drive sources.'},
         {'id': 'filter_isolation', 'status': 'pass',
-         'detail': 'Each of the ten probes returns only its requested playlist and its target source.'},
+         'detail': 'Each of the eleven probes returns only its requested playlist and its target source.'},
         {'id': 'cross_playlist_leakage', 'status': 'pass',
          'detail': 'No target source appears when its query is filtered to a different playlist.'},
         {'id': 'unknown_playlist_slug', 'status': 'pass',
@@ -187,7 +195,7 @@ def build(catalog_path=CATALOG, cases_path=CASES, index_path=None):
                    f'{search_info["known_location"]["limit"]}.'},
     ]
     report = {
-        'schema_version': 1,
+        'schema_version': 2,
         'status': 'pass',
         'note': NOTE,
         'catalog': catalog_info,
@@ -202,14 +210,15 @@ def build(catalog_path=CATALOG, cases_path=CASES, index_path=None):
 def _markdown(report):
     r = report['results']
     lines = [
-        '# تدقيق استرجاع القوائم العشر — فحص بنيوي',
+        '# تدقيق استرجاع القوائم الإحدى عشرة — فحص بنيوي',
         '',
         '> **PASS هنا فحص بنيوي فقط.** يثبت مطابقة البايتات المحلية، وعدد المصادر، وعزل '
-        '`--playlist`، وعشرة مواضع معروفة مختارة. لا يثبت دلالة، ولا صحة إجابة، ولا '
-        'التسجيل، ولا المتحدث، ولا المراجع، ولا موافقة المالك.',
+        '`--playlist`، وأحد عشر موضعًا معروفًا مختارًا. لا يثبت دلالة، ولا صحة إجابة، ولا '
+        'التسجيل، ولا المتحدث، ولا المراجع، ولا المراجعات المتخصصة. قرار المالك بالاعتماد '
+        'موثق في `00_قرارات_المالك.json`، لكن هذا التدقيق لا يثبته آليًا.',
         '',
         f'- المصادر: **{report["catalog"]["documents"]}**، منها '
-        f'**{report["catalog"]["playlist_sources"]}** للقوائم العشر و'
+        f'**{report["catalog"]["playlist_sources"]}** للقوائم الإحدى عشرة و'
         f'**{report["catalog"]["unassigned_drive_sources"]}** ملف Drive غير منسوب.',
         f'- بصمة الكتالوج: `{report["catalog"]["catalog_sha256"]}`',
         f'- المواضع المعروفة: **{r["known_location"]["hits"]}/'

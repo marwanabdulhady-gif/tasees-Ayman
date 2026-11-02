@@ -33,7 +33,7 @@ class TemplateLessonsTest(unittest.TestCase):
             for lesson in lessons:
                 with self.subTest(lesson=lesson):
                     text = lesson.read_text(encoding='utf-8')
-                    self.assertIn('غير معتمدة', text)
+                    self.assertIn('معتمد من المالك للنشر', text)
                     headings = ['## افتتاح وخطاف', '## سؤال الدرس', '## مصدر الدرس', '## الكتلة ١', '## الكتلة ٢', '## الكتلة ٣', '## مصيدة', '## المهمة', '## القفلة']
                     positions = [text.index(h) for h in headings]
                     self.assertEqual(positions, sorted(positions))

@@ -1,6 +1,6 @@
 {
-  "schema_version": 2,
-  "note": "Optional unified offline catalogue: all 173 Drive text files plus one entry for each file in the ten registered playlists. Paths and SHA-256 are checked against local bytes. Episode numbers reproduce check_lesson.py file ordering/front matter, not recording time; the legacy playlists.json n field can differ or repeat. Speaker, recording, edition, timestamps, transcription method and factual accuracy remain unverified. Non-Ayman playlists are kept separate and are not written in Ayman voice. No official course map is approved by this catalogue.",
+  "schema_version": 3,
+  "note": "Optional unified offline catalogue: all 173 Drive text files plus one entry for each file in the eleven registered playlists, including the PDF-derived أين الطريق؟ steps. Paths and SHA-256 are checked against local bytes. Episode numbers reproduce check_lesson.py file ordering/front matter, not recording time; the legacy playlists.json n field can differ or repeat. The owner has recorded a final approval for publication and a neutral-named-guide Q1 decision; that is an administrative decision, not automated verification of speaker, recording, edition, timestamps, transcription method, references or factual accuracy. Non-Ayman playlists remain separate and are not written in Ayman voice.",
   "playlists": [
     {
       "slug": "ayman-umayyad-abbasid",
@@ -111,6 +111,14 @@
         "ملفات Drive الأصلية بلا طوابع أو روابط تسجيل؛ المتحدث والطبعة ودقة التفريغ والتداخل تحتاج تحققًا.",
         "اشتباه تداخل بين الملفين ٦ و٧؛ يلزم مراجعتهما قبل اعتماد التغطية."
       ]
+    },
+    {
+      "slug": "ayn-al-tariq",
+      "title": "أين الطريق؟",
+      "episodes": 15,
+      "voice": "owner-decision",
+      "citation": "pdf",
+      "warnings": []
     }
   ],
   "documents": [
@@ -140,7 +148,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -169,7 +177,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -198,7 +206,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -227,7 +235,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -256,7 +264,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -285,7 +293,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -314,7 +322,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -343,7 +351,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -372,7 +380,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -401,7 +409,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -430,7 +438,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -459,7 +467,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -488,7 +496,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -517,7 +525,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -546,7 +554,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -575,7 +583,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -604,7 +612,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -633,7 +641,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -662,7 +670,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -691,7 +699,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -720,7 +728,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -749,7 +757,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -778,7 +786,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -807,7 +815,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -836,7 +844,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -865,7 +873,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -894,7 +902,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -923,7 +931,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -952,7 +960,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -981,7 +989,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1010,7 +1018,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1039,7 +1047,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1068,7 +1076,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1097,7 +1105,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1126,7 +1134,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1155,7 +1163,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1184,7 +1192,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1213,7 +1221,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1242,7 +1250,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1271,7 +1279,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1300,7 +1308,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1329,7 +1337,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1358,7 +1366,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1387,7 +1395,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1416,7 +1424,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1445,7 +1453,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1474,7 +1482,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1503,7 +1511,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1532,7 +1540,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1561,7 +1569,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1590,7 +1598,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1619,7 +1627,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1648,7 +1656,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1677,7 +1685,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1706,7 +1714,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1735,7 +1743,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1764,7 +1772,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1793,7 +1801,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1822,7 +1830,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1851,7 +1859,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1880,7 +1888,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1909,7 +1917,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1938,7 +1946,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1967,7 +1975,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -1996,7 +2004,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2025,7 +2033,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2054,7 +2062,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2083,7 +2091,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2112,7 +2120,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2141,7 +2149,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2170,7 +2178,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2199,7 +2207,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2228,7 +2236,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2257,7 +2265,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2286,7 +2294,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2315,7 +2323,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2344,7 +2352,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2373,7 +2381,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2402,7 +2410,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2431,7 +2439,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2460,7 +2468,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2489,7 +2497,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2518,7 +2526,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2547,7 +2555,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2576,7 +2584,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2605,7 +2613,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2634,7 +2642,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2663,7 +2671,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2692,7 +2700,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2721,7 +2729,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2750,7 +2758,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2779,7 +2787,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2808,7 +2816,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2837,7 +2845,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2866,7 +2874,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2895,7 +2903,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2924,7 +2932,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2953,7 +2961,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -2982,7 +2990,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3011,7 +3019,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3040,7 +3048,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3069,7 +3077,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3098,7 +3106,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3127,7 +3135,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3156,7 +3164,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3185,7 +3193,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3214,7 +3222,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3243,7 +3251,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3272,7 +3280,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3301,7 +3309,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3330,7 +3338,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3359,7 +3367,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3388,7 +3396,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3417,7 +3425,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3446,7 +3454,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3475,7 +3483,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3504,7 +3512,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3533,7 +3541,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3562,7 +3570,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3591,7 +3599,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3620,7 +3628,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3649,7 +3657,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3678,7 +3686,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3707,7 +3715,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3736,7 +3744,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3765,7 +3773,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3794,7 +3802,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3823,7 +3831,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3852,7 +3860,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3881,7 +3889,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3910,7 +3918,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3939,7 +3947,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3968,7 +3976,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -3997,7 +4005,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4026,7 +4034,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4055,7 +4063,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4084,7 +4092,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4113,7 +4121,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4142,7 +4150,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4171,7 +4179,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4200,7 +4208,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4229,7 +4237,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4258,7 +4266,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4287,7 +4295,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4316,7 +4324,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4345,7 +4353,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4374,7 +4382,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4403,7 +4411,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4432,7 +4440,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4461,7 +4469,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4490,7 +4498,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4519,7 +4527,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4548,7 +4556,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4577,7 +4585,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4606,7 +4614,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4635,7 +4643,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4664,7 +4672,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4693,7 +4701,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات؛ المتحدث لم يتحقق"
     },
     {
@@ -4723,7 +4731,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "الوعي_اللغوي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-46def8405219c9f4d2cc",
@@ -4752,7 +4760,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "الوعي_اللغوي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-d1ef487fc485f618fb26",
@@ -4781,7 +4789,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "الوعي_اللغوي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-1fc2afda9a19e2c37640",
@@ -4810,7 +4818,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "الوعي_اللغوي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-578a8721e78f27e28c54",
@@ -4839,7 +4847,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "الوعي_اللغوي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-c62f39639e1c8b0bd17a",
@@ -4868,7 +4876,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "الوعي_اللغوي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-83fc7a7cf1339162095c",
@@ -4897,7 +4905,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "الوعي_اللغوي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-704df28476d79e5bd17a",
@@ -4926,7 +4934,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "الوعي_اللغوي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-2c59cd094ec8dce949b5",
@@ -4955,7 +4963,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "الوعي_اللغوي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-21985760fae7f1743958",
@@ -4984,7 +4992,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "علم_النفس",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-9c18a4caf52faf70bac2",
@@ -5013,7 +5021,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "علم_النفس",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-11daa2b676e231b7d446",
@@ -5042,7 +5050,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "علم_النفس",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-f5f0d51d2ffab1141f46",
@@ -5071,7 +5079,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "علم_النفس",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-ce84c96a1f9410cc936b",
@@ -5100,7 +5108,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "علم_النفس",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-6450c8c98c2412104994",
@@ -5129,7 +5137,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "علم_النفس",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-9d0cabccfbcdfaf8c625",
@@ -5158,7 +5166,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "علم_النفس",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-bb4fea9c5fe76bd7dfd4",
@@ -5187,7 +5195,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "علم_النفس",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-08776607c00d4dbdad0b",
@@ -5216,7 +5224,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "علم_النفس",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-0b1ee0ee93edc8ee1c0f",
@@ -5245,7 +5253,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "علم_النفس",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-52c529c4852cbd8645cd",
@@ -5274,7 +5282,7 @@
       "citation": "mixed",
       "citation_kind": "paragraph",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-40d9b68d96cd9ec850de",
@@ -5303,7 +5311,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-5df1702f1200b57cdc66",
@@ -5332,7 +5340,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-bd21680fe1a5eef6b87c",
@@ -5361,7 +5369,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-c1938f2e71d2476cb245",
@@ -5390,7 +5398,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-4804badd1a19ec228111",
@@ -5419,7 +5427,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-a14c6e0198ca1a52e4ce",
@@ -5448,7 +5456,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-bc558da644e7a7bdbcba",
@@ -5477,7 +5485,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-dd9a53327ec8d0b1f51c",
@@ -5506,7 +5514,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-2d53c73801d28c963910",
@@ -5535,7 +5543,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-fdfeb3a8c92ed1437fbd",
@@ -5564,7 +5572,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-9a4aa7cfc7c16357a76a",
@@ -5593,7 +5601,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-04d679d1ffa52aea16a6",
@@ -5622,7 +5630,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-479f6a0512f71d1275eb",
@@ -5651,7 +5659,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-7597035daa28772b495d",
@@ -5680,7 +5688,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-42dd2a1f1a850d1f86e0",
@@ -5709,7 +5717,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-f549b256197d7625fe34",
@@ -5738,7 +5746,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-16b402b8ad0c91398156",
@@ -5767,7 +5775,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-a68712c94f727e7ad346",
@@ -5796,7 +5804,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-b701d3e47a66d7d8bfb1",
@@ -5825,7 +5833,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-7c07236da68c35cb90ae",
@@ -5854,7 +5862,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-7e3d059d29578c82d003",
@@ -5883,7 +5891,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-842701db851d2aedded6",
@@ -5912,7 +5920,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-623fd424b601091dbcd6",
@@ -5941,7 +5949,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-3d2455a8412d4d7015b9",
@@ -5970,7 +5978,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-1c27b9b0026a84ab3fdc",
@@ -5999,7 +6007,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-a2456372e5118ca34b98",
@@ -6028,7 +6036,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-059bb383ea489aef83af",
@@ -6057,7 +6065,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-0e4de30b0995eabf70e8",
@@ -6086,7 +6094,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-6013a739de0dfdf6f3f9",
@@ -6115,7 +6123,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-c3ef26fb4748ca3d789d",
@@ -6144,7 +6152,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-e4f17f62755b9e6d60d2",
@@ -6173,7 +6181,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-d098fd822139e37c6dde",
@@ -6202,7 +6210,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-8003bde5c18a15d68a3e",
@@ -6231,7 +6239,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-47c09e8f50288bdb8593",
@@ -6260,7 +6268,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-d7f53ae472ef5713f1c3",
@@ -6289,7 +6297,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-2f7cada2e8afe1e901eb",
@@ -6318,7 +6326,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-7e42c3c506394de9fce4",
@@ -6347,7 +6355,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-e944f3d00ace85c9ea17",
@@ -6376,7 +6384,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-26f84164d17c7fe60c73",
@@ -6405,7 +6413,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-565c28553edc7894b7b5",
@@ -6434,7 +6442,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-c19e1482713076704f4d",
@@ -6463,7 +6471,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-f638e11c0ec00e8a8041",
@@ -6492,7 +6500,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-f15898d79ca31e8218e5",
@@ -6521,7 +6529,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-28977620ddae3e87f8d2",
@@ -6550,7 +6558,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "إعادة_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-fc00f64d5e952a6ebd30",
@@ -6579,7 +6587,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "السيرة_النبوية_العهد_المكي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-d50a5405bcdfaaf5439f",
@@ -6608,7 +6616,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "السيرة_النبوية_العهد_المكي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-3e41e6d2ff625fb61151",
@@ -6637,7 +6645,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "السيرة_النبوية_العهد_المكي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-f34fd424860101e642b8",
@@ -6666,7 +6674,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "السيرة_النبوية_العهد_المكي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-e65b3abefc3915da74f8",
@@ -6695,7 +6703,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "السيرة_النبوية_العهد_المكي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-4f87d5727eb96d6925b7",
@@ -6724,7 +6732,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "السيرة_النبوية_العهد_المكي",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-08090fa1a7b51086bb2e",
@@ -6753,7 +6761,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-9314774fb7af1d160b76",
@@ -6782,7 +6790,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-d0f5cb82f9a3900b0aef",
@@ -6811,7 +6819,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-775c63196df06ad92937",
@@ -6840,7 +6848,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-ee936893c34f08edc489",
@@ -6869,7 +6877,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-5a18db2b751b91b483c0",
@@ -6898,7 +6906,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-9066d98bcc427718cd12",
@@ -6927,7 +6935,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-0b71aa5b7304f31c1118",
@@ -6956,7 +6964,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-0f4ba56ae5f7a41644d3",
@@ -6985,7 +6993,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-4cc926a0d6588f61123b",
@@ -7014,7 +7022,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-c049b79ae8289cf2f364",
@@ -7043,7 +7051,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-c6227b94d88bd30c0750",
@@ -7072,7 +7080,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-4df6d7bd654cd9fffdcc",
@@ -7101,7 +7109,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-8a22bf344142c77ee3d2",
@@ -7130,7 +7138,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-f06fb5f95fb2c6b8347b",
@@ -7159,7 +7167,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-36d53ea2d197fe929465",
@@ -7188,7 +7196,7 @@
       "citation": "mixed",
       "citation_kind": "timestamp",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-80a2bf569cf71f3d3381",
@@ -7217,7 +7225,7 @@
       "citation": "mixed",
       "citation_kind": "paragraph",
       "course_dir": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-b9cccb452148144cc7fe",
@@ -7246,7 +7254,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "تاريخ_الأمويين_والعباسيين",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-00563c9bc16d8b02e058",
@@ -7275,7 +7283,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "تاريخ_الأمويين_والعباسيين",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-81151113da9792ded955",
@@ -7304,7 +7312,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "تاريخ_الأمويين_والعباسيين",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-e46a61304e62663ecd9f",
@@ -7333,7 +7341,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "تاريخ_الأمويين_والعباسيين",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-fa3326db5dee6e4edd94",
@@ -7362,7 +7370,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "تاريخ_الأمويين_والعباسيين",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "id": "playlist-74c50218489eef819d3d",
@@ -7391,7 +7399,442 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "تاريخ_الأمويين_والعباسيين",
-      "owner_gate": "draft; owner approval pending"
+      "owner_gate": "approved by owner for publication"
+    },
+    {
+      "id": "playlist-5a4e590c05ea57ba622a",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/00-الاستعداد.md",
+      "sha256": "91ac69b3f56d174ca1153ddc40801409776d2ec4415a18c72913676c0a4c11ed",
+      "title": "الحلقة 00: الاستعداد",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 2182,
+      "word_count": 13139,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 0,
+      "registry_episode": 0,
+      "registry_sha": "91ac69b3f56d174c",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-b260248903ccf72d49f8",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/01-الخطوة_صفر_الجاهلية.md",
+      "sha256": "acc74bc207c6b3cbb7b0ad8761586d82ba97d51312ba061a3858937cac5a51c0",
+      "title": "الحلقة 01: الخطوة صفر: الجاهلية",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 2208,
+      "word_count": 13457,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 1,
+      "registry_episode": 1,
+      "registry_sha": "acc74bc207c6b3cb",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-0f50a241e75815ac86c5",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/02-الخطوة_الأولى_التعلّق_بشخص_النبي_ﷺ.md",
+      "sha256": "7582df131a7b754720e49ea90ce471a3525a60bba508b21d124507fb976692cd",
+      "title": "الحلقة 02: الخطوة الأولى: التعلّق بشخص النبي ﷺ",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 3950,
+      "word_count": 26388,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 2,
+      "registry_episode": 2,
+      "registry_sha": "7582df131a7b7547",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-de30c2eb4d2b338918bb",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/03-الخطوة_الثانية_اكتساب_مؤهلات_الخروج_من_الظلمات_إلى_النور.md",
+      "sha256": "eaa0698dc4d186ca6b4b70f07f027e3316a297fc1d64ce4d73816a22d15651d6",
+      "title": "الحلقة 03: الخطوة الثانية: اكتساب مؤهلات الخروج من الظلمات إلى النور",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 1500,
+      "word_count": 9177,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 3,
+      "registry_episode": 3,
+      "registry_sha": "eaa0698dc4d186ca",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-6fa0ed6ba576d4705aa5",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/04-الخطوة_الثالثة_تحرير_العقل_وطريقة_التفكير.md",
+      "sha256": "b31abc6e26243771710b8e630d92e33adb1d58a619d13792d1739eea120fd817",
+      "title": "الحلقة 04: الخطوة الثالثة: تحرير العقل وطريقة التفكير",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 2670,
+      "word_count": 16125,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 4,
+      "registry_episode": 4,
+      "registry_sha": "b31abc6e26243771",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-6f18b208495a8cb8e1e3",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/05-الخطوة_الرابعة_الارتباط_بالله_رب_العالمين.md",
+      "sha256": "caa08749e8fea9e3ea534a366cb52978de7a3668e4cbc1c5569d21799da3eac3",
+      "title": "الحلقة 05: الخطوة الرابعة: الارتباط بالله رب العالمين",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 1666,
+      "word_count": 9917,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 5,
+      "registry_episode": 5,
+      "registry_sha": "caa08749e8fea9e3",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-f0b39b4cd7fa3672c636",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/06-الخطوة_الخامسة_الارتباط_بالنسك_والعبادة.md",
+      "sha256": "69ac86eb3c460ddae859fb0f4455d0a9cfcc68a961d3230b9327d55e8c5274af",
+      "title": "الحلقة 06: الخطوة الخامسة: الارتباط بالنسك والعبادة",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 1698,
+      "word_count": 11573,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 6,
+      "registry_episode": 6,
+      "registry_sha": "69ac86eb3c460dda",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-c8f8c15515fcc9dd0f36",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/07-الخطوة_السادسة_الارتباط_بالدار_الآخرة.md",
+      "sha256": "5d9d2c15b672e295095a81537136e4a8cab4bb47125c631b40aef8c30b18fb28",
+      "title": "الحلقة 07: الخطوة السادسة: الارتباط بالدار الآخرة",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 1762,
+      "word_count": 10932,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 7,
+      "registry_episode": 7,
+      "registry_sha": "5d9d2c15b672e295",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-7805c929f3ddfe664940",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/08-الخطوة_السابعة_مقاومة_الإحباطات_وصناعة_القوة_النفسية.md",
+      "sha256": "5c8dfe29911be0aab6fc459b74bb4ac7c7447b45e770d791794aa1485ee44fda",
+      "title": "الحلقة 08: الخطوة السابعة: مقاومة الإحباطات وصناعة القوة النفسية",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 4904,
+      "word_count": 29358,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 8,
+      "registry_episode": 8,
+      "registry_sha": "5c8dfe29911be0aa",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-2c27e6074aed0d3bd398",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/09-الخطوة_الثامنة_إعادة_صياغة_الروابط_والعلاقات.md",
+      "sha256": "9f5ea53f11c022fb1dd45ebd87072f31414beebcc70d0a061a6b3b2026aa7fdb",
+      "title": "الحلقة 09: الخطوة الثامنة: إعادة صياغة الروابط والعلاقات",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 3466,
+      "word_count": 21147,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 9,
+      "registry_episode": 9,
+      "registry_sha": "9f5ea53f11c022fb",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-55e98469a55f69b38dec",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/10-الخطوة_التاسعة_إنشاء_لهفة_التلقي_والتعلم.md",
+      "sha256": "b2fa6477021bf7c45d685c4eff0c64ea9d6f31c899d4087ebf6cb7f69f11724a",
+      "title": "الحلقة 10: الخطوة التاسعة: إنشاء لهفة التلقي والتعلم",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 1688,
+      "word_count": 9862,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 10,
+      "registry_episode": 10,
+      "registry_sha": "b2fa6477021bf7c4",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-2b367c074bfaf0ffd898",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/11-الخطوة_العاشرة_القرآن_كمصدر_وحيد_للتلقي.md",
+      "sha256": "56856218e3e094388272c8450c684713bb7f1dd358f28a46cf9737bd2f4ce1ad",
+      "title": "الحلقة 11: الخطوة العاشرة: القرآن كمصدر وحيد للتلقي",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 1580,
+      "word_count": 8936,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 11,
+      "registry_episode": 11,
+      "registry_sha": "56856218e3e09438",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-210dddd9a35e90b324b7",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/12-الخطوة_الحادية_عشرة_تزكية_النفوس.md",
+      "sha256": "456e8d211879bff8a5707fe84d268654134b981d71fd07c887677ae2e5de7c4d",
+      "title": "الحلقة 12: الخطوة الحادية عشرة: تزكية النفوس",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 4538,
+      "word_count": 27257,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 12,
+      "registry_episode": 12,
+      "registry_sha": "456e8d211879bff8",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-7d25d27f2986aa6f4966",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/13-الخطوة_الثانية_عشرة_فهم_حقائق_الإسلام_الكبرى.md",
+      "sha256": "ab5a597c51ef48ecf544eb1c7d8feff843a5c2dee981ece34528303a396fe47c",
+      "title": "الحلقة 13: الخطوة الثانية عشرة: فهم حقائق الإسلام الكبرى",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 2602,
+      "word_count": 15542,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 13,
+      "registry_episode": 13,
+      "registry_sha": "ab5a597c51ef48ec",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
+    },
+    {
+      "id": "playlist-523565288bd2f77a4962",
+      "path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/14-الخطوة_الثالثة_عشرة_فريضة_العمل_لدين_الله.md",
+      "sha256": "ad3842cba3cd7a91beb945a0d089faac5bcba129c29ba233ac827c466d7e806b",
+      "title": "الحلقة 14: الخطوة الثالثة عشرة: فريضة العمل لدين الله",
+      "folder": "02_الحلقات_Markdown",
+      "source_folder_url": "",
+      "speaker_status": "unverified",
+      "speaker": "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق",
+      "edition": null,
+      "transcription_method": "\"PDF supplied by user; first edition\"",
+      "original_media_url": null,
+      "timestamps": "none_detected",
+      "line_count": 2270,
+      "word_count": 14773,
+      "playlist_slug": "ayn-al-tariq",
+      "playlist_title": "أين الطريق؟",
+      "playlist_phase": 1,
+      "playlist_voice": "owner-decision",
+      "voice": "owner-decision",
+      "atlas": false,
+      "episode": 14,
+      "registry_episode": 14,
+      "registry_sha": "ad3842cba3cd7a91",
+      "citation": "pdf",
+      "citation_kind": "pdf",
+      "course_dir": "أين_الطريق",
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "drive-9b6f5de831f98b66eda9",
@@ -7419,7 +7862,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الأول",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7448,7 +7891,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الأول",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7477,7 +7920,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الأول",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7506,7 +7949,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الأول",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7535,7 +7978,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الأول",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7564,7 +8007,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الأول",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7593,7 +8036,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الأول",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7622,7 +8065,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الأول",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7651,7 +8094,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الثاني",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7680,7 +8123,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الثاني",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7709,7 +8152,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الثاني",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7738,7 +8181,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الثاني",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7767,7 +8210,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الثاني",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7796,7 +8239,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الثاني",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7825,7 +8268,7 @@
       "citation": "line",
       "citation_kind": "line",
       "course_dir": "التأسيس_المعرفي/المستوى_الثاني",
-      "owner_gate": "draft; owner approval pending",
+      "owner_gate": "approved by owner for publication",
       "speaker": "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق"
     },
     {
@@ -7855,7 +8298,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-b057a59756b15f5fc8ea",
@@ -7884,7 +8327,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-231cf1f7f86e65a2dbec",
@@ -7913,7 +8356,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-b2ce3e53566b0fa96ce1",
@@ -7942,7 +8385,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-2da06257d01b9515dc51",
@@ -7971,7 +8414,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-350a4180d1ca904c1257",
@@ -8000,7 +8443,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-521c062ec86f73a712bf",
@@ -8029,7 +8472,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-ad15eaa2e94e17b54ebd",
@@ -8058,7 +8501,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-8e2d5f51117729f72e75",
@@ -8087,7 +8530,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-4e142d313a9cd1b3ec2e",
@@ -8116,7 +8559,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-c56250a182a02c9f9b26",
@@ -8145,7 +8588,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-88aeb34edb7d723f2c34",
@@ -8174,7 +8617,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-402834718f008ffb1f62",
@@ -8203,7 +8646,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-0dcd33c2e4cd6d30b8ea",
@@ -8232,7 +8675,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-6114235faee92b74a0eb",
@@ -8261,7 +8704,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-24907065c93a7ad8ff92",
@@ -8290,7 +8733,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-aed34157d49a701c8b9a",
@@ -8319,7 +8762,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-0547926694e133b825c8",
@@ -8348,7 +8791,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-9067722443a83dfd5db9",
@@ -8377,7 +8820,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-0694ebadfc42548643f6",
@@ -8406,7 +8849,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-f8d1ae5916ed01bf0ff8",
@@ -8435,7 +8878,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-1807e5c9563b4f47ecdb",
@@ -8464,7 +8907,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-99bebd3cdc1563fc7d3d",
@@ -8493,7 +8936,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-81904acf73e44140728e",
@@ -8522,7 +8965,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-ad48e5b94bbf4617cee1",
@@ -8551,7 +8994,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-e29ae99fb10a5e39e010",
@@ -8580,7 +9023,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-af139023f992102c87fb",
@@ -8609,7 +9052,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-1506551fe86c60f84d25",
@@ -8638,7 +9081,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-a61fa961d9d5c8043c80",
@@ -8667,7 +9110,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-5a901c579f001f1bbf02",
@@ -8696,7 +9139,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-2d252d3e6503f9d6b3c2",
@@ -8725,7 +9168,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-49d1cbfc1f92899fb9f3",
@@ -8754,7 +9197,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-59c1707b0b2aaf864f74",
@@ -8783,7 +9226,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-0816063acf4794c4fd7d",
@@ -8812,7 +9255,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-231509217073231d7a11",
@@ -8841,7 +9284,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-ab75412a20d64d78c230",
@@ -8870,7 +9313,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-36dc3339dbf85b0ebd10",
@@ -8899,7 +9342,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-d65acee3eaab9086d5a2",
@@ -8928,7 +9371,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-726b3ba64916a7d67142",
@@ -8957,7 +9400,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-00dc2147dd099306cf39",
@@ -8986,7 +9429,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-02e7a8503de8413e0d9f",
@@ -9015,7 +9458,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-d6c77061cdc3933b3df3",
@@ -9044,7 +9487,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-8c17b9d74afe30691a71",
@@ -9073,7 +9516,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-b318a4c1b26aea8a09ce",
@@ -9102,7 +9545,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-865e758344f89bfc4104",
@@ -9131,7 +9574,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-fce399857687e80dda91",
@@ -9160,7 +9603,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-a2deafa5452874a02e19",
@@ -9189,7 +9632,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-4215b9d21df19f58fc9a",
@@ -9218,7 +9661,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-1967f099fb77f351d932",
@@ -9247,7 +9690,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-30a3367ee462f680c51c",
@@ -9276,7 +9719,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-c9df831629d8022eb30d",
@@ -9305,7 +9748,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-97779082a26c68356cdd",
@@ -9334,7 +9777,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-8d54f0445763ac6569a7",
@@ -9363,7 +9806,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-19339cbd52ce67090019",
@@ -9392,7 +9835,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-105e385ca7373d0eccba",
@@ -9421,7 +9864,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-36343eba5ea96360252c",
@@ -9450,7 +9893,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-0991b4dc36285e2e70d9",
@@ -9479,7 +9922,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-d0099b528bf641ab417f",
@@ -9508,7 +9951,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-6c74c4846aa243f86187",
@@ -9537,7 +9980,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-04b5400c518f4ba0383c",
@@ -9566,7 +10009,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-dbd1380e4a1ba70bc520",
@@ -9595,7 +10038,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-fe363c6f18cb4ea9b6f0",
@@ -9624,7 +10067,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-f0c7c762027c7390bf45",
@@ -9653,7 +10096,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-b5c84013dd6801c998c2",
@@ -9682,7 +10125,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-84bd1e5a20ec909db680",
@@ -9711,7 +10154,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-ac9690fabdc686b8fc04",
@@ -9740,7 +10183,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-1ba6e065e348961cff8d",
@@ -9769,7 +10212,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-41e716db2c4816d07c45",
@@ -9798,7 +10241,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-2e7e99f54ef725bfa880",
@@ -9827,7 +10270,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-896cf2810d89a0a9dfe3",
@@ -9856,7 +10299,7 @@
       "citation": "timestamp",
       "citation_kind": "timestamp",
       "course_dir": "100_سؤال_في_التاريخ",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-bd2fbb5774aadb0bfd95",
@@ -9885,7 +10328,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-823e1862ed5bef48f4d9",
@@ -9914,7 +10357,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-62657911a71cd1350a7d",
@@ -9943,7 +10386,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-1a5d60e1f9e8fda4ad4a",
@@ -9972,7 +10415,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-c8ef797fe438879b6ee4",
@@ -10001,7 +10444,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-3b122da8bca5b6bc77cd",
@@ -10030,7 +10473,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-fbcd2dee9e6ce56afe71",
@@ -10059,7 +10502,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-9032b66c7c9556a71bb6",
@@ -10088,7 +10531,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-a677d471bb3608cda0af",
@@ -10117,7 +10560,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-592ee301090249d35314",
@@ -10146,7 +10589,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-c45ecd178c6b9b51d54c",
@@ -10175,7 +10618,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-5a4236523d631b8dd31d",
@@ -10204,7 +10647,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-26f33613ae61b2842724",
@@ -10233,7 +10676,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-5745cd06331d879b56d4",
@@ -10262,7 +10705,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-c71ce328f844655fe38c",
@@ -10291,7 +10734,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-f7dbc63d9fe7eeb1faae",
@@ -10320,7 +10763,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-8369ef59aedc09c539a9",
@@ -10349,7 +10792,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-8cfba53aae4cd9ba7051",
@@ -10378,7 +10821,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-42425020d445aedd909a",
@@ -10407,7 +10850,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-bbb04d4d1c160839015d",
@@ -10436,7 +10879,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-334394b38cb98c212007",
@@ -10465,7 +10908,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-9807f82ceac95eec6b68",
@@ -10494,7 +10937,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-2f89533c6e4aaa294fbf",
@@ -10523,7 +10966,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-028f5c5e90e4b04717f0",
@@ -10552,7 +10995,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-1fdd76ee891c762896b5",
@@ -10581,7 +11024,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-6c282a792515bf7e294a",
@@ -10610,7 +11053,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-7194ba8689e5bbd0d8c7",
@@ -10639,7 +11082,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-9db9a95cd5abc56d83a2",
@@ -10668,7 +11111,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-bcd5712216a71f4591e2",
@@ -10697,7 +11140,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-9d22ffa9472e4b808e9c",
@@ -10726,7 +11169,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-449dfb1283b75bbb112b",
@@ -10755,7 +11198,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-88a4bd76a9d3fa9f5269",
@@ -10784,7 +11227,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-e9f5d0b8b2d4fa93cf1f",
@@ -10813,7 +11256,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-6d72e7226d0a5529cadd",
@@ -10842,7 +11285,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-c362c07f6bc84433d136",
@@ -10871,7 +11314,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-f8a332f3d12cb506e790",
@@ -10900,7 +11343,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-58555b58d54b4606391f",
@@ -10929,7 +11372,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-b637d18544cf3fac8fa2",
@@ -10958,7 +11401,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-41555b0180a6a29f421c",
@@ -10987,7 +11430,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-14b15276d4699b71aa6f",
@@ -11016,7 +11459,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-6797f0fecbee673137ea",
@@ -11045,7 +11488,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-4ee91eebae6f7df52143",
@@ -11074,7 +11517,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-9c70f64407934ba1cb47",
@@ -11103,7 +11546,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-018022653f8dad3eff24",
@@ -11132,7 +11575,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-1b4fd5952c9e649c69ce",
@@ -11161,7 +11604,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-5bcd1e69e01be99ad243",
@@ -11190,7 +11633,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "id": "playlist-b111c68410a944248c3e",
@@ -11219,7 +11662,7 @@
       "citation": "paragraph",
       "citation_kind": "paragraph",
       "course_dir": "رحلة_اليقين",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     }
   ]
 }

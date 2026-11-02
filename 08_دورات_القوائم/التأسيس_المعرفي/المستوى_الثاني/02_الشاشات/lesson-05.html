@@ -68,12 +68,12 @@ body { margin: 0; min-height: 100%; }
  "source_sha": "905bfce9988a71d057ade6fdbde6376452fb1256530c729e2e898e3c4f026fd0",
  "eyebrow": "التأسيس المعرفي — المستوى الثاني · الدرس ٥",
  "title": "محاور القراءة واستدعاء التاريخ",
- "subtitle": "درس من ملف واحد · مسودة تعليمية غير معتمدة",
+ "subtitle": "درس من ملف واحد · معتمد من المالك للنشر",
  "question": "كيف نقرأ نمطًا تاريخيًا دون أن نُسقط مفهوم اليوم على الماضي؟",
  "audio": "لا تسجيل متحقق مرتبط بهذا الدرس؛ الاقتباسات من تفريغ نصي آلي، وأرقام السطور ليست توقيتات.",
  "next": "الدرس الجاي هنقرأ الملف السادس وحده، ثم السابع وحده، دون دمجهما.",
  "text_href": "../01_نصوص_الدروس/lesson-05.md",
- "draft": "مسودة تعليمية غير معتمدة — راجع التسجيل والمراجع قبل النشر.",
+ "draft": "معتمد من المالك للنشر — قرار المالك بالاعتماد موثق؛ التسجيل والمتحدث والمراجع والمراجعة السريرية/العلمية/التاريخية لم تتحقق آليًا.",
  "screens": [
   {
    "id": "cf2-l05-01",
@@ -273,7 +273,7 @@ body { margin: 0; min-height: 100%; }
    ],
    "trap": {
     "title": "مصيدة الفهم",
-    "text": "اعتبار تشابه اللفظ بين زمنين دليلًا على تطابق المفهومين. الفحص الآلي لا يحسم هذا؛ يُسجّل في طابور المراجعة قبل أي استعمال."
+    "text": "اعتبار تشابه اللفظ بين زمنين دليلًا على تطابق المفهومين. الفحص الآلي لا يحسم هذا؛ يُسجّل في طابور الاعتماد مع قيوده."
    }
   },
   {
@@ -308,7 +308,7 @@ body { margin: 0; min-height: 100%; }
    "lines": [
     "فرّقنا بين المحاور، وسبقنا الحكم بتحديد المفهوم، وبيّنّا غرض الاستدعاء.",
     "ثلاث أدوات: جدول المحاور · بطاقة المفهوم · بطاقة الاستدعاء",
-    "مسودة غير معتمدة: الاقتباس يثبت الموضع، والتسجيل والمراجع يثبتان الباقي."
+    "معتمد: الاقتباس يثبت الموضع، والتسجيل والمراجع قيود موثقة."
    ],
    "replay": "في الأول اخترت {{predict}}. والآن: الاقتباس يثبت الموضع لا المعنى.",
    "task": {
@@ -342,7 +342,7 @@ body { margin: 0; min-height: 100%; }
       return '<p class="t-eyebrow">' + esc(W.eyebrow) + '</p><h1 class="t-title">' + esc(W.title) + '</h1><svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>' +
         '<p class="t-small" style="margin:0">' + esc(W.subtitle) + '</p><div class="q-box"><small>سؤال الدرس</small>' + esc(W.question) + "</div>" +
         '<div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>' + TRACKS.map(function (t) { return '<button class="t-chip js-track" type="button" aria-pressed="' + (t === track) + '">' + t + "</button>"; }).join("") + "</div>" +
-        '<div class="audio">' + esc(W.audio) + '</div>' + '<p class="t-feedback t-feedback--bad"><strong>مسودة</strong>' + esc(W.draft) + '</p>' + '<p class="t-small" style="margin:0"><a href="' + esc(W.text_href) + '">اقرأ نص الدرس كاملًا ←</a></p>' + '<p class="t-small" style="margin:0">مسودة تعليمية؛ لا تُنسب عباراتها لصاحب التسجيل قبل التحقق.</p>';
+        '<div class="audio">' + esc(W.audio) + '</div>' + '<p class="t-feedback t-feedback--bad"><strong>معتمد</strong>' + esc(W.draft) + '</p>' + '<p class="t-small" style="margin:0"><a href="' + esc(W.text_href) + '">اقرأ نص الدرس كاملًا ←</a></p>' + '<p class="t-small" style="margin:0">معتمد من المالك؛ لا تُنسب عباراتها لصاحب التسجيل قبل التحقق.</p>';
     },
     L2: function (s) {
       var art = s.art_src ? '<img src="' + esc(s.art_src) + '" alt="">' : "رسم الخطاف <code>" + esc(s.art) + "</code> لم يُولَّد بعد";

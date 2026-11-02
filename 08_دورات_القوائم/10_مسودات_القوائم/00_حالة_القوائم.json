@@ -1,17 +1,17 @@
 {
-  "schema_version": 1,
-  "status": "مسودات غير معتمدة",
-  "note": "تغطية هيكلية لكل القوائم المسجلة؛ لا اعتماد محتوى ولا صوت ولا تسجيل.",
+  "schema_version": 2,
+  "status": "معتمد من المالك للنشر",
+  "note": "تغطية هيكلية لكل القوائم المسجلة؛ قرار المالك بالاعتماد موثق. أُزيلت بوابة النشر بقرار المالك. الاعتماد إداري، وليس إثباتًا آليًا لصحة التسجيل أو المراجع أو المحتوى. قرار المالك بالاعتماد موثق؛ التسجيل والمتحدث والمراجع والمراجعة السريرية/العلمية/التاريخية لم تتحقق آليًا.",
   "rag_catalog": "ayman_rag/playlist_inventory.json",
   "rag_audit": "ayman_rag/playlist_retrieval_audit.json",
   "review_queue": "08_دورات_القوائم/10_مسودات_القوائم/00_طابور_المراجعة.json",
   "review_board": "08_دورات_القوائم/10_مسودات_القوائم/03_لوحة_المراجعة/index.html",
-  "review_status": "pending; no approval; publication blocked",
+  "review_status": "approved; owner decision recorded; independent verification owner_accepted_unverified",
   "totals": {
-    "playlists": 10,
-    "sources": 225,
-    "lessons": 94,
-    "screens": 940
+    "playlists": 11,
+    "sources": 240,
+    "lessons": 99,
+    "screens": 990
   },
   "playlists": [
     {
@@ -21,7 +21,7 @@
       "lessons": 6,
       "screens": 60,
       "voice": "ayman",
-      "owner_gate": "approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "slug": "ayman-linguistic-awareness",
@@ -30,7 +30,7 @@
       "lessons": 9,
       "screens": 90,
       "voice": "ayman",
-      "owner_gate": "approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "slug": "ayman-psychology",
@@ -39,7 +39,7 @@
       "lessons": 10,
       "screens": 100,
       "voice": "ayman",
-      "owner_gate": "approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "slug": "ayman-seerah-makkah",
@@ -48,7 +48,7 @@
       "lessons": 6,
       "screens": 60,
       "voice": "ayman",
-      "owner_gate": "approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "slug": "ayman-reestablishing-awareness",
@@ -57,7 +57,7 @@
       "lessons": 12,
       "screens": 120,
       "voice": "ayman",
-      "owner_gate": "approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "slug": "ayman-tasees",
@@ -66,7 +66,7 @@
       "lessons": 6,
       "screens": 60,
       "voice": "ayman",
-      "owner_gate": "approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "slug": "q100-history",
@@ -75,7 +75,7 @@
       "lessons": 18,
       "screens": 180,
       "voice": "owner-decision",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "slug": "rihlat-alyaqeen",
@@ -84,7 +84,7 @@
       "lessons": 12,
       "screens": 120,
       "voice": "owner-decision",
-      "owner_gate": "Q1 pending"
+      "owner_gate": "Q1 decided: neutral named guide"
     },
     {
       "slug": "cognitive-foundation-1",
@@ -93,7 +93,7 @@
       "lessons": 8,
       "screens": 80,
       "voice": "ayman",
-      "owner_gate": "approval pending"
+      "owner_gate": "approved by owner for publication"
     },
     {
       "slug": "cognitive-foundation-2",
@@ -102,7 +102,16 @@
       "lessons": 7,
       "screens": 70,
       "voice": "ayman",
-      "owner_gate": "approval pending"
+      "owner_gate": "approved by owner for publication"
+    },
+    {
+      "slug": "ayn-al-tariq",
+      "title": "أين الطريق؟",
+      "episodes": 15,
+      "lessons": 5,
+      "screens": 50,
+      "voice": "owner-decision",
+      "owner_gate": "Q1 decided: neutral named guide"
     }
   ]
 }

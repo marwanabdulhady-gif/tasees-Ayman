@@ -31,7 +31,7 @@ class DraftLessonsTest(unittest.TestCase):
             self.assertIn('ملاحظات: 0', result.stdout)
             for lesson in lessons:
                 text = lesson.read_text(encoding='utf-8')
-                self.assertIn('غير معتمدة', text)
+                self.assertIn('معتمد من المالك للنشر', text)
                 self.assertIn('نموذج للمراجعة الذاتية', text)
                 link = re.search(r'\[التفريغ النصي للحلقة \d+\]\(([^)]+)\)', text)
                 self.assertIsNotNone(link, lesson)

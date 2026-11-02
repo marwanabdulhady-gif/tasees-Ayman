@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>لوحة مراجعة مسودات القوائم — غير معتمدة</title>
+<title>لوحة اعتماد القوائم — معتمدة من المالك</title>
 <link rel="stylesheet" href="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
 <style>
     :root { color-scheme: light; }
@@ -14,7 +14,7 @@
     h1 { font-family: var(--f-display); font-size: var(--t-h2); margin: 0 0 .5rem; }
     h2 { font-size: 1.3rem; margin: 2rem 0 .75rem; }
     p.lead { color: var(--ink-soft); max-width: 70ch; }
-    .note { background: var(--wash-red); border-inline-start: 4px solid var(--pen-red);
+    .note { background: var(--wash-blue); border-inline-start: 4px solid var(--pen-blue);
             padding: 1rem; margin: 1.5rem 0; }
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
     .card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius);
@@ -28,52 +28,55 @@
     th { background: var(--wash-blue); }
     code { font-size: .85em; color: var(--ink-soft); }
     a { color: var(--pen-blue); }
-    .badge { display: inline-block; background: var(--wash-red); color: var(--pen-red);
-             border: 1px solid var(--pen-red); border-radius: var(--radius);
+    .badge { display: inline-block; background: var(--wash-blue); color: var(--pen-blue);
+             border: 1px solid var(--pen-blue); border-radius: var(--radius);
              padding: .1rem .45rem; font-size: var(--t-tag); }
     ul { color: var(--ink-soft); }
     </style>
 </head>
 <body>
 <main>
-  <h1>لوحة مراجعة مسودات القوائم</h1>
-  <p class="lead">طابور مراجعة صريح لرف المسودات: كل ملفات القوائم العشر وكل درس وشاشة لها بوابات بشرية معلّقة. الفحص الآلي يثبت بايتات الملفات ومواضع الاقتباس فقط. لا يوجد بند معتمد، ولا يُقرأ هذا الطابور بوصفه خريطة رسمية أو إذن نشر.</p>
-  <div class="note"><strong>لا بند معتمد.</strong> كل المراجعات البشرية <code>pending</code>،
-  والنشر <code>blocked</code> حتى قرار المالك ومراجعة التسجيلات والمراجع المتخصصة.
-  الخرائط الرسمية <code>00_خريطة_الدورة.json</code> لم تُعدّل.</div>
+  <h1>لوحة اعتماد القوائم — معتمدة من المالك</h1>
+  <p class="lead">طابور اعتماد موثق لرف الدروس: كل ملفات القوائم الإحدى عشرة وكل درس وشاشة يشملها قرار المالك. الفحص الآلي يثبت بايتات الملفات ومواضع الاقتباس فقط. التسجيل والمتحدث والمراجع والمراجعات المتخصصة قيود موثقة، لا نتائج فحص آلي. أُزيلت بوابة النشر داخل المستودع؛ دمج طلبات السحب والنشر الخارجي إجراء منفصل.</p>
+  <div class="note"><strong>قرار المالك موثق.</strong> النشر داخل المستودع
+  <code>approved</code>؛ والتسجيل والمتحدث والمراجع والمراجعات المتخصصة
+  <code>owner_accepted_unverified</code>. الخرائط الرسمية
+  <code>00_خريطة_الدورة.json</code> لم تُعدّل.</div>
   <div class="cards">
-    <div class="card"><strong>10</strong><span>قوائم مسجلة</span></div>
-    <div class="card"><strong>225</strong><span>ملفات مصدر</span></div>
-    <div class="card"><strong>94</strong><span>دروس مسودة</span></div>
-    <div class="card"><strong>940</strong><span>شاشات مولّدة</span></div>
-    <div class="card"><strong>225</strong><span>مراجعات مصادر معلّقة</span></div>
-    <div class="card"><strong>94</strong><span>منشورات محجوبة</span></div>
+    <div class="card"><strong>11</strong><span>قوائم مسجلة</span></div>
+    <div class="card"><strong>240</strong><span>ملفات مصدر</span></div>
+    <div class="card"><strong>99</strong><span>دروس معتمدة</span></div>
+    <div class="card"><strong>990</strong><span>شاشات مولّدة</span></div>
+    <div class="card"><strong>240</strong><span>مصادر بقيود موثقة</span></div>
+    <div class="card"><strong>99</strong><span>دروس معتمدة للنشر</span></div>
   </div>
-  <h2>القوائم العشر</h2>
+  <h2>القوائم (11)</h2>
   <table>
     <thead><tr><th>القائمة</th><th>الملفات</th><th>الدروس</th><th>الشاشات</th>
-    <th>البوابة</th><th>مراجعات مطلوبة</th><th>روابط</th></tr></thead>
-    <tbody><tr><td><a href="../ayman-umayyad-abbasid/README.md">تاريخ الأمويين والعباسيين</a><br><code>ayman-umayyad-abbasid</code></td><td>6</td><td>6</td><td>60</td><td><span class="badge">اعتماد معلّق</span></td><td>9</td><td><a href="../ayman-umayyad-abbasid/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-umayyad-abbasid/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../ayman-linguistic-awareness/README.md">دورة الوعي اللغوي</a><br><code>ayman-linguistic-awareness</code></td><td>9</td><td>9</td><td>90</td><td><span class="badge">اعتماد معلّق</span></td><td>7</td><td><a href="../ayman-linguistic-awareness/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-linguistic-awareness/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../ayman-psychology/README.md">دورة علم النفس</a><br><code>ayman-psychology</code></td><td>10</td><td>10</td><td>100</td><td><span class="badge">اعتماد معلّق</span></td><td>9</td><td><a href="../ayman-psychology/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-psychology/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../ayman-seerah-makkah/README.md">السيرة النبوية — العهد المكي</a><br><code>ayman-seerah-makkah</code></td><td>6</td><td>6</td><td>60</td><td><span class="badge">اعتماد معلّق</span></td><td>9</td><td><a href="../ayman-seerah-makkah/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-seerah-makkah/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../ayman-reestablishing-awareness/README.md">إعادة تأسيس وعي المسلم المعاصر — محاضرات متفرقة</a><br><code>ayman-reestablishing-awareness</code></td><td>45</td><td>12</td><td>120</td><td><span class="badge">اعتماد معلّق</span></td><td>9</td><td><a href="../ayman-reestablishing-awareness/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-reestablishing-awareness/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../ayman-tasees/README.md">تأسيس وعي المسلم المعاصر (المستويان ١ و٢)</a><br><code>ayman-tasees</code></td><td>17</td><td>6</td><td>60</td><td><span class="badge">اعتماد معلّق</span></td><td>7</td><td><a href="../ayman-tasees/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-tasees/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../q100-history/README.md">١٠٠ سؤال في التاريخ</a><br><code>q100-history</code></td><td>70</td><td>18</td><td>180</td><td><span class="badge">Q1 معلّق</span></td><td>10</td><td><a href="../q100-history/00_طابور_المراجعة.md">الطابور</a> · <a href="../q100-history/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../rihlat-alyaqeen/README.md">رحلة اليقين</a><br><code>rihlat-alyaqeen</code></td><td>47</td><td>12</td><td>120</td><td><span class="badge">Q1 معلّق</span></td><td>11</td><td><a href="../rihlat-alyaqeen/00_طابور_المراجعة.md">الطابور</a> · <a href="../rihlat-alyaqeen/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../cognitive-foundation-1/README.md">التأسيس المعرفي — المستوى الأول</a><br><code>cognitive-foundation-1</code></td><td>8</td><td>8</td><td>80</td><td><span class="badge">اعتماد معلّق</span></td><td>7</td><td><a href="../cognitive-foundation-1/00_طابور_المراجعة.md">الطابور</a> · <a href="../cognitive-foundation-1/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../cognitive-foundation-2/README.md">التأسيس المعرفي — المستوى الثاني</a><br><code>cognitive-foundation-2</code></td><td>7</td><td>7</td><td>70</td><td><span class="badge">اعتماد معلّق</span></td><td>7</td><td><a href="../cognitive-foundation-2/00_طابور_المراجعة.md">الطابور</a> · <a href="../cognitive-foundation-2/02_الشاشات/index.html">الشاشات</a></td></tr></tbody>
+    <th>القرار</th><th>قيود موثقة</th><th>روابط</th></tr></thead>
+    <tbody><tr><td><a href="../ayman-umayyad-abbasid/README.md">تاريخ الأمويين والعباسيين</a><br><code>ayman-umayyad-abbasid</code></td><td>6</td><td>6</td><td>60</td><td><span class="badge">معتمد</span></td><td>9</td><td><a href="../ayman-umayyad-abbasid/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-umayyad-abbasid/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../ayman-linguistic-awareness/README.md">دورة الوعي اللغوي</a><br><code>ayman-linguistic-awareness</code></td><td>9</td><td>9</td><td>90</td><td><span class="badge">معتمد</span></td><td>7</td><td><a href="../ayman-linguistic-awareness/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-linguistic-awareness/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../ayman-psychology/README.md">دورة علم النفس</a><br><code>ayman-psychology</code></td><td>10</td><td>10</td><td>100</td><td><span class="badge">معتمد</span></td><td>9</td><td><a href="../ayman-psychology/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-psychology/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../ayman-seerah-makkah/README.md">السيرة النبوية — العهد المكي</a><br><code>ayman-seerah-makkah</code></td><td>6</td><td>6</td><td>60</td><td><span class="badge">معتمد</span></td><td>9</td><td><a href="../ayman-seerah-makkah/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-seerah-makkah/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../ayman-reestablishing-awareness/README.md">إعادة تأسيس وعي المسلم المعاصر — محاضرات متفرقة</a><br><code>ayman-reestablishing-awareness</code></td><td>45</td><td>12</td><td>120</td><td><span class="badge">معتمد</span></td><td>9</td><td><a href="../ayman-reestablishing-awareness/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-reestablishing-awareness/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../ayman-tasees/README.md">تأسيس وعي المسلم المعاصر (المستويان ١ و٢)</a><br><code>ayman-tasees</code></td><td>17</td><td>6</td><td>60</td><td><span class="badge">معتمد</span></td><td>7</td><td><a href="../ayman-tasees/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayman-tasees/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../q100-history/README.md">١٠٠ سؤال في التاريخ</a><br><code>q100-history</code></td><td>70</td><td>18</td><td>180</td><td><span class="badge">Q1 مثبّت</span></td><td>10</td><td><a href="../q100-history/00_طابور_المراجعة.md">الطابور</a> · <a href="../q100-history/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../rihlat-alyaqeen/README.md">رحلة اليقين</a><br><code>rihlat-alyaqeen</code></td><td>47</td><td>12</td><td>120</td><td><span class="badge">Q1 مثبّت</span></td><td>11</td><td><a href="../rihlat-alyaqeen/00_طابور_المراجعة.md">الطابور</a> · <a href="../rihlat-alyaqeen/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../cognitive-foundation-1/README.md">التأسيس المعرفي — المستوى الأول</a><br><code>cognitive-foundation-1</code></td><td>8</td><td>8</td><td>80</td><td><span class="badge">معتمد</span></td><td>7</td><td><a href="../cognitive-foundation-1/00_طابور_المراجعة.md">الطابور</a> · <a href="../cognitive-foundation-1/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../cognitive-foundation-2/README.md">التأسيس المعرفي — المستوى الثاني</a><br><code>cognitive-foundation-2</code></td><td>7</td><td>7</td><td>70</td><td><span class="badge">معتمد</span></td><td>7</td><td><a href="../cognitive-foundation-2/00_طابور_المراجعة.md">الطابور</a> · <a href="../cognitive-foundation-2/02_الشاشات/index.html">الشاشات</a></td></tr><tr><td><a href="../ayn-al-tariq/README.md">أين الطريق؟</a><br><code>ayn-al-tariq</code></td><td>15</td><td>5</td><td>50</td><td><span class="badge">Q1 مثبّت</span></td><td>10</td><td><a href="../ayn-al-tariq/00_طابور_المراجعة.md">الطابور</a> · <a href="../ayn-al-tariq/02_الشاشات/index.html">الشاشات</a></td></tr></tbody>
   </table>
-  <h2>البوابات المعلّقة</h2>
+  <h2>القرار والقيود الموثقة</h2>
   <ul>
-    <li>قرار المالك Q1: <code>q100-history, rihlat-alyaqeen</code> — pending.</li>
-    <li>اعتماد الخرائط الرسمية: 10 قوائم — pending.</li>
-    <li>التسجيل والمتحدث: 225 ملفًا — pending.</li>
-    <li>اعتماد المالك للمحتوى: 94 درسًا — pending.</li>
-    <li>النشر: 940 شاشة — blocked.</li>
+    <li>قرار المالك Q1: <code>q100-history, rihlat-alyaqeen, ayn-al-tariq</code> — decided.</li>
+    <li>الخرائط الرسمية: 11 قوائم — owner_accepted_unverified، لم تُعدّل.</li>
+    <li>التسجيل والمتحدث: 240 ملفًا — owner_accepted_unverified.</li>
+    <li>اعتماد المالك للمحتوى: 99 درسًا — approved.</li>
+    <li>النشر داخل المستودع: 990 شاشة — approved.</li>
   </ul>
   <h2>روابط</h2>
   <ul>
     <li><a href="../00_طابور_المراجعة.md">الطابور الجذري (Markdown)</a> ·
         <a href="../00_طابور_المراجعة.json">البيانات الكاملة (JSON)</a></li>
-    <li><a href="../index.html">فهرس شاشات المسودات</a> ·
-        <a href="../../index.html">فهرس دورات القوائم</a></li>
+    <li><a href="../index.html">فهرس شاشات الدروس</a> ·
+        <a href="../../index.html">فهرس دورات القوائم</a> ·
+        <a href="../../00_قرارات_المالك.md">قرار المالك</a></li>
     <li><a href="../../../ayman_rag/playlist_retrieval_audit.md">تدقيق استرجاع RAG</a> ·
         <a href="../../../ayman_rag/playlist_retrieval_audit.json">بيانات التدقيق</a></li>
   </ul>
   <p class="lead">الفحص الآلي يثبت البايتات ومواضع الاقتباس فقط. التغطية الهيكلية لا تعني
-  قراءة شاملة ولا صحة محتوى ولا موافقة صوتية أو نشرية.</p>
+  قراءة شاملة ولا صحة محتوى. قرار المالك بالاعتماد موثق، لكن المراجعات المتخصصة
+  والنشر الخارجي ودمج طلبات السحب تبقى إجراءات منفصلة.</p>
 </main>
 </body>
 </html>

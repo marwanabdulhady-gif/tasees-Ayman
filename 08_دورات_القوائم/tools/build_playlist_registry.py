@@ -31,6 +31,7 @@ COURSE_DIR = {
     "ayman-tasees": "05_دروس_بأسلوب_تأسيس/08_تأسيس_وعي_المسلم_المعاصر",
     "cognitive-foundation-1": "التأسيس_المعرفي/المستوى_الأول",
     "cognitive-foundation-2": "التأسيس_المعرفي/المستوى_الثاني",
+    "ayn-al-tariq": "أين_الطريق",
 }
 
 # Imported Drive files have no reliable recording links or timestamps. Keep each
@@ -57,6 +58,8 @@ PLAYLISTS = [
      "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق", "ayman", 1, False),
     ("cognitive-foundation-2", "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم", "التأسيس المعرفي — المستوى الثاني",
      "منسوب في أسماء الملفات إلى م. أيمن عبد الرحيم؛ المتحدث لم يتحقق", "ayman", 1, False),
+    ("ayn-al-tariq", "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown", "أين الطريق؟",
+     "كتاب «أين الطريق؟» — PDF مرفق من المستخدم، طبعة أولى؛ نسبة المؤلف والمتحدث لم تتحقق", "owner-decision", 1, False),
 ]
 
 ORD = {"الاولي": 1, "الاولى": 1, "الثانيه": 2, "الثالثه": 3, "الرابعه": 4, "الخامسه": 5, "السادسه": 6,
@@ -130,7 +133,9 @@ def main():
             if bad:
                 warnings.append(f"فهرس README في `{folder}` يخالف الملفات في {len(bad)} صفًا (مثلًا الصف {bad[0][0]} يقول «المحاضرة {bad[0][1]}») — اعتمد عنوان الملف ومحتواه، لا الفهرس")
         stamped = sum(1 for e in eps if e["timestamps"])
-        citation = "line" if slug in LINE_SOURCE_SLUGS else ("timestamp" if stamped == len(eps) else "paragraph" if stamped == 0 else "mixed")
+        citation = ("pdf" if slug == "ayn-al-tariq" else
+                    "line" if slug in LINE_SOURCE_SLUGS else
+                    ("timestamp" if stamped == len(eps) else "paragraph" if stamped == 0 else "mixed"))
         reg.append(dict(slug=slug, course_dir=COURSE_DIR[slug], title=title, folder=folder, speaker=speaker, voice=voice, phase=phase, atlas=atlas,
                         episodes=len(eps), words=sum(e["words"] for e in eps), citation=citation,
                         warnings=warnings, items=eps))
@@ -139,7 +144,7 @@ def main():
         out.mkdir(parents=True, exist_ok=True)
         table = [f"# {title} — الحلقات", "", "> **ملف مولَّد** من `08_دورات_القوائم/tools/build_playlist_registry.py`. لا تعدّله يدويًا.", "",
                  f"- **المتحدث:** {speaker}", f"- **المصدر:** `{folder}/`", f"- **الحلقات:** {str(len(eps)).translate(AR)} · **الكلمات:** {sum(e['words'] for e in eps):,}",
-                 f"- **طريقة الاستشهاد:** {dict(timestamp='طابع زمني [mm:ss]', paragraph='رقم الفقرة ¶ + اقتباس قصير', mixed='طابع زمني حيث يوجد، وإلا رقم الفقرة', line='سطور النص الأصلي + اقتباس حرفي + بصمة SHA-256')[citation]}", ""]
+                 f"- **طريقة الاستشهاد:** {dict(timestamp='طابع زمني [mm:ss]', paragraph='رقم الفقرة ¶ + اقتباس قصير', mixed='طابع زمني حيث يوجد، وإلا رقم الفقرة', line='سطور النص الأصلي + اقتباس حرفي + بصمة SHA-256', pdf='رقم صفحة PDF + اقتباس قصير')[citation]}", ""]
         if warnings:
             table += ["## ⚠ تنبيهات", ""] + [f"- {w}" for w in warnings] + [""]
         table += ["| # | العنوان (من الملف) | الكلمات | الفقرات | الطوابع | المدة التقريبية | الرابط |", "|---:|---|---:|---:|---:|---:|---|"]
@@ -164,7 +169,8 @@ def main():
         playlists=reg), ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     order = ["cognitive-foundation-1", "cognitive-foundation-2",
              "ayman-psychology", "ayman-linguistic-awareness", "ayman-seerah-makkah", "ayman-umayyad-abbasid",
-             "ayman-tasees", "ayman-reestablishing-awareness", "q100-history", "rihlat-alyaqeen"]
+             "ayman-tasees", "ayman-reestablishing-awareness", "q100-history", "rihlat-alyaqeen",
+             "ayn-al-tariq"]
     summ = ["# القوائم ودوراتها", "", "> **ملف مولَّد** من `tools/build_playlist_registry.py`. التأسيس المعرفي أولًا وفق أولوية المالك الحالية؛ بقية الترتيب وفق المواصفة §6.", "",
             "| الترتيب | الدورة | المتحدث | الحلقات | الكلمات | الاستشهاد | الأطلس | تنبيهات | الحالة |", "|---:|---|---|---:|---:|---|---|---:|---|"]
     by = {r["slug"]: r for r in reg}
@@ -175,9 +181,10 @@ def main():
         if sl in LINE_SOURCE_SLUGS and st == "خريطة":
             covered = {n for lesson in cmap.get("lessons", []) for n in lesson.get("episodes", [])}
             covered.update(item.get("ep") for item in cmap.get("excluded", []) if item.get("why", "").strip())
-            st = "خريطة غير معتمدة" if all(e["n"] in covered for e in r["items"]) else "خريطة جزئية غير معتمدة"
+            st = ("خريطة معتمدة من المالك" if all(e["n"] in covered for e in r["items"])
+                  else "خريطة جزئية معتمدة من المالك")
         summ.append(f"| {i} | [{r['title']}]({COURSE_DIR[sl]}/README.md) | {r['speaker']} | {r['episodes']} | {r['words']:,} | "
-                    f"{dict(timestamp='طابع زمني', paragraph='رقم فقرة', mixed='مختلط', line='سطور المصدر')[r['citation']]} | {'نعم' if r['atlas'] else '—'} | {len(r['warnings'])} | {st} |")
+                    f"{dict(timestamp='طابع زمني', paragraph='رقم فقرة', mixed='مختلط', line='سطور المصدر', pdf='صفحة PDF')[r['citation']]} | {'نعم' if r['atlas'] else '—'} | {len(r['warnings'])} | {st} |")
     (PKG / "01_القوائم.md").write_text("\n".join(summ) + "\n", encoding="utf-8")
     for r in reg:
         print(f"{r['slug']:32} {r['episodes']:3} eps {r['words']:8,} words  cite={r['citation']:9} warnings={len(r['warnings'])}")

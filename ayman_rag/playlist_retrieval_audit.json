@@ -1,26 +1,26 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "status": "pass",
-  "note": "Deterministic plumbing audit of the optional unified offline playlist index. PASS means local bytes, catalogue metadata, exact playlist filters and the selected known-location probes behaved as expected. It is not semantic relevance, answer correctness, medical/scientific accuracy, recording or speaker verification, reference review, or owner approval.",
+  "note": "Deterministic plumbing audit of the optional unified offline playlist index. PASS means local bytes, catalogue metadata, exact playlist filters and the selected known-location probes behaved as expected. The owner has recorded a final approval and a neutral-named-guide Q1 decision; this audit is not semantic relevance, answer correctness, medical/scientific accuracy, recording or speaker verification, independent reference review, or automated proof of that administrative decision.",
   "catalog": {
-    "catalog_sha256": "86f97dfa45ce83ce0639656ab15eba15de0f2f1c5faa6d6b3147fd9d4e1afabc",
-    "documents": 383,
-    "playlist_sources": 225,
+    "catalog_sha256": "623fc19dbc4eed87bbcc973e754bbb683a93659033d0a394042adf62e88cfe13",
+    "documents": 398,
+    "playlist_sources": 240,
     "unassigned_drive_sources": 158,
-    "playlists": 10,
-    "source_bytes_verified": 383,
-    "owner_decision_sources": 117
+    "playlists": 11,
+    "source_bytes_verified": 398,
+    "owner_decision_sources": 132
   },
   "checks": [
     {
       "id": "catalog_bytes_and_counts",
       "status": "pass",
-      "detail": "383 checksum-verified sources; 225 playlist sources; 158 unassigned Drive sources."
+      "detail": "398 checksum-verified sources; 240 playlist sources; 158 unassigned Drive sources."
     },
     {
       "id": "filter_isolation",
       "status": "pass",
-      "detail": "Each of the ten probes returns only its requested playlist and its target source."
+      "detail": "Each of the eleven probes returns only its requested playlist and its target source."
     },
     {
       "id": "cross_playlist_leakage",
@@ -40,13 +40,13 @@
     {
       "id": "known_location_hits",
       "status": "pass",
-      "detail": "10/10 selected locations in the top 5."
+      "detail": "11/11 selected locations in the top 5."
     }
   ],
   "results": {
     "known_location": {
-      "hits": 10,
-      "total": 10,
+      "hits": 11,
+      "total": 11,
       "limit": 5,
       "unfiltered_ranks": [
         1,
@@ -57,6 +57,7 @@
         1,
         1,
         4,
+        1,
         1,
         1
       ]
@@ -131,6 +132,13 @@
         "filtered_rank": 1,
         "filtered_results": 5,
         "all_results_in_requested_playlist": true
+      },
+      {
+        "playlist_slug": "ayn-al-tariq",
+        "source_id": "playlist-b260248903ccf72d49f8",
+        "filtered_rank": 1,
+        "filtered_results": 5,
+        "all_results_in_requested_playlist": true
       }
     ],
     "cross_playlist_leakage": [
@@ -199,6 +207,13 @@
       },
       {
         "playlist_slug": "cognitive-foundation-2",
+        "other_playlist_slug": "ayn-al-tariq",
+        "other_results": 5,
+        "expected_source_absent": true,
+        "all_other_results_in_other_playlist": true
+      },
+      {
+        "playlist_slug": "ayn-al-tariq",
         "other_playlist_slug": "ayman-umayyad-abbasid",
         "other_results": 5,
         "expected_source_absent": true,
@@ -215,10 +230,10 @@
     }
   },
   "limits": [
-    "FTS5/BM25 retrieval is lexical, not semantic; the ten probes echo their source wording.",
+    "FTS5/BM25 retrieval is lexical, not semantic; the eleven probes echo their source wording.",
     "Other retrieved passages are unjudged; a hit does not prove the passage answers a question.",
     "Exact --playlist isolation is a metadata/plumbing check, not proof of attribution or content truth.",
-    "No audio, speaker, edition, transcription, independent reference, safety or owner approval is established.",
+    "The owner approval is administrative; audio, speaker, edition, transcription, independent references, clinical/scientific/historical review and external publication are not automatically established.",
     "The default Drive index and the psychology-only index are unchanged; this report concerns the optional unified index."
   ]
 }

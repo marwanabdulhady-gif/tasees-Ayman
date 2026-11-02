@@ -23,20 +23,26 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / '08_دورات_القوائم' / 'tools'))
 from playlist_sources import ROOT as SOURCE_ROOT, citation_kind, header_method, registry, ordered_items  # noqa: E402
+from owner_decisions import APPROVED, APPROVED_GATE, Q1_GATE  # noqa: E402
 
 DRIVE = ROOT / '09_تفريغات_أيمن' / 'drive_inventory.json'
 OUTPUT = ROOT / 'ayman_rag' / 'playlist_inventory.json'
-PLAYLIST_CATALOG_SCHEMA = 2
+PLAYLIST_CATALOG_SCHEMA = 3
 
 NOTE = (
     'Optional unified offline catalogue: all 173 Drive text files plus one entry for each '
-    'file in the ten registered playlists. Paths and SHA-256 are checked against local bytes. '
-    'Episode numbers reproduce check_lesson.py file ordering/front matter, not recording time; '
-    'the legacy playlists.json n field can differ or repeat. Speaker, recording, edition, '
-    'timestamps, transcription method and factual accuracy remain unverified. Non-Ayman '
-    'playlists are kept separate and are not written in Ayman voice. No official course map '
-    'is approved by this catalogue.'
+    'file in the eleven registered playlists, including the PDF-derived أين الطريق؟ steps. '
+    'Paths and SHA-256 are checked against local bytes. Episode numbers reproduce '
+    'check_lesson.py file ordering/front matter, not recording time; the legacy playlists.json '
+    'n field can differ or repeat. The owner has recorded a final approval for publication and '
+    'a neutral-named-guide Q1 decision; that is an administrative decision, not automated '
+    'verification of speaker, recording, edition, timestamps, transcription method, references '
+    'or factual accuracy. Non-Ayman playlists remain separate and are not written in Ayman voice.'
 )
+
+
+def owner_gate_for(playlist: dict) -> str:
+    return Q1_GATE if playlist.get('voice') == 'owner-decision' else APPROVED_GATE
 
 
 def _base_doc(path: str, sha: str, item: dict, playlist: dict):
@@ -71,7 +77,7 @@ def _base_doc(path: str, sha: str, item: dict, playlist: dict):
         'citation': playlist.get('citation'),
         'citation_kind': kind,
         'course_dir': playlist.get('course_dir'),
-        'owner_gate': 'Q1 pending' if playlist.get('voice') == 'owner-decision' else 'draft; owner approval pending',
+        'owner_gate': owner_gate_for(playlist),
     }
 
 
@@ -108,7 +114,7 @@ def build(root: Path = ROOT, drive_path: Path = DRIVE) -> dict:
                 'citation': playlist.get('citation'),
                 'citation_kind': citation_kind(path),
                 'course_dir': playlist.get('course_dir'),
-                'owner_gate': 'Q1 pending' if playlist.get('voice') == 'owner-decision' else 'draft; owner approval pending',
+                'owner_gate': owner_gate_for(playlist),
                 'speaker': playlist.get('speaker'),
                 'speaker_status': 'unverified',
                 'original_media_url': base.get('original_media_url') or item.get('url'),
@@ -137,7 +143,7 @@ def build(root: Path = ROOT, drive_path: Path = DRIVE) -> dict:
         base.setdefault('citation', 'line')
         base.setdefault('citation_kind', 'line')
         base.setdefault('course_dir', '')
-        base.setdefault('owner_gate', 'draft; owner approval pending')
+        base.setdefault('owner_gate', APPROVED_GATE)
         base.setdefault('speaker', 'منسوب في أسماء الملفات؛ المتحدث لم يتحقق')
         base.setdefault('speaker_status', 'unverified')
         base.setdefault('source_folder_url', '')

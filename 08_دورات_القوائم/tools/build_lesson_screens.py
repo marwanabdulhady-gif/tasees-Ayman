@@ -7,9 +7,9 @@
 
 القالب مشتق آليًا من `07_الهوية_البصرية_والتفاعل/templates/week-template.html`
 (نفس CSS و`tasees-runtime.js`)، مع تبديل «الأسبوع» إلى «الدرس»، وإضافة شريط
-«مسودة غير معتمدة» ورابط نص الدرس. المحتوى يُقرأ من `01_نصوص_الدروس/lesson-NN.md`
+«معتمد من المالك» ورابط نص الدرس. المحتوى يُقرأ من `01_نصوص_الدروس/lesson-NN.md`
 لا من ذاكرة: الاقتباسات والشواهد والأدوات والمهمات تُستخرج من النص، فلا تدخل
-الشاشة معلومة ليست في الدرس. الشاشات مسودات تعليمية غير معتمدة like النصوص.
+الشاشة معلومة ليست في الدرس. الشاشات معتمدة من المالك مع قيود تحقق موثقة.
 
 الأنماط المستعملة: P14 (توقّع)، P02 (فرز)، P17 (بطاقات)، P15 (الدفتر).
 """
@@ -23,6 +23,9 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+from owner_decisions import LABELS, SHORT_STATUS, status  # noqa: E402
+
 PKG = HERE.parent
 ROOT = PKG.parent
 WEEK_TEMPLATE = ROOT / '07_الهوية_البصرية_والتفاعل' / 'templates' / 'week-template.html'
@@ -31,11 +34,11 @@ AR = str.maketrans('0123456789', '٠١٢٣٤٥٦٧٨٩')
 
 COURSES = [
     dict(key='l1', folder='التأسيس_المعرفي/المستوى_الأول', label='التأسيس المعرفي — المستوى الأول',
-         slug='cf1', count=8, note='ثمانية ملفات Drive، درس لكل ملف. الخريطة غير معتمدة.'),
+         slug='cf1', count=8, note='ثمانية ملفات Drive، درس لكل ملف. معتمد من المالك؛ الخريطة الرسمية لم تُعدّل.'),
     dict(key='l2', folder='التأسيس_المعرفي/المستوى_الثاني', label='التأسيس المعرفي — المستوى الثاني',
          slug='cf2', count=7, note='سبعة ملفات Drive؛ السادس والسابع يظلان منفصلين.'),
-    dict(key='psy', folder='علم_النفس', label='علم النفس — المسودة الموازية', slug='psy',
-         count=10, note='مسودة موازية على تفريغات Drive؛ الدروس الأساسية محفوظة دون تعديل.'),
+    dict(key='psy', folder='علم_النفس', label='علم النفس — المسار الموازي', slug='psy',
+         count=10, note='مسار موازٍ معتمد من المالك على تفريغات Drive؛ الدروس الأساسية محفوظة دون تعديل.'),
 ]
 
 TRACKS = ('مستكشف', 'ممارس', 'متقدم')
@@ -128,7 +131,7 @@ def make_screens(c: dict, L: dict) -> list[dict]:
 
     lines = [L['closing'],
              'ثلاث أدوات: ' + ' · '.join(b['tool_name'] for b in L['blocks']),
-             'مسودة غير معتمدة: الاقتباس يثبت الموضع، والتسجيل والمراجع يثبتان الباقي.']
+             SHORT_STATUS + ': الاقتباس يثبت الموضع، والتسجيل والمراجع قيود موثقة.']
     return [
         screen(1, layout='L1', sanad=sanad_base),
         screen(2, layout='L2', art=f'rasms-al-khattaf-{slug}-l{n:02d}', art_src='',
@@ -162,12 +165,12 @@ def make_screens(c: dict, L: dict) -> list[dict]:
 def lesson_json(c: dict, L: dict) -> dict:
     return dict(week=L['n'], lesson=L['n'], course=c['label'], source_sha=L['sha'],
                 eyebrow=f'{c["label"]} · الدرس {str(L["n"]).translate(AR)}',
-                title=L['title'], subtitle='درس من ملف واحد · مسودة تعليمية غير معتمدة',
+                title=L['title'], subtitle='درس من ملف واحد · ' + status(),
                 question=L['question'],
                 audio='لا تسجيل متحقق مرتبط بهذا الدرس؛ الاقتباسات من تفريغ نصي آلي، وأرقام السطور ليست توقيتات.',
                 next='الدرس الجاي ' + L['next'],
                 text_href=f'../01_نصوص_الدروس/lesson-{L["n"]:02d}.md',
-                draft='مسودة تعليمية غير معتمدة — راجع التسجيل والمراجع قبل النشر.',
+                draft=status() + ' — ' + LABELS['verification_note'],
                 screens=make_screens(c, L))
 
 
@@ -188,15 +191,15 @@ def lesson_template() -> str:
     t = t.replace('<script src="tasees-runtime.js"></script>\n', '')
     t = re.sub(r'(<script type="application/json" id="week">\n).*?(\n</script>)',
                r'\1{{JSON}}\2', t, count=1, flags=re.S)
-    # بيانات الشاشة: «الدرس» بدل «الأسبوع»، وشريط المسودة، ورابط نص الدرس.
+    # بيانات الشاشة: «الدرس» بدل «الأسبوع»، وشريط الاعتماد، ورابط نص الدرس.
     t = t.replace('<small>سؤال الأسبوع</small>', '<small>سؤال الدرس</small>')
     t = t.replace('· الأسبوع ', '· الدرس ')
     t = t.replace('محتوى الأسبوع', 'محتوى الدرس')
     t = t.replace('مهمة الأسبوع · ', 'مهمة الدرس · ')
     l1_tail = ("'<div class=\"audio\">' + esc(W.audio) + '</div>' + "
-               "'<p class=\"t-feedback t-feedback--bad\"><strong>مسودة</strong>' + esc(W.draft) + '</p>' + "
+               "'<p class=\"t-feedback t-feedback--bad\"><strong>معتمد</strong>' + esc(W.draft) + '</p>' + "
                "'<p class=\"t-small\" style=\"margin:0\"><a href=\"' + esc(W.text_href) + '\">اقرأ نص الدرس كاملًا ←</a></p>' + "
-               "'<p class=\"t-small\" style=\"margin:0\">مسودة تعليمية؛ لا تُنسب عباراتها لصاحب التسجيل قبل التحقق.</p>';")
+               "'<p class=\"t-small\" style=\"margin:0\">معتمد من المالك؛ لا تُنسب عباراتها لصاحب التسجيل قبل التحقق.</p>';")
     t, count = re.subn(r"'<div class=\"audio\">'.*?</p>';", lambda m: l1_tail, t, count=1, flags=re.S)
     assert count == 1, 'L1 audio tail not found in week-template.html' 
     t = re.sub(r'<!--.*?-->', '<!-- قالب شاشة الدرس: مشتق من week-template.html، بنفس CSS وtasees-runtime.js. '
@@ -232,15 +235,15 @@ def index_page(title: str, intro: str, rows: list[tuple[str, str]], rootrel: str
 </head>
 <body class="t-page">
 <main>
-  <p class="t-eyebrow">دورات القوائم · مسودات غير معتمدة</p>
+  <p class="t-eyebrow">دورات القوائم · معتمدة من المالك</p>
   <h1 class="t-title">{html.escape(title)}</h1>
   <p class="t-sharh">{html.escape(intro)}</p>
   {backlink}
   <ol class="lines">
 {items}
   </ol>
-  <p class="t-feedback"><strong>تنبيه:</strong> الشاشات والنصوص مسودات تعليمية؛ الاقتباسات من تفريغ آلي،
-  والمتحدث والتسجيل والطبعة والمراجع غير متحققة. لا تشخيص ولا نصيحة علاجية في علم النفس،
+  <p class="t-feedback"><strong>تنبيه:</strong> الشاشات والنصوص معتمدة من المالك بقرار موثق؛ الاقتباسات من تفريغ آلي،
+  والمتحدث والتسجيل والطبعة والمراجع قيود غير متحققة آليًا. لا تشخيص ولا نصيحة علاجية في علم النفس،
   ولا أحكام تاريخية أو طائفية في التأسيس المعرفي.</p>
 </main>
 </body>
@@ -292,12 +295,12 @@ def build() -> dict[Path, str]:
             idx_rows, idx_root, hub)
         hub_rows.append((f'{c["label"]} — {len(lessons)} درسًا',
                          f'{c["folder"]}/02_الشاشات/index.html'))
-    hub_rows.append(('مسودات كل قوائم التشغيل — عشر قوائم', '10_مسودات_القوائم/index.html'))
+    hub_rows.append(('دورات القوائم — إحدى عشرة قائمة', '10_مسودات_القوائم/index.html'))
     out[PKG / 'index.html'] = index_page(
-        'دورات القوائم — مسودات الدروس والشاشات',
-        'ثلاثة مسارات مكتوبة بقالب المشروع: التأسيس المعرفي بمستوييه، والمسودة الموازية لعلم النفس، '
-        'إلى جانب رف مسودات منفصل يغطي كل قوائم التشغيل المسجلة. كل درس له نص محقق السند '
-        'وشاشات تفاعلية مبنية منه.',
+        'دورات القوائم — دروس وشاشات معتمدة من المالك',
+        'ثلاثة مسارات مكتوبة بقالب المشروع: التأسيس المعرفي بمستوييه، والمسار الموازي لعلم النفس، '
+        'إلى جانب رف معتمد يغطي كل قوائم التشغيل المسجلة. كل درس له نص محقق السند '
+        'وشاشات تفاعلية مبنية منه، وقرار المالك موثق مع قيود التحقق.',
         hub_rows, '../', None)
     return out
 

@@ -1,5 +1,5 @@
 {
-  "description": "Ten exploratory known-location lexical retrieval probes, one per registered playlist, selected with knowledge of the source text. They measure recovery of one selected location in the unified catalogue, not answer quality, semantic relevance, medical correctness, or exhaustive relevance. Other retrieved passages are unjudged.",
+  "description": "Eleven exploratory known-location lexical retrieval probes, one per registered playlist, selected with knowledge of the source text. They measure recovery of one selected location in the unified catalogue, not answer quality, semantic relevance, medical correctness, or exhaustive relevance. Other retrieved passages are unjudged.",
   "limit": 5,
   "cases": [
     {
@@ -91,6 +91,15 @@
       "source_path": "transcripts/drive-import-2026-11-01/دورة-التأسيس-المعرفى-2-م-أيمن-عبدالرحيم/001 - دورة-التأسيس-المعرفي-2-المحاضرة-الأولي-م-أيمن-عبدالرحيم.txt",
       "line": 72,
       "quote": "التواب بس قبل كده ما سمعناش ان في كتاب اية"
+    },
+    {
+      "query": "في الخطوة صفر تكون ك من وقف على بداية طريق تتلقى التوجيهات",
+      "source_id": "playlist-b260248903ccf72d49f8",
+      "playlist_slug": "ayn-al-tariq",
+      "episode": 1,
+      "source_path": "01_تفريغات_ومصادر/أين_الطريق_مجموعة_تفريغات_v0_1/02_الحلقات_Markdown/01-الخطوة_صفر_الجاهلية.md",
+      "line": 34,
+      "quote": "في الخطوة صفر تكون ك من وقف على بداية طريق تتلقى التوجيهات،"
     }
   ]
 }

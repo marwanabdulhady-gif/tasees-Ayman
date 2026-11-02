@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Shared, deterministic view of the ten registered playlist sources.
+"""Shared, deterministic view of the eleven registered playlist sources.
 
 The legacy ``playlists.json`` registry is authoritative for titles, warnings and
 short fingerprints, but its ``n`` field is not a safe episode key everywhere
@@ -24,7 +24,8 @@ REGISTRY = PKG / 'playlists.json'
 AR = str.maketrans('٠١٢٣٤٥٦٧٨٩', '0123456789')
 STAMP = re.compile(r'\*\*\[(\d{1,2}):(\d{2})(?::(\d{2}))?\]\([^)]*\)\*\*')
 EPISODE_FRONT_MATTER = re.compile(r'^episode:\s*([٠-٩\d]+)', re.M)
-HEADER_METHOD = re.compile(r'^\s*(?:-\s*)?(?:المصدر|transcript_source|source_file)\s*:\s*(.+)', re.I)
+HEADER_METHOD = re.compile(r'^\s*(?:-\s*)?(?:المصدر|transcript_source|source_file|extraction_method|source_type)\s*:\s*(.+)', re.I)
+PDF_PAGE = re.compile(r'<!--\s*بداية صفحة PDF\s+[٠-٩\d]+')
 
 
 def registry():
@@ -98,6 +99,8 @@ def citation_kind(path: str) -> str:
         return 'line'
     if STAMP.search(text):
         return 'timestamp'
+    if PDF_PAGE.search(text):
+        return 'pdf'
     return 'paragraph'
 
 

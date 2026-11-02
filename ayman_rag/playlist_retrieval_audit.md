@@ -1,21 +1,21 @@
-# تدقيق استرجاع القوائم العشر — فحص بنيوي
+# تدقيق استرجاع القوائم الإحدى عشرة — فحص بنيوي
 
-> **PASS هنا فحص بنيوي فقط.** يثبت مطابقة البايتات المحلية، وعدد المصادر، وعزل `--playlist`، وعشرة مواضع معروفة مختارة. لا يثبت دلالة، ولا صحة إجابة، ولا التسجيل، ولا المتحدث، ولا المراجع، ولا موافقة المالك.
+> **PASS هنا فحص بنيوي فقط.** يثبت مطابقة البايتات المحلية، وعدد المصادر، وعزل `--playlist`، وأحد عشر موضعًا معروفًا مختارًا. لا يثبت دلالة، ولا صحة إجابة، ولا التسجيل، ولا المتحدث، ولا المراجع، ولا المراجعات المتخصصة. قرار المالك بالاعتماد موثق في `00_قرارات_المالك.json`، لكن هذا التدقيق لا يثبته آليًا.
 
-- المصادر: **383**، منها **225** للقوائم العشر و**158** ملف Drive غير منسوب.
-- بصمة الكتالوج: `86f97dfa45ce83ce0639656ab15eba15de0f2f1c5faa6d6b3147fd9d4e1afabc`
-- المواضع المعروفة: **10/10** ضمن أول 5 نتائج.
+- المصادر: **398**، منها **240** للقوائم الإحدى عشرة و**158** ملف Drive غير منسوب.
+- بصمة الكتالوج: `623fc19dbc4eed87bbcc973e754bbb683a93659033d0a394042adf62e88cfe13`
+- المواضع المعروفة: **11/11** ضمن أول 5 نتائج.
 
 ## الفحوص
 
 | الفحص | النتيجة | التفصيل |
 |---|---|---|
-| `catalog_bytes_and_counts` | pass | 383 checksum-verified sources; 225 playlist sources; 158 unassigned Drive sources. |
-| `filter_isolation` | pass | Each of the ten probes returns only its requested playlist and its target source. |
+| `catalog_bytes_and_counts` | pass | 398 checksum-verified sources; 240 playlist sources; 158 unassigned Drive sources. |
+| `filter_isolation` | pass | Each of the eleven probes returns only its requested playlist and its target source. |
 | `cross_playlist_leakage` | pass | No target source appears when its query is filtered to a different playlist. |
 | `unknown_playlist_slug` | pass | An unknown exact slug returns zero results. |
 | `negative_control` | pass | A nonsense lexical query returns zero results. |
-| `known_location_hits` | pass | 10/10 selected locations in the top 5. |
+| `known_location_hits` | pass | 11/11 selected locations in the top 5. |
 
 ## عزل كل قائمة
 
@@ -30,14 +30,15 @@
 | `q100-history` | 1 | 5 | `rihlat-alyaqeen` | لا |
 | `rihlat-alyaqeen` | 4 | 5 | `cognitive-foundation-1` | لا |
 | `cognitive-foundation-1` | 1 | 5 | `cognitive-foundation-2` | لا |
-| `cognitive-foundation-2` | 1 | 5 | `ayman-umayyad-abbasid` | لا |
+| `cognitive-foundation-2` | 1 | 5 | `ayn-al-tariq` | لا |
+| `ayn-al-tariq` | 1 | 5 | `ayman-umayyad-abbasid` | لا |
 
 ## حدود صارمة
 
-- FTS5/BM25 retrieval is lexical, not semantic; the ten probes echo their source wording.
+- FTS5/BM25 retrieval is lexical, not semantic; the eleven probes echo their source wording.
 - Other retrieved passages are unjudged; a hit does not prove the passage answers a question.
 - Exact --playlist isolation is a metadata/plumbing check, not proof of attribution or content truth.
-- No audio, speaker, edition, transcription, independent reference, safety or owner approval is established.
+- The owner approval is administrative; audio, speaker, edition, transcription, independent references, clinical/scientific/historical review and external publication are not automatically established.
 - The default Drive index and the psychology-only index are unchanged; this report concerns the optional unified index.
 
 الأوامر والتفاصيل في [`README.md`](README.md). البيانات الكاملة في [`playlist_retrieval_audit.json`](playlist_retrieval_audit.json).

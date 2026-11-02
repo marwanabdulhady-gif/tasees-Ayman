@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Generate ten interactive screens per all-playlist course draft.
+"""Generate ten interactive screens per all-playlist owner-approved course.
 
     python3 08_دورات_القوائم/tools/build_playlist_course_screens.py
     python3 08_دورات_القوائم/tools/build_playlist_course_screens.py --check
@@ -9,7 +9,8 @@ Every screen is derived from ``week-template.html`` and the generated lesson
 Markdown, using the same ``tasees-tokens.css`` and ``tasees-runtime.js``. No
 independent factual content is introduced. The screen JSON records the lesson's
 source IDs, SHA-256 fingerprints, local source links and episode numbers for
-audit. Everything remains an unapproved draft pending owner review.
+audit. The owner has approved publication in the repository; recording,
+speaker, references and specialist review remain documented caveats.
 """
 from __future__ import annotations
 
@@ -26,6 +27,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import build_lesson_screens as base  # noqa: E402
 from playlist_sources import PKG, ROOT  # noqa: E402
+from owner_decisions import LABELS, SHORT_STATUS, status  # noqa: E402
 
 OUT = PKG / '10_مسودات_القوائم'
 STATE = OUT / '00_حالة_القوائم.json'
@@ -50,6 +52,9 @@ def parse_citation(cite: str):
     m = re.match(r'ح([٠-٩\d]+)\s+ف([٠-٩\d]+)', cite)
     if m:
         return int(m.group(1).translate(AR2EN)), 'ف' + m.group(2), 'paragraph'
+    m = re.match(r'ح([٠-٩\d]+)\s+ص([٠-٩\d]+)', cite)
+    if m:
+        return int(m.group(1).translate(AR2EN)), 'ص' + m.group(2), 'pdf'
     raise ValueError(f'unsupported lesson citation: {cite}')
 
 
@@ -129,7 +134,7 @@ def make_screens(c: dict, L: dict) -> list[dict]:
     items.append([one_line(L['blocks'][0]['tool_name'], 42), 2])
     lines = [L['closing'],
              'ثلاث أدوات: ' + ' · '.join(b['tool_name'] for b in L['blocks']),
-             'مسودة غير معتمدة: الاقتباس يثبت الموضع، والتسجيل والمراجع يثبتان الباقي.']
+             SHORT_STATUS + ': الاقتباس يثبت الموضع، والتسجيل والمراجع قيود موثقة.']
     return [
         screen(1, layout='L1', sanad=sanad_base),
         screen(2, layout='L2', art=f'rasms-al-khattaf-{slug}-l{n:02d}', art_src='',
@@ -166,12 +171,12 @@ def lesson_json(c: dict, L: dict) -> dict:
                 source_ids=L['source_ids'], source_links=L['source_links'],
                 episodes=L['episodes'], citation_kinds=L['citation_kinds'],
                 eyebrow=f'{c["label"]} · الدرس {str(L["n"]).translate(AR)}',
-                title=L['title'], subtitle='درس من حلقات القائمة · مسودة تعليمية غير معتمدة',
+                title=L['title'], subtitle='درس من حلقات القائمة · ' + status(),
                 question=L['question'],
-                audio='لا تسجيل متحقق مرتبط بهذا الدرس؛ الطوابع أو الفقرات أو السطور مواضع نصية غير مؤكدة من التسجيل.',
+                audio='لا تسجيل متحقق مرتبط بهذا الدرس؛ الطوابع أو الفقرات أو صفحات PDF أو السطور مواضع نصية غير مؤكدة من التسجيل.',
                 next='الدرس الجاي ' + L['next'],
                 text_href=f'../01_نصوص_الدروس/lesson-{L["n"]:02d}.md',
-                draft='مسودة تعليمية غير معتمدة — راجع التسجيل والمراجع قبل النشر.',
+                draft=status() + ' — ' + LABELS['verification_note'],
                 screens=make_screens(c, L))
 
 
@@ -213,7 +218,7 @@ def build() -> dict[Path, str]:
         slug = summary['slug']
         c = dict(key=slug, folder=f'10_مسودات_القوائم/{slug}', label=summary['title'],
                  slug=slug, count=summary['lessons'],
-                 note='مسودة غير معتمدة؛ دروس مولّدة من ملفات القائمة بقالب المشروع.')
+                 note='معتمد من المالك؛ دروس مولّدة من ملفات القائمة بقالب المشروع. ' + LABELS['verification_note'])
         course_dir = OUT / slug
         lessons_dir = course_dir / '01_نصوص_الدروس'
         screen_dir = course_dir / '02_الشاشات'
@@ -229,7 +234,7 @@ def build() -> dict[Path, str]:
                              f'lesson-{L["n"]:02d}.html'))
             idx_rows.append((f'↳ نص الدرس {str(L["n"]).translate(AR)} (Markdown)',
                              f'../01_نصوص_الدروس/lesson-{L["n"]:02d}.md'))
-        idx_rows.append(('طابور مراجعة القائمة (غير معتمد)', '../00_طابور_المراجعة.md'))
+        idx_rows.append(('طابور اعتماد القائمة (معتمد)', '../00_طابور_المراجعة.md'))
         idx_rows.append(('لوحة المراجعة الجذرية', '../../03_لوحة_المراجعة/index.html'))
         idx_root = Path(os.path.relpath(ROOT, screen_dir)).as_posix() + '/'
         hub = Path(os.path.relpath(OUT / 'index.html', screen_dir)).as_posix()
@@ -238,13 +243,13 @@ def build() -> dict[Path, str]:
             c['note'] + f' {len(lessons)} درسًا، لكل درس عشر شاشات تفاعلية ونصه الكامل.',
             idx_rows, idx_root, hub)
         hub_rows.append((f'{c["label"]} — {len(lessons)} درسًا', f'{slug}/02_الشاشات/index.html'))
-    hub_rows.insert(0, ('لوحة المراجعة وطابور الاعتماد (غير معتمد)', '03_لوحة_المراجعة/index.html'))
+    hub_rows.insert(0, ('لوحة وطابور الاعتماد (معتمد)', '03_لوحة_المراجعة/index.html'))
     rootrel = Path(os.path.relpath(ROOT, OUT)).as_posix() + '/'
     out[OUT / 'index.html'] = base.index_page(
-        'مسودات قوائم التشغيل — فهرس الشاشات',
-        'عشر قوائم مسجلة في قالب المشروع. كل درس له نص محقق السند وعشر شاشات مبنية من النص. '
-        'هذه مسودات غير معتمدة، ولا تُقرأ بوصفها خرائط رسمية أو محتوى منشورًا؛ '
-        'لوحة المراجعة تسجّل البوابات البشرية المعلّقة.',
+        'دورات القوائم المعتمدة — فهرس الشاشات',
+        'إحدى عشرة قائمة مسجلة في قالب المشروع. كل درس له نص محقق السند وعشر شاشات مبنية من النص. '
+        'قرار المالك بالاعتماد والنشر داخل المستودع موثق؛ لا تُقرأ هذه الشاشات بوصفها خرائط رسمية. '
+        'لوحة الاعتماد تسجّل القرار وقيود التحقق غير الثابتة آليًا.',
         hub_rows, rootrel, '../index.html')
     return out
 

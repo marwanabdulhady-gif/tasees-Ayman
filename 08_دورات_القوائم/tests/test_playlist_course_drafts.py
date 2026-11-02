@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Checks for the separate all-playlist draft shelf and its generated screens.
+"""Checks for the separate all-playlist owner-approved course shelf.
 
 These checks prove structural coverage, exact source hashes and generated-file
-reproducibility. They do not approve content, voice, recordings, references or
-any official course map.
+reproducibility. The owner has approved publication in the repository; they do
+not independently verify content, voice, recordings, references or specialist
+review, and they do not create official course maps.
 """
 import hashlib
 import json
@@ -23,9 +24,9 @@ SHELF = PKG / '10_مسودات_القوائم'
 CATALOG = ROOT / 'ayman_rag' / 'playlist_inventory.json'
 REGISTRY = PKG / 'playlists.json'
 OFFICIAL_MAPS = [
-    (PKG / 'التأسيس_المعرفي/المستوى_الأول/00_خريطة_الدورة.json', 'خريطة'),
-    (PKG / 'التأسيس_المعرفي/المستوى_الثاني/00_خريطة_الدورة.json', 'خريطة'),
-    (PKG / 'علم_النفس/00_خريطة_الدورة.json', 'نصوص بلا خريطة'),
+    (PKG / 'التأسيس_المعرفي/المستوى_الأول/00_خريطة_الدورة.json', 'خريطة معتمدة من المالك'),
+    (PKG / 'التأسيس_المعرفي/المستوى_الثاني/00_خريطة_الدورة.json', 'خريطة معتمدة من المالك'),
+    (PKG / 'علم_النفس/00_خريطة_الدورة.json', 'نصوص بلا خريطة معتمدة من المالك'),
 ]
 
 
@@ -59,15 +60,15 @@ class AllPlaylistDraftTests(unittest.TestCase):
                 r = run(TOOLS / script, '--check')
                 self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
         docs = list(self.catalog.values())
-        self.assertEqual(len(docs), 383)
-        self.assertEqual(len({d['path'] for d in docs}), 383)
+        self.assertEqual(len(docs), 398)
+        self.assertEqual(len({d['path'] for d in docs}), 398)
         playlist_docs = [d for d in docs if d.get('playlist_slug')]
-        self.assertEqual(len(playlist_docs), 225)
-        self.assertEqual(self.state['totals'], {'playlists': 10, 'sources': 225,
-                                                'lessons': 94, 'screens': 940})
+        self.assertEqual(len(playlist_docs), 240)
+        self.assertEqual(self.state['totals'], {'playlists': 11, 'sources': 240,
+                                                'lessons': 99, 'screens': 990})
 
     def test_every_registered_playlist_is_covered(self):
-        self.assertEqual(len(self.state['playlists']), 10)
+        self.assertEqual(len(self.state['playlists']), 11)
         for pl in self.registry:
             with self.subTest(playlist=pl['slug']):
                 course = SHELF / pl['slug']
@@ -80,7 +81,7 @@ class AllPlaylistDraftTests(unittest.TestCase):
                 self.assertEqual(summary['screens'], len(groups) * 10)
                 self.assertEqual([int(p.stem[-2:]) for p in lessons], list(range(1, len(groups) + 1)))
                 cmap = json.loads((course / '00_خريطة_المسودة.json').read_text(encoding='utf-8'))
-                self.assertEqual(cmap['status'], 'مسودة هيكلية غير معتمدة')
+                self.assertEqual(cmap['status'], 'معتمد من المالك للنشر')
                 self.assertEqual([l['episodes'] for l in cmap['lessons']], groups)
                 self.assertFalse((course / '00_خريطة_الدورة.json').exists())
                 self.assertTrue((course / 'README.md').is_file())
@@ -94,7 +95,7 @@ class AllPlaylistDraftTests(unittest.TestCase):
                 self.assertIn('../00_طابور_المراجعة.md', index)
                 self.assertIn('../../03_لوحة_المراجعة/index.html', index)
 
-    def test_check_lesson_passes_for_all_ten_source_directories(self):
+    def test_check_lesson_passes_for_all_eleven_source_directories(self):
         for pl in self.registry:
             with self.subTest(playlist=pl['slug']):
                 lessons = SHELF / pl['slug'] / '01_نصوص_الدروس'
@@ -111,7 +112,7 @@ class AllPlaylistDraftTests(unittest.TestCase):
             for lesson in sorted((SHELF / pl['slug'] / '01_نصوص_الدروس').glob('lesson-*.md')):
                 with self.subTest(lesson=str(lesson.relative_to(ROOT))):
                     text = lesson.read_text(encoding='utf-8')
-                    self.assertIn('مسودة تعليمية للمراجعة، غير معتمدة', text)
+                    self.assertIn('معتمد من المالك للنشر', text)
                     positions = [text.index(h) for h in headings]
                     self.assertEqual(positions, sorted(positions))
                     self.assertEqual(text.count('«'), 6)
@@ -138,9 +139,12 @@ class AllPlaylistDraftTests(unittest.TestCase):
                         self.assertEqual(self.catalog[id_]['sha256'], sha)
                     if pl.get('voice') == 'owner-decision':
                         self.assertIn('مرشد الدورة', text)
-                        self.assertIn('قرار المالك الأول معلّق', text)
+                        self.assertIn('قرار المالك مثبّت', text)
                         self.assertNotIn('أهلًا بيك', text)
                         self.assertIn('لا يُكتب هذا المسار بصوت أيمن', text)
+                    if pl['slug'] == 'ayn-al-tariq':
+                        self.assertIn('〔ح', text)
+                        self.assertRegex(text, r'〔ح[٠-٩\d]+\s+ص[٠-٩\d]+〕')
 
     def test_screens_match_lessons_catalog_and_template(self):
         for pl in self.registry:
@@ -168,7 +172,7 @@ class AllPlaylistDraftTests(unittest.TestCase):
                     self.assertEqual(data['screens'][-1]['layout'], 'L7')
                     self.assertTrue({'P14', 'P02', 'P17', 'P15'} <=
                                     {s.get('pattern') for s in data['screens']})
-                    self.assertIn('غير معتمدة', data['draft'])
+                    self.assertIn('معتمد من المالك للنشر', data['draft'])
                     self.assertTrue((page.parent / data['text_href']).exists())
                     for rel in re.findall(r'<(?:link|script)[^>]*?(?:href|src)="([^"]+)"', html):
                         if rel.startswith('http') or rel.startswith('#'):
@@ -177,13 +181,14 @@ class AllPlaylistDraftTests(unittest.TestCase):
                                         f'{page.name}: {rel}')
 
     def test_review_board_is_linked_and_state_points_to_it(self):
-        self.assertEqual(self.state['review_status'], 'pending; no approval; publication blocked')
+        self.assertEqual(self.state['review_status'],
+                         'approved; owner decision recorded; independent verification owner_accepted_unverified')
         self.assertEqual(self.state['rag_audit'], 'ayman_rag/playlist_retrieval_audit.json')
         self.assertTrue((SHELF / '00_طابور_المراجعة.json').is_file())
         self.assertTrue((SHELF / '00_طابور_المراجعة.md').is_file())
         board = SHELF / '03_لوحة_المراجعة/index.html'
         self.assertTrue(board.is_file())
-        self.assertIn('لا بند معتمد', board.read_text(encoding='utf-8'))
+        self.assertIn('قرار المالك موثق', board.read_text(encoding='utf-8'))
         root_readme = (SHELF / 'README.md').read_text(encoding='utf-8')
         self.assertIn('00_طابور_المراجعة.md', root_readme)
         self.assertIn('03_لوحة_المراجعة/index.html', root_readme)
@@ -200,7 +205,7 @@ class AllPlaylistDraftTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which('node'), 'node is not installed')
     def test_inline_scripts_parse(self):
         pages = sorted(SHELF.glob('*/02_الشاشات/lesson-*.html'))
-        self.assertEqual(len(pages), 94)
+        self.assertEqual(len(pages), 99)
         with tempfile.TemporaryDirectory() as tmp:
             for i, page in enumerate(pages):
                 html = page.read_text(encoding='utf-8')
