@@ -87,8 +87,25 @@ python3 -m unittest discover -s 08_دورات_القوائم/tests
 
 ```bash
 python3 ayman_rag/build_playlist_catalog.py --check
+python3 ayman_rag/audit_playlist_retrieval.py --check
 python3 08_دورات_القوائم/tools/build_playlist_course_drafts.py --check
 python3 08_دورات_القوائم/tools/build_playlist_course_screens.py --check
+python3 08_دورات_القوائم/tools/build_review_queue.py --check
 python3 ayman_rag/evaluate.py --cases ayman_rag/playlist_eval_cases.json \
   --catalog ayman_rag/playlist_inventory.json --index .cache/ayman-rag/playlists.sqlite3
 ```
+
+## طابور المراجعة وتدقيق الاسترجاع (تنظيميان، غير معتمدين)
+
+[لوحة المراجعة](10_مسودات_القوائم/03_لوحة_المراجعة/index.html)،
+[الطابور الجذري](10_مسودات_القوائم/00_طابور_المراجعة.md) و
+[بياناته](10_مسودات_القوائم/00_طابور_المراجعة.json) يسجّلان لكل ملف مصدر ولكل درس وشاشة
+البوابات البشرية المعلّقة: التسجيل، المتحدث، دقة التفريغ، المراجع المستقلة، السلامة، الصوت،
+قرار Q1، اعتماد الخريطة الرسمية، ثم اعتماد المالك. **كل بند `pending` والنشر `blocked`**؛
+لا يُعدّل أي `00_خريطة_الدورة.json` ولا يُمنح أي اعتماد. لكل قائمة أيضًا طابور خاص بها،
+وفهارس الشاشات تصل إلى اللوحة.
+
+[تدقيق استرجاع RAG](../ayman_rag/playlist_retrieval_audit.md) فحص بنيوي منفصل: يطابق
+بصمات ٣٨٣ مصدرًا، ويعزل `--playlist` لعشر قوائم، ويمنع تسريب الهدف إلى قائمة أخرى،
+ويختبر slugًا مجهولًا واستعلامًا سالبًا، ثم يعيد حالات المواضع المعروفة العشر.
+`PASS` يعني سلامة البنية والبايتات فقط؛ لا دلالة ولا صحة إجابة ولا مراجع ولا موافقة مالك.

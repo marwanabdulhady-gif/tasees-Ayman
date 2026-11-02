@@ -53,7 +53,8 @@ class AllPlaylistDraftTests(unittest.TestCase):
     def test_catalog_and_generators_are_reproducible(self):
         r = run(ROOT / 'ayman_rag/build_playlist_catalog.py', '--check')
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
-        for script in ('build_playlist_course_drafts.py', 'build_playlist_course_screens.py'):
+        for script in ('build_playlist_course_drafts.py', 'build_playlist_course_screens.py',
+                       'build_review_queue.py'):
             with self.subTest(script=script):
                 r = run(TOOLS / script, '--check')
                 self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
@@ -88,6 +89,10 @@ class AllPlaylistDraftTests(unittest.TestCase):
                 for n in range(1, len(groups) + 1):
                     self.assertIn(f'lesson-{n:02d}.html', index)
                     self.assertIn(f'../01_نصوص_الدروس/lesson-{n:02d}.md', index)
+                self.assertTrue((course / '00_طابور_المراجعة.md').is_file())
+                self.assertIn('00_طابور_المراجعة.md', (course / 'README.md').read_text(encoding='utf-8'))
+                self.assertIn('../00_طابور_المراجعة.md', index)
+                self.assertIn('../../03_لوحة_المراجعة/index.html', index)
 
     def test_check_lesson_passes_for_all_ten_source_directories(self):
         for pl in self.registry:
@@ -170,6 +175,20 @@ class AllPlaylistDraftTests(unittest.TestCase):
                             continue
                         self.assertTrue((page.parent / rel.split('#')[0]).resolve().exists(),
                                         f'{page.name}: {rel}')
+
+    def test_review_board_is_linked_and_state_points_to_it(self):
+        self.assertEqual(self.state['review_status'], 'pending; no approval; publication blocked')
+        self.assertEqual(self.state['rag_audit'], 'ayman_rag/playlist_retrieval_audit.json')
+        self.assertTrue((SHELF / '00_طابور_المراجعة.json').is_file())
+        self.assertTrue((SHELF / '00_طابور_المراجعة.md').is_file())
+        board = SHELF / '03_لوحة_المراجعة/index.html'
+        self.assertTrue(board.is_file())
+        self.assertIn('لا بند معتمد', board.read_text(encoding='utf-8'))
+        root_readme = (SHELF / 'README.md').read_text(encoding='utf-8')
+        self.assertIn('00_طابور_المراجعة.md', root_readme)
+        self.assertIn('03_لوحة_المراجعة/index.html', root_readme)
+        shelf_index = (SHELF / 'index.html').read_text(encoding='utf-8')
+        self.assertIn('03_لوحة_المراجعة/index.html', shelf_index)
 
     def test_official_maps_are_untouched(self):
         for path, status in OFFICIAL_MAPS:

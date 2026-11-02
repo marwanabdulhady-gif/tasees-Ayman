@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "note": "Deterministic plumbing audit of the optional unified offline playlist index. PASS means local bytes, catalogue metadata, exact playlist filters and the selected known-location probes behaved as expected. It is not semantic relevance, answer correctness, medical/scientific accuracy, recording or speaker verification, reference review, or owner approval.",
+  "catalog": {
+    "catalog_sha256": "86f97dfa45ce83ce0639656ab15eba15de0f2f1c5faa6d6b3147fd9d4e1afabc",
+    "documents": 383,
+    "playlist_sources": 225,
+    "unassigned_drive_sources": 158,
+    "playlists": 10,
+    "source_bytes_verified": 383,
+    "owner_decision_sources": 117
+  },
+  "checks": [
+    {
+      "id": "catalog_bytes_and_counts",
+      "status": "pass",
+      "detail": "383 checksum-verified sources; 225 playlist sources; 158 unassigned Drive sources."
+    },
+    {
+      "id": "filter_isolation",
+      "status": "pass",
+      "detail": "Each of the ten probes returns only its requested playlist and its target source."
+    },
+    {
+      "id": "cross_playlist_leakage",
+      "status": "pass",
+      "detail": "No target source appears when its query is filtered to a different playlist."
+    },
+    {
+      "id": "unknown_playlist_slug",
+      "status": "pass",
+      "detail": "An unknown exact slug returns zero results."
+    },
+    {
+      "id": "negative_control",
+      "status": "pass",
+      "detail": "A nonsense lexical query returns zero results."
+    },
+    {
+      "id": "known_location_hits",
+      "status": "pass",
+      "detail": "10/10 selected locations in the top 5."
+    }
+  ],
+  "results": {
+    "known_location": {
+      "hits": 10,
+      "total": 10,
+      "limit": 5,
+      "unfiltered_ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        4,
+        1,
+        1
+      ]
+    },
+    "filter_isolation": [
+      {
+        "playlist_slug": "ayman-umayyad-abbasid",
+        "source_id": "playlist-b9cccb452148144cc7fe",
+        "filtered_rank": 1,
+        "filtered_results": 5,
+        "all_results_in_requested_playlist": true
+      },
+      {
+        "playlist_slug": "ayman-linguistic-awareness",
+        "source_id": "playlist-46def8405219c9f4d2cc",
+        "filtered_rank": 1,
+        "filtered_results": 5,
+        "all_results_in_requested_playlist": true
+      },
+      {
+        "playlist_slug": "ayman-psychology",
+        "source_id": "playlist-21985760fae7f1743958",
+        "filtered_rank": 1,
+        "filtered_results": 5,
+        "all_results_in_requested_playlist": true
+      },
+      {
+        "playlist_slug": "ayman-seerah-makkah",
+        "source_id": "playlist-fc00f64d5e952a6ebd30",
+        "filtered_rank": 1,
+        "filtered_results": 5,
+        "all_results_in_requested_playlist": true
+      },
+      {
+        "playlist_slug": "ayman-reestablishing-awareness",
+        "source_id": "playlist-52c529c4852cbd8645cd",
+        "filtered_rank": 1,
+        "filtered_results": 5,
+        "all_results_in_requested_playlist": true
+      },
+      {
+        "playlist_slug": "ayman-tasees",
+        "source_id": "playlist-08090fa1a7b51086bb2e",
+        "filtered_rank": 1,
+        "filtered_results": 5,
+        "all_results_in_requested_playlist": true
+      },
+      {
+        "playlist_slug": "q100-history",
+        "source_id": "playlist-b19a14a4128f44425742",
+        "filtered_rank": 1,
+        "filtered_results": 5,
+        "all_results_in_requested_playlist": true
+      },
+      {
+        "playlist_slug": "rihlat-alyaqeen",
+        "source_id": "playlist-823e1862ed5bef48f4d9",
+        "filtered_rank": 4,
+        "filtered_results": 5,
+        "all_results_in_requested_playlist": true
+      },
+      {
+        "playlist_slug": "cognitive-foundation-1",
+        "source_id": "drive-9b6f5de831f98b66eda9",
+        "filtered_rank": 1,
+        "filtered_results": 5,
+        "all_results_in_requested_playlist": true
+      },
+      {
+        "playlist_slug": "cognitive-foundation-2",
+        "source_id": "drive-700b6fe9401850b31330",
+        "filtered_rank": 1,
+        "filtered_results": 5,
+        "all_results_in_requested_playlist": true
+      }
+    ],
+    "cross_playlist_leakage": [
+      {
+        "playlist_slug": "ayman-umayyad-abbasid",
+        "other_playlist_slug": "ayman-linguistic-awareness",
+        "other_results": 5,
+        "expected_source_absent": true,
+        "all_other_results_in_other_playlist": true
+      },
+      {
+        "playlist_slug": "ayman-linguistic-awareness",
+        "other_playlist_slug": "ayman-psychology",
+        "other_results": 5,
+        "expected_source_absent": true,
+        "all_other_results_in_other_playlist": true
+      },
+      {
+        "playlist_slug": "ayman-psychology",
+        "other_playlist_slug": "ayman-seerah-makkah",
+        "other_results": 5,
+        "expected_source_absent": true,
+        "all_other_results_in_other_playlist": true
+      },
+      {
+        "playlist_slug": "ayman-seerah-makkah",
+        "other_playlist_slug": "ayman-reestablishing-awareness",
+        "other_results": 5,
+        "expected_source_absent": true,
+        "all_other_results_in_other_playlist": true
+      },
+      {
+        "playlist_slug": "ayman-reestablishing-awareness",
+        "other_playlist_slug": "ayman-tasees",
+        "other_results": 5,
+        "expected_source_absent": true,
+        "all_other_results_in_other_playlist": true
+      },
+      {
+        "playlist_slug": "ayman-tasees",
+        "other_playlist_slug": "q100-history",
+        "other_results": 5,
+        "expected_source_absent": true,
+        "all_other_results_in_other_playlist": true
+      },
+      {
+        "playlist_slug": "q100-history",
+        "other_playlist_slug": "rihlat-alyaqeen",
+        "other_results": 5,
+        "expected_source_absent": true,
+        "all_other_results_in_other_playlist": true
+      },
+      {
+        "playlist_slug": "rihlat-alyaqeen",
+        "other_playlist_slug": "cognitive-foundation-1",
+        "other_results": 5,
+        "expected_source_absent": true,
+        "all_other_results_in_other_playlist": true
+      },
+      {
+        "playlist_slug": "cognitive-foundation-1",
+        "other_playlist_slug": "cognitive-foundation-2",
+        "other_results": 5,
+        "expected_source_absent": true,
+        "all_other_results_in_other_playlist": true
+      },
+      {
+        "playlist_slug": "cognitive-foundation-2",
+        "other_playlist_slug": "ayman-umayyad-abbasid",
+        "other_results": 5,
+        "expected_source_absent": true,
+        "all_other_results_in_other_playlist": true
+      }
+    ],
+    "unknown_playlist_slug": {
+      "slug": "playlist-slug-that-does-not-exist",
+      "results": 0
+    },
+    "negative_control": {
+      "query": "قطرسونيك",
+      "results": 0
+    }
+  },
+  "limits": [
+    "FTS5/BM25 retrieval is lexical, not semantic; the ten probes echo their source wording.",
+    "Other retrieved passages are unjudged; a hit does not prove the passage answers a question.",
+    "Exact --playlist isolation is a metadata/plumbing check, not proof of attribution or content truth.",
+    "No audio, speaker, edition, transcription, independent reference, safety or owner approval is established.",
+    "The default Drive index and the psychology-only index are unchanged; this report concerns the optional unified index."
+  ]
+}

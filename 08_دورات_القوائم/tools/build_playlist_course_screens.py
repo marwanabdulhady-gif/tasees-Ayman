@@ -229,6 +229,8 @@ def build() -> dict[Path, str]:
                              f'lesson-{L["n"]:02d}.html'))
             idx_rows.append((f'↳ نص الدرس {str(L["n"]).translate(AR)} (Markdown)',
                              f'../01_نصوص_الدروس/lesson-{L["n"]:02d}.md'))
+        idx_rows.append(('طابور مراجعة القائمة (غير معتمد)', '../00_طابور_المراجعة.md'))
+        idx_rows.append(('لوحة المراجعة الجذرية', '../../03_لوحة_المراجعة/index.html'))
         idx_root = Path(os.path.relpath(ROOT, screen_dir)).as_posix() + '/'
         hub = Path(os.path.relpath(OUT / 'index.html', screen_dir)).as_posix()
         out[screen_dir / 'index.html'] = base.index_page(
@@ -236,11 +238,13 @@ def build() -> dict[Path, str]:
             c['note'] + f' {len(lessons)} درسًا، لكل درس عشر شاشات تفاعلية ونصه الكامل.',
             idx_rows, idx_root, hub)
         hub_rows.append((f'{c["label"]} — {len(lessons)} درسًا', f'{slug}/02_الشاشات/index.html'))
+    hub_rows.insert(0, ('لوحة المراجعة وطابور الاعتماد (غير معتمد)', '03_لوحة_المراجعة/index.html'))
     rootrel = Path(os.path.relpath(ROOT, OUT)).as_posix() + '/'
     out[OUT / 'index.html'] = base.index_page(
         'مسودات قوائم التشغيل — فهرس الشاشات',
         'عشر قوائم مسجلة في قالب المشروع. كل درس له نص محقق السند وعشر شاشات مبنية من النص. '
-        'هذه مسودات غير معتمدة، ولا تُقرأ بوصفها خرائط رسمية أو محتوى منشورًا.',
+        'هذه مسودات غير معتمدة، ولا تُقرأ بوصفها خرائط رسمية أو محتوى منشورًا؛ '
+        'لوحة المراجعة تسجّل البوابات البشرية المعلّقة.',
         hub_rows, rootrel, '../index.html')
     return out
 

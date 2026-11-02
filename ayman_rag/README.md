@@ -51,6 +51,17 @@ Episode numbers follow the deterministic file ordering, `episode:` front matter,
 
 [`playlist_eval_cases.json`](playlist_eval_cases.json) has ten manually selected known-source query/line pairs, one per playlist. On the current unified index, all ten selected locations were recovered in the top five (nine at rank 1 and one at rank 4). The queries heavily echo their source lines; the sample is tiny, selected with knowledge of the sources, and other retrieved passages are unjudged. It does not measure semantic relevance, medical correctness, or answer correctness. No generated answers were assessed.
 
+### Deterministic retrieval audit
+
+[`audit_playlist_retrieval.py`](audit_playlist_retrieval.py) writes [`playlist_retrieval_audit.json`](playlist_retrieval_audit.json) and [`playlist_retrieval_audit.md`](playlist_retrieval_audit.md). It verifies all 383 source hashes and catalogue counts, then checks exact `--playlist` isolation for one probe per playlist, absence of cross-playlist leakage when the same query is filtered to a different playlist, an unknown-slug control, a nonsense-token negative control and the ten known-location probes. It builds a temporary unified index by default; `--index` can reuse an existing one. On the current catalogue all checks pass and the ten selected locations are recovered in the top five.
+
+```sh
+python3 ayman_rag/audit_playlist_retrieval.py --check
+python3 ayman_rag/audit_playlist_retrieval.py --index .cache/ayman-rag/playlists.sqlite3
+```
+
+**PASS is a plumbing/bytes check only.** It does not mean retrieved passages are relevant, that answers are correct, that transcripts or speakers are verified, that references are reviewed, or that any course content is approved. The default Drive and psychology-only indexes remain unchanged. The all-playlist course shelf links to this report from its [review board](../08_دورات_القوائم/10_مسودات_القوائم/03_لوحة_المراجعة/index.html).
+
 For experimental local answer drafting, separately install a trusted `llama-cli` and place a compatible GGUF model on the machine. With both already present, and after building the index:
 
 ```sh

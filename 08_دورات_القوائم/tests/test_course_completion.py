@@ -33,7 +33,8 @@ class CourseCompletionTests(unittest.TestCase):
     def test_generated_files_are_reproducible(self):
         for script in ('build_course_lessons.py', 'build_lesson_screens.py',
                        'build_parallel_track_index.py',
-                       'build_playlist_course_drafts.py', 'build_playlist_course_screens.py'):
+                       'build_playlist_course_drafts.py', 'build_playlist_course_screens.py',
+                       'build_review_queue.py'):
             with self.subTest(script=script):
                 r = run(script, '--check')
                 self.assertEqual(r.returncode, 0, r.stdout + r.stderr)

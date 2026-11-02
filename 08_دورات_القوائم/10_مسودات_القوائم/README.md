@@ -17,7 +17,7 @@
 | [التأسيس المعرفي — المستوى الأول](cognitive-foundation-1/README.md) | 8 | 8 | 80 | إيقاع تأسيس، اعتماد معلّق |
 | [التأسيس المعرفي — المستوى الثاني](cognitive-foundation-2/README.md) | 7 | 7 | 70 | إيقاع تأسيس، اعتماد معلّق |
 
-[فهرس الشاشات](index.html) · [فهرس دورات القوائم](../index.html) · [كتالوج RAG الموحد](../../ayman_rag/playlist_inventory.json)
+[فهرس الشاشات](index.html) · [فهرس دورات القوائم](../index.html) · [طابور المراجعة](00_طابور_المراجعة.md) · [لوحة المراجعة](03_لوحة_المراجعة/index.html) · [كتالوج RAG الموحد](../../ayman_rag/playlist_inventory.json) · [تدقيق الاسترجاع](../../ayman_rag/playlist_retrieval_audit.md)
 
 ## ما تثبته الفحوص
 
@@ -31,7 +31,9 @@
 
 ```bash
 python3 ayman_rag/build_playlist_catalog.py --check
+python3 ayman_rag/audit_playlist_retrieval.py --check
 python3 08_دورات_القوائم/tools/build_playlist_course_drafts.py --check
 python3 08_دورات_القوائم/tools/build_playlist_course_screens.py --check
+python3 08_دورات_القوائم/tools/build_review_queue.py --check
 python3 -m unittest discover -s 08_دورات_القوائم/tests
 ```

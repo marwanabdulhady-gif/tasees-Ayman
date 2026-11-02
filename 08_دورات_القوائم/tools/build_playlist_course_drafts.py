@@ -427,7 +427,10 @@ def index_markdown(playlist: dict, lessons: list[dict], rows: list[dict]) -> str
                      f'[{Path(l["page"]).name}]({l["page"]}) | مسودة غير معتمدة |')
     lines += ['', '## حدود', '', SOURCE_NOTE, '',
               SAFETY.get(playlist['slug'], 'الخطوط الحمراء العامة للمشروع تسري على النص والشاشات معًا.'), '',
-              'الاعتماد قرار المالك بعد مراجعة التسجيلات والمراجع؛ لا تُقرأ التغطية بوصفها صحة محتوى.']
+              'الاعتماد قرار المالك بعد مراجعة التسجيلات والمراجع؛ لا تُقرأ التغطية بوصفها صحة محتوى.', '',
+              '[طابور مراجعة هذه القائمة](00_طابور_المراجعة.md) · '
+              '[لوحة المراجعة](../03_لوحة_المراجعة/index.html) · '
+              '[الطابور الجذري](../00_طابور_المراجعة.md)']
     return '\n'.join(lines) + '\n'
 
 
@@ -451,7 +454,8 @@ def readme(playlist: dict, lessons: list[dict], rows: list[dict]) -> str:
         '- `01_نصوص_الدروس/` — نصوص بقالب المشروع، مسودة غير معتمدة.',
         '- `02_الشاشات/` — شاشات مشتقة من `week-template.html` بنفس الهوية.',
         '- `00_خريطة_المسودة.json` — فهرس هيكلي للمسودة فقط، ليس خريطة رسمية.',
-        '- `00_فهرس_المسودة.md` — جدول الدروس وحدود القراءة.', '',
+        '- `00_فهرس_المسودة.md` — جدول الدروس وحدود القراءة.',
+        '- `00_طابور_المراجعة.md` — بوابات المراجعة البشرية المعلّقة لهذه القائمة.', '',
         '## تحذيرات السجل', '', warnings, '',
         '## خطوط حمراء', '', SAFETY.get(playlist['slug'], 'الخطوط الحمراء العامة للمشروع تسري على النص والشاشات معًا.'), '',
         SOURCE_NOTE, '',
@@ -459,8 +463,11 @@ def readme(playlist: dict, lessons: list[dict], rows: list[dict]) -> str:
         '```bash',
         'python3 08_دورات_القوائم/tools/build_playlist_course_drafts.py --check',
         'python3 08_دورات_القوائم/tools/build_playlist_course_screens.py --check',
+        'python3 08_دورات_القوائم/tools/build_review_queue.py --check',
         'python3 08_دورات_القوائم/tools/check_lesson.py <مجلد النصوص> --playlist <مجلد التفريغات>',
         '```', '',
+        '[طابور مراجعة القائمة](00_طابور_المراجعة.md) · [لوحة المراجعة](../03_لوحة_المراجعة/index.html) '
+        'تسجّلان كل البوابات المعلّقة؛ لا بند معتمد ولا نشر قبل قرار المالك.', '',
         'الاعتماد قرار المالك بعد مراجعة التسجيل والمراجع المتخصصة؛ لا يثبت الفحص الآلي سوى المواضع والبصمات.',
     ]) + '\n'
 
@@ -500,6 +507,10 @@ def build() -> dict[Path, str]:
         'schema_version': 1, 'status': 'مسودات غير معتمدة',
         'note': 'تغطية هيكلية لكل القوائم المسجلة؛ لا اعتماد محتوى ولا صوت ولا تسجيل.',
         'rag_catalog': 'ayman_rag/playlist_inventory.json',
+        'rag_audit': 'ayman_rag/playlist_retrieval_audit.json',
+        'review_queue': '08_دورات_القوائم/10_مسودات_القوائم/00_طابور_المراجعة.json',
+        'review_board': '08_دورات_القوائم/10_مسودات_القوائم/03_لوحة_المراجعة/index.html',
+        'review_status': 'pending; no approval; publication blocked',
         'totals': {'playlists': len(summary), 'sources': sum(x['episodes'] for x in summary),
                    'lessons': total_lessons, 'screens': total_screens},
         'playlists': summary,
@@ -516,7 +527,10 @@ def build() -> dict[Path, str]:
         lines.append(f'| [{x["title"]}]({x["slug"]}/README.md) | {x["episodes"]} | {x["lessons"]} | '
                      f'{x["screens"]} | {policy} |')
     lines += ['', '[فهرس الشاشات](index.html) · [فهرس دورات القوائم](../index.html) · '
-              '[كتالوج RAG الموحد](../../ayman_rag/playlist_inventory.json)', '',
+              '[طابور المراجعة](00_طابور_المراجعة.md) · '
+              '[لوحة المراجعة](03_لوحة_المراجعة/index.html) · '
+              '[كتالوج RAG الموحد](../../ayman_rag/playlist_inventory.json) · '
+              '[تدقيق الاسترجاع](../../ayman_rag/playlist_retrieval_audit.md)', '',
               '## ما تثبته الفحوص', '',
               '- كل درس ستة اقتباسات حرفية على الأقل، بإحالة طابع أو فقرة أو سطر وبصمة.',
               '- كل شاشة مشتقة من نص الدرس نفسه، بنفس `tasees-runtime.js` و`tasees-tokens.css`.',
@@ -527,8 +541,10 @@ def build() -> dict[Path, str]:
               'وتنتظران قرار المالك الأول قبل أي اعتماد صوتي أو نشري.', '',
               '```bash',
               'python3 ayman_rag/build_playlist_catalog.py --check',
+              'python3 ayman_rag/audit_playlist_retrieval.py --check',
               'python3 08_دورات_القوائم/tools/build_playlist_course_drafts.py --check',
               'python3 08_دورات_القوائم/tools/build_playlist_course_screens.py --check',
+              'python3 08_دورات_القوائم/tools/build_review_queue.py --check',
               'python3 -m unittest discover -s 08_دورات_القوائم/tests',
               '```']
     out[OUT / 'README.md'] = '\n'.join(lines) + '\n'

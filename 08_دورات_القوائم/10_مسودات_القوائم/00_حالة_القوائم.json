@@ -3,6 +3,10 @@
   "status": "مسودات غير معتمدة",
   "note": "تغطية هيكلية لكل القوائم المسجلة؛ لا اعتماد محتوى ولا صوت ولا تسجيل.",
   "rag_catalog": "ayman_rag/playlist_inventory.json",
+  "rag_audit": "ayman_rag/playlist_retrieval_audit.json",
+  "review_queue": "08_دورات_القوائم/10_مسودات_القوائم/00_طابور_المراجعة.json",
+  "review_board": "08_دورات_القوائم/10_مسودات_القوائم/03_لوحة_المراجعة/index.html",
+  "review_status": "pending; no approval; publication blocked",
   "totals": {
     "playlists": 10,
     "sources": 225,
