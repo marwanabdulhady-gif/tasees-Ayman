@@ -4,6 +4,8 @@ A learning project: build a question-answering assistant over the lecture transc
 
 **For personal learning only.** The assistant never speaks as Ayman, refuses religious rulings, and cites the lecture (with a timestamped YouTube link) for every answer.
 
+> **Not the same as `../ayman_rag/`** (underscore). That folder is another agent's offline search catalogue used to build the playlist courses (SQLite FTS5, 398 sources). This one is the owner's step-by-step learning project.
+
 ## The data
 
 The transcripts come from `../transcripts/` in this repository: 6 playlists, 91 lectures, about 980,000 words of YouTube auto-captions in Egyptian Arabic. They are read in place, not copied.
