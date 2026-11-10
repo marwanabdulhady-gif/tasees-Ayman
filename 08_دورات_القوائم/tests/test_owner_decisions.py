@@ -20,6 +20,7 @@ class OwnerDecisionTests(unittest.TestCase):
             'approval_scope': 'approve_and_publish',
             'q1_voice': 'ayman_style_named',
             'ayn_al_tariq': 'start_after_q1',
+            'ayman_course_base': 'newest_shelf',
         })
         self.assertEqual(data['labels']['publication'], 'approved')
         self.assertEqual(data['labels']['q1_status'], 'decided')

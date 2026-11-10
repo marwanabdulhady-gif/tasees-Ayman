@@ -2,6 +2,15 @@
 
 This is an **early offline RAG prototype**, not a finished assistant. The default index covers 173 imported Drive text files locally with Python's SQLite FTS5. An optional separate psychology index combines the 11 Drive psychology files and the 10 existing timestamped psychology Markdown files, keeping every edition separate. A third, optional **unified playlist catalogue** now covers all 11 registered playlists (240 files, including the 15 PDF-derived «أين الطريق؟» steps) plus the 173 Drive files, with 15 overlapping paths represented once: 398 checksum-verified sources in total. The optional answer command invokes a trusted local llama.cpp CLI and a user-provided local GGUF model; it does not call an API or download models. Neither retrieval nor generation establishes that passages are factually correct, spoken by a verified speaker, or approved course content.
 
+## Two parts, one folder
+
+| Part | What it is | Start here |
+|---|---|---|
+| `ayman_rag/` (this folder) | Offline search catalogue for the agents who build the playlist courses: 398 checksum-verified sources, SQLite FTS5, optional local llama.cpp answers | **Run** below |
+| [`ayman_rag/lab/`](lab/README.md) | The owner's learning project: the RAG pipeline built by hand, stage by stage (chunking, BM25, embeddings, generation), with a 15-question evaluation | [`lab/README.md`](lab/README.md) |
+
+The two parts don't import each other. Their tests run separately: `python3 -m unittest discover -s ayman_rag/tests` here, `cd ayman_rag/lab && python3 -m unittest discover tests` for the lab.
+
 ## Run
 
 Requires Python 3.9+ with SQLite FTS5 enabled. From the repository root:

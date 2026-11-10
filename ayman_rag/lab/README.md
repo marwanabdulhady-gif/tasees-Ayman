@@ -1,19 +1,19 @@
-# Ayman RAG
+# Ayman RAG — learning lab
 
 A learning project: build a question-answering assistant over the lecture transcripts of م. أيمن عبدالرحيم, one stage at a time, to understand how RAG (retrieval-augmented generation) and language models work.
 
 **For personal learning only.** The assistant never speaks as Ayman, refuses religious rulings, and cites the lecture (with a timestamped YouTube link) for every answer.
 
-> **Not the same as `../ayman_rag/`** (underscore). That folder is another agent's offline search catalogue used to build the playlist courses (SQLite FTS5, 398 sources). This one is the owner's step-by-step learning project.
+> Part of [`ayman_rag/`](../README.md). The parent folder holds the offline search catalogue the agents use to build the playlist courses (SQLite FTS5, 398 sources). This `lab/` is the owner's step-by-step learning project: it builds the same kind of pipeline by hand, one stage at a time.
 
 ## The data
 
-The transcripts come from `../transcripts/` in this repository: 6 playlists, 91 lectures, about 980,000 words of YouTube auto-captions in Egyptian Arabic. They are read in place, not copied.
+The transcripts come from `../../transcripts/` in this repository: 6 playlists, 91 lectures, about 980,000 words of YouTube auto-captions in Egyptian Arabic. They are read in place, not copied.
 
 ## Quick start
 
 ```bash
-cd ayman-rag
+cd ayman_rag/lab
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python main.py ingest                       # transcripts -> data/chunks.jsonl (~3,000 chunks)
