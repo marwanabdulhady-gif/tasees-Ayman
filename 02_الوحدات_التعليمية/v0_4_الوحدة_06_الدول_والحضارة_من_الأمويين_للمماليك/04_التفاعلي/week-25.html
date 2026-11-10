@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-phase="2" data-week="w25" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تأسيس · الأسبوع ٢٥</title>
+<!--
+  قالب الأسبوع — انسخ هذا الملف إلى <الوحدة>/04_التفاعلي/week-NN.html
+  ثم عدّل فقط: (1) data-phase و data-week في وسم <html>، (2) <title>، (3) كتلة JSON بالمعرّف "week".
+  data-root = المسار إلى جذر المستودع (حيث index.html منصة الأطالس): "../../" هنا، و"../../../" داخل <الوحدة>/04_التفاعلي/.
+  "source_sha" = بصمة نص الأسبوع الذي بنيت منه الصفحة (من source-lock.json). الدورة قيد التحرير:
+  tools/check_drift.py يقارنها بالنص الحالي ويخبرك إن صارت الصفحة قديمة.
+  لا تعدّل CSS ولا JS هنا؛ التعديل في tasees-tokens.css و tasees-runtime.js فقط (بقرار).
+  المحتوى أدناه مثال حقيقي من نص الأسبوع 1 (v0.4).
+-->
+<link rel="stylesheet" href="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; min-height: 100%; }
+.wk { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 24px; }
+.wk .t-screen { border: 1.5px solid var(--ink); }
+.bar { max-width: var(--stage-max); margin: 0 auto 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: var(--t-tag); color: var(--ink-soft); }
+.bar strong { font-family: var(--f-display); font-size: 1.3rem; color: var(--ink); font-weight: 700; }
+.pencil { display: flex; gap: 3px; margin-inline-start: auto; } .pencil i { width: 16px; height: 4px; border-radius: 2px; background: var(--rule); } .pencil i.on { background: var(--phase); }
+.nav { max-width: var(--stage-max); margin: 12px auto 0; display: flex; justify-content: space-between; gap: 12px; }
+.q-box { border: 1.5px solid var(--phase); padding: 12px 16px; background: var(--card); max-width: 36em; }
+.q-box small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.audio { border: 1.5px dashed var(--ink-soft); padding: 10px 14px; max-width: 36em; font-size: var(--t-small); }
+.hook-art { border: 1.5px solid var(--rule); background: var(--card); aspect-ratio: 16 / 7; max-width: 100%; display: grid; place-items: center; color: var(--ink-soft); font-size: var(--t-small); overflow: hidden; }
+.hook-art img { width: 100%; height: 100%; object-fit: cover; }
+.lines { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; counter-reset: l; }
+.lines li { counter-increment: l; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 8px; }
+.lines li::before { content: counter(l, arabic-indic); font-family: var(--f-display); color: var(--phase); font-size: 1.4rem; line-height: 1.3; }
+.wall { display: flex; gap: 4px; } .wall .t-brick { width: 18px; height: 10px; }
+/* pattern parts used by tasees-runtime.js (same as screen-templates.html) */
+.demo { display: flex; flex-direction: column; gap: 10px; }
+.order { display: flex; flex-direction: column; gap: 6px; } .order .t-choice b { color: var(--ink-soft); min-width: 1.4em; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); } .bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.house { width: 100%; max-width: 360px; height: auto; align-self: center; }
+.house .glow { fill: var(--pen-black); opacity: 0; transition: opacity .3s; } .house.is-lit .glow { opacity: .28; }
+.house .ink { stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.house .bulb { fill: var(--card); stroke: var(--ink); stroke-width: 2; } .house.is-lit .bulb { fill: var(--pen-black); }
+@media (prefers-reduced-motion: no-preference) { .house.is-flicker .bulb { animation: flick .9s steps(2) 2; } }
+@keyframes flick { 50% { fill: var(--pen-black); } }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain .t-kart { padding: 8px 12px; font-size: var(--t-small); cursor: pointer; } .chain .t-kart[aria-expanded="false"] span { visibility: hidden; }
+.chain .t-kart small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.portico { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 6px solid var(--phase); border-bottom: 4px solid var(--phase); padding: 8px 0; }
+.portico div { border-inline: 2px solid var(--phase); padding: 4px 6px; min-height: 92px; font-family: var(--f-display); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portico div small { display: block; font-family: var(--f-body); font-size: 11px; color: var(--ink-soft); }
+@media (max-width: 560px) { .builder { grid-template-columns: minmax(0, 1fr); } .bins { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="t-page">
+<div class="wk">
+  <div class="bar"><strong id="wk-name"></strong><span id="wk-pos"></span><div class="pencil" id="pencil" aria-hidden="true"></div></div>
+  <main id="stage" aria-live="polite"></main>
+  <div class="nav"><button class="t-btn t-btn--ghost" id="prev" type="button">السابق</button><button class="t-btn" id="next" type="button">التالي</button></div>
+</div>
+
+<!-- ======================= محتوى الأسبوع — هذا وحده ما يُعدَّل ======================= -->
+<script type="application/json" id="week">
+{
+  "week": 25,
+  "unit": 6,
+  "phase": 2,
+  "source_sha": "e582737d57c2abc9",
+  "eyebrow": "المرحلة ٢ · مدخل التاريخ — الوحدة ٦ · الأسبوع ٢٥",
+  "title": "الصليبيون والمغول: صلاح الدين والمماليك",
+  "subtitle": "قرن الغزوتين ومعادلة ابن خلدون",
+  "question": "إزاي أمة منهارة سياسيًا تصمد حضاريًا؟ وإيه حدود البطولة الفردية في المعادلة؟",
+  "audio": "الحلقة المسموعة ١٥–٢٠ د · قيد التسجيل بقارئ بشري (بوابة G13)",
+  "next": "الأسبوع الجاي: أسبوع تنفس ٢٦ — راحة ومراجعة لمهارات المرحلة التانية",
+  "screens": [
+    {
+      "id": "w25-01",
+      "layout": "L1",
+      "sanad": [
+        [
+          "الوحدة ٦",
+          "الأسبوع ٢٥"
+        ]
+      ]
+    },
+    {
+      "id": "w25-02",
+      "layout": "L4",
+      "pattern": "P14",
+      "heading": "قبل ما نبدأ",
+      "instruction": "خمّن الأول — الإجابة بتتراجع في القفلة.",
+      "sanad": [
+        [
+          "الخطاف",
+          "الكتلة ١"
+        ]
+      ],
+      "data": {
+        "q": "الحملة الصليبية الأولى نجحت ليه؟",
+        "options": [
+          "لأن أوروبا اتوحدت على الفكرة",
+          "لأن العالم الإسلامي كان متشققًا لدرجة الخيانة المتبادلة",
+          "لأن جيوش المسلمين كانت أقل عددًا وعتادًا",
+          "مش عارف — محتاج أشوف الحساب بنفسي"
+        ]
+      }
+    },
+    {
+      "id": "w25-03",
+      "layout": "L2",
+      "art": "tas-w25-hook-caravan",
+      "art_src": "../03_المواد_البصرية/hooks/tas-w25-hook-caravan.png",
+      "sanad": [
+        [
+          "الخطاف",
+          "الكتلة ٠"
+        ]
+      ],
+      "voice": "سنة ٤٩٢ هجرية: الصليبيون بيدخلوا القدس ويقتلون أهلها. وسنة ٦٥٦: المغول بيدخلوا بغداد ويشيلونها من الوجود.",
+      "sharh": "غزوتان وجوديتان — من الشرق ومن الغرب — على أمة متشققة سياسيًا لدرجة إن الخليفة في بغداد رمز والجيش التركي هو الدولة. ومع ذلك الأمة ما انتهتش: لا الصليبيين طردوا، ولا المغول ردوا، ولا القاهرة بقت عاصمة العالم الجديد. السؤال: إزاي أمة منهارة سياسيًا تصمد حضاريًا؟"
+    },
+    {
+      "id": "w25-04",
+      "layout": "L3",
+      "heading": "الكتلة ١ · الصليبيون: التشقق هو الباب",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "Q35"
+        ]
+      ],
+      "matn": "«الخيانة» هنا مش شخصًا واحدًا خان — دي منطق تفكير: كل طرف بيحسب مصلحته الجزئية، ومجموع الحسابات الجزئية = كارثة كلية.",
+      "sharh": "سلطنة السلاجقة — القوة السنية الكبرى — مقسومة بين إخوة وأبناء عم بيتحاربوا على الملك، والخلافة الفاطمية في مصر فاوضت الصليبيين — في رواية — على تقاسم الشام: خدوا أنتم الشام السلجوقي وإحنا نرتاح من خصمنا المذهبي. والحساب السياسي ده — اللي يمكن كان «واقعيًا» على طاولة ٤٩٠ — بقى بعد سنتين: صليبيين على أبواب القدس، والفاطمية نفسها فقدت مدن الشام الساحلية بعدها بسنين. ودي أعمق من خيانة فرد: دي غياب مشروع جامع — ونفس الدرس بالظبط اللي طلعناه من الفتنة.",
+      "trap": {
+        "title": "القدس ٤٩٢: الرقم والحجم",
+        "text": "المصادر بتقول مذبحة بالألوف: سبعة عشر ألفًا في رواية، وسبعين ألفًا في روايات تانية. والبطاقة: الرقم الأعلى من مصادر إسلامية متأخرة بتعظم المأساة، والأوروبيون المعاصرون للحدث كتبوا بفخر مرعب عن القتل — فالأصل ثابت وموثق من الطرفين، والحجم الدقيق: «لا أعلم بعد». وده ما يقللش من الجريمة — الجريمة بحجمها الأدنى كارثة."
+      }
+    },
+    {
+      "id": "w25-05",
+      "layout": "L3",
+      "heading": "الكتلة ١ · الرد بدأ من الأطراف",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "زنكي ونور الدين"
+        ]
+      ],
+      "matn": "التوحيد قبل التحرير — ما ينفعش تقاتل عدوًا متوحدًا وإنت متشقق.",
+      "sharh": "القاهرة وبغداد — العواصم — كانوا غارقين في صراعاتهم. اللي بدأ المشروع: أمير صغير في الموصل — عماد الدين زنكي — استقل فعليًا وبنى قاعدة، واسترجع الرها سنة ٥٣٩ — أول إمارة صليبية تسقط. وابنه نور الدين محمود كمل: وحّد الشام تدريجيًا، والمنبر اللي عمله لمسجد الأقصى قبل تحريره بعشرين سنة — منبر نور الدين — رمز المشروع: بيبني للمنبر مكانًا لسه ما فتحوش.",
+      "trap": {
+        "title": "درس إداري قبل عسكري",
+        "text": "المشاريع الكبيرة بتبدأ ببناء أدوات النصر قبل النصر نفسه."
+      }
+    },
+    {
+      "id": "w25-06",
+      "layout": "L4",
+      "pattern": "P11",
+      "heading": "خط ٤٩٢–٦٥٨هـ",
+      "instruction": "انقر كل محطة — من الغزوة الأولى لعين جالوت.",
+      "sanad": [
+        [
+          "الكتلتان ١ و٢",
+          "الخط الزمني"
+        ]
+      ],
+      "data": {
+        "prompt": "ست محطات في قرن وستة وستين سنة",
+        "events": [
+          [
+            "٤٩٢هـ",
+            "القدس: الصليبيون بيدخلوها بالسيف، ومذبحة كبيرة موثقة من الطرفين — والحجم الدقيق «لا أعلم بعد»."
+          ],
+          [
+            "٥٣٩هـ",
+            "زنكي يسترجع الرها — أول إمارة صليبية تسقط."
+          ],
+          [
+            "قبل التحرير بعشرين سنة",
+            "نور الدين يبني منبرًا للأقصى — أدوات النصر قبل النصر."
+          ],
+          [
+            "٥٦٧هـ",
+            "صلاح الدين يلغي الخلافة الفاطمية بهدوء — والخطبة للخليفة العباسي من غير مذبحة."
+          ],
+          [
+            "٥٨٣هـ",
+            "حطين: جيش مملكة القدس أبيد — وبعد شهور القدس رجعت."
+          ],
+          [
+            "٦٥٦هـ",
+            "بغداد: المغول يدخلونها — مذبحة هائلة ونهاية خلافة خمسة قرون وإحراق المكتبات."
+          ],
+          [
+            "٦٥٨هـ · ٢٥ رمضان",
+            "عين جالوت: أول هزيمة حاسمة للمغول — ووقفت مدّهم عند الشام."
+          ]
+        ]
+      }
+    },
+    {
+      "id": "w25-07",
+      "layout": "L3",
+      "heading": "الكتلة ١ · صلاح الدين: الشهرة والرحمة والنهاية",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "Q36"
+        ]
+      ],
+      "matn": "القدوة الحقيقية أعظم من الملاك — لأنها بشر زينا واختار صح في اللحظات الفاصلة.",
+      "sharh": "صلاح الدين — كردي الأصل، اتربى في مدرسة نور الدين، ودخل مصر وزيرًا للفاطميين، وورث مشروع نور الدين بعد موته، وقضى السنين في حاجة أصعب من قتال الصليبيين: توحيد المسلمين نفسهم — حلب والموصل قاوموه سنين، وحاربهم وحالفهم وصالحهم. ولما اتوحدت الجبهة: حطين، وبعدها بشهور القدس رجعت. وشهرته مستحقة على تلاتة: المشروع اكتمل (التوحيد ثم التحرير ثم البناء — أسس المدارس ونشر المذهب السني بمؤسسات مش بسيف)، والرحمة الموثقة (دخل القدس من غير مذبحة، وقال لخصومه: «لست مثل أولئك القوم — ما عندنا إلا العفو»)، والنهاية (مات ٥٨٩ وخزانته فيها في الرواية المشهورة دينار واحد وسبعة وأربعون درهمًا).",
+      "trap": {
+        "title": "خانة السياق والمصلحة",
+        "text": "الروايات دي من مصادر معاصرة ومحبة — ابن شداد كاتب سيرته كان صاحبه — فالسياق والمصلحة خانة لازم نذكرها، بس الوقائع الكبرى (تحرير القدس، معاهدة الرملة مع ريتشارد، وحدة مصر والشام) مثبتة من مصادر الطرفين. والتلميع المرفوض إنه كان ملاكًا بلا أخطاء: صلاح الدين قاتل مسلمين سنين لتوحيد الجبهة، وألغى خلافة قائمة، وفي مسيرته قرارات قاسية."
+      }
+    },
+    {
+      "id": "w25-08",
+      "layout": "L4",
+      "pattern": "P12",
+      "heading": "ميزان صلاح الدين",
+      "instruction": "ضع كل واقعة في كفتها — بلا تلميع ولا تجريح.",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "Q36"
+        ]
+      ],
+      "data": {
+        "pans": [
+          "ما يستحق الشهرة",
+          "مما يرفض التلميع"
+        ],
+        "items": [
+          [
+            "المشروع اكتمل: التوحيد ثم التحرير ثم البناء",
+            0
+          ],
+          [
+            "رحمة موثقة: دخل القدس من غير مذبحة",
+            0
+          ],
+          [
+            "مات وخزانته دينار وسبعة وأربعون درهمًا",
+            0
+          ],
+          [
+            "قاتل مسلمين سنين لتوحيد الجبهة",
+            1
+          ],
+          [
+            "ألغى خلافة قائمة",
+            1
+          ],
+          [
+            "في مسيرته قرارات قاسية",
+            1
+          ]
+        ],
+        "done": "الميزان مش لتقطير الرجل: وقائع في كفتين، والحكم النهائي «وصف بلا وسم»."
+      }
+    },
+    {
+      "id": "w25-09",
+      "layout": "L3",
+      "heading": "الكتلة ٢ · المغول وعين جالوت",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "Q37"
+        ]
+      ],
+      "matn": "الدولة اللي بيحكمها «عبيد سابقون» مش سلالة — والسلطان الجديد ما بيتورثش: بيتصنع.",
+      "sharh": "المغول: إمبراطورية من أواسط آسيا ساحت على العالم — الصين، خوارزم، فارس — ووصلوا بغداد سنة ٦٥٦هـ. والخليفة المستعصم — ضعف وارتباك موثق — ما جمعش جيوش ولا فاوض بذكاء، وسبعة أيام من القتل والنهب. وبعد سنتين: عين جالوت، ٢٥ رمضان ٦٥٨ — المغول اللي ما انهزموش من أحد انهزموا في فلسطين من جيش مصر. ومين جيش مصر؟ المماليك: عبيد — أطفال بيتشروا من أسواق أواسط آسيا والقوقاز، بيتربوا في مدارس عسكرية دينية صارمة، بيتحرروا، وبيرتقوا بالكفاءة وحدها. واللي وقف في عين جالوت: قطز — مملوك باعوه في صغره — وقاد بنفسه في اللحظة الحرجة، ومعه بيبرس اللي نصب الكمين وطوّق.",
+      "trap": {
+        "title": "رقم الثمان مائة ألف وتهمة ابن العلقمي",
+        "text": "المصادر بتقول ثمان مائة ألف قتيل، والبطاقة: رقم مستحيل ديموغرافيًا — المدينة نفسها كانت أصغر من كده بكتير. أما تهمة ابن العلقمي بالخيانة: المحققون المعاصرون يقولون فيه أدلة على مراسلات ومناورات، وفيه تضخيم كبير — والدرجة: «فيه شيء ما، والحجم لا أعلم بعد». والأمانة تمنعنا نحوّل كارثة قومية لوصمة مذهبية."
+      }
+    },
+    {
+      "id": "w25-10",
+      "layout": "L4",
+      "pattern": "P07",
+      "heading": "معادلة ابن خلدون",
+      "instruction": "افتح أجزاء العجلة بالترتيب — لحد ما تدور.",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "المقدمة ٧٧٩هـ"
+        ]
+      ],
+      "data": {
+        "prompt": "خمس حلقات تدور: من العصبية للترف لفقدان العصبية لعصبية جديدة",
+        "parts": [
+          {
+            "name": "العصبية",
+            "c": "var(--pen-blue)",
+            "text": "جماعة عندها تماسك بتغلب وتاخد الملك."
+          },
+          {
+            "name": "الملك",
+            "c": "var(--pen-blue)",
+            "text": "الملك بيدي ثروة وأمان — والثروة والأمان بيولدوا الترف."
+          },
+          {
+            "name": "الترف",
+            "c": "var(--accent-2)",
+            "text": "خلال تلات أجيال بيفكك العصبية: الجيل الأول خشونة البادية، والتاني انتقال، والتالت نسي القوة وبيستهلك الرفاهية."
+          },
+          {
+            "name": "فقدان العصبية",
+            "c": "var(--accent-2)",
+            "text": "الدولة اللي فقدت عصبيتها بتموت — و«الدول لها آجال كأجال الأشخاص»."
+          },
+          {
+            "name": "عصبية جديدة",
+            "c": "var(--pen-blue)",
+            "text": "من الأطراف. والمماليك حالة فريدة: لأن السلطان ما بيتورثش، النظام بيعيد إنتاج عصبية جديدة كل جيل — وده سر طول عمرهم النسبي: ٢٦٧ سنة."
+          }
+        ]
+      }
+    },
+    {
+      "id": "w25-11",
+      "layout": "L4",
+      "pattern": "P06",
+      "heading": "ملف الوحدة ٦",
+      "instruction": "خمس مكونات + سطر الأمانة الأخير.",
+      "sanad": [
+        [
+          "القفلة",
+          "ملف الوحدة ٦"
+        ]
+      ],
+      "data": {
+        "key": "unit6",
+        "note": "ميزان الحاكم: تلات إنجازات وتلات أخطاء وجملة حكم واحدة — وصف بلا وسم.",
+        "fields": [
+          {
+            "key": "f",
+            "label": "تشريح سقوط كامل",
+            "ph": "دولة واحدة بالمراحل الأربع من و٢٠ — صفوف كاملة بوقائعها"
+          },
+          {
+            "key": "r",
+            "label": "بطاقة رواية",
+            "ph": "خبر واحد بالخماسية والدرجة (حكاية الرشيد والخمر؟ رقم ثمان مائة ألف؟ خيانة ابن العلقمي؟)"
+          },
+          {
+            "key": "b",
+            "label": "ميزان حاكم",
+            "ph": "تلات إنجازات / تلات أخطاء / جملة حكم واحدة"
+          },
+          {
+            "key": "k",
+            "label": "بطاقة كلمة شحنة",
+            "ph": "تسمية واحدة: مين سماها؟ وإيه بتبرز وإيه بتخفي؟ والبديل الأدق"
+          },
+          {
+            "key": "i",
+            "label": "معادلة ابن خلدون",
+            "ph": "مثال حي من حولك: عصبية ← نجاح ← ترف ← تفكك — أو لسه في العصبية"
+          },
+          {
+            "key": "u",
+            "label": "«لسه ما أعرفوش»",
+            "ph": "حاجة واحدة من الأسابيع الأربعة لسه واقفة عندك"
+          }
+        ]
+      }
+    },
+    {
+      "id": "w25-12",
+      "layout": "L4",
+      "pattern": "P19",
+      "heading": "على الأطلس",
+      "sanad": [
+        [
+          "الأطلس",
+          "maps8-005، maps8-006"
+        ]
+      ],
+      "data": {
+        "stations": [
+          [
+            "الشرق نحو ١١٠٠م",
+            "maps8-005"
+          ],
+          [
+            "الغرب نحو ١١٠٠م",
+            "maps8-006"
+          ]
+        ],
+        "mode": "explore",
+        "prompt": "العالم الإسلامي نحو ١١٠٠م، قرابة ٤٩٢هـ: الخريطة التي دخلها الصليبيون."
+      }
+    },
+    {
+      "id": "w25-13",
+      "layout": "L6",
+      "pattern": "P15",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "سؤال للدفتر"
+        ]
+      ],
+      "data": {
+        "q": "«الدول تسقط، والحضارة تنتقل» — بغداد سقطت والقاهرة استقبلت الناجين. اكتب مبدأ واحدًا (أو مهارة) عندك اتعلمته بعد صدمة — وإيه الوعاء الجديد اللي اتنقل له؟",
+        "key": "journal"
+      }
+    },
+    {
+      "id": "w25-14",
+      "layout": "L7",
+      "heading": "نلمّ الليلة في تلات سطور",
+      "lines": [
+        "الحملة الأولى نجحت لأن العالم الإسلامي كان متشققًا — التشقق هو الباب، والرد بدأ من الأطراف لا من المركز.",
+        "عين جالوت: أول هزيمة حاسمة للمغول — من جيش مصر، من نظام بيتصنع فيه السلطان ولا بيتورث.",
+        "معادلة ابن خلدون: عصبية ← ملك ← ترف ← فقدان العصبية ← عصبية جديدة؛ والدول أوعية بتتكسر، والماء بينسكب في وعاء جديد."
+      ],
+      "replay": "في الأول خمّنت إن الحملة نجحت {{predict}}. الأدق: لأن العالم الإسلامي كان متشققًا لدرجة الخيانة المتبادلة — غياب مشروع جامع، مش ضعف عدد.",
+      "task": {
+        "مستكشف": "مكوّنان من ملف الوحدة ٦ (بطاقة رواية + سطر «لسه ما أعرفوش»).",
+        "ممارس": "ملف الوحدة ٦ كامل: خمسة مكونات + سطر الأمانة.",
+        "متقدم": "الملف + تطبيق معادلة ابن خلدون على حالتين (دولة من الوحدة ومشروع حي من حولك) بمراحلهما."
+      }
+    }
+  ]
+}
+</script>
+
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/atlas-course-bundle.js" onerror="this.remove()"></script>
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-runtime.js" onerror="this.remove()"></script>
+<script>
+(function () {
+  "use strict";
+  var W = JSON.parse(document.getElementById("week").textContent);
+  var T = window.Tasees, AR = T.AR, el = T.el, store = T.store;
+  var TRACKS = ["مستكشف", "ممارس", "متقدم"];
+  var track = store.get("track") || "ممارس";
+  var visible = function () { return W.screens.filter(function (s) { return !s.track || s.track === track; }); };
+  var i = 0;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sanad(list) { return (list || []).map(function (s) { var tc = /^≈|\d:\d/.test(s[1]); return '<span class="t-sanad"><b>' + esc(s[0]) + "</b>" + (tc ? '<span class="tc">' + esc(s[1]) + "</span>" : esc(s[1])) + "</span>"; }).join(""); }
+  function bricks(n) { var h = '<div class="wall" aria-label="طوب الوحدة">'; for (var k = 1; k <= 4; k++) { h += '<span class="t-brick' + (store.get("done") && k === ((W.week - 1) % 4) + 1 ? " is-laid" + (n ? " is-new" : "") : "") + '"></span>'; } return h + "</div>"; }
+
+  var LAYOUT = {
+    L1: function (s) {
+      return '<p class="t-eyebrow">' + esc(W.eyebrow) + '</p><h1 class="t-title">' + esc(W.title) + '</h1><svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>' +
+        '<p class="t-small" style="margin:0">' + esc(W.subtitle) + '</p><div class="q-box"><small>سؤال الأسبوع</small>' + esc(W.question) + "</div>" +
+        '<div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>' + TRACKS.map(function (t) { return '<button class="t-chip js-track" type="button" aria-pressed="' + (t === track) + '">' + t + "</button>"; }).join("") + "</div>" +
+        '<div class="audio">' + esc(W.audio) + '</div><p class="t-small" style="margin:0">نصوص مستوحاة من أسلوب المهندس أيمن عبد الرحيم في الشرح، كُتبت لأغراض تدريبية داخل مشروع تأسيس، وليست قولًا منسوبًا إليه.</p>';
+    },
+    L2: function (s) {
+      var art = s.art_src ? '<img src="' + esc(s.art_src) + '" alt="">' : "رسم الخطاف <code>" + esc(s.art) + "</code> لم يُولَّد بعد";
+      return '<div class="hook-art">' + art + '</div><p class="t-voice">' + esc(s.voice) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>";
+    },
+    L3: function (s) {
+      return '<h2 class="t-h2">' + esc(s.heading) + '</h2><p class="t-matn">' + esc(s.matn) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>" +
+        (s.trap ? '<p class="t-feedback t-feedback--bad"><strong>' + esc(s.trap.title) + "</strong>" + esc(s.trap.text) + "</p>" : "");
+    },
+    L4: function (s) { return '<h2 class="t-h2">' + esc(s.heading) + "</h2>" + (s.instruction ? '<p class="t-small" style="margin:0">' + esc(s.instruction) + "</p>" : "") + '<div class="demo" data-mount></div>'; },
+    L5: function (s) { return (s.classic ? '<p class="t-classic" style="margin:0">' + esc(s.classic) + "</p>" : "") + '<p class="t-matn">' + esc(s.matn) + '</p><div class="demo" data-mount></div>'; },
+    L6: function (s) { return '<div class="demo" data-mount></div>'; },
+    L7: function (s) {
+      var p = store.get("predict");
+      return '<h2 class="t-title" style="font-size:2.2rem">' + esc(s.heading) + '</h2><ol class="lines">' + s.lines.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ol>" +
+        (p ? '<p class="t-feedback">' + esc(s.replay).replace("{{predict}}", "<strong style=\"display:inline\">«" + esc(p) + "»</strong>") + "</p>" : "") +
+        '<p class="t-feedback t-feedback--ok"><strong>مهمة الأسبوع · ' + esc(track) + "</strong>" + esc(s.task[track]) + '</p><p class="t-small" style="margin:0">' + esc(W.next) + "</p>";
+    }
+  };
+
+  function show() {
+    var list = visible(); i = Math.max(0, Math.min(i, list.length - 1));
+    var s = list[i], last = s.layout === "L7";
+    if (last && !store.get("done")) { store.set("done", "1"); s._new = true; }
+    var stage = document.getElementById("stage");
+    stage.innerHTML = '<section class="t-screen" data-id="' + esc(s.id) + '" data-layout="' + s.layout + '"><aside class="t-margin">' + sanad(s.sanad) + (s.layout === "L1" || last ? bricks(last && s._new) : "") + '</aside><div class="t-main">' + LAYOUT[s.layout](s) + "</div></section>";
+    var mount = stage.querySelector("[data-mount]"); if (mount && s.pattern) T.render(mount, s.pattern, s.data);
+    stage.querySelectorAll(".js-track").forEach(function (b) { b.onclick = function () { track = b.textContent; store.set("track", track); show(); }; });
+    document.getElementById("wk-name").innerHTML = 'تأسيس <span style="font-family:var(--f-body);font-size:1rem;font-weight:500">· الأسبوع ' + AR(W.week) + "</span>";
+    document.getElementById("wk-pos").textContent = "الشاشة " + AR(i + 1) + " من " + AR(list.length);
+    document.getElementById("pencil").innerHTML = list.map(function (_, k) { return '<i class="' + (k <= i ? "on" : "") + '"></i>'; }).join("");
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").textContent = last ? "تم" : i === 0 ? "يلا بينا" : "التالي";
+    document.getElementById("next").disabled = last;
+  }
+  document.getElementById("prev").onclick = function () { i--; show(); window.scrollTo(0, 0); };
+  document.getElementById("next").onclick = function () { i++; show(); window.scrollTo(0, 0); };
+  document.addEventListener("keydown", function (e) { if (e.target.closest("input,textarea,select")) return; if (e.key === "ArrowLeft") { i++; show(); } if (e.key === "ArrowRight") { i--; show(); } });
+  show();
+})();
+</script>
+</body>
+</html>

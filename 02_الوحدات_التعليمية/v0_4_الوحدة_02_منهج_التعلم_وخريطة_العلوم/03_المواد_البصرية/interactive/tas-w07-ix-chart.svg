@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" width="640" height="380" role="img"
+     aria-label="رسم بياني متخيَّل بمحور مقطوع: عمودان من حالتين لأربعة، والنسبة مذكورة مئة بالمئة">
+<title>رسم بياني بمحور مقطوع — الإطار اللي بيكدب (الأسبوع ٧)</title>
+<style>
+  text{font-family:'IBM Plex Sans Arabic','Noto Sans Arabic',Tahoma,sans-serif}
+  .title{fill:#20242C;font-size:14px;font-weight:700}
+  .lbl{fill:#4A5470;font-size:11.5px}
+  .cap{fill:#4A5470;font-size:11.5px}
+  .bad{fill:#C23B30;font-size:12px;font-weight:700}
+  .good{fill:#2E7D57;font-size:12px;font-weight:700}
+  .axis{stroke:#19213A;stroke-width:2;stroke-linecap:round}
+  .dash{stroke:#4A5470;stroke-width:1.4;stroke-dasharray:4 4;fill:none}
+  .bar{fill:#2440A0}
+  .hs{fill:none;cursor:pointer}
+  .hs:hover,.hs:focus-visible{fill:#2440A0;fill-opacity:.08;stroke:#2440A0;stroke-width:1.4}
+</style>
+<rect x="0" y="0" width="640" height="380" fill="#F7F8F3"/>
+<text class="title" x="616" y="36" text-anchor="end">«الجريمة زادت ١٠٠٪ السنة دي»</text>
+<line x1="40" y1="52" x2="600" y2="52" stroke="#D7DDE8" stroke-width="1.4"/>
+<path class="axis" d="M84,120 V300 H380"/>
+<rect class="bar" x="140" y="270" width="56" height="30" rx="2"/>
+<rect class="bar" x="270" y="150" width="56" height="150" rx="2"/>
+<text class="lbl" x="168" y="322" text-anchor="middle">٢</text>
+<text class="lbl" x="298" y="322" text-anchor="middle">٤</text>
+<line class="dash" x1="96" y1="300" x2="372" y2="300"/>
+<text class="bad" x="96" y="292" text-anchor="start">المحور بيبدأ من ٢ — مش من صفر</text>
+<path d="M88,296 l14,-8 M88,306 l14,-8" stroke="#C23B30" stroke-width="2" stroke-linecap="round"/>
+<text class="lbl" x="196" y="140" text-anchor="middle">العمود طوله ضعف</text>
+<text class="lbl" x="196" y="158" text-anchor="middle">والفرق حالتان</text>
+<line x1="400" y1="120" x2="400" y2="300" stroke="#D7DDE8" stroke-width="1.4"/>
+<text class="good" x="596" y="146" text-anchor="end">الرقمين صح</text>
+<text class="lbl" x="596" y="170" text-anchor="end">من حالتين لأربعة — والنسبة مظبوطة</text>
+<text class="bad" x="596" y="202" text-anchor="end">والمعرفة غلط: الإطار هو اللي بيكدب</text>
+<text class="lbl" x="596" y="230" text-anchor="end">اسأل: من كام؟ وفي فترة قد إيه؟</text>
+<text class="lbl" x="596" y="256" text-anchor="end">والصفر فين؟ والوسيط فين؟</text>
+<text class="lbl" x="596" y="282" text-anchor="end">«ما فيه رقم وحش؛ فيه سؤال ما اتسألش»</text>
+<text class="cap" x="320" y="358" text-anchor="middle">أرقام الخطاف فقط: من حالتين لأربعة — والرسم ما كدبش في الارتفاع، كدب في عينك</text>
+<rect class="hs" data-i="1" x="76" y="118" width="48" height="188" tabindex="0"/>
+<rect class="hs" data-i="2" x="128" y="140" width="210" height="166" tabindex="0"/>
+<rect class="hs" data-i="3" x="400" y="120" width="200" height="180" tabindex="0"/>
+</svg>

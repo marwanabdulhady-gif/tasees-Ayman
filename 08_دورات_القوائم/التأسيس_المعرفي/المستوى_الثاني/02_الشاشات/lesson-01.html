@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-phase="1" data-week="cf2-l01" data-root="../../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تأسيس · المؤسسات والمفاهيم</title>
+<!-- قالب شاشة الدرس: مشتق من week-template.html، بنفس CSS وtasees-runtime.js. عدّل المحتوى في 01_نصوص_الدروس ثم أعد build_lesson_screens.py. -->
+<link rel="stylesheet" href="../../../../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; min-height: 100%; }
+.wk { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 24px; }
+.wk .t-screen { border: 1.5px solid var(--ink); }
+.bar { max-width: var(--stage-max); margin: 0 auto 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: var(--t-tag); color: var(--ink-soft); }
+.bar strong { font-family: var(--f-display); font-size: 1.3rem; color: var(--ink); font-weight: 700; }
+.pencil { display: flex; gap: 3px; margin-inline-start: auto; } .pencil i { width: 16px; height: 4px; border-radius: 2px; background: var(--rule); } .pencil i.on { background: var(--phase); }
+.nav { max-width: var(--stage-max); margin: 12px auto 0; display: flex; justify-content: space-between; gap: 12px; }
+.q-box { border: 1.5px solid var(--phase); padding: 12px 16px; background: var(--card); max-width: 36em; }
+.q-box small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.audio { border: 1.5px dashed var(--ink-soft); padding: 10px 14px; max-width: 36em; font-size: var(--t-small); }
+.hook-art { border: 1.5px solid var(--rule); background: var(--card); aspect-ratio: 16 / 7; max-width: 100%; display: grid; place-items: center; color: var(--ink-soft); font-size: var(--t-small); overflow: hidden; }
+.hook-art img { width: 100%; height: 100%; object-fit: cover; }
+.lines { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; counter-reset: l; }
+.lines li { counter-increment: l; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 8px; }
+.lines li::before { content: counter(l, arabic-indic); font-family: var(--f-display); color: var(--phase); font-size: 1.4rem; line-height: 1.3; }
+.wall { display: flex; gap: 4px; } .wall .t-brick { width: 18px; height: 10px; }
+/* pattern parts used by tasees-runtime.js (same as screen-templates.html) */
+.demo { display: flex; flex-direction: column; gap: 10px; }
+.order { display: flex; flex-direction: column; gap: 6px; } .order .t-choice b { color: var(--ink-soft); min-width: 1.4em; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); } .bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.house { width: 100%; max-width: 360px; height: auto; align-self: center; }
+.house .glow { fill: var(--pen-black); opacity: 0; transition: opacity .3s; } .house.is-lit .glow { opacity: .28; }
+.house .ink { stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.house .bulb { fill: var(--card); stroke: var(--ink); stroke-width: 2; } .house.is-lit .bulb { fill: var(--pen-black); }
+@media (prefers-reduced-motion: no-preference) { .house.is-flicker .bulb { animation: flick .9s steps(2) 2; } }
+@keyframes flick { 50% { fill: var(--pen-black); } }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain .t-kart { padding: 8px 12px; font-size: var(--t-small); cursor: pointer; } .chain .t-kart[aria-expanded="false"] span { visibility: hidden; }
+.chain .t-kart small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.portico { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 6px solid var(--phase); border-bottom: 4px solid var(--phase); padding: 8px 0; }
+.portico div { border-inline: 2px solid var(--phase); padding: 4px 6px; min-height: 92px; font-family: var(--f-display); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portico div small { display: block; font-family: var(--f-body); font-size: 11px; color: var(--ink-soft); }
+@media (max-width: 560px) { .builder { grid-template-columns: minmax(0, 1fr); } .bins { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="t-page">
+<div class="wk">
+  <div class="bar"><strong id="wk-name"></strong><span id="wk-pos"></span><div class="pencil" id="pencil" aria-hidden="true"></div></div>
+  <main id="stage" aria-live="polite"></main>
+  <div class="nav"><button class="t-btn t-btn--ghost" id="prev" type="button">السابق</button><button class="t-btn" id="next" type="button">التالي</button></div>
+</div>
+
+<!-- ======================= محتوى الدرس — هذا وحده ما يُعدَّل ======================= -->
+<script type="application/json" id="week">
+{
+ "week": 1,
+ "lesson": 1,
+ "course": "التأسيس المعرفي — المستوى الثاني",
+ "source_sha": "b26f9fb4ca645f65ec9db68815f59d7125582d784e3730cc86f20ee2bf9145a6",
+ "eyebrow": "التأسيس المعرفي — المستوى الثاني · الدرس ١",
+ "title": "المؤسسات والمفاهيم",
+ "subtitle": "درس من ملف واحد · معتمد من المالك للنشر",
+ "question": "كيف ينتقل المصدر من سؤال أداء المؤسسات إلى سؤال التصورات التي تقف خلف العمل؟",
+ "audio": "لا تسجيل متحقق مرتبط بهذا الدرس؛ الاقتباسات من تفريغ نصي آلي، وأرقام السطور ليست توقيتات.",
+ "next": "الدرس الجاي نسأل عن المخاطَب والسياق، وكيف نفرق بين وصف ما حدث وما ينبغي أن يحدث.",
+ "text_href": "../01_نصوص_الدروس/lesson-01.md",
+ "draft": "معتمد من المالك للنشر — قرار المالك بالاعتماد موثق؛ التسجيل والمتحدث والمراجع والمراجعة السريرية/العلمية/التاريخية لم تتحقق آليًا.",
+ "screens": [
+  {
+   "id": "cf2-l01-01",
+   "layout": "L1",
+   "sanad": [
+    [
+     "الدرس ١",
+     "ملف واحد"
+    ],
+    [
+     "السند",
+     "سطور + SHA-256"
+    ]
+   ]
+  },
+  {
+   "id": "cf2-l01-02",
+   "layout": "L2",
+   "art": "rasms-al-khattaf-cf2-l01",
+   "art_src": "",
+   "sanad": [
+    [
+     "الافتتاح",
+     "مثال تعليمي"
+    ]
+   ],
+   "voice": "أهلًا بيك في بداية المستوى الثاني.",
+   "sharh": "قدامنا مكتبة افتراضية تفتح ساعات محددة، ولها كتب ومسؤولون وقراء. واحد يقول: المشكلة في الموارد. وآخر يقول: المشكلة في طريقة التفكير. مين فيهم صح؟ قبل ما نختار طرفًا، نحتاج نفهم السؤال ونرى ما الذي نعرفه فعلًا. المكتبة هنا مثال تعليمي للتدريب، مش وصفًا لمؤسسة…"
+  },
+  {
+   "id": "cf2-l01-03",
+   "layout": "L4",
+   "pattern": "P14",
+   "heading": "قبل ما نبدأ",
+   "instruction": "اختر توقّعًا واحدًا؛ سنعود إليه في القفلة.",
+   "sanad": [
+    [
+     "سؤال الدرس",
+     "توقّع"
+    ]
+   ],
+   "data": {
+    "q": "ما الذي تتوقع أن يثبته هذا الدرس من الملف؟",
+    "options": [
+     "إحالات واقتباسات قابلة للفحص",
+     "أحكامًا نهائية عن الموضوع",
+     "لا أعلم بعد — أحتاج قراءة المصدر"
+    ],
+    "saved": "اتسجلت. نرجع لها في القفلة."
+   }
+  },
+  {
+   "id": "cf2-l01-04",
+   "layout": "L3",
+   "heading": "الكتلة ١ — ابدأ بالمشكلة المؤسسية",
+   "matn": "«المنظومات الاقتصادية والتعليمية في العالم الاسلامي كله كيف يمكن تفعيلها؟»",
+   "sharh": "يطرح المصدر سؤالًا عن المنظومات الاقتصادية والتعليمية. بدلاً من تحويله إلى حكم عام على المجتمعات، يمكن التعامل معه بوصفه مدخلًا لفهم مؤسسة محددة وكيف تعمل.",
+   "sanad": [
+    [
+     "الدرس ١",
+     "ملف واحد"
+    ],
+    [
+     "السند",
+     "سطور + SHA-256"
+    ],
+    [
+     "ح1",
+     "س19"
+    ],
+    [
+     "ح1",
+     "س22"
+    ]
+   ]
+  },
+  {
+   "id": "cf2-l01-05",
+   "layout": "L4",
+   "pattern": "P02",
+   "heading": "نص، أم لبس، أم أداة؟",
+   "instruction": "اختر العبارة ثم السلة.",
+   "sanad": [
+    [
+     "الدرس",
+     "فرز المادة"
+    ]
+   ],
+   "data": {
+    "bins": [
+     "منقول من المصدر",
+     "لبس شائع",
+     "أداة أضافها الدرس"
+    ],
+    "items": [
+     [
+      "المنظومات الاقتصادية والتعليمية في العالم…",
+      0
+     ],
+     [
+      "المنزومة الادارية يعني عايز كم واحد",
+      0
+     ],
+     [
+      "اللي هو مستوى المفاهيم الناس اللي بتتحرك…",
+      0
+     ],
+     [
+      "أن نفسر تعثر مؤسسة بالتصورات وحدها أو…",
+      1
+     ],
+     [
+      "بطاقة المؤسسة",
+      2
+     ]
+    ],
+    "done": "الفرز بين النص والتفسير أول خطوة في المراجعة."
+   }
+  },
+  {
+   "id": "cf2-l01-06",
+   "layout": "L3",
+   "heading": "الكتلة ٢ — ثم اسأل عن التصورات",
+   "matn": "«اللي هو مستوى المفاهيم الناس اللي بتتحرك دلوقتي»",
+   "sharh": "ينقلنا المصدر من ترتيبات العمل إلى المفاهيم والأفكار التي يحملها العاملون. هذا الربط تفسير يطرحه، وليس إثباتًا بأن مشكلة مؤسسة ما سببها المفاهيم وحدها.",
+   "sanad": [
+    [
+     "الدرس ١",
+     "ملف واحد"
+    ],
+    [
+     "السند",
+     "سطور + SHA-256"
+    ],
+    [
+     "ح1",
+     "س20"
+    ],
+    [
+     "ح1",
+     "س22"
+    ]
+   ]
+  },
+  {
+   "id": "cf2-l01-07",
+   "layout": "L4",
+   "pattern": "P17",
+   "heading": "بطاقات أدوات الدرس",
+   "instruction": "اقلب كل بطاقة لتقرأ وصف الأداة.",
+   "sanad": [
+    [
+     "الكتل الثلاث",
+     "أدوات"
+    ]
+   ],
+   "data": {
+    "cards": [
+     [
+      "بطاقة المؤسسة",
+      "ما المهمة التي تريد فحصها؟ من المستفيد؟ ما الموارد المتاحة؟ وبأي مؤشر ستلاحظ الأداء؟ اكتب الإجابات إذا كانت لديك بيانات، وإلا ضع سؤالًا مكان كل خانة…"
+     ],
+     [
+      "ثلاثة مستويات",
+      "في العمود الأول سجّل ما يقوله العاملون إنهم يقصدونه. في الثاني دوّن القاعدة المكتوبة إن وُجدت. وفي الثالث اكتب ما يمكن ملاحظته في سير العمل. المثال:…"
+     ],
+     [
+      "بطاقة المصدر التاريخي",
+      "قبل استخدام نص قديم للإجابة عن سؤال معاصر، اكتب مؤلف النص وتاريخه ومكانه وموضوعه إن أمكن التحقق منها. ثم اكتب السؤال الذي تستطيع الوثيقة الإجابة عنه…"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "cf2-l01-08",
+   "layout": "L3",
+   "heading": "الكتلة ٣ — التاريخ ليس جوابًا جاهزًا",
+   "matn": "«عن طريق الرجوع مرة تانية قبل الاستعمار»",
+   "sharh": "يعلن المصدر رغبته في الرجوع إلى ما قبل الاستعمار عند مناقشة المفاهيم. هذا اختيار في بناء العرض، لا إثبات لوجود نموذج تاريخي واحد أو علاقة سببية محددة.",
+   "sanad": [
+    [
+     "الدرس ١",
+     "ملف واحد"
+    ],
+    [
+     "السند",
+     "سطور + SHA-256"
+    ],
+    [
+     "ح1",
+     "س23"
+    ],
+    [
+     "ح1",
+     "س24"
+    ]
+   ],
+   "trap": {
+    "title": "مصيدة الفهم",
+    "text": "أن نفسر تعثر مؤسسة بالتصورات وحدها أو نفترض أن العودة للماضي تحل مشكلة معاصرة دون بحث في السياق والموارد."
+   }
+  },
+  {
+   "id": "cf2-l01-09",
+   "layout": "L6",
+   "pattern": "P15",
+   "sanad": [
+    [
+     "الدفتر",
+     "مهمة الدرس"
+    ]
+   ],
+   "data": {
+    "q": "ما الذي أخذته من الدرس، وما الذي أجّلته للمراجعة؟",
+    "key": "journal-cf2-l01"
+   }
+  },
+  {
+   "id": "cf2-l01-10",
+   "layout": "L7",
+   "heading": "نلمّ الدرس في تلات سطور",
+   "sanad": [
+    [
+     "الدرس ١",
+     "ملف واحد"
+    ],
+    [
+     "السند",
+     "سطور + SHA-256"
+    ]
+   ],
+   "lines": [
+    "نفهم العمل المؤسسي بتتبع التصورات والممارسات والموارد معًا، لا بردّها إلى سبب واحد.",
+    "ثلاث أدوات: بطاقة المؤسسة · ثلاثة مستويات · بطاقة المصدر التاريخي",
+    "معتمد: الاقتباس يثبت الموضع، والتسجيل والمراجع قيود موثقة."
+   ],
+   "replay": "في الأول اخترت {{predict}}. والآن: الاقتباس يثبت الموضع لا المعنى.",
+   "task": {
+    "مستكشف": "اختر وظيفة واحدة في المؤسسة الافتراضية، واكتب سؤالًا عن طريقة أدائها.",
+    "ممارس": "حلّل مكتبة مجتمعية افتراضية: حدّد وظيفة واحدة، ومؤشر أداء، وافتراضًا فكريًا محتملًا، وقيدًا عمليًا، وسؤالًا لمقابلة المسؤولين دون اتهامهم.",
+    "متقدم": "صمّم جدولًا يفصل أقوال العاملين والقواعد والبيانات المرصودة، ثم ضع عاملين بديلين يمكن أن يفسرا المشكلة."
+   }
+  }
+ ]
+}
+</script>
+
+<script src="../../../../07_الهوية_البصرية_والتفاعل/templates/atlas-course-bundle.js" onerror="this.remove()"></script>
+<script src="../../../../07_الهوية_البصرية_والتفاعل/templates/tasees-runtime.js"></script>
+<script>
+(function () {
+  "use strict";
+  var W = JSON.parse(document.getElementById("week").textContent);
+  var T = window.Tasees, AR = T.AR, el = T.el, store = T.store;
+  var TRACKS = ["مستكشف", "ممارس", "متقدم"];
+  var track = store.get("track") || "ممارس";
+  var visible = function () { return W.screens.filter(function (s) { return !s.track || s.track === track; }); };
+  var i = 0;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sanad(list) { return (list || []).map(function (s) { var tc = /^≈|\d:\d/.test(s[1]); return '<span class="t-sanad"><b>' + esc(s[0]) + "</b>" + (tc ? '<span class="tc">' + esc(s[1]) + "</span>" : esc(s[1])) + "</span>"; }).join(""); }
+  function bricks(n) { var h = '<div class="wall" aria-label="طوب الوحدة">'; for (var k = 1; k <= 4; k++) { h += '<span class="t-brick' + (store.get("done") && k === ((W.week - 1) % 4) + 1 ? " is-laid" + (n ? " is-new" : "") : "") + '"></span>'; } return h + "</div>"; }
+
+  var LAYOUT = {
+    L1: function (s) {
+      return '<p class="t-eyebrow">' + esc(W.eyebrow) + '</p><h1 class="t-title">' + esc(W.title) + '</h1><svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>' +
+        '<p class="t-small" style="margin:0">' + esc(W.subtitle) + '</p><div class="q-box"><small>سؤال الدرس</small>' + esc(W.question) + "</div>" +
+        '<div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>' + TRACKS.map(function (t) { return '<button class="t-chip js-track" type="button" aria-pressed="' + (t === track) + '">' + t + "</button>"; }).join("") + "</div>" +
+        '<div class="audio">' + esc(W.audio) + '</div>' + '<p class="t-feedback t-feedback--bad"><strong>معتمد</strong>' + esc(W.draft) + '</p>' + '<p class="t-small" style="margin:0"><a href="' + esc(W.text_href) + '">اقرأ نص الدرس كاملًا ←</a></p>' + '<p class="t-small" style="margin:0">معتمد من المالك؛ لا تُنسب عباراتها لصاحب التسجيل قبل التحقق.</p>';
+    },
+    L2: function (s) {
+      var art = s.art_src ? '<img src="' + esc(s.art_src) + '" alt="">' : "رسم الخطاف <code>" + esc(s.art) + "</code> لم يُولَّد بعد";
+      return '<div class="hook-art">' + art + '</div><p class="t-voice">' + esc(s.voice) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>";
+    },
+    L3: function (s) {
+      return '<h2 class="t-h2">' + esc(s.heading) + '</h2><p class="t-matn">' + esc(s.matn) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>" +
+        (s.trap ? '<p class="t-feedback t-feedback--bad"><strong>' + esc(s.trap.title) + "</strong>" + esc(s.trap.text) + "</p>" : "");
+    },
+    L4: function (s) { return '<h2 class="t-h2">' + esc(s.heading) + "</h2>" + (s.instruction ? '<p class="t-small" style="margin:0">' + esc(s.instruction) + "</p>" : "") + '<div class="demo" data-mount></div>'; },
+    L5: function (s) { return (s.classic ? '<p class="t-classic" style="margin:0">' + esc(s.classic) + "</p>" : "") + '<p class="t-matn">' + esc(s.matn) + '</p><div class="demo" data-mount></div>'; },
+    L6: function (s) { return '<div class="demo" data-mount></div>'; },
+    L7: function (s) {
+      var p = store.get("predict");
+      return '<h2 class="t-title" style="font-size:2.2rem">' + esc(s.heading) + '</h2><ol class="lines">' + s.lines.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ol>" +
+        (p ? '<p class="t-feedback">' + esc(s.replay).replace("{{predict}}", "<strong style=\"display:inline\">«" + esc(p) + "»</strong>") + "</p>" : "") +
+        '<p class="t-feedback t-feedback--ok"><strong>مهمة الدرس · ' + esc(track) + "</strong>" + esc(s.task[track]) + '</p><p class="t-small" style="margin:0">' + esc(W.next) + "</p>";
+    }
+  };
+
+  function show() {
+    var list = visible(); i = Math.max(0, Math.min(i, list.length - 1));
+    var s = list[i], last = s.layout === "L7";
+    if (last && !store.get("done")) { store.set("done", "1"); s._new = true; }
+    var stage = document.getElementById("stage");
+    stage.innerHTML = '<section class="t-screen" data-id="' + esc(s.id) + '" data-layout="' + s.layout + '"><aside class="t-margin">' + sanad(s.sanad) + (s.layout === "L1" || last ? bricks(last && s._new) : "") + '</aside><div class="t-main">' + LAYOUT[s.layout](s) + "</div></section>";
+    var mount = stage.querySelector("[data-mount]"); if (mount && s.pattern) T.render(mount, s.pattern, s.data);
+    stage.querySelectorAll(".js-track").forEach(function (b) { b.onclick = function () { track = b.textContent; store.set("track", track); show(); }; });
+    document.getElementById("wk-name").innerHTML = 'تأسيس <span style="font-family:var(--f-body);font-size:1rem;font-weight:500">· الدرس ' + AR(W.week) + "</span>";
+    document.getElementById("wk-pos").textContent = "الشاشة " + AR(i + 1) + " من " + AR(list.length);
+    document.getElementById("pencil").innerHTML = list.map(function (_, k) { return '<i class="' + (k <= i ? "on" : "") + '"></i>'; }).join("");
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").textContent = last ? "تم" : i === 0 ? "يلا بينا" : "التالي";
+    document.getElementById("next").disabled = last;
+  }
+  document.getElementById("prev").onclick = function () { i--; show(); window.scrollTo(0, 0); };
+  document.getElementById("next").onclick = function () { i++; show(); window.scrollTo(0, 0); };
+  document.addEventListener("keydown", function (e) { if (e.target.closest("input,textarea,select")) return; if (e.key === "ArrowLeft") { i++; show(); } if (e.key === "ArrowRight") { i--; show(); } });
+  show();
+})();
+</script>
+</body>
+</html>

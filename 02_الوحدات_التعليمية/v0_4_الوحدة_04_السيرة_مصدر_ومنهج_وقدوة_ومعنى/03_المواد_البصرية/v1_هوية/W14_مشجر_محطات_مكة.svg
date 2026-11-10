@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="'IBM Plex Sans Arabic', 'Noto Sans Arabic', Tahoma, sans-serif"><defs><pattern id="v1grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0 H0 V24" fill="none" stroke="#D7DDE8" stroke-width="0.7"/></pattern></defs>
+<rect width="1200" height="675" fill="#F7F8F3"/><rect width="1200" height="675" fill="url(#v1grid)"/>
+<text x="600" y="58" fill="#19213A" font-size="34" text-anchor="middle" font-weight="bold">محطات مكة: ثلاثة عشر عامًا (محطات وقرارات — بلا تجسيد)</text>
+<g font-size="19" text-anchor="middle" fill="#19213A">
+<rect x="50" y="90" width="170" height="74" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="2"/><text x="135" y="120">١ الغار والوحي</text><text x="135" y="146" fill="#4A5470" font-size="16">بذرة — اقرأ</text>
+<rect x="240" y="90" width="170" height="74" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="2"/><text x="325" y="120">٢ السر والثلاثة</text><text x="325" y="146" fill="#4A5470" font-size="16">بناء مركّز</text>
+<rect x="430" y="90" width="170" height="74" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="2"/><text x="515" y="120">٣ دار الأرقم</text><text x="515" y="146" fill="#4A5470" font-size="16">حاضنة</text>
+<rect x="620" y="90" width="170" height="74" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="2"/><text x="705" y="120">٤ الجهر</text><text x="705" y="146" fill="#4A5470" font-size="16">فاصدع — ثمن</text>
+<rect x="810" y="90" width="170" height="74" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="2"/><text x="895" y="120">٥ الصمود</text><text x="895" y="146" fill="#4A5470" font-size="16">بلال: أحد أحد</text>
+<rect x="1000" y="90" width="160" height="74" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="2"/><text x="1080" y="120">٦ الحبشة</text><text x="1080" y="146" fill="#4A5470" font-size="16">أرض فيها عدل</text>
+<rect x="50" y="200" width="170" height="74" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="2" stroke-dasharray="4 3"/><text x="135" y="230">٧ عام الحزن</text><text x="135" y="256" fill="#4A5470" font-size="16">فقد السند</text>
+<rect x="240" y="200" width="170" height="74" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="2" stroke-dasharray="4 3"/><text x="325" y="230">٨ الطائف</text><text x="325" y="256" fill="#4A5470" font-size="16">أبواب مغلقة</text>
+<rect x="430" y="200" width="170" height="74" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="2" stroke-dasharray="4 3"/><text x="515" y="230">٩ الإسراء</text><text x="515" y="256" fill="#4A5470" font-size="16">تعويض السماء</text>
+<rect x="620" y="200" width="170" height="74" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="2" stroke-dasharray="4 3"/><text x="705" y="230">١٠ الشعب</text><text x="705" y="256" fill="#4A5470" font-size="16">حصار 3 سنين</text>
+<rect x="810" y="200" width="170" height="74" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="2"/><text x="895" y="230">١١ المواسم</text><text x="895" y="256" fill="#4A5470" font-size="16">عرض على القبائل</text>
+<rect x="1000" y="200" width="160" height="74" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="2"/><text x="1080" y="230">١٢ العقبتان</text><text x="1080" y="256" fill="#4A5470" font-size="16">فرد ← جماعة</text>
+<rect x="50" y="310" width="360" height="74" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="2"/><text x="230" y="340">١٣ مصعب — السفير</text><text x="230" y="366" fill="#4A5470" font-size="16">رجل واحد بأدب وحكمة فتح مدينة</text>
+<rect x="440" y="310" width="360" height="74" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="2"/><text x="620" y="340">١٤ الهجرة — نقل مركز</text><text x="620" y="366" fill="#4A5470" font-size="16">تخطيط + تخصص + دليل خبير</text>
+</g>
+<g font-size="21" fill="#4A5470" text-anchor="middle">
+<rect x="120" y="418" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="452">قاعدة البناء: بذرة ← حاضنة ← صمود ← توسع ← انتقال</text>
+<rect x="120" y="486" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="520">الترتيب منهج: الطائف بعد فقد السند · الإسراء بعد استنفاد الأسباب · الدولة بعد الفرد</text>
+<rect x="120" y="554" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="588">مهمتك: علّم محطتك إنت على الخريطة — والخطوة الجاية الطبيعية مش المستعجلة</text>
+</g>
+<text x="600" y="652" fill="#4A5470" font-size="18" text-anchor="middle">مشروع تأسيس — الوحدة 4 v0.4 — الأسبوع 14 — بلا تجسيد · هوية v1</text>
+</svg>

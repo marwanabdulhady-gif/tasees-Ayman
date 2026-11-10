@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "status": "معتمد من المالك للنشر",
+  "note": "تغطية هيكلية لكل القوائم المسجلة؛ قرار المالك بالاعتماد موثق. أُزيلت بوابة النشر بقرار المالك. الاعتماد إداري، وليس إثباتًا آليًا لصحة التسجيل أو المراجع أو المحتوى. قرار المالك بالاعتماد موثق؛ التسجيل والمتحدث والمراجع والمراجعة السريرية/العلمية/التاريخية لم تتحقق آليًا.",
+  "rag_catalog": "ayman_rag/playlist_inventory.json",
+  "rag_audit": "ayman_rag/playlist_retrieval_audit.json",
+  "review_queue": "08_دورات_القوائم/10_مسودات_القوائم/00_طابور_المراجعة.json",
+  "review_board": "08_دورات_القوائم/10_مسودات_القوائم/03_لوحة_المراجعة/index.html",
+  "review_status": "approved; owner decision recorded; independent verification owner_accepted_unverified",
+  "totals": {
+    "playlists": 11,
+    "sources": 240,
+    "lessons": 99,
+    "screens": 990
+  },
+  "playlists": [
+    {
+      "slug": "ayman-umayyad-abbasid",
+      "title": "تاريخ الأمويين والعباسيين",
+      "episodes": 6,
+      "lessons": 6,
+      "screens": 60,
+      "voice": "ayman",
+      "owner_gate": "approved by owner for publication"
+    },
+    {
+      "slug": "ayman-linguistic-awareness",
+      "title": "دورة الوعي اللغوي",
+      "episodes": 9,
+      "lessons": 9,
+      "screens": 90,
+      "voice": "ayman",
+      "owner_gate": "approved by owner for publication"
+    },
+    {
+      "slug": "ayman-psychology",
+      "title": "دورة علم النفس",
+      "episodes": 10,
+      "lessons": 10,
+      "screens": 100,
+      "voice": "ayman",
+      "owner_gate": "approved by owner for publication"
+    },
+    {
+      "slug": "ayman-seerah-makkah",
+      "title": "السيرة النبوية — العهد المكي",
+      "episodes": 6,
+      "lessons": 6,
+      "screens": 60,
+      "voice": "ayman",
+      "owner_gate": "approved by owner for publication"
+    },
+    {
+      "slug": "ayman-reestablishing-awareness",
+      "title": "إعادة تأسيس وعي المسلم المعاصر — محاضرات متفرقة",
+      "episodes": 45,
+      "lessons": 12,
+      "screens": 120,
+      "voice": "ayman",
+      "owner_gate": "approved by owner for publication"
+    },
+    {
+      "slug": "ayman-tasees",
+      "title": "تأسيس وعي المسلم المعاصر (المستويان ١ و٢)",
+      "episodes": 17,
+      "lessons": 6,
+      "screens": 60,
+      "voice": "ayman",
+      "owner_gate": "approved by owner for publication"
+    },
+    {
+      "slug": "q100-history",
+      "title": "١٠٠ سؤال في التاريخ",
+      "episodes": 70,
+      "lessons": 18,
+      "screens": 180,
+      "voice": "owner-decision",
+      "owner_gate": "Q1 decided: Ayman style; neutral drafts need rewriting"
+    },
+    {
+      "slug": "rihlat-alyaqeen",
+      "title": "رحلة اليقين",
+      "episodes": 47,
+      "lessons": 12,
+      "screens": 120,
+      "voice": "owner-decision",
+      "owner_gate": "Q1 decided: Ayman style; neutral drafts need rewriting"
+    },
+    {
+      "slug": "cognitive-foundation-1",
+      "title": "التأسيس المعرفي — المستوى الأول",
+      "episodes": 8,
+      "lessons": 8,
+      "screens": 80,
+      "voice": "ayman",
+      "owner_gate": "approved by owner for publication"
+    },
+    {
+      "slug": "cognitive-foundation-2",
+      "title": "التأسيس المعرفي — المستوى الثاني",
+      "episodes": 7,
+      "lessons": 7,
+      "screens": 70,
+      "voice": "ayman",
+      "owner_gate": "approved by owner for publication"
+    },
+    {
+      "slug": "ayn-al-tariq",
+      "title": "أين الطريق؟",
+      "episodes": 15,
+      "lessons": 5,
+      "screens": 50,
+      "voice": "owner-decision",
+      "owner_gate": "Q1 decided: Ayman style; neutral drafts need rewriting"
+    }
+  ]
+}

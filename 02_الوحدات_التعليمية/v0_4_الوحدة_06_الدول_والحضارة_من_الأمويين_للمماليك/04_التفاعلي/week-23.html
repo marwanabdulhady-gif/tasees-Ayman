@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-phase="2" data-week="w23" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تأسيس · الأسبوع ٢٣</title>
+<!--
+  قالب الأسبوع — انسخ هذا الملف إلى <الوحدة>/04_التفاعلي/week-NN.html
+  ثم عدّل فقط: (1) data-phase و data-week في وسم <html>، (2) <title>، (3) كتلة JSON بالمعرّف "week".
+  data-root = المسار إلى جذر المستودع (حيث index.html منصة الأطالس): "../../" هنا، و"../../../" داخل <الوحدة>/04_التفاعلي/.
+  "source_sha" = بصمة نص الأسبوع الذي بنيت منه الصفحة (من source-lock.json). الدورة قيد التحرير:
+  tools/check_drift.py يقارنها بالنص الحالي ويخبرك إن صارت الصفحة قديمة.
+  لا تعدّل CSS ولا JS هنا؛ التعديل في tasees-tokens.css و tasees-runtime.js فقط (بقرار).
+  المحتوى أدناه مثال حقيقي من نص الأسبوع 1 (v0.4).
+-->
+<link rel="stylesheet" href="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; min-height: 100%; }
+.wk { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 24px; }
+.wk .t-screen { border: 1.5px solid var(--ink); }
+.bar { max-width: var(--stage-max); margin: 0 auto 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: var(--t-tag); color: var(--ink-soft); }
+.bar strong { font-family: var(--f-display); font-size: 1.3rem; color: var(--ink); font-weight: 700; }
+.pencil { display: flex; gap: 3px; margin-inline-start: auto; } .pencil i { width: 16px; height: 4px; border-radius: 2px; background: var(--rule); } .pencil i.on { background: var(--phase); }
+.nav { max-width: var(--stage-max); margin: 12px auto 0; display: flex; justify-content: space-between; gap: 12px; }
+.q-box { border: 1.5px solid var(--phase); padding: 12px 16px; background: var(--card); max-width: 36em; }
+.q-box small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.audio { border: 1.5px dashed var(--ink-soft); padding: 10px 14px; max-width: 36em; font-size: var(--t-small); }
+.hook-art { border: 1.5px solid var(--rule); background: var(--card); aspect-ratio: 16 / 7; max-width: 100%; display: grid; place-items: center; color: var(--ink-soft); font-size: var(--t-small); overflow: hidden; }
+.hook-art img { width: 100%; height: 100%; object-fit: cover; }
+.lines { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; counter-reset: l; }
+.lines li { counter-increment: l; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 8px; }
+.lines li::before { content: counter(l, arabic-indic); font-family: var(--f-display); color: var(--phase); font-size: 1.4rem; line-height: 1.3; }
+.wall { display: flex; gap: 4px; } .wall .t-brick { width: 18px; height: 10px; }
+/* pattern parts used by tasees-runtime.js (same as screen-templates.html) */
+.demo { display: flex; flex-direction: column; gap: 10px; }
+.order { display: flex; flex-direction: column; gap: 6px; } .order .t-choice b { color: var(--ink-soft); min-width: 1.4em; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); } .bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.house { width: 100%; max-width: 360px; height: auto; align-self: center; }
+.house .glow { fill: var(--pen-black); opacity: 0; transition: opacity .3s; } .house.is-lit .glow { opacity: .28; }
+.house .ink { stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.house .bulb { fill: var(--card); stroke: var(--ink); stroke-width: 2; } .house.is-lit .bulb { fill: var(--pen-black); }
+@media (prefers-reduced-motion: no-preference) { .house.is-flicker .bulb { animation: flick .9s steps(2) 2; } }
+@keyframes flick { 50% { fill: var(--pen-black); } }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain .t-kart { padding: 8px 12px; font-size: var(--t-small); cursor: pointer; } .chain .t-kart[aria-expanded="false"] span { visibility: hidden; }
+.chain .t-kart small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.portico { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 6px solid var(--phase); border-bottom: 4px solid var(--phase); padding: 8px 0; }
+.portico div { border-inline: 2px solid var(--phase); padding: 4px 6px; min-height: 92px; font-family: var(--f-display); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portico div small { display: block; font-family: var(--f-body); font-size: 11px; color: var(--ink-soft); }
+@media (max-width: 560px) { .builder { grid-template-columns: minmax(0, 1fr); } .bins { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="t-page">
+<div class="wk">
+  <div class="bar"><strong id="wk-name"></strong><span id="wk-pos"></span><div class="pencil" id="pencil" aria-hidden="true"></div></div>
+  <main id="stage" aria-live="polite"></main>
+  <div class="nav"><button class="t-btn t-btn--ghost" id="prev" type="button">السابق</button><button class="t-btn" id="next" type="button">التالي</button></div>
+</div>
+
+<!-- ======================= محتوى الأسبوع — هذا وحده ما يُعدَّل ======================= -->
+<script type="application/json" id="week">
+{
+  "week": 23,
+  "unit": 6,
+  "phase": 2,
+  "source_sha": "6f5867e9b81889fb",
+  "eyebrow": "المرحلة ٢ · الدول والحضارة — الوحدة ٦ · الأسبوع ٢٣",
+  "title": "إزاي بتقع دولة؟",
+  "subtitle": "انهيار أموي ونجاح ثورة عباسية",
+  "question": "إزاي بتقع الدول؟ وإزاي بتنجح ثورة كانت تحت الأرض؟",
+  "audio": "الحلقة المسموعة ١٥–٢٠ د · قيد التسجيل بقارئ بشري (بوابة G13)",
+  "next": "الأسبوع الجاي: العصر الذهبي والانحدار",
+  "screens": [
+    {
+      "id": "w23-01",
+      "layout": "L1",
+      "sanad": [
+        [
+          "الوحدة ٦",
+          "الأسبوع ٢٣"
+        ]
+      ]
+    },
+    {
+      "id": "w23-02",
+      "layout": "L4",
+      "pattern": "P14",
+      "heading": "قبل ما نبدأ",
+      "instruction": "خمّن الأول — الإجابة بتتراجع في القفلة.",
+      "sanad": [
+        [
+          "الخطاف",
+          "الكتلة ٠"
+        ]
+      ],
+      "data": {
+        "q": "أكبر إمبراطورية في العالم — من أطلسي المغرب لحدود الصين — تسقط في شهور. بتقع من برّه ولا من جوّه؟",
+        "options": [
+          "من برّه: هزيمة عسكرية واحدة",
+          "من جوّه: انهيار داخلي",
+          "الاتنين مع بعض",
+          "مش عارف — محتاج أشوف المراحل"
+        ]
+      }
+    },
+    {
+      "id": "w23-03",
+      "layout": "L2",
+      "art": "tas-w23-hook-column",
+      "art_src": "../03_المواد_البصرية/hooks/tas-w23-hook-column.png",
+      "sanad": [
+        [
+          "الخطاف",
+          "الكتلة ٠"
+        ]
+      ],
+      "voice": "سنة ١٣٢ هجرية، جيش بني أمية — اللي ما انهزمش من الروم — انهزم في معركة الزاب، والدولة اللي عمرها تسعين سنة انتهت في أسابيع.",
+      "sharh": "تخيل معايا: أكبر إمبراطورية في العالم — من أطلسي المغرب لحدود الصين — تسقط في شهور. مش بهزيمة عسكرية واحدة، لا: بانهيار من جوه. وسؤال الأسبوع هو سؤال و٢٠ بس على مستوى دولة كاملة: إزاي بتقع الدول؟"
+    },
+    {
+      "id": "w23-04",
+      "layout": "L3",
+      "heading": "الكتلة ١ · المظالم: قضية الموالي",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "المرحلة الأولى"
+        ]
+      ],
+      "matn": "«بعث الله محمدًا ﷺ هاديًا ولم يبعثه جابيًا» — عمر بن عبد العزيز.",
+      "sharh": "الموالي هم المسلمين غير العرب: فرس وبربر وأتراك وأقباط أسلموا. والإسلام بيقول: «لا فضل لعربي على عجمي إلا بالتقوى» — بس الدولة الأموية في عقودها المتأخرة كانت بتعامل الموالي كمواطنين درجة تانية: بيشتغلوا بالجباية والكتابة والصناعة، وبيدفعوا ضرائب أعلى، وفي فترات — وهنا الفضيحة المنهجية — استمرت الجزية على من أسلم منهم في بعض الولايات! يعني واحد دخل الإسلام، والضريبة اللي على غير المسلم فضلت على راسه — عشان خزانة الدولة ما تقلش. وده مش كلام خصوم — ده قرار موثق وصلح عنه خلفاء.",
+      "trap": {
+        "title": "أخطر أنواع المظالم",
+        "text": "المظلمة هنا اقتصادية وعقدية في نفس الوقت — ودي أخطر أنواع المظالم: اللي بتخلي المظلوم يحس إن الدولة بتخون رسالتها نفسها."
+      }
+    },
+    {
+      "id": "w23-05",
+      "layout": "L4",
+      "pattern": "P08",
+      "heading": "محاكاة · طبّق المراحل الأربع",
+      "instruction": "اختار قرارًا في كل خطوة — وشوف النظام بيرد إزاي.",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "مراحل و٢٠ الأربع"
+        ]
+      ],
+      "data": {
+        "intro": "دولة أموية في عقودها المتأخرة: موالٍ مسلم بيدفع جزية، وما فيش قناة شكوى. إنت في مكان القرار.",
+        "choices": [
+          "تفتح قناة شكوى حقيقية",
+          "تسكّت الشكوى بالقوة"
+        ],
+        "first": 1,
+        "otherSays": [
+          "الشكوى المشروعة لما ما تلاقيش قناة، بتتحول لوقود — والوقود بيدور على شرارة.",
+          "الخلافة بقت ملكًا وراثيًا، والمعارض عنده طريق واحد: تحت الأرض."
+        ],
+        "out": {
+          "00": "قناة مفتوحة + إصلاح: الغضب بيتصرف قبل ما يتخزن — لكن الإصلاح فردي ما بيعمرش لو النظام ما بينتجش إصلاحًا بنفسه.",
+          "01": "قناة مفتوحة + سكوت: الأولى بتفتح الباب والتانية بتقفله — الغضب بيرجع يتخزن أسرع من الأول.",
+          "10": "قناة مقفولة + إصلاح: عمر بن عبد العزيز أسقط الجزية عن الموالي ورد المظالم — وبعده رجع كل حاجة زي ما كانت.",
+          "11": "قناة مقفولة + سكوت: دي الطريق للزاب. الدعوة الهاشمية لقيت وقودًا جاهزًا وشرارة: «الرضا من آل محمد»."
+        },
+        "repeatNote": "النموذج مش قدر — القرار هو اللي بيتغير، والنتيجة بتتغير معاه."
+      }
+    },
+    {
+      "id": "w23-06",
+      "layout": "L3",
+      "heading": "الكتلة ١ · التشقق ونقطة اللاعودة",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "المراحل ٢–٤"
+        ]
+      ],
+      "matn": "المصلح الفرد ما بينقذش نظامًا ما بينتجش إصلاحًا.",
+      "sharh": "القنوات مقفولة: فين الشورى اللي تمتص الغضب؟ ما فيش. والشرارة جات من الدعوة الهاشمية — تنظيم سري منظم بيدعو «للرضا من آل محمد». والتشقق داخل البيت: العصبيات القبلية — قيس ضد اليمن — والجيش نفسه انشق لمحورين بيتحاربوا على الغنائم والولايات. ونقطة اللاعودة: مروان الثاني بيحارب على كل الجبهات، ولما التقى الجيشان على نهر الزاب الكبير سنة ١٣٢ — الجيش الأموي انهار من جواه: القبائل سابت الميدان، ومروان هرب لمصر واتقتل.",
+      "trap": {
+        "title": "استثناء يثبت القاعدة",
+        "text": "عمر بن عبد العزيز (٩٩–١٠١هـ) حاول يصلح من فوق: أسقط الجزية عن الموالي، ورد المظالم، وساوى في العطاء، ومنع سبّ علي بن أبي طالب من على المنابر وحط مكانه آية: «إن الله يأمر بالعدل والإحسان». وسنتين ونصف ومات — وبعده رجع كل حاجة زي ما كانت. إصلاح الفتنة ما بيبدأش بمعركة — بيبدأ بوقف آلة السب."
+      }
+    },
+    {
+      "id": "w23-07",
+      "layout": "L3",
+      "heading": "الكتلة ٢ · إزاي بينجح اللي تحت الأرض؟",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "Q27"
+        ]
+      ],
+      "matn": "الثورة ما بتنجحش بقوة الثوار لوحدهم، بتنجح بقوة الثوار × ضعف النظام.",
+      "sharh": "التنظيم: الدعاة — والمصادر بتقول اثنا عشر نقيبًا وسبعون داعيًا — اشتغلوا شبكة سرية متدرجة: الداعية ما يعرفش غير اللي فوقه وتحت على قد الحاجة، فاختراق الشبكة ما بيسقطهاش كلها. والشعار الذكي: «الرضا من آل محمد» — ما بيقولوش العباسيين، بيقولوا واحد من أهل بيت النبي ﷺ. والجغرافيا: مركز الدعوة خراسان — بعيدة عن عين دمشق — والقيادة السياسية في الحميمة قرية صغيرة بالأردن، وقيادة ميدانية: أبو مسلم الخراساني. والتوقيت: الثورة انفجرت ١٢٩–١٣٢ ومروان مشغول بحروب داخلية على تلات جبهات.",
+      "trap": {
+        "title": "الدرس الأسود: الثورة تأكل رجالها",
+        "text": "المنصور قتل أبا مسلم بيده سنة ١٣٧ — الرجل اللي عمل الدولة. وكلماته المروية: «والله ما على الأرض أحب إليَّ منك، ولا أبغض إليَّ منك — أما الحب فما صنعت بنا، أما البغض فما أخاف منك». والبعد جيلين: نكبة البرامكة ١٨٧هـ — بقوا دولة جوه الدولة. والمعادلة: شريك التأسيس بينتهي لما يبقى أقوى من المؤسس."
+      }
+    },
+    {
+      "id": "w23-08",
+      "layout": "L4",
+      "pattern": "P01",
+      "heading": "عوامل نجاح الثورة الخمسة",
+      "instruction": "رتّب العوامل كما وردت في النص — ثم «تحقق».",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "عوامل النجاح"
+        ]
+      ],
+      "data": {
+        "items": [
+          "التنظيم: شبكة سرية متدرجة — اختراقها ما بيسقطهاش كلها",
+          "الشعار: «الرضا من آل محمد» — أوسع جبهة على أرضية عاطفية مشتركة",
+          "الجغرافيا: خراسان بعيدة عن عين دمشق، والقيادة في الحميمة",
+          "القيادة الميدانية: أبو مسلم الخراساني ينظم خراسان في سنين",
+          "التوقيت: ١٢٩–١٣٢ ومروان مشغول على تلات جبهات"
+        ],
+        "done": "قوة الثوار × ضعف النظام — ومعركة الزاب كانت النتيجة الحتمية للمعادلة."
+      }
+    },
+    {
+      "id": "w23-09",
+      "layout": "L4",
+      "pattern": "P11",
+      "heading": "بغداد المدورة",
+      "instruction": "انقر كل محطة — العاصمة قرار حضاري مش عنوان بريدي.",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "بغداد ١٤٥–١٤٩هـ"
+        ]
+      ],
+      "data": {
+        "prompt": "من دمشق لبغداد: خمس محطات في قرار واحد",
+        "events": [
+          [
+            "قبل",
+            "العاصمة دمشق — دولة عربية بالأساس: العصبية عربية، والولاة عرب، والموالي تحت."
+          ],
+          [
+            "١٤٥–١٤٩هـ",
+            "المنصور يبني بغداد: عاصمة مدورة مصممة على الورق — أول مدينة مخططة كده في المنطقة. المركز: قصر الخليفة والمسجد، وحولهم دوائر الإدارة والحرس."
+          ],
+          [
+            "الموقع",
+            "على دجلة والفرات: مفترق طرق التجارة العالمية — من الصين للبحر المتوسط."
+          ],
+          [
+            "المعنى",
+            "من الشام العربي لفارس والشرق: إمبراطورية إسلامية متعددة الأعراق — الإدارة فارسية، والجيش خراساني، وقضية الموالي اتحلت هيكليًا."
+          ],
+          [
+            "الثمن",
+            "من إمامة قريبة لملك متعالٍ: الحجاب والوزراء والعرش المرتفع — والسلطة البعيدة عن الناس بتفقد حساسيتها لوجعهم."
+          ]
+        ]
+      }
+    },
+    {
+      "id": "w23-10",
+      "layout": "L3",
+      "heading": "الكتلة ٣ · وقفة أمانة مع المصدر",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "السياق والمصلحة"
+        ]
+      ],
+      "matn": "حتى في سنة المحو — التاريخ ساب صقرًا طايرًا.",
+      "sharh": "قصة بناء بغداد ومقتل أبي مسلم والأرقام التنظيمية — أغلبها من مصادر عباسية، يعني المعسكر المنتصر هو اللي كتب التفاصيل، وبطاقة و١٨ خانة «السياق والمصلحة» شغالة على طول الخط: مش معناها نرفض الروايات، معناها نوزنها. والصفحة المعتمة: العباسيون طاردوا فلول بني أمية تصفية ممنهجة — والتفاصيل مختلف فيها، بس الأصل ثابت: الدولة الجديدة كانت عايزة تمحو الأسرة القديمة محوًا. والاستثناء: عبد الرحمن بن معاوية — «صقر قريش» — عبر الفرات سباحة، وشق طريقه عبر شمال أفريقيا سنين، ووصل الأندلس، وأسس دولة عاشت قرنين ونص.",
+      "trap": {
+        "title": "إدانة الآلية",
+        "text": "ده مش تبريرًا للقتل — ده تشريح لآلية: وإدانة الآلية معناها إنك لما تبني مشروعًا، اسأل من يومه الأول: إزاي شركاء التأسيس هيتعاملوا بعد التأسيس؟ السؤال ده — مش العاطفة — هو اللي بيحمي المشاريع."
+      }
+    },
+    {
+      "id": "w23-11",
+      "layout": "L4",
+      "pattern": "P06",
+      "heading": "مهمة الأسبوع · تشريح سقوط",
+      "instruction": "اختار دولة (أموية أو بغداد ٦٥٦) واملأ المراحل الأربع بوقائعها.",
+      "sanad": [
+        [
+          "القفلة",
+          "مهمة الأسبوع"
+        ]
+      ],
+      "data": {
+        "key": "collapse",
+        "note": "النظام اللي بينتج إصلاح — هو اللي بيعمل قنوات قبل ما يحتاجها، مش بعدها.",
+        "fields": [
+          {
+            "key": "s",
+            "label": "الدولة المختارة",
+            "options": [
+              "أموية",
+              "بغداد ٦٥٦"
+            ]
+          },
+          {
+            "key": "m",
+            "label": "١ المظالم",
+            "ph": "مظلمة حقيقية بوقائعها — شكوى عامة"
+          },
+          {
+            "key": "c",
+            "label": "٢ القنوات",
+            "ph": "فين كانت الشورى؟ وإيه اللي اتقفل؟"
+          },
+          {
+            "key": "r",
+            "label": "٣ الإشاعة والتنظيم البديل",
+            "ph": "مين نظّم الغضب؟ وبأي شعار؟"
+          },
+          {
+            "key": "p",
+            "label": "٤ نقطة اللاعودة",
+            "ph": "المعركة/اللحظة اللي بعدها ما رجعش"
+          },
+          {
+            "key": "i",
+            "label": "إصلاح جُرِّب",
+            "ph": "مين حاول يصلح من فوق؟ وليه ما كملش؟"
+          }
+        ]
+      }
+    },
+    {
+      "id": "w23-12",
+      "layout": "L4",
+      "pattern": "P19",
+      "heading": "على الأطلس",
+      "sanad": [
+        [
+          "الأطلس",
+          "ali-163"
+        ]
+      ],
+      "data": {
+        "page": "ali-163",
+        "mode": "explore",
+        "prompt": "الثورة جت من خراسان ونزلت العراق: الكوفة بقت مقر القيادة، وبعدها اتبنت بغداد ١٤٥–١٤٩هـ. افتح المعالم الأربعة — ليه العراق أنسب من الشام لمقر دولة جديدة؟"
+      }
+    },
+    {
+      "id": "w23-13",
+      "layout": "L6",
+      "pattern": "P15",
+      "sanad": [
+        [
+          "الكتلتان ١ و٢",
+          "سؤال للدفتر"
+        ]
+      ],
+      "data": {
+        "q": "«شريك التأسيس بينتهي لما يبقى أقوى من المؤسس» — اكتب مشروعًا إنت شريك فيه، وسؤالًا واحدًا لازم يتكتب من دلوقتي: إزاي الشراكة تنتهي أو تتجدد من غير دم؟",
+        "key": "journal"
+      }
+    },
+    {
+      "id": "w23-14",
+      "layout": "L7",
+      "heading": "نلمّ الليلة في تلات سطور",
+      "lines": [
+        "الدول ما بتقعش فجأة — بتقع بمراحل و٢٠ الأربع: مظالم، قنوات مقفولة، تنظيم بديل، ونقطة لاعودة.",
+        "الثورة الناجحة درس تنظيم وتوقيت — وشعار أوسع جبهة: قوة الثوار × ضعف النظام.",
+        "بغداد قرار حضاري: من إمامة قريبة لملك متعالٍ — والثمن بعيد المدى."
+      ],
+      "replay": "في الأول خمّنت إن الدولة بتقع {{predict}}. النص بيقول: بانهيار من جوه — القبائل سابت الميدان، ومروان هرب لمصر واتقتل.",
+      "task": {
+        "مستكشف": "جدول المراحل الأربع لدولة واحدة، بلا وقائع مفصلة.",
+        "ممارس": "تشريح سقوط كامل: أربع مراحل بوقائعها + الإصلاح اللي جُرِّب وليه ما كملش.",
+        "متقدم": "التشريح + ورقة تقارن فيها بين السقوط الأموي وسقوط بغداد ٦٥٦: أي مرحلة اختلفت؟"
+      }
+    }
+  ]
+}
+</script>
+
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/atlas-course-bundle.js" onerror="this.remove()"></script>
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-runtime.js" onerror="this.remove()"></script>
+<script>
+(function () {
+  "use strict";
+  var W = JSON.parse(document.getElementById("week").textContent);
+  var T = window.Tasees, AR = T.AR, el = T.el, store = T.store;
+  var TRACKS = ["مستكشف", "ممارس", "متقدم"];
+  var track = store.get("track") || "ممارس";
+  var visible = function () { return W.screens.filter(function (s) { return !s.track || s.track === track; }); };
+  var i = 0;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sanad(list) { return (list || []).map(function (s) { var tc = /^≈|\d:\d/.test(s[1]); return '<span class="t-sanad"><b>' + esc(s[0]) + "</b>" + (tc ? '<span class="tc">' + esc(s[1]) + "</span>" : esc(s[1])) + "</span>"; }).join(""); }
+  function bricks(n) { var h = '<div class="wall" aria-label="طوب الوحدة">'; for (var k = 1; k <= 4; k++) { h += '<span class="t-brick' + (store.get("done") && k === ((W.week - 1) % 4) + 1 ? " is-laid" + (n ? " is-new" : "") : "") + '"></span>'; } return h + "</div>"; }
+
+  var LAYOUT = {
+    L1: function (s) {
+      return '<p class="t-eyebrow">' + esc(W.eyebrow) + '</p><h1 class="t-title">' + esc(W.title) + '</h1><svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>' +
+        '<p class="t-small" style="margin:0">' + esc(W.subtitle) + '</p><div class="q-box"><small>سؤال الأسبوع</small>' + esc(W.question) + "</div>" +
+        '<div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>' + TRACKS.map(function (t) { return '<button class="t-chip js-track" type="button" aria-pressed="' + (t === track) + '">' + t + "</button>"; }).join("") + "</div>" +
+        '<div class="audio">' + esc(W.audio) + '</div><p class="t-small" style="margin:0">نصوص مستوحاة من أسلوب المهندس أيمن عبد الرحيم في الشرح، كُتبت لأغراض تدريبية داخل مشروع تأسيس، وليست قولًا منسوبًا إليه.</p>';
+    },
+    L2: function (s) {
+      var art = s.art_src ? '<img src="' + esc(s.art_src) + '" alt="">' : "رسم الخطاف <code>" + esc(s.art) + "</code> لم يُولَّد بعد";
+      return '<div class="hook-art">' + art + '</div><p class="t-voice">' + esc(s.voice) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>";
+    },
+    L3: function (s) {
+      return '<h2 class="t-h2">' + esc(s.heading) + '</h2><p class="t-matn">' + esc(s.matn) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>" +
+        (s.trap ? '<p class="t-feedback t-feedback--bad"><strong>' + esc(s.trap.title) + "</strong>" + esc(s.trap.text) + "</p>" : "");
+    },
+    L4: function (s) { return '<h2 class="t-h2">' + esc(s.heading) + "</h2>" + (s.instruction ? '<p class="t-small" style="margin:0">' + esc(s.instruction) + "</p>" : "") + '<div class="demo" data-mount></div>'; },
+    L5: function (s) { return (s.classic ? '<p class="t-classic" style="margin:0">' + esc(s.classic) + "</p>" : "") + '<p class="t-matn">' + esc(s.matn) + '</p><div class="demo" data-mount></div>'; },
+    L6: function (s) { return '<div class="demo" data-mount></div>'; },
+    L7: function (s) {
+      var p = store.get("predict");
+      return '<h2 class="t-title" style="font-size:2.2rem">' + esc(s.heading) + '</h2><ol class="lines">' + s.lines.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ol>" +
+        (p ? '<p class="t-feedback">' + esc(s.replay).replace("{{predict}}", "<strong style=\"display:inline\">«" + esc(p) + "»</strong>") + "</p>" : "") +
+        '<p class="t-feedback t-feedback--ok"><strong>مهمة الأسبوع · ' + esc(track) + "</strong>" + esc(s.task[track]) + '</p><p class="t-small" style="margin:0">' + esc(W.next) + "</p>";
+    }
+  };
+
+  function show() {
+    var list = visible(); i = Math.max(0, Math.min(i, list.length - 1));
+    var s = list[i], last = s.layout === "L7";
+    if (last && !store.get("done")) { store.set("done", "1"); s._new = true; }
+    var stage = document.getElementById("stage");
+    stage.innerHTML = '<section class="t-screen" data-id="' + esc(s.id) + '" data-layout="' + s.layout + '"><aside class="t-margin">' + sanad(s.sanad) + (s.layout === "L1" || last ? bricks(last && s._new) : "") + '</aside><div class="t-main">' + LAYOUT[s.layout](s) + "</div></section>";
+    var mount = stage.querySelector("[data-mount]"); if (mount && s.pattern) T.render(mount, s.pattern, s.data);
+    stage.querySelectorAll(".js-track").forEach(function (b) { b.onclick = function () { track = b.textContent; store.set("track", track); show(); }; });
+    document.getElementById("wk-name").innerHTML = 'تأسيس <span style="font-family:var(--f-body);font-size:1rem;font-weight:500">· الأسبوع ' + AR(W.week) + "</span>";
+    document.getElementById("wk-pos").textContent = "الشاشة " + AR(i + 1) + " من " + AR(list.length);
+    document.getElementById("pencil").innerHTML = list.map(function (_, k) { return '<i class="' + (k <= i ? "on" : "") + '"></i>'; }).join("");
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").textContent = last ? "تم" : i === 0 ? "يلا بينا" : "التالي";
+    document.getElementById("next").disabled = last;
+  }
+  document.getElementById("prev").onclick = function () { i--; show(); window.scrollTo(0, 0); };
+  document.getElementById("next").onclick = function () { i++; show(); window.scrollTo(0, 0); };
+  document.addEventListener("keydown", function (e) { if (e.target.closest("input,textarea,select")) return; if (e.key === "ArrowLeft") { i++; show(); } if (e.key === "ArrowRight") { i--; show(); } });
+  show();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" role="img"
+     aria-label="منشور متخيَّل على شبكة عامة فيه أربع مصائد تفكير قابلة للنقر">
+<title>منشور متخيَّل — أربع مصائد في منشور واحد (الأسبوع ٣)</title>
+<style>
+  text{font-family:'IBM Plex Sans Arabic','Noto Sans Arabic',Tahoma,sans-serif}
+  .name{fill:#20242C;font-size:13.5px;font-weight:700}
+  .meta{fill:#4A5470;font-size:11.5px}
+  .line{fill:#20242C;font-size:13.5px}
+  .cap{fill:#4A5470;font-size:11.5px}
+  .rule{fill:none;stroke:#D7DDE8;stroke-width:1.4;stroke-linecap:round}
+  .hs{fill:none;cursor:pointer}
+  .hs:hover,.hs:focus-visible{fill:#C23B30;fill-opacity:.08;stroke:#C23B30;stroke-width:1.4}
+</style>
+<rect x="0" y="0" width="640" height="420" fill="#F7F8F3"/>
+<rect x="24" y="20" width="592" height="356" rx="8" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.6"/>
+<circle cx="576" cy="58" r="17" fill="none" stroke="#2440A0" stroke-width="1.6"/>
+<path d="M570,64 q6,-10 12,0" fill="none" stroke="#2440A0" stroke-width="1.3" stroke-linecap="round"/>
+<circle cx="576" cy="52" r="4" fill="none" stroke="#2440A0" stroke-width="1.3"/>
+<text class="name" x="548" y="54" text-anchor="end">صفحة عامة</text>
+<text class="meta" x="548" y="72" text-anchor="end">منشور متخيَّل · بلا تاريخ وبلا مصدر</text>
+<line class="rule" x1="44" y1="94" x2="596" y2="94"/>
+<text class="line" x="596" y="128" text-anchor="end">«أنا أكلت مرة في المطعم ده واتلبكت — يبقى المطعم وحش.»</text>
+<text class="line" x="596" y="180" text-anchor="end">«البلد اللي فيها بحر زي البلد دي — الاتنين فيهم بحر، يبقى نفس حال الناس.»</text>
+<text class="line" x="596" y="232" text-anchor="end">«والكل بيقول إن المطعم وحش، يبقى صح.»</text>
+<text class="line" x="596" y="284" text-anchor="end">«وأنا مش هشتكي لوحدي — الكل ساكت، وأنا كمان هسكت.»</text>
+<line class="rule" x1="44" y1="312" x2="596" y2="312"/>
+<text class="meta" x="596" y="334" text-anchor="end">مشاركات وتعليقات — ولا واحد فيهم سأل: مين قال؟ على إيه؟ فين الحد؟</text>
+<text class="meta" x="596" y="354" text-anchor="end">وفي الآخر: «الجروب قرر يقفل المطعم»</text>
+<text class="cap" x="320" y="400" text-anchor="middle">أربع مصائد في منشور واحد — اصطدهم كلهم</text>
+<rect class="hs" data-i="1" x="44" y="106" width="552" height="34" tabindex="0"/>
+<rect class="hs" data-i="2" x="44" y="158" width="552" height="34" tabindex="0"/>
+<rect class="hs" data-i="3" x="44" y="210" width="552" height="34" tabindex="0"/>
+<rect class="hs" data-i="4" x="44" y="262" width="552" height="34" tabindex="0"/>
+</svg>

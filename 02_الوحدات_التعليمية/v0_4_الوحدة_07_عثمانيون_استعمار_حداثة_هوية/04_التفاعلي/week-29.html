@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-phase="3" data-week="w29" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تأسيس · الأسبوع ٢٩</title>
+<!--
+  قالب الأسبوع — انسخ هذا الملف إلى <الوحدة>/04_التفاعلي/week-NN.html
+  ثم عدّل فقط: (1) data-phase و data-week في وسم <html>، (2) <title>، (3) كتلة JSON بالمعرّف "week".
+  data-root = المسار إلى جذر المستودع (حيث index.html منصة الأطالس): "../../" هنا، و"../../../" داخل <الوحدة>/04_التفاعلي/.
+  "source_sha" = بصمة نص الأسبوع الذي بنيت منه الصفحة (من source-lock.json). الدورة قيد التحرير:
+  tools/check_drift.py يقارنها بالنص الحالي ويخبرك إن صارت الصفحة قديمة.
+  لا تعدّل CSS ولا JS هنا؛ التعديل في tasees-tokens.css و tasees-runtime.js فقط (بقرار).
+  المحتوى أدناه مثال حقيقي من نص الأسبوع 1 (v0.4).
+-->
+<link rel="stylesheet" href="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-tokens.css">
+<style>
+body { margin: 0; min-height: 100%; }
+.wk { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 24px; }
+.wk .t-screen { border: 1.5px solid var(--ink); }
+.bar { max-width: var(--stage-max); margin: 0 auto 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: var(--t-tag); color: var(--ink-soft); }
+.bar strong { font-family: var(--f-display); font-size: 1.3rem; color: var(--ink); font-weight: 700; }
+.pencil { display: flex; gap: 3px; margin-inline-start: auto; } .pencil i { width: 16px; height: 4px; border-radius: 2px; background: var(--rule); } .pencil i.on { background: var(--phase); }
+.nav { max-width: var(--stage-max); margin: 12px auto 0; display: flex; justify-content: space-between; gap: 12px; }
+.q-box { border: 1.5px solid var(--phase); padding: 12px 16px; background: var(--card); max-width: 36em; }
+.q-box small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.audio { border: 1.5px dashed var(--ink-soft); padding: 10px 14px; max-width: 36em; font-size: var(--t-small); }
+.hook-art { border: 1.5px solid var(--rule); background: var(--card); aspect-ratio: 16 / 7; max-width: 100%; display: grid; place-items: center; color: var(--ink-soft); font-size: var(--t-small); overflow: hidden; }
+.hook-art img { width: 100%; height: 100%; object-fit: cover; }
+.lines { display: flex; flex-direction: column; gap: 8px; padding: 0; margin: 0; list-style: none; counter-reset: l; }
+.lines li { counter-increment: l; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 8px; }
+.lines li::before { content: counter(l, arabic-indic); font-family: var(--f-display); color: var(--phase); font-size: 1.4rem; line-height: 1.3; }
+.wall { display: flex; gap: 4px; } .wall .t-brick { width: 18px; height: 10px; }
+/* pattern parts used by tasees-runtime.js (same as screen-templates.html) */
+.demo { display: flex; flex-direction: column; gap: 10px; }
+.order { display: flex; flex-direction: column; gap: 6px; } .order .t-choice b { color: var(--ink-soft); min-width: 1.4em; }
+.bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bin { border: 1.5px dashed var(--ink-soft); padding: 8px; min-height: 64px; display: flex; flex-direction: column; gap: 6px; background: transparent; color: var(--ink); font: inherit; text-align: start; cursor: pointer; }
+.bin .item { font-size: var(--t-tag); border: 1px solid var(--rule); padding: 3px 6px; background: var(--card); }
+.bin .item.is-right { border-color: var(--pen-green); } .bin .item.is-wrong { border-color: var(--pen-red); }
+.pool { display: flex; flex-wrap: wrap; gap: 6px; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .pair > div { display: flex; flex-direction: column; gap: 6px; }
+.pair .t-choice[data-pairnum]::after { content: attr(data-pairnum); margin-inline-start: auto; font-weight: 700; color: var(--pen-green); }
+.house { width: 100%; max-width: 360px; height: auto; align-self: center; }
+.house .glow { fill: var(--pen-black); opacity: 0; transition: opacity .3s; } .house.is-lit .glow { opacity: .28; }
+.house .ink { stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.house .bulb { fill: var(--card); stroke: var(--ink); stroke-width: 2; } .house.is-lit .bulb { fill: var(--pen-black); }
+@media (prefers-reduced-motion: no-preference) { .house.is-flicker .bulb { animation: flick .9s steps(2) 2; } }
+@keyframes flick { 50% { fill: var(--pen-black); } }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain .t-kart { padding: 8px 12px; font-size: var(--t-small); cursor: pointer; } .chain .t-kart[aria-expanded="false"] span { visibility: hidden; }
+.chain .t-kart small { display: block; color: var(--ink-soft); font-size: var(--t-tag); }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.builder label { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-tag); color: var(--ink-soft); }
+.builder input, .builder select, .journal textarea { font: 400 1rem/1.6 var(--f-body); color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 6px 8px; width: 100%; box-sizing: border-box; }
+.portico { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 6px solid var(--phase); border-bottom: 4px solid var(--phase); padding: 8px 0; }
+.portico div { border-inline: 2px solid var(--phase); padding: 4px 6px; min-height: 92px; font-family: var(--f-display); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portico div small { display: block; font-family: var(--f-body); font-size: 11px; color: var(--ink-soft); }
+@media (max-width: 560px) { .builder { grid-template-columns: minmax(0, 1fr); } .bins { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body class="t-page">
+<div class="wk">
+  <div class="bar"><strong id="wk-name"></strong><span id="wk-pos"></span><div class="pencil" id="pencil" aria-hidden="true"></div></div>
+  <main id="stage" aria-live="polite"></main>
+  <div class="nav"><button class="t-btn t-btn--ghost" id="prev" type="button">السابق</button><button class="t-btn" id="next" type="button">التالي</button></div>
+</div>
+
+<!-- ======================= محتوى الأسبوع — هذا وحده ما يُعدَّل ======================= -->
+<script type="application/json" id="week">
+{
+  "week": 29,
+  "unit": 7,
+  "phase": 3,
+  "source_sha": "6f25d99d01520223",
+  "eyebrow": "المرحلة ٣ · عثمانيون واستعمار وحداثة — الوحدة ٧ · الأسبوع ٢٩",
+  "title": "الصدمة والتجربة",
+  "subtitle": "استعمار ودولة حديثة: من ١٧٩٨ لمحمد علي وعرابي",
+  "question": "إزاي نفرق احتلال واستعمار وهيمنة — وإزاي نمسك تجربة التحديث الأولى بميزان من غير ما نقع في أي خندق؟",
+  "audio": "الحلقة المسموعة ١٥–٢٠ د · قيد التسجيل بقارئ بشري (بوابة G13)",
+  "next": "الأسبوع الجاي: القرن اللي أعاد رسمنا — حدود وفلسطين وعلمانية",
+  "screens": [
+    {
+      "id": "w29-01",
+      "layout": "L1",
+      "sanad": [
+        [
+          "الوحدة ٧",
+          "الأسبوع ٢٩"
+        ]
+      ]
+    },
+    {
+      "id": "w29-02",
+      "layout": "L2",
+      "art": "tas-w29-hook-press",
+      "art_src": "../03_المواد_البصرية/hooks/tas-w29-hook-press.png",
+      "sanad": [
+        [
+          "الخطاف",
+          "الكتلة ٠"
+        ]
+      ],
+      "voice": "يوليو ١٧٩٨: أسطول فرنسي بيظهر قدام الإسكندرية — ومعاه حاجة غريبة على حملات زمان: مطبعة عربية، ومجمع علمي، وعلماء بيقيسوا مصر حجر حجر.",
+      "sharh": "الحملة قعدت تلات سنين بس — وخرجت. بس دي كانت صدمة: نقطة مفصلية للتاريخ المصري والعثماني والأوروبي مع بعض. ولأول مرة من قرون، العالم الإسلامي بيواجه أوروبا مش كمنافس تجاري ولا كجار عبر البحر — كقوة جاية بجيشها وعلمها ومطبعتها في عقر داره. والسؤال: إزاي نفرق احتلال واستعمار وهيمنة؟"
+    },
+    {
+      "id": "w29-03",
+      "layout": "L3",
+      "heading": "الكتلة ١ · الصدمة، وليه تقدم الغرب؟",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "≈ 06:00"
+        ]
+      ],
+      "matn": "«التفوق ما جاش من عبقرية عرق ولا من خطة واحدة — جا من تنافس + مؤسسات + تقنية».",
+      "sharh": "أوروبا المتشظية لعشرات الكيانات المتنافسة اضطرت تتسابق — والسباق ولد تقنية ومؤسسات: بنوك وشركات مساهمة وتأمين، ومطبعة من ١٤٥٠ رفعت معدلات القراءة، وحرب مستمرة صقلت الجيوش. وفي المقابل: عالم إسلامي بإمبراطوريات كبيرة مستقرة — الاستقرار اللي بقى جمودًا، وقنوات اتقفلت، وعصبية استُهلكت، وتعليم اتجمد على المتون من غير تجريب. في لحظة كان فيها عالمنا بيدير أزمة بأدوات قديمة.",
+      "trap": {
+        "title": "أي تفسير بيقول «خيانة» أو «مؤامرة» وبس",
+        "text": "بيوفر عليك التفكير ويخسرلك المستقبل. الخلاصة بلا تفسير واحد: تنافس + مؤسسات + تقنية."
+      }
+    },
+    {
+      "id": "w29-04",
+      "layout": "L3",
+      "heading": "ترسانة المصطلحات: احتلال · استعمار · هيمنة",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "مهارة ٢٨"
+        ]
+      ],
+      "matn": "«الاحتلال بياخد القرار — الاستعمار بيعيد صناعة الإنسان اللي هياخد القرار».",
+      "sharh": "الاحتلال: سيطرة عسكرية على أرض — جيش جاي بيحكم وبيفرض، وهدفه المباشر الأرض والموارد والقرار؛ وظاهرة قديمة قدم الحرب. والاستعمار: الكلمة في العربية الكلاسيكية من ع-م-ر، العمارة ضد الخراب ﴿وَاسْتَعْمَرَكُمْ فِيهَا﴾ — لكن المصطلح الحديث اتولد من colonialisme: مستوطنة. فلبس مصطلح أوروبي ثوب كلمة عربية، والثوب بيكذب على اللابس: لما تستورد كلمة، استورد معها تعريفها، مش حروفها بس. والاستعمار مش سيطرة عسكرية وبس — دي إعادة هيكلة مجتمع: اقتصاده يتحول لسوق ومورد للمركز، وتعليمه ولغته يتزحزحوا، ونخبته الجديدة تتخرج من مدارس المستعمر. والهيمنة: بلد مستقل بالاسم — علم ونشيد ومقعد في الأمم المتحدة — بس قراره الاقتصادي مربوط، وسلاحه من مصدر واحد، وعملته مثبتة على عملة أقوى.",
+      "trap": {
+        "title": "الفرق العملي اللي هتشوفه في آخر الأسبوع",
+        "text": "الاستعمار دخل مصر من دفتر الحسابات قبل ما يدخل بمدافعه: الهيمنة وصلت الأول، والاحتلال ١٨٨٢ جه يحميها."
+      }
+    },
+    {
+      "id": "w29-05",
+      "layout": "L4",
+      "pattern": "P02",
+      "heading": "احتلال / استعمار / هيمنة",
+      "instruction": "ضع كل بند في سلته — والتعريف إجرائي: إيه الآلية؟",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "Q50 · مهارة ٢٨"
+        ]
+      ],
+      "data": {
+        "bins": [
+          "احتلال — سيطرة عسكرية",
+          "استعمار — إعادة هيكلة",
+          "هيمنة — سيطرة من غير جندي"
+        ],
+        "items": [
+          [
+            "جيش جاي بيحكم وبيفرض — هدفه الأرض والموارد والقرار",
+            0
+          ],
+          [
+            "الإسكندر والرومان والمغول",
+            0
+          ],
+          [
+            "الأسطول البريطاني بيضرب الإسكندرية ١٨٨٢",
+            0
+          ],
+          [
+            "اقتصاد يتحول لسوق ومورد للمركز",
+            1
+          ],
+          [
+            "تعليم ولغة يتزحزحوا، ونخبة تتخرج من مدارس المستعمر",
+            1
+          ],
+          [
+            "كلمة «استعمار» مترجمة عن colonialisme — مستوطنة",
+            1
+          ],
+          [
+            "بلد مستقل بالاسم وقراره الاقتصادي مربوط",
+            2
+          ],
+          [
+            "سلاح من مصدر واحد، وعملة مثبتة على عملة أقوى",
+            2
+          ],
+          [
+            "«صندوق الدين»: مراقبان بريطاني وفرنسي على مالية مصر",
+            2
+          ]
+        ],
+        "done": "من غير ترسانة مصطلحات دقيقة، النقاش بيتحول لخناقة على الكلمات — وكل حدث جديد تعمله: حدد درجته."
+      }
+    },
+    {
+      "id": "w29-06",
+      "layout": "L4",
+      "pattern": "P18",
+      "heading": "السلم: الخبر على درجته",
+      "instruction": "حرّك المؤشر من أخف درجة لأتقلها — وشوف المثال اللي بيثبتها.",
+      "sanad": [
+        [
+          "الكتلة ١",
+          "مهارة ٢٨"
+        ]
+      ],
+      "data": {
+        "q": "أي درجة بتشوفها في الأخبار اللي حواليك النهارده؟",
+        "steps": [
+          [
+            "هيمنة",
+            "سيطرة من غير جندي في الشارع: قرار اقتصادي مربوط، وسلاح من مصدر واحد، وعملة مثبتة على عملة أقوى. مثال الأسبوع: «صندوق الدين» — مراقبان بريطاني وفرنسي على مالية مصر، والدولة مستقلة بالاسم."
+          ],
+          [
+            "استعمار",
+            "إعادة هيكلة مجتمع: الاقتصاد يتحول لسوق ومورد للمركز، والتعليم واللغة يتزحزحوا، والنخبة الجديدة تتخرج من مدارس المستعمر. هنا بيدخل الإنسان نفسه — مش الأرض بس."
+          ],
+          [
+            "احتلال",
+            "سيطرة عسكرية على أرض: يوليو ١٨٨٢ — الأسطول بيضرب الإسكندرية، والجيش بيدخل بعد تل الكبير في أسابيع. ظاهرة قديمة قدم الحرب — الإسكندر احتل، والرومان احتلوا، والمغول احتلوا."
+          ]
+        ]
+      }
+    },
+    {
+      "id": "w29-07",
+      "layout": "L3",
+      "heading": "الكتلة ٢ · محمد علي: التجربة الأولى بميزان الدولة",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "≈ 14:00"
+        ]
+      ],
+      "matn": "«محمد علي بنى دولة قوية ومجتمعًا ضعيفًا — ودي أخطر معادلة في التحديث كله».",
+      "sharh": "كفة الإنجاز: جيش وطني حديث بالتدريب والسلاح والتنظيم — أول جيش مصري نظامي من قرون؛ ومصانع: ترسانة بولاق ومصانع نسيج وسكر وذخيرة؛ ومدارس وبعثات: بعثة باريس اللي طلع منها رفاعة الطهطاوي اللي ترجم وكتب «تخليص الإبريز»؛ وترجمة: مدرسة الألسن؛ وزراعة وري: القناطر والترع والقطن طويل التيلة؛ ودولة مركزية فعالة لأول مرة من زمن المماليك. وكفة الصفحات السوداء: الاحتكار — الفلاح يزرع ما تختاره الدولة ويبيع بالسعر اللي تحدده؛ ومذبحة القلعة ١٨١١ — المماليك اتدعوا للاحتفال واتذبحوا في ممر القلعة: بالجملة وبالخدعة؛ وحروب توسعية استنزفت مصر: الجزيرة والسودان والشام؛ والتوريث — نفس سابقة و٢٢: مصر كلها بقت تركة.",
+      "trap": {
+        "title": "Q55 · ليه دي أخطر معادلة؟",
+        "text": "لما القوة كلها في يد الدولة والدولة بتضعف — القوة كلها بتتهادى للأجانب. والورثة استدانوا من بنوك أوروبا، و١٨٧٦ مصر بتعلن عجزها، والديون بقت وصاية."
+      }
+    },
+    {
+      "id": "w29-08",
+      "layout": "L4",
+      "pattern": "P12",
+      "heading": "ميزان محمد علي",
+      "instruction": "كفتان على وقائع — وبعدها جملة حكم وصف بلا وسم.",
+      "sanad": [
+        [
+          "الكتلة ٢",
+          "Q54 · مهارة ٢١"
+        ]
+      ],
+      "data": {
+        "pans": [
+          "كفة الإنجاز",
+          "كفة الصفحات السوداء"
+        ],
+        "items": [
+          [
+            "جيش وطني نظامي حديث — أول جيش مصري من قرون",
+            0
+          ],
+          [
+            "ترسانة بولاق ومصانع النسيج والسكر والذخيرة",
+            0
+          ],
+          [
+            "بعثة باريس ورفاعة الطهطاوي و«تخليص الإبريز»",
+            0
+          ],
+          [
+            "مدرسة الألسن والترجمة",
+            0
+          ],
+          [
+            "القناطر والترع والقطن طويل التيلة",
+            0
+          ],
+          [
+            "الاحتكار: الفلاح يزرع ما تختاره الدولة ويبيع بسعرها",
+            1
+          ],
+          [
+            "مذبحة القلعة ١٨١١ — بالجملة وبالخدعة",
+            1
+          ],
+          [
+            "حروب الجزيرة والسودان والشام استنزفت مصر",
+            1
+          ],
+          [
+            "التوريث: مصر بقت تركة عائلية",
+            1
+          ]
+        ],
+        "done": "مذبحة القلعة جريمة بتوصف بحجمها: الشركاء اتقتلوا بالجملة وبالخدعة — والحكم النهائي وصف بلا وسم، لا تلميع ولا شطب."
+      }
+    },
+    {
+      "id": "w29-09",
+      "layout": "L3",
+      "heading": "الكتلة ٣ · عبد الحميد وعرابي: صورتان مشوهتان",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "≈ 20:00"
+        ]
+      ],
+      "matn": "«عبد الحميد «الخائن اللي باع مصر للإنجليز»، وعرابي «البطل النقي اللي خانه الجميع» — الصورتين مريحة وكاذبة».",
+      "sharh": "الوقائع: ١٨٨١ — ضباط وجنود الجيش المصري، ومعاهم أعيان وعلماء، بيثوروا على حكم الخديوي توفيق والتدخل الأوروبي: «مصر للمصريين» — مطلبها دستور ومجلس نواب وجيش وطني، وده اللي بيخليها مهمة. وعرابي — فلاح ابن شيخ قرية وصل لرتبة أميرالاي — بيقول قدام الخديوي: «لقد خلقنا الله أحرارًا، ولم يخلقنا تراثًا أو عقارًا». ويوليو ١٨٨٢: الأسطول البريطاني بيضرب الإسكندرية وبيحتل مصر بعد تل الكبير في أسابيع. وأما عبد الحميد: فرمان «إعلان عرابي عاصيًا» في عز الأزمة — والفحص بتلات طبقات: الوقائع: ضغط بريطاني مباشر ودولة مفلسة ومحاصرة ومصر اسمًا ولاية عثمانية؛ القرار: المناورة بين المفاوضات والفرمان، ومنهربش من الحكم: مناورة بتسيب حركة وطنية في مواجهة مدافع وحدها — غلطتها على صاحبها؛ الأثر: احتلال طويل النفس من ١٨٨٢ لجلاء ١٩٥٦.",
+      "trap": {
+        "title": "عبد الحميد نفسه — وملف فلسطين",
+        "text": "الجامعة الإسلامية وسكة حديد الحجاز بتمويل من تبرعات المسلمين مشروع وحدة ملموس مش شعار. والضغوط الصهيونية المبكرة بعد عرض هرتزل: رفض عثماني متكرر موثق — والكلمة المشهورة «لا أبيع شبرًا من أرض الخلافة» ببطاقة الرواية: المعنى ثابت بسياسات موثقة، والحرف نفسه يُدقق."
+      }
+    },
+    {
+      "id": "w29-10",
+      "layout": "L3",
+      "heading": "سؤال Q59 · الوثائق: إزاي ندرس الاستعمار؟",
+      "sanad": [
+        [
+          "الكتلة ٣",
+          "Q59"
+        ]
+      ],
+      "matn": "«كل وثيقة لها هوى — أرشيف المستعمر بيكتب بلغة المستعمر».",
+      "sharh": "الخبر الحلو: مصادر غزيرة — أرشيفات القوى الاستعمارية نفسها اتفتحت بعد عقود، وأرشيفاتنا: سجلات المحاكم الشرعية، والفتاوى — فتاوى الجهاد ضد الاحتلال في الجزائر وليبيا ومصر، والشعر والصحف والمذكرات؛ والجبرتي في مصر شاهد أول على ١٧٩٨. والخبر الوحش: كل وثيقة لها هوى. والمنهج: قراية الوثيقتين مع بعض — وثيقتهم ووثيقتنا — وبطاقة الرواية على كل واحدة.",
+      "trap": {
+        "title": "مسماران اشتغلوا معاك",
+        "text": "«دولة بميزانها» على محمد علي، و«بطل بلا تلميع» على عرابي — وعبد الحميد بالاثنين معًا."
+      }
+    },
+    {
+      "id": "w29-11",
+      "layout": "L4",
+      "pattern": "P06",
+      "heading": "مهمة الأسبوع · درّج تلات أخبار",
+      "instruction": "خبر اقتصادي، وخبر سياسي، وخبر تعليمي — من حياتك اليومية، بلا أسماء دول.",
+      "sanad": [
+        [
+          "القفلة",
+          "مهارة ٢٨"
+        ]
+      ],
+      "data": {
+        "key": "grades",
+        "note": "صنّف الآلية مش الدولة: إيه اللي بيتغير — الأرض والقرار، ولا هيكل المجتمع، ولا القرار من غير جندي؟",
+        "fields": [
+          {
+            "key": "e",
+            "label": "خبر اقتصادي",
+            "ph": "الخبر في سطر — من غير أسماء دول"
+          },
+          {
+            "key": "ed",
+            "label": "درجته",
+            "options": [
+              "احتلال",
+              "استعمار",
+              "هيمنة"
+            ]
+          },
+          {
+            "key": "p",
+            "label": "خبر سياسي",
+            "ph": "الخبر في سطر — من غير أسماء دول"
+          },
+          {
+            "key": "pd",
+            "label": "درجته",
+            "options": [
+              "احتلال",
+              "استعمار",
+              "هيمنة"
+            ]
+          },
+          {
+            "key": "s",
+            "label": "خبر تعليمي",
+            "ph": "الخبر في سطر — من غير أسماء دول"
+          },
+          {
+            "key": "sd",
+            "label": "درجته",
+            "options": [
+              "احتلال",
+              "استعمار",
+              "هيمنة"
+            ]
+          },
+          {
+            "key": "w",
+            "label": "تعليل واحد",
+            "ph": "سطر للتعليل: الآلية إيه بالظبط؟"
+          }
+        ]
+      }
+    },
+    {
+      "id": "w29-12",
+      "layout": "L6",
+      "pattern": "P15",
+      "sanad": [
+        [
+          "الكتلتان ٢ و٣",
+          "سؤال للدفتر"
+        ]
+      ],
+      "data": {
+        "q": "«دولة قوية ومجتمع ضعيف» — اكتب مؤسسة أو مشروعًا إنت جزء منه: القوة فيه مركزية ولا موزعة؟ وإيه أول أداة لازم تُبنى في المجتمع نفسه؟",
+        "key": "journal"
+      }
+    },
+    {
+      "id": "w29-13",
+      "layout": "L7",
+      "heading": "نلمّ الليلة في تلات سطور",
+      "lines": [
+        "ترسانة المصطلحات: احتلال (عسكري) · استعمار (إعادة هيكلة) · هيمنة (سيطرة من غير جندي) — وكل حدث جديد حدد درجته.",
+        "محمد علي: دولة قوية ومجتمع ضعيف — والديون دخلت مصر من دفتر الحسابات قبل المدافع.",
+        "عبد الحميد وعرابي: صورتان كاريكاتير — والفحص بتلات طبقات، وبطاقة الرواية على كل وثيقة."
+      ],
+      "replay": "سؤال الأسبوع مكان {{predict}} — كان: إزاي نفرق احتلال واستعمار وهيمنة؟ والجواب: بالآلية، مش بالاسم — والهيمنة وصلت الأول والاحتلال جه يحميها.",
+      "task": {
+        "مستكشف": "تلات أخبار مصنفة بدرجة واحدة لكل خبر — بلا تعليل مطوّل.",
+        "ممارس": "التلاتة بدرجاتهم + تعليل سطر لكل خبر؛ وميزان محمد علي بجملة حكم.",
+        "متقدم": "التصنيف + ورقة مقارنة: نفس الخبر في أرشيف المستعمر وأرشيفنا — إيه اللي بيتغير في الصياغة؟"
+      }
+    }
+  ]
+}
+</script>
+
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/atlas-course-bundle.js" onerror="this.remove()"></script>
+<script src="../../../07_الهوية_البصرية_والتفاعل/templates/tasees-runtime.js" onerror="this.remove()"></script>
+<script>
+(function () {
+  "use strict";
+  var W = JSON.parse(document.getElementById("week").textContent);
+  var T = window.Tasees, AR = T.AR, el = T.el, store = T.store;
+  var TRACKS = ["مستكشف", "ممارس", "متقدم"];
+  var track = store.get("track") || "ممارس";
+  var visible = function () { return W.screens.filter(function (s) { return !s.track || s.track === track; }); };
+  var i = 0;
+
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sanad(list) { return (list || []).map(function (s) { var tc = /^≈|\d:\d/.test(s[1]); return '<span class="t-sanad"><b>' + esc(s[0]) + "</b>" + (tc ? '<span class="tc">' + esc(s[1]) + "</span>" : esc(s[1])) + "</span>"; }).join(""); }
+  function bricks(n) { var h = '<div class="wall" aria-label="طوب الوحدة">'; for (var k = 1; k <= 4; k++) { h += '<span class="t-brick' + (store.get("done") && k === ((W.week - 1) % 4) + 1 ? " is-laid" + (n ? " is-new" : "") : "") + '"></span>'; } return h + "</div>"; }
+
+  var LAYOUT = {
+    L1: function (s) {
+      return '<p class="t-eyebrow">' + esc(W.eyebrow) + '</p><h1 class="t-title">' + esc(W.title) + '</h1><svg class="t-underline" viewBox="0 0 320 12" aria-hidden="true"><path d="M4 8 C60 2 120 11 180 6 S280 3 316 7"/></svg>' +
+        '<p class="t-small" style="margin:0">' + esc(W.subtitle) + '</p><div class="q-box"><small>سؤال الأسبوع</small>' + esc(W.question) + "</div>" +
+        '<div class="row" role="group" aria-label="المسار"><span class="t-small">مسارك:</span>' + TRACKS.map(function (t) { return '<button class="t-chip js-track" type="button" aria-pressed="' + (t === track) + '">' + t + "</button>"; }).join("") + "</div>" +
+        '<div class="audio">' + esc(W.audio) + '</div><p class="t-small" style="margin:0">نصوص مستوحاة من أسلوب المهندس أيمن عبد الرحيم في الشرح، كُتبت لأغراض تدريبية داخل مشروع تأسيس، وليست قولًا منسوبًا إليه.</p>';
+    },
+    L2: function (s) {
+      var art = s.art_src ? '<img src="' + esc(s.art_src) + '" alt="">' : "رسم الخطاف <code>" + esc(s.art) + "</code> لم يُولَّد بعد";
+      return '<div class="hook-art">' + art + '</div><p class="t-voice">' + esc(s.voice) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>";
+    },
+    L3: function (s) {
+      return '<h2 class="t-h2">' + esc(s.heading) + '</h2><p class="t-matn">' + esc(s.matn) + '</p><p class="t-sharh">' + esc(s.sharh) + "</p>" +
+        (s.trap ? '<p class="t-feedback t-feedback--bad"><strong>' + esc(s.trap.title) + "</strong>" + esc(s.trap.text) + "</p>" : "");
+    },
+    L4: function (s) { return '<h2 class="t-h2">' + esc(s.heading) + "</h2>" + (s.instruction ? '<p class="t-small" style="margin:0">' + esc(s.instruction) + "</p>" : "") + '<div class="demo" data-mount></div>'; },
+    L5: function (s) { return (s.classic ? '<p class="t-classic" style="margin:0">' + esc(s.classic) + "</p>" : "") + '<p class="t-matn">' + esc(s.matn) + '</p><div class="demo" data-mount></div>'; },
+    L6: function (s) { return '<div class="demo" data-mount></div>'; },
+    L7: function (s) {
+      var p = store.get("predict");
+      return '<h2 class="t-title" style="font-size:2.2rem">' + esc(s.heading) + '</h2><ol class="lines">' + s.lines.map(function (l) { return "<li>" + esc(l) + "</li>"; }).join("") + "</ol>" +
+        (p ? '<p class="t-feedback">' + esc(s.replay).replace("{{predict}}", "<strong style=\"display:inline\">«" + esc(p) + "»</strong>") + "</p>" : "") +
+        '<p class="t-feedback t-feedback--ok"><strong>مهمة الأسبوع · ' + esc(track) + "</strong>" + esc(s.task[track]) + '</p><p class="t-small" style="margin:0">' + esc(W.next) + "</p>";
+    }
+  };
+
+  function show() {
+    var list = visible(); i = Math.max(0, Math.min(i, list.length - 1));
+    var s = list[i], last = s.layout === "L7";
+    if (last && !store.get("done")) { store.set("done", "1"); s._new = true; }
+    var stage = document.getElementById("stage");
+    stage.innerHTML = '<section class="t-screen" data-id="' + esc(s.id) + '" data-layout="' + s.layout + '"><aside class="t-margin">' + sanad(s.sanad) + (s.layout === "L1" || last ? bricks(last && s._new) : "") + '</aside><div class="t-main">' + LAYOUT[s.layout](s) + "</div></section>";
+    var mount = stage.querySelector("[data-mount]"); if (mount && s.pattern) T.render(mount, s.pattern, s.data);
+    stage.querySelectorAll(".js-track").forEach(function (b) { b.onclick = function () { track = b.textContent; store.set("track", track); show(); }; });
+    document.getElementById("wk-name").innerHTML = 'تأسيس <span style="font-family:var(--f-body);font-size:1rem;font-weight:500">· الأسبوع ' + AR(W.week) + "</span>";
+    document.getElementById("wk-pos").textContent = "الشاشة " + AR(i + 1) + " من " + AR(list.length);
+    document.getElementById("pencil").innerHTML = list.map(function (_, k) { return '<i class="' + (k <= i ? "on" : "") + '"></i>'; }).join("");
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").textContent = last ? "تم" : i === 0 ? "يلا بينا" : "التالي";
+    document.getElementById("next").disabled = last;
+  }
+  document.getElementById("prev").onclick = function () { i--; show(); window.scrollTo(0, 0); };
+  document.getElementById("next").onclick = function () { i++; show(); window.scrollTo(0, 0); };
+  document.addEventListener("keydown", function (e) { if (e.target.closest("input,textarea,select")) return; if (e.key === "ArrowLeft") { i++; show(); } if (e.key === "ArrowRight") { i--; show(); } });
+  show();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Stages 1–2 (load, chunk, keyword search)
+pyyaml>=6.0
+
+# Stage 3 (search by meaning) — install when you get there
+numpy>=1.26
+# sentence-transformers>=3.0
+
+# Stage 4 (generate answers) — pick one
+# anthropic>=0.40          # Claude API; or use Ollama locally, no package needed
+
+# Later: HTTP API
+# fastapi>=0.110
+# uvicorn>=0.29
+
+# Tests
+# pytest>=8.0              # optional; `python -m unittest` works without it

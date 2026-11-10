@@ -1,10 +1,10 @@
 {
- "slug": "rihlat-alyaqeen",
- "title": "رحلة اليقين",
- "status": "لم تبدأ",
- "audience": "",
- "guiding_question": "",
- "phase": 1,
- "voice": "owner-decision",
- "lessons": []
+  "slug": "rihlat-alyaqeen",
+  "title": "رحلة اليقين",
+  "status": "لم تبدأ — معتمد من المالك",
+  "audience": "",
+  "guiding_question": "",
+  "phase": 1,
+  "voice": "owner-decision",
+  "lessons": []
 }
