@@ -1,0 +1,12 @@
+{
+  "description": "Exploratory known-source retrieval probes, manually selected from the preliminary foundation-course inventory. They measure recovery of one selected location, not answer quality or exhaustive relevance.",
+  "limit": 5,
+  "cases": [
+    {"query": "الافكار التحسين الاداري", "source_id": "drive-9b6f5de831f98b66eda9", "line": 14, "quote": "ما علاقة الافكار والجانب المعرفي بالتحسين الاداري"},
+    {"query": "اللغة والاحتلال العقلي", "source_id": "drive-4bb3654e2b9ee8a371ed", "line": 399, "quote": "نزرية الاستعمار اللغة والتغيير اللغة والاحتلال العقلي"},
+    {"query": "الخريطة العلوم دي محاضرة", "source_id": "drive-3a43a441437be5d3dd9d", "line": 106, "quote": "الخريطة العلوم دي محاضرة"},
+    {"query": "الوحي والتاريخ والتدافع", "source_id": "drive-9eef2a025622260c1e3d", "line": 1, "quote": "الوحي والتاريخ والتدافع"},
+    {"query": "المؤسسات الاهلية", "source_id": "drive-700b6fe9401850b31330", "line": 2, "quote": "المؤسسات الاهلية"},
+    {"query": "الخوارج التاريخية", "source_id": "drive-dcbe7f001ff6bd27a531", "line": 89, "quote": "الخوارج التاريخية"}
+  ]
+}

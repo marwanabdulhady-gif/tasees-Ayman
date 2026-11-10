@@ -9,10 +9,12 @@ Reads <slug>/00_خريطة_الدورة.json and playlists.json. Fails (exit 1) 
   · an idea cites an episode outside its lesson, or a citation cannot be found:
       timestamp "mm:ss"  → the episode must have a stamp within ±90 s
       paragraph "¶N"     → N must exist; and a "quote", if given, must appear in that paragraph
+      line "L12" or "L12-L14" → original lines, exact quote and full source_sha256 required
       a "quote" is always searched in the episode text (spelling-normalised)
   · an atlas pick names a page, hotspot or comparison that the atlas manifest does not have
   · an episode changed since the course was built from it ("built_from" fingerprints)
 """
+import hashlib
 import json
 import re
 import sys
@@ -28,6 +30,26 @@ PATTERNS = {f"P{i:02d}" for i in range(1, 21)}
 
 def squash(t):
     return re.sub(r"[^\w]+", " ", norm(t)).strip()
+
+
+def check_line_citation(data, cite, quote, source_sha256):
+    """Validate a literal quote against 1-based lines of the exact source bytes."""
+    match = re.fullmatch(r"L([1-9]\d*)(?:-L([1-9]\d*))?", cite)
+    if not match:
+        raise ValueError("invalid line citation")
+    if not isinstance(source_sha256, str) or not re.fullmatch(r"[0-9a-f]{64}", source_sha256):
+        raise ValueError("line citation requires a full lowercase source_sha256")
+    if hashlib.sha256(data).hexdigest() != source_sha256:
+        raise ValueError("source_sha256 does not match source bytes")
+    if not isinstance(quote, str) or not 3 <= len(quote.split()) <= 30:
+        raise ValueError("line citation requires an exact quote of 3–30 words")
+    lines = data.decode("utf-8").splitlines(keepends=True)
+    start = int(match.group(1))
+    end = int(match.group(2) or start)
+    if start > end or end > len(lines) or end - start + 1 > 10:
+        raise ValueError("invalid or overlong source line range")
+    if quote not in "".join(lines[start - 1:end]):
+        raise ValueError("exact quote not found in cited source lines")
 
 
 def main(argv):
@@ -90,6 +112,14 @@ def main(argv):
                     fails.append(f"{where}: episode {ep} has no timestamps — cite ¶N instead")
                 elif not any(abs(secs(s) - secs(cite)) <= 90 for s in TS.findall(body)):
                     fails.append(f"{where}: no stamp near {cite} in episode {ep}")
+            elif re.fullmatch(r"L[1-9]\d*(?:-L[1-9]\d*)?", cite):
+                try:
+                    data = (ROOT / eps[ep]["file"]).read_bytes()
+                    check_line_citation(data, cite, quote, idea.get("source_sha256"))
+                    if hashlib.sha256(data).hexdigest()[:16] != eps[ep]["sha"]:
+                        raise ValueError("episode registry is stale; rebuild it before checking")
+                except (ValueError, OSError, UnicodeDecodeError) as exc:
+                    fails.append(f"{where}: {exc}")
             elif re.fullmatch(r"¶\d+", cite):
                 paras = [p for p in re.split(r"\n\s*\n", body) if p.strip() and not p.strip().startswith("---")]
                 k = int(cite[1:])
@@ -98,8 +128,8 @@ def main(argv):
                 elif quote and squash(quote) not in squash(paras[k - 1]):
                     fails.append(f"{where}: quote not found in {cite} of episode {ep}")
             else:
-                fails.append(f"{where}: cite «{cite}» is neither mm:ss nor ¶N")
-            if quote and squash(quote) not in squash(body):
+                fails.append(f"{where}: cite «{cite}» is neither mm:ss, ¶N, nor L<n>[-L<n>]")
+            if quote and not cite.startswith("L") and squash(quote) not in squash(body):
                 fails.append(f"{where}: quote not found anywhere in episode {ep}")
         for pick in l.get("atlas", []):
             if manifest is None:

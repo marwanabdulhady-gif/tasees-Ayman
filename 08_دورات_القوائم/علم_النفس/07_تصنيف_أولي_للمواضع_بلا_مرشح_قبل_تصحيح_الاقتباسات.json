@@ -1,0 +1,496 @@
+{
+  "queue_sha256": "5fd71bd36baded8a8f7836a5c6687542a56cd1dcb77ef85f74615ab725a879d0",
+  "scope": "مراجعة يدوية أولية لتصنيف مواضع لم يظهر لها مرشح آلي في أي نسخة. تصنيف السياق لا يثبت المتحدث أو دقة الدرس أو التسجيل، ولا يراجع بقية المواضع.",
+  "items": [
+    {
+      "lesson": "01_ما_علم_النفس_وكيف_نقرأه.md",
+      "lesson_sha256": "97942f5a98456ec6a03d7743f2b71ea23dcc1674ee84e9d92315d1b2cbd62921",
+      "line": 11,
+      "quoted_text": "مبدأ الشك المنهجي",
+      "category": "term"
+    },
+    {
+      "lesson": "01_ما_علم_النفس_وكيف_نقرأه.md",
+      "lesson_sha256": "97942f5a98456ec6a03d7743f2b71ea23dcc1674ee84e9d92315d1b2cbd62921",
+      "line": 20,
+      "quoted_text": "علم غربي... لا أساس شرعي مباشر... في التطبيق المعاصر.",
+      "category": "quote"
+    },
+    {
+      "lesson": "01_ما_علم_النفس_وكيف_نقرأه.md",
+      "lesson_sha256": "97942f5a98456ec6a03d7743f2b71ea23dcc1674ee84e9d92315d1b2cbd62921",
+      "line": 21,
+      "quoted_text": "الدوائر الأربع",
+      "category": "term"
+    },
+    {
+      "lesson": "01_ما_علم_النفس_وكيف_نقرأه.md",
+      "lesson_sha256": "97942f5a98456ec6a03d7743f2b71ea23dcc1674ee84e9d92315d1b2cbd62921",
+      "line": 22,
+      "quoted_text": "كل العلوم شرعية بشكل مباشر أو غير مباشر.",
+      "category": "quote"
+    },
+    {
+      "lesson": "01_ما_علم_النفس_وكيف_نقرأه.md",
+      "lesson_sha256": "97942f5a98456ec6a03d7743f2b71ea23dcc1674ee84e9d92315d1b2cbd62921",
+      "line": 32,
+      "quoted_text": "التشابه المهول بين الأفكار مع التباعد الجغرافي",
+      "category": "quote"
+    },
+    {
+      "lesson": "01_ما_علم_النفس_وكيف_نقرأه.md",
+      "lesson_sha256": "97942f5a98456ec6a03d7743f2b71ea23dcc1674ee84e9d92315d1b2cbd62921",
+      "line": 35,
+      "quoted_text": "كل واحد يخاف... التعريفات والمفاهيم والأبحاث أجراها غير مسلمين على غير مسلمين.",
+      "category": "quote"
+    },
+    {
+      "lesson": "01_ما_علم_النفس_وكيف_نقرأه.md",
+      "lesson_sha256": "97942f5a98456ec6a03d7743f2b71ea23dcc1674ee84e9d92315d1b2cbd62921",
+      "line": 36,
+      "quoted_text": "مش هنقبل لا شكًّا... شك منهجي.",
+      "category": "quote"
+    },
+    {
+      "lesson": "01_ما_علم_النفس_وكيف_نقرأه.md",
+      "lesson_sha256": "97942f5a98456ec6a03d7743f2b71ea23dcc1674ee84e9d92315d1b2cbd62921",
+      "line": 49,
+      "quoted_text": "لماذا يُفرِق المتحدث بين 'علم إسلامي' و'علم غربي'؟ وهل هذا التمييز منهجي أم عقدي؟",
+      "category": "activity"
+    },
+    {
+      "lesson": "01_ما_علم_النفس_وكيف_نقرأه.md",
+      "lesson_sha256": "97942f5a98456ec6a03d7743f2b71ea23dcc1674ee84e9d92315d1b2cbd62921",
+      "line": 52,
+      "quoted_text": "١٨٧٩",
+      "category": "reference"
+    },
+    {
+      "lesson": "01_ما_علم_النفس_وكيف_نقرأه.md",
+      "lesson_sha256": "97942f5a98456ec6a03d7743f2b71ea23dcc1674ee84e9d92315d1b2cbd62921",
+      "line": 53,
+      "quoted_text": "١٠٠ سنة",
+      "category": "reference"
+    },
+    {
+      "lesson": "02_كيف_نميز_الدليل_من_التفسير.md",
+      "lesson_sha256": "c9caaccbd331fc01e593c40fdd4aa6e092c6db943a2ce928c54816a9d01e8d8d",
+      "line": 9,
+      "quoted_text": "مبدأ اللايقين",
+      "category": "term"
+    },
+    {
+      "lesson": "02_كيف_نميز_الدليل_من_التفسير.md",
+      "lesson_sha256": "c9caaccbd331fc01e593c40fdd4aa6e092c6db943a2ce928c54816a9d01e8d8d",
+      "line": 11,
+      "quoted_text": "أثر المراقب",
+      "category": "term"
+    },
+    {
+      "lesson": "02_كيف_نميز_الدليل_من_التفسير.md",
+      "lesson_sha256": "c9caaccbd331fc01e593c40fdd4aa6e092c6db943a2ce928c54816a9d01e8d8d",
+      "line": 19,
+      "quoted_text": "الضوء: موجة أم جسيم؟",
+      "category": "activity"
+    },
+    {
+      "lesson": "02_كيف_نميز_الدليل_من_التفسير.md",
+      "lesson_sha256": "c9caaccbd331fc01e593c40fdd4aa6e092c6db943a2ce928c54816a9d01e8d8d",
+      "line": 24,
+      "quoted_text": "لما تراقب حاجات حية، سلوكها بيتغير.",
+      "category": "scientific"
+    },
+    {
+      "lesson": "02_كيف_نميز_الدليل_من_التفسير.md",
+      "lesson_sha256": "c9caaccbd331fc01e593c40fdd4aa6e092c6db943a2ce928c54816a9d01e8d8d",
+      "line": 27,
+      "quoted_text": "المنطق والرياضيات والفيزياء كانوا ماشيين كتف بكتف... لما حصل خلل في الفيزياء... المنطق ممكن يبقى ترو بنسبة ٧٠٪.",
+      "category": "scientific"
+    },
+    {
+      "lesson": "02_كيف_نميز_الدليل_من_التفسير.md",
+      "lesson_sha256": "c9caaccbd331fc01e593c40fdd4aa6e092c6db943a2ce928c54816a9d01e8d8d",
+      "line": 34,
+      "quoted_text": "الطفل يبكي",
+      "category": "activity"
+    },
+    {
+      "lesson": "02_كيف_نميز_الدليل_من_التفسير.md",
+      "lesson_sha256": "c9caaccbd331fc01e593c40fdd4aa6e092c6db943a2ce928c54816a9d01e8d8d",
+      "line": 35,
+      "quoted_text": "يبكي ٣ مرات يوميًا",
+      "category": "activity"
+    },
+    {
+      "lesson": "02_كيف_نميز_الدليل_من_التفسير.md",
+      "lesson_sha256": "c9caaccbd331fc01e593c40fdd4aa6e092c6db943a2ce928c54816a9d01e8d8d",
+      "line": 36,
+      "quoted_text": "يبكي لأنه قلق",
+      "category": "activity"
+    },
+    {
+      "lesson": "02_كيف_نميز_الدليل_من_التفسير.md",
+      "lesson_sha256": "c9caaccbd331fc01e593c40fdd4aa6e092c6db943a2ce928c54816a9d01e8d8d",
+      "line": 37,
+      "quoted_text": "نعلّمه التنظيم الانفعالي",
+      "category": "activity"
+    },
+    {
+      "lesson": "02_كيف_نميز_الدليل_من_التفسير.md",
+      "lesson_sha256": "c9caaccbd331fc01e593c40fdd4aa6e092c6db943a2ce928c54816a9d01e8d8d",
+      "line": 40,
+      "quoted_text": "لو 'القياس يغيّر الشيء الذي يُقاس' — فماذا يعني هذا لتشخيص اضطراب نفسي؟",
+      "category": "activity"
+    },
+    {
+      "lesson": "02_كيف_نميز_الدليل_من_التفسير.md",
+      "lesson_sha256": "c9caaccbd331fc01e593c40fdd4aa6e092c6db943a2ce928c54816a9d01e8d8d",
+      "line": 43,
+      "quoted_text": "فلسفة العلم في القرن ٢٠",
+      "category": "reference"
+    },
+    {
+      "lesson": "03_ما_مجالات_علم_النفس.md",
+      "lesson_sha256": "38f8dadfb7111fdc32b6c567194ccd27f764333c11d2782aebc59b3693f869cc",
+      "line": 11,
+      "quoted_text": "تزكية النفس",
+      "category": "term"
+    },
+    {
+      "lesson": "03_ما_مجالات_علم_النفس.md",
+      "lesson_sha256": "38f8dadfb7111fdc32b6c567194ccd27f764333c11d2782aebc59b3693f869cc",
+      "line": 21,
+      "quoted_text": "تصوف نفسي",
+      "category": "reference"
+    },
+    {
+      "lesson": "03_ما_مجالات_علم_النفس.md",
+      "lesson_sha256": "38f8dadfb7111fdc32b6c567194ccd27f764333c11d2782aebc59b3693f869cc",
+      "line": 24,
+      "quoted_text": "ما الفرق بين 'علم نفس تجريبي' و'علم نفس إكلينيكي' — وهل يمكن أن يستقل أحدهما عن الآخر؟",
+      "category": "activity"
+    },
+    {
+      "lesson": "04_المراهقة_والبلوغ_تمييز_المفاهيم.md",
+      "lesson_sha256": "d50943df4a236d2689b0cd3b78f850d2876b01821631a2ff5b1be31f4aa34675",
+      "line": 19,
+      "quoted_text": "في حضارات مافيش مراهقة أصلاً... الراجل وحش طول عمره.",
+      "category": "scientific"
+    },
+    {
+      "lesson": "04_المراهقة_والبلوغ_تمييز_المفاهيم.md",
+      "lesson_sha256": "d50943df4a236d2689b0cd3b78f850d2876b01821631a2ff5b1be31f4aa34675",
+      "line": 32,
+      "quoted_text": "هل 'المراهقة' ظاهرة حقيقية أم بناء اجتماعي؟",
+      "category": "activity"
+    },
+    {
+      "lesson": "04_المراهقة_والبلوغ_تمييز_المفاهيم.md",
+      "lesson_sha256": "d50943df4a236d2689b0cd3b78f850d2876b01821631a2ff5b1be31f4aa34675",
+      "line": 35,
+      "quoted_text": "بعض الحضارات لا تعرف المراهقة",
+      "category": "reference"
+    },
+    {
+      "lesson": "05_الحاجة_إلى_تصور_إسلامي.md",
+      "lesson_sha256": "89f55d906c3e1b3c718c10ce94a88f1b592818642c3cbd27d7c30f17d6f033f2",
+      "line": 11,
+      "quoted_text": "علم نشأ في بيئة",
+      "category": "term"
+    },
+    {
+      "lesson": "05_الحاجة_إلى_تصور_إسلامي.md",
+      "lesson_sha256": "89f55d906c3e1b3c718c10ce94a88f1b592818642c3cbd27d7c30f17d6f033f2",
+      "line": 11,
+      "quoted_text": "علم يُعاد تأصيله",
+      "category": "term"
+    },
+    {
+      "lesson": "05_الحاجة_إلى_تصور_إسلامي.md",
+      "lesson_sha256": "89f55d906c3e1b3c718c10ce94a88f1b592818642c3cbd27d7c30f17d6f033f2",
+      "line": 18,
+      "quoted_text": "ما الحاجة الحضارية والفلسفية... أن تصك نسخة من أحد العلوم تنتمي لهذه العقيدة؟",
+      "category": "quote"
+    },
+    {
+      "lesson": "05_الحاجة_إلى_تصور_إسلامي.md",
+      "lesson_sha256": "89f55d906c3e1b3c718c10ce94a88f1b592818642c3cbd27d7c30f17d6f033f2",
+      "line": 22,
+      "quoted_text": "من حق أي إنسان يقف على أرضية فلسفية أن ينشئ نسخة خاصة.",
+      "category": "quote"
+    },
+    {
+      "lesson": "05_الحاجة_إلى_تصور_إسلامي.md",
+      "lesson_sha256": "89f55d906c3e1b3c718c10ce94a88f1b592818642c3cbd27d7c30f17d6f033f2",
+      "line": 25,
+      "quoted_text": "المعمل ١٨٧٩... المسلمين فين؟",
+      "category": "reference"
+    },
+    {
+      "lesson": "05_الحاجة_إلى_تصور_إسلامي.md",
+      "lesson_sha256": "89f55d906c3e1b3c718c10ce94a88f1b592818642c3cbd27d7c30f17d6f033f2",
+      "line": 25,
+      "quoted_text": "أمريكا ١٨٩٣...",
+      "category": "reference"
+    },
+    {
+      "lesson": "05_الحاجة_إلى_تصور_إسلامي.md",
+      "lesson_sha256": "89f55d906c3e1b3c718c10ce94a88f1b592818642c3cbd27d7c30f17d6f033f2",
+      "line": 25,
+      "quoted_text": "١٠٠ سنة ما تقوليش ١٩٧٠.",
+      "category": "reference"
+    },
+    {
+      "lesson": "05_الحاجة_إلى_تصور_إسلامي.md",
+      "lesson_sha256": "89f55d906c3e1b3c718c10ce94a88f1b592818642c3cbd27d7c30f17d6f033f2",
+      "line": 28,
+      "quoted_text": "علم نشأ في بيئة إسلامية",
+      "category": "activity"
+    },
+    {
+      "lesson": "05_الحاجة_إلى_تصور_إسلامي.md",
+      "lesson_sha256": "89f55d906c3e1b3c718c10ce94a88f1b592818642c3cbd27d7c30f17d6f033f2",
+      "line": 28,
+      "quoted_text": "علم غربي يُعاد تأصيله",
+      "category": "activity"
+    },
+    {
+      "lesson": "05_الحاجة_إلى_تصور_إسلامي.md",
+      "lesson_sha256": "89f55d906c3e1b3c718c10ce94a88f1b592818642c3cbd27d7c30f17d6f033f2",
+      "line": 31,
+      "quoted_text": "هل 'إسلامية العلم' صفة في منهجه أم في افتراضاته عن الإنسان؟",
+      "category": "activity"
+    },
+    {
+      "lesson": "06_التراث_النفسي_الإسلامي.md",
+      "lesson_sha256": "352492a82083a45e2161353093869d6bbd5f2029359eea16882ebe7cef7ac9bd",
+      "line": 10,
+      "quoted_text": "التصوف الفلسفي/العرفاني",
+      "category": "term"
+    },
+    {
+      "lesson": "06_التراث_النفسي_الإسلامي.md",
+      "lesson_sha256": "352492a82083a45e2161353093869d6bbd5f2029359eea16882ebe7cef7ac9bd",
+      "line": 18,
+      "quoted_text": "معظم الحضارات الدينية لها تصور عن النفس وطرق علاجها.",
+      "category": "scientific"
+    },
+    {
+      "lesson": "06_التراث_النفسي_الإسلامي.md",
+      "lesson_sha256": "352492a82083a45e2161353093869d6bbd5f2029359eea16882ebe7cef7ac9bd",
+      "line": 19,
+      "quoted_text": "تحت عنوان واضح — مبحث تزكية الأنفس أو التصوف.",
+      "category": "quote"
+    },
+    {
+      "lesson": "06_التراث_النفسي_الإسلامي.md",
+      "lesson_sha256": "352492a82083a45e2161353093869d6bbd5f2029359eea16882ebe7cef7ac9bd",
+      "line": 22,
+      "quoted_text": "يقارن بين التراث الصوفي التذكاري... وعلم النفس الحديث.",
+      "category": "reference"
+    },
+    {
+      "lesson": "06_التراث_النفسي_الإسلامي.md",
+      "lesson_sha256": "352492a82083a45e2161353093869d6bbd5f2029359eea16882ebe7cef7ac9bd",
+      "line": 23,
+      "quoted_text": "أفرد جزءًا نهائيًا في توصيف الجانب العلاجي.",
+      "category": "reference"
+    },
+    {
+      "lesson": "06_التراث_النفسي_الإسلامي.md",
+      "lesson_sha256": "352492a82083a45e2161353093869d6bbd5f2029359eea16882ebe7cef7ac9bd",
+      "line": 28,
+      "quoted_text": "في مساحة علاج النفس... والبحث عن العيوب.",
+      "category": "quote"
+    },
+    {
+      "lesson": "06_التراث_النفسي_الإسلامي.md",
+      "lesson_sha256": "352492a82083a45e2161353093869d6bbd5f2029359eea16882ebe7cef7ac9bd",
+      "line": 31,
+      "quoted_text": "ما الذي يمكن أن يأخذه علم النفس الحديث من 'تزكية النفس' — وما الذي لا يمكن أخذه؟",
+      "category": "activity"
+    },
+    {
+      "lesson": "07_العوامل_الخمس_للشخصية.md",
+      "lesson_sha256": "8e96a1ffa5c0688c4c1810fa2fa2861fa097190a0b3ac42a459bc2dfcbfe42f8",
+      "line": 18,
+      "quoted_text": "الناس شافت الصفات ووصفتها... لو دخلنا من المدخل اللغوي هنحصل على شيء متماسك.",
+      "category": "quote"
+    },
+    {
+      "lesson": "07_العوامل_الخمس_للشخصية.md",
+      "lesson_sha256": "8e96a1ffa5c0688c4c1810fa2fa2861fa097190a0b3ac42a459bc2dfcbfe42f8",
+      "line": 41,
+      "quoted_text": "لماذا 'العوامل الخمسة' وصفية لا تشخيصية — وما الفرق؟",
+      "category": "activity"
+    },
+    {
+      "lesson": "08_اضطرابات_الشخصية.md",
+      "lesson_sha256": "e33a75c0a12bc25fbec38e1993bad2ccbbe52965ce48d66157464e93131ecb5a",
+      "line": 10,
+      "quoted_text": "العلم المنهجي",
+      "category": "term"
+    },
+    {
+      "lesson": "08_اضطرابات_الشخصية.md",
+      "lesson_sha256": "e33a75c0a12bc25fbec38e1993bad2ccbbe52965ce48d66157464e93131ecb5a",
+      "line": 11,
+      "quoted_text": "ملصق",
+      "category": "term"
+    },
+    {
+      "lesson": "08_اضطرابات_الشخصية.md",
+      "lesson_sha256": "e33a75c0a12bc25fbec38e1993bad2ccbbe52965ce48d66157464e93131ecb5a",
+      "line": 21,
+      "quoted_text": "مافيش حد بشخصيتين واحدة منحرفه والتانيه مؤدبه... أساطير.",
+      "category": "clinical"
+    },
+    {
+      "lesson": "08_اضطرابات_الشخصية.md",
+      "lesson_sha256": "e33a75c0a12bc25fbec38e1993bad2ccbbe52965ce48d66157464e93131ecb5a",
+      "line": 22,
+      "quoted_text": "٧٠٪ من طلبة علم النفس في أمريكا",
+      "category": "reference"
+    },
+    {
+      "lesson": "08_اضطرابات_الشخصية.md",
+      "lesson_sha256": "e33a75c0a12bc25fbec38e1993bad2ccbbe52965ce48d66157464e93131ecb5a",
+      "line": 24,
+      "quoted_text": "أشهر ٥٠ خرافة في علم النفس",
+      "category": "reference"
+    },
+    {
+      "lesson": "08_اضطرابات_الشخصية.md",
+      "lesson_sha256": "e33a75c0a12bc25fbec38e1993bad2ccbbe52965ce48d66157464e93131ecb5a",
+      "line": 35,
+      "quoted_text": "ما الذي يجعل 'علم النفس الشعبي' أخطر من الجهل العادي؟",
+      "category": "activity"
+    },
+    {
+      "lesson": "08_اضطرابات_الشخصية.md",
+      "lesson_sha256": "e33a75c0a12bc25fbec38e1993bad2ccbbe52965ce48d66157464e93131ecb5a",
+      "line": 38,
+      "quoted_text": "أشهر ٥٠ خرافة",
+      "category": "reference"
+    },
+    {
+      "lesson": "09_الهستيري_والنرجسي.md",
+      "lesson_sha256": "80ae00f79300ac234fa4a7a0849bfbbfd3a5d4e5f8817617bbccad0544be30db",
+      "line": 10,
+      "quoted_text": "لا تبحث عن علاج",
+      "category": "clinical"
+    },
+    {
+      "lesson": "09_الهستيري_والنرجسي.md",
+      "lesson_sha256": "80ae00f79300ac234fa4a7a0849bfbbfd3a5d4e5f8817617bbccad0544be30db",
+      "line": 18,
+      "quoted_text": "بحث عن الاهتمام... عاطفية متقلبة... مسرحية.",
+      "category": "clinical"
+    },
+    {
+      "lesson": "09_الهستيري_والنرجسي.md",
+      "lesson_sha256": "80ae00f79300ac234fa4a7a0849bfbbfd3a5d4e5f8817617bbccad0544be30db",
+      "line": 21,
+      "quoted_text": "اعتزاز زائد بالذات... لا يبحث عن علاج... 'مين قاللك إني مريض؟'",
+      "category": "clinical"
+    },
+    {
+      "lesson": "09_الهستيري_والنرجسي.md",
+      "lesson_sha256": "80ae00f79300ac234fa4a7a0849bfbbfd3a5d4e5f8817617bbccad0544be30db",
+      "line": 22,
+      "quoted_text": "لو تعرض لضغط شديد... يوصله لحالة اكتئاب.",
+      "category": "clinical"
+    },
+    {
+      "lesson": "09_الهستيري_والنرجسي.md",
+      "lesson_sha256": "80ae00f79300ac234fa4a7a0849bfbbfd3a5d4e5f8817617bbccad0544be30db",
+      "line": 28,
+      "quoted_text": "دراسة لرجاء القاش... ما بين العبقرية والجنون... شعر.",
+      "category": "reference"
+    },
+    {
+      "lesson": "09_الهستيري_والنرجسي.md",
+      "lesson_sha256": "80ae00f79300ac234fa4a7a0849bfbbfd3a5d4e5f8817617bbccad0544be30db",
+      "line": 29,
+      "quoted_text": "من ناحية علمية محضة... تعريف الجنون: ذهان (اضطرابات في الوظائف العقلية)... ممكن يبقى اضطراب شخصية.",
+      "category": "clinical"
+    },
+    {
+      "lesson": "09_الهستيري_والنرجسي.md",
+      "lesson_sha256": "80ae00f79300ac234fa4a7a0849bfbbfd3a5d4e5f8817617bbccad0544be30db",
+      "line": 32,
+      "quoted_text": "لا تحول المصطلح إلى ملصق.",
+      "category": "activity"
+    },
+    {
+      "lesson": "09_الهستيري_والنرجسي.md",
+      "lesson_sha256": "80ae00f79300ac234fa4a7a0849bfbbfd3a5d4e5f8817617bbccad0544be30db",
+      "line": 35,
+      "quoted_text": "لماذا 'النرجسي' تحديدًا لا يبحث عن علاج — وهل هذا في حد ذاته سمة مرضية؟",
+      "category": "clinical"
+    },
+    {
+      "lesson": "09_الهستيري_والنرجسي.md",
+      "lesson_sha256": "80ae00f79300ac234fa4a7a0849bfbbfd3a5d4e5f8817617bbccad0544be30db",
+      "line": 38,
+      "quoted_text": "دراسة رجاء القاش",
+      "category": "reference"
+    },
+    {
+      "lesson": "10_التجنبي_والاعتمادي_والوسواسي.md",
+      "lesson_sha256": "98e71b496ef6be92319f297ff90589d73149fd9b4335b50d7786e7aca0c0ddbb",
+      "line": 11,
+      "quoted_text": "بطاقة القراءة غير التشخيصية",
+      "category": "activity"
+    },
+    {
+      "lesson": "10_التجنبي_والاعتمادي_والوسواسي.md",
+      "lesson_sha256": "98e71b496ef6be92319f297ff90589d73149fd9b4335b50d7786e7aca0c0ddbb",
+      "line": 18,
+      "quoted_text": "عكس الهيستيري والنرجسي... انزعاج من أي اجتماع بشري... خوف من التقييم السلبي.",
+      "category": "clinical"
+    },
+    {
+      "lesson": "10_التجنبي_والاعتمادي_والوسواسي.md",
+      "lesson_sha256": "98e71b496ef6be92319f297ff90589d73149fd9b4335b50d7786e7aca0c0ddbb",
+      "line": 23,
+      "quoted_text": "المجتمع هو اللي بيبنيها... قبل ما الإنسان يروح للمجتمع، الإنسان بيتأخر.",
+      "category": "clinical"
+    },
+    {
+      "lesson": "10_التجنبي_والاعتمادي_والوسواسي.md",
+      "lesson_sha256": "98e71b496ef6be92319f297ff90589d73149fd9b4335b50d7786e7aca0c0ddbb",
+      "line": 24,
+      "quoted_text": "البيئة الصغيرة (الأسرة) هي الأكثر تأثيرًا.",
+      "category": "clinical"
+    },
+    {
+      "lesson": "10_التجنبي_والاعتمادي_والوسواسي.md",
+      "lesson_sha256": "98e71b496ef6be92319f297ff90589d73149fd9b4335b50d7786e7aca0c0ddbb",
+      "line": 27,
+      "quoted_text": "لما الأم بتغيب الأب بياخد كل صفات الأم... والعكس.",
+      "category": "clinical"
+    },
+    {
+      "lesson": "10_التجنبي_والاعتمادي_والوسواسي.md",
+      "lesson_sha256": "98e71b496ef6be92319f297ff90589d73149fd9b4335b50d7786e7aca0c0ddbb",
+      "line": 30,
+      "quoted_text": "أكثر ناس عندهم استعداد للفوبيا... فوبيا المساحات الواسعة.",
+      "category": "clinical"
+    },
+    {
+      "lesson": "10_التجنبي_والاعتمادي_والوسواسي.md",
+      "lesson_sha256": "98e71b496ef6be92319f297ff90589d73149fd9b4335b50d7786e7aca0c0ddbb",
+      "line": 31,
+      "quoted_text": "ولد في إعدادية... نفسه قبل ما يموت يشوف النيل ويركب القطار.",
+      "category": "clinical"
+    },
+    {
+      "lesson": "10_التجنبي_والاعتمادي_والوسواسي.md",
+      "lesson_sha256": "98e71b496ef6be92319f297ff90589d73149fd9b4335b50d7786e7aca0c0ddbb",
+      "line": 44,
+      "quoted_text": "ما الذي يتغير في نظرتك لنفسك وللآخرين بعد هذا الكورس — مع الحفاظ على قاعدة 'لا تشخّص'؟",
+      "category": "activity"
+    }
+  ]
+}

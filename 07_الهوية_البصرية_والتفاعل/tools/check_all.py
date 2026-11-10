@@ -23,6 +23,7 @@ STEPS = [
     ("course index up to date", ["python3", str(T / "build_course_index.py"), "--check"]),
     ("course player page", ["node", str(T / "check_course_page.cjs")]),
     ("sanctity of the Prophet ﷺ in authored text", ["python3", str(T / "check_sanctity.py")]),
+    ("owner decision statuses build", ["python3", str(ROOT / "08_دورات_القوائم" / "tools" / "apply_owner_decisions.py")]),
 ]
 
 
