@@ -1,0 +1,17 @@
+{
+  "asset_id": "tas-w18-hook-lens",
+  "generator": "arena image model (generate_image)",
+  "date": "2026-10-26",
+  "prompt": "A large magnifying glass held over an old manuscript page (blank, no writing) that carries a round wax seal; a second, newer sheet lies beside it, slightly misaligned, as if a copy. Style: a hand-drawn illustration in blue ballpoint pen (#2440A0) on off-white squared notebook paper (#F7F8F3 with faint blue 5 mm grid). Confident single-weight pen lines with light cross-hatching for shade, like an engineer's sketch on a lecture board. Flat, no 3D, no photorealism, no gradients, no glow. At most ONE accent colour used sparingly: sepia ink #8A5A2B. Generous empty paper around the subject; keep the right third of the frame quiet for on-screen text. 16:9 landscape, 1920x1080. Absolutely no text, letters, Arabic or Latin script, numbers, logos, signatures or watermarks anywhere. No human faces: any person is a tiny distant outline silhouette with no facial features. No religious figures, no prophets, no companions, no real people, no weapons, no blood, no fire, no flags, no sectarian or national symbols.",
+  "seed": null,
+  "rejected_variants": 0,
+  "checks": {
+    "V2_no_text": true,
+    "V3_no_faces": true,
+    "V4_single_accent": true,
+    "V5_flat_not_3d": true,
+    "V6_1920x1080": true
+  },
+  "notes": "العدسة على صفحة مخطوط بها ختم شمعي، وورقة أحدث بجوارها مائلة كأنها نسخة. التفصيل الوحيد (الختم والورقة القديمة) بلون السيبيا. بلا نص.",
+  "review_status": "بانتظار اعتماد المالك"
+}

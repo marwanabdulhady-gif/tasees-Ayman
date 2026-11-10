@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-26T15:12:02.665Z",
+  "timestamp": "2026-10-26T19:34:01.338Z",
   "total": 57,
   "passed": 57,
   "results": [
@@ -299,9 +299,9 @@
     },
     {
       "section": "14.1",
-      "name": "Curated historical map hotspots expanded to 80 maps across Seerah, Abu Bakr, Umar, Uthman & Ali (770 total verified hotspots)",
+      "name": "Curated historical map hotspots expanded to 86 maps across Seerah, Abu Bakr, Umar, Uthman & Ali (817 total verified hotspots)",
       "ok": true,
-      "detail": "curatedVols2to6=80, totalVerifiedHotspots=770"
+      "detail": "curatedVols2to6=86, totalVerifiedHotspots=817"
     },
     {
       "section": "14.2",
@@ -331,7 +331,7 @@
       "section": "14.6",
       "name": "Learning module supports scanned Blind Map Challenge («الخريطة الصمّاء») with numbered parchment masks",
       "ok": true,
-      "detail": "pins=4"
+      "detail": "pins=3"
     },
     {
       "section": "14.7",

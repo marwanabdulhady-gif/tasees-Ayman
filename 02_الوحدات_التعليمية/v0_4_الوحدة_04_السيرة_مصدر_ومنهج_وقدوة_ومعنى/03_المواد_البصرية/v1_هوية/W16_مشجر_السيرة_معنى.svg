@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="'IBM Plex Sans Arabic', 'Noto Sans Arabic', Tahoma, sans-serif"><defs><pattern id="v1grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0 H0 V24" fill="none" stroke="#D7DDE8" stroke-width="0.7"/></pattern></defs>
+<rect width="1200" height="675" fill="#F7F8F3"/><rect width="1200" height="675" fill="url(#v1grid)"/>
+<text x="600" y="58" fill="#19213A" font-size="36" text-anchor="middle" font-weight="bold">السيرة مش غزوات وبس: الحجم الحقيقي والمعنى</text>
+<g font-size="21" text-anchor="middle" fill="#19213A">
+<rect x="70" y="96" width="335" height="86" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="3"/><text x="237" y="128">23 سنة دعوة</text><text x="237" y="158" fill="#4A5470" font-size="18">≈80 تحركًا · &lt;10 معارك فعلية</text>
+<rect x="435" y="96" width="335" height="86" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="3"/><text x="602" y="128">ضحايا بمئات لا بآلاف</text><text x="602" y="158" fill="#4A5470" font-size="18">بمعايير القرن السابع: الأقل دموية</text>
+<rect x="800" y="96" width="330" height="86" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/><text x="965" y="128">قواعد اشتباك سابقة</text><text x="965" y="158" fill="#4A5470" font-size="18">لا امرأة/طفل/راهب · لا شجر · لا مُثلة</text>
+</g>
+<g font-size="21" fill="#4A5470" text-anchor="middle">
+<rect x="120" y="212" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="246">اليوم العادي: ليل قيام ← مجلس علم وقضاء ← عيادة وحوائج ← بيت «مهنة أهله» ← سوق ← وفود ورسائل</text>
+<rect x="120" y="280" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="314">الانتشار: إندونيسيا وماليزيا وغرب إفريقيا — تجار ودعاة بلا جيوش · «لا إكراه في الدين»</text>
+<rect x="120" y="348" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="382">وظيفة ١: معيار التفكير (و1) · وظيفة ٢: مدرسة التلقي (و2) — أصل سلسلة التلقي: الغار</text>
+<rect x="120" y="416" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="450">وظيفة ٣: حياة اللغة (و3) — مختبرها نصوص الوحي · وظيفة ٤: المعنى — حياة موصولة</text>
+<rect x="120" y="484" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="518">بشري فلا نستحيل · كامل فلا نرتخي — «إنما أنا بشر مثلكم يوحى إليّ»</text>
+<rect x="120" y="552" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="586">ختام المرحلة ١: تفكير + خزانة + خريطة + لغة + سيرة ← أسبوع تنفس ← المرحلة ٢: التاريخ</text>
+</g>
+<text x="600" y="650" fill="#4A5470" font-size="18" text-anchor="middle">مشروع تأسيس — الوحدة 4 v0.4 — الأسبوع 16 — بلا تجسيد · هوية v1</text>
+</svg>

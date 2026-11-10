@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="'IBM Plex Sans Arabic', 'Noto Sans Arabic', Tahoma, sans-serif"><defs><pattern id="v1grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0 H0 V24" fill="none" stroke="#D7DDE8" stroke-width="0.7"/></pattern></defs>
+<rect width="1200" height="675" fill="#F7F8F3"/><rect width="1200" height="675" fill="url(#v1grid)"/>
+<text x="600" y="62" fill="#19213A" font-size="36" text-anchor="middle" font-weight="bold">إزاي وصلتنا السيرة؟ طبقات المصدر ودرجات الخبر</text>
+<g font-size="22" text-anchor="middle" fill="#19213A">
+<rect x="70" y="100" width="255" height="80" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="3"/><text x="197" y="132">١ القرآن</text><text x="197" y="160" fill="#4A5470" font-size="18">محطات متواترة</text>
+<rect x="345" y="100" width="255" height="80" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="3"/><text x="472" y="132">٢ الحديث والسنة</text><text x="472" y="160" fill="#4A5470" font-size="18">أسانيد + علم رجال</text>
+<rect x="620" y="100" width="255" height="80" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/><text x="747" y="132">٣ المغازي والسير</text><text x="747" y="160" fill="#4A5470" font-size="18">ابن إسحاق/ابن هشام</text>
+<rect x="895" y="100" width="235" height="80" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="3"/><text x="1012" y="132">٤ مصنفات متأخرة</text><text x="1012" y="160" fill="#4A5470" font-size="18">تفاصيل بلا مصفاة أحيانًا</text>
+</g>
+<g font-size="22" fill="#4A5470" text-anchor="middle">
+<rect x="120" y="212" width="960" height="56" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="248">درجات الخبر: متواتر ← صحيح/حسن ← ضعيف ← موضوع (نادر ومفضوح)</text>
+<rect x="120" y="282" width="960" height="56" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="318">معياران بأمانة الأئمة: تشديد في الحلال والحرام · تساهل في السير والمغازي</text>
+<rect x="120" y="352" width="960" height="56" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="388">بطاقة الخبر: ١ سند · ٢ متن · ٣ مخارج · ٤ سياق · ٥ أثر — على قد الأثر تكون الصرامة</text>
+<rect x="120" y="422" width="960" height="56" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="458">خندقان: غلو يرفع فوق النص · جفاء يطرح دونه — والمنزل الوسط منهج</text>
+<rect x="120" y="492" width="960" height="56" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="528">علامة الوسطي: بيفرح بالتصحيح — «الخبر نزل درجة» مش «السيرة اتهدمت»</text>
+</g>
+<text x="600" y="628" fill="#4A5470" font-size="20" text-anchor="middle">مشروع تأسيس — الوحدة 4 v0.4 — الأسبوع 13 — بلا تجسيد · هوية v1</text>
+</svg>

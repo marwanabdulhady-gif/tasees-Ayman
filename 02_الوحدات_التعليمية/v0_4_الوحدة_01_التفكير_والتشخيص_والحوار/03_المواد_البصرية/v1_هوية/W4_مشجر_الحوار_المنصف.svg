@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="'IBM Plex Sans Arabic', 'Noto Sans Arabic', Tahoma, sans-serif"><defs><pattern id="v1grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0 H0 V24" fill="none" stroke="#D7DDE8" stroke-width="0.7"/></pattern></defs>
+<rect width="1200" height="675" fill="#F7F8F3"/><rect width="1200" height="675" fill="url(#v1grid)"/>
+<text x="600" y="66" fill="#19213A" font-size="38" text-anchor="middle" font-weight="bold">بروتوكول الحوار المنصف: ست خطوات</text>
+<g font-size="24" text-anchor="middle">
+<rect x="60" y="110" width="340" height="80" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/><text x="230" y="158" fill="#19213A">١ الدعوى كما فهمتها</text>
+<rect x="430" y="110" width="340" height="80" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/><text x="600" y="158" fill="#19213A">٢ نوع الكلام والمصدر</text>
+<rect x="800" y="110" width="340" height="80" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/><text x="970" y="158" fill="#19213A">٣ رجل الفولاذ</text>
+<rect x="60" y="230" width="340" height="80" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="3"/><text x="230" y="278" fill="#19213A">٤ ثابت/مفسَّر/قيمي/مجهول</text>
+<rect x="430" y="230" width="340" height="80" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="3"/><text x="600" y="278" fill="#19213A">٥ حدّي وقراءة بديلة</text>
+<rect x="800" y="230" width="340" height="80" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="3"/><text x="970" y="278" fill="#19213A">٦ خطوة تعلم لا انتصار</text>
+</g>
+<g font-size="22" fill="#4A5470" text-anchor="middle">
+<rect x="120" y="360" width="960" height="66" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="402">أمراض المناظرة: رجل القش · وسم الخصم · تسجيل النقاط · الجمهور الافتراضي</text>
+<rect x="120" y="450" width="960" height="66" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="492">ملف الوحدة: سؤال + مصدر بوظيفته + حد + قراءة بديلة + فعل منخفض المخاطر</text>
+<rect x="120" y="540" width="960" height="66" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="582">مراجعة القرين: مرايا متبادلة — وسم متخفٍ؟ قراءة بديلة ديكور؟</text>
+</g>
+<text x="600" y="645" fill="#4A5470" font-size="20" text-anchor="middle">مشروع تأسيس — الوحدة 1 v0.4 — الأسبوع 4 · هوية v1</text>
+</svg>

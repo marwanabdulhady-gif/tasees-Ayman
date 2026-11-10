@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="'IBM Plex Sans Arabic', 'Noto Sans Arabic', Tahoma, sans-serif"><defs><pattern id="v1grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0 H0 V24" fill="none" stroke="#D7DDE8" stroke-width="0.7"/></pattern></defs>
+<rect width="1200" height="675" fill="#F7F8F3"/><rect width="1200" height="675" fill="url(#v1grid)"/>
+<text x="600" y="60" fill="#19213A" font-size="36" text-anchor="middle" font-weight="bold">القدوة مش استنساخ: ثلاثة أنواع من الفعل</text>
+<g font-size="23" text-anchor="middle">
+<rect x="70" y="100" width="330" height="96" rx="6" fill="#FFFFFF" stroke="#2440A0" stroke-width="3"/><text x="235" y="138" fill="#19213A">تشريعي — بلّغه</text><text x="235" y="170" fill="#4A5470" font-size="19">صلاة · صوم · مناسك · أحكام</text>
+<rect x="435" y="100" width="330" height="96" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="3" stroke-dasharray="4 3"/><text x="600" y="138" fill="#19213A">عادي — بشر في زمانه</text><text x="600" y="170" fill="#4A5470" font-size="19">أكل الدباء · ثياب عصره · «أنتم أعلم بدنياكم»</text>
+<rect x="800" y="100" width="330" height="96" rx="6" fill="#FFFFFF" stroke="#C23B30" stroke-width="3"/><text x="965" y="138" fill="#19213A">خصوصي — له وحده</text><text x="965" y="170" fill="#4A5470" font-size="19">ثبتت خصوصيته بنص</text>
+</g>
+<g font-size="21" fill="#4A5470" text-anchor="middle">
+<rect x="120" y="226" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="260">حُكم الاتباع: اتباع واجب/مندوب ← اقتداء بالروح لا القالب ← إثبات بلا تقليد</text>
+<rect x="120" y="294" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="328">مرض ١: تحويل العادي لتشريعي — يقدس عادة زمانهم ويجمد الدين</text>
+<rect x="120" y="362" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="396">مرض ٢: إنكار التشريعي بحجة التاريخي — يذوب الدين في متحف</text>
+<rect x="120" y="430" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="464">السؤال الصعب بميزان: سياق + أرقام ببطاقتها + تصنيف + «لا أعلم بعد»</text>
+<rect x="120" y="498" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="532">الحاضرية غلط منهجي: لا تُحاكم أزمنة بمسطرة قرنك — ولا تبرر ظلمًا بـ«زمانهم»</text>
+</g>
+<text x="600" y="606" fill="#19213A" font-size="22" text-anchor="middle">القدوة اتجاه قلب لا قالب شكل: «أسوة حسنة لمن كان يرجو الله واليوم الآخر»</text>
+<text x="600" y="650" fill="#4A5470" font-size="18" text-anchor="middle">مشروع تأسيس — الوحدة 4 v0.4 — الأسبوع 15 · هوية v1</text>
+</svg>

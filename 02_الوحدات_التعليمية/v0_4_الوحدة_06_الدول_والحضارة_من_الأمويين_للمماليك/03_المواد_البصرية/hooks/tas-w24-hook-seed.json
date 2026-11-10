@@ -1,0 +1,17 @@
+{
+  "asset_id": "tas-w24-hook-seed",
+  "generator": "arena image model (generate_image)",
+  "date": "2026-10-26",
+  "prompt": "A desk at its richest moment: stacks of paper, an astrolabe, an inkwell; in the floor tiles just below the desk a small seedling is pushing up through a thin crack. Style: a hand-drawn illustration in blue ballpoint pen (#2440A0) on off-white squared notebook paper (#F7F8F3 with faint blue 5 mm grid). Confident single-weight pen lines with light cross-hatching for shade, like an engineer's sketch on a lecture board. Flat, no 3D, no photorealism, no gradients, no glow. At most ONE accent colour used sparingly: sepia ink #8A5A2B. Generous empty paper around the subject; keep the right third of the frame quiet for on-screen text. 16:9 landscape, 1920x1080. Absolutely no text, letters, Arabic or Latin script, numbers, logos, signatures or watermarks anywhere. No human faces: any person is a tiny distant outline silhouette with no facial features. No religious figures, no prophets, no companions, no real people, no weapons, no blood, no fire, no flags, no sectarian or national symbols.",
+  "seed": null,
+  "rejected_variants": 0,
+  "checks": {
+    "V2_no_text": true,
+    "V3_no_faces": true,
+    "V4_single_accent": true,
+    "V5_flat_not_3d": true,
+    "V6_1920x1080": true
+  },
+  "notes": "مكتب بذروة انشغاله: رزم ورق وأسطرلاب ومحبرة، وفي بلاط الأرضية تحته بادرة تنبت من شرخ رفيع.",
+  "review_status": "بانتظار اعتماد المالك"
+}

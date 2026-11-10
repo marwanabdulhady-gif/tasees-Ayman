@@ -191,10 +191,12 @@ def main(argv):
         plan = week_plan(n)
         errs = validate(n, WEEK_CONTENT[n], plan)
         # صورة الخطاف: إن كُتب لها مسار فلا بد أن يكون الملف موجودًا من موضع الصفحة.
+        # ملاحظة: resolve() قبل الفحص، لأن مجلد الصفحة نفسه قد لا يكون قد أُنشئ بعد،
+        # و`(مجلد غير موجود)/../x` يرجع «غير موجود» في POSIX حتى لو كان x موجودًا.
         out_dir = target_path(n).parent
         for s in WEEK_CONTENT[n]["screens"]:
             src = s.get("art_src")
-            if src and not (out_dir / src).exists():
+            if src and not (out_dir / src).resolve().exists():
                 errs.append(f"صورة الخطاف {s.get('art')}: الملف غير موجود `{src}`")
         if errs:
             failed.append(n)

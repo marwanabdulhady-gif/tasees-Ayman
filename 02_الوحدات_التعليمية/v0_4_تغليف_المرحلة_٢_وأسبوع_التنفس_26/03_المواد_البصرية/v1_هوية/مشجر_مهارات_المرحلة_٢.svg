@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="'IBM Plex Sans Arabic', 'Noto Sans Arabic', Tahoma, sans-serif"><defs><pattern id="v1grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0 H0 V24" fill="none" stroke="#D7DDE8" stroke-width="0.7"/></pattern></defs>
+<rect width="1200" height="675" fill="#F7F8F3"/><rect width="1200" height="675" fill="url(#v1grid)"/>
+<text x="600" y="56" fill="#19213A" font-size="34" text-anchor="middle" font-weight="bold">المرحلة ٢ «بناء الخريطة التاريخية»: سلم المهارات — 10 مهارات في 8 أسابيع + تنفس</text>
+<g font-size="22" text-anchor="middle">
+<rect x="180" y="90" width="380" height="86" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/><text x="370" y="124" fill="#19213A">و٥ مدخل التاريخ (18–21)</text><text x="370" y="154" fill="#4A5470" font-size="17">بطاقة الرواية · التعميم المجهول · طبقات الخلافي · مراحل التشقق · اختبار الخوارج</text>
+<rect x="640" y="90" width="380" height="86" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="3"/><text x="830" y="124" fill="#19213A">و٦ الدول والحضارة (22–25)</text><text x="830" y="154" fill="#4A5470" font-size="17">ميزان الدولة · السقوط والثورة · جدول بأدلة · بطاقة تسمية · ابن خلدون</text>
+</g>
+<g stroke="#8A5A2B" stroke-width="4" fill="none"><path d="M560 133 H640"/></g>
+<g font-size="20" fill="#4A5470" text-anchor="middle">
+<rect x="120" y="208" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="242">الاتفاق الموحد: 7 قواعد + 9 مسامير (رقم/كلمة/تاريخ/خبر/سؤال صعب/رواية ببطاقتها/صحابي وآل بيت بأدبهم/دولة بميزانها/بطل بلا تلميع)</text>
+<rect x="120" y="276" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="310">الملفان = رأس المال: بطاقة رواية ومؤسسة وتشريح شق واختبار خوارج وعام الجماعة · تشريح سقوط وبطاقة وميزان وكلمة شحنة وابن خلدون</text>
+<rect x="120" y="344" width="960" height="54" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="378">الخطوط الحمراء: لا تجسيد لأشخاص · لا انحياز طائفي · كربلاء بحجمها بلا استغلال · لا تلميع ولا تجريح · الجرائم بحجمها بلا تضخيم رقمي</text>
+<rect x="120" y="412" width="960" height="48" rx="6" fill="#FFFFFF" stroke="#D7DDE8" stroke-width="1.5"/><text x="600" y="443">العدة القديمة شغالة جوه الجديدة: بطاقة الرقم على الكوارث · كلمة الشحنة على التسميات · درجات الخبر على الحكايات · وصف بلا وسم قانون الوحدة</text>
+</g>
+<rect x="330" y="486" width="540" height="70" rx="6" fill="#FFFFFF" stroke="#20242C" stroke-width="4" stroke-dasharray="4 3"/>
+<text x="600" y="516" fill="#19213A" font-size="24" text-anchor="middle">🫁 أسبوع التنفس 26</text>
+<text x="600" y="544" font-size="17" fill="#4A5470" text-anchor="middle">فحص القلب قبل العدة + جرد المهارات 16–25 + مختبر اختياري (L1–L8) + راحة بلا ذنب</text>
+<rect x="330" y="576" width="540" height="58" rx="6" fill="#FFFFFF" stroke="#8A5A2B" stroke-width="2"/>
+<text x="600" y="611" font-size="18" fill="#4A5470" text-anchor="middle">المرحلة ٣: العثمانيون والاستعمار والحداثة والهوية (27–34) — التاريخ اللي لسه عايش فينا</text>
+<g stroke="#20242C" stroke-width="4" fill="none"><path d="M600 460 V486"/><path d="M600 556 V576"/></g>
+<text x="600" y="662" fill="#4A5470" font-size="18" text-anchor="middle">مشروع تأسيس — تغليف المرحلة ٢ v0.4 — 2026-10-25 · هوية v1</text>
+</svg>
